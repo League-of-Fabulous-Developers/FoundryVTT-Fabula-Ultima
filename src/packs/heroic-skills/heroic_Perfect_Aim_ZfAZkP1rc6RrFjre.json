@@ -9,7 +9,7 @@
     "summary": {
       "value": "Choose two options when using Warning Shot."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter </strong>Class, and must have acquired the <strong>Warning Shot</strong> Skill.</p></blockquote><p>When you hit one or more creatures with a <strong>ranged </strong>attack and choose to deal no damage in order to gain the benefits of the @UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot} Skill, you may choose <strong>two </strong>options instead of one (for instance, you could inflict both <strong>shaken</strong> and <strong>slow</strong> on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter</strong> Class, and must have acquired the <strong>Warning Shot</strong> Skill.</p><hr /><p>When you hit one or more creatures with a <strong>ranged</strong> attack and choose to deal no damage in order to gain the benefits of the @UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot} Skill, you may choose <strong>two</strong> options instead of one (for instance, you could inflict both <strong>shaken</strong> and <strong>slow</strong> on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Sharpshooter"
+      "value": "sharpshooter"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,24 +95,139 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "perfect-aim"
+    "fuid": "perfect-aim",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Perfect Aim",
+      "img": "icons/skills/ranged/target-bullseye-arrow-blue.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.ZfAZkP1rc6RrFjre",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "gNWcWNk7BaGQneIk": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "goj4LjE5dGJRjRD3",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "gNWcWNk7BaGQneIk",
+              "predicates": {
+                "k4maMdhVyaM5l1Xf": {
+                  "type": "checkRulePredicate",
+                  "_id": "k4maMdhVyaM5l1Xf",
+                  "outcome": "success",
+                  "result": null
+                },
+                "I5W8BEy2voivOJol": {
+                  "type": "weaponRulePredicate",
+                  "_id": "I5W8BEy2voivOJol",
+                  "weaponType": "ranged"
+                }
+              },
+              "actions": {
+                "tYTWkoQkOhtNGyKB": {
+                  "type": "messageRuleAction",
+                  "_id": "tYTWkoQkOhtNGyKB",
+                  "message": "<p>You may choose two options for <strong>Warning Shot</strong>.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "nXxQayufreIj9Lqz",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you use the <strong>Warning Shot</strong> Skill, you may choose <strong>two</strong> options instead of one.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Perfect Aim",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.ZfAZkP1rc6RrFjre",
+            "effectUuid": null,
+            "fuid": "perfect-aim"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771888251295,
+        "modifiedTime": 1771888377691,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!ZfAZkP1rc6RrFjre.nXxQayufreIj9Lqz"
+    }
+  ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706585143889,
-    "modifiedTime": 1743124551010,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771888241963,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

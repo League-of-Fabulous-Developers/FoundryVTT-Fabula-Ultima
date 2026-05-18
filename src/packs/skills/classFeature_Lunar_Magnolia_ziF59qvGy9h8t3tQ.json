@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Lunar Magnolia",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/strawberry-trio-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/lunar-magnolia.png",
   "system": {
     "summary": {
       "value": "It blooms in the darkest hours of the night."
@@ -17,7 +17,7 @@
         {
           "start": 1,
           "end": 3,
-          "effect": "<p>At the end of your turn, choose <strong>ice</strong> or <strong>light</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Receive:</strong> @TYPE[damage all ice priority e:eot i:1 t:source] or @TYPE[damage all light priority e:eot i:1 t:source]</p>"
+          "effect": "<p>At the end of your turn, choose <strong>ice</strong> or <strong>light</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.YfWDHikTC47SE6es] or @EFFECT[Compendium.projectfu.skills.Item.eTyaM3Nb0U3G5Eek]</p>"
         }
       ]
     },
@@ -33,7 +33,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370539482,
+    "modifiedTime": 1777434508348,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

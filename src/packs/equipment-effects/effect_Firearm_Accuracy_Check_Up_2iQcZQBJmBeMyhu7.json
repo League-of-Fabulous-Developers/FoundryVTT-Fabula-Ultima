@@ -1,0 +1,110 @@
+{
+  "folder": "sT60HsbrtK4laoQE",
+  "name": "Firearm Accuracy Check Up",
+  "type": "effect",
+  "_id": "2iQcZQBJmBeMyhu7",
+  "img": "systems/projectfu/styles/static/icons/weapons/firearm.png",
+  "system": {
+    "fuid": "firearm-accuracy-check-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Firearm Accuracy Check Up",
+      "img": "systems/projectfu/styles/static/icons/weapons/firearm.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.2iQcZQBJmBeMyhu7",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "yib3LeK6EsPIgBZI",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.firearm",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>firearms</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Firearm Accuracy Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.2iQcZQBJmBeMyhu7",
+            "effectUuid": null,
+            "fuid": "firearm-accuracy-check-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774758679737,
+        "modifiedTime": 1774758692370,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!2iQcZQBJmBeMyhu7.yib3LeK6EsPIgBZI"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774757572840,
+    "modifiedTime": 1774758677722,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!2iQcZQBJmBeMyhu7"
+}

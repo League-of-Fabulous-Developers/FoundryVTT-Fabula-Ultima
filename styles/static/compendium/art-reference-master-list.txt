@@ -5,6 +5,7 @@ alchemy-rpg - [Pixeltier’s Icons: Alchemy Ingredients & Tools (16x16)](https:/
 cyberpunk-rpg - [Pixeltier’s Icons: Cyberpunk RPG (16x16)](https://pixeltier.itch.io/pixeltiers-cyberpunk-rpg-icon-pack)
 halloween-rpg - [Pixeltier’s Icons: FREE Halloween Items (16x16)](https://pixeltier.itch.io/pixeltiers-icons-free-halloween-items)
 sword-rpg - [Pixeltier’s Icons: Swords (16x16)](https://pixeltier.itch.io/pixeltiers-icons-swords)
+magic-rpg - [Pixeltier’s Icons: Magic & Wizardry (16x16)](https://pixeltier.itch.io/pixeltiers-icons-staves-spellbooks-orbs-scrolls)
 
 ----------------------------------------------------
 [projectfu\styles\static\compendium\armor\*]
@@ -13,7 +14,7 @@ Armor/Shield Assets:
 no-armor (modern-rpg, shirt_063)
 travel-garb (fantasy-rpg, jacket_1)
 combat-tunic (fantasy-rpg, armor_85)
-sage-robe (fantasy-rpg, cloak_1)
+sage-robe (fantasy-rpg, cloak_3)
 runic-shield (fantasy-rpg, shield_66)
 silk-shirt (modern-rpg, shirt_133)
 brigadine (fantasy-rpg, armor_36)
@@ -118,3 +119,143 @@ With the exception of the following:
 The Mnemosphere icons in the following folders are a combination of the respective class icon by Javier Aumente (Tarot) and orb_002.png by Pixeltier, created with permission by the respective authors.
 [projectfu\styles\static\compendium\classes\*\*_mnemosphere.png]
 
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\rare-equipment\accessories\*]
+
+Accessory Assets:
+amulet-goldring-black (fantasy-rpg, recolor of amulet_23)
+amulet-goldring-blue (fantasy-rpg, amulet_13)
+amulet-goldring-green (fantasy-rpg, amulet_18)
+amulet-goldring-orange (fantasy-rpg, recolor of amulet_23)
+amulet-goldring-prismatic (fantasy-rpg, recolor of amulet_18)
+amulet-goldring-purple (fantasy-rpg, recolor of amulet_13)
+amulet-goldring-red (fantasy-rpg, amulet_23)
+amulet-goldring-yellow (fantasy-rpg, recolor of amulet_18)
+amulet-pendant-red (fantasy-rpg, amulet_43)
+bag-brown-gold (fantasy-rpg, bag_9)
+belt-skull (fantasy-rpg, belt_2)
+claw-white (alchemy-rpg, horn_001)
+cloak-blue (fantasy-rpg, recolor of cloak_1)
+cloak-brown (fantasy-rpg, recolor of cloak_1)
+cloak-fancy (fantasy-rpg, cloak_2)
+cloak-gray (fantasy-rpg, recolor of cloak_1)
+cloak-purple (fantasy-rpg, recolor of cloak_1)
+cloak-red (fantasy-rpg, recolor of cloak_1)
+cloak-yellow (fantasy-rpg, recolor of cloak_1)
+compass-white (modern-rpg, compass_002)
+crystal-black (fantasy-rpg, crystal_1)
+crystal-blue (fantasy-rpg, crystal_7)
+crystal-gold (fantasy-rpg, crystal_5)
+crystal-green (fantasy-rpg, crystal_10)
+crystal-orange (fantasy-rpg, recolor of crystal_2)
+crystal-purple (fantasy-rpg, recolor of crystal_2)
+crystal-red (fantasy-rpg, recolor of crystal_2)
+crystal-whitecool (fantasy-rpg, crystal_12)
+glove-bronze (modern-rpg, recolor of glove_043)
+glove-lavender (modern-rpg, glove_013)
+glove-red (modern-rpg, compass_051)
+helmet-cap-green (fantasy-rpg, helmet_12)
+helmet-full-bronze (fantasy-rpg, helmet_128)
+liquid-drop-bluelight (alchemy-rpg, liquid_drop_002)
+medallion-gold (fantasy-rpg, amulet_35)
+medallion-gray (fantasy-rpg, amulet_32)
+orb-elemental-fire (magic-rpg, orb_elemental_005)
+orb-elemental-lightning (magic-rpg, orb_elemental_005)
+orb-elemental-radiance (magic-rpg, orb_elemental_004)
+orb-elemental-shadow (magic-rpg, orb_elemental_008)
+orb-elemental-slime (magic-rpg, orb_elemental_006)
+orb-elemental-water (magic-rpg, orb_elemental_001)
+orb-fossil (magic-rpg, orb_008)
+orb-green (magic-rpg, orb_003)
+potion-green-tall (fantasy-rpg, potion_31)
+rainbow-petal (alchemy-rpg, rainbow_petal)
+ring-blue-bronze (fantasy-rpg, ring_2)
+ring-blue-white (fantasy-rpg, recolor of ring_2)
+ring-green-red (fantasy-rpg, recolor of ring_2)
+ring-orange-silver (fantasy-rpg, recolor of ring_2)
+ring-purple-green (fantasy-rpg, recolor of ring_2)
+ring-red-black (fantasy-rpg, recolor of ring_15)
+ring-yellow-blue (fantasy-rpg, recolor of ring_2)
+scroll-star (magic-rpg, scroll_006)
+shoe-brown-tall (fantasy-rpg, shoe_9)
+shoe-lightbrown-short (fantasy-rpg, shoe_15)
+star-iron (magic-rpg, recolor of falling_star)
+tophat (modern-rpg, hat_020)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\rare-equipment\armor\*]
+
+Armor Assets:
+armor-arcane (fantasy-rpg, armor_114)
+armor-avenger (fantasy-rpg, armor_8)
+armor-frontplate-bronze (fantasy-rpg, armor_123)
+armor-gladiator (fantasy-rpg, armor_152)
+armor-mail-white (fantasy-rpg, armor_85)
+armor-red (fantasy-rpg, armor_176)
+armor-rogue (fantasy-rpg, armor_127)
+armor-royal (fantasy-rpg, armor_52)
+armor-storm (fantasy-rpg, armor_141)
+duster-graydark (modern-rpg, jacket_025)
+jacket-brown (modern-rpg, jacket_013)
+robe-blue (fantasy-rpg, recolor of cloak_3)
+robe-brown (fantasy-rpg, recolor of cloak_3)
+robe-green (fantasy-rpg, recolor of cloak_3)
+robe-professor (fantasy-rpg, jacket_3)
+robe-red (fantasy-rpg, recolor of cloak_3)
+robe-yellow (fantasy-rpg, recolor of cloak_3)
+shirt-red (fantasy-rpg, shirt_28)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\rare-equipment\shields\*]
+
+Shield Assets:
+shield-crusader (fantasy-rpg, shield_142)
+shield-knight-black (fantasy-rpg, shield_34)
+shield-knight-bluelight (fantasy-rpg, shield_36)
+shield-knight-bronze (fantasy-rpg, shield_32)
+shield-knight-gold (fantasy-rpg, shield_129)
+shield-knight-greendark (fantasy-rpg, shield_28)
+shield-knight-purple (fantasy-rpg, recolor of shield_29)
+shield-knight-red (fantasy-rpg, recolor of shield_29)
+shield-knight-white (fantasy-rpg, shield_33)
+shield-reinforced (fantasy-rpg, shield_86)
+shield-skull-brown (fantasy-rpg, shield_116)
+shield-spiked (fantasy-rpg, shield_25)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\rare-equipment\weapons\*]
+
+Weapon Assets:
+bow-yellow (fantasy-rpg, bow_5)
+crossbow-copperlight (fantasy-rpg, bow_21)
+dagger-black (fantasy-rpg, sword_012)
+flail-single-black (fantasy-rpg, weapon_156)
+flail-triple-green (fantasy-rpg, weapon_183)
+glove-black (modern-rpg, glove_088)
+glove-teal (modern-rpg, glove_010)
+gun-brown (modern-rpg, gun_004)
+hammer-black (fantasy-rpg, hammer_35)
+pistol-eagle (modern-rpg, pistol_006)
+rapier (fantasy-rpg, sword_010)
+spear-bluelight (fantasy-rpg, weapon_65)
+spellbook-ornamental-black (magic-rpg, spellbook_ornamental_008)
+staff-frostbite (magic-rpg, staff_015)
+staff-sceptre-white (magic-rpg, staff_sceptre_013)
+staff-wide-silver-red (magic-rpg, staff_long_sceptre_005)
+staff-wooden-yellow (magic-rpg, staff_wooden_ornamental_004)
+sword-great (fantasy-rpg, sword_021)
+sword-long-gold (fantasy-rpg, sword_long_002)
+sword-swipe (fantasy-rpg, sword_040)
+
+--------------------------------------------------
+[projectfu\styles\static\icons\actions\*]
+
+Action Icon Assets provided by:
+Mildew - https://ko-fi.com/not_mildew
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\classes\floralist\magiseeds\*]
+
+Magiseed Icon Assets provided by:
+Kami lucky

@@ -7,12 +7,12 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell </strong>actions during their next turn.</p>",
+    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell</strong> actions during their next turn.</p>",
     "showTitleCard": {
       "value": false
     },
     "class": {
-      "value": "Spiritist"
+      "value": "spiritist"
     },
     "useWeapon": {
       "accuracy": {
@@ -101,7 +101,7 @@
       "value": true
     },
     "opportunity": "",
-    "fuid": "enrage",
+    "fuid": "enrage-legacy",
     "effects": {
       "entries": [
         "enraged"
@@ -144,7 +144,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768686942397,
-    "modifiedTime": 1768694685898,
+    "modifiedTime": 1771473187198,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "u715aexHegpj5b3H",

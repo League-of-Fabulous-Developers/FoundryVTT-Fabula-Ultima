@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Fury"
+      "value": "fury"
     },
     "useWeapon": {
       "accuracy": {
@@ -145,7 +145,8 @@
             "name": "",
             "current": 0,
             "step": 1,
-            "max": 6
+            "max": 6,
+            "style": "basic"
           }
         }
       },
@@ -182,7 +183,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>Your Accuracy Checks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -193,12 +194,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.347",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1755624497199,
-        "modifiedTime": 1755624622927,
-        "lastModifiedBy": "VpDy3go69LzoCFsX"
+        "modifiedTime": 1771836686561,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!oi2LgAoLN5IyuBG3.PMPMqLWDwFn8w3z2"
     }
@@ -211,7 +212,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

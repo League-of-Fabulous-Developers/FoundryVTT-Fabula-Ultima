@@ -1,0 +1,111 @@
+{
+  "folder": "YyDhfnKp924JAjZH",
+  "name": "Effect: Lunar Magnolia (Ice)",
+  "type": "effect",
+  "_id": "YfWDHikTC47SE6es",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/lunar-magnolia.png",
+  "system": {
+    "fuid": "effect-lunar-magnolia-ice",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Lunar Magnolia (Ice)",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/lunar-magnolia.png",
+      "origin": "Compendium.projectfu.skills.Item.YfWDHikTC47SE6es",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "bvJqklvMLfGgWeLa",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "ice",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>ice</strong>, its type cannot change, and it ignores Resistances.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Lunar Magnolia (Ice)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.YfWDHikTC47SE6es",
+            "effectUuid": null,
+            "fuid": "effect-lunar-magnolia-ice"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777434219094,
+        "modifiedTime": 1777434372499,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!YfWDHikTC47SE6es.bvJqklvMLfGgWeLa"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1777434208280,
+    "modifiedTime": 1777434216967,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!YfWDHikTC47SE6es"
+}

@@ -25,7 +25,7 @@
 				{{!-- Study Level 0 --}}
 				{{#if (eq actor.system.study.value 0)}}
 				<fieldset class="section-container title-fieldset desc resource-content">
-					<span class="label centered-message" style="color: unset;">
+					<span class="label centered-message">
 						{{localize 'FU.AdversaryNotStudied'}}
 					</span>
 				</fieldset>
@@ -62,7 +62,7 @@
 					{{#if actor.system.traits.value}}
 					<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
 						<label class="resource-label-l">Traits</label>
-						<input class="traitdesc flex3" type="text" name="system.traits.value"
+						<input type="text" name="system.traits.value"
 							value="{{actor.system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
 					</li>
 					{{/if}}
@@ -107,6 +107,16 @@
 					{{{spellsTable}}}
 				</section>
 			</fieldset>
+			{{/if}}
+
+			{{!-- Pressure Points --}}
+			{{#if pressurePoints}}
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<legend class="resource-label-m">
+						{{localize 'FU.PressurePoints'}}
+					</legend>
+					{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" pressurePoints=system.pressurePoints}}
+				</fieldset>
 			{{/if}}
 		</div>
 		{{/if}}

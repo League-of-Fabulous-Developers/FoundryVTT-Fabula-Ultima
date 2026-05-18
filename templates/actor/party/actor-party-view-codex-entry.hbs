@@ -1,0 +1,17 @@
+<div class="pfu-codex__entry__viewer {{layoutClass}}">
+	<div class="image">
+		<img src="{{entry.img}}" alt="{{entry.name}}">
+		{{#if (eq layoutClass '--large')}}
+			<span class="name">{{entry.name}}</span>
+		{{/if}}
+	</div>
+	<div class="content">
+		{{#unless (eq layoutClass '--large')}}
+			<span class="name">{{entry.name}}</span>
+		{{/unless}}
+		{{#if enrichedDescription}}
+			<span class="description desc">{{{enrichedDescription}}}</span>
+		{{/if}}
+	</div>
+</div>
+

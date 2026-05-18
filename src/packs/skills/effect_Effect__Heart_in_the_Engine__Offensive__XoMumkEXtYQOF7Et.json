@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Heart in the Engine (Offensive)",
+      "name": "Heart in the Engine (Offensive)",
       "_id": "tErtYBdp5RqwrIz9",
       "type": "base",
       "system": {
@@ -37,7 +37,42 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "elements": {
+            "ubKOJavJnkUOqH4h": {
+              "type": "ruleElement",
+              "_id": "ubKOJavJnkUOqH4h",
+              "trigger": {
+                "_id": "D83YbjmC48VFY1Xy",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "damageSources": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "selector": "self",
+              "actions": {
+                "ratT3gyEaNpWeRvD": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "ratT3gyEaNpWeRvD",
+                  "identifier": "effects-heart-in-the-engine-extra-damage"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -47,7 +82,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</span></p>",
+      "description": "<p><span>The next time you deal damage during this turn, deal<strong>【SL × 2】</strong>extra damage.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,12 +92,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744656027526,
-        "modifiedTime": 1744656359365,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770633931262,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!XoMumkEXtYQOF7Et.tErtYBdp5RqwrIz9"

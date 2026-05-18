@@ -1,0 +1,78 @@
+{{#if (eq option.type 'item')}}
+	{{#with option.item as |item|}}
+		<div class="pfu-advancement__entry__card">
+
+			<div class="pfu-advancement__entry__card-inner">
+				{{!-- Ring: item image + skill counter --}}
+				<div class="pfu-advancement__entry__card-ring">
+					<div class="pfu-advancement__entry__card-ring-border {{#if (pfuCollectionContains item.id @root.skillMap)}}invested{{else}}untracked{{/if}}">
+					</div>
+					<div class="pfu-advancement__entry__card-ring-img">
+						{{pfuItemAnchor item size='l'}}
+					</div>
+					{{#if (pfuCollectionContains item.id @root.skillMap)}}
+						{{#with (lookup @root.skillMap item.id) as |skill|}}
+							<div class="pfu-advancement__entry__card-ring-counter">
+								{{skill.value}}/{{skill.max}}
+							</div>
+						{{/with}}
+					{{/if}}
+
+					{{!-- Badges --}}
+					<div class="pfu-advancement__entry__card-ring__badges">
+						{{#with (lookup @root.summary.classes item.system.class.value) as |class|}}
+							<img class="pfu-advancement__entry__card-ring__badge" src="{{class.img}}" alt="{{class.name}}" data-tooltip="{{class.name}}"/>
+						{{/with}}
+					</div>
+
+					{{!-- Item name --}}
+					<div class="pfu-advancement__entry__card-name">
+						{{item.name}}
+					</div>
+				</div>
+
+				{{!-- Select button --}}
+				<button class="pfu-advancement__entry__card-select"
+						data-action="assignItem"
+						data-id="{{item.id}}">
+					<i class="fas fa-check-square"></i>
+				</button>
+			</div>
+		</div>
+	{{/with}}
+{{else}}
+	{{#with option.entry as |entry|}}
+		<div class="pfu-advancement__entry__card">
+
+			<div class="pfu-advancement__entry__card-inner">
+				{{!-- Ring: item image --}}
+				<div class="pfu-advancement__entry__card-ring">
+					<div class="pfu-advancement__entry__card-ring-border"></div>
+					<div class="pfu-advancement__entry__card-ring-img">
+						{{pfuItemAnchor entry size='l'}}
+					</div>
+
+					{{!-- Badges --}}
+					<div class="pfu-advancement__entry__card-ring__badges">
+						{{#with (lookup @root.summary.classes entry.system.class.value) as |class|}}
+							<img class="pfu-advancement__entry__card-ring__badge" src="{{class.img}}" alt="{{class.name}}" data-tooltip="{{class.name}}"/>
+						{{/with}}
+						<i class="pfu-advancement__entry__card-ring__badge {{pfuIconClass 'compendium'}}"></i>
+					</div>
+
+					{{!-- Item name --}}
+					<div class="pfu-advancement__entry__card-name">
+						{{entry.name}}
+					</div>
+				</div>
+
+				{{!-- Select button --}}
+				<button class="pfu-advancement__entry__card-select"
+						data-action="addItem"
+						data-uuid="{{entry.uuid}}">
+					<i class="fas fa-check-square"></i>
+				</button>
+			</div>
+		</div>
+	{{/with}}
+{{/if}}

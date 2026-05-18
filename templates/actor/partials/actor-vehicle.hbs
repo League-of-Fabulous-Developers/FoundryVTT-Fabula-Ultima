@@ -4,10 +4,10 @@
         <li class="item draggable" data-item-id="{{id}}">
             <div class="flexrow">
                 <div class="item-name">
-                    <div class="item-image">
-                        <div class="rollable" data-roll-type="item">
-                            <img src="{{img}}" data-tooltip="{{name}}">
-                        </div>
+                    <div class="fu-icon__container">
+                        <a class="rollable" data-roll-type="item" data-action="roll" >
+                            <img class="item-image" src="{{img}}" data-tooltip="{{name}}">
+                        </a>
                     </div>
                     <h4 class="click-item resource-content">
                 <span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
@@ -24,35 +24,31 @@
             <legend class="resource-label-m">{{localize 'FU.ClassFeatureVehicle'}}</legend>
             <div class="items-list">
                 <div class="item" data-item-id="{{vehicle.id}}">
-                    <div class="flexrow">
-                        <div class="item-name">
-                            <div class="item-image">
-                                <div class="rollable" data-roll-type="item">
-                                    <img src="{{vehicle.img}}" data-tooltip="{{vehicle.name}}">
-                                </div>
-                            </div>
-                            <h4 class="click-item resource-content">
+					<div class="item-name">
+						<a class="rollable" data-action="roll" data-roll-type="item">
+							<img class="item-image" src="{{vehicle.img}}" data-tooltip="{{vehicle.name}}">
+						</a>
+						<h4 class="click-item resource-content">
                         <span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
-                            {{vehicle.name}}
-                        </span>
-                            </h4>
-                        </div>
-                        <div class="flex0 embark-button">
-                            {{#if embarked}}
-                                <a data-action="updatePilotVehicle"
-								   data-func="updateEmbarked"
-                                   data-tooltip="{{localize 'FU.ClassFeatureVehicleDisembark'}}">
-                                    <i class="fas fa-square-chevron-up"></i>
-                                </a>
-                            {{else}}
-                                <a data-action="updatePilotVehicle"
-								   data-func="updateEmbarked"
-                                   data-tooltip="{{localize 'FU.ClassFeatureVehicleEmbark'}}">
-                                    <i class="fas fa-square-chevron-down fa-thin"></i>
-                                </a>
-                            {{/if}}
-                        </div>
-                    </div>
+							{{vehicle.name}}
+						</span>
+						</h4>
+					</div>
+					<div class="flex0 embark-button">
+						{{#if embarked}}
+							<a data-action="updatePilotVehicle"
+							   data-func="updateEmbarked"
+							   data-tooltip="{{localize 'FU.ClassFeatureVehicleDisembark'}}">
+								<i class="fas fa-square-chevron-up"></i>
+							</a>
+						{{else}}
+							<a data-action="updatePilotVehicle"
+							   data-func="updateEmbarked"
+							   data-tooltip="{{localize 'FU.ClassFeatureVehicleEmbark'}}">
+								<i class="fas fa-square-chevron-down fa-thin"></i>
+							</a>
+						{{/if}}
+					</div>
                 </div>
             </div>
             <hr>

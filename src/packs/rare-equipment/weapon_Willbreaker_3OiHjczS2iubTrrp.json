@@ -1,0 +1,197 @@
+{
+  "folder": "qYtBD5MEfzGg5HdQ",
+  "name": "Willbreaker",
+  "type": "weapon",
+  "_id": "3OiHjczS2iubTrrp",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/hammer-black.png",
+  "system": {
+    "fuid": "willbreaker",
+    "description": "<p>Each target hit by this weapon suffers <strong>shaken</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1750
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Inflict Shaken"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 14
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "heavy"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Willbreaker",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/hammer-black.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.3OiHjczS2iubTrrp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "0nFYVB9MmAfhiXLf": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "xOos07CJwMIxkcjB",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "0nFYVB9MmAfhiXLf",
+              "actions": {
+                "hn05ymIFmpW9l3MA": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "hn05ymIFmpW9l3MA",
+                  "effect": "shaken"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ER52bL8FnDu21KhY",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>shaken</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Willbreaker",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.3OiHjczS2iubTrrp",
+            "effectUuid": null,
+            "fuid": "willbreaker"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774740509043,
+        "modifiedTime": 1775709198236,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3OiHjczS2iubTrrp.ER52bL8FnDu21KhY"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774740472306,
+    "modifiedTime": 1777530921373,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3OiHjczS2iubTrrp"
+}

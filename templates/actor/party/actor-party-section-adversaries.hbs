@@ -1,13 +1,13 @@
 {{!-- Adversaries  --}}
 <section class="tab {{tab.cssClass}}" data-tab="adversaries" data-group="primary">
-	<section class="adversaries">
+	<section class="adversaries content">
 		{{#unless (gt adversaries.length 0)}}
 			<div class="label centered-message">
 				{{localize 'FU.AdversariesEmpty'}}
 			</div>
 		{{/unless}}
 
-		{{#each adversaries}}
+		{{#each (pfuSort adversaries 'name')}}
 			<div class="section-container entry character-option {{#if this.active}}active{{/if}}"
 				 data-uuid="{{this.uuid}}" data-type="npc">
 				<div class="portrait">
@@ -20,8 +20,8 @@
 						<div class="name" data-tooltip="{{this.uuid}}">
 							{{name}}
 						</div>
-						<div class="blurb">
-							<div class="tag {{_rank}}">
+						<div class="blurb pfu-tags">
+							<div class="fu-tag {{_rank}}">
 								{{#if (eq this.studyResult 'none')}}
 									{{localize 'FU.Unknown'}} {{localize this.rank}}
 								{{else}}

@@ -13,6 +13,7 @@ import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SheetUtils } from './sheet-utils.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -95,6 +96,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		position: { width: 700, height: 'auto' },
 		window: {
 			resizable: true,
+			icon: 'fas fa-toolbox',
 		},
 		form: {
 			submitOnChange: true,
@@ -287,6 +289,8 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	/** @inheritDoc */
 	async _onRender(context, options) {
 		await super._onRender(context, options);
+		HTMLUtils.setupInputs(this.element);
+
 		this.#dragDrop.forEach((value) => value.bind(this.element));
 
 		const flattenedOverrides = foundry.utils.flattenObject(this.item.overrides);

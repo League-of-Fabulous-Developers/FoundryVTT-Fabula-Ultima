@@ -5,7 +5,7 @@
   "_id": "X4L3sibcGEi8LPvd",
   "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
   "system": {
-    "fuid": "effect-charging-cavalry-accuracy-up",
+    "fuid": "effect-charging-cavalry",
     "cost": {
       "value": 0
     },
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Accuracy Check Up",
+      "name": "Charging Cavalry (Accuracy Up)",
       "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
       "system": {
         "duration": {
@@ -27,7 +27,38 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "xv58stjBNv1FM6gq": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Fxwp6KV9YQlO5YP2",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "xv58stjBNv1FM6gq",
+              "actions": {
+                "2bCWGBIbBYIXuvLE": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "2bCWGBIbBYIXuvLE",
+                  "traits": {
+                    "entries": [
+                      "high-roll-zero"
+                    ]
+                  },
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
@@ -35,6 +66,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -69,8 +105,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770273473908,
-        "modifiedTime": 1770280565916,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "modifiedTime": 1772306823909,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!X4L3sibcGEi8LPvd.6FbGNzBSHKFc7umq"
     }
@@ -89,7 +125,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770273462177,
-    "modifiedTime": 1770273594067,
+    "modifiedTime": 1771831231845,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!X4L3sibcGEi8LPvd"

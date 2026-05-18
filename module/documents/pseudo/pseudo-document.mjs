@@ -427,7 +427,7 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		}
 
 		let { changeObject, nestedCollection } = this._gatherChangeData(parent);
-		console.log(changeObject, nestedCollection);
+		//console.log(changeObject, nestedCollection);
 		nestedCollection.push(...documents);
 		await parent.parentFoundryDocument.update(changeObject);
 		const newDocuments = data.map((value) => collection.get(value._id));

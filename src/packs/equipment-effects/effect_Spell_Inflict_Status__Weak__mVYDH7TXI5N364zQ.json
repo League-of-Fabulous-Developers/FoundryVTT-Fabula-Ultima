@@ -1,0 +1,135 @@
+{
+  "folder": "5ZenCjx6n04peFsh",
+  "name": "Spell Inflict Status (Weak)",
+  "type": "effect",
+  "_id": "mVYDH7TXI5N364zQ",
+  "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+  "system": {
+    "fuid": "spell-inflict-status-weak",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell Inflict Status (Weak)",
+      "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.mVYDH7TXI5N364zQ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "xRWA7uoK390NFxFB": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "pG5m1GqeTSiAo25k",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "xRWA7uoK390NFxFB",
+              "actions": {
+                "qlWfvbqKJW9w0JRf": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "qlWfvbqKJW9w0JRf",
+                  "effect": "weak"
+                }
+              },
+              "predicates": {
+                "gFKEc2EZFPx3CXml": {
+                  "type": "spellRulePredicate",
+                  "_id": "gFKEc2EZFPx3CXml",
+                  "offensive": "true"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "AMBw1DqrOHbniUwg",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>weak</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell Inflict Status (Weak)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.mVYDH7TXI5N364zQ",
+            "effectUuid": null,
+            "fuid": "spell-inflict-status-weak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774810307366,
+        "modifiedTime": 1774810339005,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!mVYDH7TXI5N364zQ.AMBw1DqrOHbniUwg"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774810075851,
+    "modifiedTime": 1774810306666,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!mVYDH7TXI5N364zQ"
+}

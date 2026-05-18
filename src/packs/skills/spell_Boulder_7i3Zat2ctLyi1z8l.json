@@ -1,0 +1,149 @@
+{
+  "folder": "MQ3l4WYwAkXz8jPg",
+  "name": "Boulder",
+  "type": "spell",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/boulder.png",
+  "system": {
+    "fuid": "boulder",
+    "description": "<p>You summon a colossal block of stone and send it straight towards your enemy. You deal <strong>【HR + 25】 earth</strong> damage to the target; this damage ignores Resistances.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "value": 25,
+        "type": {
+          "value": "earth"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "20",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "single",
+      "max": 0
+    },
+    "traits": [
+      "ignore-resistances"
+    ],
+    "source": "FUCR188",
+    "opportunity": "",
+    "defense": "mdef"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "bgUzjEHd80A79gwp": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771454297981,
+    "modifiedTime": 1771454315969,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "7i3Zat2ctLyi1z8l",
+  "sort": 1400000,
+  "_key": "!items!7i3Zat2ctLyi1z8l"
+}

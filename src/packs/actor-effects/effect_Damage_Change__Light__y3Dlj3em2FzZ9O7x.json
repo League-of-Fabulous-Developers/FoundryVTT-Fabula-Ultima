@@ -1,0 +1,111 @@
+{
+  "folder": "i0jimZH61f90h4La",
+  "name": "Damage Change (Light)",
+  "type": "effect",
+  "_id": "y3Dlj3em2FzZ9O7x",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
+  "system": {
+    "fuid": "damage-change-light",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Damage Change (Light)",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.y3Dlj3em2FzZ9O7x",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "0LZ3QppfYaozanfz",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.normal",
+          "mode": 5,
+          "value": "light",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your <strong>attacks</strong>, <strong>spells</strong>, and <strong>Skills</strong> becomes <strong>light</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Damage Change (Light)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.y3Dlj3em2FzZ9O7x",
+            "effectUuid": null,
+            "fuid": "damage-change-light"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774825131975,
+        "modifiedTime": 1774826343341,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!y3Dlj3em2FzZ9O7x.0LZ3QppfYaozanfz"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762589073,
+    "modifiedTime": 1774762589073,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!y3Dlj3em2FzZ9O7x"
+}

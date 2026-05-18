@@ -4,33 +4,50 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
-    "fuid": "ice-resistance"
+    "fuid": "ice-resistance",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Ice Resistance",
       "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
-      "_id": "iErZlChyo26VxsSz",
-      "type": "base",
+      "origin": "Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UlqFziD7HrLUft4X",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.ice",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Resistance to <strong>ice</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Ice Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8",
+            "effectUuid": null,
+            "fuid": "ice-resistance"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725754546822,
-        "modifiedTime": 1747231087625,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774816203374,
+        "modifiedTime": 1774816221691,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!SWdZeuJTEq1ig6S8.iErZlChyo26VxsSz"
+      "_key": "!items.effects!SWdZeuJTEq1ig6S8.UlqFziD7HrLUft4X"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1747231083742,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774761054534,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "SWdZeuJTEq1ig6S8",

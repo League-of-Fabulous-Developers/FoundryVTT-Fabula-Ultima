@@ -9,6 +9,14 @@ import { PseudoDocumentCollectionField } from './pseudo-document-collection-fiel
  * @see MnemosphereReceptacleDataModel
  */
 export class PseudoDocumentEnabledTypeDataModel extends foundry.abstract.TypeDataModel {
+	/**
+	 * @returns {Object}
+	 * @remarks Placeholder for mixins.
+	 */
+	static defineSchema() {
+		return {};
+	}
+
 	_configure() {
 		// Construct Embedded Collections
 		const collections = {};

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may perform Rituals whose effects fall within the <strong>Elementalism</strong> discipline.</p><p>Elementalism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Elementalism</strong> discipline.</p><p><strong>Elementalism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Elementalist"
+      "value": "elementalist"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "ritual-elementalism",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -166,7 +171,8 @@
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -189,10 +195,10 @@
       "_id": "y87yr4Bae2qYe1n4",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Ritual Elementalism</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -204,7 +210,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130702416,
-        "modifiedTime": 1770343698262,
+        "modifiedTime": 1771832307330,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!qgy43lWGmJ2YGhTp.y87yr4Bae2qYe1n4"
@@ -218,16 +224,17 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706498017708,
-    "modifiedTime": 1768060751461,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1775506001184,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

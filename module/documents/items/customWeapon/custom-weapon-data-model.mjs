@@ -9,6 +9,8 @@ import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-coll
 import { PseudoItem } from '../pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
+import { WeaponBehaviourMixin } from '../weapon/weapon-behaviour-mixin.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
 
 const slotsByQuality = {
 	alpha: 1,
@@ -49,7 +51,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				weaponCategory: item.system.category,
 				handedness: 'two-handed',
 			})
-			.addTraits(item.system.damage.type)
+			.addTraits(Traits.Damage)
+			.addTraits(item.system.getDamageType())
 			.addTraits(...item.system.traits)
 			.setTargetedDefense(item.system.defense)
 			.setDamageOverride(actor, 'attack');
@@ -58,54 +61,47 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-/**
- * @param {CheckRenderData} sections
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(sections, result, actor, item) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof CustomWeaponDataModel) {
-		CommonSections.tags(
-			sections,
-			[
-				{
-					tag: 'FU.CustomWeapon',
-					show: !item.system.isTransforming,
-				},
-				{
-					tag: item.system.primaryForm.name || 'FU.CustomWeaponFormPrimary',
-					show: item.system.isTransforming && item.system.activeForm === 'primaryForm',
-				},
-				{
-					tag: item.system.secondaryForm.name || 'FU.CustomWeaponFormSecondary',
-					show: item.system.activeForm === 'secondaryForm',
-				},
-				{
-					tag: `FU.${item.system.category.capitalize()}`,
-				},
-				{
-					tag: 'FU.TwoHanded',
-				},
-				{
-					tag: `FU.${item.system.type.capitalize()}`,
-				},
-			],
-			CHECK_DETAILS,
-		);
-		CommonSections.quality(sections, item.system.quality, CHECK_DETAILS);
+		const tags = [
+			{
+				tag: 'FU.CustomWeapon',
+				show: !item.system.isTransforming,
+			},
+			{
+				tag: item.system.primaryForm.name || 'FU.CustomWeaponFormPrimary',
+				show: item.system.isTransforming && item.system.activeForm === 'primaryForm',
+			},
+			{
+				tag: item.system.secondaryForm.name || 'FU.CustomWeaponFormSecondary',
+				show: item.system.activeForm === 'secondaryForm',
+			},
+			{
+				tag: `FU.${item.system.category.capitalize()}`,
+			},
+			{
+				tag: 'FU.TwoHanded',
+			},
+			{
+				tag: `FU.${item.system.type.capitalize()}`,
+			},
+		];
+
+		data.tags.push(...tags);
+		CommonSections.quality(data.sections, item.system.quality, CHECK_DETAILS);
 
 		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
-			sections.push({
+			data.sections.push({
 				partial: 'projectfu.technospheres.chatSlotted',
 				data: { slotted: item.system.slotted },
 				order: CHECK_DETAILS,
 			});
 		} else {
-			CommonSections.description(sections, item.system.description, item.system.summary, CHECK_DETAILS);
+			CommonSections.description(data.sections, item.system.description, item.system.summary, CHECK_DETAILS);
 		}
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
@@ -166,11 +162,12 @@ const slottableTypes = new Set(['mnemosphere', 'hoplosphere']);
  * @property {CustomWeaponFormDataModel} secondaryForm
  * @property {'alpha','beta','gamma','delta'} slots
  * @property {PseudoDocumentCollection} items
+ * @property {Set<String>} traits
  */
-export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
+export class CustomWeaponDataModel extends WeaponBehaviourMixin(PseudoDocumentEnabledTypeDataModel) {
 	static defineSchema() {
-		const { StringField, HTMLField, SchemaField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
-		return {
+		const { StringField, HTMLField, SchemaField, NumberField, SetField, BooleanField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			summary: new StringField(),
 			description: new HTMLField(),
 			fuid: new StringField(),
@@ -188,7 +185,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 			traits: new SetField(new StringField()),
 			slots: new StringField({ initial: 'alpha', choices: ['alpha', 'beta', 'gamma', 'delta'] }),
 			items: new PseudoDocumentCollectionField(PseudoItem),
-		};
+		});
 	}
 
 	#computedPropertiesSetByActiveEffect;
@@ -236,6 +233,30 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 	 */
 	async roll(modifiers) {
 		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+	}
+
+	/**
+	 * @returns {CustomWeaponFormDataModel} The active form.
+	 */
+	getActiveForm() {
+		switch (this.activeForm) {
+			case 'primaryForm':
+				return this.primaryForm;
+			case 'secondaryForm':
+				return this.secondaryForm;
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {DamageType|null}
+	 */
+	getDamageType() {
+		const form = this.getActiveForm();
+		if (form) {
+			return form.damage.type;
+		}
+		return null;
 	}
 
 	get slotCount() {

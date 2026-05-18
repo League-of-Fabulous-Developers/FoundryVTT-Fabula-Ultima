@@ -1,5 +1,5 @@
 {
-  "folder": "VIkMulwyAc8dw5pH",
+  "folder": "UiAwRVydh0shBzCP",
   "name": "Effect: King's Castle (No HP/MP Recovery)",
   "type": "effect",
   "_id": "lwzEcMwQICongcb5",
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: King No HP/MP Recovery",
+      "name": "King's Castle (No HP/MP Recovery)",
       "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
       "system": {
         "duration": {
@@ -42,7 +42,7 @@
                 "45qP2rE9bFvQ76XU": {
                   "type": "messageRuleAction",
                   "_id": "45qP2rE9bFvQ76XU",
-                  "message": "<p><span class=\"fontstyle0\">No creature can recover HP or MP.</span></p>"
+                  "message": "<p>No creature can recover HP or MP.</p>"
                 }
               }
             }
@@ -54,6 +54,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -79,7 +84,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">You cannot recover Hit Points or Mind Points until the start of the commander's next turn.</span> </p>",
+      "description": "<p>You <strong>cannot</strong> recover Hit Points or Mind Points until the start of the <strong>commander's</strong> next turn. </p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -94,13 +99,13 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770276191960,
-        "modifiedTime": 1770332175555,
+        "modifiedTime": 1775523027704,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!lwzEcMwQICongcb5.ncSlU2nJDypBoneS"
     }
   ],
-  "sort": 0,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -114,7 +119,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770276181332,
-    "modifiedTime": 1770276190640,
+    "modifiedTime": 1771831143202,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!lwzEcMwQICongcb5"

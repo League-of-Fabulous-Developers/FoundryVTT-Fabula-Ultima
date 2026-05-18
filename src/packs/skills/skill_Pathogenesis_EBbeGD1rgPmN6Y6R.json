@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
+    "description": "<p>When you deal damage to one or more creatures with one of your <strong>Chimerist</strong> spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Chimerist"
+      "value": "chimerist"
     },
     "useWeapon": {
       "accuracy": {
@@ -122,7 +122,10 @@
     "effects": {
       "entries": [
         "poisoned"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -208,7 +211,7 @@
       "_id": "UiwmY4WawFJGxq3H",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -223,7 +226,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770270015359,
-        "modifiedTime": 1770402484239,
+        "modifiedTime": 1771831035997,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!EBbeGD1rgPmN6Y6R.UiwmY4WawFJGxq3H"
@@ -237,7 +240,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -245,7 +249,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706495623351,
-    "modifiedTime": 1770270007865,
+    "modifiedTime": 1775516030210,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

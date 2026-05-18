@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Power Nap",
+      "name": "Power Nap",
       "_id": "sbMF38AP1YqKiDIJ",
       "type": "base",
       "system": {
@@ -37,23 +37,54 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "vU8DWn1fheLpugqf": {
+              "type": "ruleElement",
+              "_id": "vU8DWn1fheLpugqf",
+              "trigger": {
+                "_id": "LtPy3qG1HiNaXyBD",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "target",
+                "resource": "hp",
+                "change": "decrement"
+              },
+              "actions": {
+                "cxzIZvvtAA4uuRHK": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "cxzIZvvtAA4uuRHK",
+                  "identifier": "effect-power-nap"
+                }
+              },
+              "selector": "self"
+            }
+          }
+        }
       },
       "changes": [
         {
           "key": "system.derived.def.value",
-          "mode": 3,
+          "mode": 5,
           "value": "5",
           "priority": null
         },
         {
           "key": "system.derived.mdef.value",
-          "mode": 3,
+          "mode": 5,
           "value": "5",
           "priority": null
         }
       ],
-      "description": "<p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】 </strong>and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the <strong>Protect</strong> Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> ( @ICON[offensive] ).</p>",
+      "description": "<p>Your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way.</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -63,18 +94,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744250693801,
-        "modifiedTime": 1744250791010,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770886118167,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!dweyiPp3Ujt9sE43.sbMF38AP1YqKiDIJ"
     }
   ],
-  "sort": 0,
+  "sort": 1800000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -83,12 +114,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744250690909,
-    "modifiedTime": 1744250814172,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770881143008,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!dweyiPp3Ujt9sE43"

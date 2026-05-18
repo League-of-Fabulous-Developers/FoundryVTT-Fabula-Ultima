@@ -6,9 +6,9 @@ import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.
 import { OptionalFeatureRegistry } from './optional-feature-registry.mjs';
 import { EmbeddedFeatureDataModel } from '../embedded-feature-data-model.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel) {
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

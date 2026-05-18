@@ -1,0 +1,142 @@
+{
+  "folder": "BlKCuhMT72VW7Anp",
+  "name": "Physical Thorns",
+  "type": "effect",
+  "_id": "9OCC7zTQ0jJIGuEV",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+  "system": {
+    "fuid": "physical-thorns",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Physical Thorns",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.9OCC7zTQ0jJIGuEV",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "WmBSaS9jpIgVfKJf": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "355wJ1UEfNgAy25o",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "WmBSaS9jpIgVfKJf",
+              "predicates": {
+                "e3gNqclQzWyOoYwq": {
+                  "type": "checkRulePredicate",
+                  "_id": "e3gNqclQzWyOoYwq",
+                  "result": null,
+                  "outcome": "success"
+                },
+                "l9BzXbMBcXknLX4k": {
+                  "type": "weaponRulePredicate",
+                  "_id": "l9BzXbMBcXknLX4k",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "ya2sqRbCHdoMO1fw": {
+                  "type": "messageRuleAction",
+                  "_id": "ya2sqRbCHdoMO1fw",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 physical] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "decjBu67FE8r5d90",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>physical</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Physical Thorns",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.9OCC7zTQ0jJIGuEV",
+            "effectUuid": null,
+            "fuid": "physical-thorns"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774749155627,
+        "modifiedTime": 1774749981141,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!9OCC7zTQ0jJIGuEV.decjBu67FE8r5d90"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774748462923,
+    "modifiedTime": 1774749154919,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!9OCC7zTQ0jJIGuEV"
+}

@@ -1,0 +1,111 @@
+{
+  "folder": "BItLxl1Y1hTbix3V",
+  "name": "Effect: Bat Dance (Resistance)",
+  "type": "effect",
+  "_id": "Q4Pkg9rrX82uhCLc",
+  "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
+  "system": {
+    "fuid": "effect-bat-dance-resistance",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Bat Dance (Resistance)",
+      "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
+      "origin": "Compendium.projectfu.skills.Item.Q4Pkg9rrX82uhCLc",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "HLLcH7gO5DsFaFdH",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the start of your next turn, you gain Resistance to <strong>dark</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Bat Dance (Resistance)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.Q4Pkg9rrX82uhCLc",
+            "effectUuid": null,
+            "fuid": "effect-bat-dance-resistance"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774641056536,
+        "modifiedTime": 1775844250258,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Q4Pkg9rrX82uhCLc.HLLcH7gO5DsFaFdH"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774640953918,
+    "modifiedTime": 1774640967033,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Q4Pkg9rrX82uhCLc"
+}

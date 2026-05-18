@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "Attribute Up",
+  "color": "#256722",
+  "sorting": "a",
+  "_id": "mI21NJqZ45bnQ2S3",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768679815
+  },
+  "_key": "!folders!mI21NJqZ45bnQ2S3"
+}

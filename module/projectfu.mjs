@@ -4,11 +4,10 @@ import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
 import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
-// import { FUActorSheetV2 } from './sheets/actor-sheet-v2.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings } from './settings.js';
+import { registerSystemSettings, SETTINGS } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -44,16 +43,16 @@ import { FUOptionalFeatureSheet } from './sheets/item-optional-feature-sheet.mjs
 import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './documents/items/optionalFeature/optional-feature-data-model.mjs';
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 
-import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
+import { rolldataHtmlEnricher } from './enrichers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
-import { InlineDamage } from './helpers/inline-damage.mjs';
+import { InlineDamage } from './enrichers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
-import { InlineResources } from './helpers/inline-resources.mjs';
-import { InlineChecks } from './helpers/inline-check.mjs';
+import { InlineResources } from './enrichers/inline-resources.mjs';
+import { InlineChecks } from './enrichers/inline-check.mjs';
 import { Flags } from './helpers/flags.mjs';
-import { InlineIcon } from './helpers/inline-icons.mjs';
+import { InlineCommon } from './enrichers/inline-common.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
-import { InlineEffects } from './helpers/inline-effects.mjs';
+import { InlineEffects } from './enrichers/inline-effects.mjs';
 import { SystemControls } from './helpers/system-controls.mjs';
 import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
 import { Checks } from './checks/checks.mjs';
@@ -65,14 +64,14 @@ import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
 import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
-import { InlineWeapon } from './helpers/inline-weapon.mjs';
+import { InlineWeapon } from './enrichers/inline-weapon.mjs';
 import { InlineHelper } from './helpers/inline-helper.mjs';
 import { Effects } from './pipelines/effects.mjs';
-import { InlineType } from './helpers/inline-type.mjs';
+import { InlineType } from './enrichers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
 import { FUActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
-import { InlineClocks } from './helpers/inline-clocks.mjs';
+import { InlineClocks } from './enrichers/inline-clocks.mjs';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
 import { StashDataModel } from './documents/actors/stash/stash-data-model.mjs';
@@ -84,6 +83,7 @@ import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
+import { FumbleFabulaHandler } from './pipelines/fumble-fabula.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
 import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
 import { CustomWeaponSheet } from './sheets/custom-weapon-sheet.mjs';
@@ -106,13 +106,18 @@ import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-d
 import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
 import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
-import { InlineAction } from './helpers/inline-action.mjs';
+import { InlineAction } from './enrichers/inline-action.mjs';
 import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
 import { FUToken } from './ui/token.mjs';
 import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
 import { FUChatLog } from './ui/chat-log.mjs';
+import { AutomationPipeline } from './pipelines/automation.mjs';
+import { Themes } from './ui/themes/theme-options.mjs';
+import { FUSidebar, FUSidebarApplication } from './ui/sidebar.mjs';
+import { SheetExtensions } from './sheets/sheet-extension.mjs';
+import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -173,6 +178,7 @@ Hooks.once('init', async () => {
 			return FUPartySheet;
 		},
 		index: CompendiumIndex.instance,
+		hooks: FUHooks,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
@@ -191,12 +197,14 @@ Hooks.once('init', async () => {
 	};
 
 	Hooks.on('canvasPan', () => {
-		const start = performance.now();
-		const tokens = canvas.scene.tokens.filter((token) => token.object instanceof FUToken);
-		tokens.forEach((token) => token.object.pressureGauge.onCanvasScale());
-		const duration = performance.now() - start;
-		if (duration > 16) {
-			console.warn(`Rescaling ${tokens.length} tokens with pressure gauges took ${duration}ms`);
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && game.settings.get(SYSTEM, SETTINGS.optionPressureGaugeShow)) {
+			const start = performance.now();
+			const tokens = canvas.scene.tokens.filter((token) => token.object instanceof FUToken);
+			tokens.forEach((token) => token.object.pressureGauge.onCanvasScale());
+			const duration = performance.now() - start;
+			if (duration > 16) {
+				console.warn(`Rescaling ${tokens.length} tokens with pressure gauges took ${duration}ms`);
+			}
 		}
 	});
 
@@ -211,6 +219,11 @@ Hooks.once('init', async () => {
 		ruleTrigger: FU.ruleTriggerRegistry,
 		rulePredicate: FU.rulePredicateRegistry,
 	};
+
+	FU.sheetExtensions = {
+		party: new SheetExtensions(),
+	};
+
 	CONFIG.FU = FU;
 
 	/**
@@ -231,16 +244,7 @@ Hooks.once('init', async () => {
 		party: PartyDataModel,
 		stash: StashDataModel,
 	};
-	CONFIG.Actor.trackableAttributes = {
-		character: {
-			bar: ['resources.hp', 'resources.mp', 'resources.ip'],
-			value: ['resources.fp.value', 'resources.exp.value'],
-		},
-		npc: {
-			bar: ['resources.hp', 'resources.mp'],
-			value: ['resources.fp.value'],
-		},
-	};
+
 	CONFIG.Item.documentClass = FUItem;
 	CONFIG.Item.dataModels = {
 		accessory: AccessoryDataModel,
@@ -274,6 +278,25 @@ Hooks.once('init', async () => {
 	await registerSystemSettings();
 	await registerKeyBindings();
 
+	CONFIG.Actor.trackableAttributes = {
+		character: {
+			bar: ['resources.hp', 'resources.mp', 'resources.ip', 'clocks.brainwave', 'clocks.garden'],
+			value: ['resources.fp.value', 'resources.exp.value'],
+		},
+		npc: {
+			bar: ['resources.hp', 'resources.mp'],
+			value: ['resources.fp.value'],
+		},
+	};
+
+	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+		CONFIG.Actor.trackableAttributes.npc.bar.push('clocks.pressure');
+	}
+
+	if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+		CONFIG.Actor.trackableAttributes.character.bar.push('clocks.zeroPower');
+	}
+
 	// Set combat tracker
 	console.log(`${SYSTEM} | Initializing combat tracker`);
 	CONFIG.Combat.documentClass = FUCombat;
@@ -287,6 +310,8 @@ Hooks.once('init', async () => {
 	Object.assign(CONFIG.ui, {
 		combat: FUCombatTracker,
 		chat: FUChatLog,
+		sidebar: FUSidebar,
+		pfuTools: FUSidebarApplication,
 	});
 
 	// Register status effects
@@ -378,12 +403,14 @@ Hooks.once('init', async () => {
 	ApplicationPipeline.initialize();
 	Effects.initialize();
 	RuleElements.initialize();
+	AutomationPipeline.initialize();
 	InventoryPipeline.initialize();
 	CheckPrompt.initialize();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
 	OpportunityHandler.initialize();
+	FumbleFabulaHandler.initialize();
 
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
@@ -397,7 +424,7 @@ Hooks.once('init', async () => {
 	InlineHelper.registerCommand(InlineWeapon);
 	InlineHelper.registerCommand(InlineType);
 	InlineHelper.registerCommand(InlineClocks);
-	InlineHelper.registerCommand(InlineIcon);
+	InlineHelper.registerCommand(InlineCommon);
 	InlineHelper.registerCommand(InlineAction);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
@@ -408,12 +435,10 @@ Hooks.once('init', async () => {
 	PdfPagerIntegration.initialize();
 	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
+	Themes.initialize();
 
-	// // Disable the token drag ruler measurement, unless they've specifically
-	// // gone in and enabled it for some reason.
-	// if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
-	// 	CONFIG.Token.rulerClass = null;
-	// }
+	// Fetch any extensions from modules
+	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
@@ -497,39 +522,14 @@ Hooks.once('ready', async function () {
 		}
 	});
 
-	Hooks.on('preUpdateActor', async (actor, updateData, options, userId) => {
-		const equipped = foundry.utils.getProperty(updateData, 'system.equipped');
-
-		if (!equipped) return;
-
-		// Check if main hand or off hand is being unequipped
-		const mainHandUnequipped = equipped.mainHand === null;
-		const offHandUnequipped = equipped.offHand === null;
-
-		// If neither hand is unequipped, exit early
-		if (!mainHandUnequipped && !offHandUnequipped) return;
-
-		// Get the Unarmed Strike item
-		const unarmedStrike = actor.getSingleItemByFuid('unarmed-strike');
-		if (!unarmedStrike) return;
-
-		// Prepare updates only if necessary
-		const updates = {};
-		if (mainHandUnequipped) updates['system.equipped.mainHand'] = unarmedStrike.id;
-		if (offHandUnequipped) updates['system.equipped.offHand'] = unarmedStrike.id;
-
-		// Perform the update if there are changes
-		if (Object.keys(updates).length > 0) {
-			await actor.update(updates);
-		}
-	});
-
 	Hooks.on('createItem', (item, options, userId) => {
 		if (!item.parent) return; // Make sure the item belongs to an actor or entity
 		if (!game.settings.get('projectfu', 'optionAlwaysFavorite')) return;
 		if (item.isFavorite === true) return; // Already favored
 		item.toggleFavorite(true);
 	});
+
+	ClassFuidConverter.run();
 });
 
 /* -------------------------------------------- */
@@ -544,6 +544,8 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 		Array.from({ length: 20 }, (v, i) => (i + 1).toString()),
 	);
 
+	dice3d.addSFXTrigger(SYSTEM, 'Fabula Ultima', [game.i18n.localize('FU.Critical'), game.i18n.localize('FU.Fumble'), game.i18n.localize('FU.Success'), game.i18n.localize('FU.Failure')]);
+
 	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
 		const dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
@@ -553,6 +555,38 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 					d.options.sfx = { id: 'doubles', result: dieValue };
 				}
 			}
+		}
+
+		const chatMessage = game.messages.get(_messageId);
+		const checkData = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.Check);
+
+		if (!checkData) return;
+
+		const { critical = false, fumble = false } = checkData;
+
+		const pfuSfx = { id: SYSTEM, result: null };
+
+		if (critical) {
+			pfuSfx.result = game.i18n.localize('FU.Critical');
+		} else if (fumble) {
+			pfuSfx.result = game.i18n.localize('FU.Fumble');
+		} else if (checkData.type === 'accuracy' || checkData.type === 'magic') {
+			if (checkData.additionalData.targets?.length) {
+				if (checkData.additionalData.targets.some((target) => target.result === 'hit')) pfuSfx.result = game.i18n.localize('FU.Success');
+				else pfuSfx.result = game.i18n.localize('FU.Failure');
+			}
+		} else if (checkData.type === 'opposed') {
+			if (checkData.additionalData?.initialCheck) {
+				if (checkData.result >= checkData.additionalData.initialCheck.result) pfuSfx.result = game.i18n.localize('FU.Success');
+				else pfuSfx.result = game.i18n.localize('FU.Failure');
+			}
+		} else {
+			if (checkData.result >= checkData.additionalData.difficulty) pfuSfx.result = game.i18n.localize('FU.Success');
+			else pfuSfx.result = game.i18n.localize('FU.Failure');
+		}
+
+		if (pfuSfx.result) {
+			for (const d of dice) d.options.sfx = pfuSfx;
 		}
 	});
 });

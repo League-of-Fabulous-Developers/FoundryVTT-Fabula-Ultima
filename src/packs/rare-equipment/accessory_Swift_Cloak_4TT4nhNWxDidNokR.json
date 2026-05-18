@@ -1,0 +1,133 @@
+{
+  "folder": "sQ8axLKVw7WoLhp4",
+  "name": "Swift Cloak",
+  "type": "accessory",
+  "_id": "4TT4nhNWxDidNokR",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-yellow.png",
+  "system": {
+    "fuid": "swift-cloak",
+    "description": "<p>You are immune to <strong>slow</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "quality": {
+      "value": "Anti Slow"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Swift Cloak",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-yellow.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.4TT4nhNWxDidNokR",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "1d8wDSmuADU9e0s2",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you are immune to <strong>slow</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Swift Cloak",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.4TT4nhNWxDidNokR",
+            "effectUuid": null,
+            "fuid": "swift-cloak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775681590244,
+        "modifiedTime": 1775708171806,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!4TT4nhNWxDidNokR.1d8wDSmuADU9e0s2"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774650237435,
+    "modifiedTime": 1777529891542,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!4TT4nhNWxDidNokR"
+}

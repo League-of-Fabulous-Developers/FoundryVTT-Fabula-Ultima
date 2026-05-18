@@ -1,0 +1,111 @@
+{
+  "folder": "oOLB3l3wkwkyPB4j",
+  "name": "Effect: Prancing Dandelion (Air)",
+  "type": "effect",
+  "_id": "sgyOnXZVNT0UGuKu",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/prancing-dandelion.png",
+  "system": {
+    "fuid": "effect-prancing-dandelion-air",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Prancing Dandelion (Air)",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/prancing-dandelion.png",
+      "origin": "Compendium.projectfu.skills.Item.sgyOnXZVNT0UGuKu",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ItWxXK5fw7F2ceQq",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>air</strong>, its type cannot change, and it ignores Resistances.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Prancing Dandelion (Air)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.sgyOnXZVNT0UGuKu",
+            "effectUuid": null,
+            "fuid": "effect-prancing-dandelion-air"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777439415556,
+        "modifiedTime": 1777439449164,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!sgyOnXZVNT0UGuKu.ItWxXK5fw7F2ceQq"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1777439404273,
+    "modifiedTime": 1777439414050,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!sgyOnXZVNT0UGuKu"
+}

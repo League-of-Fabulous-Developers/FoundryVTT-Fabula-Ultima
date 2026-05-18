@@ -41,7 +41,8 @@
         "rules": {
           "progress": {
             "id": "",
-            "name": ""
+            "name": "",
+            "style": "basic"
           }
         }
       },
@@ -59,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You treat your Defense and Magic Defense scores as being equal to<strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong>against that Check.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,12 +70,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743843067862,
-        "modifiedTime": 1746873248749,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1770632480660,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!hNeylrus4Ii8hIKa.Xrd3uuRrv6x4lRnR"

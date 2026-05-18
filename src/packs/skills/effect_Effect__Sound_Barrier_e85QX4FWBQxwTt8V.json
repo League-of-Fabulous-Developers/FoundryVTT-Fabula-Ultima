@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Sound Barrier",
+      "name": "Sound Barrier",
       "_id": "x7pVRBkWCUAvhThO",
       "type": "base",
       "system": {
@@ -71,7 +71,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744458722447,
-        "modifiedTime": 1770268445600,
+        "modifiedTime": 1770632043761,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

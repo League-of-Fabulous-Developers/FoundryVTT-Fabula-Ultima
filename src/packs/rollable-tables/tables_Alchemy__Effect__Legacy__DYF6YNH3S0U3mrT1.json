@@ -1,7 +1,7 @@
 {
   "name": "Alchemy: Effect [Legacy]",
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/alchemy.png",
-  "description": "<p><span class=\"fontstyle0\">When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.rollable-tables.RollTable.vZa3GMOzrEVma2Hv]{target} </span><span class=\"fontstyle0\">table and one to the </span><span class=\"fontstyle2\"><strong>effect</strong> </span><span class=\"fontstyle0\">table (below). Discard all remaining dice, then describe the effects of the mix!</span></p>",
+  "description": "<p>When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the @UUID[Compendium.projectfu.rollable-tables.RollTable.vZa3GMOzrEVma2Hv]{target} table and one to the <strong>effect</strong> table (below). Discard all remaining dice, then describe the effects of the mix!</p>",
   "results": [
     {
       "type": "text",
@@ -480,8 +480,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768700130394,
-    "modifiedTime": 1768700130394,
-    "lastModifiedBy": "bgUzjEHd80A79gwp"
+    "modifiedTime": 1775517137105,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "formula": "1d20",
   "_id": "DYF6YNH3S0U3mrT1",

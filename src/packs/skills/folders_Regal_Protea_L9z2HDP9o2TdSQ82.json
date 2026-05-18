@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Regal Protea",
+  "color": "#342022",
+  "sorting": "a",
+  "_id": "L9z2HDP9o2TdSQ82",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1777440680625
+  },
+  "_key": "!folders!L9z2HDP9o2TdSQ82"
+}

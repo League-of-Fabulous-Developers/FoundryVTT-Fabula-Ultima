@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Regen.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Hit Points, it restores an extra<strong> </strong>@GAIN[5 hp].</p>",
+      "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Hit Points, it restores an extra @GAIN[5 hp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

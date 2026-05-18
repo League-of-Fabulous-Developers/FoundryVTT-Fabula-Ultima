@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may perform Rituals whose effects fall within the <strong>Entropism </strong>discipline.</p><p><strong>Entropism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Entropism</strong> discipline.</p><p><strong>Entropism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Entropist"
+      "value": "entropist"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "ritual-entropism",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -158,7 +163,16 @@
                 "WsXtNSc6ULBghhsQ": {
                   "type": "performCheckRuleAction",
                   "_id": "WsXtNSc6ULBghhsQ",
-                  "check": "ritual"
+                  "check": "ritual",
+                  "bonus": "",
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
                 }
               }
             }
@@ -181,10 +195,10 @@
       "_id": "91QkE5cUgSCD6X16",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Ritual Entropism</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -196,7 +210,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130620967,
-        "modifiedTime": 1770343679306,
+        "modifiedTime": 1771877017723,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!Ko2QCUw6qbxhufwE.91QkE5cUgSCD6X16"
@@ -210,16 +224,17 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706486739037,
-    "modifiedTime": 1768060737870,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1775526280310,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

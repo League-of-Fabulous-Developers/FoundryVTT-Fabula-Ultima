@@ -1,0 +1,469 @@
+/* ----------------------------------------- */
+/* Progress Styles
+ /* ----------------------------------------- */
+.pfu-progress {
+	display: grid;
+	gap: 4px;
+	grid-template-columns: auto 1fr;
+
+	span,
+	i {
+		color: var(--pfu-color-app-control-content);
+	}
+
+	&.--stack {
+		display: flex;
+		flex-direction: column;
+	}
+
+	:is(.desc) & span,
+	:is(.desc) & i {
+		color: unset;
+	}
+}
+
+.pfu-progress__segments__container {
+	grid-row: 1 / span 2;
+	display: flex;
+	padding: 2px;
+	justify-content: space-evenly;
+	gap: 2em;
+}
+
+.pfu-progress__name__container {
+	display: flex;
+	flex-direction: column;
+	flex: 0;
+	label {
+		vertical-align: middle;
+	}
+}
+
+.pfu-progress__collection {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0;
+	gap: 8px;
+}
+
+/* Progress Clock */
+.pfu-progress__segments {
+	--size: 50px;
+	--border-width: 2px;
+	width: var(--size);
+	height: var(--size);
+	position: relative;
+}
+
+.pfu-progress__controls {
+	display: flex;
+	gap: 2px;
+	justify-content: space-evenly;
+
+	a {
+		border-radius: 30%;
+		width: 1lh;
+		height: 1lh;
+		padding: 1px;
+		text-align: center;
+		vertical-align: middle;
+	}
+}
+
+/* Segment clip-paths */
+.pfu-progress__segments[data-segments='1'] .divider {
+	display: none;
+}
+.pfu-progress__segments[data-segments='2'] .pie {
+	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+}
+.pfu-progress__segments[data-segments='3'] .pie {
+	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+}
+.pfu-progress__segments[data-segments='4'] .pie {
+	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+}
+.pfu-progress__segments[data-segments='5'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+}
+.pfu-progress__segments[data-segments='6'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+}
+.pfu-progress__segments[data-segments='7'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 110% 0);
+}
+.pfu-progress__segments[data-segments='8'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 100% 0);
+}
+.pfu-progress__segments[data-segments='9'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 95% 0);
+}
+.pfu-progress__segments[data-segments='10'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+}
+.pfu-progress__segments[data-segments='11'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+}
+.pfu-progress__segments[data-segments='12'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 80% 0);
+}
+
+/* Foreground ring */
+.pfu-progress__segments .foreground {
+	pointer-events: none;
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	border: var(--border-width) solid #2b4a42;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+}
+
+/* Segment dividers */
+.pfu-progress__segments .divider {
+	pointer-events: none;
+	position: absolute;
+	width: var(--border-width);
+	height: calc(50% - 0.5 * var(--border-width));
+	top: calc(0.5 * var(--border-width));
+	right: calc(50% - var(--border-width) / 2);
+	background: #3d665a;
+	transform-origin: center bottom;
+	transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+}
+
+/* Pie slice inputs */
+.pfu-progress__segments input[type='radio'].pie {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	appearance: none;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	z-index: 1;
+}
+
+.pfu-progress__segments .pie:hover {
+	cursor: pointer;
+}
+
+.pfu-progress__segments .pie:checked,
+.pfu-progress__segments .pie:checked ~ .pie {
+	background-color: #2b4a42;
+}
+
+.pfu-progress__segments .pie:hover,
+.pfu-progress__segments .pie:hover ~ .pie {
+	background-color: #ebf7af;
+}
+
+/* Checked + hover interactions */
+.pfu-progress__segments .pie:checked:hover,
+.pfu-progress__segments .pie:checked:hover ~ .pie,
+.pfu-progress__segments .pie:checked ~ .pie:hover,
+.pfu-progress__segments .pie:checked ~ .pie:hover ~ .pie,
+.pfu-progress__segments .pie:hover ~ .pie:checked,
+.pfu-progress__segments .pie:hover ~ .pie:checked ~ .pie {
+	background-color: #2b4a42;
+}
+
+.pfu-progress__bar {
+	font-size: 18px;
+	height: 20px;
+	max-height: 20px;
+	width: 100px;
+	border: 1px solid #c7c7c7;
+	background-color: #656565;
+	-webkit-box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+	position: relative;
+
+	.bar {
+		float: left;
+		height: 100%;
+		max-width: 100%;
+		background-color: var(--pfu-color-app-clock-fill-1);
+		-webkit-box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+		box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+		-webkit-transition: width 500ms ease-in-out;
+		transition: width 500ms ease-in-out;
+		position: relative;
+	}
+}
+
+.pfu-progress__basic {
+	display: inline-block;
+	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content);
+	border-radius: 3px;
+	border: 2px solid var(--pfu-color-app-control-content);
+	padding: 0 0.35rem;
+	font-weight: bold;
+	min-width: 1.5rem;
+	max-height: 20px;
+	text-align: center;
+}
+
+.pfu-progress__chat {
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	border-radius: 10px;
+	padding: 10px 20px;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bold;
+	box-sizing: border-box;
+	white-space: nowrap;
+	text-transform: uppercase;
+	align-content: center;
+	line-height: 1.2;
+	color: var(--pfu-color-app-section-content-secondary);
+
+	.details {
+		display: flex;
+		flex-grow: 1;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2px;
+
+		.name {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 8px;
+
+			img {
+				width: 24px;
+				height: 24px;
+				object-fit: cover;
+				border: 1px solid var(--pfu-color-app-section-border);
+				opacity: 0.9;
+			}
+		}
+
+		.divider {
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
+			opacity: 0.4;
+
+			.divider-line {
+				flex-grow: 1;
+				height: 1px;
+				background: currentColor;
+			}
+
+			i {
+				font-size: 0.4rem;
+			}
+		}
+
+		.counter {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-family: 'DM Mono', monospace;
+
+			.current {
+			}
+
+			.max {
+			}
+		}
+	}
+}
+
+.pfu-progress__chat .pfu-progress__segments__container {
+	position: relative;
+	padding: 5px;
+	background-color: #e1e5d1;
+	border-radius: 50%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	z-index: 1;
+}
+.pfu-progress__chat .pfu-progress__segments__container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 5px;
+	background-color: rgba(255, 247, 154, 0.5);
+	mix-blend-mode: multiply;
+	opacity: 0.75;
+	border-radius: 50%;
+	z-index: 0;
+}
+.pfu-progress__chat .pfu-progress__segments {
+	--size: 50px;
+	--border-width: 2px;
+	width: var(--size);
+	height: var(--size);
+	position: relative;
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='1'] .divider {
+	display: none;
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='2'] .pie {
+	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='3'] .pie {
+	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='4'] .pie {
+	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='5'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='6'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='7'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 110% 0);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='8'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 100% 0);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='9'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 95% 0);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='10'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='11'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+}
+.pfu-progress__chat .pfu-progress__segments[data-segments='12'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 80% 0);
+}
+.pfu-progress__chat .pfu-progress__segments .foreground {
+	pointer-events: none;
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	border: var(--border-width) solid #2b4a42;
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+}
+.pfu-progress__chat .pfu-progress__segments .divider {
+	pointer-events: none;
+	position: absolute;
+	width: var(--border-width);
+	height: calc(50% - 0.5 * var(--border-width));
+	top: calc(0.5 * var(--border-width));
+	right: calc(50% - var(--border-width) / 2);
+	background: #3d665a;
+	-webkit-transform-origin: center bottom;
+	-ms-transform-origin: center bottom;
+	transform-origin: center bottom;
+	-webkit-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	-ms-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+}
+.pfu-progress__chat .pfu-progress__segments input[type='radio'].pie {
+	position: absolute;
+	top: 0;
+	margin: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	-webkit-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	-ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	z-index: 1;
+}
+.pfu-progress__chat .pfu-progress__segments .pie:hover {
+	cursor: pointer;
+}
+.pfu-progress__chat .pfu-progress__segments .pie:checked,
+.pfu-progress__chat .pfu-progress__segments .pie:checked ~ .pie {
+	background-color: var(--color-checkbox-checked-bg);
+}
+.pfu-progress__chat .pfu-progress__segments .pie:hover,
+.pfu-progress__chat .pfu-progress__segments .pie:hover ~ .pie {
+	background-color: var(--hover-bg);
+}
+.pfu-progress__chat .pfu-progress__segments .pie:checked:hover,
+.pfu-progress__chat .pfu-progress__segments .pie:checked:hover ~ .pie,
+.pfu-progress__chat .pfu-progress__segments .pie:checked ~ .pie:hover,
+.pfu-progress__chat .pfu-progress__segments .pie:checked ~ .pie:hover ~ .pie,
+.pfu-progress__chat .pfu-progress__segments .pie:hover ~ .pie:checked,
+.pfu-progress__chat .pfu-progress__segments .pie:hover ~ .pie:checked ~ .pie {
+	background-color: #2b4a42;
+}
+
+/* Used in sheets */
+.pfu-progress__chat .pie {
+	pointer-events: none;
+}
+
+.pfu-progressbar {
+}
+
+.pfu-progressbar__track {
+	border: var(--border-width) solid var(--pfu-section-border-color);
+	background: var(--pfu-color-control-content);
+	border-radius: 3px;
+	height: 20px;
+	overflow: hidden;
+}
+
+.pfu-progressbar__fill {
+	background: var(--pfu-color-app-control-fill);
+	height: 100%;
+	transition: width 0.3s ease;
+}
+
+.pfu-progressbar__labels {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2px;
+	text-transform: uppercase;
+	color: var(--pfu-color-app-item-content);
+}
+
+.pfu-progressbar__value {
+	display: inline-block;
+	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content);
+	border-radius: 3px;
+	padding: 0 0.35rem;
+	font-weight: bold;
+	min-width: 1.5rem;
+	text-align: center;
+
+	&.max {
+		color: var(--pfu-color-app-control-fill);
+		background: var(--pfu-color-app-control-content);
+	}
+}

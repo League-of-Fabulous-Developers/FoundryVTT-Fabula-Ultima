@@ -1,0 +1,215 @@
+{
+  "folder": "rNpGX8mi0M6i6y66",
+  "name": "Frostbite",
+  "type": "weapon",
+  "_id": "PNW7bz7hd1VY3oPB",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-frostbite.png",
+  "system": {
+    "fuid": "frostbite",
+    "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong>, that spell's total MP cost is <strong>halved</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1200
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Weak Savant"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "wlp"
+      },
+      "secondary": {
+        "value": "wlp"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 6
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "arcane"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "ice"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Frostbite",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-frostbite.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.PNW7bz7hd1VY3oPB",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "pK3axvT38gf9D6sx": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "XagIDgBj7u0nAQ34",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "spell",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": ""
+              },
+              "_id": "pK3axvT38gf9D6sx",
+              "predicates": {
+                "2kg17jzSRA3VpTWK": {
+                  "type": "spellRulePredicate",
+                  "_id": "2kg17jzSRA3VpTWK",
+                  "offensive": "true"
+                },
+                "9s8B3di2cnNu1cLP": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "9s8B3di2cnNu1cLP",
+                  "effect": "weak"
+                }
+              },
+              "actions": {
+                "Un0vMYMFrzfwVOIy": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "Un0vMYMFrzfwVOIy",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "mgtjgwUxP6AZkOix",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong> while you have this equipped, that spell's total MP cost is <strong>halved</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Frostbite",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.PNW7bz7hd1VY3oPB",
+            "effectUuid": null,
+            "fuid": "frostbite"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774811029048,
+        "modifiedTime": 1775709257891,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!PNW7bz7hd1VY3oPB.mgtjgwUxP6AZkOix"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774810975531,
+    "modifiedTime": 1777530968652,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!PNW7bz7hd1VY3oPB"
+}

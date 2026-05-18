@@ -1,0 +1,117 @@
+{
+  "folder": "P1zCZLNXxuPkxwaj",
+  "name": "Effect: Griffin Dance (Damage)",
+  "type": "effect",
+  "_id": "IBPW4POIOr7FcYo7",
+  "img": "icons/commodities/materials/feather-blue-glowing.webp",
+  "system": {
+    "fuid": "effect-griffin-dance-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Griffin Dance (Damage)",
+      "img": "icons/commodities/materials/feather-blue-glowing.webp",
+      "origin": "Compendium.projectfu.skills.Item.IBPW4POIOr7FcYo7",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "qZmexcxYjK5RRCVe",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        },
+        {
+          "key": "system.overrides.damageType.spell.normal",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>air</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Griffin Dance (Damage)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.IBPW4POIOr7FcYo7",
+            "effectUuid": null,
+            "fuid": "effect-griffin-dance-damage"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774641566550,
+        "modifiedTime": 1775844280380,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!IBPW4POIOr7FcYo7.qZmexcxYjK5RRCVe"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774641546866,
+    "modifiedTime": 1774641562100,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!IBPW4POIOr7FcYo7"
+}

@@ -7,9 +7,9 @@ import { SYSTEM } from '../../../../helpers/config.mjs';
 /**
  * @type RenderCheckHook
  */
-const renderCheck = (sections, check, actor, item, additionalFlags) => {
+const renderCheck = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.system?.data instanceof CookbookDataModel && check.additionalData['action'] === 'cooking') {
-		sections.push({
+		data.sections.push({
 			partial: 'systems/projectfu/templates/feature/gourmet/cooking-chat-message.hbs',
 			data: check.additionalData['cooking'],
 		});
@@ -74,9 +74,6 @@ export class CookbookDataModel extends RollableClassFeatureDataModel {
 
 		taste1Radio.value = sheet.taste1;
 		taste2Radio.value = sheet.taste2;
-
-		console.log(sheet.taste1, sheet.taste2);
-		console.log(taste1Radio, taste2Radio);
 
 		const toggleHighlight = () => {
 			console.log(sheet.taste1, sheet.taste2);

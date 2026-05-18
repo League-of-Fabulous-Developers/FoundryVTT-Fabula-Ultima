@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "Base Cap",
+  "color": "#256722",
+  "sorting": "a",
+  "_id": "KtEArjkGWRkOEKtb",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768683738
+  },
+  "_key": "!folders!KtEArjkGWRkOEKtb"
+}

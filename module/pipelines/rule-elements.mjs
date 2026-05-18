@@ -2,7 +2,7 @@ import { systemId } from '../helpers/system-utils.mjs';
 import { SETTINGS } from '../settings.js';
 import { FUHooks as FUhooks, FUHooks } from '../hooks.mjs';
 
-import { CombatEventRuleTrigger } from '../documents/effects/triggers/combat-event-rule-trigger.mjs';
+import { CombatRuleTrigger } from '../documents/effects/triggers/combat-rule-trigger.mjs';
 import { AttackRuleTrigger } from '../documents/effects/triggers/attack-rule-trigger.mjs';
 import { MessageRuleAction } from '../documents/effects/actions/message-rule-action.mjs';
 import { ApplyDamageRuleAction } from '../documents/effects/actions/apply-damage-rule-action.mjs';
@@ -57,9 +57,15 @@ import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calcu
 import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-trigger.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-message-rule-trigger.mjs';
+import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigger.mjs';
+import { FlagRulePredicate } from '../documents/effects/predicates/flag-rule-predicate.mjs';
+
+import { ProgressTrackRuleTrigger } from '../documents/effects/triggers/progress-track-rule-trigger.mjs';
+import { ProgressTrackRulePredicate } from '../documents/effects/predicates/progress-track-predicate.mjs';
 
 function register() {
-	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, CombatRuleTrigger.TYPE, CombatRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, AttackRuleTrigger.TYPE, AttackRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, StatusRuleTrigger.TYPE, StatusRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, DamageRuleTrigger.TYPE, DamageRuleTrigger);
@@ -77,6 +83,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, FeatureRuleTrigger.TYPE, FeatureRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, RenderMessageRuleTrigger.TYPE, RenderMessageRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, ProgressTrackRuleTrigger.TYPE, ProgressTrackRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -108,6 +115,8 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, TraitsRulePredicate.TYPE, TraitsRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, SpellRulePredicate.TYPE, SpellRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, CheckRulePredicate.TYPE, CheckRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, FlagRulePredicate.TYPE, FlagRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, ProgressTrackRulePredicate.TYPE, ProgressTrackRulePredicate);
 }
 
 /**
@@ -133,7 +142,9 @@ async function onAttackEvent(event) {
  * @returns {Promise<void>}
  */
 async function onDamageEvent(event) {
-	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)]);
+	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)], {
+		renderData: event.renderData,
+	});
 }
 
 /**
@@ -141,7 +152,9 @@ async function onDamageEvent(event) {
  * @returns {Promise<void>}
  */
 async function onResourceEvent(event) {
-	await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets);
+	await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets, {
+		renderData: event.renderData,
+	});
 }
 
 /**
@@ -279,8 +292,15 @@ async function onEffectToggledEvent(event) {
  * @returns {Promise<void>}
  */
 async function onFeatureEvent(event) {
-	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, [], {
-		renderData: event.builder.sections,
+	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, event.targets, {
+		renderData: event.renderData,
+	});
+}
+
+async function onProgressEvent(event) {
+	console.log('onProgressEvent:', event);
+	await evaluate(FUHooks.PROGRESS_EVENT, event, event.source, [], {
+		renderData: event.renderData,
 	});
 }
 
@@ -303,27 +323,39 @@ function getSceneCharacters(targets) {
 	return [...new Map(sceneCharacters.filter((ci) => ci.actor?.uuid).map((ci) => [ci.actor.uuid, ci])).values()];
 }
 
-/** @type {FUItem | null} */
-let temporaryItem = null;
-
 /**
  * @param {FUActiveEffect} effect
  * @returns {Promise<game.projectfu.FUItem|null>}
  */
 async function getTemporaryItem(effect) {
-	if (!temporaryItem) {
-		temporaryItem = await FUItem.create(
-			{
-				name: 'TemporaryItem',
-				type: 'rule',
-			},
-			{ temporary: true },
-		);
-	}
+	const temporaryItem = await FUItem.create(
+		{
+			name: 'TemporaryItem',
+			type: 'rule',
+		},
+		{ temporary: true },
+	);
 	temporaryItem.name = effect.name;
 	temporaryItem.img = effect.img;
 	return temporaryItem;
 }
+
+/**
+ * @param {ActiveEffect|FUActiveEffect} effect
+ * @returns {boolean}
+ */
+function canProcessEffect(effect) {
+	const disabled = effect.isSuppressed || effect.disabled;
+	if (disabled || effect.system.rules.elements.size === 0) {
+		return false;
+	}
+	return true;
+}
+
+/**
+ * @type {Set<string>} Events that can possibly have no source character.
+ */
+const eventsWithoutSourceCharacter = new Set([FUHooks.COMBAT_EVENT]);
 
 /**
  * @param {String} type
@@ -336,14 +368,16 @@ async function getTemporaryItem(effect) {
 async function evaluate(type, event, source, targets, data = undefined) {
 	// This can happen when sending items to chat.
 	if (!source) {
-		return;
+		// But some events
+		if (!eventsWithoutSourceCharacter.has(type)) {
+			return;
+		}
 	}
 	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter
-	const sceneCharacters = getSceneCharacters([source, ...targets]);
+	const sceneCharacters = getSceneCharacters(source ? [source, ...targets] : targets);
 	for (const character of sceneCharacters) {
-		for (const effect of character.actor.allEffects()) {
-			const disabled = effect.isSuppressed || effect.disabled;
-			if (disabled || effect.system.rules.elements.size === 0) {
+		for (const effect of character.actor.allApplicableEffects()) {
+			if (!canProcessEffect(effect)) {
 				continue;
 			}
 			/** @type RuleElementContext **/
@@ -386,15 +420,14 @@ function initialize() {
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 	Hooks.on(FUHooks.ATTACK_EVENT, onAttackEvent);
 	Hooks.on(FUHooks.STATUS_EVENT, onStatusEvent);
-	Hooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
-	Hooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
+	AsyncHooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
+	AsyncHooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
 	Hooks.on(FUHooks.SPELL_EVENT, onSpellEvent);
-	Hooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
+	AsyncHooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 	Hooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
-	//AsyncHooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_RESOURCE_EVENT, onCalculateResourceEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_EXPENSE_EVENT, onCalculateExpenseEvent);
 	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
@@ -403,6 +436,8 @@ function initialize() {
 	AsyncHooks.on(FUhooks.ITEM_ROLL_EVENT, onItemRoll);
 	AsyncHooks.on(FUhooks.FEATURE_EVENT, onFeatureEvent);
 	AsyncHooks.on(FUHooks.RENDER_MESSAGE_EVENT, onRenderMessageEvent);
+
+	Hooks.on(FUHooks.PROGRESS_EVENT, onProgressEvent);
 }
 
 export const RuleElements = Object.freeze({

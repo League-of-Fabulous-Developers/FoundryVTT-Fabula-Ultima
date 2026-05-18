@@ -2,6 +2,7 @@
  * @param {Object} target
  * @param {Object} source
  * @returns {(Object|boolean)[]}
+ * @remarks If you don't care about whether it was changed, you can ignore the result.
  */
 function mergeRecursive(target, source) {
 	let changed = false;
@@ -35,6 +36,15 @@ function getProperty(obj, path) {
 }
 
 /**
+ * @param {Object} obj The object to set the property on
+ * @param {String} path The path to the property, in dot notation
+ * @param {*} value The value to set on the property.
+ */
+function setProperty(obj, path, value) {
+	return foundry.utils.setProperty(obj, path, value);
+}
+
+/**
  *
  * @param {Object} obj
  * @returns {Object} An object without any undefined properties
@@ -53,9 +63,35 @@ function pick(record, keys) {
 	return Object.fromEntries(keys.filter((key) => key in record).map((key) => [key, record[key]]));
 }
 
+/**
+ * Recursive version of Object.freeze.
+ * @param {object} obj The object to freeze.
+ * @returns {object} The object that was passed in, now deep frozen.
+ */
+function deepFreeze(obj) {
+	Object.keys(obj).forEach((property) => {
+		if (typeof obj[property] === 'object' && obj[property] !== null && !Object.isFrozen(obj[property])) {
+			deepFreeze(obj[property]);
+		}
+	});
+	return Object.freeze(obj);
+}
+
+/**
+ * @param {Object[]} array
+ * @param {String} property
+ * @returns {*[]}
+ */
+function sortArray(array, property) {
+	return [...array].sort((a, b) => (a[property] > b[property] ? 1 : -1));
+}
+
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
 	getProperty,
+	setProperty,
 	cleanObject,
 	pick,
+	deepFreeze,
+	sortArray,
 });

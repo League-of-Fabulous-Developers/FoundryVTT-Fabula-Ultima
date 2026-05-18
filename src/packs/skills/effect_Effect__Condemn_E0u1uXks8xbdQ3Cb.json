@@ -13,12 +13,12 @@
   },
   "effects": [
     {
-      "name": "Effect: Condemn",
+      "name": "Condemn",
       "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_condemn.png",
       "system": {
         "duration": {
           "event": "startOfTurn",
-          "interval": 2,
+          "interval": 1,
           "tracking": "source",
           "remaining": 1
         },
@@ -50,11 +50,11 @@
         {
           "key": "system.bonuses.incomingDamage.all",
           "mode": 2,
-          "value": "5",
+          "value": "~&sl(\"condemn\")",
           "priority": null
         }
       ],
-      "description": "<p>All sources deal <strong>【SL】</strong> extra damage to them until the start of your next turn.</p>",
+      "description": "<p>All sources deal<strong>【SL】</strong>extra damage to you until the start of the orator's next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,8 +69,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768580695078,
-        "modifiedTime": 1768581130660,
-        "lastModifiedBy": "bgUzjEHd80A79gwp"
+        "modifiedTime": 1770633896322,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!E0u1uXks8xbdQ3Cb.58UMQVTHM0y6mAgX"
     }

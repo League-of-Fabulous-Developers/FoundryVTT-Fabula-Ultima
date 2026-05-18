@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "xEJLs3KBQFon1pAq",
+  "name": "Delicacy 10 (Resistance)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "Pv53L2hWT3GPxapJ",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775543546582
+  },
+  "_key": "!folders!Pv53L2hWT3GPxapJ"
+}

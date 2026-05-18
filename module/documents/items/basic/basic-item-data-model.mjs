@@ -7,8 +7,8 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
+import { ActionTraits, DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @param {CheckV2} check
@@ -34,8 +34,9 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		}
 		config
 			.setTargetedDefense(attack.defense)
-			.addTraits('attack')
-			.addEffects(attack.effects.entries)
+			.addTraits(ActionTraits.Attack)
+			.addTraits(ActionTraits.Damage)
+			.setEffects(attack.effects)
 			.setWeaponTraits({
 				weaponType: attack.type.value,
 			})
@@ -45,15 +46,10 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(data, result, actor, item) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof BasicItemDataModel) {
-		data.push(async () => ({
+		data.sections.push(async () => ({
 			order: CHECK_DETAILS,
 			partial: 'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
 			data: {
@@ -63,10 +59,9 @@ function onRenderCheck(data, result, actor, item) {
 				},
 			},
 		}));
-		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
-		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
@@ -88,6 +83,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {number} cost.value
  * @property {string} quality.value
  * @property {string} source.value
+ * @property {Set<String>} traits
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
 export class BasicItemDataModel extends FUStandardItemDataModel {
@@ -124,6 +120,14 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
+	}
+
+	/**
 	 * @param {KeyboardModifiers} modifiers
 	 * @return {CheckCallback}
 	 */
@@ -153,6 +157,6 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @return {Tag[]}
 	 */
 	getTags() {
-		return [...TraitUtils.toTags(this.traits)];
+		return [];
 	}
 }

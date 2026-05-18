@@ -12,303 +12,15 @@
     "maxLevel": 5,
     "items": [
       {
-        "name": "Queen's Gambit",
-        "type": "skill",
-        "_id": "kvaHD57S3oRavWVz",
-        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_queens_gambit.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option: one ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points; <strong>or</strong> you may immediately use a Skill you acquired among <strong>Bishop’s</strong></p><p><strong>Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p><hr /><ul><li><p><strong>Ally Recovers: </strong>@GAIN[5+($sl*5) hp]{5 + (SL × 5) HP}</p></li><li><p><strong>Free:</strong> @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 6,
-            "min": 0
-          },
-          "class": {
-            "value": "Commander"
-          },
-          "useWeapon": {
-            "accuracy": true,
-            "damage": true,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": true,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": true
-          },
-          "source": "FUHF141",
-          "hasRoll": {
-            "value": true
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "queens-gambit",
-          "targeting": {
-            "rule": "single",
-            "max": 0
-          },
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 400000
-      },
-      {
-        "name": "King's Castle",
-        "type": "skill",
-        "_id": "VGJCC4QIVRAXfxkQ",
-        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend 10 Mind Points to choose one option: no creature can recover Hit Points or Mind Points; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">all effects that restore Mind Points restore </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points. The chosen effect lasts until the start of your next turn.</span> </p><hr /><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5]{Effect: King's Castle (Extra MP)}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 4,
-            "min": 0
-          },
-          "class": {
-            "value": "Commander"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUHF141",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "kings-castle",
-          "cost": {
-            "amount": 10,
-            "resource": "mp",
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 300000
-      },
-      {
-        "name": "Crushing Chariot",
-        "type": "skill",
-        "_id": "KbDYiUFXiRRZrxzq",
-        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_crushing_chariot.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p><hr /><ul><li><p><strong>Trigger:</strong> @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, <strong>or</strong> @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 1,
-            "min": 0
-          },
-          "class": {
-            "value": "Commander"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUHF141",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "crushing-chariot",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 75000
-      },
-      {
-        "name": "Charging Cavalry",
-        "type": "skill",
-        "_id": "jLfb8f5KgTUbPM6f",
-        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 5,
-            "min": 0
-          },
-          "class": {
-            "value": "Commander"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUHF141",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "charging-cavalry",
-          "cost": {
-            "amount": 10,
-            "resource": "mp",
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "single",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 50000
-      },
-      {
         "name": "Bishop's Edict",
         "type": "skill",
-        "_id": "vRbpOMrunVldtXX5",
+        "_id": "66RGx8mPhY2YAdAe",
         "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p><hr /><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp]{Effect: Bishop's Edict (Extra Damage)}</p></li></ul>",
+          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>All MP costs are doubled.</p></li><li><p>All sources of damage deal <strong>【SL × 3】</strong> extra damage.</p></li></ul><p>The chosen effect lasts until the start of your next turn.</p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
           "showTitleCard": {
             "value": false
           },
@@ -318,7 +30,7 @@
             "min": 0
           },
           "class": {
-            "value": "Commander"
+            "value": "commander"
           },
           "useWeapon": {
             "accuracy": false,
@@ -329,7 +41,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -355,19 +67,525 @@
           "defense": "def",
           "fuid": "bishops-edict",
           "cost": {
-            "amount": 10,
+            "amount": "10",
+            "resource": "mp",
+            "perTarget": false
+          },
+          "effects": {
+            "entries": [
+              "Compendium.projectfu.skills.Item.i9wagJN9DD7bjJ3k",
+              "Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp"
+            ],
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "prompt": true
+          },
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "Charging Cavalry",
+        "type": "skill",
+        "_id": "lzrBeuuHB6CWnajO",
+        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "commander"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUHF141",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "charging-cavalry",
+          "cost": {
+            "amount": "10",
             "resource": "mp",
             "perTarget": false
           },
           "targeting": {
-            "rule": "special",
+            "rule": "single",
             "max": 0
           },
-          "traits": []
+          "effects": {
+            "entries": [
+              "Compendium.projectfu.skills.Item.X4L3sibcGEi8LPvd"
+            ],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
         "effects": [],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "Crushing Chariot",
+        "type": "skill",
+        "_id": "NTGZkForZQ3ieeqs",
+        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_crushing_chariot.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p><hr /><p><strong>Trigger:</strong> @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, <strong>or</strong> @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "commander"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUHF141",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "crushing-chariot",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "name": "Crushing Chariot",
+            "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_crushing_chariot.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "E7MAXi5LkWYCsB6S": {
+                    "type": "ruleElement",
+                    "_id": "E7MAXi5LkWYCsB6S",
+                    "trigger": {
+                      "_id": "6Gf1P1sPfE9FEhzF",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "skill"
+                      ],
+                      "local": false,
+                      "identifier": "bishops-edict"
+                    },
+                    "actions": {
+                      "MOPj55yDDw7IVn3T": {
+                        "type": "messageRuleAction",
+                        "_id": "MOPj55yDDw7IVn3T",
+                        "message": "<p>Another PC may take their turn after yours.</p>"
+                      }
+                    },
+                    "predicates": {},
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "HevpSpv3wgC43yKF": {
+                    "type": "ruleElement",
+                    "_id": "HevpSpv3wgC43yKF",
+                    "trigger": {
+                      "_id": "fZnkmVrtVaUEvkU8",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "skill"
+                      ],
+                      "local": false,
+                      "identifier": "charging-cavalry"
+                    },
+                    "actions": {
+                      "t2CHaeDvIyiJDWgD": {
+                        "type": "messageRuleAction",
+                        "_id": "t2CHaeDvIyiJDWgD",
+                        "message": "<p>Another PC may take their turn after yours.</p>"
+                      }
+                    },
+                    "predicates": {},
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "ADMRCgpWHIIZ1Sdq": {
+                    "type": "ruleElement",
+                    "_id": "ADMRCgpWHIIZ1Sdq",
+                    "trigger": {
+                      "_id": "Km538Z0FkDsRJhRL",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "skill"
+                      ],
+                      "local": false,
+                      "identifier": "kings-castle"
+                    },
+                    "actions": {
+                      "mgpd0YdxZyCCod2F": {
+                        "type": "messageRuleAction",
+                        "_id": "mgpd0YdxZyCCod2F",
+                        "message": "<p>Another PC may take their turn after yours.</p>"
+                      }
+                    },
+                    "predicates": {},
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "bo9XH8Km5H7Yflyz",
+            "type": "base",
+            "changes": [],
+            "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "King's Castle",
+        "type": "skill",
+        "_id": "4PsSFiSDtsMAsUjA",
+        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover HP or MP.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong>additional MP.</p></li></ul><p>The chosen effect lasts until the start of your next turn. </p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 4,
+            "min": 0
+          },
+          "class": {
+            "value": "commander"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUHF141",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "kings-castle",
+          "cost": {
+            "amount": "10",
+            "resource": "mp",
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "entries": [
+              "Compendium.projectfu.skills.Item.lwzEcMwQICongcb5",
+              "Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5"
+            ],
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "prompt": true
+          },
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "Queen's Gambit",
+        "type": "skill",
+        "_id": "MOE1AHz1qsPeHuqe",
+        "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_queens_gambit.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop’s Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 6,
+            "min": 0
+          },
+          "class": {
+            "value": "commander"
+          },
+          "useWeapon": {
+            "accuracy": true,
+            "damage": true,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": true,
+            "value": 0,
+            "type": "",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": true
+          },
+          "source": "FUHF141",
+          "hasRoll": {
+            "value": true
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "",
+          "fuid": "queens-gambit",
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "resource": {
+            "enabled": true,
+            "amount": "5+($sl*5)",
+            "type": "hp"
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
         "sort": 0
       }
@@ -386,12 +604,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759654914065,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1776191702841,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!RjSF6u0HLGKS3Q2o"

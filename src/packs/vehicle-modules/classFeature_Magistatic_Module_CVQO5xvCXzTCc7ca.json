@@ -12,23 +12,164 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong> (see <strong>High Fantasy</strong>, page <strong>138</strong>), if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[5 mp], or @GAIN[10 mp]</p></li></ul>",
+      "description": "<p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong>, if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p><hr /><p><strong>You Recover:</strong> @GAIN[5 mp] or @GAIN[10 mp]</p>",
       "complex": false
     },
     "source": "FUTF169",
     "fuid": "magistatic-module"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Magistatic Module",
+      "img": "icons/commodities/treasure/stone-cracked-lightning-blue.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "VcxSk4XFOvN5QyHN": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "sfDheJEPhVPMOZiD",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic",
+                  "display"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "VcxSk4XFOvN5QyHN",
+              "predicates": {
+                "thq1UVbCaMkGHpJh": {
+                  "type": "weaponRulePredicate",
+                  "_id": "thq1UVbCaMkGHpJh",
+                  "categories": [
+                    "arcane"
+                  ],
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "4fEVkugsr743ehNn": {
+                  "type": "messageRuleAction",
+                  "_id": "4fEVkugsr743ehNn",
+                  "message": "<p>You recover @GAIN[5 mp], or @GAIN[10 mp] if cost was <strong>equal to or higher than 30 MP</strong>.</p>"
+                }
+              },
+              "selector": "self"
+            },
+            "f9PUfO3l40NMWons": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "MOJkfy304wpGwfaP",
+                "type": "featureRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "verse",
+                    "arcanum-summon"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "f9PUfO3l40NMWons",
+              "predicates": {
+                "L2p4xryiw5PKJfJE": {
+                  "type": "weaponRulePredicate",
+                  "_id": "L2p4xryiw5PKJfJE",
+                  "selector": "self",
+                  "categories": [
+                    "arcane"
+                  ]
+                }
+              },
+              "actions": {
+                "aO6wFkd8vvlobYNU": {
+                  "type": "messageRuleAction",
+                  "_id": "aO6wFkd8vvlobYNU",
+                  "message": "<p>You recover @GAIN[5 mp], or @GAIN[10 mp] if cost was <strong>equal to or higher than 30 MP</strong>.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "hM8LsZcc0M6Dxo2S",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong>, if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Magistatic Module",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca",
+            "effectUuid": null,
+            "fuid": "magistatic-module"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773725195266,
+        "modifiedTime": 1773727800547,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!CVQO5xvCXzTCc7ca.hM8LsZcc0M6Dxo2S"
+    }
+  ],
   "flags": {
     "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711477024972,
-    "modifiedTime": 1743171537935,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1773733276493,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

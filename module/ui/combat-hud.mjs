@@ -65,8 +65,46 @@ Hooks.once('setup', () => {
 	});
 });
 
+Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
+	tools.push({
+		id: 'combathud',
+		label: 'FU.ExperimentalCombatHudSettings',
+		icon: 'fa-solid fa-book',
+		tools: {
+			toggleHud: {
+				label: 'FU.CombatHudControlButtonTitle',
+				icon: 'fa-solid fa-thumbtack',
+				click: () => {
+					if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
+						CombatHUD.restore();
+					} else {
+						CombatHUD.minimize();
+					}
+				},
+			},
+			savePos: {
+				label: 'FU.CombatHudSaveButtonTitle',
+				icon: 'fa-solid fa-lock',
+				click: () => {
+					const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
+					game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
+				},
+			},
+			resetHud: {
+				label: 'FU.CombatHudResetButtonTitle',
+				icon: 'fa-solid fa-undo',
+				click: () => {
+					CombatHUD.reset();
+				},
+			},
+		},
+	});
+});
+
 export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 	#hooks = [];
+	#renderTimer = null;
+	#effectContextMenu = null;
 
 	static DEFAULT_OPTIONS = {
 		id: 'combat-hud',
@@ -492,7 +530,8 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	_setEffectContextMenus() {
-		new foundry.applications.ux.ContextMenu(
+		if (this.#effectContextMenu) return;
+		this.#effectContextMenu = new foundry.applications.ux.ContextMenu(
 			this.element,
 			'.combat-effects [data-effect-id][data-actor-id]',
 			[
@@ -600,7 +639,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			hudWidth = minWidth;
 		}
 
-		let uiRightWidth = uiRight.length ? uiRight.clientWidth : 0;
+		let uiRightWidth = uiRight ? uiRight.clientWidth : 0;
 		hudWidth -= uiRightWidth * 0.5;
 
 		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
@@ -1036,17 +1075,14 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 	_onUpdateHUD_Round() {
 		this._onUpdateHUD();
-
-		setTimeout(() => {
-			this._onUpdateHUD();
-		}, 300);
 	}
 
 	_onUpdateHUD() {
 		if (!game.combat) return;
 		if (!game.combat.isActive) return;
 
-		this.render(true);
+		clearTimeout(this.#renderTimer);
+		this.#renderTimer = setTimeout(() => this.render(true), 50);
 	}
 
 	_onUpdateCombatant() {
@@ -1183,6 +1219,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	_onCombatEnd() {
+		clearTimeout(this.#renderTimer);
 		this._resetCombatState(!game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved));
 		this._resetButtons();
 		this.close();
@@ -1209,6 +1246,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	unregisterHooks() {
+		clearTimeout(this.#renderTimer);
 		this.#hooks.forEach(({ hook, func }) => Hooks.off(hook, func));
 	}
 

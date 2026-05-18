@@ -20,7 +20,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.PERFORM_CHECK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT],
+			eventTypes: [FUHooks.PERFORM_CHECK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.CALCULATE_RESOURCE_EVENT],
 		};
 	}
 
@@ -50,7 +50,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 		if (context.config) {
 			switch (this.mode) {
 				case 'add':
-					context.config.addTraits(values);
+					context.config.addTraits(...values);
 					break;
 				case 'remove':
 					//context.config.removeTraits(values);

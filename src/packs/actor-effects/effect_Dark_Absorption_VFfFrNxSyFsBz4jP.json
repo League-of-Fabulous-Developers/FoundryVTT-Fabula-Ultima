@@ -4,33 +4,50 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
-    "fuid": "dark-absorption"
+    "fuid": "dark-absorption",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.VFfFrNxSyFsBz4jP",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Dark Absorption",
       "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
-      "_id": "U41T9GMUyzqAHnvP",
-      "type": "base",
+      "origin": "Compendium.projectfu.actor-effects.Item.VFfFrNxSyFsBz4jP",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "WuLuRQzXBEumCXBG",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.dark.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Absorption to <strong>dark</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Dark Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.VFfFrNxSyFsBz4jP",
+            "effectUuid": null,
+            "fuid": "dark-absorption"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725750783093,
-        "modifiedTime": 1747230638145,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815659195,
+        "modifiedTime": 1774815674026,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!VFfFrNxSyFsBz4jP.U41T9GMUyzqAHnvP"
+      "_key": "!items.effects!VFfFrNxSyFsBz4jP.WuLuRQzXBEumCXBG"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1747230633017,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774761482076,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "VFfFrNxSyFsBz4jP",

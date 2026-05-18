@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Darkblade"
+      "value": "darkblade"
     },
     "useWeapon": {
       "accuracy": {
@@ -131,7 +131,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

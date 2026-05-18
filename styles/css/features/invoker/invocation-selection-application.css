@@ -1,9 +1,241 @@
-.invocations-selection {
-	fieldset {
-		padding: 0.5em;
+/* ─── Variables ─── */
+.pfu-wellspring {
+	--roll-color-light: #e8d5a0;
+	--roll-color-dark: #c8a96e;
+	--card-bg-light: #f5ecd7;
+	--card-bg-mid: #e8d5b0;
+	--card-bg-dark: #f0e0c0;
+	--card-color: #2a1f0e;
+	--card-shadow: rgba(0, 0, 0, 0.35);
+	--card-glow: rgba(0, 0, 0, 0.4);
+	--accent: var(--roll-color-dark);
+	--accent-text: var(--roll-dark); /* defaults to parchment roll color */
 
-		fieldset {
-			box-shadow: color-mix(in srgb, #2b4a42, transparent 50%) 2px 2px;
+	/* Element overrides — set per element class */
+	--roll-light: var(--roll-color-light);
+	--roll-dark: var(--roll-color-dark);
+
+	border-radius: 8px;
+	padding: 0.5rem;
+	background-size: cover;
+	background-position: center;
+}
+
+/* ─── Element themes ─── */
+.pfu-wellspring.air {
+	--roll-light: #90d060;
+	--roll-dark: #3a7a20;
+	--accent: #3a7a20;
+	--card-glow: rgba(58, 122, 32, 0.5);
+	--accent-text: #3a7a20;
+}
+
+.pfu-wellspring.earth {
+	--roll-light: #c8a050;
+	--roll-dark: #6b4910;
+	--accent: #6b4910;
+	--card-glow: rgba(107, 73, 16, 0.5);
+	--accent-text: #6b4910;
+}
+
+.pfu-wellspring.fire {
+	--roll-light: #ff7730;
+	--roll-dark: #aa2200;
+	--accent: #aa2200;
+	--card-glow: rgba(200, 60, 0, 0.55);
+	--accent-text: #aa2200;
+}
+
+.pfu-wellspring.lightning {
+	--roll-light: #f0c000;
+	--roll-dark: #907000;
+	--accent: #907000;
+	--card-glow: rgba(200, 160, 0, 0.55);
+	--accent-text: #907000;
+}
+
+.pfu-wellspring.water {
+	--roll-light: #00aadd;
+	--roll-dark: #005580;
+	--accent: #005580;
+	--card-glow: rgba(0, 120, 180, 0.5);
+	--accent-text: #005580;
+}
+
+/* ─── Wellspring orb interaction ─── */
+.pfu-wellspring {
+	.wellspring.fu-icon__container:hover {
+		transform: scale(1.12);
+		filter: brightness(1.15);
+	}
+
+	.wellspring.fu-icon__container:active {
+		transform: scale(0.95);
+		filter: brightness(0.9);
+	}
+
+	.wellspring.fu-icon__container.active {
+		transform: scale(1.1);
+		outline: 2px solid rgba(255, 255, 255, 0.6);
+		outline-offset: 2px;
+	}
+
+	/* ─── Invocation grid ─── */
+	.invocation-grid {
+		padding: 16px;
+	}
+
+	/* ─── Card base ─── */
+	.invocation-card {
+		display: flex;
+		cursor: pointer;
+		flex-direction: column;
+		gap: 0.4rem;
+		padding: 1.25rem 1rem;
+		position: relative;
+		text-decoration: none;
+		transition:
+			filter 0.15s ease,
+			box-shadow 0.15s ease,
+			transform 0.1s ease;
+
+		background: linear-gradient(160deg, var(--card-bg-light), var(--card-bg-mid), var(--card-bg-dark));
+		color: var(--card-color);
+		border: none;
+		border-top: 3px solid var(--accent);
+		border-radius: 0;
+		box-shadow:
+			0 4px 8px var(--card-shadow),
+			inset 0 0 12px rgba(0, 0, 0, 0.08);
+	}
+
+	/* Rolled top edge */
+	.invocation-card::before {
+		content: '';
+		position: absolute;
+		top: -6px;
+		left: 0;
+		right: 0;
+		height: 12px;
+		background: linear-gradient(180deg, var(--roll-dark), var(--roll-light), var(--roll-dark));
+		border-radius: 50% / 6px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		z-index: 1;
+	}
+
+	/* Rolled bottom edge */
+	.invocation-card::after {
+		content: '';
+		position: absolute;
+		bottom: -6px;
+		left: 0;
+		right: 0;
+		height: 12px;
+		background: linear-gradient(180deg, var(--roll-dark), var(--roll-light), var(--roll-dark));
+		border-radius: 50% / 6px;
+		box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+		z-index: 1;
+	}
+
+	.invocation-card:hover {
+		filter: brightness(1.05);
+		transform: translateY(-3px);
+		box-shadow:
+			0 8px 16px var(--card-glow),
+			inset 0 0 12px rgba(0, 0, 0, 0.08);
+	}
+
+	.invocation-card:active {
+		transform: translateY(0px);
+		filter: brightness(0.97);
+	}
+
+	/* ─── Card header ─── */
+	.invocation-card__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.4rem;
+
+		.invocation-card__name {
+			font-weight: 600;
+			font-size: 1.5rem;
+			line-height: 1.2;
+			color: var(--accent-text);
+			text-shadow:
+				0 0 8px color-mix(in srgb, var(--accent-text) 40%, transparent),
+				0 1px 2px rgba(0, 0, 0, 0.2);
+		}
+
+		.invocation-card__label {
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			opacity: 0.75;
+		}
+
+		.invocation-card__icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+
+			width: 40px;
+			height: 40px;
+			min-width: 40px;
+			border-radius: 50%;
+
+			background: radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--roll-light) 90%, white), var(--roll-dark) 70%);
+			box-shadow:
+				0 2px 6px rgba(0, 0, 0, 0.35),
+				inset 0 1px 3px rgba(255, 255, 255, 0.4);
+
+			/* Gloss highlight */
+			&::before {
+				content: '';
+				position: absolute;
+				top: 6px;
+				left: 9px;
+				width: 40%;
+				height: 25%;
+				background: radial-gradient(ellipse, rgba(255, 255, 255, 0.6), transparent);
+				border-radius: 50%;
+				pointer-events: none;
+			}
+
+			i {
+				position: relative; /* lifts above ::before in stacking order */
+				z-index: 1;
+				color: white;
+				filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+				line-height: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+
+	/* ─── Card description ─── */
+	.invocation-card__description {
+		font-size: 0.9rem;
+		opacity: 0.85;
+		line-height: 1.4;
+	}
+}
+
+/* ─── Legacy card sizing ─── */
+.pfu-invocations-selection {
+	card {
+		--card-width: 180px;
+		padding: 0.5em;
+		width: var(--card-width);
+		max-width: var(--card-width);
+		height: 300px;
+
+		.description {
+			width: var(--card-width);
+			max-width: var(--card-width);
 		}
 	}
 

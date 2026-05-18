@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "8GhSn2ow5Egq3ZFh",
+  "name": "Damage Resistance Dual",
+  "color": "#12591a",
+  "sorting": "a",
+  "_id": "Anan0FYcxIi9qWJ4",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768261316
+  },
+  "_key": "!folders!Anan0FYcxIi9qWJ4"
+}

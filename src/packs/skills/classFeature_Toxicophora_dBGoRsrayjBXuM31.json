@@ -21,6 +21,7 @@
     {
       "name": "Toxicophora",
       "img": "icons/creatures/invertebrates/spider-skull-green.webp",
+      "origin": "Compendium.projectfu.skills.Item.dBGoRsrayjBXuM31",
       "system": {
         "duration": {
           "event": "none",
@@ -34,63 +35,105 @@
         },
         "rules": {
           "elements": {
-            "Zj59zdbbLObBQ1iU": {
+            "rrAehO0wtEvLbpWz": {
               "type": "ruleElement",
-              "_id": "Zj59zdbbLObBQ1iU",
               "trigger": {
-                "_id": "1RCfX0FP2rUSIuJb",
-                "type": "damageRuleTrigger",
-                "eventRelation": "source",
-                "damageType": "poison",
-                "damageSources": [
-                  "attack"
-                ],
-                "damageThreshold": {
-                  "operator": "greaterThan",
-                  "amount": 20
-                }
-              },
-              "predicates": {
-                "evALmcDykBCshtv3": {
-                  "type": "weaponRulePredicate",
-                  "_id": "evALmcDykBCshtv3",
-                  "weaponType": "melee",
-                  "categories": [
-                    "brawling"
-                  ]
-                }
-              },
-              "actions": {
-                "r1qK5DFzQw0h4sSE": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "r1qK5DFzQw0h4sSE",
-                  "effect": "poisoned"
-                }
-              }
-            },
-            "VJ27V6HimPJu548O": {
-              "type": "ruleElement",
-              "_id": "VJ27V6HimPJu548O",
-              "trigger": {
-                "_id": "REhihRuK4ut5uyfR",
+                "_id": "WOF0Sh5BrXUNvjqZ",
                 "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
+                "itemGroups": [
                   "attack",
                   "spell"
-                ]
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
               },
+              "_id": "rrAehO0wtEvLbpWz",
               "actions": {
-                "nIzyToIe1TLuL6Ol": {
+                "YzLSFZmn64HzVzwv": {
                   "type": "modifyDamageRuleAction",
-                  "_id": "nIzyToIe1TLuL6Ol",
+                  "_id": "YzLSFZmn64HzVzwv",
                   "damageTypes": [
                     "poison"
                   ],
                   "amount": "",
+                  "effect": "",
                   "cost": {
-                    "resource": ""
+                    "amount": null
                   }
+                }
+              }
+            },
+            "2W6dxazsARpBVxY8": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "1WmEbvqRpAE9IEiN",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                },
+                "itemGroups": [],
+                "local": false,
+                "identifier": "unarmed-strike"
+              },
+              "_id": "2W6dxazsARpBVxY8",
+              "predicates": {
+                "3VhvG2QjZ2SyyZnt": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "3VhvG2QjZ2SyyZnt"
+                }
+              },
+              "actions": {
+                "YEBS0pXTVNRf52z4": {
+                  "type": "messageRuleAction",
+                  "_id": "YEBS0pXTVNRf52z4",
+                  "message": "<p>If <strong>poison</strong> damage, they also suffer <strong>poisoned</strong>.</p>"
+                },
+                "aZbj04MZDvVc0Ar4": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "aZbj04MZDvVc0Ar4",
+                  "effect": "poisoned"
+                }
+              }
+            },
+            "LuoD8SI2QJlvizZS": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "mO4DWIPbrpFsiPSN",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                },
+                "itemGroups": [],
+                "local": false,
+                "identifier": "unarmed-strike-akromorphosis"
+              },
+              "_id": "LuoD8SI2QJlvizZS",
+              "predicates": {
+                "yc3NzdRQbt4iN10D": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "yc3NzdRQbt4iN10D"
+                }
+              },
+              "actions": {
+                "p9qJs5MwWWPZAfxN": {
+                  "type": "messageRuleAction",
+                  "_id": "p9qJs5MwWWPZAfxN",
+                  "message": "<p>If <strong>poison</strong> damage, they also suffer <strong>poisoned</strong>.</p>"
+                },
+                "04w7pCw3D3z1dOj8": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "04w7pCw3D3z1dOj8",
+                  "effect": "poisoned"
                 }
               }
             }
@@ -101,37 +144,52 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "onvm9tIEydrW2Ypc",
+      "disabled": false,
+      "_id": "LU4u1z7bHcUEYo1I",
       "type": "base",
       "changes": [],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. When you deal damage with an <strong>attack</strong> or <strong>spell</strong>, you may have all that damage become <strong>poison</strong>. While your <strong>unarmed strikes</strong> deal <strong>poison</strong> damage, any enemy who <strong>loses 20 or more HP</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>poisoned</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Toxicophora",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.dBGoRsrayjBXuM31",
+            "effectUuid": null,
+            "fuid": "toxicophora"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767290972187,
-        "modifiedTime": 1767389718547,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777788108378,
+        "modifiedTime": 1777788648122,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!dBGoRsrayjBXuM31.onvm9tIEydrW2Ypc"
+      "_key": "!items.effects!dBGoRsrayjBXuM31.LU4u1z7bHcUEYo1I"
     }
   ],
   "ownership": {

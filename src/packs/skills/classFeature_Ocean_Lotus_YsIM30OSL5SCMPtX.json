@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Ocean Lotus",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/cornflower-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/ocean-lotus.png",
   "system": {
     "summary": {
       "value": "A graceful symbol of serenity and wisdom."
@@ -17,17 +17,17 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are immune to <strong>dazed</strong> and <strong>slow</strong>.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B e:eot i:2 t:source]{Dazed Immunity} and @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp e:eot i:2 t:source]{Slow Immunity}</p>"
+          "effect": "<p>You are immune to <strong>dazed</strong> and <strong>slow</strong>.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.AKw2JilOlWK1M0Z0]</p>"
         },
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p>"
+          "effect": "<p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.7oncFoh0Hr5Ayo18]</p>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>You and every ally you can see treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p>"
+          "effect": "<p>You and every ally you can see treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.7oncFoh0Hr5Ayo18]</p>"
         }
       ]
     },
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370572308,
+    "modifiedTime": 1777438337789,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

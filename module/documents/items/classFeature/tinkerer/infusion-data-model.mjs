@@ -65,10 +65,10 @@ Hooks.on('getChatMessageContextOptions', onGetChatLogEntryContext);
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
+const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 	const infusionData = check.additionalData[infusionKey];
 	if (infusionData) {
-		sections.push({
+		data.sections.push({
 			order: CHECK_DETAILS + 1,
 			content: `
               <div class='detail-desc flexrow flex-group-center desc' style='padding: 4px;'>
@@ -85,7 +85,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 		});
 		const cost = new ActionCostDataModel({ resource: 'ip', amount: infusionData.ipCost, perTarget: false });
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
-		CommonSections.spendResource(sections, actor, actor.items.get(infusionData.itemId), cost, targets, additionalFlags);
+		CommonSections.spendResource(data, actor, actor.items.get(infusionData.itemId), cost, targets, additionalFlags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);

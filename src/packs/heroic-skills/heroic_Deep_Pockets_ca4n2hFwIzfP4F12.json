@@ -1,7 +1,7 @@
 {
   "name": "Deep Pockets",
   "type": "heroic",
-  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "img": "icons/containers/bags/pack-leather-tan.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Reduce Inventory Point costs."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Tinkerer</strong> Class.</p></blockquote><p>When you spend Inventory Points, you spend 1 less Inventory Point (minimum 1).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Tinkerer</strong> Class.</p><hr /><p>You reduce Inventory Point costs by 1 (to a minimum of 1).</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Tinker"
+      "value": "tinkerer"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,11 +95,19 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "deep-pockets"
+    "fuid": "deep-pockets",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
-      "img": "icons/magic/symbols/cog-orange-red.webp",
+      "img": "icons/containers/bags/pack-leather-tan.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -122,10 +132,49 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "SmIW3qUFPpQEenox": {
+              "type": "ruleElement",
+              "_id": "SmIW3qUFPpQEenox",
+              "trigger": {
+                "_id": "crtydAOez75OsdqB",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "ip",
+                "expenseSource": "",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "",
+                "threshold": {
+                  "operator": "greaterThan",
+                  "amount": 2
+                }
+              },
+              "actions": {
+                "wGkebpVDC408CfA0": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "wGkebpVDC408CfA0",
+                  "amount": "-1"
+                }
+              }
+            }
+          }
+        }
       },
       "changes": [],
-      "description": "<p>When you spend Inventory Points, you spend 1 less Inventory Point (minimum 1).</p>",
+      "description": "<p>When you spend IP, you spend 1 less IP (minimum 1).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -135,12 +184,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744384152979,
-        "modifiedTime": 1744426180379,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
+        "modifiedTime": 1771887630819,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!ca4n2hFwIzfP4F12.oTyC4L5Zx1PNordJ"
@@ -152,15 +201,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706584047656,
-    "modifiedTime": 1724180863921,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1771887260834,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

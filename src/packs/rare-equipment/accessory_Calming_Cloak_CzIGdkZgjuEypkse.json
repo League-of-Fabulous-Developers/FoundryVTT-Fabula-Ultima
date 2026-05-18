@@ -1,0 +1,133 @@
+{
+  "folder": "sQ8axLKVw7WoLhp4",
+  "name": "Calming Cloak",
+  "type": "accessory",
+  "_id": "CzIGdkZgjuEypkse",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-blue.png",
+  "system": {
+    "fuid": "calming-cloak",
+    "description": "<p>You are immune to <strong>enraged</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "quality": {
+      "value": "Anti Enraged"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Calming Cloak",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-blue.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.CzIGdkZgjuEypkse",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kMcX8gjTU58QZejo",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.enraged.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you are immune to <strong>enraged</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Calming Cloak",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.CzIGdkZgjuEypkse",
+            "effectUuid": null,
+            "fuid": "calming-cloak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775681432634,
+        "modifiedTime": 1775708122950,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!CzIGdkZgjuEypkse.kMcX8gjTU58QZejo"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774651977333,
+    "modifiedTime": 1777529812103,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!CzIGdkZgjuEypkse"
+}

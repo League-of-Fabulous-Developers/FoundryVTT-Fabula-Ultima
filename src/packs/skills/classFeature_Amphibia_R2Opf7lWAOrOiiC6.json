@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an 5 additional Hit Points and you may immediately recover from a single status effect of your choice.</p>"
+      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover 5 additional Hit Points and you may recover from a single status effect of your choice.</p>"
     },
     "source": "FUTF156",
     "fuid": "amphibia"
@@ -21,6 +21,7 @@
     {
       "name": "Amphibia",
       "img": "icons/creatures/amphibians/frog-water-teal.webp",
+      "origin": "Compendium.projectfu.skills.Item.R2Opf7lWAOrOiiC6",
       "system": {
         "duration": {
           "event": "none",
@@ -34,21 +35,21 @@
         },
         "rules": {
           "elements": {
-            "Rbn4ehZj3wW6eCwr": {
+            "ggD9rNP3912B1lkX": {
               "type": "ruleElement",
-              "_id": "Rbn4ehZj3wW6eCwr",
               "trigger": {
-                "_id": "DUhcpnA0eyfqKIR1",
+                "_id": "E5R2DmMI64qUrMg8",
                 "type": "resourceUpdateRuleTrigger",
                 "eventRelation": "target",
                 "resource": "hp",
                 "change": "increment"
               },
+              "_id": "ggD9rNP3912B1lkX",
               "actions": {
-                "upcvpAUzVWITjOKa": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "upcvpAUzVWITjOKa",
-                  "identifier": ""
+                "ybrQCLq5C2bedcTy": {
+                  "type": "messageRuleAction",
+                  "_id": "ybrQCLq5C2bedcTy",
+                  "message": "<p>You may recover from a status effect.</p>"
                 }
               }
             }
@@ -59,16 +60,22 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "RfljzCCy3mfkZEzo",
+      "disabled": false,
+      "_id": "4UiLcpLiqyQPL8ZO",
       "type": "base",
       "changes": [
         {
@@ -78,25 +85,34 @@
           "priority": null
         }
       ],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. You may breathe underwater and your eyes can see perfectly in dim light. When you recover HP, you recover 5 additional HP and you may recover from a single status effect of your choice.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Amphibia",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.R2Opf7lWAOrOiiC6",
+            "effectUuid": null,
+            "fuid": "amphibia"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767290101882,
-        "modifiedTime": 1767291754096,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777742665306,
+        "modifiedTime": 1777742938029,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!R2Opf7lWAOrOiiC6.RfljzCCy3mfkZEzo"
+      "_key": "!items.effects!R2Opf7lWAOrOiiC6.4UiLcpLiqyQPL8ZO"
     }
   ],
   "ownership": {
@@ -110,10 +126,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767291752195,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1777742872371,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

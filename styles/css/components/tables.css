@@ -1,0 +1,14 @@
+table {
+	border-top: 1px solid var(--pfu-color-app-control-border);
+	border-bottom: 1px solid var(--pfu-color-app-control-border);
+}
+table thead {
+	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content);
+	border-bottom: 1px solid var(--pfu-color-app-control-border);
+}
+table caption {
+	caption-side: top;
+	font-weight: bold;
+	color: inherit;
+}

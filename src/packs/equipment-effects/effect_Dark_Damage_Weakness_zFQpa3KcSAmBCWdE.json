@@ -1,0 +1,111 @@
+{
+  "folder": "ZRup8UZGBBD2SFVi",
+  "name": "Dark Damage Weakness",
+  "type": "effect",
+  "_id": "zFQpa3KcSAmBCWdE",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+  "system": {
+    "fuid": "dark-damage-weakness",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Dark Damage Weakness",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.zFQpa3KcSAmBCWdE",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "tAGUsMOc8BNDEVAJ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.dark",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, every source that deals <strong>dark</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Dark Damage Weakness",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.zFQpa3KcSAmBCWdE",
+            "effectUuid": null,
+            "fuid": "dark-damage-weakness"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774831273034,
+        "modifiedTime": 1774831295369,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!zFQpa3KcSAmBCWdE.tAGUsMOc8BNDEVAJ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "esOkelwPNblkbxW3": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774830699095,
+    "modifiedTime": 1774830699095,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!zFQpa3KcSAmBCWdE"
+}

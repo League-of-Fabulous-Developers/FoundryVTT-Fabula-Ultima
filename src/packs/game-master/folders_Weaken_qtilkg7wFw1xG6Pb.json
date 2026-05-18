@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "kumybsJQq2dMThg5",
+  "name": "Weaken",
+  "color": "#402007",
+  "sorting": "a",
+  "_id": "qtilkg7wFw1xG6Pb",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775513441189
+  },
+  "_key": "!folders!qtilkg7wFw1xG6Pb"
+}

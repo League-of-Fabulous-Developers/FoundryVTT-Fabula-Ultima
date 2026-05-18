@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "qSSfpwMVmI4vgaWB",
+  "name": "Weapon Category Accuracy",
+  "color": "#014083",
+  "sorting": "a",
+  "_id": "sT60HsbrtK4laoQE",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768710558
+  },
+  "_key": "!folders!sT60HsbrtK4laoQE"
+}

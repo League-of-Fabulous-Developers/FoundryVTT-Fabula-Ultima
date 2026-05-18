@@ -1,0 +1,188 @@
+{
+  "name": "Chanter Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "VERSES RULES",
+      "type": "text",
+      "_id": "GMRfkNkDfJS0V3To",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h2>SINGING A VERSE</h2><p>When you sing a <strong>verse</strong>, you combine a <strong>volume</strong>, a <strong>key</strong> and a <strong>tone</strong> you learned. These three aspects determine the <strong>verse's</strong> MP cost, targets and effect.</p><ul><li><p>The <strong>volume</strong> determines the sound intensity of your <strong>verse</strong> (and the creatures you can reach with it).</p></li><li><p>Each <strong>tone</strong> determines the general effects of your <strong>verse</strong>.</p></li><li><p>Each <strong>key</strong> has an associated <strong>damage type</strong>, <strong>status effect</strong>, <strong>Attribute</strong> and <strong>recovery</strong>. These modify the effects determined by the <strong>tone</strong> of your <strong>verse</strong>.</p></li></ul><blockquote><p><strong>Example:</strong> you might combine a <strong>low volume</strong> with the <strong>key of Flame</strong> and a <strong>haunting tone</strong> to inflict <strong>shaken</strong> on a single creature for 10 Mind Points, or you could combine a <strong>medium volume</strong> with the <strong>key of Iron</strong> and an <strong>energetic tone</strong> to allow your allies to make additional progress on Clocks when using <strong>Willpower</strong>.</p></blockquote><p></p><h2>VOLUME LIST</h2><p></p><table><tbody><tr><td style=\"width:90px\"><p><strong>Volume</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td><p><strong>Targets</strong></p></td></tr><tr><td style=\"width:90px\"><p><strong>Low</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\">10</p></td><td><p>Yourself or another creature you can see who can hear you.</p></td></tr><tr><td style=\"width:90px\"><p><strong>Medium</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\">20</p></td><td><p>Every ally who can hear you.</p></td></tr><tr><td style=\"width:90px\"><p><strong>High</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\">30</p></td><td><p>Every enemy who can hear you.</p></td></tr></tbody></table><p></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758358674,
+        "modifiedTime": 1775523313754,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!q4PpsRwoiMTRKUeJ.GMRfkNkDfJS0V3To"
+    },
+    {
+      "sort": 200000,
+      "name": "KEY LIST",
+      "type": "text",
+      "_id": "W4kQjYXrLRVomFdg",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p></p><table><tbody><tr><td><p><strong>Key</strong></p></td><td><p style=\"text-align:center\"><strong>Type</strong></p></td><td><p style=\"text-align:center\"><strong>Status Effect</strong></p></td><td><p style=\"text-align:center\"><strong>Attribute</strong></p></td><td><p style=\"text-align:center\"><strong>Recovery</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.cmo71xT0QgJCOOMp]{Key of Flame}</p></td><td><p style=\"text-align:center\"><strong>Fire</strong> @ICON[fire]</p></td><td><p style=\"text-align:center\">shaken</p></td><td><p style=\"text-align:center\">Might</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.QZOttsghYTCeqnCx]{Key of Frost}</p></td><td><p style=\"text-align:center\"><strong>Ice</strong> @ICON[ice]</p></td><td><p style=\"text-align:center\">weak</p></td><td><p style=\"text-align:center\">Willpower</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.qpRWVxEuy6iHiUCP]{Key of Iron}</p></td><td><p style=\"text-align:center\"><strong>Physical</strong> @ICON[physical]</p></td><td><p style=\"text-align:center\">slow</p></td><td><p style=\"text-align:center\">Willpower</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.ymWN6HhIvwji1Y39]{Key of Radiance}</p></td><td><p style=\"text-align:center\"><strong>Light</strong> @ICON[light]</p></td><td><p style=\"text-align:center\">dazed</p></td><td><p style=\"text-align:center\">Insight</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zzyNprcgb1RF2niW]{Key of Shadow}</p></td><td><p style=\"text-align:center\"><strong>Dark</strong> @ICON[dark]</p></td><td><p style=\"text-align:center\">weak</p></td><td><p style=\"text-align:center\">Dexterity</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.dyyFIR6iB0brrh1I]{Key of Stone}</p></td><td><p style=\"text-align:center\"><strong>Earth</strong> @ICON[earth]</p></td><td><p style=\"text-align:center\">dazed</p></td><td><p style=\"text-align:center\">Might</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.GBEltqKPxdTA0ppJ]{Key of Thunder}</p></td><td><p style=\"text-align:center\"><strong>Bolt</strong> @ICON[bolt]</p></td><td><p style=\"text-align:center\">shaken</p></td><td><p style=\"text-align:center\">Dexterity</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zqNF92stxmhiX85K]{Key of Wind}</p></td><td><p style=\"text-align:center\"><strong>Air</strong> @ICON[air]</p></td><td><p style=\"text-align:center\">slow</p></td><td><p style=\"text-align:center\">Insight</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758373135,
+        "modifiedTime": 1775523078800,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!q4PpsRwoiMTRKUeJ.W4kQjYXrLRVomFdg"
+    },
+    {
+      "sort": 300000,
+      "name": "TONE LIST",
+      "type": "text",
+      "_id": "mm3q742jIIhvWG1U",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<table><tbody><tr><td><p><strong>CALM TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.XCtijox9eBrBNSno]{Calm Tone}</p></td></tr></tbody></table><p></p><p>Each target recovers <strong>【key recovery】</strong> equal to <strong>【10 + twice your current Willpower die size】</strong>. This amount increases by 10 if you are level <strong>20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p><p>If this tone causes MP recovery, it has no effect on the character who sings it.</p><p></p><table><tbody><tr><td><p><strong>ENERGETIC TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.XvkMOHPXUg0ikDkf]{Energetic Tone}</p></td></tr></tbody></table><p></p><p>Until the start of your next turn, when a target succeeds on a Check that includes <strong>【key Attribute】</strong> and that Check allows them to advance or turn back a Clock, they may fill or erase an additional section of that Clock.</p><p></p><table><tbody><tr><td><p><strong>FRANTIC TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.mtKts9zjHlweSVk4]{Frantic Tone}</p></td></tr></tbody></table><p></p><p>You deal an amount of <strong>【key type】</strong> damage equal to <strong>twice</strong> your current <strong>Willpower</strong> die to each target. This tone deals 5 extra damage if you are <strong>level 20 or higher</strong>, or 10 extra damage if you are <strong>level 40 or higher</strong>.</p><p></p><table><tbody><tr><td><p><strong>HAUNTING TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.CynydNkxJS1HZVlJ]{Haunting Tune}</p></td></tr></tbody></table><p></p><p>Each target suffers <strong>【key status effect】</strong>. Each target also loses Resistance to <strong>【key type】</strong> damage (if they have it) until the start of your next turn, and cannot gain Resistance to that damage type.</p><p></p><table><tbody><tr><td><p><strong>LIVELY TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zLxqETSi6zbRkWKu]{Lively Tone}</p></td></tr></tbody></table><p></p><p>Each target treats their <strong>【key Attribute】</strong> as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><p></p><table><tbody><tr><td><p><strong>MENACING TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.8QMh3jUtgmIMy9Jb]{Menacing Tone}</p></td></tr></tbody></table><p></p><p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>【key type】</strong>. This can trigger once for each target of the verse, separately.</p><p></p><table><tbody><tr><td><p><strong>SOLEMN TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.yidpNKJQMA7dSBsc]{Solemn Tone}</p></td></tr></tbody></table><p></p><p>Each target recovers from <strong>【key status effect】</strong>. Each target also gains Resistance to <strong>【key type】</strong> damage until the start of your next turn.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758389819,
+        "modifiedTime": 1775523229607,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!q4PpsRwoiMTRKUeJ.mm3q742jIIhvWG1U"
+    },
+    {
+      "sort": 400000,
+      "name": "VERSES VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "W6dLZ4wOhSMKKwsC",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.nu7QnUu7tmVv6zxU]{Verse}</p></li><li><p>A full list of <strong>keys</strong> and <strong>tones</strong> can be found here: @UUID[.W4kQjYXrLRVomFdg]{KEY LIST} and @UUID[.mm3q742jIIhvWG1U]{TONE LIST}.</p></li><li><p>Open the verse sheet and navigate to \"<strong>Details</strong>\" tab</p></li><li><p>There are two dropdowns, select a key followed by a tone.</p></li><li><p>To <strong>start singing</strong>, roll the Verse feature and combine a key, tone and volume in the dialog menu.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.346",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742782179503,
+        "modifiedTime": 1742783992584,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!q4PpsRwoiMTRKUeJ.W6dLZ4wOhSMKKwsC"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
+    "createdTime": 1711758333340,
+    "modifiedTime": 1775514657475,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "q4PpsRwoiMTRKUeJ",
+  "sort": 1100000,
+  "categories": [],
+  "_key": "!journal!q4PpsRwoiMTRKUeJ"
+}

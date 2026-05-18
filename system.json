@@ -1,6 +1,6 @@
 {
 	"id": "projectfu",
-	"title": "Fabula Ultima (Project FU)",
+	"title": "Fabula Ultima",
 	"description": "An Unofficial Fabula Ultima system for FoundryVTT!",
 	"version": "#{VERSION}#",
 	"compatibility": {
@@ -27,6 +27,14 @@
 		{
 			"name": "Azurelol",
 			"url": "https://github.com/Azurelol"
+		},
+		{
+			"name": "Erica",
+			"url": "https://github.com/Unarekin"
+		},
+		{
+			"name": "Frozedon",
+			"url": "https://github.com/Frozedon"
 		}
 	],
 	"scripts": ["greensock/dist/gsap.min.js", "greensock/dist/PixiPlugin.min.js"],
@@ -71,17 +79,6 @@
 			"type": "Item",
 			"name": "heroic-skills",
 			"path": "packs/heroic-skills",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
-			"label": "Spells",
-			"type": "Item",
-			"name": "spells",
-			"path": "packs/spells",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -219,6 +216,17 @@
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
 			}
+		},
+		{
+			"label": "Sample Rare Equipment",
+			"type": "Item",
+			"name": "rare-equipment",
+			"path": "packs/rare-equipment",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
 		}
 	],
 	"packFolders": [
@@ -232,7 +240,7 @@
 			"name": "Character Creation",
 			"sorting": "a",
 			"color": "#276625",
-			"packs": ["classes", "skills", "heroic-skills", "spells"]
+			"packs": ["classes", "skills", "heroic-skills"]
 		},
 		{
 			"name": "Effects",
@@ -244,7 +252,7 @@
 			"name": "Equipment",
 			"sorting": "a",
 			"color": "#005390",
-			"packs": ["basic-equipment", "consumables", "vehicle-modules", "technospheres"]
+			"packs": ["basic-equipment", "consumables", "vehicle-modules", "technospheres", "rare-equipment"]
 		},
 		{
 			"name": "GM Tools",

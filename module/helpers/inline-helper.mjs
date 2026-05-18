@@ -12,15 +12,17 @@ import FoundryUtils from './foundry-utils.mjs';
  * @property {String} itemUuid
  * @property {String} actorUuid
  * @property {String} effectUuid
- * @property {String} fuid If an item is provided.
+ * @property {String} fuid If an item is provided, used for referencing it from the compendium.
+ * @property {String} checkId
  */
 export class InlineSourceInfo {
-	constructor(name, actorUuid, itemUuid, effectUuid, fuid) {
+	constructor(name, actorUuid, itemUuid, effectUuid, fuid, checkId) {
 		this.name = name;
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
 		this.effectUuid = effectUuid;
 		this.fuid = fuid;
+		this.checkId = checkId;
 	}
 
 	/**
@@ -41,6 +43,15 @@ export class InlineSourceInfo {
 	}
 
 	/**
+	 * @param {String} fuid
+	 * @returns {InlineSourceInfo}
+	 */
+	withFuid(fuid) {
+		this.fuid = fuid;
+		return this;
+	}
+
+	/**
 	 * @param {String} actorUuid
 	 * @param {String} itemUuid
 	 * @return {InlineSourceInfo}
@@ -56,7 +67,7 @@ export class InlineSourceInfo {
 	 * @returns {InlineSourceInfo}
 	 */
 	static fromObject(obj) {
-		return new InlineSourceInfo(obj.name, obj.actorUuid, obj.itemUuid);
+		return new InlineSourceInfo(obj.name, obj.actorUuid, obj.itemUuid, obj.effectUuid, obj.fuid, obj.checkId);
 	}
 
 	/**
@@ -158,6 +169,7 @@ function determineSource(document, element) {
 	let itemUuid = null;
 	let actorUuid = null;
 	let effectUuid = null;
+	let checkId = null;
 	let fuid = element?.dataset?.fuid;
 
 	// ACTOR SHEET
@@ -195,6 +207,7 @@ function determineSource(document, element) {
 			if (effect) {
 				effectUuid = effect.uuid;
 				fuid ??= effect.system.fuid;
+				name = effect.name;
 			}
 		}
 	} // ITEM SHEET
@@ -229,8 +242,9 @@ function determineSource(document, element) {
 		}
 		// Get the item from the check data
 		else {
-			const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			const check = document.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			if (check) {
+				checkId = check.id;
 				itemUuid = check.itemUuid;
 				if (check.itemName) {
 					name = check.itemName;
@@ -247,17 +261,18 @@ function determineSource(document, element) {
 
 	// TODO: Figure out which case triggers this
 	// FALLBACK
-	const chatItemText = element.closest('#chat-item-text');
-	if (chatItemText) {
-		if (chatItemText.dataset.actorUuid) {
-			itemUuid = chatItemText.dataset.actorUuid;
-		}
-		if (chatItemText.dataset.itemId) {
-			itemUuid = chatItemText.dataset.itemId;
+	if (element) {
+		const chatItemText = element.closest('#chat-item-text');
+		if (chatItemText) {
+			if (chatItemText.dataset.actorUuid) {
+				itemUuid = chatItemText.dataset.actorUuid;
+			}
+			if (chatItemText.dataset.itemId) {
+				itemUuid = chatItemText.dataset.itemId;
+			}
 		}
 	}
-
-	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
+	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid, checkId);
 }
 
 /**
@@ -313,6 +328,7 @@ let inlineCommands = [];
  * @property {HTMLElement} target
  * @property {InlineSourceInfo} sourceInfo
  * @property {DOMStringMap} dataset
+ * @property {Boolean} valid
  */
 
 /**
@@ -331,12 +347,13 @@ function getRenderContext(element) {
 		sourceInfo = InlineHelper.determineSource(document, target);
 	}
 
-	const dataset = target.dataset;
+	const dataset = target?.dataset ?? {};
 	return {
 		document,
 		target,
 		sourceInfo,
 		dataset,
+		valid: target !== undefined,
 	};
 }
 
@@ -374,7 +391,7 @@ function resolveDocument(element) {
 			}
 		}
 		if (sheet) {
-			return sheet.document;
+			return sheet.document ?? sheet.element;
 		}
 	}
 	console.debug(`Failed to resolve the document from ${element.toString()}`);
@@ -425,7 +442,9 @@ function appendIcon(anchor, ...classes) {
  */
 function appendSystemIcon(anchor, name) {
 	const className = FU.allIcon[name];
-	return appendIcon(anchor, className);
+	if (className) {
+		return appendIcon(anchor, className);
+	}
 }
 
 /**
@@ -464,37 +483,6 @@ function propertyPattern(identifier, key, value) {
 
 const documentPropertyGroup = [propertyPattern('document', 'document', '[\\w.-]+'), propertyPattern('propertyPath', 'propertyPath', '[\\w.-]+'), propertyPattern('index', 'index', '\\d')];
 
-/**
- * @param {FUItem} item
- * @returns {string}
- */
-function resolveItemGroup(item) {
-	let source;
-	if (item) {
-		/** @type ItemType **/
-		switch (item.type) {
-			case 'spell':
-				source = 'spell';
-				break;
-			case 'basic':
-			case 'weapon':
-			case 'customWeapon':
-				source = 'attack';
-				break;
-			case 'skill':
-			case 'optionalFeature':
-			case 'classFeature':
-			case 'miscAbility':
-				source = 'skill';
-				break;
-			case 'consumable':
-				source = 'item';
-				break;
-		}
-	}
-	return source;
-}
-
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
@@ -508,5 +496,4 @@ export const InlineHelper = {
 	resolveDocument,
 	getRenderContext,
 	documentPropertyGroup,
-	resolveItemGroup,
 };

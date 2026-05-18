@@ -1,0 +1,161 @@
+{
+  "folder": "SzVYanP7r7aueL49",
+  "name": "Expensive Compass",
+  "type": "accessory",
+  "_id": "JhWjcvAxNRz1yR4m",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/compass-white.png",
+  "system": {
+    "fuid": "expensive-compass",
+    "description": "<p>You gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Insight</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Talented Insight"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Expensive Compass",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/compass-white.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.JhWjcvAxNRz1yR4m",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "ZhjBAUY5QBOjW8OI": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "ZR7daoagcxApPgAH",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "opposed"
+                ]
+              },
+              "_id": "ZhjBAUY5QBOjW8OI",
+              "predicates": {
+                "lst3ONriI3QZuO3s": {
+                  "type": "checkRulePredicate",
+                  "_id": "lst3ONriI3QZuO3s",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "6YPPn6A1Hfyqptpf": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "6YPPn6A1Hfyqptpf",
+                  "bonus": "2"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "J1F6KJf1h2AL7vzE",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Insight</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Expensive Compass",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.JhWjcvAxNRz1yR4m",
+            "effectUuid": null,
+            "fuid": "expensive-compass"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774687108089,
+        "modifiedTime": 1775708201866,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!JhWjcvAxNRz1yR4m.J1F6KJf1h2AL7vzE"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774686954138,
+    "modifiedTime": 1777529919027,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!JhWjcvAxNRz1yR4m"
+}

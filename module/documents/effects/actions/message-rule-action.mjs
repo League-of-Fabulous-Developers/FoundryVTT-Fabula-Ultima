@@ -4,7 +4,7 @@ import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';
-import { CHECK_ADDENDUM_ORDER } from '../../../checks/default-section-order.mjs';
+import { ChatSectionOrder } from '../../../checks/default-section-order.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { InlineSourceInfo } from '../../../helpers/inline-helper.mjs';
 
@@ -49,20 +49,33 @@ export class MessageRuleAction extends RuleActionDataModel {
 		// Flag information
 		let sourceInfo;
 		if (context.item) {
-			sourceInfo = new InlineSourceInfo(context.item.name, context.source.actor.uuid, context.item.uuid);
+			sourceInfo = new InlineSourceInfo(context.item.name, context.source ? context.source.actor.uuid : null, context.item.uuid);
 		} else {
 			sourceInfo = context.sourceInfo;
 		}
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, sourceInfo);
 		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
 		if (context.check) {
-			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);
+			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, context.check);
 		}
 		// Message
-		const _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
+		let _message;
+		if (this.message) {
+			_message = await FoundryUtils.enrichText(this.message, {
+				rollData: {
+					...context,
+					// Flatten this array into an object for accessors
+					selected: Object.fromEntries(selected.map((s, i) => [i, s])),
+					selectedNames: selected.map((s) => s.actor.name).join(', '),
+				},
+			});
+		} else {
+			_message = StringUtils.localize('FU.RuleElementTriggered');
+		}
 		if (context.renderData && context.source) {
+			// TODO: Resolve actor for pseudo-documents too
 			const actor = context.source.actor !== context.character.actor ? context.item?.parent : null;
-			CommonSections.itemText(context.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
+			CommonSections.itemText(context.renderData.sections, _message, actor, context.item, flags, ChatSectionOrder.addendum);
 		} else {
 			const actor = context.character.actor;
 			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {

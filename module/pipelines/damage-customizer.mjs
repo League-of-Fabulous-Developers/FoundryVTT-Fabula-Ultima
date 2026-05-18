@@ -22,7 +22,7 @@ import { FU, systemPath } from '../helpers/config.mjs';
 /**
  * Displays a dialog to customize damage.
  *
- * @param {TableDamageData} damage - The damage object containing type and total.
+ * @param {DamageData} damage - The damage object containing type and total.
  * @param {FUActor[]} targets - The specified targets.
  * @param {DamageOverrideCallback} callback - The function to call when the user confirms.
  * @param {() => void} onCancel - The function to call when the user cancels.
@@ -40,6 +40,7 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 		content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-damage-customizer.hbs'), {
 			FU,
 			damage,
+			targets,
 		}),
 		rejectClose: false,
 		ok: {
@@ -49,24 +50,32 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 		render: (event, dialog) => {
 			// Cache selectors
 			const hrZeroCheckbox = dialog.element.querySelector('#hr-zero');
-			const totalDamageSpan = dialog.element.querySelector('#total-damage');
 			const damageTypeSelect = dialog.element.querySelector('#damage-type');
 			const extraDamageInput = dialog.element.querySelector('#extra-damage');
-			const totalDamageIcon = dialog.element.querySelector('#total-damage-icon');
 			const checkAllButton = dialog.element.querySelector('#check-all');
 			const checkNoneButton = dialog.element.querySelector('#check-none');
 			const ignoreCheckboxes = dialog.element.querySelectorAll('.ignore');
 
 			// Function to update total damage and icons based on HR Zero status, and extra damage
+			const totalDamageSection = dialog.element.querySelector('#total-damage');
+			const baseDamageText = totalDamageSection.querySelector('#base');
+			const hrDamageText = totalDamageSection.querySelector('#hr');
+			const extraDamageText = totalDamageSection.querySelector('#extra');
+			const totalDamageText = totalDamageSection.querySelector('#total');
+			const damageTypeIcon = totalDamageSection.querySelector('#damage-type-icon');
+
 			function updateTotalDamage() {
 				const extraDamage = parseInt(extraDamageInput.value, 10) || 0;
 				const selectedDamageType = damageTypeSelect.value;
-				const baseDamage = hrZeroCheckbox.checked ? damage.modifierTotal : damage.total;
-				const totalDamage = baseDamage + extraDamage;
+				const baseDamage = damage.modifiers[0].amount;
+				const hrDamage = hrZeroCheckbox.checked ? 0 : damage.hr;
+				const totalDamage = baseDamage + hrDamage + extraDamage;
 
-				totalDamageSpan.textContent = `${baseDamage} (Base) + ${extraDamage} (Extra Damage) = ${totalDamage} ${game.i18n.localize(FU.damageTypes[selectedDamageType])}`;
-				// Update icons
-				totalDamageIcon.classList.value = `icon ${FU.affIcon[selectedDamageType]}`;
+				baseDamageText.textContent = baseDamage;
+				hrDamageText.textContent = hrDamage;
+				extraDamageText.textContent = extraDamage;
+				totalDamageText.textContent = totalDamage;
+				damageTypeIcon.classList.value = `fu-icon--sm glow ${FU.affIcon[selectedDamageType]}`;
 			}
 
 			// Initial update
@@ -89,7 +98,6 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 	});
 
 	if (result) {
-		console.log(result);
 		// Retrieve values from the form
 		const damageType = result['damage-type'];
 		const extraDamage = parseInt(result['extra-damage'], 10) || 0;

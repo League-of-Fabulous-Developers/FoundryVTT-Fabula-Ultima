@@ -7,6 +7,10 @@ import { CombatHudSettings } from './settings/combatHudSettings.js';
 import { SettingsConfigurationApp } from './settings/settings-configuration-app.js';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 import { FUToken } from './ui/token.mjs';
+import { Theme } from './ui/themes/theme.mjs';
+import { ThemeMenu } from './ui/themes/theme-menu.mjs';
+import { systemId } from './helpers/system-utils.mjs';
+import { Themes } from './ui/themes/theme-options.mjs';
 
 /**
  * @description All system settings
@@ -45,6 +49,9 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
 	optionCombatHudWidth: 'optionCombatHudWidth',
+	// Theme
+	theme: 'theme',
+	themeOptions: 'themeOptions',
 	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
@@ -63,6 +70,7 @@ export const SETTINGS = Object.freeze({
 	optionCampingRules: 'optionCampingRules',
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
+	optionArcanumPulse: 'optionArcanumPulse',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	technospheres: 'useTechnospheres',
 	pressureSystem: 'pressureSystem',
@@ -72,9 +80,12 @@ export const SETTINGS = Object.freeze({
 	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
+	showAdvancementTracker: 'showAdvancementTracker',
 	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionPCBondsSection: 'optionPCBondsSection',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionAutomaticAdversaryRegistration: 'optionRegisterAdversaries',
+	partySheetTheme: 'optionPartySheetTheme',
 	// Automation
 	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
@@ -82,7 +93,7 @@ export const SETTINGS = Object.freeze({
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
 	automationApplyDamage: 'automationApplyDamage',
-	automationUpdateResource: 'automationUpdateResource',
+	automationSpendResource: 'automationUpdateResource',
 	// Homebrew
 	homebrewOptions: 'homebrewOptions',
 	optionBondMaxLength: 'optionBondMaxLength',
@@ -93,6 +104,7 @@ export const SETTINGS = Object.freeze({
 	optionCrisisMultiplier: 'optionCrisisMultiplier',
 	// Party
 	activeParty: 'optionActiveParty',
+	codexUploadDirectory: 'optionCodexUploadDirectory',
 	// Class Features
 	activeWellsprings: 'activeWellsprings',
 	// Drag ruler
@@ -126,11 +138,143 @@ function getClientSetting(setting, defaultValue) {
 }
 
 /**
+ *
+ * @param {String} key
+ * @param defaultValue
+ * @returns {*|undefined}
+ */
+export function getSystemSetting(key, defaultValue = undefined) {
+	return game.settings.get(systemId, key) || defaultValue;
+}
+
+/**
+ * @param {String} key
+ * @param value
+ * @return {Promise}
+ */
+export function setSystemSetting(key, value) {
+	return game.settings.set(systemId, key, value);
+}
+
+/**
  * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
  * @returns {Promise<void>}
  */
 export const registerSystemSettings = async function () {
 	const fields = foundry.data.fields;
+
+	// DOCUMENT SHEETS
+	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
+		name: game.i18n.localize('FU.SheetOptionsTitle'),
+		label: game.i18n.localize('FU.SheetOptions'),
+		hint: game.i18n.localize('FU.SheetOptionsHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.SheetOptions', [
+			SETTINGS.optionNPCNotesTab,
+			SETTINGS.optionPCBondsSection,
+			SETTINGS.optionAlwaysFavorite,
+			SETTINGS.showAssociatedTherioforms,
+			SETTINGS.showAdvancementTracker,
+			SETTINGS.optionAutomaticAdversaryRegistration,
+			SETTINGS.partySheetTheme,
+		]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.partySheetTheme, {
+		name: game.i18n.localize('FU.PartySheetTheme'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'modern',
+		choices: FU.partySheetThemes,
+		requiresReload: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.codexUploadDirectory, {
+		name: game.i18n.localize('FU.CodexUploadDirectory'),
+		scope: 'world',
+		config: true,
+		type: String,
+		filePicker: 'folder',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: game.i18n.localize('FU.NotesTabSettings'),
+		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPCBondsSection, {
+		name: game.i18n.localize('FU.BondsSectionSettings'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAdvancementTracker, {
+		name: game.i18n.localize('FU.AdvancementTracker'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
+		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
+		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration, {
+		name: game.i18n.localize('FU.AutomaticAdversaryRegistration'),
+		hint: game.i18n.localize('FU.AutomaticAdversaryRegistrationHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
+	});
+
+	// THEME
+	game.settings.registerMenu(SYSTEM, SETTINGS.themeOptions, {
+		name: `FU.ThemeMenuName`,
+		label: `FU.ThemeMenuLabel`,
+		hint: `FU.ThemeMenuHint`,
+		icon: 'fas fa-bars',
+		type: ThemeMenu,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.theme, {
+		scope: 'world',
+		config: false,
+		type: Object,
+		requiresReload: false,
+		default: Themes.defaultTheme,
+		onChange: (value) => {
+			console.info(`Applying theme ${value}`);
+			return Theme.from(value).apply();
+		},
+	});
 
 	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
@@ -201,6 +345,7 @@ export const registerSystemSettings = async function () {
 		type: createConfigurationApp('FU.OptionalRules', [
 			SETTINGS.optionQuirks,
 			SETTINGS.optionZeroPower,
+			SETTINGS.optionArcanumPulse,
 			SETTINGS.optionCampingRules,
 			SETTINGS.useRevisedStudyRule,
 			SETTINGS.technospheres,
@@ -264,6 +409,16 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.pressureSystem, {
 		name: game.i18n.localize('FU.OptionPressureSystem'),
 		hint: game.i18n.localize('FU.OptionPressureSystemHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionArcanumPulse, {
+		name: game.i18n.localize('FU.OptionArcanumPulse'),
+		hint: game.i18n.localize('FU.OptionArcanumPulseHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -379,6 +534,7 @@ export const registerSystemSettings = async function () {
 		restricted: true,
 	});
 
+	// DEFAULT
 	game.settings.register(SYSTEM, SETTINGS.optionDefaultTargetingMode, {
 		name: game.i18n.localize('FU.DefaultTargetingMode'),
 		hint: game.i18n.localize('FU.DefaultTargetingModeHint'),
@@ -785,54 +941,6 @@ export const registerSystemSettings = async function () {
 			]),
 	});
 
-	// DOCUMENT SHEETS
-	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
-		name: game.i18n.localize('FU.SheetOptionsTitle'),
-		label: game.i18n.localize('FU.SheetOptions'),
-		hint: game.i18n.localize('FU.SheetOptionsHint'),
-		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms, SETTINGS.optionAutomaticAdversaryRegistration]),
-		restricted: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
-		name: game.i18n.localize('FU.NotesTabSettings'),
-		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
-		scope: 'world',
-		config: false,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
-		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
-		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
-		scope: 'client',
-		config: false,
-		type: Boolean,
-		default: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
-		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
-		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
-		scope: 'client',
-		config: false,
-		type: Boolean,
-		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration, {
-		name: game.i18n.localize('FU.AutomaticAdversaryRegistration'),
-		hint: game.i18n.localize('FU.AutomaticAdversaryRegistrationHint'),
-		scope: 'world',
-		config: false,
-		type: Boolean,
-		default: true,
-		requiresReload: false,
-	});
-
 	// AUTOMATION
 	game.settings.registerMenu(SYSTEM, SETTINGS.automationOptions, {
 		name: game.i18n.localize('FU.Automation'),
@@ -845,7 +953,7 @@ export const registerSystemSettings = async function () {
 			SETTINGS.optionAutomationEffectsReminder,
 			SETTINGS.optionAutomationRemoveExpiredEffects,
 			SETTINGS.automationApplyDamage,
-			SETTINGS.automationUpdateResource,
+			SETTINGS.automationSpendResource,
 		]),
 		restricted: true,
 	});
@@ -895,9 +1003,9 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.automationUpdateResource, {
-		name: game.i18n.localize('FU.AutomationUpdateResource'),
-		hint: game.i18n.localize('FU.AutomationUpdateResourceHint'),
+	game.settings.register(SYSTEM, SETTINGS.automationSpendResource, {
+		name: game.i18n.localize('FU.AutomationSpendResource'),
+		hint: game.i18n.localize('FU.AutomationSpendResourceHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -1039,3 +1147,25 @@ function createConfigurationApp(name, settings) {
 		}
 	};
 }
+
+export function createMenuTool(key) {
+	const menuSetting = game.settings.menus.get(key);
+	if (!menuSetting) return;
+
+	return {
+		id: menuSetting.key,
+		label: menuSetting.label,
+		icon: menuSetting.icon,
+		click: () => {
+			new menuSetting.type().render({ force: true });
+		},
+	};
+}
+
+Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
+	tools.push({
+		id: 'settings',
+		label: 'FU.Settings',
+		tools: [createMenuTool(`${SYSTEM}.${SETTINGS.sheetOptions}`), createMenuTool(`${SYSTEM}.myOptionalRules`), createMenuTool(`${SYSTEM}.combatHudSettings`)],
+	});
+});

@@ -1,0 +1,110 @@
+{
+  "folder": "lUNcRxp9DjYR1CDQ",
+  "name": "Alter Target Defense (DEX)",
+  "type": "effect",
+  "_id": "etztQ6mtX7kqBJWr",
+  "img": "systems/projectfu/styles/static/icons/attributes/dex.png",
+  "system": {
+    "fuid": "alter-target-defense-dex",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Alter Target Defense (DEX)",
+      "img": "systems/projectfu/styles/static/icons/attributes/dex.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.etztQ6mtX7kqBJWr",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "xjrnHwAdGvI4yGgW",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.defense",
+          "mode": 5,
+          "value": "dex",
+          "priority": null
+        }
+      ],
+      "description": "<p>This weapon treats the target's Defense score as being equal to their current <strong>Dexterity</strong> die size.</p>",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Alter Target Defense (DEX)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.etztQ6mtX7kqBJWr",
+            "effectUuid": null,
+            "fuid": "alter-target-defense-dex"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774733707256,
+        "modifiedTime": 1774733900158,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!etztQ6mtX7kqBJWr.xjrnHwAdGvI4yGgW"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774733633456,
+    "modifiedTime": 1774733706082,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!etztQ6mtX7kqBJWr"
+}

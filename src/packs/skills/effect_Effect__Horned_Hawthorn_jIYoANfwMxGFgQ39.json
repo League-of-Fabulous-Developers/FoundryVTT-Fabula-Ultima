@@ -1,0 +1,117 @@
+{
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Effect: Horned Hawthorn",
+  "type": "effect",
+  "_id": "jIYoANfwMxGFgQ39",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/horned-hawthorn.png",
+  "system": {
+    "fuid": "effect-horned-hawthorn",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Horned Hawthorn",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/horned-hawthorn.png",
+      "origin": "Compendium.projectfu.skills.Item.jIYoANfwMxGFgQ39",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "9i4Dre3geKGlG9NJ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.poison",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>dark</strong> and <strong>poison</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Horned Hawthorn",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.jIYoANfwMxGFgQ39",
+            "effectUuid": null,
+            "fuid": "effect-horned-hawthorn"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777433887583,
+        "modifiedTime": 1777434730912,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!jIYoANfwMxGFgQ39.9i4Dre3geKGlG9NJ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1777433876073,
+    "modifiedTime": 1777433886455,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!jIYoANfwMxGFgQ39"
+}

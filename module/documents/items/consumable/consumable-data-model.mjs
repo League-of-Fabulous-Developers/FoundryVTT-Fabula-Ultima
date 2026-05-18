@@ -14,23 +14,24 @@ import { ConsumableTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 import { TraitsDataModel } from '../common/traits-data-model.mjs';
 import { DamageData } from '../../../checks/damage-data.mjs';
+import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
 	if (item?.system instanceof ConsumableDataModel) {
 		/** @type ConsumableDataModel **/
 
-		CommonSections.tags(sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		const tags = [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }];
+		data.tags.push(...tags);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		const config = CheckConfiguration.configure(check);
-
 		const targets = config.getTargetsOrDefault();
-		CommonSections.actions(sections, actor, item, targets, flags, config);
-		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
-		CommonSections.spendResource(sections, actor, item, cost, [], flags);
-
+		CommonSections.actions(data, actor, item, targets, flags, config);
 		CommonEvents.item(actor, item);
 	}
-});
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {boolean} enabled
@@ -56,10 +57,28 @@ export class BasicDamageDataModel extends foundry.abstract.DataModel {
  */
 
 /**
+ * @property {string} action
  * @property {Number} amount
- * @property {FUResourceType} resourceType
+ * @property {Number} bonus
+ * @property {Number} multiplier
+ * @property {FUResourceType} type
  */
-export class ConsumableBuilder {}
+export class ConsumableBuilder {
+	constructor(action, amount, type) {
+		this.action = action;
+		this.amount = Number.parseInt(amount);
+		this.bonus = 0;
+		this.multiplier = 1;
+		this.type = type;
+	}
+
+	/**
+	 * @returns {Number}
+	 */
+	totalAmount() {
+		return Math.floor((this.amount + this.bonus) * this.multiplier);
+	}
+}
 
 /**
  * @property {string} subtype.value
@@ -107,23 +126,20 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 			const consumable = item.system;
 			const targets = config.getTargetsOrDefault();
 
-			let builder = new ConsumableBuilder();
+			const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
+			await ResourcePipeline.configureExpense(config, actor, item, cost);
+
 			if (consumable.resource.enabled) {
-				builder.action = 'resource';
-				builder.amount = consumable.resource.amount;
-				builder.resourceType = consumable.resource.type;
+				let builder = new ConsumableBuilder('resource', consumable.resource.amount, consumable.resource.type);
 				await CommonEvents.createConsumable(actor, item, targets, builder);
-				config.setResource(consumable.resource.type, builder.amount);
+				config.setResource(consumable.resource.type, builder.totalAmount());
 			}
 			if (consumable.damage.enabled) {
-				builder.action = 'damage';
-				builder.amount = consumable.damage.amount;
 				const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-
-				await CommonEvents.createConsumable(actor, item, targets, builder);
-				//config.setDamage(consumable.damage.types, builder.amount);
 				for (const type of consumable.damage.types) {
-					const data = DamageData.construct(type, builder.amount);
+					let builder = new ConsumableBuilder('damage', consumable.damage.amount, type);
+					await CommonEvents.createConsumable(actor, item, targets, builder);
+					const data = DamageData.construct(type, builder.totalAmount());
 					const action = DamagePipeline.getTargetedAction(data, sourceInfo);
 					config.addTargetedAction(action);
 				}

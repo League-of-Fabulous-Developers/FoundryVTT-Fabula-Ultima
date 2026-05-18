@@ -1,0 +1,161 @@
+{
+  "folder": "SzVYanP7r7aueL49",
+  "name": "Nimble Shoes",
+  "type": "accessory",
+  "_id": "SudLabhlPcdKBwxv",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/shoe-lightbrown-short.png",
+  "system": {
+    "fuid": "nimble-shoes",
+    "description": "<p>You gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Dexterity</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Talented Dexterity"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Nimble Shoes",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/shoe-lightbrown-short.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.SudLabhlPcdKBwxv",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "w08eLZl0UHTH1B7b": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "z34z3sV6AeCoE4K5",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "opposed"
+                ]
+              },
+              "_id": "w08eLZl0UHTH1B7b",
+              "predicates": {
+                "6k6ADSFjxFhhcP8T": {
+                  "type": "checkRulePredicate",
+                  "_id": "6k6ADSFjxFhhcP8T",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "dex"
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "VZpPLqNgH0cMj8l7": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "VZpPLqNgH0cMj8l7",
+                  "bonus": "2"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ldSi4qG0X8VBmYHL",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Dexterity</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Nimble Shoes",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.SudLabhlPcdKBwxv",
+            "effectUuid": null,
+            "fuid": "nimble-shoes"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774686627613,
+        "modifiedTime": 1775708225122,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!SudLabhlPcdKBwxv.ldSi4qG0X8VBmYHL"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774686609277,
+    "modifiedTime": 1777529947124,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!SudLabhlPcdKBwxv"
+}

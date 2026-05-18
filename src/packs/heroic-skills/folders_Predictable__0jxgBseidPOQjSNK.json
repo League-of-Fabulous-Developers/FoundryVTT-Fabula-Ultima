@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "WHNpwToyVPMpfLEu",
+  "name": "Predictable!",
+  "color": "#689286",
+  "sorting": "a",
+  "_id": "0jxgBseidPOQjSNK",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477527604
+  },
+  "_key": "!folders!0jxgBseidPOQjSNK"
+}

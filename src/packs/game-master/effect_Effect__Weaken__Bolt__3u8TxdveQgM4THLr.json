@@ -1,0 +1,96 @@
+{
+  "folder": "qtilkg7wFw1xG6Pb",
+  "name": "Effect: Weaken (Bolt)",
+  "type": "effect",
+  "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+  "system": {
+    "fuid": "effect-weaken-bolt",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Weaken (Bolt)",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BdTKt9mxqBDGbnAR",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.bolt",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until this spell ends, you suffer 5 extra damage from all sources that deal <strong>bolt</strong> damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771281144696
+      },
+      "_key": "!items.effects!3u8TxdveQgM4THLr.BdTKt9mxqBDGbnAR"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771280837774,
+    "modifiedTime": 1771280861381,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "3u8TxdveQgM4THLr",
+  "sort": 300000,
+  "_key": "!items!3u8TxdveQgM4THLr"
+}

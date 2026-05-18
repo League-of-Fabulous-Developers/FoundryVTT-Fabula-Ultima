@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Chimerist"
+      "value": "chimerist"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "consume",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -209,7 +214,7 @@
       "_id": "QvJKfoqYcZGOxmLS",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -224,7 +229,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925259175,
-        "modifiedTime": 1770402622790,
+        "modifiedTime": 1771831020356,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"
@@ -238,7 +243,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -246,7 +252,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706495586490,
-    "modifiedTime": 1770269985979,
+    "modifiedTime": 1775516005769,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

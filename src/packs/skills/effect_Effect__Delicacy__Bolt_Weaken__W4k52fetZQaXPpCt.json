@@ -1,0 +1,111 @@
+{
+  "folder": "Uaan6UJJ5XnoCUNn",
+  "name": "Effect: Delicacy (Bolt Weaken)",
+  "type": "effect",
+  "_id": "W4k52fetZQaXPpCt",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "fuid": "effect-delicacy-bolt-weaken",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Delicacy (Bolt Weaken)",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+      "origin": "Compendium.projectfu.skills.Item.W4k52fetZQaXPpCt",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kMjTz9JVEJeZBLHB",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.bolt",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the end of the <strong>gourmet's</strong> next turn, every source that deals <strong>bolt</strong> damage deals 5 extra damage to you.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Delicacy (Bolt Weaken)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.W4k52fetZQaXPpCt",
+            "effectUuid": null,
+            "fuid": "effect-delicacy-bolt-weaken"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775538340609,
+        "modifiedTime": 1775538535416,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!W4k52fetZQaXPpCt.kMjTz9JVEJeZBLHB"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775538264176,
+    "modifiedTime": 1775538315687,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!W4k52fetZQaXPpCt"
+}

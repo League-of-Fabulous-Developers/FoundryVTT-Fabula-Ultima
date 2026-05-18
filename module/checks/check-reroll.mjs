@@ -1,7 +1,7 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Checks } from './checks.mjs';
-import { CHECK_REROLL } from './default-section-order.mjs';
+import { ChatSectionOrder } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
@@ -25,16 +25,16 @@ function addRerollEntry(application, menuItems) {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble && speakerActor.system.resources.fp.value;
+			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble;
 		},
 		callback: async (li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+				const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 				if (check) {
 					await Checks.modifyCheck(check.id, handleReroll);
 				}
@@ -51,7 +51,7 @@ function addRerollEntry(application, menuItems) {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
@@ -60,7 +60,7 @@ function addRerollEntry(application, menuItems) {
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+				const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 				if (check) {
 					await Checks.modifyCheck(check.id, handleReroll);
 				}
@@ -73,8 +73,8 @@ function addRerollEntry(application, menuItems) {
 const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
 	const rerollData = checkResult.additionalData.reroll;
 	if (rerollData) {
-		data.push({
-			order: CHECK_REROLL,
+		data.sections.push({
+			order: ChatSectionOrder.reroll,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 			data: rerollData,
 		});
@@ -143,7 +143,7 @@ const getRerollParams = async (check, actor) => {
 
 				return {
 					trait: trait.value,
-					value: trait.dataset.value,
+					value: trait.dataset.value ?? '',
 					selection: selection,
 					ignoreFp: ignoreFp,
 				};

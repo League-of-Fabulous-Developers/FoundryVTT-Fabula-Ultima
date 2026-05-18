@@ -1,7 +1,6 @@
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
-import { NpcMigrations } from './npc-migrations.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
-import { Role } from '../../../helpers/roles.mjs';
+import { Role } from './roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
@@ -121,7 +120,6 @@ export class NpcDataModel extends BaseCharacterDataModel {
 
 	static migrateData(source) {
 		source = super.migrateData(source);
-		NpcMigrations.run(source);
 		return source;
 	}
 
@@ -132,6 +130,9 @@ export class NpcDataModel extends BaseCharacterDataModel {
 		this.#prepareReplacedSoldiers();
 		this.#prepareBasicResource();
 		this.derived.prepareData();
+
+		this.clocks = {};
+		this.#prepareClockResources();
 	}
 
 	/**
@@ -223,27 +224,35 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			},
 		});
 	}
+
+	#prepareClockResources() {
+		this.addClockResource('pressure', 'pressure');
+	}
 }
 
 /**
  * Sets the NPC's attributes and bonuses based on its role if set
  * @param {FUStandardActorSheet} actor
- * @param {*} roleType
+ * @param {RoleType} newRole
+ * @param {Number} newLevel
  * @returns
  */
 async function setRoleAttributes(actor, newRole, newLevel) {
+	/** @type RoleType **/
 	const role = newRole ?? actor.system.role.value;
 
-	// Do nothing if the role was set to custom
-	if (role == 'custom') {
+	// The custom role does nothing.
+	if (role === 'custom') {
 		return;
 	}
+
+	// TODO: Perhaps separate the global bonuses application from the role
 
 	const level = newLevel ?? actor.system.level.value;
 	console.info(`Setting attributes for role ${role} at level ${level}`);
 	const updates = {};
 
-	// Set accuracy/damage bonuses
+	// 1. Apply check and damage bonuses based on level
 	let accuracyBonus = Math.floor(level / 10);
 	updates['system.bonuses.accuracy.accuracyCheck'] = accuracyBonus;
 	updates['system.bonuses.accuracy.magicCheck'] = accuracyBonus;
@@ -252,15 +261,15 @@ async function setRoleAttributes(actor, newRole, newLevel) {
 	updates['system.bonuses.damage.ranged'] = damageBonus;
 	updates['system.bonuses.damage.spell'] = damageBonus;
 
-	// Set attributes
-	let roleData = Role.resolve(role);
-	let attributes = roleData.getAttributesForLevel(level);
-	updates['system.attributes.dex.base'] = attributes.dex;
-	updates['system.attributes.ins.base'] = attributes.ins;
-	updates['system.attributes.mig.base'] = attributes.mig;
-	updates['system.attributes.wlp.base'] = attributes.wlp;
-
-	// TODO: Restore HP/MP to maximum
+	// 2. Apply attribute array based on role (except baseline)
+	if (role !== 'baseline') {
+		let roleData = Role.resolve(role);
+		let attributes = roleData.getAttributesForLevel(level);
+		updates['system.attributes.dex.base'] = attributes.dex;
+		updates['system.attributes.ins.base'] = attributes.ins;
+		updates['system.attributes.mig.base'] = attributes.mig;
+		updates['system.attributes.wlp.base'] = attributes.wlp;
+	}
 
 	if (Object.keys(updates).length > 0) {
 		actor.update(updates);

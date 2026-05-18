@@ -1,0 +1,211 @@
+{
+  "folder": "ntQoEMFt6poASthb",
+  "name": "Spiked Shield",
+  "type": "shield",
+  "_id": "MlXUnq9fhFjXS7YQ",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-spiked.png",
+  "system": {
+    "fuid": "spiked-shield",
+    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>physical</strong> damage to that creature (after the attack has been resolved).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1350
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Physical Thorns"
+    },
+    "def": {
+      "value": 2
+    },
+    "mdef": {
+      "value": 2
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 5
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spiked Shield",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-spiked.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.MlXUnq9fhFjXS7YQ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "OQysMPgfcgnBqoks": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "f4WZJ4PCW6x1G0kq",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "OQysMPgfcgnBqoks",
+              "predicates": {
+                "fxnthWR0Q0YEjIac": {
+                  "type": "checkRulePredicate",
+                  "_id": "fxnthWR0Q0YEjIac",
+                  "outcome": "success",
+                  "result": null
+                },
+                "sM7sDigBevK8BeWI": {
+                  "type": "weaponRulePredicate",
+                  "_id": "sM7sDigBevK8BeWI",
+                  "selector": "source",
+                  "weaponType": "melee"
+                }
+              },
+              "actions": {
+                "sIJxGnH5fxsIyoQT": {
+                  "type": "messageRuleAction",
+                  "_id": "sIJxGnH5fxsIyoQT",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 physical] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "tSC6SZXCCCDX2QBM",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>physical</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spiked Shield",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.MlXUnq9fhFjXS7YQ",
+            "effectUuid": null,
+            "fuid": "spiked-shield"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774768465927,
+        "modifiedTime": 1775709109628,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!MlXUnq9fhFjXS7YQ.tSC6SZXCCCDX2QBM"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774768408094,
+    "modifiedTime": 1777530868041,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!MlXUnq9fhFjXS7YQ"
+}

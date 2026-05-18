@@ -4,18 +4,18 @@ import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-mode
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { ChatSectionOrder } from '../../../../checks/default-section-order.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item) => {
+const onRenderCheck = (data, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel && item.system.data instanceof ZeroPowerDataModel) {
-		console.log(sections);
 		/** @type ZeroPowerDataModel */
 		const zeroPower = item.system.data;
 		if (zeroPower.hasClock.value) {
-			CommonSections.clock(sections, zeroPower.progress, -1);
+			CommonSections.clock(data.sections, zeroPower.progress, ChatSectionOrder.tracker);
 		}
-		CommonSections.collapsibleDescription(sections, zeroPower.zeroTrigger.value ?? game.i18n.localize('FU.LimitTrigger'), zeroPower.zeroTrigger.description);
-		CommonSections.collapsibleDescription(sections, zeroPower.zeroEffect.value ?? game.i18n.localize('FU.LimitEffect'), zeroPower.zeroEffect.description);
+		CommonSections.collapsibleDescription(data.sections, zeroPower.zeroTrigger.value ?? game.i18n.localize('FU.LimitTrigger'), zeroPower.zeroTrigger.description);
+		CommonSections.collapsibleDescription(data.sections, zeroPower.zeroEffect.value ?? game.i18n.localize('FU.LimitEffect'), zeroPower.zeroEffect.description);
 	}
 };
 

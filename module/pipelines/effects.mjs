@@ -6,7 +6,6 @@ import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
-import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { FUItem } from '../documents/items/item.mjs';
@@ -14,6 +13,8 @@ import { statusEffects } from '../documents/effects/statuses.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -51,18 +52,23 @@ import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
  */
 
 /**
- * @typedef ApplyEffectData
- * @property {String[]} entries
+ * @typedef FUActiveEffectConfiguration
+ * @property {String} name
+ * @property {FUEffectDuration} event e:
+ * @property {Number} interval i:
+ * @property {String} tracking t:
+ * @property {Record<String, String>} updates Specific updates on initial data.
  */
 
 /**
  * @param {Actor|Item} owner The owning document which manages this effect
- * @param {String} effectType
+ * @param {'temporary'|'inactive'} effectType
  * @param {String} name
+ * @param {ActiveEffectData} data
  * @returns {*}
  * @remarks Effects created this way will by default be removed at the end of the scene
  */
-function createTemporaryEffect(owner, effectType, name = undefined) {
+function createTemporaryEffect(owner, effectType, name = undefined, data = {}) {
 	const system = {
 		duration: {
 			event: effectType === 'passive' ? 'none' : 'endOfScene',
@@ -71,11 +77,13 @@ function createTemporaryEffect(owner, effectType, name = undefined) {
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
 			name: name ?? (owner instanceof FUItem ? owner.name : game.i18n.localize('FU.NewEffect')),
-			img: 'icons/svg/aura.svg',
+			img: owner instanceof FUItem ? owner.img : 'icons/svg/aura.svg',
 			source: owner.uuid,
+			origin: owner.uuid,
 			system: system,
 			'duration.rounds': effectType === 'temporary' ? 1 : undefined,
 			disabled: effectType === 'inactive',
+			...data,
 		},
 	]);
 }
@@ -91,9 +99,12 @@ function resolveBaseEffect(id) {
 /** *
  * @param {String} id An uuid or fuid
  * @returns {Promise<ActiveEffectData>}
+ * @remarks It makes a safe clone of the data when returning it, thus it will NOT be an ActiveEffect instance.
  */
 async function getEffectData(id) {
 	let effect;
+	let sourceInfo;
+
 	// Resolve by status id
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
 		effect = statusEffects.find((value) => value.id === id);
@@ -111,12 +122,22 @@ async function getEffectData(id) {
 		}
 		// Get the first AE attached to the item
 		if (effect && effect instanceof FUItem) {
+			sourceInfo = new InlineSourceInfo(effect.name, null, effect.uuid, null, effect.system.fuid);
 			effect = effect.effects.entries().next().value[1];
 		}
 	}
 	if (!effect) {
-		console.error(`No effect with id '${id}' could be resolved.`);
+		console.warn(`No effect with id '${id}' could be resolved.`);
 	}
+
+	if (effect) {
+		// TODO: Perhaps it be really instanced each time?
+		effect = FoundryUtils.safeClone(effect);
+		if (sourceInfo) {
+			effect.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
+		}
+	}
+
 	return effect;
 }
 
@@ -318,7 +339,7 @@ function isStatusEffect(id) {
  * @param {FUActor} actor the actor the status should get applied to
  * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
  * @param {InlineSourceInfo} sourceInfo
- * @param {InlineEffectConfiguration} config
+ * @param {FUActiveEffectConfiguration} config
  * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
  */
 export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = undefined, config = undefined) {
@@ -337,21 +358,38 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 		);
 		return false;
 	} else {
-		const statusEffect = resolveBaseEffect(statusEffectId);
-		if (statusEffect) {
-			const instance = await ActiveEffect.create(
-				{
-					...statusEffect,
-					statuses: [statusEffectId],
-					flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
-				},
-				{ parent: actor },
-			);
-			await applyConfiguration(instance, config);
-			CommonEvents.status(actor, statusEffectId, true);
-		}
+		await createStatusEffect(actor, statusEffectId, sourceInfo, config);
 		return true;
 	}
+}
+
+/**
+ *
+ * @param {FUActor} actor the actor the status should get applied to
+ * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActiveEffectConfiguration} config
+ * @returns {Promise<boolean>}
+ */
+export async function createStatusEffect(actor, statusEffectId, sourceInfo, config) {
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
+	const statusEffect = resolveBaseEffect(statusEffectId);
+	if (statusEffect) {
+		const instance = await ActiveEffect.create(
+			{
+				...statusEffect,
+				statuses: [statusEffectId],
+				flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
+			},
+			{ parent: actor },
+		);
+		await applyConfiguration(instance, config);
+		CommonEvents.status(actor, statusEffectId, true);
+	}
+	return true;
 }
 
 /**
@@ -383,7 +421,7 @@ export async function disableStatusEffect(actor, statusEffectId) {
  * @param {FUActor|FUItem} document
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
- * @param {InlineEffectConfiguration} config
+ * @param {FUActiveEffectConfiguration} config
  * @returns {FUActiveEffect}
  */
 async function applyEffect(document, effect, sourceInfo, config = undefined) {
@@ -400,8 +438,11 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			},
 			{ parent: document },
 		);
-		await applyConfiguration(instance, config);
-		await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		// The creation could have been rejected
+		if (instance) {
+			await applyConfiguration(instance, config);
+			await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		}
 		return instance;
 	}
 }
@@ -468,14 +509,14 @@ function sendToChatEffectRemoved(effect, actor) {
 
 /**
  * @param {FUActiveEffect} effect
- * @param {InlineEffectConfiguration} configuration
+ * @param {FUActiveEffectConfiguration} configuration
  * @returns {Promise<void>}
  */
 async function applyConfiguration(effect, configuration) {
 	if (!configuration) {
 		return;
 	}
-	const updates = {};
+	const updates = configuration.updates ?? {};
 	if (configuration.name) {
 		updates['name'] = configuration.name;
 	}
@@ -522,171 +563,14 @@ function createEffectFlags(effect, sourceInfo, identifier) {
  */
 
 /**
- * @description Manages active effects during a combat
- * @param {CombatEvent} event
- * @returns {Promise<void>}
- */
-async function manageEffectDuration(event) {
-	console.debug(`Managing active effects on ${event.type}`);
-
-	/** @type ManagedEffectData[] **/
-	const managedEffects = [];
-	const updates = [];
-	const effectsToDelete = [];
-	const autoRemove = game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects);
-	const remind = game.settings.get(SYSTEM, SETTINGS.optionAutomationEffectsReminder);
-
-	// TODO: Add source-tracked effects into a single collection to check
-	for (const actor of event.actors) {
-		const effects = actor.temporaryEffects.filter(
-			/** @type FUActiveEffect **/ (effect) => {
-				// The duration data
-				const duration = effect.system.duration;
-				const eventType = FU.effectDuration[duration.event];
-
-				// Not based on this event type
-				if (eventType !== event.type) {
-					return false;
-				}
-
-				// If the event is based on a specific actor
-				if (event.hasActor) {
-					if (duration.tracking === 'self') {
-						if (actor.uuid !== event.actor.uuid) {
-							return false;
-						}
-					} else if (duration.tracking === 'source') {
-						if (effect.sourceInfo.actorUuid !== event.actor.uuid) {
-							return false;
-						}
-					}
-				}
-
-				// Already expired
-				if (duration.remaining === 0) {
-					if (autoRemove) {
-						console.debug(`Automatically removing ${effect.name} on round ${event.round}`);
-						effectsToDelete.push(effect);
-					}
-					return true;
-				}
-
-				// Tick down remaining
-				console.debug(`Decreasing remaining effect duration (${duration.remaining}) of ${effect.name} in ${event.type}`);
-				updates.push(
-					effect.update({
-						[`system.duration.remaining`]: duration.remaining - 1,
-					}),
-				);
-
-				// Just expired
-				const expired = duration.remaining - 1 === 0;
-				if (expired) {
-					if (autoRemove) {
-						console.debug(`Automatically removing ${effect.name}`);
-						effectsToDelete.push(effect);
-					}
-					return true;
-				}
-				// Not yet expired
-				return remind;
-			},
-		);
-
-		if (effects.length > 0) {
-			/** @type ManagedEffectData[] **/
-			const effectData = effects.map((effect) => ({
-				name: effect.name,
-				id: effect.id,
-				img: effect.img,
-				actorName: actor.name,
-				actorId: actor.uuid,
-				remaining: effect.system.duration.remaining - 1, // The update happens later okay?
-				description: effect.description,
-			}));
-
-			managedEffects.push(...effectData);
-		}
-	}
-
-	if (managedEffects.length === 0) {
-		return;
-	}
-	await Promise.all(updates);
-
-	// TODO: Maybe link to the originals if deletions are about to happen
-	ChatMessage.create({
-		//speaker: ChatMessage.getSpeaker({ actor }),
-		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-manage-effects.hbs', {
-			message: 'FU.ChatManageEffects',
-			effects: managedEffects,
-			round: event.round,
-			event: event.type,
-		}),
-	});
-
-	// Safe to delete now that it's been posted
-	for (const e of effectsToDelete) {
-		e.delete();
-	}
-}
-
-/**
- * @param {CombatEvent} event
- * @returns {Promise<void>}
- */
-async function promptExpiredEffectRemoval(event) {
-	let count = 0;
-	if (
-		event.actors.every((actor) => {
-			count += actor.temporaryEffects.length;
-			return actor.temporaryEffects.length === 0;
-		})
-	) {
-		return;
-	}
-
-	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
-		event.actors.forEach((actor) => {
-			actor.clearTemporaryEffects({
-				duration: true,
-			});
-		});
-		return;
-	}
-
-	let message;
-	switch (event.type) {
-		case FU.combatEvent.startOfCombat:
-			message = 'FU.ChatCombatStart';
-			break;
-		case FU.combatEvent.endOfCombat:
-			message = 'FU.ChatCombatEnd';
-			break;
-	}
-
-	const serializedActors = Targeting.serializeTargetData(event.actors);
-	ChatMessage.create({
-		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
-			message: message,
-			actors: JSON.stringify(serializedActors),
-			round: event.round,
-			count: count,
-		}),
-	});
-}
-
-/**
  * @param {FUActor} actor
  * @param {FUActor[]} targets
- * @param {FUActiveEffect[]} effects
+ * @param {String[]} effectIds
  * @param {InlineSourceInfo} sourceInfo
  * @returns {Promise<void>}
  */
-async function promptApplyEffect(actor, targets, effects, sourceInfo) {
-	let actions = await Promise.all(effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo)));
+async function promptApplyEffect(actor, targets, effectIds, sourceInfo) {
+	let actions = await Promise.all(effectIds.map((id) => getTargetedAction(id, sourceInfo)));
 	actions = actions.filter((a) => a !== null);
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Targets, true);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Effects, true);
@@ -698,7 +582,6 @@ async function promptApplyEffect(actor, targets, effects, sourceInfo) {
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-effect-prompt', {
 			actor: actor,
 			source: sourceInfo.name,
-			effects: effects,
 			actions: actions,
 			targets: targetData,
 			fields: StringUtils.toBase64({
@@ -727,13 +610,14 @@ async function promptRemoveEffect(actor, source) {
 /**
  * @param {String} id An uuid or fuid.
  * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActiveEffectDuration} duration
  * @returns {Promise<ChatAction>}
  */
-async function getTargetedAction(id, sourceInfo) {
+async function getTargetedAction(id, sourceInfo, duration = undefined) {
+	const effectData = await getEffectData(id);
 	let name;
 	let icon;
 	let img;
-	const effectData = await getEffectData(id);
 	if (effectData) {
 		if (effectData.img) {
 			img = effectData.img;
@@ -758,6 +642,7 @@ async function getTargetedAction(id, sourceInfo) {
 
 	return new ChatAction('applyEffect', icon, tooltip, {
 		sourceInfo: sourceInfo,
+		duration: duration,
 	})
 		.requiresOwner()
 		.setFlag(Flags.ChatMessage.Effects)
@@ -823,6 +708,47 @@ async function getClearAction(id, sourceInfo) {
 }
 
 /**
+ * @param {ApplyEffectData} effectData
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<ChatAction[]>}
+ */
+async function promptEffectChoices(effectData, sourceInfo) {
+	if (effectData.entries.length === 1 || !effectData.prompt) {
+		return await Promise.all(effectData.entries.map((id) => getTargetedAction(id, sourceInfo, effectData.duration)).filter(Boolean));
+	}
+
+	/** @type DialogSelectableItem[] **/
+	let choices = [];
+	for (const id of effectData.entries) {
+		const effect = await getEffectData(id);
+		if (effect) {
+			let choice = {
+				id: id,
+				name: StringUtils.localize(effect.name),
+				img: effect.img,
+			};
+			choices.push(choice);
+		}
+	}
+
+	const data = {
+		title: `${sourceInfo.name} ${StringUtils.localize('FU.Effect')} ${StringUtils.localize('FU.Selection')}`,
+		style: 'list',
+		items: choices,
+		getDescription: async (item) => {
+			return item.name;
+		},
+	};
+
+	const dialog = new ItemSelectionDialog(data);
+	const result = await dialog.open();
+	if (result && result.length > 0) {
+		return await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo, effectData.duration)));
+	}
+	return [];
+}
+
+/**
  * @param {Document} message
  * @param {HTMLElement} element
  */
@@ -848,10 +774,20 @@ function onRenderChatMessage(message, element) {
 		const isStatus = isStatusEffect(effectId);
 
 		let sourceInfo = InlineSourceInfo.none;
+		let duration;
+		/** @type FUActiveEffectConfiguration **/
+		let configuration;
+
 		if (dataset.fields) {
 			const fields = StringUtils.fromBase64(dataset.fields);
 			if (fields.sourceInfo) {
 				sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+			}
+			if (fields.duration) {
+				duration = fields.duration;
+				configuration = {
+					...duration,
+				};
 			}
 		}
 
@@ -863,20 +799,25 @@ function onRenderChatMessage(message, element) {
 					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
 					continue;
 				}
-				await toggleStatusEffect(target, effectId, sourceInfo);
+				await toggleStatusEffect(target, effectId, sourceInfo, configuration);
 			}
 		} else {
 			const effect = await getEffectData(effectId);
 			if (!effect) {
 				return;
 			}
-			for (const target of targets) {
-				if (!target.isOwner) {
-					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-					continue;
-				}
-				await applyEffect(target, effect, sourceInfo);
+			const esi = effect.flags?.[systemId]?.[Flags.ActiveEffect.Source];
+			if (esi) {
+				sourceInfo.withFuid(esi.fuid);
 			}
+			if (effect)
+				for (const target of targets) {
+					if (!target.isOwner) {
+						ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+						continue;
+					}
+					await applyEffect(target, effect, sourceInfo, configuration);
+				}
 		}
 	});
 
@@ -924,29 +865,6 @@ function onRenderChatMessage(message, element) {
 }
 
 /**
- * @param {CombatEvent} event
- * @returns {Promise<void>}
- */
-async function onCombatEvent(event) {
-	if (!game.settings.get(SYSTEM, SETTINGS.optionAutomationManageEffects)) {
-		return;
-	}
-
-	switch (event.type) {
-		case FU.combatEvent.startOfCombat:
-		case FU.combatEvent.endOfCombat:
-			await promptExpiredEffectRemoval(event);
-			break;
-
-		case FU.combatEvent.startOfTurn:
-		case FU.combatEvent.endOfTurn:
-		case FU.combatEvent.endOfRound:
-			await manageEffectDuration(event);
-			break;
-	}
-}
-
-/**
  * @param {RestEvent} event
  * @returns {Promise<void>}
  */
@@ -969,7 +887,6 @@ const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 	Hooks.on(FUHooks.REST_EVENT, onRestEvent);
 	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
@@ -985,6 +902,7 @@ export const Effects = Object.freeze({
 	canBeRemoved,
 	isStatusEffect,
 	toggleStatusEffect,
+	createStatusEffect,
 	createTemporaryEffect,
 	formatEffect,
 	sendToChatEffectAdded,
@@ -993,6 +911,7 @@ export const Effects = Object.freeze({
 	getTargetedAction,
 	getClearAction,
 	createEffectFlags,
+	promptEffectChoices,
 
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,

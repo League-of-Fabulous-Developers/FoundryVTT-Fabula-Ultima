@@ -13,6 +13,7 @@ import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { systemPath } from '../helpers/config.mjs';
 
 /**
  * @param {FUActor} actor
@@ -127,6 +128,96 @@ async function promptCheckAtIndexForDocument(document, propertyPath, index) {
 }
 
 /**
+ * @param {PointerEvent} event
+ * @param document
+ * @param {String} propertyPath
+ * @param {Number} index
+ * @returns {Promise}
+ */
+async function openTrackMenuAtIndex(event, document, propertyPath, index) {
+	if (index === undefined) {
+		throw Error('Undefined index reference was given');
+	}
+
+	const property = ObjectUtils.getProperty(document, propertyPath);
+	/** @type ProgressDataModel[] **/
+	const tracks = foundry.utils.duplicate(property);
+	const track = tracks[index];
+	// TODO: Render a modal popup menu now with the given options
+
+	let content = await ProgressDataModel.renderDetails(track);
+
+	const buttons = [
+		{
+			action: 'increment',
+			label: 'FU.Increment',
+			icon: 'fas fa-plus',
+			callback: async (evt) => {
+				return ProgressDataModel.updateAtIndexForDocument(document, propertyPath, index, 1);
+			},
+		},
+		{
+			action: 'decrement',
+			label: 'FU.Decrement',
+			icon: 'fas fa-minus',
+			callback: (evt) => {
+				return ProgressDataModel.updateAtIndexForDocument(document, propertyPath, index, -1);
+			},
+		},
+		{
+			action: 'display',
+			label: 'FU.Display',
+			icon: 'fas fa-message',
+			callback: (evt) => {
+				return ProgressDataModel.sendToChat(document, track);
+			},
+		},
+		{
+			action: 'remove',
+			label: 'FU.Remove',
+			icon: 'fas fa-close',
+			callback: (evt) => {
+				return ProgressDataModel.removeAtIndexForDocument(document, propertyPath, index);
+			},
+		},
+	];
+
+	return FoundryUtils.promptActionChoice({
+		title: `${StringUtils.localize('FU.Progress')}: ${track.name ?? track.id}`,
+		content: content,
+		buttons,
+	});
+}
+
+/**
+ * @param {Document} document
+ * @param {String} propertyPath
+ * @pararm {Boolean} selectStyle
+ * @returns {Promise<void>}
+ */
+async function promptAddToDocument(document, propertyPath, selectStyle = false) {
+	const title = StringUtils.localize('FU.ClockAdd');
+	const content = await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-track.hbs'), {
+		selectStyle: selectStyle,
+	});
+	const result = await FoundryUtils.input(title, content, {});
+
+	if (result) {
+		if (!result.name) {
+			ui.notifications.error(`No name was given for the tracker!`);
+			return;
+		}
+		console.log('Creating progress track with name: ', result.name);
+		const newTrack = ProgressDataModel.construct(result.name, {
+			id: result.id,
+			max: result.max,
+			style: result.style,
+		});
+		await ProgressDataModel.addToDocument(document, propertyPath, newTrack);
+	}
+}
+
+/**
  * @param {ChatMessage} message
  * @param {HTMLElement} html
  */
@@ -161,4 +252,6 @@ export const ProgressPipeline = Object.freeze({
 	initialize,
 	getAdvanceTargetedAction,
 	promptCheckAtIndexForDocument,
+	openTrackMenuAtIndex,
+	promptAddToDocument,
 });

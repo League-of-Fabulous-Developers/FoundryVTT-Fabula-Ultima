@@ -2,7 +2,9 @@
 <div class="flexrow wellspring-preview">
     {{#each additionalData.activeWellsprings as | active |}}
         {{#with (lookup ../additionalData.wellsprings @key)}}
-            <i class="wellspring {{icon}} {{#unless active}}inactive{{/unless}}" data-tooltip="{{name}}"></i>
+            <i class="wellspring fu-icon__container {{#unless active}}inactive{{/unless}}" data-tooltip="{{name}}" data-wellspring="{{@key}}">
+				<i class="fu-icon--s {{icon}}"></i>
+            </i>
         {{/with}}
     {{/each}}
 </div>

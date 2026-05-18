@@ -12,15 +12,14 @@
     "maxLevel": 5,
     "items": [
       {
-        "name": "Withstand",
+        "name": "Adrenaline",
         "type": "skill",
-        "_id": "0tL8REHxMLeAFTLw",
-        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
+        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_adrenaline.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[1*$sl hp]{SL × One Emotion HP},<strong> </strong>@GAIN[2*$sl hp]{SL × Two Emotions HP}, or @GAIN[3*$sl hp]{SL × Three Emotions HP}</p></li><li><p><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2], or @EFFECT[wlp-up e:eot i:2]</p></li></ul>",
+          "description": "<p>As long as you are in <strong>Crisis</strong>, you deal <strong>【SL × 2】</strong> extra damage (be it with attacks, spells, Arcana, items or any other method).</p>",
           "showTitleCard": {
             "value": false
           },
@@ -30,7 +29,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -41,7 +40,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -65,172 +64,107 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "withstand",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
+          "fuid": "adrenaline",
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 500000
-      },
-      {
-        "name": "Provoke",
-        "type": "skill",
-        "_id": "WctPeaqKG3Dvukk5",
-        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
-        "system": {
-          "summary": {
-            "value": ""
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
           },
-          "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against a creature you can see — describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[mig wlp ($sl)]</p></li><li><p><strong>Target Suffers: </strong>@EFFECT[enraged] @EFFECT[Compendium.projectfu.skills.SBaaNDpwZQDafu3J]{Effect: Provoke}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 5,
-            "min": 0
-          },
-          "class": {
-            "value": "Fury"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "mig",
-            "secondary": "wlp"
-          },
-          "accuracy": 1,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR195",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "provoke",
-          "cost": {
-            "amount": 5,
-            "resource": "mp",
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 400000
-      },
-      {
-        "name": "Indomitable Spirit",
-        "type": "skill",
-        "_id": "GRYJkz0Skxfu1RU8",
-        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[5*$sl hp]{SL × 5 HP}, or @GAIN[5*$sl mp]{SL × 5 MP}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 4,
-            "min": 0
-          },
-          "class": {
-            "value": "Fury"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR195",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "indomitable-spirit",
           "cost": {
             "resource": "mp",
-            "amount": 0,
+            "amount": "",
             "perTarget": false
           },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
-        "effects": [],
+        "effects": [
+          {
+            "duration": {
+              "rounds": 1,
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": false,
+            "name": "Adrenaline",
+            "_id": "kTPwUE4IK9FTRBIX",
+            "changes": [
+              {
+                "key": "system.bonuses.damage.all",
+                "mode": 2,
+                "value": "2*@system.level.value",
+                "priority": null
+              }
+            ],
+            "description": "<p>As long as you are in <strong>Crisis</strong>, you deal <strong>【SL × 2】</strong> extra damage (be it with attacks, spells, Arcana, items or any other method).</p>",
+            "transfer": true,
+            "statuses": [],
+            "flags": {
+              "projectfu": {
+                "source": "FUCR195"
+              }
+            },
+            "tint": "#ffffff",
+            "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_adrenaline.png",
+            "type": "base",
+            "system": {
+              "rules": {
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                },
+                "elements": {}
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "active"
+              },
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 0
+              }
+            },
+            "origin": null,
+            "sort": 0
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
-        "sort": 300000
+        "_id": "8Xd9KbHtSG3PT5YA",
+        "sort": 100000
       },
       {
         "name": "Frenzy",
         "type": "skill",
-        "_id": "B2pLoCXAD212CkWK",
+        "_id": "kqUr6EHX1lClVgo4",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_frenzy.png",
         "system": {
           "summary": {
@@ -246,7 +180,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -257,7 +191,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -282,16 +216,30 @@
           },
           "defense": "def",
           "fuid": "frenzy",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
         "effects": [
           {
@@ -306,8 +254,7 @@
               },
               "type": "default",
               "predicate": {
-                "crisisInteraction": "none",
-                "suppressed": false
+                "crisisInteraction": "none"
               },
               "rules": {
                 "progress": {
@@ -316,8 +263,10 @@
                   "name": "",
                   "current": 0,
                   "step": 1,
-                  "max": 6
-                }
+                  "max": 6,
+                  "style": "basic"
+                },
+                "elements": {}
               }
             },
             "duration": {
@@ -353,7 +302,7 @@
                 "priority": null
               }
             ],
-            "description": "",
+            "description": "<p>Your Accuracy Checks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>).</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
@@ -363,29 +312,34 @@
           }
         ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
         "sort": 200000
       },
       {
-        "name": "Adrenaline",
+        "name": "Indomitable Spirit",
         "type": "skill",
-        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_adrenaline.png",
+        "_id": "rfJF1gM5wKGVc5Ra",
+        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>As long as you are in <strong>Crisis</strong>, you deal <strong>【SL × 2】</strong> extra damage (be it with attacks, spells, Arcana, items or any other method).</p>",
+          "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option:</p><ul><li><p>You recover <strong>【SL × 5】</strong> Hit Points.</p></li><li><p>You recover <strong>【SL × 5】</strong> Mind Points.</p></li><li><p>You recover from a single status effect of your choice.</p></li></ul><hr /><p><strong>You Recover:</strong> @GAIN[5*$sl hp]{SL × 5 HP} or @GAIN[5*$sl mp]{SL × 5 MP}</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 5,
+            "max": 4,
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -396,7 +350,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -420,74 +374,303 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "adrenaline",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
+          "fuid": "indomitable-spirit",
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 300000
+      },
+      {
+        "name": "Provoke",
+        "type": "skill",
+        "_id": "AnyFjCKFfDmletGQ",
+        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against an enemy you can see — describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "fury"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "mig",
+            "secondary": "wlp"
+          },
+          "accuracy": "1",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR195",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "provoke",
+          "cost": {
+            "amount": "5",
+            "resource": "mp",
+            "perTarget": false
+          },
+          "effects": {
+            "entries": [
+              "enraged",
+              "Compendium.projectfu.skills.SBaaNDpwZQDafu3J"
+            ],
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "prompt": false
+          },
+          "targeting": {
+            "rule": "single",
+            "max": 0
+          },
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
         "effects": [
           {
-            "duration": {
-              "rounds": 1,
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
-            },
-            "disabled": false,
-            "name": "Adrenaline",
-            "_id": "kTPwUE4IK9FTRBIX",
-            "changes": [
-              {
-                "key": "system.bonuses.damage.all",
-                "mode": 2,
-                "value": "2*@system.level.value",
-                "priority": null
-              }
-            ],
-            "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you are in <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Crisis</strong>, you deal<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【SL × 2</strong><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">】</strong>extra damage (be it with attacks, spells, Arcana, items or any other method). </span></p>",
-            "transfer": true,
-            "statuses": [],
-            "flags": {
-              "projectfu": {
-                "source": "FUCR195"
-              }
-            },
-            "tint": "#ffffff",
-            "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_adrenaline.png",
-            "type": "base",
+            "name": "Provoke",
+            "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
             "system": {
-              "type": "default",
-              "predicate": {
-                "crisisInteraction": "active",
-                "suppressed": false
-              },
               "duration": {
                 "event": "none",
                 "interval": 1,
                 "tracking": "self",
-                "remaining": 0
+                "remaining": 1
               },
-              "rules": {}
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "9PICIQnEPdbweedJ": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "FynMq2jXxkUTTkBl",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [
+                        "display"
+                      ],
+                      "itemGroups": [],
+                      "local": true,
+                      "identifier": ""
+                    },
+                    "_id": "9PICIQnEPdbweedJ",
+                    "actions": {
+                      "gOvGI2Ap68JAm9PD": {
+                        "type": "performCheckRuleAction",
+                        "_id": "gOvGI2Ap68JAm9PD",
+                        "check": "opposed",
+                        "bonus": "$sl",
+                        "attributes": {
+                          "primary": {
+                            "value": "mig"
+                          },
+                          "secondary": {
+                            "value": "wlp"
+                          }
+                        }
+                      }
+                    },
+                    "predicates": {},
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
             },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "xP5YT1ZhyYRekamk",
+            "type": "base",
+            "changes": [],
+            "description": "<p>Performing the <strong>Provoke</strong> Skill allows you to perform an <strong>Opposed Check</strong>.</p>",
             "origin": null,
-            "sort": 0
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
           }
         ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
-        "_id": "VDQ0GoKzpTYd0KmV",
-        "sort": 100000
+        "sort": 400000
+      },
+      {
+        "name": "Withstand",
+        "type": "skill",
+        "_id": "ToeRkGRMUrOTGGJM",
+        "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover:</strong> @GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.jSII3l7tDl8xF5O6] or @EFFECT[Compendium.projectfu.skills.Item.YI4Y5gg5ivvqmO5f]</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "fury"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR195",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "withstand",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 500000
       }
     ],
     "source": "",
@@ -504,12 +687,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759655151161,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1776191903848,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!mGIGIh8tCtRpjLnE"

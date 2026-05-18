@@ -37,10 +37,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>When a creature in <strong>Crisis</strong> hits the creature bearing this <strong>symbol</strong> with an attack or offensive spell ( @ICON[offensive] ), the creature in <strong>Crisis</strong> recovers @GAIN[5 hp] and @GAIN[5 mp].</p>",
+      "description": "<p>When a creature in <strong>Crisis</strong> hits you with an attack or offensive spell while you are bearing the <strong>Symbol of Revenge</strong>, the creature in <strong>Crisis</strong> recovers 5 HP and MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +60,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744745840872,
-        "modifiedTime": 1744745946158,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770616992970,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!k0yGhYRLGR4XuqU6.0gdrA51PpAw9rogi"
     }
   ],
-  "sort": 0,
+  "sort": 4900000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -70,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744745837586,
-    "modifiedTime": 1744745948758,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!k0yGhYRLGR4XuqU6"

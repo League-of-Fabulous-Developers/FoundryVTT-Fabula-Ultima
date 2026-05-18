@@ -1,0 +1,117 @@
+{
+  "folder": "p8xEwV63WNoquCiM",
+  "name": "Effect: Golem Dance (Damage)",
+  "type": "effect",
+  "_id": "AYjd1XWMIMXSHzAr",
+  "img": "icons/creatures/magical/construct-stone-earth-gray.webp",
+  "system": {
+    "fuid": "effect-golem-dance-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Golem Dance (Damage)",
+      "img": "icons/creatures/magical/construct-stone-earth-gray.webp",
+      "origin": "Compendium.projectfu.skills.Item.AYjd1XWMIMXSHzAr",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "6Ab4k6yImYwxphM9",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "bolt",
+          "priority": null
+        },
+        {
+          "key": "system.overrides.damageType.spell.normal",
+          "mode": 5,
+          "value": "bolt",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Golem Dance (Damage)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.AYjd1XWMIMXSHzAr",
+            "effectUuid": null,
+            "fuid": "effect-golem-dance-damage"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774641386574,
+        "modifiedTime": 1775844259789,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!AYjd1XWMIMXSHzAr.6Ab4k6yImYwxphM9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774641242679,
+    "modifiedTime": 1774641468496,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!AYjd1XWMIMXSHzAr"
+}

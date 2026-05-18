@@ -1,0 +1,267 @@
+{
+  "type": "rule",
+  "name": "Impending Doom",
+  "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
+  "system": {
+    "fuid": "impending-doom",
+    "description": "",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": true
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false,
+      "name": "Doom"
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Impending Doom",
+      "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
+      "origin": "Scene.bocuEMp0H64TlFhR.Token.jmBXMiSgeyrl0yb9.Actor.UN1GO0JuY91ypu88.Item.AcRaWJ3vlAQHxiqG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "oLFOxA8OimaQhUZ3": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "nnRRuHvd8i6cDkSH",
+                "type": "itemRollRuleTrigger",
+                "eventRelation": ""
+              },
+              "_id": "oLFOxA8OimaQhUZ3",
+              "actions": {
+                "enJQnv7Hk9orUs7u": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "enJQnv7Hk9orUs7u",
+                  "identifier": "impending-doom",
+                  "amount": "1",
+                  "notify": false,
+                  "action": "update"
+                }
+              },
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
+            },
+            "RbrGiEVeGfsTXR1V": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "At22VW2qh5BRquoG",
+                "type": "progressTrackRuleTrigger",
+                "eventRelation": "",
+                "identifier": "impending-doom",
+                "local": true,
+                "comparisonOperator": "max",
+                "value": null
+              },
+              "_id": "RbrGiEVeGfsTXR1V",
+              "actions": {
+                "wGTszD95JCMHObTk": {
+                  "type": "messageRuleAction",
+                  "_id": "wGTszD95JCMHObTk",
+                  "message": "<p>All enemies are reduced to 1 Hit Point.</p><hr><ul><li><p>Lose: @LOSS[(@target.resources.hp.value - 1) hp]</p></li></ul>"
+                }
+              },
+              "selector": "initial",
+              "predicates": {},
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": 0,
+        "combat": null,
+        "startRound": 37,
+        "startTurn": 0
+      },
+      "disabled": false,
+      "_id": "acnKHbEenNXVnQK0",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Impending Doom",
+            "actorUuid": null,
+            "itemUuid": "Scene.bocuEMp0H64TlFhR.Token.jmBXMiSgeyrl0yb9.Actor.UN1GO0JuY91ypu88.Item.AcRaWJ3vlAQHxiqG",
+            "effectUuid": null,
+            "fuid": "impending-doom"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!O98KC5i4kMlTOjnA.acnKHbEenNXVnQK0"
+    },
+    {
+      "name": "Impending Doom (Crisis)",
+      "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
+      "origin": "Scene.bocuEMp0H64TlFhR.Token.jmBXMiSgeyrl0yb9.Actor.UN1GO0JuY91ypu88.Item.AcRaWJ3vlAQHxiqG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "rules": {
+          "elements": {
+            "xiIh9Yis2rd7vx2D": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "YnjypQa2iOoISo8z",
+                "type": "itemRollRuleTrigger",
+                "eventRelation": ""
+              },
+              "_id": "xiIh9Yis2rd7vx2D",
+              "actions": {
+                "gGpUNuLWcVKctAQO": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "gGpUNuLWcVKctAQO",
+                  "action": "update",
+                  "identifier": "impending-doom",
+                  "notify": false,
+                  "amount": "1"
+                }
+              },
+              "predicates": {},
+              "selector": "source",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": 0,
+        "combat": null,
+        "startRound": 37,
+        "startTurn": 0
+      },
+      "disabled": false,
+      "_id": "4t9m69SdQmrhhpCY",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Impending Doom",
+            "actorUuid": null,
+            "itemUuid": "Scene.bocuEMp0H64TlFhR.Token.jmBXMiSgeyrl0yb9.Actor.UN1GO0JuY91ypu88.Item.AcRaWJ3vlAQHxiqG",
+            "effectUuid": null,
+            "fuid": "impending-doom"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!O98KC5i4kMlTOjnA.4t9m69SdQmrhhpCY"
+    }
+  ],
+  "folder": "EPexzx5pMkqZD8ai",
+  "ownership": {
+    "default": 0,
+    "UvCiJsCjJ2VCTD5X": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1779091483140,
+    "modifiedTime": 1779091483140,
+    "lastModifiedBy": "UvCiJsCjJ2VCTD5X"
+  },
+  "_id": "O98KC5i4kMlTOjnA",
+  "sort": 0,
+  "_key": "!items!O98KC5i4kMlTOjnA"
+}

@@ -4,33 +4,50 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
-    "fuid": "physical-absorption"
+    "fuid": "physical-absorption",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.AJ3s10l6VtnmFvHg",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Physical Absorption",
       "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
-      "_id": "EnUMtiFQzun4M3t2",
-      "type": "base",
+      "origin": "Compendium.projectfu.actor-effects.Item.AJ3s10l6VtnmFvHg",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BmP9ayHflG3QJCjH",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.physical.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Absorption to <strong>physical</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Physical Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.AJ3s10l6VtnmFvHg",
+            "effectUuid": null,
+            "fuid": "physical-absorption"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725752477568,
-        "modifiedTime": 1747230705463,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815781118,
+        "modifiedTime": 1774815794513,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!AJ3s10l6VtnmFvHg.EnUMtiFQzun4M3t2"
+      "_key": "!items.effects!AJ3s10l6VtnmFvHg.BmP9ayHflG3QJCjH"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1747230700285,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760891449,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "AJ3s10l6VtnmFvHg",

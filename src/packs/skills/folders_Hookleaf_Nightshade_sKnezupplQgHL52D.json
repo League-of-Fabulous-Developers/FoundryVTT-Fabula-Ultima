@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Hookleaf Nightshade",
+  "color": "#342022",
+  "sorting": "a",
+  "_id": "sKnezupplQgHL52D",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771835699146
+  },
+  "_key": "!folders!sKnezupplQgHL52D"
+}

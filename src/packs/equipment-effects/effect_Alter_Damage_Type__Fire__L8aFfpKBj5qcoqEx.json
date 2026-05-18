@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Fire)",
   "type": "effect",
   "_id": "L8aFfpKBj5qcoqEx",
-  "img": "systems/projectfu/styles/static/affinities/fire.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
-    "fuid": "change-damage-type"
+    "fuid": "alter-damage-type-fire",
+    "source": ""
   },
   "effects": [
     {
@@ -21,10 +22,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Fire)",
-      "img": "systems/projectfu/styles/static/affinities/fire.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "_id": "8pd9i30YrQ982pG1",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>fire</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725773939919,
-        "modifiedTime": 1725774030168,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732852906,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!L8aFfpKBj5qcoqEx.8pd9i30YrQ982pG1"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725773893485,
-    "modifiedTime": 1725774013723,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732850275,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!L8aFfpKBj5qcoqEx"

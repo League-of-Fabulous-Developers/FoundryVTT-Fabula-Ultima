@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "JgJ5QxpvmKtSkigy",
+  "name": "Damage Resistance",
+  "color": "#74431a",
+  "sorting": "a",
+  "_id": "e2xF1TahnhKRCTqB",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774767086519
+  },
+  "_key": "!folders!e2xF1TahnhKRCTqB"
+}

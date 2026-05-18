@@ -52,6 +52,12 @@ FU.attributeIcons = {
 	wlp: 'fu-wlp',
 };
 
+FU.derivedIcons = {
+	def: 'fas fa-shield',
+	mdef: 'fas fa-shield-halved',
+	init: 'fas fa-clock',
+};
+
 FU.currencies = {
 	zenit: {
 		label: 'FU.Zenit',
@@ -88,16 +94,16 @@ FU.damageTypes = {
  * @type {Object<DamageType, string>}
  */
 FU.affIcon = {
-	physical: 'fua fu-physical',
-	air: 'fua fu-air',
-	bolt: 'fua fu-bolt',
-	dark: 'fua fu-dark',
-	earth: 'fua fu-earth',
-	fire: 'fua fu-fire',
-	ice: 'fua fu-ice',
-	light: 'fua fu-light',
-	poison: 'fua fu-poison',
-	untyped: 'fua fu-untyped',
+	physical: 'fu-physical',
+	air: 'fu-air',
+	bolt: 'fu-bolt',
+	dark: 'fu-dark',
+	earth: 'fu-earth',
+	fire: 'fu-fire',
+	ice: 'fu-ice',
+	light: 'fu-light',
+	poison: 'fu-poison',
+	untyped: 'fu-untyped',
 };
 
 /**
@@ -127,9 +133,19 @@ FU.checkIcons = {
 	ritual: 'fu-check-ritual',
 	difficulty: 'fu-roll-difficulty',
 	result: 'fu-roll-result',
+	base: 'fu-roll-base',
 	mod: 'fu-roll-modifier',
 	hr: 'fu-roll-high',
 	target: 'fu-roll-target',
+};
+
+FU.statusIcons = {
+	slow: 'fu-slow',
+	dazed: 'fu-dazed',
+	weak: 'fu-weak',
+	shaken: 'fu-shaken',
+	enraged: 'fu-enraged',
+	poisoned: 'fu-poisoned',
 };
 
 FU.resourceIcons = {
@@ -158,6 +174,10 @@ FU.affTypeAbbr = {
 	3: 'FU.AffinityAbsorptionAbbr',
 };
 
+/**
+ * @typedef {'none'|'vulnerability'|'resistance'|'immunity'|'absorption'} FUAffinity
+ */
+
 FU.affValue = {
 	vulnerability: -1,
 	none: 0,
@@ -165,6 +185,19 @@ FU.affValue = {
 	immunity: 2,
 	absorption: 3,
 };
+
+FU.affinities = {
+	vulnerability: 'FU.AffinityVulnerable',
+	none: 'FU.AffinityNormal',
+	resistance: 'FU.AffinityResistance',
+	immunity: 'FU.AffinityImmune',
+	absorption: 'FU.AffinityAbsorption',
+};
+
+/**
+ * @desc For reverse lookups.
+ */
+FU.affinityKeyByValue = Object.fromEntries(Object.entries(FU.affValue).map(([k, v]) => [v, k]));
 
 /**
  * @typedef {"beast" | "construct" | "demon" | "elemental" | "humanoid" | "monster" | "plant" | "undead" | "custom"} FUSpeciesKey
@@ -215,6 +248,10 @@ FU.studyResult = {
 	detailed: 'FU.Detailed',
 };
 
+/**
+ * @typedef {'basic' | 'weapon' | 'shield' | 'armor' | 'accessory' | 'consumable' | 'treasure' | 'class' | 'classFeature' | 'optionalFeature' | 'skill' | 'heroic' | 'spell' | 'miscAbility' | 'rule' | 'behavior' | 'ritual' | 'project' | 'effect'} FUItemType
+ */
+
 FU.itemTypes = {
 	basic: 'TYPES.Item.basic',
 	weapon: 'TYPES.Item.weapon',
@@ -254,15 +291,15 @@ FU.actionTypes = {
 };
 
 FU.actionIcons = {
-	attack: 'ra ra-crossed-swords', // attack / melee
-	equipment: 'ra ra-armor', // equipment / gear
-	guard: 'ra ra-shield', // guard / defense
-	hinder: 'ra ra-interdiction', // hinder / block
-	inventory: 'ra ra-ammo-bag', // inventory / bag
-	objective: 'ra ra-targeted', // objective / goal
-	spell: 'ra ra-crystal-wand', // spell / magic
-	study: 'ra ra-book', // study / learn
-	skill: 'ra ra-muscle-up', // skill / ability improvement
+	attack: 'ra ra-crossed-swords',
+	equipment: 'ra ra-vest',
+	guard: 'ra ra-shield',
+	hinder: 'ra ra-interdiction',
+	inventory: 'ra ra-ammo-bag',
+	objective: 'ra ra-targeted',
+	spell: 'ra ra-crystal-wand',
+	study: 'ra ra-book',
+	skill: 'ra ra-trophy',
 };
 
 FU.actionRule = {
@@ -518,10 +555,11 @@ FU.resourcesAbbr = {
 	zenit: 'FU.Zenit',
 };
 
-FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
+FU.combatHudResources = {
+	...FU.resources,
 	zeropower: 'ITEM.TypeZeroPower',
 	none: 'FU.None',
-});
+};
 
 /**
  * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "ritual", "initiative", "display"} CheckType
@@ -621,7 +659,7 @@ FU.duration = {
 };
 
 /**
- * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+ * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'startOfRound' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
  */
 
 /**
@@ -631,12 +669,14 @@ FU.combatEvent = {
 	startOfCombat: 'FU.StartOfCombat',
 	startOfTurn: 'FU.StartOfTurn',
 	endOfTurn: 'FU.EndOfTurn',
+	startOfRound: 'FU.StartOfRound',
 	endOfRound: 'FU.EndOfRound',
 	endOfCombat: `FU.EndOfCombat`,
 };
 
 /**
  * @typedef {'none' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfScene' | 'rest'} FUEffectDuration
+ * @remarks Not all combat events are used for effect durations.
  */
 
 /**
@@ -696,6 +736,16 @@ FU.combatHudThemes = {
 	'fu-pixel': 'FU.CombatHudPixel',
 };
 
+/**
+ * @typedef {"classic"|"modern"} FUPartySheetTheme
+ */
+
+FU.partySheetThemes = {
+	classic: 'FU.THEMES.Classic',
+	modern: 'FU.THEMES.Modern',
+	crystal: 'FU.THEMES.Crystal',
+};
+
 FU.combatHudThemeTemplates = {
 	'fu-default': 'combat-hud-default',
 	'fu-modern': 'combat-hud-modern',
@@ -716,7 +766,7 @@ FU.rank = {
 };
 
 /**
- * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support"} RoleType
+ * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support", "baseline"} RoleType
  */
 
 /**
@@ -730,6 +780,7 @@ FU.role = {
 	saboteur: 'FU.Saboteur',
 	sentinel: 'FU.Sentinel',
 	support: 'FU.Support',
+	baseline: 'FU.Baseline',
 };
 
 /**
@@ -880,8 +931,6 @@ FU.itemGroup = {
 	item: 'FU.Item',
 };
 
-FU.damageSource = FU.itemGroup;
-
 /**
  * @typedef {"skill" | "spell" | "item"} FUExpenseSource
  */
@@ -901,13 +950,13 @@ FU.consumableAction = {
 };
 
 /**
- * @typedef {"odd" | "even"} FUCheckParity
+ * @typedef {"odd" | "even"} FUParity
  */
 
 /**
- * @description Used as a predicate for rules involving accuracy checks
+ * @description Property of an integer of whether it is even or odd.
  */
-FU.checkParity = Object.freeze({
+FU.parity = Object.freeze({
 	even: 'FU.Even',
 	odd: 'FU.Odd',
 });
@@ -927,7 +976,7 @@ FU.checkOutcome = Object.freeze({
 });
 
 /**
- * @typedef {"admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
+ * @typedef {"admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondEmotion
  */
 
 FU.bondPredicate = {
@@ -992,6 +1041,12 @@ FU.scalarOperation = {
  * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
  */
 
+/**
+ * @typedef FUThreshold
+ * @property {FUComparisonOperator} operator
+ * @property {Number} amount
+ */
+
 FU.comparisonOperator = {
 	greaterThan: 'FU.GreaterThan',
 	equals: 'FU.Equals',
@@ -1032,6 +1087,28 @@ FU.modifyDamageVariant = {
 	psychicGift: 'FU.ClassFeaturePsychicGiftLabel',
 };
 
+FU.bondIcons = {
+	admiration: 'ra ra-crowned-heart',
+	inferiority: 'ra ra-player-despair',
+	loyalty: 'ra ra-shield',
+	mistrust: 'ra ra-interdiction',
+	affection: 'ra ra-hearts',
+	hatred: 'ra ra-death-skull',
+};
+
+FU.invocationIcons = {
+	basic: 'ra ra-blast',
+	advanced: 'ra ra-burning-eye',
+	superior1: 'ra ra-sapphire',
+	superior2: 'ra ra-emerald',
+
+	air: 'fu-air',
+	earth: 'fu-earth',
+	fire: 'fu-fire',
+	lightning: 'fu-bolt',
+	water: 'fu-water',
+};
+
 /**
  * @desc All commonly-used icons throughout the system.
  * @remarks Make sure icon declarations in this file are before this one.
@@ -1039,10 +1116,14 @@ FU.modifyDamageVariant = {
 FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
-	melee: 'is-melee',
-	range: 'is-range',
-	spell: 'is-spell',
+	melee: 'fa-solid fa-sword',
+	armor: 'ra ra-helmet',
+	shield: 'ra ra-shield',
+	range: 'fa-solid fa-bow-arrow',
+	spell: 'fa-solid fa-wand-magic-sparkles',
 	skill: 'is-skill',
+	heroic: 'ra ra-crowned-heart',
+	class: 'ra ra-tower',
 	twoweapon: 'is-two-weapon',
 	header: 'is-header',
 	diamond: 'is-diamond',
@@ -1053,15 +1134,36 @@ FU.allIcon = {
 	damage: 'fu-damage',
 	type: 'fu-type',
 	stagger: 'fu-stagger',
-	info: 'fas fa-circle-info',
+
 	compendium: 'fas fa-book',
+
+	info: 'fas fa-circle-info',
 	warning: 'fas fa-triangle-exclamation',
+	help: 'fas fa-circle-question',
+
+	villain: 'ra ra-bleeding-eye',
+	rank: 'fas fa-shield',
+	species: 'fas fa-paw',
+	vulnerability: 'fas fa-heart-crack',
+	level: 'fas fa-star',
+
+	bond: 'fas fa-bookmark',
+	admInf: 'fas fa-medal',
+	loyMis: 'fas fa-handshake',
+	affHat: 'fas fa-fire',
+
+	...FU.bondIcons,
+
+	...FU.actionIcons,
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
+	...FU.statusIcons,
 	...FU.resourceIcons,
 	...FU.attributeIcons,
+	...FU.derivedIcons,
 	...FU.weaponCategoryIcons,
+	...FU.invocationIcons,
 };
 
 /**
@@ -1077,3 +1179,26 @@ FU.compendiumBrowserPacks = Object.freeze({
 	system: 'FU.System',
 	custom: 'FU.Custom',
 });
+
+/**
+ * @typedef {'character'|'location'|'faction'|'event'} FUCodexTag
+ */
+
+FU.codexTags = Object.freeze({
+	character: 'FU.CODEX.Character',
+	location: 'FU.CODEX.Location',
+	faction: 'FU.CODEX.Faction',
+	event: 'FU.CODEX.Event',
+	lore: 'FU.CODEX.Lore',
+	glossary: 'FU.CODEX.Glossary',
+});
+
+/**
+ * @typedef {'mainHand', 'offHand', 'armor', 'accessory', 'phantom', 'arcanum'} FUEquipmentSlot
+ */
+
+FU.equipmentSlots = {
+	mainHand: 'FU.MainHand',
+	offHand: 'FU.OffHand',
+	phantom: 'FU.PhantomHand',
+};

@@ -1,0 +1,137 @@
+{
+  "folder": "ao7cVB1tz3p47PiE",
+  "name": "Hunter (Monster)",
+  "type": "effect",
+  "_id": "KobutcjI6kOmLJyd",
+  "img": "systems/projectfu/styles/static/icons/monster.svg",
+  "system": {
+    "fuid": "hunter-monster",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Hunter (Monster)",
+      "img": "systems/projectfu/styles/static/icons/monster.svg",
+      "origin": "Compendium.projectfu.equipment-effects.Item.KobutcjI6kOmLJyd",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "C9sh0713pLJabuwf": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "IoLcia3YGvt7vw26",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "C9sh0713pLJabuwf",
+              "predicates": {
+                "Mz5bi20s0zCrr12h": {
+                  "type": "speciesRulePredicate",
+                  "_id": "Mz5bi20s0zCrr12h",
+                  "species": [
+                    "monster"
+                  ]
+                }
+              },
+              "actions": {
+                "QVvLMp5AFI7ahh8E": {
+                  "type": "messageRuleAction",
+                  "_id": "QVvLMp5AFI7ahh8E",
+                  "message": "<p>If <strong>monster</strong> target, deal 5 extra damage to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3swAR9W7x7DYGrV0",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The weapon deals 5 extra damage to <strong>monsters</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Hunter (Monster)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.KobutcjI6kOmLJyd",
+            "effectUuid": null,
+            "fuid": "hunter-monster"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774724127108,
+        "modifiedTime": 1774729519288,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!KobutcjI6kOmLJyd.3swAR9W7x7DYGrV0"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774724122814,
+    "modifiedTime": 1774724125979,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!KobutcjI6kOmLJyd"
+}

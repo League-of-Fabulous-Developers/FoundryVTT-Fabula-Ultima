@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>You gain the ability to perform Rituals of the </span><strong>Ritualism</strong><span> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to <strong>create, animate, and/or control vegetation, pollen, spores, and toxins</strong> (but you cannot create nor control <strong>plant</strong>-Species NPCs this way).</span></p>",
+    "description": "<p><span>You gain the ability to perform Rituals of the </span><strong>Ritualism</strong><span> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to <strong>create, animate, and/or control vegetation, pollen, spores, and toxins</strong> (but you cannot create nor control <strong>plant</strong>-Species NPCs this way).</span></p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Floralist"
+      "value": "floralist"
     },
     "useWeapon": {
       "accuracy": false,
@@ -62,6 +62,11 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -87,8 +92,10 @@
               "trigger": {
                 "_id": "B5TVkslZqhw6S2Ye",
                 "type": "renderCheckRuleTrigger",
-                "eventRelation": "",
-                "checkTypes": [],
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
                 "itemGroups": [],
                 "local": true,
                 "identifier": ""
@@ -105,7 +112,8 @@
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -128,10 +136,10 @@
       "_id": "QCCwyyS8K7E3xYAW",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Verdant Sway</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -143,7 +151,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770369753697,
-        "modifiedTime": 1770369792546,
+        "modifiedTime": 1771835499776,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!ilAq8Q2OSE3oCVdi.QCCwyyS8K7E3xYAW"
@@ -156,7 +164,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -166,7 +175,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770369809309,
+    "modifiedTime": 1775527458493,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -9,7 +9,9 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
-import { SectionChatBuilder } from '../../../../helpers/section-chat-builder.mjs';
+import { FUChatBuilder } from '../../../../helpers/chat-builder.mjs';
+import { ResourcePipeline } from '../../../../pipelines/resource-pipeline.mjs';
+import { FeatureTraits } from '../../../../pipelines/traits.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -62,7 +64,7 @@ export class VersesApplication extends FUApplication {
 	/** @type ApplicationConfiguration */
 	static DEFAULT_OPTIONS = {
 		window: { title: 'FU.ClassFeatureVerseSingDialogTitle', minimizable: false },
-		classes: ['form', 'projectfu', 'verses-app'],
+		classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog', 'verses-app'],
 		position: {
 			width: 550,
 			height: 'auto',
@@ -277,22 +279,24 @@ export class VersesApplication extends FUApplication {
 
 		// Prepare the data object for the chat message
 		let flags = { [SYSTEM]: { [Flags.ChatMessage.Item]: this.#verse } };
-		const cost = this.#verse.config[volumeSelection];
+		const mpCost = this.#verse.config[volumeSelection];
 		const actor = this.#verse.actor;
 		const item = this.#verse.item;
 		const targets = Targeting.getSerializedTargetData();
-		const expense = new ActionCostDataModel({
+		const cost = new ActionCostDataModel({
 			resource: 'mp',
-			amount: cost,
+			amount: mpCost,
 			perTarget: false,
 		});
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
 
 		// Data for the template
 		const enriched = await enrichDescription(this.#verse);
 		const data = {
 			verse: this.#verse,
 			volume: volumes[volumeSelection],
-			cost: cost,
+			cost: mpCost,
 			targets: volumeTargets[volumeSelection],
 			key: this.#verse.key?.name || '',
 			tone: this.#verse.tone?.name || '',
@@ -314,15 +318,26 @@ export class VersesApplication extends FUApplication {
 			},
 		];
 
-		const builder = new SectionChatBuilder(actor, item);
+		/** @type FURenderData **/
+		const renderData = {
+			sections: [],
+			postRenderActions: [],
+			tags: tags,
+		};
+
+		CommonSections.itemFlavor(renderData.sections, this.#verse.parent.parent);
+		CommonSections.description(renderData.sections, enriched);
+		CommonSections.expense(renderData, actor, item, targets, flags, expense);
+
+		await CommonEvents.feature(actor, item, [FeatureTraits.Verse], targets, renderData);
+
+		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
-		CommonSections.itemFlavor(builder.renderData, this.#verse.parent.parent);
-		CommonSections.tags(builder.renderData, tags);
-		CommonSections.genericText(builder.renderData, enriched);
-		CommonSections.spendResource(builder.renderData, actor, item, expense, targets, flags);
+		builder.withData(renderData);
 		await builder.create();
 
 		CommonEvents.skill(actor, item);
+
 		this.close();
 	}
 }

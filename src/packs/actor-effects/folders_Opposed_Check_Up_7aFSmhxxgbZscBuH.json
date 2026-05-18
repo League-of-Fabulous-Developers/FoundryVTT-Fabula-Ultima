@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "OkqwV9Qct6wMjKU4",
+  "name": "Opposed Check Up",
+  "color": "#014083",
+  "sorting": "a",
+  "_id": "7aFSmhxxgbZscBuH",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768712855
+  },
+  "_key": "!folders!7aFSmhxxgbZscBuH"
+}

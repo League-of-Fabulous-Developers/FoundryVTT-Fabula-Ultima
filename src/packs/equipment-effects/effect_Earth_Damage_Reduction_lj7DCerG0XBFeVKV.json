@@ -1,0 +1,110 @@
+{
+  "folder": "AeIKzfJeywgb32S5",
+  "name": "Earth Damage Reduction",
+  "type": "effect",
+  "_id": "lj7DCerG0XBFeVKV",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+  "system": {
+    "fuid": "earth-damage-reduction",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Earth Damage Reduction",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.lj7DCerG0XBFeVKV",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "cWIHFkKlztZq0YTa",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.earth",
+          "mode": 2,
+          "value": "-5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all <strong>earth</strong> damage you suffer is <strong>reduced by 5</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Earth Damage Reduction",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.lj7DCerG0XBFeVKV",
+            "effectUuid": null,
+            "fuid": "earth-damage-reduction"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774830879893,
+        "modifiedTime": 1774830908241,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!lj7DCerG0XBFeVKV.cWIHFkKlztZq0YTa"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774830699095,
+    "modifiedTime": 1774830699095,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!lj7DCerG0XBFeVKV"
+}

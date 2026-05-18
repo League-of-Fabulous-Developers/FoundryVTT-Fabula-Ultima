@@ -4,17 +4,18 @@ import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-mode
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { ChatSectionOrder } from '../../../../checks/default-section-order.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item) => {
+const onRenderCheck = (data, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel && item.system.data instanceof QuirkDataModel) {
 		/** @type QuirkDataModel */
 		const quirk = item.system.data;
 		if (quirk.hasResource.value) {
-			CommonSections.resource(sections, quirk.rp, -1);
+			CommonSections.resource(data.sections, quirk.rp, ChatSectionOrder.tracker);
 		}
 		if (quirk.hasClock.value) {
-			CommonSections.clock(sections, quirk.progress, -1);
+			CommonSections.clock(data.sections, quirk.progress, ChatSectionOrder.tracker);
 		}
 	}
 };
@@ -69,21 +70,10 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 
 	static async getResourceDataString(model) {
 		const { rp, hasResource } = model;
-
-		// Determine resource display status
-		const resourceDisplay =
-			(hasResource?.value ?? true)
-				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
-						data: rp,
-					})
-				: '';
-
-		// Create HTML content
-		return `
-		<div style="display: grid;">
-			${resourceDisplay}
-		</div>
-		`;
+		if (hasResource) {
+			return await ProgressDataModel.renderDetails(rp);
+		}
+		return '';
 	}
 
 	static async getClockDataString(model) {

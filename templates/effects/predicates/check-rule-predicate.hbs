@@ -1,5 +1,5 @@
-<div class="fu-rule-element__property-row">
-	<label class="fu-rule-element__property">
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.Outcome'}}</span>
 		<select name="{{pfuConcat path ".outcome"}}">
 			<option value="">-</option>
@@ -7,19 +7,28 @@
 		</select>
 	</label>
 
-	<label class="fu-rule-element__property">
-		<span>{{localize 'FU.CheckParity'}}</span>
-		<select name="{{pfuConcat path ".parity"}}">
-			<option value="">-</option>
-			{{selectOptions options.checkParity selected=predicate.parity localize=true}}
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Quantifier'}}</span>
+		<select name="{{pfuConcat path ".quantifier"}}" class="">
+			{{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
 		</select>
 	</label>
 </div>
 
-<label class="fu-rule-element__property">
-	<span>{{localize 'FU.Result'}}</span>
-	<input type="number" name="{{pfuConcat path ".result"}}" value="{{ predicate.result }}" />
-</label>
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Result'}}</span>
+		<input type="number" name="{{pfuConcat path ".result"}}" value="{{ predicate.result }}" />
+	</label>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.CheckParity'}}</span>
+		<select name="{{pfuConcat path ".parity"}}">
+			<option value="">-</option>
+			{{selectOptions options.parity selected=predicate.parity localize=true}}
+		</select>
+	</label>
+</div>
 
 <div class="grid grid-2col">
 	<div class="flexcol flex-group-center">

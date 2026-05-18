@@ -4,33 +4,50 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
-    "fuid": "earth-resistance"
+    "fuid": "earth-resistance",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Earth Resistance",
       "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
-      "_id": "qtuzit3IPq9yaoJ4",
-      "type": "base",
+      "origin": "Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "hYPlMgoGNyGksFTo",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.earth",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Resistance to <strong>earth</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Earth Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG",
+            "effectUuid": null,
+            "fuid": "earth-resistance"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725754474466,
-        "modifiedTime": 1747231227187,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774816180961,
+        "modifiedTime": 1774816196484,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!H3SJ1fej3GSyHdKG.qtuzit3IPq9yaoJ4"
+      "_key": "!items.effects!H3SJ1fej3GSyHdKG.hYPlMgoGNyGksFTo"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1747231222773,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774761031326,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "H3SJ1fej3GSyHdKG",

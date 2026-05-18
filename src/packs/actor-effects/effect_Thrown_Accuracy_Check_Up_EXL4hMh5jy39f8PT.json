@@ -1,0 +1,111 @@
+{
+  "folder": "uVLG7Fn26UP2kgRX",
+  "name": "Thrown Accuracy Check Up",
+  "type": "effect",
+  "_id": "EXL4hMh5jy39f8PT",
+  "img": "systems/projectfu/styles/static/icons/weapons/thrown.png",
+  "system": {
+    "fuid": "thrown-accuracy-check-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Thrown Accuracy Check Up",
+      "img": "systems/projectfu/styles/static/icons/weapons/thrown.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.EXL4hMh5jy39f8PT",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "h6KZwa9vcOwEw9RF",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.thrown",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>thrown</strong> weapons.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Thrown Accuracy Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.EXL4hMh5jy39f8PT",
+            "effectUuid": null,
+            "fuid": "thrown-accuracy-check-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774817691201,
+        "modifiedTime": 1774817705044,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!EXL4hMh5jy39f8PT.h6KZwa9vcOwEw9RF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774758993808,
+    "modifiedTime": 1774759163448,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!EXL4hMh5jy39f8PT"
+}

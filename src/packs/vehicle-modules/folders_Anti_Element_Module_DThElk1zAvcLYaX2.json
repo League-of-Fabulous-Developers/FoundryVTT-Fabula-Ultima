@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "YZfj9t5N2M9Pg7aI",
+  "name": "Anti-Element Module",
+  "color": "#57350f",
+  "sorting": "a",
+  "_id": "DThElk1zAvcLYaX2",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1773730710952
+  },
+  "_key": "!folders!DThElk1zAvcLYaX2"
+}

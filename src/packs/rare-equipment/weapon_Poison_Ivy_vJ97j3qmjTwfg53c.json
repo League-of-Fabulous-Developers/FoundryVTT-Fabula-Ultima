@@ -1,0 +1,197 @@
+{
+  "folder": "qYtBD5MEfzGg5HdQ",
+  "name": "Poison Ivy",
+  "type": "weapon",
+  "_id": "vJ97j3qmjTwfg53c",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/flail-triple-green.png",
+  "system": {
+    "fuid": "poison-ivy",
+    "description": "<p>Each target hit by this weapon suffers <strong>poisoned</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2250
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Inflict Poisoned"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "dex"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 8
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "flail"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "earth"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Poison Ivy",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/flail-triple-green.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.vJ97j3qmjTwfg53c",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "KMZiOoUKCcPOFSqU": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "RVnfyI6N0SiLY1UG",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "KMZiOoUKCcPOFSqU",
+              "actions": {
+                "0xiIk6dltxg7Ow1n": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "0xiIk6dltxg7Ow1n",
+                  "effect": "poisoned"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UpJq71E5vQixA3hY",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>poisoned</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Poison Ivy",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.vJ97j3qmjTwfg53c",
+            "effectUuid": null,
+            "fuid": "poison-ivy"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774740691178,
+        "modifiedTime": 1775709188537,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!vJ97j3qmjTwfg53c.UpJq71E5vQixA3hY"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774740675904,
+    "modifiedTime": 1777530918156,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!vJ97j3qmjTwfg53c"
+}

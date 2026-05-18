@@ -1,0 +1,142 @@
+{
+  "folder": "BlKCuhMT72VW7Anp",
+  "name": "Light Thorns",
+  "type": "effect",
+  "_id": "KMN8Y4jyfMR6Wjm9",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
+  "system": {
+    "fuid": "light-thorns",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Light Thorns",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.KMN8Y4jyfMR6Wjm9",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "E4t1F9fuqCgJN227": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "qCoDB3kRtqMcShnK",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "E4t1F9fuqCgJN227",
+              "predicates": {
+                "1UA73VKchXwNqWZm": {
+                  "type": "checkRulePredicate",
+                  "_id": "1UA73VKchXwNqWZm",
+                  "outcome": "success",
+                  "result": null
+                },
+                "u2LC5FUGGlVwNHJD": {
+                  "type": "weaponRulePredicate",
+                  "_id": "u2LC5FUGGlVwNHJD",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "tOzI7u5Uw2IQ3STj": {
+                  "type": "messageRuleAction",
+                  "_id": "tOzI7u5Uw2IQ3STj",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 light] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "k2DYLkBY8oCk6fhY",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>light</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Light Thorns",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.KMN8Y4jyfMR6Wjm9",
+            "effectUuid": null,
+            "fuid": "light-thorns"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774749103160,
+        "modifiedTime": 1774749973674,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!KMN8Y4jyfMR6Wjm9.k2DYLkBY8oCk6fhY"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774748449206,
+    "modifiedTime": 1774749101646,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!KMN8Y4jyfMR6Wjm9"
+}

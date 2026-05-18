@@ -1,0 +1,177 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Unarmed Strike: Akromorphosis",
+  "type": "weapon",
+  "_id": "XlN2TtdK4Sn4ssQS",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_akromorphosis.png",
+  "system": {
+    "fuid": "unarmed-strike-akromorphosis",
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>A version of an <strong>unarmed strike</strong> granted by the <strong>Akromorphosis</strong> Skill.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 0
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": ""
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 0
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "source": "FUTF155",
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Akromorphosis",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_akromorphosis.png",
+      "type": "base",
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "changes": [
+        {
+          "key": "system.damage.value",
+          "mode": 2,
+          "value": "6+(&sl(\"akromorphosis\")*2)",
+          "priority": null
+        },
+        {
+          "key": "system.accuracy.value",
+          "mode": 2,
+          "value": "&sl(\"akromorphosis\")",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p>",
+      "origin": "Compendium.projectfu.skills.Item.WV3lBnVzMFBB2irj",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF155",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1740172175749,
+        "modifiedTime": 1771838624387,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "exportSource": null
+      },
+      "_id": "v81MYXQ0Fkt9JjVa",
+      "_key": "!items.effects!XlN2TtdK4Sn4ssQS.v81MYXQ0Fkt9JjVa"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "esOkelwPNblkbxW3": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1740172132903,
+    "modifiedTime": 1771838767067,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "_key": "!items!XlN2TtdK4Sn4ssQS"
+}

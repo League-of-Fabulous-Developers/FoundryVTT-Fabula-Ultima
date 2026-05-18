@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "NPC Skills",
+  "color": "#06402b",
+  "sorting": "a",
+  "_id": "EPexzx5pMkqZD8ai",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1779091455645,
+    "modifiedTime": 1779091472779,
+    "lastModifiedBy": "UvCiJsCjJ2VCTD5X"
+  },
+  "_key": "!folders!EPexzx5pMkqZD8ai"
+}

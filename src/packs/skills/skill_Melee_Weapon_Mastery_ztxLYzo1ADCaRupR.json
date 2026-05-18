@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Weaponmaster"
+      "value": "weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -117,7 +117,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "melee-weapon-mastery"
+    "fuid": "melee-weapon-mastery",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -141,7 +144,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a bonus equal to<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【SL</strong><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">】</strong>to all Accuracy Checks with <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">melee </strong>weapons. </span></p>",
+      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons. </p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -153,19 +156,30 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1744750237269,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1771884547389,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_melee_weapon_mastery.png",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "origin": null,
       "sort": 0,
       "_key": "!items.effects!ztxLYzo1ADCaRupR.Sks7cSsjFlEgMg53"
@@ -178,15 +192,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706514138632,
-    "modifiedTime": 1741948268073,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770619200194,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

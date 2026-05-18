@@ -1,0 +1,133 @@
+{
+  "folder": "sQ8axLKVw7WoLhp4",
+  "name": "Warm Cloak",
+  "type": "accessory",
+  "_id": "I2xHm0C7Y9krNXsW",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-brown.png",
+  "system": {
+    "fuid": "warm-cloak",
+    "description": "<p>You are immune to <strong>shaken</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "quality": {
+      "value": "Anti Shaken"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Warm Cloak",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-brown.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.I2xHm0C7Y9krNXsW",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "KQJKTFBbIhZqapXf",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.shaken.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you are immune to <strong>shaken</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Warm Cloak",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.I2xHm0C7Y9krNXsW",
+            "effectUuid": null,
+            "fuid": "warm-cloak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775681665820,
+        "modifiedTime": 1775708191079,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!I2xHm0C7Y9krNXsW.KQJKTFBbIhZqapXf"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774652103098,
+    "modifiedTime": 1777529906886,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!I2xHm0C7Y9krNXsW"
+}

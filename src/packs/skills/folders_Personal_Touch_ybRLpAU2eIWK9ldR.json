@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "XW8tPjIw2b07tMQv",
+  "name": "Personal Touch",
+  "color": "#123840",
+  "sorting": "a",
+  "_id": "ybRLpAU2eIWK9ldR",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771877847168
+  },
+  "_key": "!folders!ybRLpAU2eIWK9ldR"
+}

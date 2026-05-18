@@ -1,0 +1,197 @@
+{
+  "folder": "qYtBD5MEfzGg5HdQ",
+  "name": "Anklebiter",
+  "type": "weapon",
+  "_id": "TiyKCce44rCH1NAi",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/dagger-black.png",
+  "system": {
+    "fuid": "anklebiter",
+    "description": "<p>Each target hit by this weapon suffers <strong>slow</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1650
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Inflict Slow"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 1
+    },
+    "defense": "def",
+    "damage": {
+      "value": 4
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "dagger"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Anklebiter",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/dagger-black.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.TiyKCce44rCH1NAi",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Qcz8Og2p5udg2I2h": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "atZIAqpgofwaNvvp",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "Qcz8Og2p5udg2I2h",
+              "actions": {
+                "xaWJVN0ooE8x4dde": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "xaWJVN0ooE8x4dde",
+                  "effect": "slow"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "jljc0mpAdxJpHPcL",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>slow</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Anklebiter",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.TiyKCce44rCH1NAi",
+            "effectUuid": null,
+            "fuid": "anklebiter"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774739625445,
+        "modifiedTime": 1775709153866,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!TiyKCce44rCH1NAi.jljc0mpAdxJpHPcL"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774739543158,
+    "modifiedTime": 1777530891619,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!TiyKCce44rCH1NAi"
+}

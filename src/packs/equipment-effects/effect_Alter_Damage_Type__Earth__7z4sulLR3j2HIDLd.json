@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Earth)",
   "type": "effect",
   "_id": "7z4sulLR3j2HIDLd",
-  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
-    "fuid": "alter-damage-type-earth"
+    "fuid": "alter-damage-type-earth",
+    "source": ""
   },
   "effects": [
     {
@@ -21,10 +22,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Earth)",
-      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "_id": "sI51dmD9J3OQLbsb",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>earth</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725775775593,
-        "modifiedTime": 1725775814235,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732840628,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!7z4sulLR3j2HIDLd.sI51dmD9J3OQLbsb"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725775754748,
-    "modifiedTime": 1725775819595,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732831043,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!7z4sulLR3j2HIDLd"

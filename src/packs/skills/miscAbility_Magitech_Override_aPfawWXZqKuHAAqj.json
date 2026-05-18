@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><strong>Required:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><p>During a conflict, you may use an action and spend 10 Mind Points to choose a <strong>construct</strong> or <strong>elemental</strong> enemy you can see that does not possess independent intelligence and is suffering from <strong>one or more status effects</strong>. If you do so, that enemy recovers from all status effects, then the Game Master reveals its <strong>entire profile</strong> and you may force it to immediately perform an action of your choice; during that action, the creature is treated as an ally of your group.</p>",
+    "description": "<p><strong>Requirement:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><hr /><p>During a conflict, you may use an action and spend 10 Mind Points to choose a <strong>construct</strong> or <strong>elemental</strong> enemy you can see that does not possess independent intelligence and is suffering from <strong>one or more status effects</strong>. If you do so, that enemy recovers from all status effects, then the Game Master reveals its <strong>entire profile</strong> and you may force it to immediately perform an action of your choice; during that action, the creature is treated as an ally of your group.</p>",
     "isFavored": {
       "value": false
     },
@@ -120,13 +120,21 @@
       }
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "opportunity": "",
     "defense": "def",
     "fuid": "magitech-override",
     "cost": {
       "amount": 10
+    },
+    "targeting": {
+      "rule": "single"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -150,8 +158,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711293254460,
-    "modifiedTime": 1768746411470,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771878897541,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

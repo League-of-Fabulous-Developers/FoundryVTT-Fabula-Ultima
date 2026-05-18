@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>Each time you acquire this Skill, you discover </span><strong>a new type of magiseed</strong> (see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>).</p><p><span>During a conflict, if there are <strong>no magiseeds</strong> in your </span><strong>garden</strong><span>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered.</span></p><hr /><p>For <strong>magiseed</strong> breakdown and a list of Magiseeds, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Magiseed Rules}<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX.JournalEntryPage.8e8kglGnqyKy1Nju]{Magiseed VTT Instructions}</p>",
+    "description": "<p><span>Each time you acquire this Skill, you discover </span><strong>a new type of magiseed</strong>.</p><p><span>During a conflict, if there are <strong>no magiseeds</strong> in your </span><strong>garden</strong><span>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered.</span></p><hr /><p>For <strong>magiseed</strong> breakdown and a list of <strong>Magiseeds</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Floralist Rules} or see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX.JournalEntryPage.8e8kglGnqyKy1Nju]{Magiseed VTT Instructions}</p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Floralist"
+      "value": "floralist"
     },
     "useWeapon": {
       "accuracy": false,
@@ -62,9 +62,84 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Garden",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/chloromancy.png",
+      "origin": "Compendium.projectfu.skills.Item.ZmzDl88kGMvrumoJ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": true,
+            "id": "garden",
+            "name": "Garden",
+            "current": 0,
+            "max": 4,
+            "style": "clock"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "iNGe7hdKe1Gwx2FQ",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Chloromancy",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.ZmzDl88kGMvrumoJ",
+            "effectUuid": null,
+            "fuid": "chloromancy"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774899180736,
+        "modifiedTime": 1774910823198,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!ZmzDl88kGMvrumoJ.iNGe7hdKe1Gwx2FQ"
+    }
+  ],
   "ownership": {
     "default": 0,
     "aylHtMTxbnWEKFH9": 3
@@ -72,7 +147,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -82,7 +158,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770369715468,
+    "modifiedTime": 1775527416946,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

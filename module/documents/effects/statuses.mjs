@@ -6,6 +6,11 @@ export const statusEffects = [
 		id: 'accelerated',
 		name: 'FU.Accelerated',
 		img: 'systems/projectfu/styles/static/statuses/Accelerated.webp',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'aura',
@@ -18,6 +23,11 @@ export const statusEffects = [
 				value: '12',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'barrier',
@@ -30,6 +40,11 @@ export const statusEffects = [
 				value: '12',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'cover',
@@ -71,6 +86,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'dex-up',
@@ -83,6 +103,11 @@ export const statusEffects = [
 				value: 'upgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'enraged',
@@ -110,6 +135,11 @@ export const statusEffects = [
 		id: 'flying',
 		name: 'FU.Flying',
 		img: 'systems/projectfu/styles/static/statuses/Flying.webp',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'guard',
@@ -186,6 +216,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'ins-up',
@@ -198,6 +233,11 @@ export const statusEffects = [
 				value: 'upgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'ko',
@@ -215,6 +255,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'mig-up',
@@ -227,21 +272,41 @@ export const statusEffects = [
 				value: 'upgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'provoked',
 		name: 'FU.Provoked',
 		img: 'systems/projectfu/styles/static/statuses/Provoked.webp',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'reflect',
 		name: 'FU.Reflect',
 		img: 'systems/projectfu/styles/static/statuses/Reflect.webp',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'regen',
 		name: 'FU.Regen',
 		img: 'systems/projectfu/styles/static/statuses/Regen.webp',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'shaken',
@@ -264,6 +329,11 @@ export const statusEffects = [
 		id: 'sleep',
 		name: 'FU.Sleep',
 		img: 'systems/projectfu/styles/static/statuses/Sleep.webp',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'slow',
@@ -332,6 +402,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'wlp-up',
@@ -344,6 +419,11 @@ export const statusEffects = [
 				value: 'upgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+		},
 	},
 	{
 		id: 'crisis',

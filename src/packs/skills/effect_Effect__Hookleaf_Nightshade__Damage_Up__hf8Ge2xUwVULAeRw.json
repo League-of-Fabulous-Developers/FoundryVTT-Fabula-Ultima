@@ -1,11 +1,11 @@
 {
-  "folder": "wU0wYafQu5AjChaf",
+  "folder": "sKnezupplQgHL52D",
   "name": "Effect: Hookleaf Nightshade (Damage Up)",
   "type": "effect",
   "_id": "hf8Ge2xUwVULAeRw",
-  "img": "icons/commodities/flowers/lotus-violet.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hookleaf-nightshade.png",
   "system": {
-    "fuid": "effect-hookleaf-nightshade",
+    "fuid": "effect-hookleaf-nightshade-damage-up",
     "cost": {
       "value": 0
     },
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "img": "icons/commodities/flowers/lotus-violet.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hookleaf-nightshade.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Hookleaf Damage Up",
+      "name": "Hookleaf Nightshade (Damage Up)",
       "_id": "2XWchLTOoMqRPAWv",
       "type": "base",
       "system": {
@@ -68,7 +68,7 @@
                 "9sIZw11n5ayz7HGk": {
                   "type": "messageRuleAction",
                   "_id": "9sIZw11n5ayz7HGk",
-                  "message": "<p>The first time you deal <strong>poison</strong>, you deal<strong> </strong>extra damage and those that lose HP suffer <strong>poisoned</strong>.</p>"
+                  "message": "<p>The first time you deal <strong>poison</strong>, you deal extra damage and those that lose HP suffer <strong>poisoned</strong>.</p>"
                 },
                 "zcjUlQnCPiFyk4rL": {
                   "type": "applyEffectRuleAction",
@@ -85,6 +85,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -92,11 +97,11 @@
         {
           "key": "system.bonuses.damage.poison",
           "mode": 2,
-          "value": "~&sl(chloromancy)",
+          "value": "~&sl('chloromancy')",
           "priority": null
         }
       ],
-      "description": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances. Additionally, when you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
+      "description": "<p>When you deal <strong>poison</strong> damage for the first time during your turn while this magiseed is <strong>planted</strong>, you deal extra damage equal to <strong>【SL in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -110,14 +115,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744511346207,
-        "modifiedTime": 1770423260237,
+        "modifiedTime": 1777433822033,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!hf8Ge2xUwVULAeRw.2XWchLTOoMqRPAWv"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -130,7 +135,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744511343361,
-    "modifiedTime": 1770423105679,
+    "modifiedTime": 1777431640414,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

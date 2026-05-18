@@ -1,0 +1,137 @@
+{
+  "folder": "ao7cVB1tz3p47PiE",
+  "name": "Hunter (Beast)",
+  "type": "effect",
+  "_id": "LCGIc7yuWiy78iLa",
+  "img": "systems/projectfu/styles/static/icons/beast.svg",
+  "system": {
+    "fuid": "hunter-beast",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Hunter (Beast)",
+      "img": "systems/projectfu/styles/static/icons/beast.svg",
+      "origin": "Compendium.projectfu.equipment-effects.Item.LCGIc7yuWiy78iLa",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "LnkKp618kTDOacdv": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Q2kd1YvjyJq303da",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "LnkKp618kTDOacdv",
+              "predicates": {
+                "AgO3CUrK4JM4Drpz": {
+                  "type": "speciesRulePredicate",
+                  "_id": "AgO3CUrK4JM4Drpz",
+                  "species": [
+                    "beast"
+                  ]
+                }
+              },
+              "actions": {
+                "QZOYDOwZloiKhio4": {
+                  "type": "messageRuleAction",
+                  "_id": "QZOYDOwZloiKhio4",
+                  "message": "<p>If <strong>beast</strong> target, deal 5 extra damage to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "dpQ2ufeAEDie08cH",
+      "type": "base",
+      "changes": [],
+      "description": "<p>This weapon deals 5 extra damage to <strong>beasts</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Hunter (Beast)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.LCGIc7yuWiy78iLa",
+            "effectUuid": null,
+            "fuid": "hunter-beast"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774722906731,
+        "modifiedTime": 1774729457027,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!LCGIc7yuWiy78iLa.dpQ2ufeAEDie08cH"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774722895355,
+    "modifiedTime": 1774722905323,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!LCGIc7yuWiy78iLa"
+}

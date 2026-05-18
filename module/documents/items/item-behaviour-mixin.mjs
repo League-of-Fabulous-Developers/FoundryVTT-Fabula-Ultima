@@ -45,7 +45,9 @@ export function ItemBehaviourMixin(BaseClass) {
 				for (let collection of Object.values(this.nestedCollections)) {
 					if (collection.documentClass === PseudoItem) {
 						for (let item of collection) {
-							effects.push(...item.transferredEffects);
+							if (this.system.transferNestedItem ? this.system.transferNestedItem(item) : true) {
+								effects.push(...item.transferredEffects);
+							}
 						}
 					}
 				}
@@ -60,10 +62,12 @@ export function ItemBehaviourMixin(BaseClass) {
 				yield effect;
 			}
 			for (let collection of Object.values(this.nestedCollections)) {
-				if (collection.documentClass === PseudoItem) {
+				if (foundry.utils.isSubclass(collection.documentClass, PseudoItem)) {
 					for (let item of collection) {
-						for (let effect of item.allEffects()) {
-							yield effect;
+						if (this.system.transferNestedItem ? this.system.transferNestedItem(item) : true) {
+							for (let effect of item.allEffects()) {
+								yield effect;
+							}
 						}
 					}
 				}
@@ -149,6 +153,14 @@ export function ItemBehaviourMixin(BaseClass) {
 		}
 
 		get canStash() {
+			// Make exceptions for specific class features
+			if (this.type === 'classFeature') {
+				switch (this.system.featureType) {
+					case 'projectfu.ingredient':
+						return true;
+				}
+			}
+			// Handle basic item types
 			return stashableTypes.has(this.type);
 		}
 
@@ -214,17 +226,22 @@ export function ItemBehaviourMixin(BaseClass) {
 		 */
 		getProgress() {
 			// Search for legacy clock data among the data models
+			// MiscAbilityDataModel
 			if (this.system.hasClock?.value) {
-				// MiscAbilityDataModel
 				return this.system.progress;
 			}
+			// SkillDataModel
 			if (this.system.hasResource?.value) {
-				// SkillDataModel
 				return this.system.rp;
 			}
+
+			// OptionalFeatureDataModel
 			if (this.system.data?.hasClock?.value) {
-				// OptionalFeatureDataModel
 				return this.system.data.progress;
+			}
+			// ClassFeatureDataModel (some such as GardenDataModel)
+			else if (this.system.data?.clock) {
+				return this.system.data.clock;
 			}
 			// Search among active effects in the item
 			for (const effect of this.effects.values()) {

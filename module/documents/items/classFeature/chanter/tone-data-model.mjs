@@ -5,11 +5,11 @@ import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item) => {
+const onRenderCheck = (data, check, actor, item) => {
 	if (item?.system?.data instanceof ToneDataModel) {
 		const additionalData = ToneDataModel.getAdditionalData(item.system.data);
 		CommonSections.description(
-			sections,
+			data.sections,
 			additionalData.then((data) => data.enrichedDescription),
 			item.system.summary.value,
 		);

@@ -5,6 +5,13 @@ import { FUItem } from '../documents/items/item.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
+import { systemId } from '../helpers/system-utils.mjs';
+import { isActiveEffectForStatusEffectId } from '../pipelines/effects.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
+import { Checks } from '../checks/checks.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -41,25 +48,30 @@ async function prepareData(context, sheet) {
 
 /**
  * @description Helper function to find the appropriate update configuration
+ * @param {FUActor} sourceActor
  * @param type
  * @param subtype
  * @returns {{types: string[], subtypes: string[], update: ((function(*, *): Promise<void>)|*)} | {types: string[], update: ((function(*): Promise<void>)|*)}}
  */
-function findItemConfig(type, subtype) {
+function findItemConfig(sourceActor, type, subtype) {
 	const itemTypeConfigs = [
 		{
 			types: ['treasure'],
 			subtypes: ['artifact', 'material', 'treasure'],
 			update: async (itemData, item) => {
+				// Do not duplicate if on self
+				if (item.parent === sourceActor) {
+					return;
+				}
 				const incrementValue = itemData.system.quantity?.value || 1;
 				const newQuantity = (item.system.quantity.value || 0) + incrementValue;
 				await item.update({ 'system.quantity.value': newQuantity });
 			},
 		},
 		{
+			// Effects are handled separately
 			types: ['effect'],
 			update: async (itemData) => {
-				// Effects are handled separately
 				return;
 			},
 		},
@@ -91,6 +103,12 @@ function activateDefaultListeners(html, sheet) {
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
 			callback: (html) => _onItemDuplicate(html, sheet),
+			condition: (html) => !!html.closest('[data-item-id]'),
+		},
+		{
+			name: game.i18n.localize('FU.ChatMessageSendHint'),
+			icon: '<i class="fas fa-comment"></i>',
+			callback: (html) => _onItemSendToChat(html, sheet),
 			condition: (html) => !!html.closest('[data-item-id]'),
 		},
 		{
@@ -258,12 +276,25 @@ function getItemFromHtml(htmlElement, actor) {
  * @returns {Promise<void>}
  */
 async function _onItemDuplicate(element, sheet) {
-	let item = getItemFromHtml(element, sheet.actor);
+	const item = getItemFromHtml(element, sheet.actor);
 	if (item) {
 		const dupData = item.toObject(true);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
 		await sheet.actor.createEmbeddedDocuments('Item', [dupData]);
 		sheet.render();
+	}
+}
+
+/**
+ * @desc Renders the description of the item referenced in the html element.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
+ * @param {ActorSheet} sheet
+ * @returns {Promise<void>}
+ */
+async function _onItemSendToChat(element, sheet) {
+	const item = getItemFromHtml(element, sheet.actor);
+	if (item) {
+		return Checks.display(item.parent, item);
 	}
 }
 
@@ -278,7 +309,7 @@ async function handleStashDrop(actor, item) {
 		const existingItem = actor.items.find((i) => i.name === item.name && i.type === item.type);
 		if (existingItem) {
 			const subtype = item.system.subtype?.value;
-			const config = findItemConfig(item.type, subtype);
+			const config = findItemConfig(actor, item.type, subtype);
 			if (config) {
 				await config.update(item, existingItem);
 				console.debug(`${item.name} was appended onto ${actor.name}`);
@@ -350,13 +381,103 @@ function onRenderFUActorSheet(sheet, element) {
 	if (sheet._expanded) {
 		sheet._expanded.forEach((itemId) => {
 			const expandedDescriptions = element.querySelectorAll(`li[data-item-id="${itemId}"] .individual-description`);
-			console.log(itemId, expandedDescriptions);
 			expandedDescriptions.forEach((el) => {
 				el.classList.remove('hidden');
 				el.style.display = 'block';
 				el.style.height = 'auto';
 			});
 		});
+	}
+}
+
+function resolveItem(actor, target) {
+	const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
+	let item = actor.items.get(dataItemId);
+	if (!item) {
+		const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+		item = foundry.utils.fromUuidSync(uuid);
+	}
+	return item;
+}
+
+async function lootItem(event, target, actor) {
+	const item = ActorSheetUtils.resolveItem(actor, target);
+	if (item) {
+		const targetActor = getPrioritizedUserTargeted();
+		if (!targetActor) return;
+
+		return InventoryPipeline.requestTrade(actor.uuid, item.uuid, false, targetActor.uuid, {
+			shift: event?.shiftKey ?? false,
+			ctrl: event?.ctrlKey ?? false,
+			alt: event?.altKey ?? false,
+			meta: event?.metaKey ?? false,
+		});
+	}
+}
+
+// Status effect IDs
+const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+
+/**
+ * @description Prepares status effect toggles for display
+ * @param {FUActor} actor
+ * @returns {Array<Object>}
+ */
+function prepareStatusEffectToggles(actor) {
+	const toggles = [];
+	for (const id of VISIBLE_STATUS_EFFECT_IDS) {
+		const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
+		if (statusEffect) {
+			const existing = actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
+			const immune = actor.system.immunities?.[statusEffect.id]?.base || false;
+			const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+			const rule = game.i18n.localize(ruleKey);
+			const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
+			toggles.push({
+				...statusEffect,
+				active: existing,
+				immune,
+				tooltip,
+			});
+		}
+	}
+	return toggles;
+}
+
+/**
+ * @description Prepares study roll tier map
+ * @returns {Record<number, string>}
+ */
+function prepareStudyRollMap() {
+	const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
+	let studyRoll = studyRollTiers.map((value) => value + '+');
+	studyRoll.unshift('-');
+	return studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
+}
+
+/**
+ * @description Enriches HTML description
+ * @param {FUActor} actor
+ * @returns {Promise<Object>}
+ */
+async function enrichDescription(actor) {
+	return {
+		description: await TextEditor.enrichHTML(actor.system.description ?? '', {
+			secrets: actor.isOwner,
+			rollData: actor.getRollData(),
+			relativeTo: actor,
+		}),
+	};
+}
+
+/**
+ * @description Prepares pressure system context
+ * @param {Object} context
+ */
+function preparePressureContext(context) {
+	context.pressurePoints = game.settings.get(systemId, SETTINGS.pressureSystem);
+	if (context.pressurePoints) {
+		context.weaponCategories = FU.weaponCategories;
 	}
 }
 
@@ -368,8 +489,14 @@ Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	findItemConfig,
+	resolveItem,
+	lootItem,
 	prepareCharacterData,
 	activateDefaultListeners,
 	handleStashDrop,
 	prepareNpcCompanionData,
+	prepareStatusEffectToggles,
+	prepareStudyRollMap,
+	enrichDescription,
+	preparePressureContext,
 });

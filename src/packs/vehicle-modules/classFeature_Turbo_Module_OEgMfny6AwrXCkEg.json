@@ -12,74 +12,23 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.3aaAgDlqa4xgeygv]</p>",
       "complex": false
     },
     "source": "FUTF169",
     "fuid": "turbo-module"
   },
-  "effects": [
-    {
-      "img": "icons/commodities/tech/dial-meter-gauge-blue.webp",
-      "origin": "Compendium.projectfu.vehicle-modules.Item.OEgMfny6AwrXCkEg",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Turbo Module",
-      "_id": "ON1J8xVy0XFPlIdI",
-      "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.opposedCheck",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUTF169",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1743183702635,
-        "modifiedTime": 1743183750551,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "exportSource": null
-      },
-      "_key": "!items.effects!OEgMfny6AwrXCkEg.ON1J8xVy0XFPlIdI"
-    }
-  ],
+  "effects": [],
   "flags": {
     "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711477122275,
-    "modifiedTime": 1724180864717,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1773733408951,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

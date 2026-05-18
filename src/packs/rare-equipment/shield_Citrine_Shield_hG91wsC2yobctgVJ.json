@@ -1,0 +1,179 @@
+{
+  "folder": "e2xF1TahnhKRCTqB",
+  "name": "Citrine Shield",
+  "type": "shield",
+  "_id": "hG91wsC2yobctgVJ",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-gold.png",
+  "system": {
+    "fuid": "citrine-shield",
+    "description": "<p>You gain Resistance to <strong>bolt</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 800
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Bolt Resistance"
+    },
+    "def": {
+      "value": 2
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 5
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Citrine Shield",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-gold.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.hG91wsC2yobctgVJ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "XJoalFRdQycA0kv7",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.bolt",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>bolt</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Citrine Shield",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.hG91wsC2yobctgVJ",
+            "effectUuid": null,
+            "fuid": "citrine-shield"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774767286814,
+        "modifiedTime": 1775709043372,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!hG91wsC2yobctgVJ.XJoalFRdQycA0kv7"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774767245858,
+    "modifiedTime": 1777530804783,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!hG91wsC2yobctgVJ"
+}

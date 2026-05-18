@@ -4,7 +4,7 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_mirror.png",
   "system": {
-    "fuid": "effect-mirror",
+    "fuid": "effect-mirror-legacy",
     "cost": {
       "value": 0
     },
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768579355309,
-    "modifiedTime": 1768579362579,
+    "modifiedTime": 1771473190519,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "cyT39HJqhnif47Wc",

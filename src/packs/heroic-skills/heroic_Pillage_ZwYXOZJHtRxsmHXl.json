@@ -9,7 +9,7 @@
     "summary": {
       "value": "Steal from multiple creatures."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Rogue</strong> Class, and must have acquired the <strong>Soul Steal</strong> Skill.</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal} Skill, you may target any number of creatures at the same time (you perform a single Check and compare it to the Magic Defense of each creature you are attempting to steal from).  </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Rogue</strong> Class, and must have acquired the <strong>Soul Steal</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal} Skill, you may target any number of creatures at the same time (you perform a single Check and compare it to the Magic Defense of each creature you are attempting to steal from).  </p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Rogue"
+      "value": "rogue"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "pillage"
+    "fuid": "pillage",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
@@ -102,15 +112,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706585210863,
-    "modifiedTime": 1724180863903,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1771888667592,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

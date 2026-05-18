@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When your group journeys on the world map, you will make a <strong>discovery </strong>on a roll of <strong>【SL + 1】</strong> or lower on the <strong>travel roll </strong>(instead of only on a <strong>1</strong>).</p>",
+    "description": "<p>When your group journeys on the world map, you will make a <strong>discovery</strong> on a roll of <strong>【SL + 1】</strong> or lower on the <strong>travel roll</strong> (instead of only on a <strong>1</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Wayfarer"
+      "value": "wayfarer"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "treasure-hunter"
+    "fuid": "treasure-hunter",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -127,15 +130,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706513097437,
-    "modifiedTime": 1741948213514,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770618749166,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

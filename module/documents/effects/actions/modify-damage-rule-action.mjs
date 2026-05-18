@@ -16,6 +16,7 @@ const fields = foundry.data.fields;
  * @property {TraitsDataModel} traits
  * @property {Set<DamageType>} damageTypes
  * @property {ActionCostDataModel} cost
+ * @property {String} effect Optionally, an effect to be applied.
  * @property {String} variant
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
@@ -45,6 +46,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				blank: true,
 				choices: Object.keys(FU.modifyDamageVariant),
 			}),
+			effect: new fields.StringField({ blank: true }),
 		});
 	}
 
@@ -86,6 +88,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 								resource: this.cost.resource,
 							},
 							traits: this.traits.values,
+							effect: this.effect,
 							enabled: false,
 						});
 					}
@@ -101,6 +104,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 							traits: [FeatureTraits.Gift],
 						},
 						traits: this.traits.values,
+						effect: this.effect,
 						enabled: false,
 					});
 					break;
@@ -111,12 +115,16 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				context.config.getDamage().addModifier(context.label, _amount, types, {
 					expense: this.cost,
 					traits: this.traits.values,
+					effect: this.effect,
 					enabled: !this.cost.assigned,
 				});
 			} else {
 				context.config.addDamageBonus(context.label, _amount);
 				// TODO: Verify...
 				context.config.addTraits(this.traits.values);
+				if (this.effect) {
+					context.config.addEffects(this.effect);
+				}
 			}
 		}
 	}

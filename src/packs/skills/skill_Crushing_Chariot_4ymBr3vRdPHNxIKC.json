@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Commander"
+      "value": "commander"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "crushing-chariot",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -225,7 +230,7 @@
       "_id": "bo9XH8Km5H7Yflyz",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -240,7 +245,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770274361322,
-        "modifiedTime": 1770331699680,
+        "modifiedTime": 1771831260273,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!4ymBr3vRdPHNxIKC.bo9XH8Km5H7Yflyz"
@@ -254,7 +259,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -262,7 +268,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706555533504,
-    "modifiedTime": 1770331797837,
+    "modifiedTime": 1775516300928,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -7,6 +7,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
  * @remarks These are generally used by items and inline actions.
  */
 export const ActionTraits = Object.freeze({
+	Attack: 'attack',
 	Damage: 'damage',
 	Restore: 'restore',
 	Gain: 'gain',
@@ -46,12 +47,32 @@ export const DamageTraits = Object.freeze({
 	IgnoreResistances: 'ignore-resistances',
 	IgnoreImmunities: 'ignore-immunities',
 	IgnoreAbsorption: 'ignore-absorption',
+	IgnoreVulnerable: 'ignore-vulnerable',
+	IgnoreAffinities: 'ignore-affinities',
 	AbsorbHalf: 'absorb-half',
 	Absorb: 'absorb',
 	MindPointLoss: 'mind-point-loss',
+	HitPointAbsorption: 'hit-point-absorption',
 	MindPointAbsorption: 'mind-point-absorption',
 	NonLethal: 'non-lethal',
+	HighRollZero: 'high-roll-zero',
 	Base: 'base',
+});
+
+/**
+ * @desc Some skills provide certain features that are hard to quantify otherwise.
+ * @type {Readonly<{}>}
+ */
+export const SkillTraits = Object.freeze({
+	GrantSpell: 'grant-spell',
+});
+
+/**
+ * @desc Some heroic skills provide certain features that are hard to quantify otherwise.
+ * @type {Readonly<{}>}
+ */
+export const HeroicSkillTraits = Object.freeze({
+	GrantExtraSpells: 'grant-extra-spells',
 });
 
 /**
@@ -65,6 +86,11 @@ export const FeatureTraits = Object.freeze({
 	Dance: 'dance',
 	ArcanumSummon: 'arcanum-summon',
 	ArcanumDismiss: 'arcanum-dismiss',
+	ArcanumPulse: 'arcanum-pulse',
+	Invocation: 'invocation',
+	InvocationHex: 'invocation-hex',
+	InvocationBlast: 'invocation-blast',
+	TherioformManifest: 'therioform-manifest',
 });
 
 /**
@@ -80,13 +106,41 @@ export const Traits = Object.freeze({
 
 export const TraitUtils = Object.freeze({
 	/**
-	 * @param {Set<String>} traits
-	 * @param prefix
+	 * @param{String} trait
+	 * @returns {string}
+	 */
+	normalize(trait) {
+		return `FU.${StringUtils.kebabToPascal(trait)}`;
+	},
+
+	/**
+	 * @param {String} trait
+	 */
+	localize(trait) {
+		return StringUtils.localize(this.normalize(trait));
+	},
+
+	/**
+	 * @param {String} trait
+	 * @returns {Tag}
+	 */
+	toTag(trait) {
+		return {
+			tag: this.normalize(trait),
+			separator: '',
+			value: '',
+			show: true,
+		};
+	},
+
+	/**
+	 * @param {Iterable<String>} traits
+	 * @param {Boolean} prefix
 	 * @returns {{tag: string, separator: string, value: string, show: boolean}[]}
 	 */
 	toTags(traits, prefix = true) {
 		return [...traits].map((trait) => ({
-			tag: prefix ? `FU.${trait}` : trait,
+			tag: StringUtils.localize(prefix ? `FU.${trait}` : trait),
 			separator: '',
 			value: '',
 			show: true,
@@ -114,12 +168,5 @@ export const TraitUtils = Object.freeze({
 			label: StringUtils.localize(value),
 			value: key,
 		}));
-	},
-
-	/**
-	 * @param {String} trait
-	 */
-	localize(trait) {
-		return StringUtils.localize(`FU.${StringUtils.kebabToPascal(trait)}`);
 	},
 });

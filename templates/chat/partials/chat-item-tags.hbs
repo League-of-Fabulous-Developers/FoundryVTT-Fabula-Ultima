@@ -1,9 +1,11 @@
-<div class="fu-tags">
-    {{#each tags}}
-        {{#if flip}}
-            <div class="fu-tag" data-tooltip="{{localize tooltip}}">{{value}}{{separator}} {{localize tag}}</div>
-        {{else}}
-            <div class="fu-tag" data-tooltip="{{localize tooltip}}">{{localize tag}}{{separator}} {{value}}</div>
-        {{/if}}
-    {{/each}}
-</div>
+{{#if tags}}
+	<div class="pfu-chat-message__toggle-section pfu-tags">
+		{{#each tags}}
+			{{#if flip}}
+				<div class="fu-tag" data-tooltip="{{localize tooltip}}">{{value}}{{separator}} {{localize tag}}</div>
+			{{else}}
+				<div class="fu-tag" data-tooltip="{{localize tooltip}}">{{localize tag}}{{separator}} {{value}}</div>
+			{{/if}}
+		{{/each}}
+	</div>
+{{/if}}

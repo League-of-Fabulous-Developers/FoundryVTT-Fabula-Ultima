@@ -1,0 +1,89 @@
+{
+  "folder": "yAgLCc9EDWHsN8ed",
+  "name": "Effect: Protect Available",
+  "type": "effect",
+  "_id": "biHrtuJc1M3Xo7S4",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_protect.png",
+  "system": {
+    "fuid": "effect-protect-available",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Protect Available",
+      "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_protect.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ypKRkzDGGC0d29pQ",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You are able to become the target of a danger with the <strong>Protect</strong> Skill.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770632616752,
+        "modifiedTime": 1770632667054,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!biHrtuJc1M3Xo7S4.ypKRkzDGGC0d29pQ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770632605489,
+    "modifiedTime": 1770632615272,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!biHrtuJc1M3Xo7S4"
+}

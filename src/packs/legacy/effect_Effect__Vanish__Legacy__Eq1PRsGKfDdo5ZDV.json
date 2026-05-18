@@ -4,7 +4,7 @@
   "type": "effect",
   "img": "icons/weapons/daggers/knife-kitchen-red.webp",
   "system": {
-    "fuid": "effect-vanish",
+    "fuid": "effect-vanish-legacy",
     "cost": {
       "value": 0
     },
@@ -75,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768876099928,
-    "modifiedTime": 1768876233945,
+    "modifiedTime": 1771473301065,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "Eq1PRsGKfDdo5ZDV",

@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Golden Ginkgo",
   "type": "classFeature",
-  "img": "icons/consumables/plants/tearthumb-dried-halberd-leaf-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/golden-ginkgo.png",
   "system": {
     "summary": {
       "value": "Its vibrantly colored leaves represent tenacity."
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370177255,
+    "modifiedTime": 1777431060228,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

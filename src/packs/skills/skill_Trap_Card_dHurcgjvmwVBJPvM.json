@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After an enemy you can see resolves an <strong>Attack</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong> action, you may discard up to <strong>【SL + 1】 </strong>cards that are <strong>jokers</strong> or whose <strong>suit</strong> corresponds to a damage type based on the enemy action: <strong>ice (Attack)</strong>, <strong>fire (Objective)</strong>, <strong>earth (Skill)</strong>, or <strong>air (Spell)</strong>. If you do, draw that many cards; then you may perform the <strong>Spell</strong> action for free, casting a spell with a total Mind Point cost equal to or lower than <strong>【SL × 5】</strong> (you must still pay its MP cost) and you cannot use this Skill again until the start of your next turn.</p>",
+    "description": "<p>After an enemy you can see resolves an <strong>Attack</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong> action, you may discard up to <strong>【SL + 1】</strong> cards that are <strong>jokers</strong> or whose <strong>suit</strong> corresponds to a damage type based on the enemy action: <strong>ice (Attack)</strong>, <strong>fire (Objective)</strong>, <strong>earth (Skill)</strong>, or <strong>air (Spell)</strong>. If you do, draw that many cards; then you may perform the <strong>Spell</strong> action for free, casting a spell with a total Mind Point cost equal to or lower than <strong>【SL × 5】</strong> (you must still pay its MP cost) and you cannot use this Skill again until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Ace of Cards"
+      "value": "ace-of-cards"
     },
     "useWeapon": {
       "accuracy": {
@@ -115,7 +115,10 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "trap-card"
+    "fuid": "trap-card",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -127,7 +130,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -135,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1707643024284,
-    "modifiedTime": 1769029401112,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771043572118,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

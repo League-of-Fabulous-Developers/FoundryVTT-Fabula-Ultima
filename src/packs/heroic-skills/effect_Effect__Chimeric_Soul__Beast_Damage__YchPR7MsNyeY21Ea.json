@@ -1,0 +1,102 @@
+{
+  "folder": "Qk7YoCpdCydc8fmr",
+  "name": "Effect: Chimeric Soul (Beast Damage)",
+  "type": "effect",
+  "img": "icons/creatures/reptiles/chameleon-camouflage-green-brown.webp",
+  "system": {
+    "fuid": "effect-chimeric-soul",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Chimeric Soul (Beast Damage)",
+      "img": "icons/creatures/reptiles/chameleon-camouflage-green-brown.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "D5RMH7wV9NrGUDrj",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.air",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.ice",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you deal <strong>air</strong> or <strong>ice</strong> damage, you deal 5 extra damage. This lasts until the end of the scene, or until you cast a Chimerist spell again.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770881218776
+      },
+      "_key": "!items.effects!YchPR7MsNyeY21Ea.D5RMH7wV9NrGUDrj"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770881136874,
+    "modifiedTime": 1770881542695,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "YchPR7MsNyeY21Ea",
+  "sort": 100000,
+  "_key": "!items!YchPR7MsNyeY21Ea"
+}

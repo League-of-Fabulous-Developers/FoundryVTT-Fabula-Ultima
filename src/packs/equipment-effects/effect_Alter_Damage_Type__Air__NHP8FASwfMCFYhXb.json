@@ -3,12 +3,13 @@
   "name": "Alter Damage Type (Air)",
   "type": "effect",
   "_id": "NHP8FASwfMCFYhXb",
-  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "alter-damage-type-air",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -24,10 +25,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Air)",
-      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "_id": "4tay6tc1XdWR8IGm",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -36,7 +53,7 @@
           "priority": null
         }
       ],
-      "description": "<p>All damage dealt by your weapons, spells, and Skills becomes of a specific type.</p>",
+      "description": "<p>The damage type of this weapon becomes <strong>air</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -51,12 +68,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725774257200,
-        "modifiedTime": 1736274881144,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "modifiedTime": 1774732801783,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!NHP8FASwfMCFYhXb.4tay6tc1XdWR8IGm"
@@ -71,12 +88,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725774248217,
-    "modifiedTime": 1736274887410,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774732796950,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!NHP8FASwfMCFYhXb"

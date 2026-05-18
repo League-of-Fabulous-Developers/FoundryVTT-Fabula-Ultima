@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>The <strong>first time</strong> each target suffers damage before the <strong>start of your next turn</strong>, that damage becomes <strong>@ICON[@DATA[key.type]]</strong>.</p><p>This can trigger <strong>once for each target</strong> of the verse, separately.</p>"
+      "description": "<p>The <strong>first time</strong> each target suffers damage before the <strong>start of your next turn</strong>, that damage becomes <strong>@DATA[key.typeLocal] @ICON[@DATA[key.type]]</strong>.</p><p>This can trigger <strong>once for each target</strong> of the verse, separately.</p><hr /><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.6Tx12tMHEznjUxaj], @EFFECT[Compendium.projectfu.skills.Item.FZmT8QY31NromlLY], @EFFECT[Compendium.projectfu.skills.Item.vUk23JgHiCXviwJ4], @EFFECT[Compendium.projectfu.skills.Item.Rr2hGZ0KHmv1IZIe], @EFFECT[Compendium.projectfu.skills.Item.MHvBgVg7egC3MO4W], @EFFECT[Compendium.projectfu.skills.Item.JOVxvrw4AQUBo88G], @EFFECT[Compendium.projectfu.skills.Item.8bKctJRT4X5Ai2ge], or @EFFECT[Compendium.projectfu.skills.Item.d2WBcxPOjEh1nJOX]</p>"
     },
     "source": "FUHF139",
     "fuid": "menacing-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1710040204796,
-    "modifiedTime": 1757184740894,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771830224407,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

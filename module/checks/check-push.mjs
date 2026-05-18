@@ -1,9 +1,9 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Checks } from './checks.mjs';
-import { CHECK_PUSH } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { ChatSectionOrder } from './default-section-order.mjs';
 
 const { DiceTerm, OperatorTerm, NumericTerm } = foundry.dice.terms;
 
@@ -17,7 +17,7 @@ function addRollContextMenuEntries(application, menuItems) {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
@@ -26,7 +26,7 @@ function addRollContextMenuEntries(application, menuItems) {
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+				const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 				if (check) {
 					await Checks.modifyCheck(check.id, handlePush);
 				}
@@ -41,8 +41,8 @@ function addRollContextMenuEntries(application, menuItems) {
 const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
 	const pushData = checkResult.additionalData.push;
 	if (pushData) {
-		data.push({
-			order: CHECK_PUSH,
+		data.sections.push({
+			order: ChatSectionOrder.push,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
 			data: { push: pushData },
 		});

@@ -1,13 +1,13 @@
-import { CHECK_ACTIONS, CHECK_DETAILS, CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { ChatSectionOrder, CHECK_DETAILS, CHECK_FLAVOR, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
-import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { ResourcePipeline, ResourceRequest, UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
 import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
@@ -17,9 +17,11 @@ import { FeatureTraits } from '../pipelines/traits.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string | Promise<string>} description
  * @param {string} summary
  * @param {number} [order]
@@ -41,7 +43,7 @@ const description = (sections, description, summary, order = CHECK_DETAILS, open
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} content
  * @param {number} [order]
  */
@@ -53,7 +55,7 @@ const content = (sections, content, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} template
  * @param {Object} context
  * @param {number} [order]
@@ -69,7 +71,7 @@ const template = (sections, template, context, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {ChatAction[]} actions
  * @param {Object} flags
  * @param {number} [order]
@@ -79,7 +81,7 @@ const chatActions = (sections, actions, flags = {}, order) => {
 		const content = await ChatAction.renderToChat(actions);
 		for (const action of actions) {
 			if (action.flag) {
-				Pipeline.toggleFlag(flags, action.flag);
+				Pipeline.setFlag(flags, action.flag.key, action.flag.value);
 			}
 		}
 		return {
@@ -90,7 +92,7 @@ const chatActions = (sections, actions, flags = {}, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string, Promise<string>} text
  * @param {number} [order]
  */
@@ -105,7 +107,7 @@ const genericText = (sections, text, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string, Promise<string>} text
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -127,7 +129,7 @@ const itemText = (sections, text, actor, item, flags, order) => {
 
 /**
  * A description section with customizable title and without summary.
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} title
  * @param {string} description
  * @param {number} [order]
@@ -147,7 +149,7 @@ const collapsibleDescription = (sections, title, description, order, open = true
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {ProgressDataModel} clock
  * @param {number} [order]
  */
@@ -174,7 +176,7 @@ const clock = (sections, clock, order) => {
  */
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {Tag[]} tags
  * @param {number} [order]
  */
@@ -192,7 +194,7 @@ const tags = (sections, tags = [], order = CHECK_DETAILS) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} quality
  * @param {number} [order]
  */
@@ -209,13 +211,13 @@ const quality = (sections, quality, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {ProgressDataModel} resource
  * @param {number} [order]
  */
 const resource = (sections, resource, order) => {
 	sections.push(async () => ({
-		partial: 'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
+		partial: 'systems/projectfu/templates/common/progress/progress-bar.hbs',
 		data: {
 			data: resource,
 		},
@@ -225,7 +227,7 @@ const resource = (sections, resource, order) => {
 
 /**
  * Sets chat message flavor by default. Specify order for other usecases.
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {{name: string, img: string, id: string, uuid: string}|FUItem} item
  * @param {number} [order]
  */
@@ -241,7 +243,7 @@ const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 
 /**
  * Sets chat message flavor by default. Specify order for other usecases.
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} flavor
  * @param {number} [order]
  */
@@ -256,7 +258,7 @@ const genericFlavor = (sections, flavor, order = CHECK_FLAVOR) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} opportunity
  * @param {number} [order]
  */
@@ -274,14 +276,14 @@ const opportunity = (sections, opportunity, order) => {
 
 /**
  * @description Adds a target section to the message that lists the targets and provides contextual buttons
- * @param {CheckRenderData} sections
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targetData
  * @param {Map} flags
  * @param {CheckInspector} inspector
  */
-const actions = (sections, actor, item, targetData, flags, inspector = undefined) => {
+const actions = (data, actor, item, targetData, flags, inspector = undefined) => {
 	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
 
 	let checkData;
@@ -294,7 +296,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		switch (checkData.type) {
 			case 'accuracy':
 			case 'magic':
-				sections.push({
+				data.sections.push({
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 					data: {
@@ -311,7 +313,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				break;
 
 			case 'display':
-				sections.push({
+				data.sections.push({
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-display-container.hbs',
 					data: {
@@ -325,10 +327,10 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				break;
 		}
 
-		// Expense action
-		const expenseData = inspector.getExpense();
-		if (expenseData) {
-			CommonSections.spendResource(sections, actor, item, expenseData, targetData, flags);
+		// If expense data was provided for the actions
+		const expense = inspector.getExpense();
+		if (expense) {
+			CommonSections.spendResourceV2(data, actor, item, expense, targetData, flags);
 		}
 	}
 
@@ -338,7 +340,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		const targets = Targeting.deserializeTargetData(targetData);
 		const traits = inspector.getTraits();
 
-		sections.push(async function () {
+		data.sections.push(async function () {
 			/** @type {ChatAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
@@ -347,24 +349,31 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			const resourceData = inspector.getResource();
 			if (resourceData) {
 				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+				const checkData = inspector.getCheck();
+				if (checkData) {
+					expressionContext.withCheck(checkData);
+				}
 				let ra = 0;
 				for (const mod of resourceData.modifiers) {
 					ra += await Expressions.evaluateAsync(mod.amount, expressionContext);
 				}
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
+				if (traits) {
+					request.addTraits(traits);
+				}
 				actions.push(ResourcePipeline.getTargetedAction(request));
-
-				// Trait data
 			}
 
+			// Effect Action
 			const effectData = inspector.getEffects();
-			if (effectData) {
-				for (const entry of effectData.entries) {
-					const ea = await Effects.getTargetedAction(entry, sourceInfo);
-					if (ea) {
-						actions.push(ea);
-					}
+			if (effectData && effectData.entries.length > 0) {
+				const effectActions = await Effects.promptEffectChoices(effectData, sourceInfo);
+				if (effectActions.length === 0) {
+					let msg = StringUtils.localize('FU.DialogSelectionMissingError');
+					ui.notifications.error(msg);
+					throw Error(msg);
 				}
+				actions.push(...effectActions);
 			}
 
 			// Damage action
@@ -373,8 +382,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {
-					if (mod.expense && mod.expense.amount > 0) {
-						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
+					if (mod.expense && mod.expense.traits) {
 						if (mod.expense.traits) {
 							const expenseTraits = new Set(mod.expense.traits);
 							if (expenseTraits.has(FeatureTraits.Gift)) {
@@ -394,8 +402,10 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 						if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
 							const traits = inspector.getTraits();
 							setTimeout(() => {
+								const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+								sourceInfo.checkId = checkData?.id;
 								game.projectfu.socket.requestPipeline('damage', {
-									sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+									sourceInfo: sourceInfo,
 									targets: hitTargets,
 									damageData,
 									traits,
@@ -411,6 +421,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 					onRoll();
 				}
 			}
+
 			// Remaining actions
 			if (inspector) {
 				for (const action of inspector.getTargetedActions()) {
@@ -418,12 +429,21 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				}
 			}
 
+			// Remove malformed actions
+			actions = actions.filter((a) => {
+				if (!a) {
+					ui.notifications.warn(`An action was malformed during the rendering of this chat message. Please report the issue!`);
+					return false;
+				}
+				return true;
+			});
+
 			// Set any flags
 			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, sourceInfo);
 			for (const action of actions) {
 				if (action.flag) {
-					Pipeline.toggleFlag(flags, action.flag);
+					Pipeline.setFlag(flags, action.flag.key, action.flag.value);
 				}
 			}
 
@@ -437,7 +457,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			}
 
 			return {
-				order: CHECK_ACTIONS,
+				order: ChatSectionOrder.actions,
 				partial: 'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 				data: {
 					retarget: true,
@@ -464,14 +484,14 @@ async function showFloatyText(targetData, localizedText) {
 }
 
 /**
- * @param {CheckRenderData} sections
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {ActionCostDataModel} cost
  * @param {TargetData[]} targets
  * @param {Object} flags
  */
-const spendResource = (sections, actor, item, cost, targets, flags) => {
+const spendResource = (data, actor, item, cost, targets, flags) => {
 	if (!cost.amount) {
 		return;
 	}
@@ -481,14 +501,18 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 	}
 
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	sections.push(async () => {
-		const itemGroup = InlineHelper.resolveItemGroup(item);
-		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
+	data.sections.push(async () => {
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
 
 		// This can be modified here...
 		await CommonEvents.calculateExpense(actor, item, targets, expense);
+
+		if (expense.amount <= 0) {
+			return;
+		}
+
 		return {
-			order: CHECK_ACTIONS + 500,
+			order: ChatSectionOrder.expenses,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
@@ -503,17 +527,70 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {ResourceExpense} expense
+ * @param {UpdateResourceData} updateData
+ * @param {TargetData[]} targets
  * @param {Object} flags
  */
-const expense = (sections, actor, item, expense, flags) => {
+const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
+	// Reconstruct the class from its data if need be
+	if (updateData && !(updateData instanceof UpdateResourceData)) {
+		updateData = new UpdateResourceData(updateData);
+	}
+
+	if (updateData.total <= 0) {
+		return;
+	}
+
+	// TODO: Use the update resource data model?
+	/** @type {ResourceExpense} **/
+	const expense = {
+		resource: updateData.type,
+		amount: updateData.total,
+		traits: [],
+		source: ItemUtils.resolveItemGroup(item),
+	};
+
+	// Allow modification of the amount
+	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	sections.push(async () => {
+	data.sections.push(async () => {
 		return {
-			order: CHECK_RESULT,
+			order: ChatSectionOrder.expenses,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				resourceLabel: FU.resourcesAbbr[expense.resource],
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
+};
+
+/**
+ * @param {FURenderData} data
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param targets
+ * @param {Object} flags
+ * @param {ResourceExpense} expense
+ */
+const expense = (data, actor, item, targets, flags, expense) => {
+	if (expense.amount <= 0) {
+		return;
+	}
+
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+	data.sections.push(async () => {
+		return {
+			order: ChatSectionOrder.expenses,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
@@ -527,7 +604,7 @@ const expense = (sections, actor, item, expense, flags) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {FUItem[]} slottedTechnospheres
  * @param {number} [order]
  */
@@ -556,6 +633,7 @@ export const CommonSections = {
 	opportunity,
 	actions,
 	spendResource,
+	spendResourceV2,
 	expense,
 	slottedTechnospheres,
 };

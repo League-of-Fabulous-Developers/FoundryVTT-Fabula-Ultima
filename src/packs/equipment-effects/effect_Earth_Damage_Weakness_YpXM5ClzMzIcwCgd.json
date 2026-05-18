@@ -1,0 +1,111 @@
+{
+  "folder": "ZRup8UZGBBD2SFVi",
+  "name": "Earth Damage Weakness",
+  "type": "effect",
+  "_id": "YpXM5ClzMzIcwCgd",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+  "system": {
+    "fuid": "earth-damage-weakness",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Earth Damage Weakness",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.YpXM5ClzMzIcwCgd",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "k84sYSLiykyFBr7g",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.earth",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, every source that deals <strong>earth</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Earth Damage Weakness",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.YpXM5ClzMzIcwCgd",
+            "effectUuid": null,
+            "fuid": "earth-damage-weakness"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774831356554,
+        "modifiedTime": 1774831377601,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!YpXM5ClzMzIcwCgd.k84sYSLiykyFBr7g"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "esOkelwPNblkbxW3": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774830699095,
+    "modifiedTime": 1774830699095,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!YpXM5ClzMzIcwCgd"
+}

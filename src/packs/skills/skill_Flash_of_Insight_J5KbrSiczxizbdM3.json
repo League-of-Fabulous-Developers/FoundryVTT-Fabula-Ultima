@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study </strong>action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
+    "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study</strong> action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Loremaster"
+      "value": "loremaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -144,12 +144,15 @@
               "type": "ruleElement",
               "_id": "5qIf7IG9ZAkwVt9R",
               "trigger": {
-                "_id": "gkqkk1BJmj01J9jB",
-                "type": "performCheckRuleTrigger",
+                "_id": "N7OFfFMpeQInn2lL",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "open"
-                ]
+                ],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
                 "udvpE739WHduDidd": {
@@ -182,6 +185,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -208,8 +216,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770415635015,
-        "modifiedTime": 1770417674691,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "modifiedTime": 1778874903057,
+        "lastModifiedBy": "VpDy3go69LzoCFsX"
       },
       "_key": "!items.effects!J5KbrSiczxizbdM3.45F7umTTsKZUmmgj"
     }
@@ -222,7 +230,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

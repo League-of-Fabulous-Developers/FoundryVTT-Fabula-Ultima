@@ -24,10 +24,10 @@
       "min": 0
     },
     "class": {
-      "value": "Rogue"
+      "value": "rogue"
     },
     "useWeapon": {
-      "accuracy": true,
+      "accuracy": false,
       "damage": true,
       "hrZero": {
         "value": false
@@ -45,7 +45,7 @@
       "value": 0
     },
     "damage": {
-      "hasDamage": true,
+      "hasDamage": false,
       "value": 0,
       "type": "",
       "extra": "$sl+$tsc",
@@ -99,7 +99,7 @@
       }
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "hasResource": {
       "value": false
@@ -110,28 +110,153 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "cheap-shot",
     "targeting": {
       "rule": "single"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cheap Shot",
+      "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_cheap_shot.png",
+      "origin": "Compendium.projectfu.skills.Item.c2XRt5pvOab25Tbe",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "iMeiSArQrJM5MAh7": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "OHQTsrY8tqFSIFGH",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": "",
+                "itemGroups": [
+                  "attack",
+                  "skill"
+                ]
+              },
+              "_id": "iMeiSArQrJM5MAh7",
+              "predicates": {
+                "ilm0KpbJ3hHp907Z": {
+                  "type": "targetingRulePredicate",
+                  "_id": "ilm0KpbJ3hHp907Z"
+                },
+                "Av5MT6g88DEgoDBq": {
+                  "type": "traitsRulePredicate",
+                  "_id": "Av5MT6g88DEgoDBq",
+                  "traits": {
+                    "entries": [
+                      "attack"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "a5eygozQFnmIGLi8": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "a5eygozQFnmIGLi8",
+                  "amount": "(min($tsc, 1)*$sl)+$tsc",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "zXuBvWCNg61ggCWh",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you hit a creature with an attack, if the attack <strong>only</strong> targeted that creature and they are suffering from <strong>one or more status effects</strong>, you may have it deal extra damage equal to <strong>【SL + the number of status effects on the creature】</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Cheap Shot",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.c2XRt5pvOab25Tbe",
+            "effectUuid": null,
+            "fuid": "cheap-shot"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774633534207,
+        "modifiedTime": 1776794401499,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!c2XRt5pvOab25Tbe.zXuBvWCNg61ggCWh"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504733585,
-    "modifiedTime": 1740435390578,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1774633770211,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

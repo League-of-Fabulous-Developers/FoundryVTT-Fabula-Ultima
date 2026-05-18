@@ -2,14 +2,24 @@ export const CHECK_FLAVOR = Number.NaN;
 
 export const CHECK_DETAILS = -2000;
 
-export const CHECK_PUSH = -1200;
-
-export const CHECK_REROLL = -1100;
-
 export const CHECK_ROLL = -1000;
 
-export const CHECK_ADDENDUM_ORDER = -900;
+// TODO: Refactor the above too
 
-export const CHECK_RESULT = 1000;
-
-export const CHECK_ACTIONS = 2000;
+/**
+ * @desc Used for ordering the standardized chat message sections.
+ * @type {Readonly<{tags: number}>}
+ */
+export const ChatSectionOrder = Object.freeze({
+	flavor: Number.NaN,
+	tags: -3000,
+	tracker: -2500,
+	details: -2000,
+	reroll: -1100,
+	roll: -1000,
+	push: -1200,
+	addendum: -900,
+	result: 1000,
+	actions: 2000,
+	expenses: 2500,
+});

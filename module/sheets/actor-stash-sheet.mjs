@@ -6,14 +6,13 @@ import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-renderer.mjs';
 import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
 import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
-import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 
 /**
  * @property {FUActor} actor
- * @extends {ActorSheet}
+ * @extends {FUActorSheet}
  */
 export class FUStashSheet extends FUActorSheet {
 	/**
@@ -23,6 +22,9 @@ export class FUStashSheet extends FUActorSheet {
 	static DEFAULT_OPTIONS = {
 		classes: ['stash'],
 		resizable: true,
+		window: {
+			icon: 'fas fa-box-open',
+		},
 		position: { width: 600, height: 768 },
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 		actions: {
@@ -76,7 +78,7 @@ export class FUStashSheet extends FUActorSheet {
 		}
 		context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 		context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
-		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
+		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere', `customWeapon`] : [`customWeapon`] });
 		return context;
 	}
 
@@ -167,42 +169,21 @@ export class FUStashSheet extends FUActorSheet {
 	}
 
 	static #onLootItem(event, target) {
-		const item = FUStashSheet.#resolveItem(this.actor, target);
-		if (item) {
-			const targetActor = getPrioritizedUserTargeted();
-			if (!targetActor) return;
-
-			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, false, targetActor.uuid, {
-				shift: event?.shiftKey ?? false,
-				ctrl: event?.ctrlKey ?? false,
-				alt: event?.altKey ?? false,
-				meta: event?.metaKey ?? false,
-			});
-		}
+		return ActorSheetUtils.lootItem(event, target, this.actor);
 	}
 
 	static #onSellItem(event, target) {
-		const item = FUStashSheet.#resolveItem(this.actor, target);
+		const item = ActorSheetUtils.resolveItem(this.actor, target);
 		if (item) {
 			return InventoryPipeline.tradeItem(this.actor, item, 'sell');
 		}
 	}
 
 	static #onBuyItem(event, target) {
-		const item = FUStashSheet.#resolveItem(this.actor, target);
+		const item = ActorSheetUtils.resolveItem(this.actor, target);
 		if (item) {
 			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, true, undefined);
 		}
-	}
-
-	static #resolveItem(actor, target) {
-		const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
-		let item = actor.items.get(dataItemId);
-		if (!item) {
-			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
-			item = foundry.utils.fromUuidSync(uuid);
-		}
-		return item;
 	}
 
 	static #onDistributeZenit() {

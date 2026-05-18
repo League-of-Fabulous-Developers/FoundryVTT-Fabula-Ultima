@@ -1,5 +1,5 @@
 {{#if controls}}
-	<div class="progress-controls">
+	<div class="pfu-progress__controls">
 		<a class="increment-button"
 		   data-type="{{type}}"
 		   data-id="{{id}}"
@@ -31,6 +31,13 @@
 				<i class="icon ra ra-perspective-dice-six"></i>
 			</a>
 		{{/if}}
+		<a data-action="displayTrack"
+		   data-id="{{id}}"
+		   data-data-path="{{dataPath}}"
+		   data-tooltip="{{localize 'FU.ChatMessageSend'}}"
+		   data-index="{{index}}">
+			<i class="icon fas fa-message"></i>
+		</a>
 		{{#if isCollection}}
 			<a data-action="removeTrack"
 			   data-id="{{id}}"

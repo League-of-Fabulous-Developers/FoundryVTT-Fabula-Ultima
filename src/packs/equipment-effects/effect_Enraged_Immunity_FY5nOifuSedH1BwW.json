@@ -1,0 +1,110 @@
+{
+  "folder": "QX1oyTB0nydwAESq",
+  "name": "Enraged Immunity",
+  "type": "effect",
+  "_id": "FY5nOifuSedH1BwW",
+  "img": "systems/projectfu/styles/static/statuses/immunities/EnragedImmune.webp",
+  "system": {
+    "fuid": "enraged-immunity",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Enraged Immunity",
+      "img": "systems/projectfu/styles/static/statuses/immunities/EnragedImmune.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.FY5nOifuSedH1BwW",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "XgjAQnNYMUkDnUH8",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.enraged.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you are immune to <strong>enraged</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Enraged Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.FY5nOifuSedH1BwW",
+            "effectUuid": null,
+            "fuid": "enraged-immunity"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774720655258,
+        "modifiedTime": 1774720669356,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!FY5nOifuSedH1BwW.XgjAQnNYMUkDnUH8"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774720498739,
+    "modifiedTime": 1774720654426,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!FY5nOifuSedH1BwW"
+}

@@ -227,29 +227,27 @@ export class FUCombat extends foundry.documents.Combat {
 		const advanceRound = this.current.round > (this.previous.round ?? -1);
 		const advanceTurn = this.current.turn > (this.previous.turn ?? -1);
 		if (!(advanceTurn || advanceRound)) {
-			//console.debug(`_manageTurnEvents: Cannot advance turn or round`);
 			return;
 		}
 
-		// Conclude prior turn
+		// 1. End Turn
 		if (prior) {
 			console.debug(`_manageTurnEvents: Ending combat turn`);
 			await this._onEndTurn(prior);
 		}
 
-		// Conclude prior round
+		// 2. End Round
 		if (advanceRound && this.previous.round !== null) {
-			console.debug(`_manageTurnEvents: Ending combat round`);
+			console.debug(`_manageTurnEvents: Ending combat round ${this.previous.round}`);
 			await this._onEndRound();
 		}
 
-		// Begin new round
+		// 3. Begin Round
 		if (advanceRound) {
-			console.debug(`_manageTurnEvents: Starting combat round`);
+			console.debug(`_manageTurnEvents: Starting combat round ${this.round}`);
 			await this._onStartRound();
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfRound, this.round, this.combatants));
 		}
-
-		//console.debug(`_manageTurnEvents: Finished`);
 	}
 
 	/**
@@ -662,7 +660,7 @@ export class FUCombat extends foundry.documents.Combat {
 		if (track) {
 			return ProgressDataModel.addToDocument(this, 'system.tracks', track);
 		} else {
-			return ProgressDataModel.promptAddToDocument(this, 'system.tracks', true);
+			return ProgressPipeline.promptAddToDocument(this, 'system.tracks', true);
 		}
 	}
 

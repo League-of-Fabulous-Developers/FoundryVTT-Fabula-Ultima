@@ -5,26 +5,50 @@
   "_id": "c9zl1Xr8nOK66ED1",
   "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
   "system": {
-    "fuid": "magic-check-up"
+    "fuid": "magic-check-up",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.c9zl1Xr8nOK66ED1",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Magic Check Up",
       "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
-      "_id": "dQ7P3tKLUYpLZ0jb",
+      "origin": "Compendium.projectfu.actor-effects.Item.c9zl1Xr8nOK66ED1",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "NPJ5xbqzgJ9AQUW8",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.bonuses.accuracy.magicCheck",
@@ -33,30 +57,34 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Magic Check bonus by 1.</p>",
+      "description": "<p>You gain a +1 bonus to your <strong>Magic Checks</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": ""
+          "Source": {
+            "name": "Magic Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.c9zl1Xr8nOK66ED1",
+            "effectUuid": null,
+            "fuid": "magic-check-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725745488597,
-        "modifiedTime": 1736279124676,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
-        "exportSource": null
+        "createdTime": 1774817775125,
+        "modifiedTime": 1774817786726,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!c9zl1Xr8nOK66ED1.dQ7P3tKLUYpLZ0jb"
+      "_key": "!items.effects!c9zl1Xr8nOK66ED1.NPJ5xbqzgJ9AQUW8"
     }
   ],
   "sort": 0,
@@ -68,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745480218,
-    "modifiedTime": 1736279119875,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774758114663,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!c9zl1Xr8nOK66ED1"

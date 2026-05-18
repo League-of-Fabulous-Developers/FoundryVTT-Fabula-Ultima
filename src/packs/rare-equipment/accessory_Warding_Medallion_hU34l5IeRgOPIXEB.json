@@ -1,0 +1,56 @@
+{
+  "folder": "aiNg88sma1nTOezV",
+  "name": "Warding Medallion",
+  "type": "accessory",
+  "_id": "hU34l5IeRgOPIXEB",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/medallion-gold.png",
+  "system": {
+    "fuid": "warding-medallion",
+    "description": "<p>You gain a +1 bonus to <strong>Magic Defense</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 800
+    },
+    "quality": {
+      "value": "Amulet"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 1
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774656484326,
+    "modifiedTime": 1777530341078,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!hU34l5IeRgOPIXEB"
+}

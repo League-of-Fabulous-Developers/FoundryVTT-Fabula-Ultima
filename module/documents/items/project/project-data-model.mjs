@@ -7,11 +7,10 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ProjectDataModel) {
-		CommonSections.tags(sections, item.system.getTags());
-
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		data.tags.push(...item.system.getTags());
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

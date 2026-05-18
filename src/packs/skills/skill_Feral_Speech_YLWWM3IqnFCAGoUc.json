@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Chimerist"
+      "value": "chimerist"
     },
     "useWeapon": {
       "accuracy": {
@@ -132,7 +132,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

@@ -9,7 +9,7 @@ import { ExpressionContext } from '../../expressions/expressions.mjs';
  * @property {InlineSourceInfo} sourceInfo
  * @property {CheckResultV2|null} check Some events may have check information.
  * @property {CheckConfigurer|null} config Configuration for a check, available in events involving the checks pipeline.
- * @property {CheckRenderData} renderData Used for rendering chat messages.
+ * @property {FURenderData} renderData Used for rendering chat messages.
  * @property {FUItem|null} item The item the rule element could be on.
  * @property {CharacterInfo} source The source character of the event.
  * @property {CharacterInfo[]} targets The targets of the event.
@@ -41,7 +41,17 @@ export class RuleElementContext {
 	}
 
 	/**
-	 * @param {String} id
+	 * @returns {FUItem}
+	 */
+	getItem() {
+		if (this.event.item) {
+			return this.event.item;
+		}
+		return this.item;
+	}
+
+	/**
+	 * @param {String} id An identifier to match against.
 	 * @return {Boolean}
 	 */
 	matchesItem(id) {
@@ -61,11 +71,30 @@ export class RuleElementContext {
 				if (item.system.fuid === id) {
 					return true;
 				}
-				if (item.name === id) {
+				if (item.name.toLowerCase() === id.toLowerCase()) {
 					return true;
 				}
 			}
 		}
+		return false;
+	}
+
+	/**
+	 * @return {Boolean} True if the item in the event is that of the item the rule element is attached to.
+	 */
+	isLocalItem() {
+		if (!this.item || !this.sourceInfo?.itemUuid) {
+			return false;
+		}
+
+		if (this.event.sourceInfo) {
+			return this.event.sourceInfo.itemUuid === this.sourceInfo.itemUuid;
+		}
+
+		if (this.event.item) {
+			return this.event.item.uuid === this.sourceInfo.itemUuid;
+		}
+
 		return false;
 	}
 

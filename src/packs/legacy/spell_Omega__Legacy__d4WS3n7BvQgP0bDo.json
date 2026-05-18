@@ -12,7 +12,7 @@
       "value": false
     },
     "class": {
-      "value": "Entropist"
+      "value": "entropist"
     },
     "useWeapon": {
       "accuracy": {
@@ -101,7 +101,7 @@
       "value": true
     },
     "opportunity": "",
-    "fuid": "omega",
+    "fuid": "omega-legacy",
     "cost": {
       "resource": "mp",
       "amount": "20",
@@ -142,7 +142,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768579459801,
-    "modifiedTime": 1768579473883,
+    "modifiedTime": 1771473177688,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "d4WS3n7BvQgP0bDo",

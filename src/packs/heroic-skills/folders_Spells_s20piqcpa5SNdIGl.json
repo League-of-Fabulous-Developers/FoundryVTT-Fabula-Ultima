@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "z63bpKominWoy7Nw",
+  "name": "Spells",
+  "color": "#4f6f66",
+  "sorting": "a",
+  "_id": "s20piqcpa5SNdIGl",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771476706664
+  },
+  "_key": "!folders!s20piqcpa5SNdIGl"
+}

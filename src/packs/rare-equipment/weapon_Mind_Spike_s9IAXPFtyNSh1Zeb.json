@@ -1,0 +1,197 @@
+{
+  "folder": "qYtBD5MEfzGg5HdQ",
+  "name": "Mind Spike",
+  "type": "weapon",
+  "_id": "s9IAXPFtyNSh1Zeb",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/spear-bluelight.png",
+  "system": {
+    "fuid": "bellringer",
+    "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1700
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Inflict Dazed"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 8
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "spear"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Mind Spike",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/spear-bluelight.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.s9IAXPFtyNSh1Zeb",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "SP3rw1Pszx7zgTUi": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "zDIdebvnBUFJAUuM",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "SP3rw1Pszx7zgTUi",
+              "actions": {
+                "BiHWxNOu0lnb2AkH": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "BiHWxNOu0lnb2AkH",
+                  "effect": "dazed"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "GQ3gxFVWwBnd8jVj",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Mind Spike",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.s9IAXPFtyNSh1Zeb",
+            "effectUuid": null,
+            "fuid": "bellringer"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774740364324,
+        "modifiedTime": 1775709179284,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!s9IAXPFtyNSh1Zeb.GQ3gxFVWwBnd8jVj"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774739799041,
+    "modifiedTime": 1777530914582,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!s9IAXPFtyNSh1Zeb"
+}

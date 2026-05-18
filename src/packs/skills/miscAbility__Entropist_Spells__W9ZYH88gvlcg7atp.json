@@ -1,0 +1,120 @@
+{
+  "folder": "3BdwBwfSnD04VRAz",
+  "name": "[Entropist Spells]",
+  "type": "miscAbility",
+  "img": "icons/sundries/books/book-purple-glyph.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Spells marked with (@ICON[offensive]) are <strong>offensive spells</strong> and require <strong>Magic Checks</strong>!</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\" data-colwidth=\"94\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.odCKj31VovzmcEUw]{Acceleration}</p></td><td style=\"height:17px;border-width:1px;width:15%\" data-colwidth=\"94\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>At the end of each of their turns, the target may choose <strong>one</strong> option: perform a <strong>free attack</strong> with a weapon they have equipped; <strong>or</strong> perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost). After the same creature benefits from this effect a second time, this spell ends.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.ztNmooCW5dwZqwPx]{Anomaly} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You alter the very nature of your target. Until this spell ends, if the target would suffer damage of a type they Absorb or are Immune to, they are instead treated as if they were Vulnerable to that damage type. Once that happens, this spell ends.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.S5jyPShQHxqZdKZB]{Dark Weapon}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One equipped weapon</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You imbue a weapon with dark energy. Until this spell ends, all damage dealt by the weapon becomes of the <strong>dark</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.6QG5ZZgRs4xnxlVl]{Dispel}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You release a wave of negative energy and cleanse all magic from a creature. If the target is affected by one or more spells with a <strong>duration</strong> of Scene, they are no longer affected by any of those spells instead.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.AAsEhxIBxlig3hRk]{Divination}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Self</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.300SqWOqTrc7Qb3L]{Drain Spirit} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You consume a creature's psyche. The target loses <strong>【HR + 20】</strong> Mind Points. Then, you recover an amount of Mind Points equal to half the total Mind Points loss they suffered (if the target had no MP left, you recover none).</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.HCknXFHu7q0bJ2Cg]{Drain Vigor} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You steal another creature's life force. The target suffers <strong>【HR + 15】 dark</strong> damage to the target. Then, you recover an amount of Hit Points equal to half the total Hit Points loss they suffered (if the target had no HP left, you recover none).</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.P33D2g4z1WlN9o6a]{Gamble}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">up to 20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Special</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower</strong> die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p><table style=\"width:100%;height:178px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;width:10%\"><p style=\"text-align:center\"><strong>1</strong></p></td><td style=\"height:17px;width:90%\"><p>You lose half of your current Hit Points and half of your current Mind Points.</p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;width:10%\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td style=\"height:17px;width:90%\"><p>Each creature present on the scene, including yourself, suffers <strong>poisoned</strong>.</p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;width:10%\"><p style=\"text-align:center\"><strong>4-6</strong></p></td><td style=\"height:17px;width:90%\"><p>Each creature present on the scene, including yourself, suffers <strong>slow</strong>.</p></td></tr><tr style=\"height:17px\"><td style=\"height:55px;width:10%\"><p style=\"text-align:center\"><strong>7-8</strong></p></td><td style=\"height:55px;width:90%\"><p>Choose up to three creatures you can see: each of them recovers 50 Hit Points and also recovers from all status effects.</p></td></tr><tr style=\"height:72px\"><td style=\"height:72px;width:10%\"><p style=\"text-align:center\"><strong>9+</strong></p></td><td style=\"height:72px;width:90%\"><p>Choose any number of creatures you can see: each of them suffers 30 damage. The<br />damage type is determined randomly by rolling a d6:</p><ol><li style=\"list-style-type:none\"><p>1. <strong>air    </strong> 2. <strong>bolt    </strong> 3. <strong>dark   </strong> 4. <strong>earth   </strong> 5. <strong>fire    </strong> 6. <strong>poison</strong></p></li></ol></td></tr></tbody></table><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.mPwO3kzv6N1P1kiD]{Mirror}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You twist the laws of magic. Until this spell ends, when the target is targeted by an offensive spell (@ICON[offensive]), the creature that cast that offensive spell will be targeted in their stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.XJM910rLM6sj55Uf]{Omega} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">15</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half the target's level】</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.MWL6NbfZjFkcQ4oC]{Stop} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You trap a foe inside a circle of altered time and space. The target will perform one fewer action on their next turn (to a minimum of 0 actions).</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\" data-colwidth=\"94\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.q0iHNjkDnWaQJgZN]{Umbra} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\" data-colwidth=\"94\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>A storm of dark energy turns matter into ash. You deal <strong>【HR + 15】 dark</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>weak</strong>.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "source": "FUCR192",
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "entropist-spells",
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": "",
+        "interval": null
+      }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771474219373,
+    "modifiedTime": 1771479347206,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "W9ZYH88gvlcg7atp",
+  "sort": 0,
+  "_key": "!items!W9ZYH88gvlcg7atp"
+}

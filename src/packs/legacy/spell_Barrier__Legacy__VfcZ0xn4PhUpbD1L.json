@@ -12,7 +12,7 @@
       "value": false
     },
     "class": {
-      "value": "Spiritist"
+      "value": "spiritist"
     },
     "useWeapon": {
       "accuracy": {
@@ -101,7 +101,7 @@
       "value": false
     },
     "opportunity": "",
-    "fuid": "barrier",
+    "fuid": "barrier-legacy",
     "effects": {
       "entries": [
         "barrier"
@@ -144,7 +144,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768686934861,
-    "modifiedTime": 1768694699313,
+    "modifiedTime": 1771473207697,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "VfcZ0xn4PhUpbD1L",

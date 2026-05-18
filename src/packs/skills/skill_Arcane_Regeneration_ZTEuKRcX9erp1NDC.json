@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you summon an Arcanum, you immediately recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[&amp;sl(\"arcane-regeneration\")*5 hp]{SL × 5 HP}</p></li></ul>",
+    "description": "<p>When you <strong>summon</strong> an Arcanum, you recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[&amp;sl(\"arcane-regeneration\")*5 hp]{SL × 5 HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Arcanist"
+      "value": "arcanist"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,15 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "arcane-regeneration"
+    "fuid": "arcane-regeneration",
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [
     {
@@ -155,7 +163,12 @@
                 "qCg97rBP9FP1HKun": {
                   "type": "messageRuleAction",
                   "_id": "qCg97rBP9FP1HKun",
-                  "message": "<p>You recover @GAIN[$sl*5 hp]{SL x 5 HP}</p>"
+                  "message": "<p>You recover<strong>【SL × 5】</strong>HP.</p>"
+                },
+                "JQ5QM9OFG5fIDQ0r": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "JQ5QM9OFG5fIDQ0r",
+                  "amount": "$sl*5"
                 }
               }
             }
@@ -178,7 +191,7 @@
       "_id": "gKZZD74mFFu4HKUm",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you <strong>summon</strong> an Arcanum, you recover <strong>【SL × 5】</strong> Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -189,12 +202,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767997070953,
-        "modifiedTime": 1768060621907,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771821878074,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!ZTEuKRcX9erp1NDC.gKZZD74mFFu4HKUm"
     }
@@ -205,15 +218,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706494639713,
-    "modifiedTime": 1744464350798,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1775510242309,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

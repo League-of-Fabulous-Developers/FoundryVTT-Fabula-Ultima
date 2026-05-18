@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "xEJLs3KBQFon1pAq",
+  "name": "Delicacy  6 (Weaken)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "Uaan6UJJ5XnoCUNn",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775543539811
+  },
+  "_key": "!folders!Uaan6UJJ5XnoCUNn"
+}

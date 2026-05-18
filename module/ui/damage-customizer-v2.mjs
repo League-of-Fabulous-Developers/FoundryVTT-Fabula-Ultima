@@ -1,6 +1,7 @@
 import { FU } from '../helpers/config.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { Effects } from '../pipelines/effects.mjs';
 
 export class DamageCustomizerV2 {
 	/**
@@ -18,15 +19,26 @@ export class DamageCustomizerV2 {
 			initialType: damageData.type,
 			/** @type DamageType **/
 			selectedType: damageData.type,
+			effectIcons: await Promise.all(
+				damageData.rawModifiers.map(async (m) => {
+					if (m.effect) {
+						const effectData = await Effects.getEffectData(m.effect);
+						if (effectData) {
+							return effectData.img;
+						}
+					}
+					return '';
+				}),
+			),
 		};
 
 		const result = await foundry.applications.api.DialogV2.input({
 			window: {
-				title: game.i18n.localize('FU.ChatApplyDamage'),
+				title: game.i18n.localize('FU.DamageCustomizer'),
 				icon: 'fas fa-heartbeat',
 			},
 			position: {
-				width: 480,
+				width: 600,
 			},
 			actions: {
 				/** @param {Event} event
@@ -87,11 +99,11 @@ export class DamageCustomizerV2 {
 					let components = [];
 					// HR (Not always available)
 					if (hrInput && context.damage.hr > 0 && hrInput.checked) {
-						components.push(`${context.damage.hr} (${StringUtils.localize('FU.HighRollAbbr')})`);
+						components.push(`? (${StringUtils.localize('FU.HighRollAbbr')})`);
 					}
 					// Modifiers
 					context.damage.modifiers.forEach((modifier) => {
-						if (modifier.amount > 0) {
+						if (modifier.amount !== 0) {
 							components.push(`${modifier.amount} (${StringUtils.localize(modifier.label)})`);
 						}
 					});

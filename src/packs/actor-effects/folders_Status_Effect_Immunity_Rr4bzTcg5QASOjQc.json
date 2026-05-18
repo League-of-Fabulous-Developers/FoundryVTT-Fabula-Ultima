@@ -1,0 +1,23 @@
+{
+  "name": "Status Effect Immunity",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "Rr4bzTcg5QASOjQc",
+  "description": "",
+  "sort": 500000,
+  "color": "#bf2227",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725755131732,
+    "modifiedTime": 1774814750053,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "_key": "!folders!Rr4bzTcg5QASOjQc"
+}

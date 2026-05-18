@@ -1,5 +1,5 @@
-<div class="fu-rule-element__property-row">
-	<label class="fu-rule-element__property">
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.Martial'}}</span>
 		<select name="{{pfuConcat path ".martial"}}">
 			<option value="">-</option>
@@ -8,8 +8,8 @@
 	</label>
 </div>
 
-<div class="fu-rule-element__property-row">
-	<label class="fu-rule-element__property">
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.WeaponType'}}</span>
 		<select name="{{pfuConcat path ".weaponType"}}">
 			<option value="">-</option>
@@ -17,7 +17,7 @@
 		</select>
 	</label>
 
-	<label class="fu-rule-element__property">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.Hand'}}</span>
 		<select name="{{pfuConcat path ".handedness"}}">
 			<option value="">-</option>
@@ -26,9 +26,9 @@
 	</label>
 </div>
 
-<div class="fu-rule-element__property">
+<div class="fu-form__property">
 	<span>{{localize 'FU.Category'}}</span>
-	{{formGroup predicate.schema.fields.categories value=predicate.categories options=options.weaponCategoryOptions name=(pfuConcat path ".categories") classes="fu-rule-element__set stacked"}}
+	{{formGroup predicate.schema.fields.categories value=predicate.categories options=options.weaponCategoryOptions name=(pfuConcat path ".categories") classes="fu-form__set stacked"}}
 </div>
 
 

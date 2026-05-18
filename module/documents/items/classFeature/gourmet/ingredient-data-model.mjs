@@ -1,15 +1,13 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
-import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {
+const onRenderCheck = (data, check, actor, item, additionalFlags, targets) => {
 	if (check.type === 'display' && item?.system?.data instanceof IngredientDataModel) {
-		CommonSections.tags(
-			sections,
-			[
+		data.tags.push(
+			...[
 				{
 					tag: 'FU.ClassFeatureIngredientTaste',
 					separator: ':',
@@ -98,6 +96,11 @@ export class IngredientDataModel extends ClassFeatureDataModel {
 	}
 
 	onActorDrop(actor) {
+		// If the item is already on the actor, ignore this operation and instead operate as an organization
+		if (this.actor === actor) {
+			return true;
+		}
+
 		const similarIngredient = actor.itemTypes.classFeature.find((item) => item.system.featureType === this.parent.featureType && item.name === this.item.name && item.system.data.taste === this.taste);
 		if (similarIngredient) {
 			similarIngredient.update({ 'system.data.quantity': similarIngredient.system.data.quantity + this.quantity });

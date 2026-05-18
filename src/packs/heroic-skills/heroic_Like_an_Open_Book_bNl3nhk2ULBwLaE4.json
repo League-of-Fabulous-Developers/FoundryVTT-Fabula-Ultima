@@ -1,14 +1,14 @@
 {
   "name": "Like an Open Book",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/sundries/books/book-open-brown.webp",
   "system": {
     "summary": {
       "value": "Gain additional benefits when you successfully Soul Steal from an enemy."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Esper</strong>, <strong>Loremaster</strong> and <strong>Rogue</strong>, and have acquired the <strong>Soul Steal</strong> Skill.</p></blockquote><p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may choose one of them. If you do, you immediately perform the <strong>Study</strong> action for free against that enemy: treat the Result and High Roll of this Open Check as being equal to the Result and High Roll of the Check you performed for <strong>Soul Steal</strong> (do not roll dice for this Open Check).</p><p>When you deal damage to an <strong>elite</strong> or <strong>champion</strong>-rank enemy, if you stole that enemy's soul treasure during this scene, you deal extra damage equal to <strong>【your Skill Level in Soul Steal】</strong> to that enemy.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Esper</strong>, <strong>Loremaster</strong> and <strong>Rogue</strong>, and have acquired the <strong>Soul Steal</strong> Skill.</p><hr /><p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may choose one of them. If you do, you immediately perform the <strong>Study</strong> action for free against that enemy: treat the Result and High Roll of this Open Check as being equal to the Result and High Roll of the Check you performed for <strong>Soul Steal</strong> (do not roll dice for this Open Check).</p><p>When you deal damage to an <strong>elite</strong> or <strong>champion</strong>-rank enemy, if you stole that enemy's <strong>soul treasure</strong> during this scene, you deal extra damage equal to <strong>【your Skill Level in Soul Steal】</strong> to that enemy.</p>",
     "class": {
-      "value": "Necromancer"
+      "value": "esper, loremaster, rogue"
     },
     "showTitleCard": {
       "value": false
@@ -30,13 +30,115 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "like-an-open-book"
+    "fuid": "like-an-open-book",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Like an Open Book",
+      "img": "icons/sundries/books/book-open-brown.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.bNl3nhk2ULBwLaE4",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "KrSgX5USBlbKSMow": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "TmIBzF18YVMxzjgi",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "soul-steal"
+              },
+              "_id": "KrSgX5USBlbKSMow",
+              "actions": {
+                "rfCqBaeS3t4PJ0Oa": {
+                  "type": "messageRuleAction",
+                  "_id": "rfCqBaeS3t4PJ0Oa",
+                  "message": "<p>You may <strong>Study</strong> one of the enemies stolen from.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "cqLjEw9l0NJm8VWP",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may immediately perform the <strong>Study</strong> action for free against one of them: treat the Result and High Roll of this Open Check as being equal to the <strong>Soul Steal</strong> Check.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Like an Open Book",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.bNl3nhk2ULBwLaE4",
+            "effectUuid": null,
+            "fuid": "like-an-open-book"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771886113644,
+        "modifiedTime": 1771886853187,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!bNl3nhk2ULBwLaE4.cqLjEw9l0NJm8VWP"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -47,10 +149,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1769030732321,
-    "lastModifiedBy": "bgUzjEHd80A79gwp"
+    "modifiedTime": 1775353844213,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "folder": "L3ZyYRKlHEggv0aF",
+  "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "bNl3nhk2ULBwLaE4",
   "ownership": {
     "default": 0,

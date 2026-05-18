@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells (@ICON[offensive]) you cast.</p>",
       "complex": false
     },
     "source": "FUTF168",
@@ -35,7 +35,23 @@
       "name": "Advanced Targeting Module",
       "_id": "tBO2RxyIGFzJOStU",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.accuracy.accuracyCheck",
@@ -50,7 +66,7 @@
           "priority": null
         }
       ],
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells you cast.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -65,12 +81,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743183056735,
-        "modifiedTime": 1743183094497,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1773721524374,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!9YM4VR2e6Y4MgmJ2.tBO2RxyIGFzJOStU"
@@ -82,10 +98,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711476994639,
-    "modifiedTime": 1743183100883,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1773721511461,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

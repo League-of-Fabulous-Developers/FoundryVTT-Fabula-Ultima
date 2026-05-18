@@ -3,20 +3,8 @@
 	font-family: var(--font-primary);
 }
 
-.projectfu.actor .window-content {
-	padding: 1rem;
-}
-
-.projectfu.actor .tab {
-	padding: 0.5rem;
-}
-
 .projectfu.item .window-content {
 	padding: 0.5rem;
-}
-
-.projectfu.item .sheet-header {
-	margin-bottom: 0.5rem;
 }
 
 .projectfu.item .tab {
@@ -91,11 +79,7 @@
 }
 
 .sheet nav.sheet-tabs > [data-tab] {
-	padding: 0px;
-}
-
-.tabs {
-	margin: 5px 0;
+	padding: 0;
 }
 
 .rollable:hover,

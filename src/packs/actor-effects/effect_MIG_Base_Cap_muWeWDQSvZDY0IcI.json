@@ -1,5 +1,5 @@
 {
-  "folder": "7NQvpwoHcTkOxvMv",
+  "folder": "KtEArjkGWRkOEKtb",
   "name": "MIG Base Cap",
   "type": "effect",
   "_id": "muWeWDQSvZDY0IcI",
@@ -9,22 +9,45 @@
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "MIG Base Cap",
       "img": "systems/projectfu/styles/static/statuses/MigDown.webp",
-      "_id": "3aRJkYbELgwTyBOv",
+      "origin": "Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "jbyAbfZ8FzjSSzus",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.attributes.mig.current",
@@ -33,31 +56,37 @@
           "priority": null
         }
       ],
-      "description": "<p>Cap Current Mightt Attribute to Base.</p>",
+      "description": "<p>Your <strong>Might</strong> die size cannot be higher than your <strong>base</strong> Might die size.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "MIG Base Cap",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI",
+            "effectUuid": null,
+            "fuid": "mig-base-cap"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725744070215,
-        "modifiedTime": 1726073233559,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774817104298,
+        "modifiedTime": 1774817121067,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!muWeWDQSvZDY0IcI.3aRJkYbELgwTyBOv"
+      "_key": "!items.effects!muWeWDQSvZDY0IcI.jbyAbfZ8FzjSSzus"
     }
   ],
-  "sort": 0,
+  "sort": 150000,
   "ownership": {
     "default": 0,
     "dobQfkKFj2NK96cc": 3
@@ -66,12 +95,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725743869898,
-    "modifiedTime": 1725744067703,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774761359771,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!muWeWDQSvZDY0IcI"

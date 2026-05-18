@@ -1,0 +1,65 @@
+<main class="flexcol fu-scrollable gap-16" style="height: 100%">
+
+	<div class="pfu-advancement__character">
+		<img class="pfu-advancement__character-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}">
+	</div>
+
+	<div class="pfu-advancement__header">
+		<div class="pfu_advancement__type">
+			<span class="pfu-badge__level large">{{pfuMath index '+' 1}}</span>
+		</div>
+		{{#if current}}
+			<div class="">
+				<div class="pfu__advancement__current flexrow">
+					<div class="pfu-badge flexcol flex-group-center flexshrink" style="min-width: 96px;">
+						{{pfuItemAnchor current size='l'}}
+						<div class="flexrow flex-group-center gap-4">
+							{{current.name}}
+						</div>
+					</div>
+					<button data-action="clearItem">
+						<i class="fas fa-window-close"></i>
+					</button>
+				</div>
+
+			</div>
+		{{/if}}
+	</div>
+
+	<div class="pfu-advancement__entry__cards__container {{#if groupedOptions}}orbit{{/if}}">
+		{{#if groupedOptions}}
+			{{#each groupedData as |group|}}
+				<div class="pfu-advancement__entry__orbit"
+					 style="width: {{group._size}}px; height: {{group._size}}px;">
+
+					{{!-- Central hub --}}
+				 	<div class="pfu-advancement__entry__orbit-hub" data-tooltip="{{pfuHumanize group.classId}}">
+						{{#if (lookup @root.classes group.classId)}}
+							{{#with (lookup @root.classes group.classId) as |class|}}
+								<img src="{{class.img}}" alt="{{class.name}}"/>
+							{{/with}}
+						{{else}}
+							<i class="{{pfuIconClass 'class'}}"></i>
+						{{/if}}
+					</div>
+
+					{{!-- Orbiting cards --}}
+					{{#each group.options as |option|}}
+						<div class="pfu-advancement__entry__orbit-card"
+							 style="transform: translate(calc(-50% + {{option._x}}px), calc(-50% + {{option._y}}px));">
+							{{> "systems/projectfu/templates/app/partials/advancement-option-card.hbs" option=option}}
+						</div>
+					{{/each}}
+
+				</div>
+			{{/each}}
+		{{else}}
+			<div class="pfu-advancement__entry__cards">
+				{{#each options as |option|}}
+					{{> "systems/projectfu/templates/app/partials/advancement-option-card.hbs" option=option}}
+				{{/each}}
+			</div>
+		{{/if}}
+	</div>
+</main>
+

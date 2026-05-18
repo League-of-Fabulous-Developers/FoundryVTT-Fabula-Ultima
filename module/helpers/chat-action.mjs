@@ -10,7 +10,7 @@ import FoundryUtils from './foundry-utils.mjs';
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset
  * @property {Boolean} owner Whether this action can only be applied the owner
- * @property {String|undefined} flag
+ * @property {FUFlag|undefined} flag
  * @property {DOMStringMap|undefined} dataset
  * @property {String} classes
  * @property {String} style
@@ -49,12 +49,16 @@ export class ChatAction {
 		return this;
 	}
 
-	/**	 *
+	/**
 	 * @param {String} flag
+	 * @param {Object} value
 	 * @returns {ChatAction}
 	 */
-	setFlag(flag) {
-		this.flag = flag;
+	setFlag(flag, value = true) {
+		this.flag = {
+			key: flag,
+			value: value,
+		};
 		return this;
 	}
 
@@ -73,7 +77,8 @@ export class ChatAction {
 	 */
 	forActor(actor) {
 		return this.withDataset({
-			actorId: actor.uuid,
+			['actor-id']: actor.uuid,
+			['actor-img']: actor.img,
 		}).notTargeted();
 	}
 

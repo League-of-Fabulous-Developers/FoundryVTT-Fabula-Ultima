@@ -1,5 +1,4 @@
 import { SubDocumentDataModel } from '../sub/sub-document-data-model.mjs';
-import { CombatEventRuleTrigger } from './triggers/combat-event-rule-trigger.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 import { DataModelRegistry } from '../../fields/data-model-registry.mjs';
@@ -9,6 +8,7 @@ import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
 import { RulePredicateDataModel, RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
 import { FU } from '../../helpers/config.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
+import { EmptyRuleTrigger } from './triggers/empty-rule-trigger.mjs';
 
 const fields = foundry.data.fields;
 
@@ -46,8 +46,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			trigger: new fields.TypedSchemaField(RuleTriggerRegistry.instance.types, {
-				initial: new CombatEventRuleTrigger(),
-				nullable: true,
+				initial: new EmptyRuleTrigger(),
 			}),
 			actions: new SubDocumentCollectionField(RuleActionDataModel),
 			predicates: new SubDocumentCollectionField(RulePredicateDataModel),
@@ -74,7 +73,12 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	async addRuleAction() {
 		let subTypes = this.getMatchingSubTypes(RuleActionRegistry.instance);
 		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog('FU.RuleElementNew', options);
+		const type = await FoundryUtils.selectOptionDialog(
+			StringUtils.localize('FU.AddElement', {
+				element: StringUtils.localize('FU.RuleActions'),
+			}),
+			options,
+		);
 		if (type) {
 			await SubDocumentCollectionField.addModel(this.actions, type, this);
 		}
@@ -113,7 +117,12 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	async addRulePredicate() {
 		let subTypes = this.getMatchingSubTypes(RulePredicateRegistry.instance);
 		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog('FU.Add', options);
+		const type = await FoundryUtils.selectOptionDialog(
+			StringUtils.localize('FU.AddElement', {
+				element: StringUtils.localize('FU.RulePredicates'),
+			}),
+			options,
+		);
 		if (type) {
 			await SubDocumentCollectionField.addModel(this.predicates, type, this);
 		}

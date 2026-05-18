@@ -1,0 +1,135 @@
+{
+  "folder": "5ZenCjx6n04peFsh",
+  "name": "Spell Inflict Status (Dazed)",
+  "type": "effect",
+  "_id": "vOghJ16fTqg0jBGZ",
+  "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+  "system": {
+    "fuid": "spell-inflict-status-dazed",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell Inflict Status (Dazed)",
+      "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.vOghJ16fTqg0jBGZ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "6Ks1g8nUeH7gMtzE": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "dCJWUOrXT5y9w6Zn",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "6Ks1g8nUeH7gMtzE",
+              "predicates": {
+                "5chqAtaLW0ZKIF4Y": {
+                  "type": "spellRulePredicate",
+                  "_id": "5chqAtaLW0ZKIF4Y",
+                  "offensive": "true"
+                }
+              },
+              "actions": {
+                "dpAp6928aiCsiMS7": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "dpAp6928aiCsiMS7",
+                  "effect": "dazed"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "CHSVW3QeopJkG911",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>dazed</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell Inflict Status (Dazed)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.vOghJ16fTqg0jBGZ",
+            "effectUuid": null,
+            "fuid": "spell-inflict-status-dazed"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774809888010,
+        "modifiedTime": 1774810134524,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!vOghJ16fTqg0jBGZ.CHSVW3QeopJkG911"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774809871360,
+    "modifiedTime": 1774809886456,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!vOghJ16fTqg0jBGZ"
+}

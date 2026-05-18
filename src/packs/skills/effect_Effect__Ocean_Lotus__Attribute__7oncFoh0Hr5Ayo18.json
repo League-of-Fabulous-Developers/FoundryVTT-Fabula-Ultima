@@ -1,0 +1,117 @@
+{
+  "folder": "UzrRko1Gv342c7fz",
+  "name": "Effect: Ocean Lotus (Attribute)",
+  "type": "effect",
+  "_id": "7oncFoh0Hr5Ayo18",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/ocean-lotus.png",
+  "system": {
+    "fuid": "effect-ocean-lotus-attribute",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ocean Lotus (Attribute)",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/ocean-lotus.png",
+      "origin": "Compendium.projectfu.skills.Item.7oncFoh0Hr5Ayo18",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "1amQPqZKxoxnRzB2",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.dex",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While this magiseed is <strong>planted</strong>, you treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Ocean Lotus (Attribute)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.7oncFoh0Hr5Ayo18",
+            "effectUuid": null,
+            "fuid": "effect-ocean-lotus-attribute"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777438018520,
+        "modifiedTime": 1777439916141,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!7oncFoh0Hr5Ayo18.1amQPqZKxoxnRzB2"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1777438004091,
+    "modifiedTime": 1777438383259,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!7oncFoh0Hr5Ayo18"
+}

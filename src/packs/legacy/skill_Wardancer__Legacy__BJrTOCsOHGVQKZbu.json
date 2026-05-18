@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped,</strong> offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -17,7 +17,7 @@
       "min": 0
     },
     "class": {
-      "value": "Dancer"
+      "value": "dancer"
     },
     "useWeapon": {
       "accuracy": false,
@@ -52,7 +52,7 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "wardancer",
+    "fuid": "wardancer-legacy",
     "resource": {
       "enabled": false,
       "amount": "",
@@ -118,7 +118,7 @@
           "priority": null
         }
       ],
-      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -177,7 +177,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769014350883,
-    "modifiedTime": 1769014447073,
+    "modifiedTime": 1771473259465,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "BJrTOCsOHGVQKZbu",

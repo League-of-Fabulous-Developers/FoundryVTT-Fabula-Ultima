@@ -12,6 +12,7 @@ import { CommonSections } from './common-sections.mjs';
 import { CheckPrompt } from './check-prompt.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef SupporterV2
@@ -406,15 +407,15 @@ class GroupCheckApp extends FUApplication {
 		const search = game.messages.search({
 			filters: [
 				{
-					field: `flags.${SYSTEM}.${Flags.ChatMessage.CheckV2}.type`,
+					field: `flags.${SYSTEM}.${Flags.ChatMessage.Check}.type`,
 					value: 'support',
 				},
 			],
 		});
 		for (const message of search) {
-			if (SupportCheck.isSupporting(this.#groupCheckId, message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)) && !groupCheck.supporters.find((value) => value.messageId === message.id)) {
+			if (SupportCheck.isSupporting(this.#groupCheckId, message.getFlag(SYSTEM, Flags.ChatMessage.Check)) && !groupCheck.supporters.find((value) => value.messageId === message.id)) {
 				/** @type CheckResultV2 */
-				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+				const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 				const actor = ChatMessage.getSpeakerActor(message.speaker);
 				groupCheck.supporters = groupCheck.supporters.filter((supporter) => supporter.id !== actor.id);
 				groupCheck.supporters.push({
@@ -435,7 +436,7 @@ class GroupCheckApp extends FUApplication {
 		/**
 		 * @type CheckResultV2
 		 */
-		const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 		const actor = ChatMessage.getSpeakerActor(message.speaker);
 		const groupCheck = this.groupCheckData;
 		if (check && SupportCheck.isSupporting(groupCheck.id, check) && !groupCheck.supporters.find((supporter) => supporter.messageId === message.id)) {
@@ -471,11 +472,11 @@ function isGroupCheck(type) {
 /**
  * @type {RenderCheckHook}
  */
-const onRenderGroupCheck = (sections, check, actor, item, flags) => {
+const onRenderGroupCheck = (data, check, actor, item, flags) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = check;
 	if (isGroupCheck(type)) {
 		const inspector = CheckConfiguration.inspect(check);
-		sections.push({
+		data.sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			data: {
@@ -504,7 +505,7 @@ const onRenderGroupCheck = (sections, check, actor, item, flags) => {
 		});
 
 		const targets = inspector.getTargets();
-		CommonSections.actions(sections, actor, item, targets, flags, inspector);
+		CommonSections.actions(data, actor, item, targets, flags, inspector);
 	}
 };
 
@@ -515,7 +516,7 @@ const onRenderGroupCheck = (sections, check, actor, item, flags) => {
 function onRenderChatMessage(message, html) {
 	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
 		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
-			/** @type RitualCheckData **/
+			/** @type PromptCheckData **/
 			const fields = StringUtils.fromBase64(dataset.fields);
 			const actor = await fromUuid(fields.actorId);
 			if (!actor) {
@@ -525,12 +526,39 @@ function onRenderChatMessage(message, html) {
 			if (!item) {
 				return;
 			}
+			/** @type CheckConfig **/
+			const config = fields.config;
 			return CheckPrompt.ritualCheck(actor, item, {
-				primary: fields.primary,
-				secondary: fields.secondary,
+				...config,
 			});
 		});
 	}
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckConfig} config
+ * @returns {ChatAction}
+ */
+function getRitualAction(actor, item, config) {
+	const icon = FU.checkIcons.ritual;
+	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
+	return new ChatAction(
+		'ritualCheck',
+		icon,
+		tooltip,
+		/** @type PromptCheckData **/ {
+			actorId: actor.uuid,
+			itemId: item.uuid,
+			config: config,
+		},
+	)
+		.setFlag(Flags.ChatMessage.PromptCheck)
+		.notTargeted()
+		.withSelected()
+		.requiresOwner()
+		.withLabel('FU.ChatPerformRitual');
 }
 
 const initialize = () => {
@@ -572,4 +600,5 @@ export const GroupCheck = Object.freeze({
 	initGroupCheck,
 	setSupportCheckDifficulty,
 	isGroupCheck,
+	getRitualAction,
 });

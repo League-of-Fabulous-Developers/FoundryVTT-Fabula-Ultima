@@ -1,0 +1,140 @@
+{
+  "folder": "fgMNimOVisYtuzUB",
+  "name": "Arcane Mail",
+  "type": "armor",
+  "_id": "t7FSQyDEmM4Uat92",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-arcane.png",
+  "system": {
+    "fuid": "arcane-mail",
+    "description": "<p>Spells you cast deal <strong>5 extra damage</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2200
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Spell Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 11
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 0
+    },
+    "init": {
+      "value": -3
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Arcane Mail",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-arcane.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.t7FSQyDEmM4Uat92",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "zxy07y1BLS8r9yT9",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, spells you cast deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Arcane Mail",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.t7FSQyDEmM4Uat92",
+            "effectUuid": null,
+            "fuid": "arcane-mail"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774808690963,
+        "modifiedTime": 1775708926696,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!t7FSQyDEmM4Uat92.zxy07y1BLS8r9yT9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774750766155,
+    "modifiedTime": 1777530673921,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!t7FSQyDEmM4Uat92"
+}

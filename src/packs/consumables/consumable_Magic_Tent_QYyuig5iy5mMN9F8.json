@@ -7,9 +7,9 @@
       "value": "potion"
     },
     "summary": {
-      "value": "Allows the entire group to rest while in the wilderness"
+      "value": "Allows the entire group to rest while in the wilderness."
     },
-    "description": "",
+    "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. Cannot be used in settlements.</p>",
     "isFavored": {
       "value": false
     },
@@ -43,8 +43,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706516284047,
-    "modifiedTime": 1768876928852,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1775517604907,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

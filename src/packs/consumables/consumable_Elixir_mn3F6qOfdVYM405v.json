@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature recovers 50 Mind Points."
     },
-    "description": "",
+    "description": "<p>One creature recovers 50 Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -32,7 +32,8 @@
     "traits": {
       "entries": [
         "potion",
-        "restore"
+        "restore",
+        "mind-point"
       ]
     }
   },
@@ -54,8 +55,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706515894820,
-    "modifiedTime": 1768876799320,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1774718094187,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Bolt)",
   "type": "effect",
   "_id": "sA4Ow3sFpVUnfcII",
-  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
-    "fuid": "alter-damage-type-bolt"
+    "fuid": "alter-damage-type-bolt",
+    "source": ""
   },
   "effects": [
     {
@@ -21,10 +22,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Bolt)",
-      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "_id": "oZe4OoULtGYRO6od",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>bolt</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725774557301,
-        "modifiedTime": 1725774602230,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732811814,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!sA4Ow3sFpVUnfcII.oZe4OoULtGYRO6od"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725774549485,
-    "modifiedTime": 1725774553301,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732807866,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!sA4Ow3sFpVUnfcII"

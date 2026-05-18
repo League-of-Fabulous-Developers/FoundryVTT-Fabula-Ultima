@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong>, you may perform the <strong>Equipment action</strong> for free.</p>",
+    "description": "<p>After you perform a <strong>dance</strong>, you may perform the <strong>Equipment</strong> action for free.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Dancer"
+      "value": "dancer"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "quick-change",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -132,7 +137,8 @@
   },
   "flags": {
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -140,7 +146,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706560456464,
-    "modifiedTime": 1770277571696,
+    "modifiedTime": 1775525548848,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

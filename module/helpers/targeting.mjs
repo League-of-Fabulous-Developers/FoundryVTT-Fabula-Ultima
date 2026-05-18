@@ -1,4 +1,4 @@
-import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
 import { Flags } from './flags.mjs';
 import { getTargeted } from './target-handler.mjs';
 import { ChatAction } from './chat-action.mjs';
@@ -72,8 +72,8 @@ async function filterTargetsByRule(actor, item, targets) {
 			}
 			return targets;
 		case 'weapon': {
-			const weapon = await ChooseWeaponDialog.prompt(actor);
-			return [weapon];
+			const weapon = await WeaponResolver.prompt(actor);
+			return [weapon.item];
 		}
 		case 'special':
 			return targets;

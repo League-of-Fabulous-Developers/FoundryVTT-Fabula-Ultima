@@ -1,0 +1,127 @@
+{
+  "folder": "9eMA0CXLIWjQMypE",
+  "name": "Inflict Status (Dazed)",
+  "type": "effect",
+  "_id": "ffsodHO7zfbT8nTv",
+  "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+  "system": {
+    "fuid": "inflict-status-dazed",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Inflict Status (Dazed)",
+      "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.ffsodHO7zfbT8nTv",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "AtXIJi96JI8BLCEB": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "7WTGwRrr0qVClpNq",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "AtXIJi96JI8BLCEB",
+              "predicates": {},
+              "actions": {
+                "HFiGMNSqGpOoYFCg": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "HFiGMNSqGpOoYFCg",
+                  "effect": "dazed"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "GuKGmX2SOHeOV6cj",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Inflict Status (Dazed)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.ffsodHO7zfbT8nTv",
+            "effectUuid": null,
+            "fuid": "inflict-status-dazed"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774734768234,
+        "modifiedTime": 1774734888845,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!ffsodHO7zfbT8nTv.GuKGmX2SOHeOV6cj"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774734719409,
+    "modifiedTime": 1774734766862,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!ffsodHO7zfbT8nTv"
+}

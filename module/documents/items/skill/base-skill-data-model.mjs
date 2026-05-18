@@ -8,11 +8,95 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { ActionTraits, DamageTraits, Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
-import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
+import { WeaponResolver } from './weapon-resolver.mjs';
+import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+import { Checks } from '../../../checks/checks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { ChatSectionOrder, CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
+
+const skillForAttributeCheck = 'skillForAttributeCheck';
+
+/**
+ * @type RenderCheckHook
+ */
+let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
+	if (check.type === 'accuracy' && item?.system instanceof BaseSkillDataModel) {
+		const inspector = CheckConfiguration.inspect(check);
+		const weapon = await fromUuid(inspector.getWeaponReference());
+
+		if (check.critical) {
+			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
+		}
+
+		let tags = item.system.getTags();
+		if (weapon) {
+			if (weapon.system.getTags instanceof Function) {
+				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
+			}
+		}
+		data.tags.push(...tags);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+
+		if (item.system.hasClock?.value) {
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
+		}
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
+
+/**
+ * @type RenderCheckHook
+ */
+let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
+	if (check.type === 'attribute' && item?.system instanceof BaseSkillDataModel && check.additionalData[skillForAttributeCheck]) {
+		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
+		const inspector = CheckConfiguration.inspect(check);
+		CommonSections.itemFlavor(data.sections, skill);
+		data.tags.push(...skill.system.getTags());
+		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
+		CommonSections.actions(data, actor, item, [], flags, inspector);
+
+		if (check.critical) {
+			CommonSections.opportunity(data.sections, skill.system.opportunity, CHECK_DETAILS);
+		}
+
+		if (skill.system.hasResource?.value) {
+			CommonSections.resource(data.sections, skill.system.rp, ChatSectionOrder.tracker);
+		}
+		if (skill.system.hasClock?.value) {
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
+
+/**
+ * @type RenderCheckHook
+ */
+const onRenderDisplay = (data, check, actor, item, flags) => {
+	if (check.type === 'display' && item?.system instanceof BaseSkillDataModel) {
+		data.tags.push(...item.system.getTags());
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargetsOrDefault();
+		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
+		if (!item.system.hasRoll.value) {
+			CommonSections.actions(data, actor, item, targets, flags, inspector);
+		}
+		if (item.system.hasResource?.value) {
+			CommonSections.resource(data.sections, item.system.rp, ChatSectionOrder.tracker);
+		}
+		CommonEvents.skill(actor, item);
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
 
 /**
  * @property {string} description
@@ -26,8 +110,8 @@ import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
+ * @property {Boolean} hasRoll.value
  */
-
 export class BaseSkillDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, BooleanField, EmbeddedDataField, SetField } = foundry.data.fields;
@@ -54,72 +138,197 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		});
 	}
 
-	/**
-	 * @desc Common configuration for attribute checks.
-	 * @param {CheckConfigurer} config
-	 */
-	configureCheck(config) {
-		config.addTraits('skill');
-		config.addTraitsFromItemModel(this.traits);
-		config.addEffects(this.effects.entries);
-		config.addTraitsFromItemModel(this.traits);
-		if (this.resource.enabled) {
-			config.setResource(this.resource.type, this.resource.amount);
+	prepareBaseData() {
+		if (!this.hasRoll.value) {
+			this.useWeapon.accuracy = false;
+		}
+		if (!this.damage.hasDamage) {
+			this.useWeapon.damage = false;
+		}
+		// If not using weapon damage, and it's not set, reset to default
+		if (!this.useWeapon.damage && !this.damage.type) {
+			this.damage.type = 'physical';
 		}
 	}
 
 	/**
 	 * @return Tag[]
 	 */
-	getCommonTags() {
-		return TraitUtils.toTags(this.traits);
+	getTags() {
+		return [];
 	}
 
 	/**
-	 * @desc Common configuration for display checks.
+	 * @returns {boolean} Whether this is a passive skill.
+	 * @remarks This is used to determine whether to show this skill in some UIs.
+	 */
+	get passive() {
+		let active = this.hasRoll.value || this.useWeapon.accuracy || this.damage.hasDamage || this.effects.entries.length > 0;
+		/** @type {FUItem} **/
+		const item = this.parent;
+		for (const effect of item.effects) {
+			const rollRule = effect.findRuleElement((rule) => {
+				return rule.trigger.type === 'itemRollRuleTrigger';
+			});
+			if (rollRule !== undefined) {
+				active = true;
+			}
+		}
+		return !active;
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		if (this.useWeapon.accuracy || this.useWeapon.damage) {
+			const weapon = await this.getWeapon(this.parent.actor);
+			if (!weapon) {
+				ui.notifications.error(game.i18n.localize('FU.AbilityNoWeaponEquipped'));
+				return;
+			}
+		}
+
+		if (this.hasRoll.value) {
+			if (this.useWeapon.accuracy || this.damage.hasDamage) {
+				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
+			} else {
+				return Checks.attributeCheck(
+					this.parent.actor,
+					{
+						primary: this.attributes.primary,
+						secondary: this.attributes.secondary,
+					},
+					this.parent,
+					this.#initializeAttributeCheck(modifiers),
+				);
+			}
+		}
+		return Checks.display(this.parent.actor, this.parent, this.#initializeSkillDisplay(modifiers));
+	}
+
+	/**
+	 * @param modifiers
+	 * @return {CheckCallback}
+	 * @override
+	 */
+	#initializeAccuracyCheck(modifiers) {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+			const weapon = await this.getWeapon(actor);
+
+			if (weapon && (this.useWeapon.accuracy || (this.damage.hasDamage && this.useWeapon.damage))) {
+				config.setWeaponReference(weapon.item);
+			}
+
+			if (this.useWeapon.accuracy) {
+				if (weapon) {
+					const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon.item);
+					if (error) {
+						throw error;
+					}
+					if (weaponCheck) {
+						check.primary = weaponCheck.primary;
+						check.secondary = weaponCheck.secondary;
+						check.modifiers = check.modifiers.concat(weaponCheck.modifiers);
+						if (weaponCheck.additionalData.defense) {
+							config.setTargetedDefense(weaponCheck.accuracy.defense);
+						}
+					}
+				}
+			} else {
+				check.primary = this.attributes.primary;
+				check.secondary = this.attributes.secondary;
+			}
+			await this.configureCheck(config, actor, item);
+			await this.addSkillAccuracy(config, actor, item, context);
+
+			if (this.damage.hasDamage) {
+				if (this.useWeapon.damage) {
+					if (weapon) {
+						await this.addSkillDamage(config, item, context, weapon.data);
+					}
+				} else {
+					await this.addSkillDamage(config, item, context);
+				}
+				config.setHrZero(this.damage.hrZero || modifiers.shift);
+			}
+		};
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeAttributeCheck(modifiers) {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			config.check.additionalData[skillForAttributeCheck] = this.parent.uuid;
+			await this.configureCheck(config, actor, item);
+			await this.addSkillAccuracy(config, actor, item, context);
+			if (this.defense && targets.length === 1) {
+				let dl;
+				switch (this.defense) {
+					case 'def':
+						dl = targets[0].def;
+						break;
+
+					case 'mdef':
+						dl = targets[0].mdef;
+						break;
+				}
+				config.setDifficulty(dl);
+			}
+		};
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 * @remarks Expects a weapon
+	 */
+	#initializeSkillDisplay(modifiers) {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			await this.configureCheck(config, actor, item);
+			if (this.damage.hasDamage) {
+				if (this.useWeapon.damage) {
+					const weapon = await this.getWeapon(actor);
+					if (weapon) {
+						config.setWeaponReference(weapon.item);
+						await this.addSkillDamage(config, item, context, weapon.data);
+					}
+				} else {
+					await this.addSkillDamage(config, item, context);
+				}
+			}
+		};
+	}
+
+	/**
+	 * @desc Common configuration for attribute checks.
 	 * @param {CheckConfigurer} config
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
 	 */
-	async configureAttributeCheck(config, actor, item) {
-		const targets = config.getTargets();
-		const context = ExpressionContext.fromTargetData(actor, item, targets);
-		await this.addSkillAccuracy(config, actor, item, context);
-		if (this.defense && targets.length === 1) {
-			let dl;
-			switch (this.defense) {
-				case 'def':
-					dl = targets[0].def;
-					break;
-
-				case 'mdef':
-					dl = targets[0].mdef;
-					break;
-			}
-			config.setDifficulty(dl);
+	async configureCheck(config, actor, item) {
+		config.addTraits('skill');
+		config.addTraitsFromItemModel(this.traits);
+		config.setEffects(this.effects);
+		config.addTraitsFromItemModel(this.traits);
+		if (this.resource.enabled) {
+			config.setResource(this.resource.type, this.resource.amount);
 		}
-	}
-
-	/**
-	 * @desc Common configuration for display checks.
-	 * @param {CheckConfigurer} config
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 */
-	async configureDisplayCheck(config, actor, item) {
-		const targets = config.getTargets();
-		const context = ExpressionContext.fromTargetData(actor, item, targets);
-		this.configureCheck(config);
-		if (this.damage.hasDamage) {
-			if (this.useWeapon.damage) {
-				const weapon = await this.getWeapon(actor);
-				config.setWeaponReference(weapon);
-				/** @type WeaponDataModel **/
-				const weaponData = weapon.system;
-				config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
-			}
-			await this.addSkillDamage(config, item, context);
-		}
+		await ResourcePipeline.configureExpense(config, actor, item, this.cost);
 	}
 
 	/**
@@ -145,10 +354,18 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
+	}
+
+	/**
 	 * @param {CheckConfigurer} config
 	 * @param {FUItem} item
 	 * @param {ExpressionContext} context
-	 * @param {WeaponDataModel|CustomWeaponDataModel} weaponData
+	 * @param {WeaponData} weaponData
 	 * @returns {Promise<void>}
 	 */
 	async addSkillDamage(config, item, context, weaponData = undefined) {
@@ -167,27 +384,27 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 
 			// Weapon support
 			if (weaponData) {
-				if (this.useWeapon.traits && weaponData.traits) {
+				if (this.useWeapon.traits) {
 					if (weaponData.traits) {
 						config.addTraitsFromItemModel(weaponData.traits);
 					}
-					if (weaponData instanceof WeaponDataModel) {
-						config
-							.setWeaponTraits({
-								weaponType: weaponData.type.value,
-								weaponCategory: weaponData.category.value,
-								handedness: weaponData.hands.value,
-							})
-							.addTraits(weaponData.damageType.value);
-					}
+					config.setWeaponTraits({
+						weaponType: weaponData.type,
+						weaponCategory: weaponData.category ?? undefined,
+						handedness: weaponData.handedness ?? undefined,
+					});
+					config.addTraits(ActionTraits.Attack);
 				}
 				if (this.useWeapon.damage) {
-					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
-				}
-				if (this.useWeapon.accuracy) {
-					config.addModifier('FU.CheckBonus', weaponData.accuracy.value);
-					if (weaponData.defense) {
-						config.setTargetedDefense(weaponData.defense);
+					// We do this in case we are using both a damage bonus AND weapon damage
+					if (config.hasDamage) {
+						config.modifyDamage((damage) => {
+							damage.type = this.damage.type || weaponData.damage.type;
+							damage.addModifier('FU.WeaponDamageBonus', weaponData.damage.value);
+							return damage;
+						});
+					} else {
+						config.setDamage(this.damage.type || weaponData.damage.type, weaponData.damage.value);
 					}
 				}
 			}
@@ -209,19 +426,10 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 
 	/**
 	 * @param {FUActor} actor
-	 * @returns {Promise<game.projectfu.FUItem>}
+	 * @returns {Promise<WeaponResolution>}
 	 */
 	async getWeapon(actor) {
-		const weapon = await ChooseWeaponDialog.prompt(actor, true);
-		if (weapon === false) {
-			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
-			ui.notifications.error(message);
-			throw new Error(message);
-		}
-		if (weapon == null) {
-			throw new Error('no selection');
-		}
-		return weapon;
+		return await WeaponResolver.prompt(actor, true);
 	}
 
 	/**

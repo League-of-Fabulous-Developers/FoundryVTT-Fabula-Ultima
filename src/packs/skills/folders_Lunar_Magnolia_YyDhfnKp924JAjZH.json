@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Lunar Magnolia",
+  "color": "#342022",
+  "sorting": "a",
+  "_id": "YyDhfnKp924JAjZH",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!YyDhfnKp924JAjZH"
+}

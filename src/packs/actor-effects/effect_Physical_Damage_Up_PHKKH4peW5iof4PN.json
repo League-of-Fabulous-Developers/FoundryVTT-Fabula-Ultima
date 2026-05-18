@@ -1,0 +1,111 @@
+{
+  "folder": "s9huIFW6pnH7kn6j",
+  "name": "Physical Damage Up",
+  "type": "effect",
+  "_id": "PHKKH4peW5iof4PN",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+  "system": {
+    "fuid": "physical-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Physical Damage Up",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.PHKKH4peW5iof4PN",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ywg7WeySSkrmjy3m",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>You deal <strong>5 extra damage</strong> with all <strong>physical</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Physical Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.PHKKH4peW5iof4PN",
+            "effectUuid": null,
+            "fuid": "physical-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774823676571,
+        "modifiedTime": 1774823695077,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!PHKKH4peW5iof4PN.ywg7WeySSkrmjy3m"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774812266430,
+    "modifiedTime": 1774812266430,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!PHKKH4peW5iof4PN"
+}

@@ -46,6 +46,7 @@
 	--icon-fu-check-opposed: url('../../static/icons/checks/check_opposed.png');
 	--icon-fu-check-ritual: url('../../static/icons/checks/check_ritual.png');
 
+	--icon-fu-roll-base: url('../../static/icons/checks/roll_base.png');
 	--icon-fu-roll-difficulty: url('../../static/icons/checks/roll_difficulty.png');
 	--icon-fu-roll-high: url('../../static/icons/checks/roll_high.png');
 	--icon-fu-roll-modifier: url('../../static/icons/checks/roll_modifier.png');
@@ -83,6 +84,7 @@
 	--icon-fu--physical: url('../../static/affinities/icons/physical.png');
 	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
 	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
+	--icon-fu--water: url('../../static/affinities/icons/water.png');
 
 	--icon-fu--arcane: url('../../static/icons/weapons/arcane.png');
 	--icon-fu--bow: url('../../static/icons/weapons/bow.png');
@@ -95,8 +97,11 @@
 	--icon-fu--sword: url('../../static/icons/weapons/sword.png');
 	--icon-fu--thrown: url('../../static/icons/weapons/thrown.png');
 
+	--icon-fu--action-spell: url('../../static/icons/actions/action_spell.png');
+
 	--icon-fu--damage: url('../../static/icons/inline/damage.svg');
 	--icon-fu--type: url('../../static/icons/inline/type.svg');
+	--icon-fu--pointer: url('/systems/projectfu/styles/static/ui/pointer.png');
 }
 
 .fu-dex {
@@ -167,6 +172,10 @@
 	background-image: var(--icon-fu-check-ritual);
 }
 
+.fu-roll-base {
+	background-image: var(--icon-fu-roll-base);
+}
+
 .fu-roll-difficulty {
 	background-image: var(--icon-fu-roll-difficulty);
 }
@@ -189,6 +198,10 @@
 
 .fu-air {
 	background-image: var(--icon-fu--air);
+}
+
+.fu-pointer {
+	background-image: var(--icon-fu--pointer);
 }
 
 .fu-bolt {
@@ -225,6 +238,10 @@
 
 .fu-untyped {
 	background-image: var(--icon-fu--untyped);
+}
+
+.fu-water {
+	background-image: var(--icon-fu--water);
 }
 
 .fu-arcane {
@@ -440,7 +457,7 @@
 }
 
 .fu-weapon-enchant {
-	background-image: url('../../../static/icons/fus-weapon-enchant.svg');
+	background-image: url('../../static/icons/fus-weapon-enchant.svg');
 }
 
 .fu-damage {
@@ -449,6 +466,10 @@
 
 .fu-type {
 	background-image: var(--icon-fu--type);
+}
+
+.fu-action-spell {
+	background-image: var(--icon-fu--action-spell);
 }
 
 /* Icon display styles */
@@ -462,6 +483,15 @@
 	display: inline-block;
 	font-style: normal;
 	-webkit-text-stroke: 0.05rem black;
+}
+
+.fua {
+	-webkit-text-stroke: inherit;
+	text-shadow:
+		-1px 0 #000,
+		1px 0 #000,
+		0 1px #000,
+		0 -1px #000;
 }
 
 .fui {
@@ -478,7 +508,7 @@
 }
 
 .fuk {
-	width: 18px;
+	width: 16px;
 	height: 18px;
 }
 

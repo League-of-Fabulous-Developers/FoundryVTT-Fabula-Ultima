@@ -4,7 +4,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
+import { BonusesDataModel } from '../documents/actors/common/bonuses-data-model.mjs';
 
 /**
  * @param {CheckV2} check
@@ -49,8 +49,6 @@ const critThresholdFlags = {
  * @type CheckCallback
  */
 const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
-	const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
-
 	{
 		const flag = actor.getFlag(SYSTEM, critThresholdFlags.all);
 		if (flag) {
@@ -58,39 +56,41 @@ const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 		}
 	}
 
-	// Weapon Category
-	if (weaponTraits.weaponCategory) {
-		if (actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
-			check.modifiers.push({
-				label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
-				value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
-			});
+	const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+	if (weaponTraits) {
+		// Weapon Category
+		if (weaponTraits.weaponCategory) {
+			if (actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
+				check.modifiers.push({
+					label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
+					value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
+				});
+			}
+
+			const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponCategory]);
+			if (flag) {
+				check.critThreshold = Math.min(check.critThreshold, Number(flag));
+			}
 		}
 
-		const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponCategory]);
-		if (flag) {
-			check.critThreshold = Math.min(check.critThreshold, Number(flag));
-		}
-	}
-
-	// Attack Type
-	const attackType = weaponTraits.weaponType;
-	if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
-		check.modifiers.push({
-			label: 'FU.AccuracyCheckBonusMelee',
-			value: actor.system.bonuses.accuracy.accuracyMelee,
-		});
-	} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
-		check.modifiers.push({
-			label: 'FU.AccuracyCheckBonusRanged',
-			value: actor.system.bonuses.accuracy.accuracyRanged,
-		});
-	}
-
-	{
-		const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponType]);
-		if (flag) {
-			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		// Attack Type
+		const attackType = weaponTraits.weaponType;
+		if (attackType) {
+			if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
+				check.modifiers.push({
+					label: 'FU.AccuracyCheckBonusMelee',
+					value: actor.system.bonuses.accuracy.accuracyMelee,
+				});
+			} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
+				check.modifiers.push({
+					label: 'FU.AccuracyCheckBonusRanged',
+					value: actor.system.bonuses.accuracy.accuracyRanged,
+				});
+			}
+			const flag = actor.getFlag(SYSTEM, critThresholdFlags[attackType]);
+			if (flag) {
+				check.critThreshold = Math.min(check.critThreshold, Number(flag));
+			}
 		}
 	}
 };
@@ -113,36 +113,14 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 		}
 		config.modifyDamage((damage) => {
 			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
-			DamagePipeline.collectOutgoingBonuses(actor, damage);
-
-			// Attack Type
-			if (weaponTraits.weaponType) {
-				const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
-				if (attackTypeBonus) {
-					damage.addModifier(`FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, attackTypeBonus);
-				}
-			}
-			// Weapon Category
-			if (weaponTraits.weaponCategory) {
-				const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
-				if (weaponCategoryBonus) {
-					damage.addModifier(`FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, weaponCategoryBonus);
-				}
-			}
-
+			damage.addModifiers(BonusesDataModel.collectDamageBonuses(actor.system.bonuses, damage.type, weaponTraits));
 			return damage;
 		});
 	}
 };
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {Object} flags
- */
-function onRenderCheck(data, checkResult, actor, item, flags) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, checkResult, actor, item, flags) => {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 		/** @type TargetData[] */
@@ -151,7 +129,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		CommonEvents.attack(inspector, actor, item);
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
-}
+};
 
 const initialize = () => {
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);

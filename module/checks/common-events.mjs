@@ -1,9 +1,10 @@
 import { FUHooks } from '../hooks.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CharacterInfo } from '../helpers/character-info.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { AsyncHooks } from '../helpers/async-hooks.mjs';
+import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
  * @typedef ItemReference
@@ -75,47 +76,42 @@ function attack(inspector, actor, item) {
  * @typedef DamageEvent
  * @property {CharacterInfo|null} source
  * @property {DamageType} type
+ * @property {FUAffinity} affinity
  * @property {InlineSourceInfo} sourceInfo
- * @property {FUItemGroup} damageSource
+ * @property {FUItemGroup} itemGroup
  * @property {Number} amount
  * @property {CharacterInfo} target
  * @property {FUItem} item
  * @property {FUActor} actor
  * @property {Token} token
  * @property {Set<String>} traits
+ * @property {FURenderData} renderData
  * @property {String} origin An id used to prevent cascading.
  */
 
-/**
- * @description Dispatches an event to signal damage taken by an actor
- * @param {FU.damageTypes} type
- * @param {Number} amount
- * @param {Set<String>} traits
- * @param {FUActor} sourceActor
- * @param {FUActor} targetActor
- * @param {InlineSourceInfo} sourceInfo
- */
-function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin) {
+async function damage(type, affinity, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const target = CharacterInfo.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
-	const damageSource = InlineHelper.resolveItemGroup(item);
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 
 	/** @type DamageEvent  **/
 	const damageEvent = {
 		amount: amount,
 		item: item,
 		type: type,
+		affinity: affinity,
 		source: source,
 		sourceActor: sourceInfo,
-		damageSource: damageSource,
+		itemGroup: itemGroup,
 		target: target,
 		actor: target.actor,
 		token: target.token,
 		traits: traits,
 		origin: origin,
+		renderData: renderData,
 	};
-	Hooks.call(FUHooks.DAMAGE_EVENT, damageEvent);
+	return AsyncHooks.callSequential(FUHooks.DAMAGE_EVENT, damageEvent);
 }
 
 /**
@@ -123,24 +119,23 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  * @property {CharacterInfo} source
  * @property {FUItem} item
  * @property {DamageType} type
- * @property {FUItemGroup} damageSource
+ * @property {FUItemGroup} itemGroup
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
  */
 
 function calculateDamage(actor, item, config) {
-	const damageSource = InlineHelper.resolveItemGroup(item);
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
 		source: CharacterInfo.fromActor(actor),
 		targets: CharacterInfo.fromTargetData(targets),
 		item: item,
-		damageSource: damageSource,
+		itemGroup: itemGroup,
 		config: config,
 		type: config.getDamage()?.type,
 	};
 	Hooks.call(FUHooks.CALCULATE_DAMAGE_EVENT, event);
-	//await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }
 
 /**
@@ -148,16 +143,19 @@ function calculateDamage(actor, item, config) {
  * @property {CharacterInfo} source
  * @property {UpdateResourceData} data
  * @property {FUItem} item
+ * @property {FUItemGroup} itemGroup
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
  */
 
 async function calculateResource(actor, item, config, data) {
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
 		source: CharacterInfo.fromActor(actor),
 		targets: CharacterInfo.fromTargetData(targets),
 		item: item,
+		itemGroup: itemGroup,
 		data: data,
 		config: config,
 	};
@@ -262,19 +260,18 @@ function loss(actor, resource, amount, origin) {
  * @property {Number} amount
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
+ * @property {InlineSourceInfo} sourceInfo
  * @property {String} origin
+ * @property {FUItem} item
+ * @property {FUItemGroup} itemGroup
+ * @property {FURenderData} renderData
  */
 
-/**
- * @param {FUActor} sourceActor
- * @param {FUActor[]} targetActors
- * @param {FUResourceType} resource
- * @param {Number} amount
- * @param {String} origin
- */
-function resource(sourceActor, targetActors, resource, amount, origin) {
+async function resource(sourceActor, targetActors, sourceInfo, resource, amount, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const targets = CharacterInfo.fromActors(targetActors);
+	const item = sourceInfo.resolveItem();
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	/** @type ResourceUpdateEvent  **/
 	const event = {
 		amount: amount,
@@ -282,8 +279,11 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
 		source: source,
 		targets: targets,
 		origin: origin,
+		item: item,
+		itemGroup: itemGroup,
+		renderData: renderData,
 	};
-	Hooks.call(FUHooks.RESOURCE_UPDATE, event);
+	return AsyncHooks.callSequential(FUHooks.RESOURCE_UPDATE, event);
 }
 
 /**
@@ -291,19 +291,48 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @typedef CalculateExpenseEvent
  * @property {ResourceExpense} expense
  * @property {CharacterInfo} source
+ * @property {FUItem} item
  * @property {CharacterInfo[]} targets
  */
 
-async function calculateExpense(actor, item, targetActors, expense) {
+/**
+ * @param actor
+ * @param item
+ * @param {TargetData[]} targetData
+ * @param {ResourceExpense} expense
+ * @returns {Promise}
+ */
+async function calculateExpense(actor, item, targetData, expense) {
+	const source = CharacterInfo.fromActor(actor);
+	const targets = CharacterInfo.fromTargetData(targetData);
+	/** @type CalculateExpenseEvent  **/
+	const event = {
+		expense: expense,
+		item: item,
+		source: source,
+		targets: targets,
+	};
+	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+}
+
+/**
+ * @param actor
+ * @param item
+ * @param targetActors
+ * @param expense
+ * @returns {Promise}
+ */
+async function expense(actor, item, targetActors, expense) {
 	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
 	/** @type CalculateExpenseEvent  **/
 	const event = {
 		expense: expense,
+		item: item,
 		source: source,
 		targets: targets,
 	};
-	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+	return AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
 }
 
 /**
@@ -358,11 +387,6 @@ function spell(actor, item) {
  * @property {CharacterInfo[]} targets
  */
 
-/**
- * @description Dispatches an event to signal a skill event
- * @param {FUActor} actor
- * @param {FUItem} item
- */
 function skill(actor, item, targets = undefined) {
 	/** @type SkillDataModel **/
 	const skill = item.system;
@@ -486,15 +510,17 @@ function reveal(actor, revealed) {
 /**
  * @typedef OpportunityEvent
  * @description Dispatched when a character gets an opportunity
+ * @property {FURenderData} renderData
  * @property {FUActor} actor
  * @property {String} type The type of check that led to the opportunity
  * @property {FUItem} item The item that prompted the check
  * @property {Boolean} fumble If the opportunity came from a fumble, which goes to the opposition of the actor.
  */
 
-function opportunity(actor, type, item, fumble) {
+function opportunity(renderData, actor, type, item, fumble) {
 	/** @type OpportunityEvent  **/
 	const event = {
+		renderData: renderData,
 		actor: actor,
 		type: type,
 		item: item,
@@ -537,7 +563,7 @@ function progress(document, progress, action, increment = undefined, source = un
  * @remarks Emitted when a check is about to be performed
  */
 
-function performCheck(check, actor, item) {
+async function performCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
 	const config = CheckConfiguration.configure(check);
@@ -552,11 +578,11 @@ function performCheck(check, actor, item) {
 		check: check,
 		source: source,
 		item: item,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
 		targets: targets,
 	};
-	Hooks.call(FUHooks.PERFORM_CHECK_EVENT, event);
+	return AsyncHooks.callSequential(FUHooks.PERFORM_CHECK_EVENT, event);
 }
 
 /**
@@ -581,7 +607,7 @@ function resolveCheck(check, actor, item) {
 		check: check,
 		source: source,
 		item: item,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
 		targets: CharacterInfo.fromTargetData(targets),
 	};
@@ -590,7 +616,7 @@ function resolveCheck(check, actor, item) {
 
 /**
  * @typedef RenderCheckEvent
- * @property {CheckRenderData} renderData
+ * @property {FURenderData} renderData
  * @property {CheckConfigurer} config
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
@@ -601,13 +627,6 @@ function resolveCheck(check, actor, item) {
  * @remarks Emitted when a check is about to be rendered.
  */
 
-/**
- * @param {CheckRenderData} renderData
- * @param {CheckConfigurer} config
- * @param actor
- * @param item
- * @returns {Promise<[]|*>}
- */
 async function renderCheck(renderData, config, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const check = config.check;
@@ -622,7 +641,7 @@ async function renderCheck(renderData, config, actor, item) {
 		config: config,
 		targets: CharacterInfo.fromTargetData(config.getTargets()),
 		item: item,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.RENDER_CHECK_EVENT, event);
 }
@@ -647,7 +666,7 @@ async function initializeCheck(configuration, actor, item) {
 		source: source,
 		targets: CharacterInfo.fromTargetData(configuration.getTargets()),
 		sourceInfo: sourceInfo,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.INITIALIZE_CHECK_EVENT, event);
 }
@@ -671,18 +690,12 @@ function notify(source, id, origin) {
 
 /**
  * @typedef RenderMessageEvent
- * @property {CheckRenderData} renderData
+ * @property {FURenderData} renderData
  * @property {CharacterInfo} source
  * @property {*} document A reference to a document such as an actor or item.
  * @remarks Emitted when a message is about to be rendered.
  */
 
-/**
- * @param {CheckRenderData} renderData
- * @param {FUActor} actor
- * @param {*} document
- * @returns {Promise<[]|*>}
- */
 async function renderMessage(renderData, actor, document = undefined) {
 	const source = CharacterInfo.fromActor(actor);
 
@@ -701,18 +714,20 @@ async function renderMessage(renderData, actor, document = undefined) {
  * @property {CharacterInfo} source
  * @property {FUItem} item
  * @property {String[]} traits
- * @property {SectionChatBuilder} builder
+ * @property {FURenderData} renderData
  * @property
  */
 
-async function feature(actor, item, traits, builder) {
+async function feature(actor, item, traits, targetData, renderData) {
 	const source = CharacterInfo.fromActor(actor);
+	const targets = CharacterInfo.fromTargetData(targetData);
 	/** @type FeatureEvent  **/
 	const event = {
 		source: source,
 		item: item,
 		traits: traits,
-		builder: builder,
+		targets: targets,
+		renderData: renderData,
 	};
 	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
 }
@@ -813,6 +828,7 @@ export const CommonEvents = Object.freeze({
 	resolveCheck,
 	renderCheck,
 	calculateExpense,
+	expense,
 	calculateDamage,
 	calculateResource,
 	notify,

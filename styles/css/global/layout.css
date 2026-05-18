@@ -1,0 +1,107 @@
+.pfu-layout__menu {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	overflow: hidden;
+	gap: 1rem;
+
+	--property-label-width: 160px;
+
+	header {
+		flex-shrink: 0;
+	}
+
+	main {
+		overflow: auto;
+		flex-grow: 1;
+		padding: 15px 5px 10px 5px;
+	}
+
+	footer {
+		flex-shrink: 0;
+	}
+
+	span {
+		min-width: 160px;
+	}
+}
+
+.pfu-layout__browser {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	height: 100%;
+
+	.controls {
+		flex-shrink: 0;
+	}
+
+	.content {
+		flex: 1;
+		overflow-y: auto;
+		min-height: 0;
+	}
+}
+
+.pfu-sheet__padding {
+	padding: 0.5rem;
+}
+
+.pfu-form__buttons {
+	color: var(--pfu-color-app-section-content-secondary);
+}
+
+.pfu-layout__sidebar {
+	background: var(--pfu-sidebar-bg-image), var(--pfu-color-app-body-primary-fill);
+	background-size: 100% auto;
+	background-blend-mode: overlay;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	margin-right: 16px;
+	border-right: 3px solid var(--pfu-color-app-clock-border); /* gold rule */
+	box-shadow:
+		4px 0 12px rgba(0, 0, 0, 0.6),
+		/* deep drop shadow into content */ inset -2px 0 6px rgba(200, 168, 75, 0.15); /* subtle inner gold glow */
+	position: relative;
+}
+
+.separator {
+	margin: 1rem 0;
+	height: 1px;
+	background: linear-gradient(to right, transparent, var(--color-border), transparent);
+}
+
+/* =========================
+   Main Tab Layout
+   ========================= */
+.tab.main .sidebar {
+	overflow-y: auto;
+}
+
+.tab.main .main-content {
+	overflow-y: auto;
+	padding-left: 0.5rem;
+}
+
+.tab.main .sidebar::-webkit-scrollbar,
+.tab.main .main-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.tab.main .sidebar::-webkit-scrollbar-track,
+.tab.main .main-content::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 0;
+}
+
+.tab.main .sidebar::-webkit-scrollbar-thumb,
+.tab.main .main-content::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 0;
+}
+
+.tab.main .sidebar::-webkit-scrollbar-thumb:hover,
+.tab.main .main-content::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.5);
+}

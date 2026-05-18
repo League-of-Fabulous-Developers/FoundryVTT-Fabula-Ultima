@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend 40 Mind Points to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p><hr /><ul><li><p>For <strong>arcana</strong> breakdown and a list of Arcanums, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</p></li></ul><p></p>",
+    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend 40 Mind Points to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p><hr /><p>For <strong>arcana</strong> breakdown and a list of <strong>Arcanums</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcanist Rules} or see <strong>Core Rulebook</strong>, page <strong>178</strong>.</p><p><em>Perform this Skill to automatically <strong>summon</strong> and <strong>dismiss</strong>.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Arcanist"
+      "value": "arcanist"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,14 @@
     "fuid": "bind-and-summon",
     "cost": {
       "amount": 40
+    },
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -175,7 +183,7 @@
       "_id": "Nqx8jTC7Xyci6rmi",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Bind and Summon</strong> Skill allows you to either <strong>summon</strong> an Arcanum or <strong>dismiss</strong> an Arcanum.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -186,12 +194,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768060526969,
-        "modifiedTime": 1768060552099,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771821966668,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!gbkA1CRgQ9OxPstd.Nqx8jTC7Xyci6rmi"
     }
@@ -202,15 +210,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706494654131,
-    "modifiedTime": 1741994220802,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1775510533077,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

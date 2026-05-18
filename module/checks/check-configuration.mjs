@@ -8,7 +8,8 @@ import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs'
 import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from './damage-data.mjs';
 import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
-import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 // Data keys
 const TARGETS = 'targets';
@@ -23,6 +24,7 @@ const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
 const TARGETED_ACTIONS = 'targetedActions';
 const WEAPON_USED = 'weaponUsedBySkill';
+const ITEM_REFERENCE = 'itemReference';
 const INITIAL_CHECK = 'initialCheck';
 
 /**
@@ -41,13 +43,6 @@ const HR_ZERO = 'hrZero';
 const initHrZero = (hrZero) => (check) => {
 	hrZero && (check.additionalData[HR_ZERO] = true);
 };
-
-/**
- * @typedef WeaponTraits
- * @property {WeaponType} [weaponType]
- * @property {WeaponCategory} [weaponCategory]
- * @property {Handedness} handedness
- */
 
 /**
  * @description Given a {@link CheckResultV2} object, provides additional information from it
@@ -197,6 +192,13 @@ class CheckInspector {
 	}
 
 	/**
+	 * @returns {String} The uuid of the item that this check is associated with.
+	 */
+	getItemReference() {
+		return this.#check.additionalData[ITEM_REFERENCE] ?? null;
+	}
+
+	/**
 	 * @returns {String} The uuid of the weapon used.
 	 */
 	getWeaponReference() {
@@ -253,7 +255,7 @@ class CheckInspector {
 	}
 
 	/**
-	 * @returns {ResourceExpense}
+	 * @returns {UpdateResourceData}
 	 */
 	getExpense() {
 		return this.#check.additionalData[EXPENSE];
@@ -341,7 +343,16 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {...(string|string[])} effects
+	 * @param {ApplyEffectData|EffectApplicationDataModel} effectData
+	 */
+	setEffects(effectData) {
+		// We make a deep copy here since this will be modified during pipelines
+		this.check.additionalData[EFFECTS] = FoundryUtils.safeClone(effectData);
+		return this;
+	}
+
+	/**
+	 * @param {...(string|Iterable<string>)} effects
 	 * @return {CheckConfigurer}
 	 */
 	addEffects(...effects) {
@@ -396,7 +407,7 @@ export class CheckConfigurer extends CheckInspector {
 	 * @returns {CheckConfigurer}
 	 */
 	addWeaponAccuracy(weapon) {
-		const baseAccuracy = ChooseWeaponDialog.getAccuracy(weapon);
+		const baseAccuracy = WeaponResolver.getAccuracy(weapon);
 		if (baseAccuracy) {
 			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
 		}
@@ -655,17 +666,11 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {FUResourceType} resource
+	 * @param {FUResourceType} type
 	 * @param {Number} amount
 	 */
-	addExpense(resource, amount) {
-		if (!this.check.additionalData[EXPENSE]) {
-			this.check.additionalData[EXPENSE] = /** @type ResourceExpense* **/ {
-				resource: resource,
-				amount: 0,
-			};
-		}
-		this.check.additionalData[EXPENSE].amount += amount;
+	setExpense(type, amount) {
+		this.check.additionalData[EXPENSE] = UpdateResourceData.construct(type, amount);
 	}
 
 	/**
@@ -673,6 +678,14 @@ export class CheckConfigurer extends CheckInspector {
 	 */
 	setInitialCheck(check) {
 		this.check.additionalData[INITIAL_CHECK] = check;
+	}
+
+	/**
+	 * @param {FUItem} item
+	 * @remarks Sometimes used when a check is made due to an item (but not DIRECTLY by the item in question).
+	 */
+	setItemReference(item) {
+		this.check.additionalData[ITEM_REFERENCE] = item.uuid;
 	}
 }
 
@@ -689,11 +702,11 @@ const registerMetaCurrencyExpenditure = (check) => {
 	/**
 	 * @type RenderCheckHook
 	 */
-	const spendMetaCurrency = (sections, check, actor) => {
+	const spendMetaCurrency = (data, check, actor) => {
 		if (check.additionalData.triggerMetaCurrencyExpenditure === randomId) {
 			delete check.additionalData.triggerMetaCurrencyExpenditure;
 			Hooks.off(CheckHooks.renderCheck, hookId);
-			sections.push(async () => {
+			data.sections.push(async () => {
 				const success = await PlayerListEnhancements.spendMetaCurrency(actor, true);
 				if (!success) {
 					throw new Error('not enough meta currency');
@@ -719,7 +732,7 @@ const configure = (check) => {
  */
 const inspect = (check) => {
 	if (check instanceof ChatMessage) {
-		check = check.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		check = check.getFlag(SYSTEM, Flags.ChatMessage.Check);
 	}
 	return new CheckInspector(check);
 };

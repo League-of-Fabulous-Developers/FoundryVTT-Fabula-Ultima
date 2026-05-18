@@ -1,0 +1,162 @@
+{
+  "folder": "PeIQShdNJKX55mJP",
+  "name": "Geo Magi Robe",
+  "type": "armor",
+  "_id": "zvlVW4JWh31LWwR4",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-brown.png",
+  "system": {
+    "fuid": "geo-magi-robe",
+    "description": "<p>Spells you cast that deal <strong>earth</strong> damage deal <strong>5 extra damage</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1800
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Earth Spell Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 1
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 2
+    },
+    "init": {
+      "value": -2
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Geo Magi Robe",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-brown.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.zvlVW4JWh31LWwR4",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "kFQjNflrMWCSYtof": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "fFVQ1SuzYGeE1mEg",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [
+                  "earth"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "kFQjNflrMWCSYtof",
+              "actions": {
+                "5iCkaXCrKqP8mCvZ": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "5iCkaXCrKqP8mCvZ",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "10eXWX5pJvWHOaAx",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, spells you cast that deal <strong>earth</strong> damage deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Geo Magi Robe",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.zvlVW4JWh31LWwR4",
+            "effectUuid": null,
+            "fuid": "geo-magi-robe"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774747410154,
+        "modifiedTime": 1775708906290,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!zvlVW4JWh31LWwR4.10eXWX5pJvWHOaAx"
+    }
+  ],
+  "sort": 125000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774747395753,
+    "modifiedTime": 1777530655569,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!zvlVW4JWh31LWwR4"
+}

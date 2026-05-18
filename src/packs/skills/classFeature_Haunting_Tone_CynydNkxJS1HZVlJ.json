@@ -1,0 +1,42 @@
+{
+  "folder": "GvkyB5G9bl9LjwcL",
+  "name": "Haunting Tone",
+  "type": "classFeature",
+  "_id": "CynydNkxJS1HZVlJ",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.tone",
+    "data": {
+      "description": "<p>Each target suffers <strong>@DATA[key.status]</strong>. Each target also loses Resistance to <strong>@DATA[key.typeLocal]</strong> damage until the start of your next turn, and cannot gain Resistance to that damage type.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[@DATA[key.status]]<br /><strong>If @DATA[key.typeLocal] Resistant:</strong> @TYPE[affinity @DATA[key.type] none e:sot i:1 t:source]{Haunting Tone}</p>"
+    },
+    "source": "FUHF139",
+    "fuid": "haunting-tone"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
+    "createdTime": 1710040082627,
+    "modifiedTime": 1771827707900,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CynydNkxJS1HZVlJ"
+}

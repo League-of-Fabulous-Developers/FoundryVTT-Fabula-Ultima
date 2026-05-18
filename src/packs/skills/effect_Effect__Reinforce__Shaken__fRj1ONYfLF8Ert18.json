@@ -1,0 +1,101 @@
+{
+  "folder": "IVX5w6gevHlC5Gt6",
+  "name": "Effect: Reinforce (Shaken)",
+  "type": "effect",
+  "_id": "fRj1ONYfLF8Ert18",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_shaken.png",
+  "system": {
+    "fuid": "effect-reinforce-shaken",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Reinforce (Shaken)",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_shaken.png",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "sJloIrKsBjrUWGxt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.shaken.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until this spell ends, you are immune to <strong>shaken</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "3DqQhTAexuyMSem6",
+        "modifiedTime": 1775876523292
+      },
+      "_key": "!items.effects!fRj1ONYfLF8Ert18.sJloIrKsBjrUWGxt"
+    }
+  ],
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771475560048,
+    "modifiedTime": 1775876519884,
+    "lastModifiedBy": "3DqQhTAexuyMSem6"
+  },
+  "_key": "!items!fRj1ONYfLF8Ert18"
+}

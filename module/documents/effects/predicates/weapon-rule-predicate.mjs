@@ -1,7 +1,7 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { ChooseWeaponDialog } from '../../items/skill/choose-weapon-dialog.mjs';
+import { WeaponResolver } from '../../items/skill/weapon-resolver.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { BasicItemDataModel } from '../../items/basic/basic-item-data-model.mjs';
 import { WeaponDataModel } from '../../items/weapon/weapon-data-model.mjs';
@@ -91,8 +91,8 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 		// If not using the event attack item...
 		if (!attackItem) {
 			if (character.actor.type === 'character') {
-				const mainHand = ChooseWeaponDialog.getWeapon(context.character.actor, 'mainHand');
-				const offHand = ChooseWeaponDialog.getWeapon(context.character.actor, 'offHand');
+				const mainHand = WeaponResolver.getEquipment(context.character.actor, 'mainHand');
+				const offHand = WeaponResolver.getEquipment(context.character.actor, 'offHand');
 				attackItem = mainHand ?? offHand;
 			} else if (character.actor.type === 'npc') {
 				/** @type {BasicItemDataModel[]} **/

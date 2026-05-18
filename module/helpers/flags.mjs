@@ -1,6 +1,14 @@
 /**
- * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors,
- * chat messages.
+ * @typedef FUFlag
+ * @property {String} key
+ * @property {Object} value
+ * @remarks Flag data can be of any type, as long as it can be JSON.stringify'd. Flags can be used with almost all types of documents — not just Actors and Items, but nearly everything in Foundry. Settings are the only exception.
+ */
+
+import { systemId } from './system-utils.mjs';
+
+/**
+ * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors, chat messages.
  * @example Usage: actor.getFlag(Flags.Scope, Flags.CurrentTurn)
  * @example Attribute Key: `projectfu.weaponMagicCheck`, Change Mode: `Override`  Effect Value: `true`
  */
@@ -19,7 +27,7 @@ export const Flags = Object.freeze({
 	}),
 	ChatMessage: Object.freeze({
 		CheckParams: 'CheckParams',
-		CheckV2: 'CheckV2',
+		Check: 'Check',
 		GroupCheck: 'GroupCheck',
 		OpposedCheck: 'OpposedCheck',
 		GroupCheckV2: 'GroupCheckV2',
@@ -40,14 +48,37 @@ export const Flags = Object.freeze({
 		RevertedAction: 'RevertedAction',
 		Effects: 'Effects',
 		Opportunity: 'Opportunity',
+		FumbleFabula: 'FumbleFabula',
 		Inventory: 'Inventory',
 		Party: 'Party',
 	}),
 	Scope: 'projectfu',
 	Toggle: Object.freeze({
 		WeaponMagicCheck: 'weaponMagicCheck',
+		ApexAttribute: 'apexAttribute',
+		SpellProvider: 'spellProvider',
+	}),
+	State: Object.freeze({
+		PreviousDance: 'previousDance',
 	}),
 	Modifier: Object.freeze({
 		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
+	ClassConverted: 'classConverted',
+});
+
+export const FlagUtility = Object.freeze({
+	getEffectChange: (flag, value) => {
+		return {
+			key: `flags.${systemId}.${flag}`,
+			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			value: value,
+		};
+	},
+	hasSystemFlag: (document, flag) => {
+		if (document.getFlag) {
+			return document.getFlag(systemId, flag) !== undefined;
+		}
+		return false;
+	},
 });

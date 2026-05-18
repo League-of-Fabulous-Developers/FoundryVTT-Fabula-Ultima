@@ -66,7 +66,7 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 				renderHeader: () => game.i18n.localize('FU.EquipStatus'),
 				renderCell: WeaponsTableRenderer.#renderEquipStatus,
 			},
-			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon,customWeapon' }, { disableEdit: WeaponsTableRenderer.#isUnarmedAttack, disableMenu: WeaponsTableRenderer.#isUnarmedAttack }),
+			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon,customWeapon' }),
 		},
 		actions: {
 			technosphere: WeaponsTableRenderer.#technosphereAction,
@@ -187,10 +187,6 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 		}
 
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equip-status'), data);
-	}
-
-	static #isUnarmedAttack(item) {
-		return item.system.fuid === FU.unarmedStrike;
 	}
 
 	static #getCssClasses(item) {

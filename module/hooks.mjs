@@ -79,11 +79,17 @@ export const FUHooks = {
 	 */
 	RESOURCE_UPDATE: 'projectfu.events.resource',
 	/**
-	 * @description Dispatched after a resource update has been expended to perform an action/
+	 * @description Dispatched when a resource is to be spent to perform an action.
 	 * @example callback(event)
 	 * @remarks Uses {@link CalculateExpenseEvent}.
 	 */
 	CALCULATE_EXPENSE_EVENT: 'projectfu.events.calculateExpense',
+	/**
+	 * @description Dispatched after a resource expense has been calculated.
+	 * @example callback(event)
+	 * @remarks Uses {@link CalculateExpenseEvent}.
+	 */
+	EXPENSE_EVENT: 'projectfu.events.expense',
 	/**
 	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)
@@ -242,4 +248,12 @@ export const FUHooks = {
 	 * @remarks Uses {@link FeatureEvent}
 	 */
 	FEATURE_EVENT: `projectfu.events.feature`,
+	/**
+	 * // TODO: ERICA LOOK AT ME!
+	 */
+	GET_SIDEBAR_TOOLS: `projectfu.getSidebarTools`,
+	/**
+	 * @description Dispatched when the party sheet is about to open, in order to provide options.
+	 */
+	SHEET_EXTENSIONS: `projectfu.sheets.extensions`,
 };

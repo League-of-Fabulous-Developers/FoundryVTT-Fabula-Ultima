@@ -1,12 +1,12 @@
 {
   "name": "Harvester of Sorrow",
   "type": "heroic",
-  "img": "icons/magic/control/energy-stream-link-large-teal.webp",
+  "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
   "system": {
     "summary": {
       "value": "Increase the potency of Drain spells."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist </strong>and <strong>Necromancer</strong>, and must have learned both the <strong>Drain Spirit</strong> and <strong>Drain Vigor</strong> spells.</p></blockquote><p>When you cast the @UUID[Compendium.projectfu.spells.Item.300SqWOqTrc7Qb3L]{Drain Spirit} or @UUID[Compendium.projectfu.spells.Item.HCknXFHu7q0bJ2Cg]{Drain Vigor} spells, the amount of Mind Points or Hit Points you recover is <strong>equal</strong> to the MP or HP loss suffered by the target, respectively (instead of being halved).</p><p>Additionally, the amount of Mind Point loss caused by <strong>Drain Spirit</strong> spells you cast is increased by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Necromancer</strong>, and must have learned both the <strong>Drain Spirit</strong> and <strong>Drain Vigor</strong> spells.</p><hr /><p>When you cast the @UUID[Compendium.projectfu.skills.Item.300SqWOqTrc7Qb3L]{Drain Spirit} or @UUID[Compendium.projectfu.skills.Item.HCknXFHu7q0bJ2Cg]{Drain Vigor} spells, the amount of Mind Points or Hit Points you recover is <strong>equal</strong> to the MP or HP loss suffered by the target, respectively (instead of being halved).</p><p>Additionally, the amount of Mind Point loss caused by <strong>Drain Spirit</strong> spells you cast is increased by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -16,7 +16,7 @@
       "min": 0
     },
     "class": {
-      "value": "Necromancer"
+      "value": "entropist, necromancer"
     },
     "useWeapon": {
       "accuracy": {
@@ -47,7 +47,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,13 +95,172 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "harvester-of-sorrow"
+    "fuid": "harvester-of-sorrow",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Harvester of Sorrow",
+      "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.pqT5C8ap91WD7TDf",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "rp6rEjVxiYRwGxaL": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "c0QuCtEwA11KET4n",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "change": "decrement",
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": "drain-spirit"
+              },
+              "_id": "rp6rEjVxiYRwGxaL",
+              "actions": {
+                "Lo5lqfBJppLkRLJp": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "Lo5lqfBJppLkRLJp",
+                  "mode": "remove",
+                  "traits": {
+                    "entries": [
+                      "absorb-half"
+                    ]
+                  }
+                },
+                "GCfxcQwKiT3Osnni": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "GCfxcQwKiT3Osnni",
+                  "traits": {
+                    "entries": [
+                      "absorb"
+                    ]
+                  }
+                },
+                "5FdzlVF1ZFg4pn3v": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "5FdzlVF1ZFg4pn3v",
+                  "amount": "-&step(0,5,10)"
+                }
+              },
+              "predicates": {}
+            },
+            "fHK5np1eT44IkHPB": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "N1AaoYazttkyMl92",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": "drain-vigor"
+              },
+              "_id": "fHK5np1eT44IkHPB",
+              "actions": {
+                "8jfInqqybK6fMoVr": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "8jfInqqybK6fMoVr",
+                  "mode": "remove",
+                  "traits": {
+                    "entries": [
+                      "absorb-half"
+                    ]
+                  }
+                },
+                "gTn5xgb5SalFufGN": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "gTn5xgb5SalFufGN",
+                  "traits": {
+                    "entries": [
+                      "absorb"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Iwa7YOG1PJYGFKPy",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you cast the <strong>Drain Spirit</strong> or <strong>Drain Vigor</strong> spells, the amount of MP or HP you recover is <strong>equal</strong> to the MP or HP loss suffered, respectively.</p><p>Additionally, the amount of MP loss caused by <strong>Drain Spirit</strong> spells you cast is increased by 5 at <strong>level 20</strong>, or 10 at <strong>level 40</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Harvester of Sorrow",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.pqT5C8ap91WD7TDf",
+            "effectUuid": null,
+            "fuid": "harvester-of-sorrow"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771885258417,
+        "modifiedTime": 1776671344963,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!pqT5C8ap91WD7TDf.Iwa7YOG1PJYGFKPy"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -107,13 +268,13 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1697668153306,
-    "modifiedTime": 1769018293432,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1775353797206,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
-  "folder": "WGrhLXHisEUtMkHi",
+  "folder": "1Ky2u7fi2lfxr4JB",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3

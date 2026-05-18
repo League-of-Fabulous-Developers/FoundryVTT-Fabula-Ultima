@@ -3,16 +3,17 @@
   "name": "Effect: Showstopper",
   "type": "effect",
   "_id": "WJD7tqc73P24UFg4",
-  "img": "icons/magic/control/control-influence-crown-yellow.webp",
+  "img": "icons/magic/light/explosion-star-glow-blue.webp",
   "system": {
     "fuid": "effect-showstopper",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
-      "img": "icons/magic/control/control-influence-crown-yellow.webp",
+      "img": "icons/magic/light/explosion-star-glow-blue.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Showstopper",
+      "name": "Showstopper",
       "_id": "4kJq3FM7h2oeMYlb",
       "type": "base",
       "system": {
@@ -34,13 +35,23 @@
         "duration": {
           "event": "endOfTurn",
           "interval": 2,
-          "tracking": "self",
+          "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>At the start of your turn during a conflict, if you have <strong>nomartial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.At the start of your turn during a conflict, if you have <strong>nomartial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.</p>",
+      "description": "<p>You <strong>cannot perform dances in any way</strong> until the end of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,12 +61,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744078454955,
-        "modifiedTime": 1744078494909,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770764878719,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!WJD7tqc73P24UFg4.4kJq3FM7h2oeMYlb"
@@ -70,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744078452907,
-    "modifiedTime": 1744078469628,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770764858155,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!WJD7tqc73P24UFg4"

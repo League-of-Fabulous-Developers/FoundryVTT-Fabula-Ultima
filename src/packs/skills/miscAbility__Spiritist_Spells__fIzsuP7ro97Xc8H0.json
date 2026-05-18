@@ -1,0 +1,120 @@
+{
+  "folder": "KUerX2dLyeZ8A3Xw",
+  "name": "[Spiritist Spells]",
+  "type": "miscAbility",
+  "img": "icons/sundries/books/book-red-cross.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Spells marked with (@ICON[offensive]) are <strong>offensive spells</strong> and require <strong>Magic Checks</strong>!</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.jd9jMsj2PNq99M64]{Aura}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.NfVMYKMJ8Qp1DHJL]{Awaken}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.pGDJPfT1bc2vErY9]{Barrier}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.YIxwINZ4z4p04H8n]{Cleanse}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You strengthen and purify the soul energy coursing through your companions. Each target recovers from <strong>all status effects.</strong></p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.tUIUOqw8U9flVYFn]{Enrage} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell</strong> actions until the end of their next turn.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.JTyMViMTOUrc7bms]{Hallucination} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You alter the senses of your enemies, causing them to experience bizarre or frightening hallucinations. Choose <strong>dazed</strong> or <strong>shaken</strong>: you inflict the chosen status effect on each target hit by this spell.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.uQd6aE423mPv12Vc]{Heal}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 Hit Points<span>. This amount increases to </span>50 Hit Points <span>if you are <strong>level 20 or higher</strong>, or to </span>60 Hit Points <span>if you are <strong>level 40 or higher</strong>.</span></p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.c73bNM930l9ZUJZh]{Lux} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You focus your inner energy into a barrage of blinding soul rays. You deal <strong>【HR + 15】</strong> <strong>light</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>dazed</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.puwGwI8mNZeDo7Il]{Mercy}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.ZxDpmAqbYQqDULxd]{Reinforce}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target is immune to the chosen status effect.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.W2jMFJBOausmpSOY]{Soul Shroud}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You weave energy to safeguard the targets. Choose a damage type: <strong>dark</strong>, <strong>light</strong>, or <strong>poison</strong>. Until this spell ends, each target gains Resistance to the chosen damage type.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.74xXBzLlG5C0hTf9]{Soul Weapon}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One equipped weapon</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You imbue a weapon with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the weapon becomes of the <strong>light</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.9ENpDMvIOH9FJAka]{Torpor} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "source": "FUCR208",
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "spiritist-spells",
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": "",
+        "interval": null
+      }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771475560048,
+    "modifiedTime": 1771479529782,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "fIzsuP7ro97Xc8H0",
+  "sort": 900000,
+  "_key": "!items!fIzsuP7ro97Xc8H0"
+}

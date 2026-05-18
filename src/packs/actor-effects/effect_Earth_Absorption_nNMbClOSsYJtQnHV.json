@@ -4,33 +4,50 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
-    "fuid": "earth-absorption"
+    "fuid": "earth-absorption",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.nNMbClOSsYJtQnHV",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Earth Absorption",
       "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
-      "_id": "KTQezfDp5eqi6wG2",
-      "type": "base",
+      "origin": "Compendium.projectfu.actor-effects.Item.nNMbClOSsYJtQnHV",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "TMbe8YspKu7gWzm0",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.earth.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Absorption to <strong>earth</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Earth Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.nNMbClOSsYJtQnHV",
+            "effectUuid": null,
+            "fuid": "earth-absorption"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725750832186,
-        "modifiedTime": 1747230655865,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815682457,
+        "modifiedTime": 1774815696683,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!nNMbClOSsYJtQnHV.KTQezfDp5eqi6wG2"
+      "_key": "!items.effects!nNMbClOSsYJtQnHV.TMbe8YspKu7gWzm0"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1747230649812,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760843529,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "nNMbClOSsYJtQnHV",

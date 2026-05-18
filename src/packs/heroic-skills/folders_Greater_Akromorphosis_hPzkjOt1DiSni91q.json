@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "rWZeRzjYC59veWKl",
+  "name": "Greater Akromorphosis",
+  "color": "#7697b2",
+  "sorting": "a",
+  "_id": "hPzkjOt1DiSni91q",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477586784
+  },
+  "_key": "!folders!hPzkjOt1DiSni91q"
+}

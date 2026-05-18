@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Floralist"
+      "value": "floralist"
     },
     "useWeapon": {
       "accuracy": false,
@@ -62,6 +62,11 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -72,7 +77,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -82,7 +88,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770369742429,
+    "modifiedTime": 1775527443248,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

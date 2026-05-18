@@ -1,0 +1,130 @@
+{
+  "folder": "hNMNCF1h2hiZcgBa",
+  "name": "Ignore Immunities",
+  "type": "effect",
+  "_id": "TQl9qLHLdyuHbXH9",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "ignore-immunities",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ignore Immunities",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.TQl9qLHLdyuHbXH9",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "EbCz9M7NP5iSNWSA": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "R1QbOyUDOXfclKTy",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "EbCz9M7NP5iSNWSA",
+              "actions": {
+                "h5iNdH04oY0VmLKh": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "h5iNdH04oY0VmLKh",
+                  "traits": {
+                    "entries": [
+                      "ignore-immunities"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "YpEMoyV3NtsIxirI",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Damage dealt by this weapon <strong>ignores Immunities</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ignore Resistances & Immunities",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.TQl9qLHLdyuHbXH9",
+            "effectUuid": null,
+            "fuid": "ignore-resistances-immunities"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774733125140,
+        "modifiedTime": 1774733375922,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!TQl9qLHLdyuHbXH9.YpEMoyV3NtsIxirI"
+    }
+  ],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774733117218,
+    "modifiedTime": 1774733343047,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!TQl9qLHLdyuHbXH9"
+}

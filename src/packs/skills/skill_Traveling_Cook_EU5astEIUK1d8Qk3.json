@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain </span><strong>【SL × 2】</strong><span><strong>ingredients.</strong></span></p><hr /><p>Refer to: @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}.</p>",
+    "description": "<p><span>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain </span><strong>【SL × 2】</strong><span><strong>ingredients</strong>.</span></p><hr /><p>Refer to: @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}.</p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Gourmet"
+      "value": "gourmet"
     },
     "useWeapon": {
       "accuracy": false,
@@ -62,12 +62,18 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
   "flags": {
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -77,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1770409813028,
+    "modifiedTime": 1775546537329,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -1,8 +1,7 @@
-{{!-- Settings --}}
 <section class="tab settings {{tab.cssClass}}" data-tab="settings" data-group="primary">
 	<!-- Header  -->
-	<header class="sheet-header desc">
-		<div class="combine-header">
+	<header class="sheet-header">
+		<div class="flexrow flex-group-center">
 			<img class="profile-img flexcol" src="{{actor.img}}" data-edit="img" data-action="editImage" title="{{actor.name}}"
 				 style="height: 52px; width: auto; object-fit: contain;" />
 			<div style="flex-grow:1;">
@@ -24,11 +23,14 @@
 				</a>
 			</legend>
 
-			<div>
-				<button data-action="activate" class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+			<div class="grid-2col gap-4">
+				<div class="flexcol">
+					<button data-action="activate"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+					<button data-action="resetCodexTags"><i class="fas fa-list icon"></i>Reset Tags</button>
+					<button data-action="browseUploadDirectory"><i class="fas fa-clipboard"></i>Browse Upload Directory</button>
+				</div>
+				{{pfuArrayField array=system.codex.tags label="FU.Tags" path="system.codex.tags" type="string" }}
 			</div>
-
-
 		</fieldset>
 	</main>
 

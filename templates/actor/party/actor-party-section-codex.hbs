@@ -1,0 +1,106 @@
+<section class="tab codex {{tab.cssClass}}" data-tab="codex" data-group="primary">
+	<div class="pfu-layout__browser">
+
+		<div class="controls">
+			<div class="pfu-tag-selector" style="margin: 8px;">
+				{{#each system.codex.tags as |tag|}}
+					<div class="tag {{#if (pfuCollectionContains tag ../browser.selected)}}active{{/if}}"
+						 data-action="toggleCodexTagFilter"
+						 data-tag="{{tag}}">
+						{{pfuHumanize tag}}
+					</div>
+				{{/each}}
+			</div>
+
+			<div class="toolbar">
+				<label class="search">
+					<input type="text"
+						   placeholder="..." />
+				</label>
+				<button data-action="addCodexEntry">
+					<span>{{localize 'FU.Add'}}</span>
+				</button>
+
+				<button class="import-codex-entry" data-action="importCodexActorEntry">
+					<span>{{localize 'FU.Import'}} {{localize 'FU.Actor'}}</span>
+				</button>
+
+				<button class="import-codex-entry" data-action="importCodexJournalEntry">
+					<span>{{localize 'FU.Import'}} {{localize 'DOCUMENT.JournalEntry'}}</span>
+				</button>
+			</div>
+		</div>
+
+		<ul class="entries content" data-codex-drop-root data-codex-dropzone="entry">
+			{{#each system.codex.entries as |entry index|}}
+				<li class="section-container entry {{#if (and entry.hidden (not @root.user.isGM))}}hidden{{/if}} " data-index="{{index}}" data-name="{{entry.name}}">
+					<div class="left">
+						<a data-action="forCodexEntry"
+							data-type="view"
+							data-index="{{index}}"
+							title="View">
+							<img class="flexcol" src="{{lookup entry 'img'}}"
+									alt="Artwork"/>
+						</a>
+						{{#if @root.isOwner}}
+							<div class="controls">
+								<button data-action="forCodexEntry"
+										data-type="edit"
+										data-index="{{index}}"
+										title="Edit">
+									<i class="fu-icon--xs fa-solid fa-edit"></i>
+								</button>
+								<button data-context-menu="shareCodexEntry"
+										data-index="{{index}}"
+										title="{{localize 'FU.Share'}}">
+									<i class="fu-icon--xs fa-solid fa-share"></i>
+								</button>
+								{{#if (and entry.audio.path @root.isGM)}}
+									{{#if (pfuCollectionContains entry.name ../playingSounds)}}
+										<button data-action="forCodexEntry"
+												data-type="stopSound"
+												data-index="{{index}}">
+											<i class="fu-icon--xs fas fa-stop"></i>
+										</button>
+									{{else}}
+										<button data-action="forCodexEntry"
+												data-type="playSound"
+												data-index="{{index}}">
+											<i class="fu-icon--xs fas fa-play"></i>
+										</button>
+									{{/if}}
+								{{/if}}
+								<button data-action="removeArrayElement"
+										data-prompt="true"
+										data-label="{{entry.name}}"
+										data-path="system.codex.entries"
+										data-index="{{index}}"
+										title="Delete">✕
+								</button>
+							</div>
+						{{/if}}
+					</div>
+
+					<div class="right">
+						<div class="header">
+						<span class="name">
+							{{entry.name}}
+						</span>
+							<div class="pfu-tags">
+								{{#each entry.tags as |tag|}}
+									<div class="fu-tag">{{pfuHumanize tag}}</div>
+								{{/each}}
+								{{#if entry.hidden}}
+									<div class="fu-tag"><i class="fa fa-eye-slash "></i></div>
+								{{/if}}
+							</div>
+						</div>
+						<span class="description">
+							{{{lookup ../browser.enrichedDescriptions @index }}}
+						</span>
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</section>

@@ -29,3 +29,15 @@ export function prefixType(type) {
 export function systemAssetPath(path) {
 	return `systems/${systemId}/styles/static/${path}`;
 }
+
+/**
+ * @param {String} filePath A system file
+ * @returns {Promise<Object>}
+ */
+export async function readJsonFromSystemFile(filePath) {
+	const response = await fetch(filePath);
+	if (!response.ok) {
+		throw new Error(`Failed to fetch ${filePath}: ${response.statusText}`);
+	}
+	return response.json();
+}

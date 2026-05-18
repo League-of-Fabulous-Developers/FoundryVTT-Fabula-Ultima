@@ -1,5 +1,5 @@
-<details class="fu-foldout-item" data-rule-element="{{element.id}}"{{#if expanded}} open{{/if}}>
-	<summary class="fu-foldout-summary">
+<details class="pfu-foldout" data-rule-element="{{element.id}}"{{#if expanded}} open{{/if}}>
+	<summary>
 		<span class="flexrow flex-group-center">
 			<!-- Toggle Enabled -->
 			{{formGroup element.schema.fields.enabled value=element.enabled name=(pfuConcat path ".enabled")}}
@@ -10,11 +10,14 @@
 		</span>
 		<span>{{element.templateHeader}}</span>
 	</summary>
-	<div class="fu-foldout-content">
+	<div class="pfu-foldout__content">
 		<!-- 1. Trigger -->
-		<div class="fu-rule-element__section">
-			<header class="fu-rule-element__header">
-				<span>{{localize 'FU.RuleTrigger'}}</span>
+		<div class="fu-form__section">
+			<header class="fu-form__header">
+				<div>
+					<span data-tooltip="{{localize 'FU.RuleTriggerHint'}}">{{localize 'FU.RuleTrigger'}}</span>
+				</div>
+
 				<!-- 1.1 Type Selector -->
 				<label>
 					{{~localize 'FU.Type'}}
@@ -23,9 +26,9 @@
 					</select>
 				</label>
 			</header>
-			<div class="fu-rule-element__content">
+			<div class="fu-form__content">
 				<!-- 1.2 Base Properties -->
-				<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.EventRelationHint'}}">
+				<label class="fu-form__property" data-tooltip="{{localize 'FU.EventRelationHint'}}">
 					<span>{{localize 'FU.EventRelation'}}</span>
 					<select name="{{pfuConcat path ".trigger.eventRelation"}}">
 						<option value="">-</option>
@@ -37,19 +40,19 @@
 			</div>
 		</div>
 		<!-- 2. Predicates -->
-		<div class="fu-rule-element__section">
-			<header class="fu-rule-element__header">
+		<div class="fu-form__section">
+			<header class="fu-form__header">
 				<div>
-					<span>{{localize 'FU.RulePredicates'}}</span>
+					<span data-tooltip="{{localize 'FU.RulePredicatesHint'}}">{{localize 'FU.RulePredicates'}}</span>
 					<a data-action="addRulePredicate" data-id="{{element.id}}">
 						<i class="fas fa-plus icon"></i>
 					</a>
 				</div>
 			</header>
-			<div class="fu-rule-element__content">
+			<div class="fu-form__content">
 				{{#each element.predicates as |predicate|}}
-					<div class="fu-rule-element__item">
-						<div class="fu-rule-element__item__header">
+					<div class="fu-form__item">
+						<div class="fu-form__header">
 							<label class="flexrow">
 								{{localize (lookup (lookup (lookup predicate "schema") "model") "localization")}}
 							</label>
@@ -67,7 +70,7 @@
 								</a>
 							</span>
 						</div>
-						<div class="fu-rule-element__item__content">
+						<div class="fu-form__item__content">
 							{{> (lookup (lookup (lookup predicate "schema") "model") "template") path=(concat ../path ".predicates." predicate.id) predicate=predicate options=../options}}
 						</div>
 					</div>
@@ -75,26 +78,27 @@
 			</div>
 		</div>
 
-		<div class="fu-rule-element__section">
-			<header class="fu-rule-element__header">
+		<div class="fu-form__section">
+			<header class="fu-form__header">
 				<div>
-					<span>{{localize 'FU.RuleActions'}}</span>
+					<span data-tooltip="{{localize 'FU.RuleActionsHint'}}" >{{localize 'FU.RuleActions'}}</span>
 					<a data-action="addRuleAction" data-id="{{element.id}}">
 						<i class="fas fa-plus icon"></i>
 					</a>
 				</div>
 				<!-- 3. Selector -->
-				<label class="" data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}
+				<label class="">
+					<span data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}</span>
 					<select name="{{pfuConcat path ".selector"}}" class="resource-inputs select-dropdown-m">
 						{{selectOptions options.targetSelector selected=element.selector localize=true}}
 					</select>
 				</label>
 			</header>
-			<div class="fu-rule-element__content">
+			<div class="fu-form__content">
 				<!-- 4. Actions -->
 				{{#each element.actions as |action|}}
-					<div class="fu-rule-element__item">
-						<div class="fu-rule-element__item__header">
+					<div class="fu-form__item">
+						<div class="fu-form__header">
 							<label class="flexrow">
 								{{localize (lookup (lookup (lookup action "schema") "model") "localization")}}
 							</label>
@@ -102,7 +106,7 @@
 								<i class="icon fas fa-circle-minus"></i>
 							</a>
 						</div>
-						<div class="fu-rule-element__item__content">
+						<div class="fu-form__item__content">
 							{{> (lookup (lookup (lookup action "schema") "model") "template") path=(concat ../path ".actions." action.id) action=action options=../options}}
 						</div>
 					</div>

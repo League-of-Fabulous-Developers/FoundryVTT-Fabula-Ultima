@@ -1,0 +1,163 @@
+{
+  "folder": "6dYZM5tiwMrA6CID",
+  "name": "Dazzling Scroll",
+  "type": "accessory",
+  "_id": "uzDVh57qf7siKKOG",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/scroll-star.png",
+  "system": {
+    "fuid": "dazzling-scroll",
+    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>dazed</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Dazed Hex"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Dazzling Scroll",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/scroll-star.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.uzDVh57qf7siKKOG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "dJrslZAMvKngD4c1": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "uU8VehOqznvcl4if",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "dJrslZAMvKngD4c1",
+              "predicates": {
+                "QqHC0Py39AegwIaU": {
+                  "type": "spellRulePredicate",
+                  "_id": "QqHC0Py39AegwIaU",
+                  "offensive": "true"
+                }
+              },
+              "actions": {
+                "65dhyKZT34VAd6PZ": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "65dhyKZT34VAd6PZ",
+                  "effect": "dazed"
+                },
+                "ScUizgJz0bdzcS6q": {
+                  "type": "messageRuleAction",
+                  "_id": "ScUizgJz0bdzcS6q",
+                  "message": "<p>Inflict <strong>dazed</strong> on hit targets.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "oyanDqTe6NbJqq19",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>dazed</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Dazzling Scroll",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.uzDVh57qf7siKKOG",
+            "effectUuid": null,
+            "fuid": "dazzling-scroll"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775691312987,
+        "modifiedTime": 1775708758618,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!uzDVh57qf7siKKOG.oyanDqTe6NbJqq19"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774811510597,
+    "modifiedTime": 1777530349984,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!uzDVh57qf7siKKOG"
+}

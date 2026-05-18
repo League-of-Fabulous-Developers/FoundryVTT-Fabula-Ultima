@@ -1,0 +1,96 @@
+{
+  "folder": "QtAH9h7yA18Xt7Ga",
+  "name": "Effect: Nether Slash (Fire Resist)",
+  "type": "effect",
+  "_id": "gJWZDrbPrRIA0Udi",
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-red.webp",
+  "system": {
+    "fuid": "effect-nether-slash-fire-resist",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Nether Slash (Fire Resist)",
+      "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-red.webp",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Src1r6gZ1bxNWOn3",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.fire",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain Resistance to <strong>fire</strong> damage until the start of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771282762989,
+        "modifiedTime": 1771282818644,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!gJWZDrbPrRIA0Udi.Src1r6gZ1bxNWOn3"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771282718363,
+    "modifiedTime": 1771282812937,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!gJWZDrbPrRIA0Udi"
+}

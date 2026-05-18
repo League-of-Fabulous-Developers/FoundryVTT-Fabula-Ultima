@@ -15,6 +15,5 @@ export function slugify(input) {
 		.replace(/-+$/g, '') // remove trailing hyphens
 		.trim(); // trim leading or trailing whitespace
 
-	console.debug([input, slugged]);
 	return slugged;
 }

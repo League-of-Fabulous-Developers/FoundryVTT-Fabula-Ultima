@@ -1,0 +1,110 @@
+{
+  "folder": "kjGE4lDUKcBzGLnt",
+  "name": "Air Resistance",
+  "type": "effect",
+  "_id": "B5R3OSPkdPzeVlDn",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "system": {
+    "fuid": "air-resistance",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Air Resistance",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.B5R3OSPkdPzeVlDn",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "HHbrz7L7BgmnnvY9",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>air</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Air Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.B5R3OSPkdPzeVlDn",
+            "effectUuid": null,
+            "fuid": "air-resistance"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774655312471,
+        "modifiedTime": 1774655457704,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!B5R3OSPkdPzeVlDn.HHbrz7L7BgmnnvY9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774655210195,
+    "modifiedTime": 1774655433713,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!B5R3OSPkdPzeVlDn"
+}

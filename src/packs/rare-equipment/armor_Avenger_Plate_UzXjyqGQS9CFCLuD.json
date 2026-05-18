@@ -1,0 +1,140 @@
+{
+  "folder": "hkP7tSQu7UYaOCBg",
+  "name": "Avenger Plate",
+  "type": "armor",
+  "_id": "UzXjyqGQS9CFCLuD",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-avenger.png",
+  "system": {
+    "fuid": "avenger-plate",
+    "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1250
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Accuracy Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 11
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 1
+    },
+    "init": {
+      "value": -3
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Avenger Plate",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-avenger.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.UzXjyqGQS9CFCLuD",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "yk13ZemARXEtFpXW",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Avenger Plate",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.UzXjyqGQS9CFCLuD",
+            "effectUuid": null,
+            "fuid": "avenger-plate"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774809262012,
+        "modifiedTime": 1775708858675,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!UzXjyqGQS9CFCLuD.yk13ZemARXEtFpXW"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774809056539,
+    "modifiedTime": 1777530558852,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!UzXjyqGQS9CFCLuD"
+}

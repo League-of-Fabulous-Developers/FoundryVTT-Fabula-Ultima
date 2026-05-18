@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
+    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><hr /><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Tinkerer"
+      "value": "tinkerer"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,7 +121,15 @@
     "fuid": "potion-rain",
     "cost": {
       "resource": "ip",
-      "amount": 3
+      "amount": ""
+    },
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -191,7 +199,7 @@
       "_id": "06fNYI2FaCIWg7HX",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you target <strong>multiple</strong> creatures with a potion that restores HP and/or MP, the potion will only restore half that normal amount of HP and MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -202,12 +210,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766773134400,
-        "modifiedTime": 1767730050049,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771879246205,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!xzyAHegWwSaysYqV.06fNYI2FaCIWg7HX"
     }
@@ -220,16 +228,17 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706508730921,
-    "modifiedTime": 1767560789058,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1775596751312,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,111 @@
+{
+  "folder": "DThElk1zAvcLYaX2",
+  "name": "Effect: Anti-Element Module (Bolt)",
+  "type": "effect",
+  "img": "icons/commodities/tech/tube-chamber-lightning.webp",
+  "system": {
+    "fuid": "effect-anti-element-module-bolt",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Anti-Element Module (Bolt)",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.qhnavaTu9QpEqtJS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "VL7lgjdnKaxV0C6V",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.bolt",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you are driving or a passenger of a <strong>personal vehicle</strong> with the <strong>anti-element module</strong> enabled, you gain Resistance to <strong>bolt</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Anti-Element Module (Bolt)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.qhnavaTu9QpEqtJS",
+            "effectUuid": null,
+            "fuid": "anti-element-module-bolt"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773721030773,
+        "modifiedTime": 1773735545132,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!qhnavaTu9QpEqtJS.VL7lgjdnKaxV0C6V"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1773720947221,
+    "modifiedTime": 1773722304242,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "qhnavaTu9QpEqtJS",
+  "sort": 200000,
+  "_key": "!items!qhnavaTu9QpEqtJS"
+}

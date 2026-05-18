@@ -1,6 +1,25 @@
 import { systemId } from '../../helpers/system-utils.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { SETTINGS } from '../../settings.js';
+import { StringUtils } from '../../helpers/string-utils.mjs';
+
+/**
+ * @typedef CompendiumIndexEntry
+ * @property {string} _id            Document ID within the compendium
+ * @property {string} uuid           Fully-qualified UUID
+ * @property {string} name           Document name
+ * @property {string|null} img       Image path
+ * @property {string} type           Document subtype
+ * @property {string} pack           Compendium collection key (e.g. "fu.items")
+ * @property {Object} [system]       Partial system data (indexed fields only)
+ */
+
+/**
+ * @typedef CompendiumSourceInfo
+ * @property {String} id The package id.
+ * @property {'system'|'module'|'world'}  type
+ * @property {String} title Human readable name.
+ */
 
 /**
  * @typedef EquipmentEntries
@@ -37,6 +56,14 @@ import { SETTINGS } from '../../settings.js';
  * @property {CompendiumIndexEntry[]} character
  * @property {CompendiumIndexEntry[]} npc
  * @property {CompendiumIndexEntry[]} stash
+ */
+
+/**
+ * @typedef FUClassReference
+ * @desc The reference to a character class in this system.
+ * @property {String} name The localized name.
+ * @property {String} fuid
+ * @property {String} img
  */
 
 /**
@@ -90,6 +117,19 @@ export class CompendiumIndex {
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
 	#actorsByType;
+
+	#effectIdList;
+
+	/**
+	 * @remarks FUID : Image Source Path
+	 * @type {Record<FUClassReference[]>}
+	 */
+	#classReferences;
+
+	/**
+	 * @type {string[]} The fuids of the respective classes.
+	 */
+	static spellGrantingClasses = ['elementalist', 'entropist', 'spiritist'];
 
 	// Actors
 	static npcFields = Object.freeze({
@@ -223,6 +263,60 @@ export class CompendiumIndex {
 	}
 
 	/**
+	 * @desc Returns the fuids of all indexed effect items.
+	 * @returns {Promise<String[]>}
+	 */
+	async getEffectIdList() {
+		if (!this.#effectIdList) {
+			const effects = await this.getEffects();
+			let result = new Set();
+			for (const effect of effects) {
+				const fuid = effect.system.fuid;
+				if (fuid) {
+					result.add(fuid);
+				}
+			}
+			this.#effectIdList = Array.from(result);
+		}
+		return this.#effectIdList;
+	}
+
+	/**
+	 * @returns {Promise<FUClassReference[]>}
+	 */
+	async getClassReferences() {
+		if (!this.#classReferences) {
+			const classInfo = await this.getClasses();
+			const refMap = new Map();
+
+			for (const entry of classInfo.class) {
+				const fuid = entry.system.fuid;
+				if (fuid && !refMap.has(fuid)) {
+					refMap.set(fuid, { name: entry.name, fuid, img: entry.img });
+				}
+			}
+
+			this.#classReferences = Array.from(refMap.values());
+		}
+		return this.#classReferences;
+	}
+
+	/**
+	 * @param {FUItem|CompendiumIndexEntry} document The entry or item that is referencing the class it's associated to.
+	 * @returns {String[]} The classes being referenced by the entry, which can be comma-separated.
+	 */
+	static getClassRequirements(document) {
+		if (document.system?.class?.value) {
+			let classes = document.system.class.value.split(',');
+			classes = classes.map((c) => {
+				return StringUtils.titleToKebab(c.trim());
+			});
+			return classes;
+		}
+		return [];
+	}
+
+	/**
 	 * @param {String} type type of document.
 	 * @returns {[]}
 	 */
@@ -252,6 +346,51 @@ export class CompendiumIndex {
 			}
 			return p.documentName === type;
 		});
+	}
+
+	/**
+	 * @returns {CompendiumSourceInfo[]}
+	 */
+	getLoadedCompendiumSourceInfo() {
+		const sources = new Map();
+
+		for (const pack of game.packs) {
+			const pkg = pack.metadata.packageName;
+			if (!pkg || sources.has(pkg)) continue;
+			if (pack.metadata.system !== systemId) continue;
+
+			// World packs
+			if (pkg === 'world') {
+				sources.set(pkg, {
+					id: 'world',
+					type: 'world',
+					title: game.world.title,
+				});
+				continue;
+			}
+
+			// System packs
+			if (pkg === game.system.id) {
+				sources.set(pkg, {
+					id: pkg,
+					type: 'system',
+					title: game.system.title,
+				});
+				continue;
+			}
+
+			// Module packs
+			const module = game.modules.get(pkg);
+			if (module) {
+				sources.set(pkg, {
+					id: pkg,
+					type: 'module',
+					title: module.title,
+				});
+			}
+		}
+
+		return [...sources.values()];
 	}
 
 	/**
@@ -287,6 +426,7 @@ export class CompendiumIndex {
 				(result[key] ??= []).push({
 					...entry,
 					pack: pack.collection,
+					packageName: pack.metadata.packageName,
 				});
 			}
 		}
@@ -304,61 +444,72 @@ export class CompendiumIndex {
 		// TODO: Use lowercase?
 		switch (entry.type) {
 			case 'class':
-				_class = entry.name;
+				_class = entry.system.fuid;
+				break;
+			case 'skill':
+			case 'heroic':
+				{
+					// Patch existing compendium skills to use fuid format
+					if (entry.system?.class?.value) {
+						let classes = entry.system.class.value.split(',');
+						classes = classes.map((c) => StringUtils.titleToKebab(c));
+						_class = classes.join(',');
+					}
+				}
 				break;
 		}
 		switch (entry.system.featureType) {
 			case 'projectfu.dance':
-				_class = 'Dancer';
+				_class = 'dancer';
 				break;
 
 			case 'projectfu.key':
 			case 'projectfu.tone':
 			case 'projectfu.verse':
-				_class = 'Chanter';
+				_class = 'chanter';
 				break;
 
 			case 'projectfu.symbol':
-				_class = 'Symbolist';
+				_class = 'symbolist';
 				break;
 
 			case 'projectfu.therioform':
-				_class = 'Mutant';
+				_class = 'mutant';
 				break;
 
 			case 'projectfu.magitech':
 			case 'projectfu.alchemy':
 			case 'projectfu.infusions':
-				_class = 'Tinkerer';
+				_class = 'tinkerer';
 				break;
 
 			case 'projectfu.magiseed':
 			case 'projectfu.garden':
-				_class = 'Floralist';
+				_class = 'floralist';
 				break;
 
 			case 'projectfu.ingredient':
 			case 'projectfu.cookbook':
-				_class = 'Gourmet';
+				_class = 'gourmet';
 				break;
 
 			case 'projectfu.arcanum':
-				_class = 'Arcanist';
+				_class = 'arcanist';
 				break;
 
 			case 'projectfu.vehicle':
 			case 'projectfu.armorModule':
 			case 'projectfu.weaponModule':
 			case 'projectfu.supportModule':
-				_class = 'Pilot';
+				_class = 'pilot';
 				break;
 
 			case 'projectfu.invocations':
-				_class = 'Invoker';
+				_class = 'invoker';
 				break;
 
 			case 'projectfu.psychicGift':
-				_class = 'Esper';
+				_class = 'esper';
 				break;
 		}
 		entry.metadata = {

@@ -1,4 +1,3 @@
-import { systemPath } from '../../../helpers/config.mjs';
 import { ObjectUtils } from '../../../helpers/object-utils.mjs';
 import { MathHelper } from '../../../helpers/math-helper.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
@@ -62,6 +61,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		return ProgressDataModel.generateProgressArray(this);
 	}
 
+	// TODO: Used in a template
 	get clockSegments() {
 		return Array(this.max)
 			.fill(null)
@@ -69,6 +69,26 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 				segment: i + 1,
 				filled: this.current > i,
 			}));
+	}
+
+	/**
+	 * @param {Number} increment
+	 * @param {Boolean }useMultiplier
+	 * @returns {number}
+	 */
+	calculateUpdatedValue(increment, useMultiplier = false) {
+		const maxProgress = this.max;
+		let result;
+		if (useMultiplier) {
+			const stepMultiplier = this.step || 1;
+			result = this.current + increment * stepMultiplier;
+		} else {
+			result = this.current + increment;
+		}
+		if (maxProgress !== 0) {
+			result = Math.min(result, maxProgress);
+		}
+		return result;
 	}
 
 	/**
@@ -111,13 +131,15 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @param {ProgressDataModel} track
 	 * @param {String} message
 	 * @param {Boolean} displayName
+	 * @param {String} img
 	 * @returns {Promise<String>}
 	 */
-	static async renderDetails(track, message = undefined, displayName = true) {
+	static async renderDetails(track, message = undefined, displayName = true, img = undefined) {
 		return FoundryUtils.renderTemplate('chat/partials/chat-clock-details', {
 			progress: track,
 			segments: this.generateProgressArray(track),
 			message: message,
+			img: img,
 			displayName: displayName,
 		});
 	}
@@ -132,23 +154,9 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	static async updateForDocument(document, propertyPath, increment, useMultiplier) {
 		/** @type ProgressDataModel **/
 		const progress = foundry.utils.getProperty(document, propertyPath);
-		const maxProgress = progress.max;
-
-		let newProgress;
-
-		if (useMultiplier) {
-			const stepMultiplier = progress.step || 1;
-			newProgress = progress.current + increment * stepMultiplier;
-		} else {
-			newProgress = progress.current + increment;
-		}
-
-		if (maxProgress !== 0) {
-			newProgress = Math.min(newProgress, maxProgress);
-		}
-
+		const updatedValue = progress.calculateUpdatedValue(increment, useMultiplier);
 		const currentPropertyPath = `${propertyPath}.current`;
-		await document.update({ [currentPropertyPath]: newProgress });
+		await document.update({ [currentPropertyPath]: updatedValue });
 	}
 
 	/**
@@ -230,7 +238,6 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @returns {Promise}
 	 */
 	static async notifyUpdate(document, progress, increment, source) {
-		CommonEvents.progress(document, progress, 'update', increment, source);
 		const message = StringUtils.localize(increment > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock', {
 			clock: progress.name ?? progress.parent.parent.name,
 			source: source?.name ?? source ?? StringUtils.localize('FU.Unknown'),
@@ -281,39 +288,6 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		tracks.push(newTrack);
 		document.update({ [propertyPath]: tracks });
 		CommonEvents.progress(document, newTrack, 'add');
-	}
-
-	/**
-	 * @param {Document} document
-	 * @param {String} propertyPath
-	 * @pararm {Boolean} selectStyle
-	 * @returns {Promise<void>}
-	 */
-	static async promptAddToDocument(document, propertyPath, selectStyle = false) {
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: game.i18n.localize('FU.ClockAdd') },
-			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-track.hbs'), {
-				selectStyle: selectStyle,
-			}),
-			rejectClose: false,
-			ok: {
-				label: game.i18n.localize('FU.Confirm'),
-			},
-		});
-
-		if (result) {
-			if (!result.name) {
-				return;
-			}
-			console.log('Creating progress track with name: ', result.name);
-			const newTrack = ProgressDataModel.construct(result.name, {
-				id: result.id,
-				max: result.max,
-				style: result.style,
-			});
-			await this.addToDocument(document, propertyPath, newTrack);
-		}
 	}
 
 	/**

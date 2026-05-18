@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Sacrifice",
+      "name": "Symbol of Sacrifice",
       "_id": "gGQGjmW4EEckGQew",
       "type": "base",
       "system": {
@@ -37,10 +37,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>When the creature bearing this <strong>symbol</strong> suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead of that creature.</p>",
+      "description": "<p>When you suffer damage while bearing the <strong>Symbol of Sacrifice</strong>, if the symbolist is able to see you, they may destroy this <strong>symbol</strong>: if they do, they suffer the same amount of damage instead of you.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +60,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744746080855,
-        "modifiedTime": 1744746115920,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634341863,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!O8wUtXymIN3rrFNz.gGQGjmW4EEckGQew"
     }
   ],
-  "sort": 0,
+  "sort": 4500000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -70,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744746073527,
-    "modifiedTime": 1744746094617,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!O8wUtXymIN3rrFNz"

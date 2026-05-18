@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their <strong>Traits</strong>; or name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity </strong>towards that damage type.</p>",
+    "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option:</p><ul><li><p>Choose a creature you can see and the GM reveals one of their <strong>Traits</strong>.</p></li><li><p>Name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity</strong> towards that damage type.</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Loremaster"
+      "value": "loremaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -124,9 +124,97 @@
     },
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Quick Assessment",
+      "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_quick_assessment.png",
+      "origin": "Compendium.projectfu.skills.Item.YiBD86tGOvFSlaZ6",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Ikxm2TLIcrlqFvmq": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "ssXtItftBy59rlmz",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "startOfCombat"
+              },
+              "_id": "Ikxm2TLIcrlqFvmq",
+              "actions": {
+                "p4jMD56cqKJMXeU9": {
+                  "type": "messageRuleAction",
+                  "_id": "p4jMD56cqKJMXeU9",
+                  "message": "<p>You may reveal <strong>Traits</strong> and/or <strong>Affinities</strong>.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "d76sTmbzluTJm8L4",
+      "type": "base",
+      "changes": [],
+      "description": "<p>At the start of a conflict, you may spend Mind Points to reveal <strong>Traits</strong> and/or <strong>Affinities</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Quick Assessment",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.YiBD86tGOvFSlaZ6",
+            "effectUuid": null,
+            "fuid": "quick-assessment"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771876320742,
+        "modifiedTime": 1771876409093,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!YiBD86tGOvFSlaZ6.d76sTmbzluTJm8L4"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -135,7 +223,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -143,7 +232,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706487865484,
-    "modifiedTime": 1770415526229,
+    "modifiedTime": 1771876429972,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

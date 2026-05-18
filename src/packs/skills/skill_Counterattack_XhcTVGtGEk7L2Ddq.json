@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
+    "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll</strong> as 0 when calculating damage dealt by this attack.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Weaponmaster"
+      "value": "weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,9 +53,7 @@
         "value": false
       },
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "",
       "onRoll": "",
       "onApply": ""
     },
@@ -117,10 +115,15 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "counterattack",
     "targeting": {
       "rule": "single"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -163,13 +166,19 @@
                   "_id": "AccwRopUxS7jiAR4",
                   "parity": "even",
                   "result": null
+                },
+                "tkEn9IrOdkur7ELc": {
+                  "type": "weaponRulePredicate",
+                  "_id": "tkEn9IrOdkur7ELc",
+                  "weaponType": "melee",
+                  "selector": "source"
                 }
               },
               "actions": {
                 "2xZr4iUkZa06agNk": {
                   "type": "messageRuleAction",
                   "_id": "2xZr4iUkZa06agNk",
-                  "message": "<p>The condition for this skill has been met.</p>"
+                  "message": "<p>The weaponmaster may attack back.</p>"
                 }
               }
             }
@@ -181,6 +190,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -192,7 +206,7 @@
       "_id": "3I4QKAPzn55nGTVF",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy. This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>HR</strong> as 0 when calculating damage dealt by this attack.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -203,11 +217,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766789080881,
-        "modifiedTime": 1767559780888,
+        "modifiedTime": 1773335742462,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!XhcTVGtGEk7L2Ddq.3I4QKAPzn55nGTVF"
@@ -219,15 +233,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706514121336,
-    "modifiedTime": 1741964261763,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1778089801732,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

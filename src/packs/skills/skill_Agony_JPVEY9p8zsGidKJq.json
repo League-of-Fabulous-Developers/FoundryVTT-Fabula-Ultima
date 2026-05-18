@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】 </strong>Hit Points and <strong>【SL × 2】 </strong>Mind Points.</p><hr /><p><strong>You</strong>: @GAIN[$sl*2 hp]{SL x 2 HP} @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
+    "description": "<p>Once per turn (including other creatures' turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover</strong>: @GAIN[$sl*2 hp]{SL × 2 HP} @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Darkblade"
+      "value": "darkblade"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "agony",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -212,7 +217,7 @@
       "_id": "3CjUfXdmW7p1L7tJ",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -227,7 +232,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766871996877,
-        "modifiedTime": 1770402838012,
+        "modifiedTime": 1771832201348,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"
@@ -241,7 +246,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -249,7 +255,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706496854934,
-    "modifiedTime": 1770248455463,
+    "modifiedTime": 1775525863927,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

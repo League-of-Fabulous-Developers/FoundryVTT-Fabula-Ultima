@@ -11,13 +11,17 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { Traits } from './traits.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
+import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
+import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
- * @typedef UpdateResourceData
+ * @class
  * @property {String} type
  * @property {ScalarModifier[]} modifiers
  */
-
 export class UpdateResourceData {
 	static get baseModifier() {
 		return 'FU.Base';
@@ -49,11 +53,24 @@ export class UpdateResourceData {
 	addModifier(label, amount) {
 		/** @type DamageModifier **/
 		const modifier = {
-			label: label,
+			label: label ?? UpdateResourceData.baseModifier,
 			amount: amount,
 			enabled: true,
 		};
 		this.modifiers.push(modifier);
+	}
+
+	/**
+	 * @returns {number}
+	 */
+	get total() {
+		let result = 0;
+		for (const mod of this.modifiers) {
+			if (mod.enabled && mod.amount) {
+				result += Number.parseInt(mod.amount);
+			}
+		}
+		return result;
 	}
 }
 
@@ -141,26 +158,39 @@ function getResourceValue(actor, resourcePath) {
 	return parseInt(foundry.utils.getProperty(actor.system, resourcePath), 10) || 0;
 }
 
-/**
- * @param {FUActor} actor
- * @param {String} attributePath
- * @param {Number} amountRecovered
- * @returns {Promise<*>
- */
-function createUpdateForRecovery(actor, attributePath, amountRecovered) {
-	const currentValue = getResourceValue(actor, attributePath);
-	const newValue = Math.floor(currentValue + amountRecovered);
-
-	// Update the actor's resource directly
-	const updateData = {
-		[`system.${attributePath}`]: newValue,
-	};
-	return actor.update(updateData);
-}
-
 function calculateMissingResource(actor, resourcePath) {
 	const resource = foundry.utils.getProperty(actor.system, resourcePath);
 	return resource.max - resource.value;
+}
+
+/**
+ * @param request
+ * @param actor
+ * @param amount
+ * @param flavor
+ * @param message
+ * @param template
+ * @param renderData
+ * @returns {Promise<void>}
+ */
+async function createChatMessage(request, actor, amount, flavor, template, message, renderData) {
+	const chat = new FUChatBuilder(actor, request.item).withData(renderData).withFlags(Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true)).withFlavor(flavor);
+	CommonSections.template(
+		chat.sections,
+		template,
+		{
+			message: message,
+			actor: actor.name,
+			uuid: actor.uuid,
+			amount: amount,
+			key: request.attributeKey,
+			resource: request.resourceType,
+			resourceLabel: request.resourceLabel,
+			from: request.sourceInfo.name,
+		},
+		CHECK_DETAILS,
+	);
+	return chat.create();
 }
 
 /**
@@ -168,9 +198,11 @@ function calculateMissingResource(actor, resourcePath) {
  * @return {Promise<Awaited<unknown>[]>}
  */
 async function processRecovery(request) {
-	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
 	const outgoingRecoveryBonus = request.sourceActor?.system.bonuses.outgoingRecovery[request.resourceType] || 0;
 	const outgoingRecoveryMultiplier = request.sourceActor?.system.multipliers.outgoingRecovery[request.resourceType] || 1;
+	const template = 'chat/chat-apply-recovery';
+	const message = recoveryMessages[request.resourceType];
+	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
 
 	const updates = [];
 	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);
@@ -187,7 +219,24 @@ async function processRecovery(request) {
 		const updates = [];
 
 		if (request.isMetaCurrency) {
-			updates.push(createUpdateForRecovery(actor, request.attributeValuePath, amountRecovered));
+			const currentValue = getResourceValue(actor, request.attributeValuePath) || 0;
+			const newValue = Math.floor(currentValue + amountRecovered);
+			const updateData = {};
+			updateData[`system.${request.attributeValuePath}`] = newValue;
+			updates.push(
+				actor.update(updateData).then(async (result) => {
+					/** @type FURenderData **/
+					let renderData = {
+						sections: [],
+						postRenderActions: [],
+					};
+					CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+					await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, amountRecovered, request.origin, renderData);
+					TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
+					await createChatMessage(request, actor, Math.abs(amountRecovered), flavor, template, message, renderData);
+					return result;
+				}),
+			);
 		} else {
 			// Overheal recovery (uncapped)
 			if (request.uncapped === true && uncappedRecoveryValue > (attr.max || 0)) {
@@ -195,8 +244,16 @@ async function processRecovery(request) {
 				const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr));
 				newValue.value = uncappedRecoveryValue;
 				updates.push(
-					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then((result) => {
-						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then(async (result) => {
+						/** @type FURenderData **/
+						let renderData = {
+							sections: [],
+							postRenderActions: [],
+						};
+						await CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+						await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, request.amount, request.origin, renderData);
+						await createChatMessage(request, actor, amountRecovered, flavor, template, message, renderData);
+						TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 						return result;
 					}),
 				);
@@ -218,33 +275,27 @@ async function processRecovery(request) {
 					continue;
 				}
 				updates.push(
-					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then((result) => {
+					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then(async (result) => {
+						/** @type FURenderData **/
+						let renderData = {
+							sections: [],
+							postRenderActions: [],
+						};
 						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+						await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, request.amount, request.origin, renderData);
+						await createChatMessage(request, actor, amountRecovered, flavor, template, message, renderData);
+						TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 						return result;
 					}),
 				);
 			}
 		}
-		TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: flavor,
-				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
-					message: recoveryMessages[request.resourceType],
-					actor: actor.name,
-					uuid: actor.uuid,
-					amount: amountRecovered,
-					key: request.attributeKey,
-					resource: request.resourceType,
-					resourceLabel: request.resourceLabel,
-					from: request.sourceInfo.name,
-				}),
-			}),
-		);
+
+		// Handle post-resource loss traits
+		if (Math.abs(amountRecovered) > 0) {
+			processPostResource(request, Math.abs(amountRecovered));
+		}
 	}
-	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin));
 	return Promise.all(updates);
 }
 
@@ -263,6 +314,8 @@ const lossFlavor = {
  */
 async function processLoss(request) {
 	const flavor = game.i18n.localize(lossFlavor[request.resourceType]);
+	const template = 'chat/chat-apply-loss';
+	const message = 'FU.ChatResourceLoss';
 
 	const updates = [];
 	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
@@ -282,40 +335,41 @@ async function processLoss(request) {
 			const updateData = {};
 			updateData[`system.${request.attributeValuePath}`] = newValue;
 			updates.push(
-				actor.update(updateData).then((result) => {
+				actor.update(updateData).then(async (result) => {
+					/** @type FURenderData **/
+					let renderData = {
+						sections: [],
+						postRenderActions: [],
+					};
 					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
+					await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, amountLost, request.origin, renderData);
+					TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
+					await createChatMessage(request, actor, Math.abs(amountLost), flavor, template, message, renderData);
 					return result;
 				}),
 			);
 		} else {
 			updates.push(
-				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then((result) => {
+				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then(async (result) => {
+					/** @type FURenderData **/
+					let renderData = {
+						sections: [],
+						postRenderActions: [],
+					};
 					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
+					await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, amountLost, request.origin, renderData);
+					TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
+					await createChatMessage(request, actor, Math.abs(amountLost), flavor, template, message, renderData);
 					return result;
 				}),
 			);
 		}
 
-		TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: flavor,
-				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceLoss, true),
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
-					message: 'FU.ChatResourceLoss',
-					actor: actor.name,
-					amount: Math.abs(amountLost),
-					uuid: actor.uuid,
-					key: request.attributeKey,
-					resource: request.resourceType,
-					resourceLabel: request.resourceLabel,
-					from: request.sourceInfo.name,
-				}),
-			}),
-		);
+		// Handle post-resource loss traits
+		if (Math.abs(amountLost) > 0) {
+			processPostResource(request, Math.abs(amountLost));
+		}
 	}
-	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amount, request.origin));
 	return Promise.all(updates);
 }
 
@@ -328,20 +382,74 @@ async function process(request) {
 }
 
 /**
+ * @param {String} resource
+ * @param {Number} amount
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActor[]} targets
+ * @returns {Promise<void>}
+ */
+async function processPostResource(request, amount) {
+	let resource = request.resourceType;
+	if (request.traits.has(Traits.HitPointAbsorption)) {
+		resource = 'hp';
+	} else if (request.traits.has(Traits.MindPointAbsorption)) {
+		resource = 'mp';
+	}
+
+	if (request.traits.has(Traits.Absorb)) {
+		await absorbResource(resource, amount, request.sourceInfo, [request.sourceActor]);
+	} else if (request.traits.has(Traits.AbsorbHalf)) {
+		await absorbResource(resource, amount * 0.5, request.sourceInfo, [request.sourceActor]);
+	}
+}
+
+/**
+ * @param {String} resource
+ * @param {Number} amount
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActor[]} targets
+ * @returns {Promise<void>}
+ */
+async function absorbResource(resource, amount, sourceInfo, targets) {
+	// We execute this as GM since a player could have applied damage to their actor from an NPC owned by the GM
+	for (const target of targets) {
+		if (target.isOwner) {
+			const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+			return ResourcePipeline.processRecovery(request);
+		} else {
+			return game.projectfu.socket.requestPipeline('resource', {
+				sourceInfo: sourceInfo,
+				targets: targets.map((a) => a.uuid),
+				resource: resource,
+				amount: amount,
+			});
+		}
+	}
+}
+
+/**
  * @param {ActionCostDataModel} cost
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targets
- * @param source
- * @return {ResourceExpense}
+ * @return {Promise<ResourceExpense>}
  */
-async function calculateExpense(cost, actor, item, targets, source) {
+async function calculateExpense(cost, actor, item, targets) {
+	const itemGroup = ItemUtils.resolveItemGroup(item);
+	if (!cost.amount) {
+		return {
+			resource: cost.resource,
+			amount: 0,
+			source: itemGroup,
+		};
+	}
+
 	const context = ExpressionContext.fromTargetData(actor, item, targets);
 	const amount = await Expressions.evaluateAsync(cost.amount, context);
 	return {
 		resource: cost.resource,
 		amount: amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
-		source: source,
+		source: itemGroup,
 	};
 }
 
@@ -362,6 +470,9 @@ function onRenderChatMessage(message, html) {
 		const sourceInfo = new InlineSourceInfo(dataset.name, dataset.actor, dataset.item);
 		const actor = sourceInfo.resolveActor();
 		const request = new ResourceRequest(sourceInfo, [actor], dataset.resource, dataset.amount);
+		if (dataset.traits) {
+			request.addTraits(dataset.traits);
+		}
 		return ResourcePipeline.processLoss(request);
 	};
 
@@ -369,7 +480,7 @@ function onRenderChatMessage(message, html) {
 
 	Pipeline.handleClickRevert(message, html, 'revertResourceLoss', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
-		const amount = dataset.amount;
+		const amount = Number.parseInt(dataset.amount);
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, amount, true));
@@ -379,7 +490,7 @@ function onRenderChatMessage(message, html) {
 
 	Pipeline.handleClickRevert(message, html, 'revertResourceGain', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
-		const amount = dataset.amount;
+		const amount = Number.parseInt(dataset.amount);
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));
@@ -394,7 +505,11 @@ function onRenderChatMessage(message, html) {
 		const amount = fields.amount;
 		const type = fields.type;
 		const targets = await Pipeline.getTargetsFromAction(dataset);
+		const traits = fields.traits;
 		const request = new ResourceRequest(sourceInfo, targets, type, amount, {});
+		if (traits) {
+			request.addTraits(traits);
+		}
 		return process(request);
 	});
 }
@@ -409,7 +524,7 @@ async function prompt(request) {
 	const actions = [getTargetedAction(request)];
 	const message = gain > 0 ? 'FU.ChatResourceGainPrompt' : 'FU.ChatResourceLossPrompt';
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true);
-	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, true);
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ user: game.users.activeGM }),
 		flags: flags,
@@ -435,12 +550,13 @@ function getTargetedAction(request) {
 		amount: request.amount,
 		type: request.resourceType,
 		sourceInfo: request.sourceInfo,
+		traits: Array.from(request.traits),
 	})
 		.requiresOwner()
 		.setFlag(request.gain ? Flags.ChatMessage.ResourceGain : Flags.ChatMessage.ResourceLoss)
 		.withLabel(tooltip)
 		.withColor(request.gain ? 'var(--color-hp)' : 'var(--color-hp-crisis)')
-		.withTraits(request.traits)
+		.withTraits(Array.from(request.traits))
 		.withSelected();
 }
 
@@ -453,6 +569,20 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 		}
 	});
 };
+
+/**
+ * @param config
+ * @param actor
+ * @param item
+ * @param {ActionCostDataModel} cost
+ * @returns {Promise<void>}
+ */
+async function configureExpense(config, actor, item, cost) {
+	const targets = config.getTargets();
+	const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+	await CommonEvents.calculateExpense(actor, item, targets, expense);
+	config.setExpense(expense.resource, expense.amount);
+}
 
 /**
  * @description Initialize the pipeline's hooks
@@ -471,4 +601,5 @@ export const ResourcePipeline = {
 	calculateMissingResource,
 	prompt,
 	getTargetedAction,
+	configureExpense,
 };

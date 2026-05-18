@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For 5 Inventory Points, roll <strong>four d20s</strong> and assign one to <strong>target</strong> and one to <strong>effect</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> <strong>Superior</strong> benefits of @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}.</p><hr /><p>For 5 Inventory Points, roll <strong>four d20s</strong> and assign one to <strong>target</strong> and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,10 @@
       "value": 5
     },
     "source": "FUCR212",
-    "fuid": "superior-alchemy"
+    "fuid": "superior-alchemy",
+    "damage": {
+      "onApply": ""
+    }
   },
   "effects": [],
   "sort": 300000,
@@ -32,15 +35,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707098245589,
-    "modifiedTime": 1743184533483,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771879656751,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

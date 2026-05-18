@@ -1,11 +1,17 @@
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Check'}}</span>
 	<select name="{{pfuConcat path ".check"}}">
 		{{selectOptions options.dialogCheckTypes selected=action.check sort=true localize=true}}
 	</select>
 </label>
 
-<div class="grid grid-2col">
+<div class="grid grid-3col">
+	<div class="flexcol flex-group-center">
+		<label>
+			<span>{{localize 'FU.Bonus'}}</span>
+			<input type="text" name="{{pfuConcat path ".bonus"}}" value="{{ action.bonus }}" />
+		</label>
+	</div>
 	<div class="flexcol flex-group-center">
 		<label>
 			{{localize 'FU.Primary'}}

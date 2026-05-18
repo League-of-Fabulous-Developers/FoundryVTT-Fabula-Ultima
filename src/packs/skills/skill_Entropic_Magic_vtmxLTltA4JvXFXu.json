@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, learn one Entropist spell (see <strong>Core Rulebook</strong>, page <strong>192</strong>).</p><p>Offensive ( @ICON[offensive] ) Entropist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>spell</strong> breakdown and a list of Entropist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.jZeTJrK0mFsRyz8S]{Entropist Rules}</p>",
+    "description": "<p>Each time you acquire this Skill, learn one <strong>Entropist</strong> spell.</p><p>Offensive (@ICON[offensive]) <strong>Entropist</strong> spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>spell</strong> breakdown and a list of <strong>Entropist</strong> spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.jZeTJrK0mFsRyz8S]{Entropist Rules} or see <strong>Core Rulebook,</strong> page <strong>114</strong> and <strong>192</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Entropist"
+      "value": "entropist"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,15 @@
     "fuid": "entropic-magic",
     "targeting": {
       "rule": "self"
-    }
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "traits": [
+      "grant-spell"
+    ]
   },
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_entropic_magic.png",
   "effects": [],
@@ -126,7 +134,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -134,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706421766290,
-    "modifiedTime": 1770253461594,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775737279795,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

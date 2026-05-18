@@ -1,0 +1,206 @@
+{
+  "folder": "jpwgV1EBBIppnZjZ",
+  "name": "Raging Inferno",
+  "type": "weapon",
+  "_id": "YnW6ukew5ABeaybi",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-wide-silver-red.png",
+  "system": {
+    "fuid": "raging-inferno",
+    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>enraged</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2200
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Enraged Hex"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "wlp"
+      },
+      "secondary": {
+        "value": "wlp"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 6
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "arcane"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "fire"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Raging Inferno",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-wide-silver-red.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.YnW6ukew5ABeaybi",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "3C71dZL7T1y0l0vy": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "vWT2iapXHGj5cpdf",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "3C71dZL7T1y0l0vy",
+              "predicates": {
+                "zP4fW9UUb6IUnjiU": {
+                  "type": "spellRulePredicate",
+                  "_id": "zP4fW9UUb6IUnjiU",
+                  "offensive": "true"
+                }
+              },
+              "actions": {
+                "CRLAh5aKbcLaVOQk": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "CRLAh5aKbcLaVOQk",
+                  "effect": "enraged"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "S2Mg9AyWp1KpKWuu",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>enraged</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Raging Inferno",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.YnW6ukew5ABeaybi",
+            "effectUuid": null,
+            "fuid": "raging-inferno"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774811382297,
+        "modifiedTime": 1775709209491,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!YnW6ukew5ABeaybi.S2Mg9AyWp1KpKWuu"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774811331771,
+    "modifiedTime": 1777530926185,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!YnW6ukew5ABeaybi"
+}

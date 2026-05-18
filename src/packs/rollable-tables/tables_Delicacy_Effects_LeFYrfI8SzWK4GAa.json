@@ -1,0 +1,354 @@
+{
+  "folder": null,
+  "name": "Delicacy Effects",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "description": "<p>When you combine two tastes you <strong>never combined before</strong>, determine the <strong>effect</strong> of that combination by rolling a <strong>d12</strong>; most entries also require you to make a choice (such as a specific damage type or status effect). Once you're done, record the resulting effect on your @UUID[Compendium.projectfu.skills.Item.HQTDIy6suF8u6dAl]{Cookbook}: from this moment on, that <strong>combination</strong> of tastes will <strong>always</strong> produce that exact <strong>effect</strong> when you use it. Follow @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4]{Ingredients &amp; Delicacies Rules} for more instructions.</p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "4mUo3MCQ7XW757cT",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775538791388,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this delicacy's targets recovers from the <strong>(choose one: dazed, enraged, poisoned, shaken, slow, weak)</strong> status effect.</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.4mUo3MCQ7XW757cT"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_id": "IyMoJ2PruCzwJX0p",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775538797213,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this delicacy's targets suffers the <strong>(choose one: dazed; shaken; slow; weak)</strong> status effect.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], or @EFFECT[weak]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.IyMoJ2PruCzwJX0p"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_id": "OviSl6PLGoVU7D01",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775543262398,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this delicacy's targets recovers 40 <strong>Hit Points</strong>. This amount increases to 50 if you are <strong>level 30 or higher</strong>.</p><hr /><p><strong>Target Recovers:</strong> @GAIN[40+(10*floor($cl/30)) hp]{Recover HP}</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.OviSl6PLGoVU7D01"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_id": "cAYIGqzB1TlNzf4C",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775538897616,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this delicacy's targets recovers 40 <strong>Mind Points</strong>. This amount increases to 50 if you are <strong>level 30 or higher</strong>.</p><hr /><p><strong>Target Recovers:</strong> @GAIN[40+(10*floor($cl/30)) mp]{Recover MP}</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.cAYIGqzB1TlNzf4C"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_id": "0axlJjmbT0athFPg",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775543340320,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>This <strong>delicacy</strong> deals 20 <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage to each of its targets. This amount increases to 30 damage if you are <strong>level 30 or higher</strong>.</p><hr /><p><strong>Target Suffers:</strong> @DMG[20+(10*floor($cl/30)) air]{Air Damage}, @DMG[20+(10*floor($cl/30)) bolt]{Bolt Damage}, @DMG[20+(10*floor($cl/30)) earth]{Earth Damage}, @DMG[20+(10*floor($cl/30)) fire]{Fire Damage}, @DMG[20+(10*floor($cl/30)) ice]{Ice Damage}, or @DMG[20+(10*floor($cl/30)) poison]{Poison Damage}</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.0axlJjmbT0athFPg"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_id": "9WHO0tPajgyokXki",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775543465171,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Until the end of your next turn, every source that deals (choose one: air; bolt; earth; fire; ice; poison) damage deals 5 extra damage to each of this <strong>delicacy's</strong> targets.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.7Rcgd6DbIh71JmI4], @EFFECT[Compendium.projectfu.skills.Item.W4k52fetZQaXPpCt], @EFFECT[Compendium.projectfu.skills.Item.90WZViysiyqtAXcj], @EFFECT[Compendium.projectfu.skills.Item.DrOCGuzZBaL8Vf9D], @EFFECT[Compendium.projectfu.skills.Item.9KDeMz3Y73muyImH], or @EFFECT[Compendium.projectfu.skills.Item.K2sUsMGhj94eTtTN]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.9WHO0tPajgyokXki"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_id": "2N05BK9tEKKwCE0k",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775543385049,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Guard</strong> action during their next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.LzyZ6RnzdvGgeZVJ]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.2N05BK9tEKKwCE0k"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_id": "Itl9YI1ShtXBRQSF",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775543416381,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Spell</strong> action during their next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.OMERADe6BDUB09so]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.Itl9YI1ShtXBRQSF"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_id": "Xqr55pvPfddFa7Pg",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775543447371,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Skill</strong> action during their next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.XsgMEJAuulzfRpPi]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.Xqr55pvPfddFa7Pg"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_id": "lm9lOKmihD1gtP53",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775544054067,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this <strong>delicacy's</strong> targets gains Resistance to <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage until the end of your next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.rR9ci0QDXbRIAP2e], @EFFECT[Compendium.projectfu.skills.Item.PQ4PQC1GCbo22I5j], @EFFECT[Compendium.projectfu.skills.Item.BEhmZuCMOvoNkOkn], @EFFECT[Compendium.projectfu.skills.Item.g9sU2CLB91YfxRBI], @EFFECT[Compendium.projectfu.skills.Item.KkHm2OMClLyoV8VT], or @EFFECT[Compendium.projectfu.skills.Item.gyaexWAK1a4JSyPo]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.lm9lOKmihD1gtP53"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_id": "jC07L6JDGRjEXnDB",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775544393724,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>Each of this <strong>delicacy's</strong> targets treats their <strong>(choose one: Dexterity; Insight; Might; Willpower)</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.gc2VICfC8pACRBHy], @EFFECT[Compendium.projectfu.skills.Item.AzPndWotlt98FDhU], @EFFECT[Compendium.projectfu.skills.Item.zfbdUAZcOHuCTyi2], or @EFFECT[Compendium.projectfu.skills.Item.1s3x5TtIPEbdbLM1]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.jC07L6JDGRjEXnDB"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_id": "1p0nXtG8Pwv71jHw",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.351",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1775545499476,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "<p>During the next turn of each of this <strong>delicacy's</strong> targets, all damage they deal becomes <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> and its type cannot change.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.ndASf08ny01tgBWG], @EFFECT[Compendium.projectfu.skills.Item.NXCuHsCUgSgzKODy], @EFFECT[Compendium.projectfu.skills.Item.pbuWkC9V2wOQ7gnx], @EFFECT[Compendium.projectfu.skills.Item.N67STDVFRwyuoQpm], @EFFECT[Compendium.projectfu.skills.Item.v4g2FQ8W8GtF5xxo], or @EFFECT[Compendium.projectfu.skills.Item.BY4g8p6Sq8lQlQX6]</p>",
+      "name": "",
+      "documentUuid": null,
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.1p0nXtG8Pwv71jHw"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": false,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742677027237,
+    "modifiedTime": 1775546250211,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "formula": "1d12",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "LeFYrfI8SzWK4GAa",
+  "sort": 600000,
+  "_key": "!tables!LeFYrfI8SzWK4GAa"
+}

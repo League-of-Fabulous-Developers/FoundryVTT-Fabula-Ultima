@@ -9,7 +9,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
-import { Traits, TraitUtils } from './traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
@@ -25,6 +25,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 import { PressureSystem } from '../systems/pressure-system.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -41,36 +42,18 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
 	affinity: 'FU.DamagePipelineStepAffinity',
 	incomingDamage: {
 		all: 'FU.DamagePipelineStepIncomingDamageAll',
-		physical: 'FU.DamagePipelineStepIncomingDamagePhysical',
-		air: 'FU.DamagePipelineStepIncomingDamageAir',
-		bolt: 'FU.DamagePipelineStepIncomingDamageBolt',
-		dark: 'FU.DamagePipelineStepIncomingDamageDark',
-		earth: 'FU.DamagePipelineStepIncomingDamageEarth',
-		fire: 'FU.DamagePipelineStepIncomingDamageFire',
-		ice: 'FU.DamagePipelineStepIncomingDamageIce',
-		light: 'FU.DamagePipelineStepIncomingDamageLight',
-		poison: 'FU.DamagePipelineStepIncomingDamagePoison',
 
-		beast: `FU.Beast`,
-		construct: 'FU.Construct',
-		demon: 'FU.Demon',
-		elemental: 'FU.Elemental',
-		humanoid: 'FU.Humanoid',
-		monster: 'FU.Monster',
-		plant: 'FU.Plant',
-		undead: 'FU.Undead',
+		...FU.damageTypes,
+		...FU.species,
+		...FU.weaponCategories,
 	},
 	// TODO: Better way to not duplicate?
 	damage: {
 		all: 'FU.DamageBonusAll',
-		beast: `FU.Beast`,
-		construct: 'FU.Construct',
-		demon: 'FU.Demon',
-		elemental: 'FU.Elemental',
-		humanoid: 'FU.Humanoid',
-		monster: 'FU.Monster',
-		plant: 'FU.Plant',
-		undead: 'FU.Undead',
+
+		...FU.damageTypes,
+		...FU.species,
+		...FU.weaponCategories,
 	},
 };
 
@@ -138,7 +121,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
  * @property {DamageType} damageType
- * @property {TableDamageData} damageData
+ * @property {DamageData} damageData
  * @property {DamageOverrideInfo} damageOverride
  * @property {String} extra An optional expression to evaluate for onApply damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
@@ -213,8 +196,7 @@ function resolveAffinity(context) {
 	let affinityMessage = 'FU.ChatApplyDamageNormal';
 
 	// Special case (break early)
-	if (context.traits.has(Traits.MindPointLoss)) {
-		context.affinityMessage = 'FU.ChatResourceLoss';
+	if (context.traits.has(Traits.IgnoreAffinities)) {
 		context.affinity = affinity;
 		return true;
 	}
@@ -227,8 +209,9 @@ function resolveAffinity(context) {
 	// Check if affinity should be ignored
 	if (affinity === FU.affValue.vulnerability) {
 		affinityMessage = 'FU.ChatApplyDamageVulnerable';
-		if (context.damageOverride.ignoreVulnerable) {
+		if (context.damageOverride.ignoreVulnerable || context.traits.has(Traits.IgnoreVulnerable)) {
 			affinity = FU.affValue.none;
+			affinityMessage = 'FU.ChatApplyDamageNormal';
 		}
 	}
 	if (affinity === FU.affValue.resistance) {
@@ -262,21 +245,26 @@ function resolveAffinity(context) {
 		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.actor.resolveEffect('pressure')) {
 			let pressurePointTriggered = false;
 
-			// Check if the damage type hit a vulnerable affinity
-			const vulnerabilityTriggered = context.affinity === FU.affValue.vulnerability;
-			if (vulnerabilityTriggered) {
-				context.pressureTrigger = StringUtils.localize(FU.damageTypes[context.damageType]);
-				pressurePointTriggered = true;
-			}
-			// Do a lookup on the weapon used, whose traits are passed on to the context.
-			else {
-				/** @type NpcDataModel **/
-				const npcData = context.actor.system;
-				for (const trait of context.traits) {
-					if (npcData.pressurePoints.has(trait)) {
-						pressurePointTriggered = true;
-						context.pressureTrigger = TraitUtils.localize(trait);
-						break;
+			// Since pressure points are triggered on HP loss, simply bypass this entire check when
+			// Immune or Absorb, since HP is not lost in these cases.
+			if (context.affinity !== FU.affValue.immunity && context.affinity !== FU.affValue.absorption) {
+				// Check if the damage type hit a vulnerable affinity
+				const vulnerabilityTriggered = context.affinity === FU.affValue.vulnerability;
+				if (vulnerabilityTriggered) {
+					context.pressureTrigger = StringUtils.localize(FU.damageTypes[context.damageType]);
+					pressurePointTriggered = true;
+				}
+				// Do a lookup on the weapon used, whose traits are passed on to the context.
+				else {
+					/** @type NpcDataModel **/
+					const npcData = context.actor.system;
+					for (const trait of context.traits) {
+						if (npcData.pressurePoints.has(trait)) {
+							pressurePointTriggered = true;
+							context.pressureTrigger = TraitUtils.localize(trait);
+							context.pressurePoint = trait;
+							break;
+						}
 					}
 				}
 			}
@@ -290,11 +278,21 @@ function resolveAffinity(context) {
 				}
 			}
 		}
-		CommonEvents.reveal(context.actor, {
+
+		// Reveal information about this adversary
+		/** @type NpcProfileRevealData **/
+		let revealData = {
 			affinities: {
 				[context.damageType]: true,
 			},
-		});
+		};
+		if (context.pressureTrigger) {
+			revealData.pressurePoints = {
+				[context.pressurePoint]: true,
+			};
+		}
+
+		CommonEvents.reveal(context.actor, revealData);
 	}
 
 	context.affinityMessage = affinityMessage;
@@ -314,28 +312,12 @@ function overrideResult(context) {
 }
 
 /**
- * @param {FUActor} actor
- * @param {DamageData} damage
- */
-function collectOutgoingBonuses(actor, damage) {
-	// Global Bonus
-	const globalBonus = actor.system.bonuses.damage.all;
-	if (globalBonus) {
-		damage.addModifier(`FU.DamageBonusAll`, globalBonus);
-	}
-
-	// Damage Type bonus
-	const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-	if (damageTypeBonus) {
-		damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
-	}
-}
-
-/**
  * @param {DamagePipelineContext} context
  * @return {Promise<Boolean>}
  */
 async function collectIncrements(context) {
+	const outgoing = context.sourceActor?.system.bonuses.damage;
+
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
@@ -344,15 +326,21 @@ async function collectIncrements(context) {
 		context.addBonus(`incomingDamage.${context.damageType}`, incoming[context.damageType] ?? 0);
 
 		// Potentially modify damage FROM a specific species (NPC)
-		if (context.sourceActor && context.sourceActor.system.species) {
+		if (context.sourceActor?.system.species) {
 			const species = context.sourceActor.system.species.value;
 			context.addBonus(`incomingDamage.${species}`, incoming[species] ?? 0);
 		}
 
+		// Potentially from specific weapon types, ...
+		for (const trait of context.traits) {
+			if (incoming[trait]) {
+				context.addBonus(`incomingDamage.${trait}`, incoming[trait] ?? 0);
+			}
+		}
+
 		// Potentially modify damage TO a specific species (from a PC)
-		if (context.actor.system.species) {
+		if (outgoing && context.actor.system.species) {
 			const species = context.actor.system.species.value;
-			const outgoing = context.sourceActor.system.bonuses.damage;
 			context.addBonus(`damage.${species}`, outgoing[species] ?? 0);
 		}
 	}
@@ -381,7 +369,9 @@ function collectMultipliers(context) {
 		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	if (!context.pressured) {
+	// When the pressure system is active, Affinities other than VU are still applied
+	// as Pressure Points are evaluated on HP loss rather than damage
+	if (!game.settings.get(SYSTEM, SETTINGS.pressureSystem) || (context.affinity !== 0 && context.affinity !== -1)) {
 		const modifier = affinityDamageModifier[context.affinity]();
 		context.addModifier('affinity', modifier);
 	}
@@ -464,6 +454,7 @@ async function process(request) {
 		let resource = 'hp';
 		if (context.traits.has(Traits.MindPointLoss)) {
 			resource = 'mp';
+			context.affinityMessage = 'FU.ChatResourceLoss';
 		}
 
 		// Damage application
@@ -495,28 +486,6 @@ async function process(request) {
 			continue;
 		}
 
-		updates.push(
-			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then((result) => {
-				CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin);
-				return result; // keep the result from modifyTokenAttribute if needed
-			}),
-			CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin),
-		);
-
-		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
-
-		// Dispatch event
-		damageTaken = Math.abs(damageTaken);
-
-		// Chat message
-		const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damage: damageTaken,
-			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
-			pressureTrigger: context.pressureTrigger,
-			icon: FU.affIcon[context.damageType],
-		});
-
-		// Additional content
 		let content = [];
 		/** @type PressureProcessResult **/
 		let pressureProcess;
@@ -527,33 +496,61 @@ async function process(request) {
 			}
 		}
 
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
-		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
-		const rootUuid = actor.resolveUuid();
-
+		// Dispatch damage event, which may end up modifying the damage message
 		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: game.i18n.localize(FU.affType[context.affinity]),
-				flags: flags,
-				content: await FoundryUtils.renderTemplate('chat/chat-apply-damage', {
-					message: context.affinityMessage,
-					actor: actor.name,
-					uuid: actor.uuid,
-					rootUuid: rootUuid,
-					inspect: actor.type === 'npc',
-					// TODO: Replace damage with amount in the localizations
+			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then(async (result) => {
+				/** @type FURenderData **/
+				let renderData = {
+					tags: [],
+					sections: [],
+					postRenderActions: [],
+					flags: [],
+				};
+
+				await CommonEvents.damage(request.damageType, FU.affinityKeyByValue[context.affinity], damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
+				await CommonEvents.resource(request.sourceActor, request.targets, context.sourceInfo, resource, -damageTaken, request.origin, renderData);
+				TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
+
+				// Chat message
+				damageTaken = Math.abs(damageTaken);
+				const chat = new FUChatBuilder(actor, request.item).withData(renderData);
+				let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
+				flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
+				chat.withFlags(flags);
+				const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 					damage: damageTaken,
-					amount: damageTaken,
-					affinityMessage: affinityMessage,
-					content: content,
-					pressureContent: pressureProcess?.content,
-					from: request.sourceInfo.name,
-					sourceActorUuid: request.sourceInfo.actorUuid,
-					resource: resource.toUpperCase(),
-					sourceItemUuid: request.sourceInfo.itemUuid,
-					breakdown: context.breakdown,
-				}),
+					damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
+					pressureTrigger: context.pressureTrigger,
+					icon: FU.affIcon[context.damageType],
+				});
+				CommonSections.template(
+					chat.sections,
+					'chat/chat-apply-damage',
+					{
+						message: context.affinityMessage,
+						actor: actor.name,
+						uuid: actor.uuid,
+						rootUuid: actor.resolveUuid(),
+						inspect: actor.type === 'npc',
+						// TODO: Replace damage with amount in the localizations
+						damage: damageTaken,
+						amount: damageTaken,
+						affinityMessage: affinityMessage,
+						content: content,
+						pressureContent: pressureProcess?.content,
+						from: request.sourceInfo.name,
+						sourceActorUuid: request.sourceInfo.actorUuid,
+						resource: resource.toUpperCase(),
+						sourceItemUuid: request.sourceInfo.itemUuid,
+						breakdown: context.breakdown,
+					},
+					CHECK_DETAILS,
+				);
+
+				chat.withFlavor(StringUtils.localize(FU.affType[context.affinity]));
+				await chat.create();
+
+				return result; // keep the result from modifyTokenAttribute if needed
 			}),
 		);
 
@@ -719,11 +716,24 @@ async function handleDamageApplication(event, targets, sourceInfo, damageData, d
  * @param {String} resource
  * @param {Number} amount
  * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActor[]} targets
  * @returns {Promise<void>}
  */
 async function absorbDamage(resource, amount, sourceInfo, targets) {
-	const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
-	await ResourcePipeline.processRecovery(request);
+	// We execute this as GM since a player could have applied damage to their actor from an NPC owned by the GM
+	for (const target of targets) {
+		if (target.isOwner) {
+			const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+			return ResourcePipeline.processRecovery(request);
+		} else {
+			return game.projectfu.socket.requestPipeline('resource', {
+				sourceInfo: sourceInfo,
+				targets: targets.map((a) => a.uuid),
+				resource: resource,
+				amount: amount,
+			});
+		}
+	}
 }
 
 /**
@@ -733,14 +743,19 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
 async function promptApply(request) {
 	const targets = Targeting.serializeTargetData(request.targets);
 	const damageData = request.damageData;
+	const icon = FU.allIcon[request.damageType];
+	const tooltip = StringUtils.localize('FU.ChatApplyDamageTooltip', {
+		amount: damageData.total,
+		type: StringUtils.localize(FU.damageTypes[request.damageType]),
+	});
 	const actions = [
-		new ChatAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+		new ChatAction('applyDamage', icon, tooltip, {
 			damageData: damageData,
 			sourceInfo: request.sourceInfo,
 		}).requiresOwner(),
 	];
-	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, true);
-	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageData.total);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, true);
 	ChatMessage.create({
 		flags: flags,
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-damage-prompt', {
@@ -770,7 +785,7 @@ function getTargetedAction(damageData, sourceInfo, traits) {
 		sourceInfo: sourceInfo,
 		traits: traits,
 	})
-		.setFlag(Flags.ChatMessage.Damage)
+		.setFlag(Flags.ChatMessage.Damage, damageData.total)
 		.withSelected()
 		.withLabel('FU.ChatApplyDamage')
 		.withTraits(traits)
@@ -803,46 +818,33 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				if (damage.hrZero) {
 					config.setHrZero(true);
 				}
+				// If costs were added
+				for (const mod of damage.modifiers) {
+					if (mod.expense && mod.expense.amount > 0) {
+						if (!config.getExpense()) {
+							config.setExpense(mod.expense.resource, mod.expense.amount);
+						} else {
+							config.getExpense().addModifier(mod.expense.source, mod.expense.amount);
+						}
+					}
+				}
 			}
 			for (const modifier of damage.modifiers) {
-				if (modifier.traits && modifier.traits.length > 0) {
-					config.addTraits(modifier.traits);
+				if (modifier.enabled) {
+					if (modifier.traits && modifier.traits.length > 0) {
+						config.addTraits(modifier.traits);
+					}
+					if (modifier.effect) {
+						config.addEffects(modifier.effect);
+					}
 				}
+			}
+			if (config.hasTrait(DamageTraits.HighRollZero)) {
+				config.setHrZero(true);
 			}
 		}
 	});
 };
-
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(data, result, actor, item) {
-	const inspector = CheckConfiguration.inspect(result);
-	if (inspector.hasDamage) {
-		const damage = inspector.getDamage();
-		let traits = [];
-		for (const modifier of damage.modifiers) {
-			if (modifier.traits && modifier.traits.length > 0) {
-				traits.push(...modifier.traits);
-			}
-		}
-		if (traits.length > 0) {
-			CommonSections.tags(
-				data,
-				TraitUtils.toTags(
-					traits.map((t) => TraitUtils.localize(t)),
-					false,
-				),
-				CHECK_DETAILS,
-			);
-		}
-	}
-}
-
-Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @description Initialize the pipeline's hooks
@@ -853,17 +855,14 @@ function initialize() {
 
 	const onAbsorbDamage = async (message, resource) => {
 		const targets = await getSelected();
-		const amount = message.getFlag(SYSTEM, Flags.ChatMessage.Damage) * 0.5;
+		const damage = message.getFlag(SYSTEM, Flags.ChatMessage.Damage);
+		const amount = damage * 0.5;
 		const sourceInfo = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
-		absorbDamage(resource, amount, sourceInfo, targets);
+		return absorbDamage(resource, amount, sourceInfo, targets);
 	};
 
-	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => {
-		onAbsorbDamage(message, 'mp');
-	});
-	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => {
-		onAbsorbDamage(message, 'hp');
-	});
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => onAbsorbDamage(message, 'mp'));
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => onAbsorbDamage(message, 'hp'));
 }
 
 export const DamagePipeline = {
@@ -871,5 +870,4 @@ export const DamagePipeline = {
 	process,
 	promptApply,
 	getTargetedAction,
-	collectOutgoingBonuses,
 };

@@ -1,0 +1,243 @@
+.npc-profile {
+	display: flex;
+	flex-direction: column;
+
+	label {
+		color: unset;
+	}
+
+	.top {
+		display: flex;
+		flex: 1;
+	}
+
+	.left-column,
+	.right-column {
+		flex: 1;
+		padding: 10px;
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.hp {
+		color: #17b924;
+	}
+
+	.mp {
+		color: #16aad6;
+	}
+
+	.bottom-row {
+		overflow-y: auto;
+	}
+
+	.study-total {
+		color: var(--pfu-color-app-control-content);
+		background: var(--pfu-color-app-control-fill);
+		padding: 8px;
+
+		.markers {
+			position: relative;
+			margin-top: -1em;
+			width: 100%;
+			height: 24px;
+
+			.marker {
+				color: var(--pfu-color-app-control-content);
+				font-size: 16px;
+			}
+		}
+	}
+
+	.name {
+		font-size: xx-large;
+		font-weight: bold;
+		text-align: center;
+		color: var(--pfu-color-app-control-content);
+	}
+
+	.avatar {
+		width: auto;
+		height: 300px;
+		-o-object-fit: contain;
+		object-fit: contain;
+		background: -webkit-gradient(linear, left top, left bottom, from(#6a3986), to(#1e0f2a));
+		background: linear-gradient(to bottom, #6a3986, #1e0f2a);
+		border: 2px solid #c9a76f;
+		border-radius: 1rem;
+	}
+
+	.attrBox {
+		background-color: rgb(239, 236, 245);
+		border-right: 1px solid rgb(255, 255, 255);
+	}
+}
+
+.pfu-profile__character {
+	font-family: 'Rajdhani', sans-serif;
+
+	&.active {
+		display: flex;
+		position: relative;
+		flex-direction: row;
+		height: 100%;
+		overflow: hidden;
+		padding: 0;
+	}
+
+	.left {
+		flex: 0 0 400px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1.5rem;
+		position: relative;
+		z-index: 1;
+
+		.header {
+			border-bottom: 1px solid rgba(200, 216, 64, 0.2);
+			padding-bottom: 0.75rem;
+
+			.level-row {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-top: 0.25rem;
+				flex: 0;
+			}
+
+			.name {
+				font-size: 2rem;
+				font-weight: 700;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+			}
+
+			.identity {
+				font-size: 1.2rem;
+				font-weight: 400;
+				font-style: italic;
+			}
+
+			.origin {
+				flex: 0;
+			}
+		}
+
+		.classes {
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+
+			.entry {
+				display: flex;
+				align-items: center;
+				gap: 0.3rem;
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 4px;
+				padding: 4px 8px;
+				font-size: 0.75rem;
+				font-weight: 600;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.7);
+
+				img {
+					width: 18px;
+					height: 18px;
+					object-fit: cover;
+					border: none;
+				}
+			}
+		}
+
+		.panel {
+			display: flex;
+			flex-direction: column;
+			gap: 0;
+			background: rgba(0, 0, 0, 0.35);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			padding: 0.5rem 0.75rem;
+		}
+
+		.panel-label {
+			font-family: 'Rajdhani', sans-serif;
+			font-size: 1rem;
+			font-weight: 600;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			margin-bottom: 0;
+		}
+
+		.items {
+			.entry {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 4px 0;
+				font-family: 'Rajdhani', sans-serif;
+				font-size: 0.85rem;
+				font-weight: 600;
+
+				&:last-child {
+					border-bottom: none;
+				}
+
+				img {
+					width: 32px;
+					height: 32px;
+					object-fit: cover;
+					border: none;
+					opacity: 0.9;
+				}
+			}
+		}
+	}
+
+	.right {
+		flex: 1;
+		position: relative;
+		overflow: hidden;
+
+		a.portrait {
+			display: block;
+			height: 100%;
+		}
+
+		img.portrait {
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 100%;
+			width: auto;
+			object-fit: cover;
+			object-position: top center;
+			border: none;
+			border-radius: 0;
+		}
+
+		/* Decorative border overlay */
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-left: 1px solid var(--pfu-color-app-clock-border);
+			border-bottom: 1px solid var(--pfu-color-app-clock-border);
+			pointer-events: none;
+			box-shadow:
+				inset 4px 0 20px rgba(0, 0, 0, 0.3),
+				inset 0 -4px 20px rgba(0, 0, 0, 0.3);
+		}
+
+		.portrait-fade {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(to right, #080d12 0%, transparent 40%);
+			pointer-events: none;
+		}
+	}
+}

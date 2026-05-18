@@ -1,13 +1,30 @@
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Resource'}}</span>
 	<select name="{{pfuConcat path ".resource"}}">
 		{{selectOptions options.resources selected=trigger.resource sort=true localize=true}}
 	</select>
 </label>
 
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Change'}}</span>
 	<select name="{{pfuConcat path ".change"}}">
 		{{selectOptions options.scalarChange selected=trigger.change sort=true localize=true}}
 	</select>
 </label>
+
+<div class="fu-form__property">
+	<span>{{localize 'FU.ItemGroup'}}</span>
+	{{formGroup trigger.schema.fields.itemGroups value=trigger.itemGroups options=options.itemGroupOptions name=(pfuConcat path ".itemGroups") classes="fu-form__set stacked"}}
+</div>
+
+<div class="fu-form__property-row">
+	<div class="fu-form__property">
+		<span>{{localize 'FU.Local'}}</span>
+		{{formGroup trigger.schema.fields.local value=trigger.local name=(pfuConcat path ".local") }}
+	</div>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Identifier'}}</span>
+		<input type="text" name={{pfuConcat path ".identifier"}} value="{{ trigger.identifier }}" />
+	</label>
+</div>

@@ -1,0 +1,140 @@
+{
+  "folder": "n7VHwKnti5iZ4ybZ",
+  "name": "Royal Armor",
+  "type": "armor",
+  "_id": "2BWSzcH1PQGOHLXH",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-royal.png",
+  "system": {
+    "fuid": "royal-armor",
+    "description": "<p>You treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2300
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "WLP Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 12
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 0
+    },
+    "init": {
+      "value": -4
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Royal Armor",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-royal.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.2BWSzcH1PQGOHLXH",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "oOB3V0w1KtlxZvFR",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.wlp",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Royal Armor",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.2BWSzcH1PQGOHLXH",
+            "effectUuid": null,
+            "fuid": "royal-armor"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774808560897,
+        "modifiedTime": 1775708847938,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!2BWSzcH1PQGOHLXH.oOB3V0w1KtlxZvFR"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774808452463,
+    "modifiedTime": 1777530551671,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!2BWSzcH1PQGOHLXH"
+}

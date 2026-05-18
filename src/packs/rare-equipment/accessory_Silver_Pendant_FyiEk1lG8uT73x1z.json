@@ -1,0 +1,151 @@
+{
+  "folder": "WUEza5QTYJGrgXuE",
+  "name": "Silver Pendant",
+  "type": "accessory",
+  "_id": "FyiEk1lG8uT73x1z",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/medallion-gray.png",
+  "system": {
+    "fuid": "silver-pendant",
+    "description": "<p>Spells you cast whose effect restores Hit Points will restore <strong>5 additional Hit Points</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Healing Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Silver Pendant",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/medallion-gray.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.FyiEk1lG8uT73x1z",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "i8EO4sktCpIsF2J1": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "edyymgINlqrkP1VJ",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "increment"
+              },
+              "_id": "i8EO4sktCpIsF2J1",
+              "predicates": {
+                "5Ej7ayEQc4X2s2Ur": {
+                  "type": "spellRulePredicate",
+                  "_id": "5Ej7ayEQc4X2s2Ur"
+                }
+              },
+              "actions": {
+                "QKij6d7iR2tEYrEH": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "QKij6d7iR2tEYrEH",
+                  "amount": "5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "vCSQOS4VbtBqgM6E",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, spells you cast whose effect restores Hit Points will restore <strong>5 additional Hit Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Silver Pendant",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.FyiEk1lG8uT73x1z",
+            "effectUuid": null,
+            "fuid": "silver-pendant"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774670879171,
+        "modifiedTime": 1775708804550,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!FyiEk1lG8uT73x1z.vCSQOS4VbtBqgM6E"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774670836212,
+    "modifiedTime": 1777530419874,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!FyiEk1lG8uT73x1z"
+}

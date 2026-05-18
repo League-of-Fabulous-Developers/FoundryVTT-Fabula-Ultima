@@ -9,7 +9,7 @@
     "summary": {
       "value": "Resist damage and status effects during the first round."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Guardian</strong> Class.</span></p></blockquote><p><span>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you do not recover from preexisting status effects, however). These benefits only last until the end of the first round.</span></p><hr /><ul><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ e:eor i:1 t:self]{Effect: Rampart}</p></li></ul>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Guardian</strong> Class.</span></p><hr /><p><span>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you do not recover from preexisting status effects, however). These benefits only last until the end of the first round.</span></p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Guardian"
+      "value": "guardian"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,24 +95,120 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "rampart"
+    "fuid": "rampart",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Rampart",
+      "img": "icons/equipment/shield/heater-crystal-blue.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.RhoZgyaCPn1IPixe",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "821py9XbEaxm0b4y": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "KR3O1EnCYn5u4RCF",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "startOfCombat"
+              },
+              "_id": "821py9XbEaxm0b4y",
+              "actions": {
+                "PYVTpgQQjcgBWybl": {
+                  "type": "messageRuleAction",
+                  "_id": "PYVTpgQQjcgBWybl",
+                  "message": "<p>During the first round, you gain Resistance to all damage and cannot suffer statuses.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "KPlk3yT9lqzYUk8k",
+      "type": "base",
+      "changes": [],
+      "description": "<p><span>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects.</span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Rampart",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.RhoZgyaCPn1IPixe",
+            "effectUuid": null,
+            "fuid": "rampart"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771889420466,
+        "modifiedTime": 1771889794074,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!RhoZgyaCPn1IPixe.KPlk3yT9lqzYUk8k"
+    }
+  ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706586488889,
-    "modifiedTime": 1744517265771,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1771889418122,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

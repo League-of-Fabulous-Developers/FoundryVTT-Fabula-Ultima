@@ -27,7 +27,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 			}),
 			identifier: new fields.StringField(),
 			notify: new fields.BooleanField(),
-			value: new fields.StringField({ blank: true }),
+			amount: new fields.StringField({ blank: true }),
 		});
 	}
 
@@ -80,6 +80,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 				default:
 					{
 						// TODO: Add automatic application variant
+						const progress = actor.resolveProgress(id);
 						await actor.updateProgress(id, step);
 						if (this.notify) {
 							await ProgressDataModel.notifyUpdate(actor, progress, step, context.item);

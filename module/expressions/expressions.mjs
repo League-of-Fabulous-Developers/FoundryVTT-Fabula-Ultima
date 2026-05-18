@@ -165,15 +165,20 @@ export class ExpressionContext {
 	/**
 	 * @param {String} match
 	 * @param {Boolean} redirect
+	 * @param {Boolean} strict
 	 * @returns {FUActor}
 	 */
-	resolveActorOrSource(match, redirect) {
+	resolveActorOrSource(match, redirect, strict = true) {
 		if (redirect) {
 			this.assertSource(match);
 			const sourceActor = this.sourceItem.actor;
 			if (!sourceActor) {
-				ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
-				throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
+				if (strict) {
+					ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
+					throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
+				} else {
+					return undefined;
+				}
 			}
 			return sourceActor;
 		}
@@ -400,6 +405,10 @@ function evaluateVariables(expression, context) {
 				}
 				return 0;
 			}
+			// High Roll of Check
+			case 'hr': {
+				return getHighRoll(context.check);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -451,14 +460,14 @@ function evaluateMacros(expression, context) {
 			}
 			// Skill level
 			case `sl`: {
-				const actor = context.resolveActorOrSource(match, redirect);
+				const actor = context.resolveActorOrSource(match, redirect, false);
+				if (!actor) {
+					return 0;
+				}
 				const skillId = parseIdentifier(splitArgs[0]);
 				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
-					// TODO: Evaluate whether this restriction should not be relaxed
 					return 0;
-					// ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
-					// throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
 				}
 				return skill.system.level.value;
 			}
@@ -468,7 +477,7 @@ function evaluateMacros(expression, context) {
 				const attribute = parseIdentifier(splitArgs[0]);
 				return getAttributeSize(actor, attribute);
 			}
-			// Progress track
+			// Tracker: Filled sections
 			case 'pg':
 			case 'cs': {
 				const actor = context.resolveActorOrSource(match, redirect);
@@ -479,6 +488,17 @@ function evaluateMacros(expression, context) {
 					throw new Error(`The progress track with id ${id} was not found`);
 				}
 				return clock.current;
+			}
+			// Tracker: Empty sections
+			case 'pgr': {
+				const actor = context.resolveActorOrSource(match, redirect);
+				const id = parseIdentifier(splitArgs[0]);
+				const clock = actor.resolveProgress(id);
+				if (!clock) {
+					ui.notifications.warn(`${game.i18n.localize('FU.ChatEvaluateNoProgress')}: '${id}'`, { localize: true });
+					throw new Error(`The progress track with id ${id} was not found`);
+				}
+				return clock.max - clock.current;
 			}
 			// Scale from 5-19, 20-39, 40+
 			case 'step':
@@ -563,6 +583,25 @@ function countClasses(actor) {
  */
 function countMasteredClasses(actor) {
 	return actor.getItemsByType('class').filter((c) => c.system.mastered)?.length ?? 0;
+}
+
+/**
+ * @param {CheckV2} check
+ * @returns {Number}
+ */
+function getHighRoll(check) {
+	if (check) {
+		if (check.primary == null && check.secondary == null) {
+			return 0;
+		} else if (check.primary == null) {
+			return check.secondary.result;
+		} else if (check.secondary == null) {
+			return check.primary.result;
+		}
+
+		return Math.max(check.primary.result, check.secondary.result);
+	}
+	return 0;
 }
 
 // Used for referencing

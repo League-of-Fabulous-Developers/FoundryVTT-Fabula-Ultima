@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Provoke",
+      "name": "Provoke",
       "_id": "X0ncNBybozMcN7Z2",
       "type": "base",
       "system": {
@@ -46,20 +46,7 @@
           }
         }
       },
-      "changes": [
-        {
-          "key": "system.attributes.ins",
-          "mode": 0,
-          "value": "downgrade",
-          "priority": null
-        },
-        {
-          "key": "system.attributes.dex",
-          "mode": 0,
-          "value": "downgrade",
-          "priority": null
-        }
-      ],
+      "changes": [],
       "description": "<p>You are compelled to focus your attention on the enemy who provoked you.</p><p><em>For automation purposes, add </em>@EFFECT[Compendium.projectfu.conditions-effects.vuJGp3kTdnZeEqQO]<em> separately.</em></p>",
       "origin": null,
       "tint": "#ffffff",
@@ -76,8 +63,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742491472722,
-        "modifiedTime": 1768579929478,
-        "lastModifiedBy": "bgUzjEHd80A79gwp",
+        "modifiedTime": 1770632516084,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!SBaaNDpwZQDafu3J.X0ncNBybozMcN7Z2"

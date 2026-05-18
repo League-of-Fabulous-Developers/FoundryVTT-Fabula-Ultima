@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Truth",
+      "name": "Symbol of Truth",
       "_id": "EAXhqhgXa9Kbvour",
       "type": "base",
       "system": {
@@ -37,23 +37,76 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "2",
-          "priority": null
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "Urtan0pIsveSKzFl": {
+              "type": "ruleElement",
+              "_id": "Urtan0pIsveSKzFl",
+              "trigger": {
+                "_id": "i9mAL7QeMytPQrut",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "open"
+                ]
+              },
+              "predicates": {
+                "aoItoDSDGy6zXVUJ": {
+                  "type": "checkRulePredicate",
+                  "_id": "aoItoDSDGy6zXVUJ",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "ins"
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "r67LaqWnmIKXqxuR": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "r67LaqWnmIKXqxuR",
+                  "bonus": "2"
+                }
+              }
+            },
+            "eJugk6hNFhWxLufO": {
+              "type": "ruleElement",
+              "_id": "eJugk6hNFhWxLufO",
+              "trigger": {
+                "_id": "Ain33RYTHgBJcQ3l",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy",
+                  "magic"
+                ]
+              },
+              "actions": {
+                "adseOySIMNJB5oLa": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "adseOySIMNJB5oLa",
+                  "bonus": "2"
+                }
+              }
+            }
+          }
         }
-      ],
-      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells ( @ICON[offensive] ) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
+      },
+      "changes": [],
+      "description": "<p>While you bear the <strong>Symbol of Truth</strong>, checks performed to examine or locate you, as well as Accuracy Checks and Magic Checks for attacks and offensive spells that include you among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -63,18 +116,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744746402121,
-        "modifiedTime": 1744746822004,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634356706,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!qMUUYxxeMN8nFWG9.EAXhqhgXa9Kbvour"
     }
   ],
-  "sort": 0,
+  "sort": 5000000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -83,12 +136,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744746330564,
-    "modifiedTime": 1744746416393,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!qMUUYxxeMN8nFWG9"

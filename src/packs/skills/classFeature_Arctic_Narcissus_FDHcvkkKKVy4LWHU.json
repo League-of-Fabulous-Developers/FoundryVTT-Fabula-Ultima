@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Arctic Narcissus",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/dandelion-pod-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/arctic-narcissus.png",
   "system": {
     "summary": {
       "value": "It stubbornly survives in frozen territories."
@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>You Receive: </strong>@TYPE[affinity earth,ice resistance e:eot i:2 t:source]</p>"
+          "effect": "<p>You are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.FY10zsYzeTKnK3uP]</p>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>Targets Receive: </strong>@TYPE[affinity earth,ice resistance e:eot i:2 t:source]</p>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.FY10zsYzeTKnK3uP]</p>"
         }
       ]
     },
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770369917790,
+    "modifiedTime": 1777432435447,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

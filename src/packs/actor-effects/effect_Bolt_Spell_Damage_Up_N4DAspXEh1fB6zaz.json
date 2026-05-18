@@ -1,0 +1,133 @@
+{
+  "folder": "iUWEn7Lso1K0AIOK",
+  "name": "Bolt Spell Damage Up",
+  "type": "effect",
+  "_id": "N4DAspXEh1fB6zaz",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+  "system": {
+    "fuid": "bolt-spell-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Bolt Spell Damage Up",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.N4DAspXEh1fB6zaz",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "ejcEWC2O4Q215JPr": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "d4jC9aDaPuSBD4rW",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [
+                  "bolt"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "ejcEWC2O4Q215JPr",
+              "actions": {
+                "DJIUtbyVdib2cr3N": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "DJIUtbyVdib2cr3N",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "DnFGMEcOERtM7iln",
+      "type": "base",
+      "changes": [],
+      "description": "<p><strong>Spells</strong> you cast that deal <strong>bolt</strong> damage deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Bolt Spell Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.N4DAspXEh1fB6zaz",
+            "effectUuid": null,
+            "fuid": "bolt-spell-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774823773652,
+        "modifiedTime": 1774823800512,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!N4DAspXEh1fB6zaz.DnFGMEcOERtM7iln"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774764062735,
+    "modifiedTime": 1774764062735,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!N4DAspXEh1fB6zaz"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "VIkMulwyAc8dw5pH",
+  "name": "Bishop's Edict",
+  "color": "#a3b4c2",
+  "sorting": "a",
+  "_id": "lldd8puXmRwLfQKo",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771831199554
+  },
+  "_key": "!folders!lldd8puXmRwLfQKo"
+}

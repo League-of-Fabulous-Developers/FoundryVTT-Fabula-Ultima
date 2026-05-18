@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "ys7VHxUuD1EkvRXO",
+  "name": "Ignore Affinities",
+  "color": "#6a1616",
+  "sorting": "a",
+  "_id": "hNMNCF1h2hiZcgBa",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774765229799
+  },
+  "_key": "!folders!hNMNCF1h2hiZcgBa"
+}

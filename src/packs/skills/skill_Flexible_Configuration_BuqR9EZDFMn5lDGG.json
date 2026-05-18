@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Equipment</strong> or <strong>Guard</strong> action while driving your personal vehicle, you may choose up to <strong>【SL】</strong> of its enabled modules and <strong>disable</strong> them. If you do, choose up to <strong>【SL】</strong> among its disabled modules and <strong>enable</strong> them.</p>",
+    "description": "<p>When you perform the <strong>Equipment</strong> or <strong>Guard</strong> action while driving your <strong>personal vehicle</strong>, you may choose up to <strong>【SL】</strong> of its enabled modules and <strong>disable</strong> them. If you do, choose up to <strong>【SL】</strong> among its disabled modules and <strong>enable</strong> them.</p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Pilot"
+      "value": "pilot"
     },
     "useWeapon": {
       "accuracy": {
@@ -115,7 +115,15 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "flexible-configuration"
+    "fuid": "flexible-configuration",
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [],
   "ownership": {
@@ -126,7 +134,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -134,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1769013332333,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1775595713138,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

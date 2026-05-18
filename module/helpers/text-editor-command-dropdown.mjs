@@ -1,5 +1,6 @@
 import { FU } from './config.mjs';
-import { InlineEffects } from './inline-effects.mjs';
+import { InlineEffects } from '../enrichers/inline-effects.mjs';
+import FoundryUtils from './foundry-utils.mjs';
 
 async function promptDamageDialog(state, dispatch, view) {
 	const result = await foundry.applications.api.DialogV2.prompt({
@@ -86,11 +87,15 @@ async function promptResourceLossDialog(state, dispatch, view) {
 }
 
 async function promptIconSelectionDialog(state, dispatch, view) {
-	const result = await foundry.applications.api.DialogV2.prompt({
+	const content = await FoundryUtils.renderTemplate('dialog/dialog-command-icon', { allIcon: FU.allIcon });
+	const result = await FoundryUtils.prompt({
 		window: { title: game.i18n.localize('FU.TextEditorDialogSelectIconTitle') },
+		position: {
+			width: 600,
+			height: 480,
+		},
+		content,
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
-		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		ok: {
 			callback: (event, button, dialog) => {
 				const icon = dialog.element.querySelector('.icon-radio:checked').value;

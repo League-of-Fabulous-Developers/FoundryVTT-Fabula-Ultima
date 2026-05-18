@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "ZUCXTaaKDqwXAZy0",
+  "name": "Ecdysis",
+  "color": "#30212c",
+  "sorting": "a",
+  "_id": "rrGR4HhJKNVPu0rJ",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771838560326
+  },
+  "_key": "!folders!rrGR4HhJKNVPu0rJ"
+}

@@ -9,12 +9,12 @@
     "summary": {
       "value": "Equip some two-handed weapons in a single-hand slot."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Fury </strong>Class. </p></blockquote><p>You may equip two-handed weapons belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, or <strong>sword </strong>Categories in a single hand slot.</p><p>This allows you, for instance, to enjoy the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) while wielding a pair of two-handed weapons, <strong>or </strong>to equip a two-handed weapon in your <strong>main hand slot</strong> and a shield in your <strong>off-hand slot</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Fury</strong> Class. </p></blockquote><p>You may equip two-handed weapons belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, or <strong>sword</strong> Categories in a single hand slot.</p><p>This allows you, for instance, to enjoy the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) while wielding a pair of two-handed weapons, <strong>or</strong> to equip a two-handed weapon in your <strong>main hand slot</strong> and a shield in your <strong>off-hand slot</strong>.</p>",
     "showTitleCard": {
       "value": false
     },
     "class": {
-      "value": "Fury"
+      "value": "fury"
     },
     "requirement": {
       "value": ""

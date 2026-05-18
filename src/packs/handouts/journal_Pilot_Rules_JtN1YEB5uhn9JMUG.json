@@ -1,0 +1,307 @@
+{
+  "name": "Pilot Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "VEHICLE RULES",
+      "type": "text",
+      "_id": "SVx2yyYXsusN8729",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>A Pilot's <strong>personal vehicle</strong> follows a set of special rules.</p><ul><li><p><strong>Entering</strong> the <strong>personal vehicle</strong> during a conflict requires the <strong>Objective</strong> action. Normally there is no Check required, but the Game Master may introduce a <strong>Clock</strong> if there are serious dangers or obstacles. If the <strong>personal vehicle</strong> is accessible when the conflict begins, characters may <strong>enter it immediately</strong> before the Initiative Check (see <strong>Core Rulebook</strong>, page <strong>59</strong>).</p></li><li><p><strong>Leaving</strong> the <strong>personal vehicle</strong> doesn't require an action, but during a conflict it can only be done on your turn, before or after an action.</p></li><li><p>The <strong>personal vehicle</strong> can contain a variable number of human-sized creatures depending on its <strong>frame</strong> and <strong>modules</strong>, but <strong>only its Pilot may drive it</strong>. Additionally, the other passengers <strong>cannot cover creatures</strong> when they perform the <strong>Guard</strong> action.</p></li><li><p>The <strong>maximum number of modules enabled at the same time</strong> on a <strong>personal vehicle</strong> is equal to <strong>【3 + its Pilot’s SL in Personal Vehicle】</strong>. The Pilot may freely reassign their personal vehicle’s enabled and disabled modules outside conflicts; this maximum limit always has priority on any other effect (such as when you enable modules via @UUID[Compendium.projectfu.skills.Item.BuqR9EZDFMn5lDGG]{Flexible Configuration}, for instance).</p></li></ul><p>A <strong>personal vehicle</strong> is made of the following elements:</p><ul><li><p>A <strong>frame</strong> that informs its general shape: @UUID[Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9]{Steed} for riding animals, bikes, small fighters, skateboards and the likes; @UUID[Compendium.projectfu.vehicle-modules.Item.WG1xG12wMYh2ROoP]{Exoskeleton} for power armor and mechanical limbs; @UUID[Compendium.projectfu.vehicle-modules.Item.2AYyeXm0V4Fu1x6G]{Mecha} for large combat robots piloted from within. Each Pilot must pick the <strong>frame</strong> for their <strong>personal vehicle</strong> when they obtain the Skill. This remains unchanged for the rest of the game, so make sure to choose carefully based on your character’s style and personality, and consider the role they will have in the campaign. For instance, choosing a fighter plane doesn’t make much sense if your story takes place in the slums of a cyberpunk megalopolis (how about an anti-gravity bike instead?).</p></li><li><p>A variable number of <strong>weapon modules</strong>, <strong>armor modules</strong>, and <strong>support modules</strong> that can be connected to the <strong>personal vehicle's</strong> control systems (enabled) or kept inactive but still attached to the frame (disabled). Some options, such as the @UUID[Compendium.projectfu.skills.Item.BuqR9EZDFMn5lDGG]{Flexible Configuration} Skill and the @UUID[Compendium.projectfu.vehicle-modules.Item.7qyCrf1eK0X6bYTH]{Secondary Offensive module}, may allow you to quickly enable and disable modules, or to briefly activate a disabled module.</p></li></ul><p>The upcoming pages contain a detailed explanation of the various module types and the rules governing them, followed by lists of standard <strong>frames</strong> and <strong>modules</strong>.</p><p></p><h2>VEHICLE FRAMES LIST</h2><table><tbody><tr><td><p><strong>Frame</strong></p></td><td><p style=\"width:70px;text-align:center\"><strong>Passengers</strong></p></td><td><p style=\"width:70px;text-align:center\"><strong>Distance</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.WG1xG12wMYh2ROoP]{Exoskeleton}</p></td><td><p style=\"width:70px;text-align:center\">None</p></td><td><p style=\"width:70px;text-align:center\">No modifier</p></td></tr><tr><td colspan=\"3\"><p>This <strong>personal vehicle</strong> may have up to <strong>2 weapon modules, 1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>Compression Tech</strong> Skill with this <strong>personal vehicle</strong>, ignore the IP cost.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.2AYyeXm0V4Fu1x6G]{Mecha}</p></td><td><p style=\"width:70px;text-align:center\">None</p></td><td><p style=\"width:70px;text-align:center\">×2</p></td></tr><tr><td colspan=\"3\"><p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module,</strong> and <strong>any number of support modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9]{Steed}</p></td><td><p style=\"width:70px;text-align:center\">Up to one</p></td><td><p style=\"width:70px;text-align:center\">×2</p></td></tr><tr><td colspan=\"3\"><p>This <strong>personal vehicle</strong> may have up to <strong>1 weapon module</strong>, <strong>1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>Heart in the Engine</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758081637,
+        "modifiedTime": 1775523288347,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.SVx2yyYXsusN8729"
+    },
+    {
+      "sort": 200000,
+      "name": "ARMOR MODULES",
+      "type": "text",
+      "_id": "THCQYFOKa24yrqRr",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>While driving a <strong>personal vehicle</strong> with an <strong>armor module</strong> enabled, a Pilot does not have access to the normal contents of their <strong>armor slot</strong>. Instead, that slot is considered occupied by the <strong>personal vehicle’s armor module</strong>. If the <strong>personal vehicle</strong> has no armor module enabled, the Pilot can keep using their equipped armor as normal.</p><ul><li><p>As soon as the Pilot stops driving a <strong>personal vehicle</strong> with an enabled <strong>armor module</strong>, they immediately regain access to their normal equipped armor.</p></li><li><p>Armor modules marked with @ICON[martial] are considered to be <strong>martial</strong> armor for the sake of Skills and other effects, and they set the Pilot’s Defense and Magic Defense to <strong>fixed scores</strong> (bonuses from shields and other effects still apply). Note that a Pilot can still equip these modules <strong>even if they normally lack the ability</strong> to equip martial armor.</p></li></ul><blockquote><p><em>For instance, a Pilot with the <strong>Guardian</strong> Class benefits from the <strong>Defensive Mastery</strong> Skill while driving a <strong>personal vehicle</strong> with a <strong>Heavy Plating module</strong> enabled, but they do not benefit from the <strong>Dodge</strong> Skill granted by the <strong>Rogue</strong> Class.</em></p></blockquote><h2>ARMOR MODULE LIST</h2><table><tbody><tr><td><p><strong>Armor Module</strong></p></td><td><p style=\"width:70px;text-align:center\"><strong>Defense</strong></p></td><td><p style=\"width:90px;text-align:center\"><strong>Magic Defense</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.kohdoUC4txAMLWDy]{Flexible Plating}</p></td><td><p style=\"width:70px;text-align:center\">DEX size + 2</p></td><td><p style=\"width:90px;text-align:center\">INS size + 1</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.TpTXbLUkL3Pu19Cd]{Heavy Plating} @ICON[martial]</p></td><td><p style=\"width:70px;text-align:center\">12</p></td><td><p style=\"width:90px;text-align:center\">8</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.008QW2xjRc0BT2Az]{Runic Plating} @ICON[martial]</p></td><td><p style=\"width:70px;text-align:center\">10</p></td><td><p style=\"width:90px;text-align:center\">11</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.RjB4wyGuxUBc9fgu]{Standard Plating} @ICON[martial]</p></td><td><p style=\"width:70px;text-align:center\">11</p></td><td><p style=\"width:90px;text-align:center\">10</p></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758089782,
+        "modifiedTime": 1775502377647,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.THCQYFOKa24yrqRr"
+    },
+    {
+      "sort": 150000,
+      "name": "OTHER RULES",
+      "type": "text",
+      "_id": "Srt7P0ejhXs3Csnl",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h3>DAMAGE AND REPAIRS</h3><p>A Pilot’s <strong>personal vehicle</strong> doesn’t have its own separate stats and is treated as an extension of the Pilot themselves. It can be damaged or rendered temporarily unusable as a narrative consequence of the Pilot’s <strong>Surrender</strong>, but cannot be destroyed unless the Player agrees to it.</p><p>Repairing a narratively damaged <strong>personal vehicle</strong> requires an amount of zenit equal to <strong>【its Pilot’s SL in Personal Vehicle, multiplied by 100】</strong>. On the other hand, rebuilding a destroyed <strong>personal vehicle</strong> should be achieved as part of the Pilot’s narrative arc (which is why it should only be destroyed if the Player is okay with it).</p><p></p><h3>RARE MODULES AS REWARDS</h3><p>The Game Master should include new modules (or upgraded versions of existing modules) for the Pilot among the campaign’s rewards.</p><ul><li><p>Each <strong>weapon and armor module</strong> presented in the following pages has a base cost of 500 zenit, and their rare versions can be created using the rules for <strong>rare items</strong> found in the <strong>Core Rulebook</strong>, starting on page <strong>266.</strong> There are, however, two exceptions: a weapon module’s damage can only be increased by 4 points by raising its cost by 200 zenit (it can <strong>never</strong> become two-handed), and <strong>a weapon module can never become martial</strong> (not even if its damage formula becomes <strong>【HR + 10】</strong> or higher).</p></li><li><p>Each <strong>support module</strong> presented in the following pages should have a cost of roughly 1000 zenit. If you create custom support modules, compare them with the existing ones in order to establish their cost in zenit. They are <strong>rare</strong> items.</p></li><li><p>The special rules used for some weapon modules (such as the <strong>Claymore module</strong>, which prevents you from having other weapon modules enabled, or the <strong>Shield modul</strong>e’s entire effect) <strong>are not Qualities</strong>, and thus cannot be lost or replaced. If a given module has a Quality, that Quality is listed <strong>before</strong> any of its special rules.</p></li><li><p>A Pilot might acquire rare modules by purchasing them from dedicated shops, by exploring factories or laboratories, or as a reward after defeating robotic or artificial adversaries. You can find some sample rare weapon modules on page <strong>86</strong>.</p></li></ul><p>And finally, as a general rule, a Pilot should <strong>never</strong> have access to two or more support modules with different names whose effects are similar and/or cumulative.</p><p></p><h3>INTERACTIONS WITH THE TINKERER CLASS</h3><p>A character with the Tinkerer Class might wish to use the @UUID[Compendium.projectfu.heroic-skills.Item.xbTcxx4ysOWOamZP]{Upgrade} Heroic Skill and the rules for <strong>Projects</strong> (see <strong>Core Rulebook</strong>, pages <strong>241</strong> and <strong>134</strong>) to improve modules or invent new customizations for a Pilot’s <strong>personal vehicle</strong>. For instance, they might install a reactor to enable space flight, or an antenna that emits anti-magic waves.</p><p>When it comes to special modules created through Projects, the group as a whole should make sure these <strong>do not impede</strong> on other characters’ strengths and roles. It can be a good idea to give such modules a limited number of uses, or interesting flaws that can lead to difficult choices and memorable scenes.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758104002,
+        "modifiedTime": 1773731460527,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.Srt7P0ejhXs3Csnl"
+    },
+    {
+      "sort": 400000,
+      "name": "SUPPORT MODULES",
+      "type": "text",
+      "_id": "rCJqLbCs08x91Erb",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Support modules provide a variety of miscellaneous benefits; these benefits often apply to the vehicle's passengers in addition to the Pilot themselves.</p><ul><li><p>A personal vehicle cannot have <strong>more than one enabled support modules of the same name</strong>.</p></li><li><p>Some support modules are particularly complex or cumbersome and count as <strong>two modules</strong> towards the limit on total active modules.</p></li></ul><p></p><h2>SUPPORT MODULE LIST</h2><table><tbody><tr><td><p><strong>Support Module</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.9YM4VR2e6Y4MgmJ2]{Advanced Targeting Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells (@ICON[offensive]) you cast.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.76ieutWWlthLOXap]{Aerial Module} <strong>(counts as two enabled modules)</strong></p></td></tr><tr><td><p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.nFC5y451Xd24hlM7]{Anti-Element Module}</p></td></tr><tr><td><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> are treated as being Resistant to the chosen damage type until this module remains enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg]{Counterstrike Module}</p></td></tr><tr><td><p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Hi6V9QoWjKofxZkQ]{Excavation Module}</p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can burrow through the ground and is equipped with powerful lights.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Fa1V1JIKwTD1uMqY]{Expanded Plating Module} <strong>(Mecha and Steed frames only)</strong></p></td></tr><tr><td><p>While you are driving this <strong>personal vehicle</strong>, if it has an active <strong>Heavy</strong>, <strong>Runic</strong>, or <strong>Standard Plating</strong> module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong>armor module</strong> in question (they may still use their normal scores if those would be better).</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca]{Magistatic Module}</p></td></tr><tr><td><p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong>, if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.qzvVPIVFgZ9jtOYT]{Power Module} <strong>(Exoskeleton and Mecha frames only)</strong></p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.hTpTh6WA2AGkRymI]{Rapid Interface Module}</p></td></tr><tr><td><p>When you <strong>enter</strong> this <strong>personal vehicle</strong> on your turn during a conflict, you may immediately perform an additional action.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.P1Vw28xK0NzPydqG]{Seafarer Module}</p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can travel on water and underwater.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.vGz7COjgUSUh9vY3]{Seat Module} <strong>(Mecha and Steed frames only)</strong></p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.7qyCrf1eK0X6bYTH]{Secondary Offensive Module} <strong>(Exoskeleton and Mecha frames only)</strong></p></td></tr><tr><td><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong>disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3]{Sensor Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.OEgMfny6AwrXCkEg]{Turbo Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758136226,
+        "modifiedTime": 1773734861250,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.rCJqLbCs08x91Erb"
+    },
+    {
+      "sort": 300000,
+      "name": "WEAPON MODULES",
+      "type": "text",
+      "_id": "bNOBwtRpSWOXRFX2",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>While driving a <strong>personal vehicle</strong> with one or more <strong>weapon modules</strong> enabled, a Pilot does not have access to the normal contents of their <strong>hand slots</strong>. Instead, those slots are considered occupied by the <strong>personal vehicle’s weapon modules</strong>. If the <strong>personal vehicle</strong> has no weapon modules enabled, the Pilot can keep using their equipped weapons and shields as normal.</p><ul><li><p>As soon as the Pilot stops driving a <strong>personal vehicle</strong> with <strong>weapon modules</strong> enabled, they immediately regain access to all normal equipped weapons and shields.</p></li><li><p>Each weapon module counts as a <strong>one-handed, non-martial weapon</strong> for the sake of character Skills and effects (with the exception of the <strong>Shield module</strong>, which is treated as a shield). When you set up your <strong>personal vehicle</strong>’s weapon modules, declare which module will occupy your <strong>main hand slot</strong> and which will occupy your <strong>off-hand slot</strong>.</p></li><li><p>Some weapon modules are cumbersome and prevent you from having other weapon modules (including <strong>Shield modules</strong>!) enabled on the same <strong>personal vehicle</strong>.</p></li></ul><blockquote><p><em>For instance, an <strong>Axe module</strong> can be used with the <strong>Counterattack</strong> Skill, and a <strong>Rifle module</strong> can be used with the <strong>Crossfire</strong> Skill (see <strong>Core Rulebook</strong>, pages <strong>219</strong> and <strong>205</strong>).</em></p></blockquote><p></p><p>Because each weapon module is treated as a one-handed weapon, a Pilot driving a <strong>personal vehicle</strong> with two enabled weapon modules that share the same Category benefits from the rules for <strong>two-weapon fighting</strong> – and if they have the <strong>Ambidexterous</strong> Heroic Skill (see <strong>Core Rulebook</strong>, page <strong>234</strong>), this can be done with any two enabled weapon modules!</p><p></p><h2>WEAPON MODULE LIST</h2><table><tbody><tr><td><p><strong>Weapon Module</strong></p></td><td><p style=\"width:110px;text-align:center\"><strong>Accuracy</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>Damage</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Z8bDTwdrcscxD95M]{Arcane Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + WLP】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Arcane</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.I1TuBl0LhTTIm545]{Axe Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 12】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Heavy</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.gccAPML5zrH5uLPh]{Blade Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 6】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Dagger</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.xOzJFrDQH2gSYv5Z]{Bow Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 12】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Bow</strong> • Ranged • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.7PYahPoPOTdySS6Q]{Cannon Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 14】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.yn1PgUZxCTogRUH0]{Claw Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Brawling</strong> • Melee • No Qualities • This weapon can be used to interact with the scene as if it were a free hand.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.LaoOQ7H1L1OVsFjP]{Claymore Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 14】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Sword</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Ia44SEoL7RRZ7YJo]{Esoteric Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + WLP】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 12】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Arcane</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.tAkb5tqWhOzreNEo]{Flail Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Flail</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.U0ttIqfIfPVblhCn]{Flamer Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 fire</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.rDwGqp1qnTHu6x0h]{Machine Gun Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled. Additionally, when you perform the <strong>Attack</strong> action and attack with this weapon module, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi</strong> property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.DvqMM22TCEeoZH8e]{Rifle Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.dn8VdDcxLU8bnAQp]{Scythe Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 16】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Heavy</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td colspan=\"3\"><p>@UUID[Compendium.projectfu.vehicle-modules.Item.TWzSnTRW9frKW1CO]{Shield Module}</p></td></tr><tr><td colspan=\"3\"><p>No Qualities • While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a \"weapon\": instead, it counts as an equipped <strong>shield</strong>. This module cannot be equipped in your <strong>main hand slot</strong>, unless you have acquired the <strong>Dual Shieldbearer</strong> Skill. If you have, your <strong>Twin Shields</strong> deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Af7Wr82RhDrIeTVZ]{Spear Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Spear</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.9BOhSIzlTAv51Zge]{Sword Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Sword</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.N8msUv4FMNAqKBTb]{Trident Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 14】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Spear</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1711758160714,
+        "modifiedTime": 1775523364436,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.bNOBwtRpSWOXRFX2"
+    },
+    {
+      "sort": 700000,
+      "name": "FRAMES AND MODULES LISTS",
+      "type": "text",
+      "_id": "6Bi4ff2JPBOV5HIO",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h3>VEHICLE FRAMES</h3><table><tbody><tr><td><p><strong>Frame</strong></p></td><td><p style=\"width:70px;text-align:center\"><strong>Passengers</strong></p></td><td><p style=\"width:70px;text-align:center\"><strong>Distance</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.WG1xG12wMYh2ROoP]{Exoskeleton}</p></td><td><p style=\"width:70px;text-align:center\">None</p></td><td><p style=\"width:70px;text-align:center\">No modifier</p></td></tr><tr><td colspan=\"3\"><p>This <strong>personal vehicle</strong> may have up to <strong>2 weapon modules, 1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>Compression Tech</strong> Skill with this <strong>personal vehicle</strong>, ignore the IP cost.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.2AYyeXm0V4Fu1x6G]{Mecha}</p></td><td><p style=\"width:70px;text-align:center\">None</p></td><td><p style=\"width:70px;text-align:center\">×2</p></td></tr><tr><td colspan=\"3\"><p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module,</strong> and <strong>any number of support modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9]{Steed}</p></td><td><p style=\"width:70px;text-align:center\">Up to one</p></td><td><p style=\"width:70px;text-align:center\">×2</p></td></tr><tr><td colspan=\"3\"><p>This <strong>personal vehicle</strong> may have up to <strong>1 weapon module</strong>, <strong>1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>Heart in the Engine</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p></td></tr></tbody></table><p><br /><br /></p><h3>ARMOR MODULES</h3><table><tbody><tr><td><p><strong>Armor Module</strong></p></td><td><p style=\"width:70px;text-align:center\"><strong>Defense</strong></p></td><td><p style=\"width:90px;text-align:center\"><strong>Magic Defense</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.kohdoUC4txAMLWDy]{Flexible Plating}</p></td><td><p style=\"width:70px;text-align:center\">DEX size + 2</p></td><td><p style=\"width:90px;text-align:center\">INS size + 1</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.TpTXbLUkL3Pu19Cd]{Heavy Plating} @ICON[martial]</p></td><td><p style=\"width:70px;text-align:center\">12</p></td><td><p style=\"width:90px;text-align:center\">8</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.008QW2xjRc0BT2Az]{Runic Plating} @ICON[martial]</p></td><td><p style=\"width:70px;text-align:center\">10</p></td><td><p style=\"width:90px;text-align:center\">11</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.RjB4wyGuxUBc9fgu]{Standard Plating} @ICON[martial]</p></td><td><p style=\"width:70px;text-align:center\">11</p></td><td><p style=\"width:90px;text-align:center\">10</p></td></tr></tbody></table><p><br /><br /></p><h3>WEAPON MODULES</h3><table><tbody><tr><td><p><strong>Weapon Module</strong></p></td><td><p style=\"width:110px;text-align:center\"><strong>Accuracy</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>Damage</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Z8bDTwdrcscxD95M]{Arcane Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + WLP】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Arcane</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.I1TuBl0LhTTIm545]{Axe Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 12】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Heavy</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.gccAPML5zrH5uLPh]{Blade Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 6】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Dagger</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.xOzJFrDQH2gSYv5Z]{Bow Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 12】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Bow</strong> • Ranged • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.7PYahPoPOTdySS6Q]{Cannon Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 14】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.yn1PgUZxCTogRUH0]{Claw Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Brawling</strong> • Melee • No Qualities • This weapon can be used to interact with the scene as if it were a free hand.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.LaoOQ7H1L1OVsFjP]{Claymore Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 14】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Sword</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Ia44SEoL7RRZ7YJo]{Esoteric Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + WLP】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 12】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Arcane</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.tAkb5tqWhOzreNEo]{Flail Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Flail</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.U0ttIqfIfPVblhCn]{Flamer Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 fire</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.rDwGqp1qnTHu6x0h]{Machine Gun Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled. Additionally, when you perform the <strong>Attack</strong> action and attack with this weapon module, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi</strong> property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.DvqMM22TCEeoZH8e]{Rifle Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Firearm</strong> • Ranged • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.dn8VdDcxLU8bnAQp]{Scythe Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 16】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Heavy</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr><tr><td colspan=\"3\"><p>@UUID[Compendium.projectfu.vehicle-modules.Item.TWzSnTRW9frKW1CO]{Shield Module}</p></td></tr><tr><td colspan=\"3\"><p>No Qualities • While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a \"weapon\": instead, it counts as an equipped <strong>shield</strong>. This module cannot be equipped in your <strong>main hand slot</strong>, unless you have acquired the <strong>Dual Shieldbearer</strong> Skill. If you have, your <strong>Twin Shields</strong> deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Af7Wr82RhDrIeTVZ]{Spear Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 10】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Spear</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.9BOhSIzlTAv51Zge]{Sword Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 8】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Sword</strong> • Melee • No Qualities</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.N8msUv4FMNAqKBTb]{Trident Module}</p></td><td><p style=\"width:110px;text-align:center\"><strong>【DEX + INS】+1</strong></p></td><td><p style=\"width:128px;text-align:center\"><strong>【HR + 14】 physical</strong></p></td></tr><tr><td colspan=\"3\"><p><strong>Spear</strong> • Melee • No Qualities • A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p></td></tr></tbody></table><p><br /><br /></p><h3>SUPPORT MODULES</h3><table><tbody><tr><td><p><strong>Support Module</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.9YM4VR2e6Y4MgmJ2]{Advanced Targeting Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells (@ICON[offensive]) you cast.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.76ieutWWlthLOXap]{Aerial Module} <strong>(counts as two enabled modules)</strong></p></td></tr><tr><td><p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.nFC5y451Xd24hlM7]{Anti-Element Module}</p></td></tr><tr><td><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> are treated as being Resistant to the chosen damage type until this module remains enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg]{Counterstrike Module}</p></td></tr><tr><td><p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Hi6V9QoWjKofxZkQ]{Excavation Module}</p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can burrow through the ground and is equipped with powerful lights.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Fa1V1JIKwTD1uMqY]{Expanded Plating Module} <strong>(Mecha and Steed frames only)</strong></p></td></tr><tr><td><p>While you are driving this <strong>personal vehicle</strong>, if it has an active <strong>Heavy</strong>, <strong>Runic</strong>, or <strong>Standard Plating</strong> module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong>armor module</strong> in question (they may still use their normal scores if those would be better).</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca]{Magistatic Module}</p></td></tr><tr><td><p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong>, if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.qzvVPIVFgZ9jtOYT]{Power Module} <strong>(Exoskeleton and Mecha frames only)</strong></p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.hTpTh6WA2AGkRymI]{Rapid Interface Module}</p></td></tr><tr><td><p>When you <strong>enter</strong> this <strong>personal vehicle</strong> on your turn during a conflict, you may immediately perform an additional action.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.P1Vw28xK0NzPydqG]{Seafarer Module}</p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can travel on water and underwater.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.vGz7COjgUSUh9vY3]{Seat Module} <strong>(Mecha and Steed frames only)</strong></p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.7qyCrf1eK0X6bYTH]{Secondary Offensive Module} <strong>(Exoskeleton and Mecha frames only)</strong></p></td></tr><tr><td><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong>disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3]{Sensor Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.OEgMfny6AwrXCkEg]{Turbo Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p></td></tr></tbody></table>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "BwRsFvMHAq9vUtEO": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "13.351",
+        "createdTime": 1719225016322,
+        "modifiedTime": 1775519361451,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.6Bi4ff2JPBOV5HIO"
+    },
+    {
+      "sort": 800000,
+      "name": "PILOT VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "7R1h5R48OHr4m7hq",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>pilot</strong> a vehicle, add a vehicle frame to your character sheet and <strong>activate</strong> it.</p></li><li><p>Navigate to the \"<strong>Stats</strong>\" tab and in the Vehicle section press the button next to vehicle frame name to <strong>embark.</strong></p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.346",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742778160799,
+        "modifiedTime": 1742793414811,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.7R1h5R48OHr4m7hq"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
+    "createdTime": 1711758065717,
+    "modifiedTime": 1775516429439,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "JtN1YEB5uhn9JMUG",
+  "sort": 100000,
+  "categories": [],
+  "_key": "!journal!JtN1YEB5uhn9JMUG"
+}

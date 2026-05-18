@@ -1,0 +1,123 @@
+{
+  "folder": "fpLAjYyWl81GXUgi",
+  "name": "Effect: Menacing Tone (Physical)",
+  "type": "effect",
+  "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+  "system": {
+    "fuid": "effect-menacing-tone-physical",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Menacing Tone (Physical)",
+      "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "tdECt2JHKAftaROn": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "8fMX8dv1Y0KyzqG6",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "tdECt2JHKAftaROn",
+              "actions": {
+                "olL0kj9T4r8Jdth4": {
+                  "type": "messageRuleAction",
+                  "_id": "olL0kj9T4r8Jdth4",
+                  "message": "<p>The damage dealt to the character with this effect becomes <strong>physical</strong>. Then, remove this effect.</p>"
+                }
+              },
+              "predicates": {
+                "gJ8WK29YCLqL5uCg": {
+                  "type": "traitsRulePredicate",
+                  "_id": "gJ8WK29YCLqL5uCg",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ],
+                    "quantifier": "any"
+                  }
+                }
+              },
+              "selector": "self",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3E8fVkyRe3MfGjCy",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The first time you suffer damage before the start of the <strong>chanter's</strong> next turn, that damage becomes <strong>physical</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!d2WBcxPOjEh1nJOX.3E8fVkyRe3MfGjCy"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771829846015,
+    "modifiedTime": 1771830052940,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "d2WBcxPOjEh1nJOX",
+  "sort": 600000,
+  "_key": "!items!d2WBcxPOjEh1nJOX"
+}

@@ -1,0 +1,111 @@
+{
+  "folder": "2ydTveFhgatlxP99",
+  "name": "Bow Damage Up",
+  "type": "effect",
+  "_id": "P9ZBMjMjiVCZmTPP",
+  "img": "systems/projectfu/styles/static/icons/weapons/bow.png",
+  "system": {
+    "fuid": "bow-weapon-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Bow Damage Up",
+      "img": "systems/projectfu/styles/static/icons/weapons/bow.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.P9ZBMjMjiVCZmTPP",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "d43PqbZCweBz0qIt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.bow",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your attacks with <strong>bow</strong> weapons deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Bow Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.P9ZBMjMjiVCZmTPP",
+            "effectUuid": null,
+            "fuid": "bow-weapon-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774824129185,
+        "modifiedTime": 1774824142452,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!P9ZBMjMjiVCZmTPP.d43PqbZCweBz0qIt"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774764136990,
+    "modifiedTime": 1774764136990,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!P9ZBMjMjiVCZmTPP"
+}

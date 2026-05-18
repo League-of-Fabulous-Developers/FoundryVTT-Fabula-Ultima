@@ -7,6 +7,7 @@ import { MathHelper } from '../../helpers/math-helper.mjs';
 import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs';
 import { ZeroPowerDataModel } from '../items/optionalFeature/zeropower/zeropower-data-model.mjs';
 import { CommonEvents } from '../../checks/common-events.mjs';
+import { RuleDataModel } from '../items/rule/rule-data-model.mjs';
 
 /**
  * @typedef Actor
@@ -150,11 +151,10 @@ export class FUActor extends Actor {
 	 */
 	async _onCreate(createData, options, userId) {
 		await super._onCreate(createData, options, userId);
-		if (this.isCharacterType) {
+		if (this.isCharacterType && this.type === 'character') {
 			// Load the compendium
 			const pack = game.packs.get('projectfu.basic-equipment');
 			const content = await pack.getDocuments();
-
 			// Find the item with system.fuid === 'unarmed-strike'
 			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
 			if (unarmedStrikeItem) {
@@ -163,9 +163,7 @@ export class FUActor extends Actor {
 				switch (existingCopies.length) {
 					case 0:
 						{
-							if (this.type === 'character') {
-								await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
-							}
+							await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
 						}
 						break;
 				}
@@ -205,7 +203,11 @@ export class FUActor extends Actor {
 							token: this.resolveToken(),
 						},
 					);
-					await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
+					try {
+						await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
+					} catch (err) {
+						console.warn(`Failed to apply crisis effect: ${err}`);
+					}
 				}
 			}
 		}
@@ -369,7 +371,7 @@ export class FUActor extends Actor {
 	 * Returns an array of items that match a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search
-	 * @returns {Array} - An array containing the found items
+	 * @returns {FUItem[]} - An array containing the found items
 	 */
 	getItemsByFuid(fuid, type) {
 		const fuidFilter = (i) => i.system.fuid === fuid;
@@ -382,7 +384,7 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @param {FU.itemTypes} type
+	 * @param {FUItemType} type
 	 * @returns {FUItem[]}
 	 */
 	getItemsByType(type) {
@@ -401,6 +403,8 @@ export class FUActor extends Actor {
 	 * @typedef ClearEffectOptions
 	 * @property {Boolean} status Whether the effect must have one of the core statuses (dazed, etc...)
 	 * @property {Boolean} duration Whether the effect must have a duration. (Ignored for system statuses, which have no duration by default.)
+	 * @property {Boolean} rest Whether to clear effects with rest. (Skipped when set to false)
+	 * @property {(effect: FUActiveEffect) => boolean} predicate A custom predicate for whether to remove an effect.
 	 */
 
 	/**
@@ -409,6 +413,7 @@ export class FUActor extends Actor {
 	static defaultClearEffectOptions = {
 		status: undefined,
 		duration: undefined,
+		rest: undefined,
 	};
 
 	/**
@@ -428,7 +433,7 @@ export class FUActor extends Actor {
 					}
 					break;
 				case false:
-					if (statusEffectId) {
+					if (statusEffectId && statusEffectId in Effects.STATUS_EFFECTS) {
 						return false;
 					}
 					break;
@@ -446,6 +451,25 @@ export class FUActor extends Actor {
 						return false;
 					}
 					break;
+			}
+
+			switch (options.rest) {
+				case true:
+					if (effect.system.duration.event !== 'rest') {
+						return false;
+					}
+					break;
+				case false:
+					if (effect.system.duration.event === 'rest') {
+						return false;
+					}
+					break;
+			}
+
+			if (options.predicate) {
+				if (!options.predicate(effect)) {
+					return false;
+				}
 			}
 
 			if (statusEffectId) {
@@ -547,6 +571,29 @@ export class FUActor extends Actor {
 		return null;
 	}
 
+	/**
+	 * @returns {Record<string, ProgressDataModel>}
+	 */
+	get tracks() {
+		let result = {};
+		// Search items
+		const items = this.items.values();
+		for (const item of items) {
+			const progress = item.getProgress();
+			if (progress) {
+				result[progress.id ?? item.name] = progress;
+			}
+		}
+		// Search active effects: match the id on the progress track
+		for (const effect of this.allApplicableEffects()) {
+			if (effect.system.rules?.progress?.enabled) {
+				const progress = effect.system.rules.progress;
+				result[progress.id ?? effect.name] = progress;
+			}
+		}
+		return result;
+	}
+
 	// TODO: Move out
 	/**
 	 * @description Searches through current items for one with the given fuid, then updates its progress.
@@ -581,6 +628,10 @@ export class FUActor extends Actor {
 			// if (this.sheet.rendered) {
 			// 	this.sheet.render();
 			// }
+		}
+		// Special Rule
+		else if (progress.parent instanceof RuleDataModel) {
+			await progress.parent.parent.update({ [`system.progress.current`]: current });
 		}
 
 		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model

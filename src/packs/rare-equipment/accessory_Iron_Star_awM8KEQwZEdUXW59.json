@@ -1,0 +1,133 @@
+{
+  "folder": "ArBlOISf307QSlES",
+  "name": "Iron Star",
+  "type": "accessory",
+  "_id": "awM8KEQwZEdUXW59",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/star-iron.png",
+  "system": {
+    "fuid": "iron-star",
+    "description": "<p>You gain Resistance to <strong>physical</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Swordbreaker"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Iron Star",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/star-iron.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.awM8KEQwZEdUXW59",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "4CsOw8wwgYAiy9mP",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.physical",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>physical</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Iron Star",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.awM8KEQwZEdUXW59",
+            "effectUuid": null,
+            "fuid": "iron-star"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774655055035,
+        "modifiedTime": 1775708475876,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!awM8KEQwZEdUXW59.4CsOw8wwgYAiy9mP"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774655019549,
+    "modifiedTime": 1777530064507,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!awM8KEQwZEdUXW59"
+}

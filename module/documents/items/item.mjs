@@ -3,10 +3,12 @@ import { SYSTEM } from '../../helpers/config.mjs';
 import { EnablePseudoDocumentsMixin } from '../pseudo/enable-pseudo-documents-mixin.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
+import { CommonEvents } from '../../checks/common-events.mjs';
 
 /**
  * @typedef Item
  * @property {Actor} actor
+ * @property {String} id
  * @property {String} uuid
  * @property {String} name
  * @property {Map<String, Object>} effects
@@ -23,12 +25,24 @@ import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
  */
 export class FUItem extends EnablePseudoDocumentsMixin(ItemBehaviourMixin(Item)) {
 	static async createDialog(data = {}, { parent = null, pack = null, types, ...options } = {}) {
-		console.log(data, parent, pack, types, options);
 		if (!game.settings.get(SYSTEM, SETTINGS.technospheres)) {
 			types ??= FUItem.TYPES.filter((value) => !['mnemosphere', 'hoplosphere', 'mnemosphereReceptacle'].includes(value));
 		}
 
 		return super.createDialog(data, { ...options, parent, pack, types });
+	}
+
+	async update(delta) {
+		const previous = this.system.toObject();
+		const postUpdate = await super.update(delta);
+
+		if (delta.system?.progress && postUpdate) {
+			if (previous.progress.current !== postUpdate.system.progress.current) {
+				// Progress is changed
+				CommonEvents.progress(this, this.system.progress, 'update', delta.system.progress.current ? delta.system.progress.current - previous.progress.current : 0, this);
+			}
+		}
+		return postUpdate;
 	}
 }
 

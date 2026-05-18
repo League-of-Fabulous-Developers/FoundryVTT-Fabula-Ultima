@@ -1,5 +1,8 @@
 <header class="title-desc chat-header flexrow">
-	<h2 style="margin: 0;">{{localize title}}</h2>
+	{{#if item}}
+		{{pfuItemAnchor item}}
+	{{/if}}
+	<h2 style="flex-grow: 8; margin-left: 4px;">{{localize title}}</h2>
 	{{#if label}}
 		<span class="flavor-text">{{label}}</span>
 	{{/if}}

@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "After an enemy succeeds on an Opposed Check  against you or causes you to lose Hit Points",
-      "description": "<p>That enemy loses an amount of Mind Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers <strong>dazed</strong>; or that enemy suffers <strong>shaken</strong>.</p><hr /><p><strong>You Spend: </strong>@LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Psychic Gift}<br /><strong>Target Suffers:</strong> @LOSS[10+(&amp;cs('brainwave-clock')*5) mp]{Psychic Backlash} + @EFFECT[dazed] or @EFFECT[shaken]<br /><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
+      "description": "<p>That enemy loses an amount of Mind Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers <strong>dazed</strong>; or that enemy suffers <strong>shaken</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br /><strong>Target Suffers:</strong> @LOSS[5+(&amp;cs('brainwave-clock')*5) mp]{5 + (Brainwave × 5) MP} + @EFFECT[dazed] or @EFFECT[shaken]<br /><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
     },
     "source": "FUTF153",
     "fuid": "psychic-backlash"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711423314741,
-    "modifiedTime": 1770368301979,
+    "modifiedTime": 1771230989779,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

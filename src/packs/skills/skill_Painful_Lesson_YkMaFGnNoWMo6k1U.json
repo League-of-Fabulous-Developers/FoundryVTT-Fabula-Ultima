@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After another creature causes you to lose Hit Points (with an attack, a spell or any other method), you may immediately perform the <strong>Study</strong> action on that creature (see <strong>Core Rulebook</strong>, page <strong>74</strong>) for free. If you do, gain a bonus equal to <strong>【SL】</strong> to your Check. Remember, you can study the same aspect of a creature only once.</p>",
+    "description": "<p>After another creature causes you to lose Hit Points (with an attack, a spell or any other method), you may immediately perform the <strong>Study</strong> action on that creature for free. If you do, gain a bonus equal to <strong>【SL】</strong> to your Check. Remember, you can study the same aspect of a creature only once.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Darkblade"
+      "value": "darkblade"
     },
     "useWeapon": {
       "accuracy": {
@@ -116,7 +116,12 @@
       "max": 6
     },
     "defense": "",
-    "fuid": "painful-lesson"
+    "fuid": "painful-lesson",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [
     {
@@ -176,7 +181,7 @@
       "_id": "UFwFf5qcdGZ0EtWc",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After another creature causes you to lose Hit Points, you may immediately perform the <strong>Study</strong> action on that creature for free. If you do, gain a bonus equal to <strong>【SL】</strong> to your Check.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -191,7 +196,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767730525954,
-        "modifiedTime": 1770401942162,
+        "modifiedTime": 1771832237978,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YkMaFGnNoWMo6k1U.UFwFf5qcdGZ0EtWc"
@@ -205,7 +210,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -213,7 +219,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706496896843,
-    "modifiedTime": 1770248479119,
+    "modifiedTime": 1775525916038,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

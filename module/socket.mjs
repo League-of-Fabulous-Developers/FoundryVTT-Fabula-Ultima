@@ -23,6 +23,7 @@ import { DamagePipeline, DamageRequest } from './pipelines/damage-pipeline.mjs';
 import { InlineSourceInfo } from './helpers/inline-helper.mjs';
 
 import { DamageData } from './checks/damage-data.mjs';
+import { ResourcePipeline, ResourceRequest } from './pipelines/resource-pipeline.mjs';
 
 /**
  * @readonly
@@ -251,16 +252,17 @@ export class FUSocketHandler {
 	}
 
 	/**
-	 * @param {{actorUuid : String, targetUuids: String[], checkResult: Number}} data
+	 * @param {FUStudySocketData} data
 	 */
 	async studyRoll(data) {
 		await this.executeAsGM(MESSAGES.StudyEvent, data);
 	}
 
 	/**
-	 * @param {String} name
+	 * @param {String} name The name of the pipeline to execute as GM.
 	 * @param {Object} data
 	 * @returns {Promise<void>}
+	 * @remarks The data depends on the pipeline used.
 	 */
 	async requestPipeline(name, data) {
 		try {
@@ -269,7 +271,7 @@ export class FUSocketHandler {
 				switch (name) {
 					case 'damage':
 						{
-							const actors = data.targets.filter((t) => t.check === 'hit').map((t) => fromUuidSync(t.uuid));
+							const actors = data.targets.map((t) => fromUuidSync(t.uuid ?? t)).filter(Boolean);
 							if (actors.length === 0) {
 								console.debug('No valid targets to automate damage application for');
 								return;
@@ -281,6 +283,21 @@ export class FUSocketHandler {
 							const request = new DamageRequest(sourceInfo, actors, damageData);
 							request.addTraits(traits);
 							await DamagePipeline.process(request);
+						}
+						break;
+
+					case 'resource':
+						{
+							const targets = data.targets.map((t) => fromUuidSync(t));
+							if (targets.length === 0) {
+								console.debug('No valid targets to automate damage application for');
+								return;
+							}
+							const sourceInfo = InlineSourceInfo.fromObject(data.sourceInfo);
+							const resource = data.resource;
+							const amount = data.amount;
+							const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+							await ResourcePipeline.process(request);
 						}
 						break;
 				}

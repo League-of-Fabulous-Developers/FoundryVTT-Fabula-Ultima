@@ -24,7 +24,8 @@ export const CheckHooks = Object.freeze({
  * @property {Attribute} primary the first attribute
  * @property {Attribute} secondary the second attribute
  * @property {CheckModifier[]} modifiers array of modifiers
- * @property {number} critThreshold the crit threshold for this check, default 6
+ * @property {number} critThreshold The critical threshold for this check, default 6.
+ * @property {Boolean} generateOpportunity
  * @property {Object} additionalData additional data attached to the check, not used by the core check engine, for extension use
  */
 
@@ -96,6 +97,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {};
  * @property {number} result the total result of the check
  * @property {boolean} fumble
  * @property {boolean} critical
+ * @property {boolean} generateOpportunity
  * @property {Object} additionalData additional data attached to the check
  */
 
@@ -123,22 +125,18 @@ const processCheck = (check, actor, item, registerCallback) => {};
  */
 
 /**
- * @typedef {(CheckSection | Promise<CheckSection> | (() => CheckSection) | (() => Promise<CheckSection>))[]} CheckRenderData
+ * @typedef {(CheckSection | Promise<CheckSection> | (() => CheckSection) | (() => Promise<CheckSection>))[]} CheckSectionRenderData
  */
 
 /**
  * @callback RenderCheckHook
  * @description Hook called to determine how to render the results
- * @param {CheckRenderData} sections
+ * @param {FURenderData} data
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {Object} additionalFlags
- * @param {TargetData[]} targets
  */
 
-/**
- * @type RenderCheckHook
- */
 // eslint-disable-next-line no-unused-vars
-const renderCheck = (sections, check, actor, item, additionalFlags) => {};
+const renderCheck = (data, check, actor, item, additionalFlags) => {};

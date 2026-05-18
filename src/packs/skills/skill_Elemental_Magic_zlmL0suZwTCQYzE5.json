@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, learn one Elementalist spell (see <strong>Core Rulebook</strong>, page <strong>188</strong>).</p><p>Offensive (@ICON[offensive]) Elementalist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>spell</strong> breakdown and a list of Elemental Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hK8r8lsQNaknSqdq]{Elementalist Rules}</p>",
+    "description": "<p>Each time you acquire this Skill, learn one <strong>Elementalist</strong> spell.</p><p>Offensive (@ICON[offensive]) <strong>Elementalist</strong> spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>spell</strong> breakdown and a list of <strong>Elementalist</strong> spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hK8r8lsQNaknSqdq]{Elementalist Rules} or see <strong>Core Rulebook,</strong> page <strong>114</strong> and <strong>188</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Elementalist"
+      "value": "elementalist"
     },
     "useWeapon": {
       "accuracy": {
@@ -120,7 +120,15 @@
     "fuid": "elemental-magic",
     "targeting": {
       "rule": "self"
-    }
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "traits": [
+      "grant-spell"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -130,7 +138,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -138,8 +147,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706497980288,
-    "modifiedTime": 1770253295875,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775737289507,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Ice)",
   "type": "effect",
   "_id": "p34FHmhkyMWI8Xj2",
-  "img": "systems/projectfu/styles/static/affinities/ice.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
-    "fuid": "alter-damage-type-ice"
+    "fuid": "alter-damage-type-ice",
+    "source": ""
   },
   "effects": [
     {
@@ -21,10 +22,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Ice)",
-      "img": "systems/projectfu/styles/static/affinities/ice.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "_id": "x8jNIpCDg72PSmmr",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>ice</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725775893701,
-        "modifiedTime": 1725775919049,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732861060,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!p34FHmhkyMWI8Xj2.x8jNIpCDg72PSmmr"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725775891390,
-    "modifiedTime": 1725775925283,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732858103,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!p34FHmhkyMWI8Xj2"

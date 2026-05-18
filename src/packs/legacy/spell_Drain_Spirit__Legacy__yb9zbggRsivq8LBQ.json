@@ -12,7 +12,7 @@
       "value": false
     },
     "class": {
-      "value": "Entropist"
+      "value": "entropist"
     },
     "useWeapon": {
       "accuracy": {
@@ -101,7 +101,7 @@
       "value": true
     },
     "opportunity": "",
-    "fuid": "drain-spirit",
+    "fuid": "drain-spirit-legacy",
     "traits": [],
     "cost": {
       "resource": "mp",
@@ -142,7 +142,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768578730926,
-    "modifiedTime": 1768579355349,
+    "modifiedTime": 1771473202146,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "yb9zbggRsivq8LBQ",

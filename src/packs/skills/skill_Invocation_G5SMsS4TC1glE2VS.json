@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 Mind Points to perform an invocation, drawing energy from one of the <strong>wellsprings</strong> present on the scene (see <strong>Natural Fantasy Atlas</strong>, page <strong>156</strong>). Your <strong>【SL】</strong> in this Skill determines which <strong>invocations</strong> you have access to.</p><hr /><p>For <strong>invocation</strong> breakdown and a list of Invocations, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules}<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9.JournalEntryPage.msH4dITSSkbnWnQd]{Invoker VTT Instructions}</p>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform an invocation, drawing energy from one of the <strong>wellsprings</strong> present on the scene. Your <strong>【SL】</strong> in this Skill determines which <strong>invocations</strong> you have access to.</p><hr /><p>For <strong>invocation</strong> breakdown and a list of <strong>Invocations</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules} or see <strong>Natural Fantasy Atlas</strong>, page <strong>156</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9.JournalEntryPage.msH4dITSSkbnWnQd]{Invoker VTT Instructions}</p>",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Invoker"
+      "value": "invoker"
     },
     "useWeapon": {
       "accuracy": false,
@@ -61,6 +61,11 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -72,7 +77,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -82,7 +88,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1770413755430,
+    "modifiedTime": 1775594222842,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

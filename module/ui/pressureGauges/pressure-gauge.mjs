@@ -81,13 +81,35 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 	}
 
 	_positionGauge() {
+		const doc = this.token.document;
+		const mesh = this.token.mesh;
+
+		const scaleGauge = (doc.texture.scaleX > 1 || doc.texture.scaleY > 1) && mesh?.anchor;
+
+		if (scaleGauge) {
+			this.width = doc.getSize().width * doc.texture.scaleX;
+			this.x = doc.getSize().width * mesh.anchor.x - doc.getSize().width * doc.texture.scaleX * mesh.anchor.x;
+		} else {
+			this.width = doc.getSize().width;
+			this.x = 0;
+		}
+
 		switch (game.settings.get(SYSTEM, SETTINGS.optionPressureGaugePosition)) {
 			case 'bottom':
-				this.y = this.token.document.getSize().height + 5;
+				if (scaleGauge) {
+					this.y = doc.getSize().height * mesh.anchor.y + doc.getSize().height * doc.texture.scaleY * mesh.anchor.y; // + 4;
+				} else {
+					this.y = this.token.document.getSize().height + 5;
+				}
+
 				if (this.token.nameplate) this.token.nameplate.y = this.y + this.height;
 				break;
 			default:
-				this.y = -(this.height + 5);
+				if (scaleGauge) {
+					this.y = doc.getSize().height * mesh.anchor.y - doc.getSize().height * doc.texture.scaleY * mesh.anchor.y - this.height;
+				} else {
+					this.y = -(this.height + 4);
+				}
 				if (this.token.tooltip) this.token.tooltip.y = this.y;
 				break;
 		}
@@ -162,11 +184,6 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 	 */
 	refresh(force = false) {
 		try {
-			const { width, height } = this._getScaledSize();
-			if (force) {
-				this._destroyChildren();
-				this._createElements(width, height);
-			}
 			if (!this.shouldDrawPressureGauge) {
 				this.visible = false;
 				return;
@@ -174,6 +191,11 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 				this.visible = true;
 			}
 
+			const { width, height } = this._getScaledSize();
+			if (force) {
+				this._destroyChildren();
+				this._createElements(width, height);
+			}
 			const [bg, fg, border, mask] = ['BG', 'FG', 'Border', 'FGMask', 'Shadow'].map((name) => this._getChildElement(name));
 
 			if (!(bg && fg && border && mask)) throw new Error(`Pressure gauge PIXI elements not created for ${this.token.id}!`);

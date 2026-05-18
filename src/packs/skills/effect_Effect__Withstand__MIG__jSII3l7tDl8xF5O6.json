@@ -1,0 +1,96 @@
+{
+  "folder": "WONVaH9GTHooWU93",
+  "name": "Effect: Withstand (MIG)",
+  "type": "effect",
+  "_id": "jSII3l7tDl8xF5O6",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
+  "system": {
+    "fuid": "effect-withstand-mig",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Withstand (MIG)",
+      "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Tdz0RbCmVdja6RdC",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.mig",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your <strong>Might</strong> is increased by one die size until the end of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771051843829,
+        "modifiedTime": 1771051927672,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!jSII3l7tDl8xF5O6.Tdz0RbCmVdja6RdC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771051834808,
+    "modifiedTime": 1771051865224,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!jSII3l7tDl8xF5O6"
+}

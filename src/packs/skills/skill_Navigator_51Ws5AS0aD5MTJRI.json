@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other </strong>for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information </strong>and track entities while inside the soul network.</p>",
+    "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other</strong> for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information</strong> and track entities while inside the soul network.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Esper"
+      "value": "esper"
     },
     "useWeapon": {
       "accuracy": {
@@ -117,6 +117,11 @@
     "fuid": "navigator",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -162,7 +167,8 @@
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -185,7 +191,7 @@
       "_id": "6mKj1xGOi50dNxwI",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Navigator</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -196,12 +202,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767266328077,
-        "modifiedTime": 1767266511489,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771875900801,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!51Ws5AS0aD5MTJRI.6mKj1xGOi50dNxwI"
     }
@@ -215,7 +221,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -223,7 +230,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1770367850264,
+    "modifiedTime": 1775526637621,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

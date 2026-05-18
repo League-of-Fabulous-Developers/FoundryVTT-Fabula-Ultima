@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Invoker"
+      "value": "invoker"
     },
     "useWeapon": {
       "accuracy": false,
@@ -63,7 +63,100 @@
       "max": 0
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Linked Invocation",
+      "img": "systems/projectfu/styles/static/compendium/classes/invoker/linked_invocation.png",
+      "origin": "Compendium.projectfu.skills.Item.OQaLTvDV59JKnFqO",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "OtBUWHhlgDHBa0dn": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "OqRpukUDzSGWhBFT",
+                "type": "featureRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "invocation"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "OtBUWHhlgDHBa0dn",
+              "actions": {
+                "vB39EIr4TBxWrRIT": {
+                  "type": "messageRuleAction",
+                  "_id": "vB39EIr4TBxWrRIT",
+                  "message": "<p>You may target @EVAL[$sl] additional targets, spending @LOSS[10 mp] per additional target.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "gfLbsAulc8lLMAn9",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you perform an <strong>invocation</strong>, you may spend up to <strong>【SL × 10】</strong>additional MP. For every 10 MP you spend this way, the invocation may target an additional creature you can see.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Linked Invocation",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.OQaLTvDV59JKnFqO",
+            "effectUuid": null,
+            "fuid": "linked-invocation"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774600212153,
+        "modifiedTime": 1774634186827,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!OQaLTvDV59JKnFqO.gfLbsAulc8lLMAn9"
+    }
+  ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
     "default": 0,
@@ -72,7 +165,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

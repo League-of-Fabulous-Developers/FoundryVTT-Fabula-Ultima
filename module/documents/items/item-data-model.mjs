@@ -19,6 +19,13 @@ export class FUItemDataModel extends foundry.abstract.TypeDataModel {
 		return [];
 	}
 
+	/**
+	 * @returns {String[]} The path to fields in this data model that should be retained during migrations.
+	 */
+	get retainedFieldPaths() {
+		return [];
+	}
+
 	static migrateData(source) {
 		source = super.migrateData(source);
 		if (source.source?.value) {

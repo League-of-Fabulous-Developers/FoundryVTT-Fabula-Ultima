@@ -28,7 +28,7 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),
 			itemGroups: new fields.SetField(new fields.StringField()),
-			local: new fields.BooleanField({ initial: true }),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}
@@ -60,8 +60,8 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 		}
 
 		// If this RE is on an item, and it doesn't match the item in the event.
-		if (this.local && context.item) {
-			if (context.event.sourceInfo.itemUuid !== context.sourceInfo.itemUuid) {
+		if (this.local) {
+			if (!context.isLocalItem()) {
 				return false;
 			}
 		}

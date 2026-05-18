@@ -16,6 +16,9 @@ import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
 import { CommonEvents } from './common-events.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
+import { TraitUtils } from '../pipelines/traits.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const { DiceTerm, NumericTerm } = foundry.dice.terms;
 
@@ -190,10 +193,10 @@ const checkFromCheckResult = (check) => {
  * @return {Promise<void>}
  */
 const modifyCheck = async (checkId, callback) => {
-	const message = game.messages.search({ filters: [{ field: 'flags.projectfu.CheckV2.id', value: checkId }] }).at(0);
+	const message = game.messages.search({ filters: [{ field: `flags.projectfu.${Flags.ChatMessage.Check}.id`, value: checkId }] }).at(0);
 	if (message) {
 		/** @type CheckResultV2 */
-		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
+		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.Check));
 		const actor = await fromUuid(oldCheck.actorUuid);
 		const item = await fromUuid(oldCheck.itemUuid);
 		let callbackResult = await callback(oldCheck, actor, item);
@@ -235,10 +238,13 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.modifiers ??= [];
 	check.additionalData ??= {};
 	check.critThreshold = CRITICAL_THRESHOLD;
+	check.generateOpportunity = true;
 	Object.seal(check);
+
 	// Set initial targets (actions without rolls can have targeting)
 	const config = CheckConfiguration.configure(check);
 	config.setDefaultTargets();
+
 	// Initial callback
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
@@ -257,6 +263,14 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	});
 	if (!check.id) {
 		throw new Error('check id missing');
+	}
+
+	// Universal bonus
+	if (actor.system.bonuses?.accuracy?.all) {
+		check.modifiers.push({
+			label: `FU.AllCheckBonus`,
+			value: actor.system.bonuses.accuracy.all,
+		});
 	}
 
 	await invokeWithCallbacks(CheckHooks.prepareCheck, check, actor, item);
@@ -319,6 +333,8 @@ async function prepareCheckDryRun(type, actor, item, initialConfigCallback) {
 }
 
 const CRITICAL_THRESHOLD = 6;
+const ATTRIBUTE_MAXIMUM_DIE = 12;
+const ATTRIBUTE_APEX_DIE = 20;
 
 /**
  * @param {CheckV2} check
@@ -328,10 +344,22 @@ const CRITICAL_THRESHOLD = 6;
  */
 async function rollCheck(check, actor, item) {
 	const { primary, secondary, modifiers } = check;
+
 	/** @type AttributesDataModel */
 	const attributes = actor.system.attributes;
-	const primaryDice = attributes[primary].current;
-	const secondaryDice = attributes[secondary].current;
+	let primaryDice = attributes[primary].current;
+	let secondaryDice = attributes[secondary].current;
+
+	// Optional support for attribute paragon (use D20 instead of D12s during checks)
+	const apexAttribute = actor.getFlag(Flags.Scope, Flags.Toggle.ApexAttribute);
+	if (apexAttribute) {
+		if (primary === apexAttribute && attributes[primary].base >= ATTRIBUTE_MAXIMUM_DIE) {
+			primaryDice = ATTRIBUTE_APEX_DIE;
+		}
+		if (secondary === apexAttribute && attributes[secondary].base >= ATTRIBUTE_MAXIMUM_DIE) {
+			secondaryDice = ATTRIBUTE_APEX_DIE;
+		}
+	}
 
 	const modifierTotal = modifiers.reduce((agg, curr) => (agg += curr.value), 0);
 	let modPart = '';
@@ -405,6 +433,7 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 			dice: secondary.dice,
 			result: secondary.result,
 		}),
+		generateOpportunity: check.generateOpportunity ?? true,
 		modifiers: Object.freeze(check.modifiers.map(Object.freeze)),
 		modifierTotal: check.modifiers.reduce((agg, curr) => agg + curr.value, 0),
 		critThreshold: critThreshold,
@@ -430,106 +459,84 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
  */
 async function renderCheck(result, actor, item, flags = {}) {
 	/**
-	 * @type {CheckRenderData}
+	 * @type FURenderData
 	 */
-	const renderData = [];
+	const renderData = {
+		sections: [],
+		postRenderActions: [],
+		tags: [],
+	};
 	const additionalFlags = {};
 	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
-	// We subscribe to both events here, since either approach would work.
 	await CommonEvents.renderCheck(renderData, config, actor, item);
 	await CommonEvents.renderMessage(renderData, actor, item);
 
-	/**
-	 * @type {CheckSection[]}
-	 */
-	const allSections = [];
-	for (let value of renderData) {
-		value = await (value instanceof Function ? value() : value);
-		if (value) {
-			allSections.push(value);
+	if (result.generateOpportunity) {
+		if (result.critical) {
+			CommonEvents.opportunity(renderData, actor, result.type, item, false);
+		} else if (result.fumble) {
+			CommonEvents.opportunity(renderData, actor, result.type, item, true);
 		}
 	}
 
-	const partitionedSections = allSections.reduce(
-		(agg, curr) => {
-			if (Number.isNaN(curr.order)) {
-				agg.flavor.push(curr);
-			} else {
-				agg.body.push(curr);
-			}
-			return agg;
+	// Check-specific flags
+	const checkFlags = {
+		[SYSTEM]: {
+			[Flags.ChatMessage.Check]: result,
+			[Flags.ChatMessage.Item]: item?.uuid,
 		},
-		{ flavor: [], body: [] },
-	);
-	/**
-	 * @type {CheckSection[]}
-	 */
-	const flavorSections = partitionedSections.flavor;
-	/**
-	 * @type {CheckSection[]}
-	 */
-	const bodySections = partitionedSections.body;
+	};
 
-	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-
-	let flavor;
-	if (flavorSections.length) {
-		flavor = '';
-		for (let flavorSection of flavorSections) {
-			if (flavorSection.content) {
-				flavor = flavor + flavorSection.content;
-			} else {
-				flavor = flavor + (await foundry.applications.handlebars.renderTemplate(flavorSection.partial, flavorSection.data));
+	// Treat traits as tags as well
+	for (const trait of config.getTraits()) {
+		const traitTag = TraitUtils.toTag(trait);
+		if (StringUtils.hasLocalization(traitTag.tag)) {
+			if (!renderData.tags.some((tag) => tag.tag === traitTag.tag)) {
+				renderData.tags.push(traitTag);
 			}
 		}
 	}
-	if (!flavor?.trim()) {
+
+	// Create the chat builder
+	const chatBuilder = new FUChatBuilder(actor, item).withFlags(checkFlags).withFlags(flags).withFlags(additionalFlags).withData(renderData);
+
+	// Add flavor
+	let flavor;
+	if (item) {
 		let linked = [];
 		const weaponReference = config.getWeaponReference();
 		if (weaponReference) {
 			linked.push(await fromUuid(weaponReference));
 		}
-
-		flavor = item
-			? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
-					item: item,
-					linked: linked,
-				})
-			: await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
-					title: FU.checkTypes[result.type] || 'FU.RollCheck',
-					type: result.type,
-					label: config.getLabel(),
-				});
-	}
-
-	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
-
-	let speaker = ChatMessage.getSpeaker({ actor });
-	if (speaker.scene && speaker.token) {
-		const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
-		if (token) {
-			speaker = ChatMessage.getSpeaker({ token });
+		flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+			item: item,
+			linked: linked,
+		});
+	} else {
+		let flavorTitle = StringUtils.localize(FU.checkTypes[result.type] || 'FU.RollCheck');
+		const itemRef = config.getItemReference();
+		let referencedItem;
+		if (itemRef) {
+			referencedItem = await fromUuid(itemRef);
+			flavorTitle += ` - ${referencedItem.name}`;
 		}
+		flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
+			title: flavorTitle,
+			type: result.type,
+			item: referencedItem,
+			label: config.getLabel(),
+		});
 	}
-	const chatMessage = {
-		flavor: flavor,
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
-		rolls: rolls,
-		speaker: speaker,
-		flags: foundry.utils.mergeObject(
-			{
-				[SYSTEM]: {
-					[Flags.ChatMessage.CheckV2]: result,
-					[Flags.ChatMessage.Item]: item?.uuid,
-				},
-			},
-			foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),
-			{ overwrite: false, recursive: true },
-		),
-	};
-	return void ChatMessage.create(chatMessage, { rollMode: 'roll' });
+	chatBuilder.withFlavor(flavor);
+
+	// Roll data
+	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
+	chatBuilder.withRolls(rolls);
+
+	// Create the chat message
+	return chatBuilder.create();
 }
 
 /**
@@ -569,7 +576,7 @@ reapplyClickListeners();
  */
 const performCheck = async (check, actor, item, prepareCheckCallback = undefined, renderCheckCallback = undefined) => {
 	const preparedCheck = await prepareCheck(check, actor, item, prepareCheckCallback);
-	CommonEvents.performCheck(check, actor, item);
+	await CommonEvents.performCheck(check, actor, item);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
 	await renderCheck(result, actor, item);
@@ -577,20 +584,14 @@ const performCheck = async (check, actor, item, prepareCheckCallback = undefined
 		await renderCheckCallback(result);
 	}
 	CommonEvents.resolveCheck(result, actor, item);
-	if (result.critical) {
-		CommonEvents.opportunity(actor, check.type, item, false);
-	} else if (result.fumble) {
-		CommonEvents.opportunity(actor, check.type, item, true);
-	}
 };
 
 /**
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {CheckCallback} [initialConfigCallback]
- * @return {Promise<void>}
+ * @returns {CheckResultV2}
  */
-const display = async (actor, item, initialConfigCallback = undefined) => {
+const constructDisplayCheck = (actor, item) => {
 	/** @type CheckResultV2 */
 	const check = Object.freeze({
 		type: 'display',
@@ -609,13 +610,22 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 		critical: null,
 		additionalData: {},
 	});
+	return check;
+};
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckCallback} [initialConfigCallback]
+ * @return {Promise<void>}
+ */
+const display = async (actor, item, initialConfigCallback = undefined) => {
+	const check = constructDisplayCheck(actor, item);
 	// Set initial targets (actions without rolls can have targeting)
 	const config = CheckConfiguration.configure(check);
 	config.setDefaultTargets();
 	await CommonEvents.initializeCheck(config, actor, item);
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
-
-	//Hooks.callAll(CheckHooks.processCheck, check, actor, item);
 	await invokeWithCallbacks(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };
@@ -636,7 +646,7 @@ const isCheck = (message, type = allExceptDisplay) => {
 	}
 	if (message instanceof ChatMessage) {
 		/** @type CheckResultV2 */
-		const flag = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		const flag = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 		if (flag) {
 			if (type) {
 				if (Array.isArray(type)) {
@@ -654,44 +664,6 @@ const isCheck = (message, type = allExceptDisplay) => {
 	return false;
 };
 
-document.addEventListener('click', (event) => {
-	const toggleLink = event.target.closest('.universal-toggle');
-	if (!toggleLink) return;
-
-	const chatMessage = toggleLink.closest('.chat-message');
-	const toggleSections = chatMessage.querySelectorAll('.toggle-section');
-	const toggleIcon = toggleLink.querySelector('.toggle-icon');
-	const isHidden = toggleIcon.classList.contains('fa-chevron-up');
-
-	// Get game settings (true means hide, false means show)
-	const settings = {
-		tags: game.settings.get('projectfu', 'optionChatMessageHideTags'),
-		quality: game.settings.get('projectfu', 'optionChatMessageHideQuality'),
-		description: game.settings.get('projectfu', 'optionChatMessageHideDescription'),
-		rollDetails: game.settings.get('projectfu', 'optionChatMessageHideRollDetails'),
-	};
-
-	// Toggle visibility based on current state and settings
-	toggleSections.forEach((section) => {
-		const shouldAlwaysShow = [
-			{ className: 'accuracy-check-results', setting: settings.rollDetails },
-			{ className: 'damage-results', setting: settings.rollDetails },
-			{ className: 'description', setting: settings.description },
-			{ className: 'quality', setting: settings.quality },
-			{ className: 'tags', setting: settings.tags },
-		].some(({ className, setting }) => section.classList.contains(className) && !setting);
-
-		section.classList.toggle('shown', shouldAlwaysShow || isHidden);
-		section.classList.toggle('hidden', !shouldAlwaysShow && !isHidden);
-	});
-
-	// Update toggle icon and tooltip
-	const newState = !isHidden;
-	toggleIcon.classList.toggle('fa-chevron-up', newState);
-	toggleIcon.classList.toggle('fa-chevron-down', !newState);
-	toggleLink.setAttribute('data-tooltip', game.i18n.localize(newState ? 'FU.ChatMessageHide' : 'FU.ChatMessageShow'));
-});
-
 export const Checks = Object.freeze({
 	display,
 	accuracyCheck,
@@ -705,6 +677,7 @@ export const Checks = Object.freeze({
 	modifyCheck,
 	isCheck,
 	prepareCheckDryRun,
+	constructDisplayCheck,
 });
 
 CheckRetarget.initialize();

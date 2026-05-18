@@ -1,5 +1,4 @@
 <div class="npc-profile sheet-body">
-
 	<div class="top">
 		<!-- Left content here -->
 		<div class="left-column">
@@ -9,10 +8,14 @@
 		</div>
 		<!-- Right content here -->
 		<div class="right-column">
-			<span class="label name">{{name}}</span>
+			<div class="flexrow flex-group-center">
+				<span class="label name">{{name}}</span>
+				<span class="pfu-badge__level large" data-tooltip="{{localize 'FU.LevelAbbr'}}">{{level}}</span>
+			</div>
+
 			{{#unless revealStats}}
 			<fieldset class="section-container title-fieldset desc resource-content">
-					<span class="label centered-message" style="color: unset;">
+					<span class="label centered-message">
 						{{localize 'FU.AdversaryNotStudied'}}
 					</span>
 			</fieldset>
@@ -22,41 +25,42 @@
 					<legend class="resource-label-m">
 						{{localize 'FU.Stats'}}
 					</legend>
-
 					{{#if basic}}
-					<div class="resource-label-l grid grid-7col flex-group-center" style="padding: 5px;">
-						<label>
-							{{localize 'FU.LevelAbbr'}} {{level}}
-						</label>
-						<span class="diamond-symbol" style="color: #532853;">⬥</span>
-						<label data-tooltip="{{localize localizedSpecies}}">
+					<div class="resource-label-l resource-content flexrow flex-group-center">
+						<div class="pfu-badge" data-tooltip="{{localize localizedSpecies}}">
 							<i class="fua fu-{{species}}"></i>
+						</div>
+						<span class="diamond-symbol">⬥</span>
+						<label class="flexcol"  data-tooltip="{{localize 'FU.HealthPoints'}}">
+							<i class="fas fa-heart"></i>
+							{{hp}}
 						</label>
-						<span class="diamond-symbol" style="color: #532853;">⬥</span>
-						<label data-tooltip="{{localize 'FU.HealthPoints'}}">
-							{{hp}} <i class="fas fa-heart"></i>
-						</label>
-						<span class="diamond-symbol" style="color: #532853;">⬥</span>
-						<label data-tooltip="{{localize 'FU.MindPoints'}}">
-							{{mp}} <i class="fas fa-hat-wizard"></i>
+						<span class="diamond-symbol">⬥</span>
+						<label class="flexcol" data-tooltip="{{localize 'FU.MindPoints'}}">
+							<i class="fas fa-hat-wizard"></i>
+							{{mp}}
 						</label>
 					</div>
 					{{/if}}
 
 					{{#if complete}}
 						{{>"systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs"}}
-						{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
+
+						<div class="flexrow flex-group-center">
+							{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
+						</div>
+
 						{{#if system.traits.value}}
-							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
-								<label class="resource-label-l">Traits</label>
-								<input class="traitdesc flex3" type="text" name="system.traits.value" value="{{system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
+							<li class="flexrow gap-5 flex-group-center desc-header resource-content">
+								<label class="flexshrink resource-label-l">Traits</label>
+								<input type="text" name="system.traits.value" value="{{system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
 							</li>
 						{{/if}}
 					{{else}}
 						{{#if revealed.traits}}
-							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
-								<label class="resource-label-l">Traits</label>
-								<input class="traitdesc flex3" type="text" name="revealed.traits" value="{{revealed.traits}}" placeholder="Traits" data-dtype="String" readonly>
+							<li class="flexrow gap-5 flex-group-center desc-header resource-content ">
+								<label class="flexshrink resource-label-l">Traits</label>
+								<input type="text" name="revealed.traits" value="{{revealed.traits}}" placeholder="Traits" data-dtype="String" readonly>
 							</li>
 						{{/if}}
 					{{/if}}
@@ -64,30 +68,41 @@
 			{{/if}}
 		</div>
 	</div>
-
-	<!-- Bottom content here -->
-	{{#if revealAffinities}}
-	<div class="bottom-row">
+	{{#if complete}}
 		<fieldset class="section-container title-fieldset desc resource-content">
 			<legend class="resource-label-m">
 				{{localize 'FU.Affinities'}}
 			</legend>
+			{{> "systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+		</fieldset>
+	{{/if}}
 
-			<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
-				{{#each affinities}}
-					<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
-						<div class="affinity resource-content flex-group-center" style="opacity: {{this.opacity}}; display: flex; justify-content: space-between; margin: 2px; gap: 5px; line-height: 1;">
-							<i class="{{this.iconClass}}"></i>
-							<label class="resource-label-xl" style="cursor: pointer;" data-tooltip="{{this.fullName}}: {{localize this.acronymValue}}">
-								{{localize this.acronymValue}}
-							</label>
-						</div>
+	{{#if revealPressurePoints}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.PressurePoints'}}
+			</legend>
+			<div class="grid grid-10col">
+				{{#each weaponCategories}}
+					<div class="resource-content flex-group-center">
+						<label class="fu-icon__container"
+							   data-tooltip="{{localize this}} <br> {{#if (lookup ../pressurePoints @key)}}{{localize 'FU.PressurePoint'}}{{/if}}">
+							<i class="fu-icon--s {{pfuIconClass @key}} {{#unless (lookup ../pressurePoints @key)}}fu-form__disabled{{/unless}}"></i>
+							{{#if (lookup ../pressurePoints @key)}}
+								{{#if (pfuCollectionContains @key ../actor.system.pressurePoints.entries)}}
+									<span class="resource-label-l">{{localize 'FU.PressurePointAbbr'}}</span>
+								{{/if}}
+							{{/if}}
+						</label>
 					</div>
 				{{/each}}
 			</div>
 		</fieldset>
+	{{/if}}
 
-		{{#if detailed}}
+	<!-- Bottom content here -->
+	{{#if detailed}}
+	<div class="bottom-row">
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
 					{{localize 'FU.Actions'}}
@@ -101,7 +116,6 @@
 					{{{spellsTable}}}
 				</section>
 			</fieldset>
-		{{/if}}
 	</div>
 	{{/if}}
 </div>

@@ -60,7 +60,7 @@
       "value": 10
     },
     "subtype": {},
-    "description": "<p>A magitech firearm that deals <strong>air </strong>@ICON[air] damage.</p>",
+    "description": "<p>A magitech firearm that deals <strong>air</strong> @ICON[air] damage.</p>",
     "isEquipped": {
       "value": false
     },

@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Gourmet"
+      "value": "gourmet"
     },
     "useWeapon": {
       "accuracy": true,
@@ -67,7 +67,8 @@
   "effects": [],
   "flags": {
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

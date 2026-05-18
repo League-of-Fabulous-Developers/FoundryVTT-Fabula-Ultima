@@ -12,294 +12,6 @@
     "maxLevel": 5,
     "items": [
       {
-        "name": "Psychokinesis",
-        "type": "skill",
-        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychokinesis.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Willpower</strong> (such as <strong>【DEX + WLP】</strong> for a <strong>shortbow</strong>). Additionally, your <strong>melee attacks</strong> with weapons belonging to the <strong>arcane</strong> or <strong>sword</strong> Categories may target <strong>ﬂying</strong> creatures.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 1,
-            "min": 0
-          },
-          "class": {
-            "value": "Esper"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "ins",
-            "secondary": "mig"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "source": "FUTF151",
-          "hasRoll": {
-            "value": false
-          },
-          "defense": "def",
-          "fuid": "psychokinesis",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "_id": "yiXZtjoU0CmZnEFl",
-        "sort": 400000
-      },
-      {
-        "name": "Psychic Gifts",
-        "type": "skill",
-        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>).</p><p>The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul><ul><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 5,
-            "min": 0
-          },
-          "class": {
-            "value": "Esper"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "ins",
-            "secondary": "mig"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "source": "FUTF151",
-          "hasRoll": {
-            "value": false
-          },
-          "defense": "def",
-          "fuid": "psychic-gifts",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "_id": "wWMoSoVidmepqm6O",
-        "sort": 350000
-      },
-      {
-        "name": "Navigator",
-        "type": "skill",
-        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_navigator.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other </strong>for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information </strong>and track entities while inside the soul network.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 1,
-            "min": 0
-          },
-          "class": {
-            "value": "Esper"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "ins",
-            "secondary": "mig"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "source": "FUTF151",
-          "hasRoll": {
-            "value": false
-          },
-          "defense": "def",
-          "fuid": "navigator",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "_id": "FlnU9VwLH66RsNL0",
-        "sort": 325000
-      },
-      {
-        "name": "Hypercognition",
-        "type": "skill",
-        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_hypercognition.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> (High Fantasy, page <strong>138</strong>) that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 5,
-            "min": 0
-          },
-          "class": {
-            "value": "Esper"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "ins",
-            "secondary": "mig"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "source": "FUTF151",
-          "hasRoll": {
-            "value": false
-          },
-          "defense": "def",
-          "fuid": "hypercognition",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "_id": "r95NGg9LIv4eTZ9P",
-        "sort": 300000
-      },
-      {
         "name": "Cognitive Focus",
         "type": "skill",
         "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
@@ -307,7 +19,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells ( <span>@ICON[offensive] </span>) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p><hr><ul><li><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.skills.TnDgm6eYgHSKNkDT]{Cognitive Focus (Check Bonus)}</p></li><li><p><strong>Focus Recovers: </strong>@GAIN[2*$sl hp]{SL × 2 HP}, and/or @GAIN[2*$sl mp]{SL × 2 MP}</p></li><li><p><strong>Target Receives: </strong>@EFFECT[Compendium.projectfu.skills.GqxqSdf1UMKkJH1U]{Effect: Cognitive Focus}</p></li></ul>",
+          "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells (<span>@ICON[offensive]</span>) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -317,7 +29,7 @@
             "min": 0
           },
           "class": {
-            "value": "Esper"
+            "value": "esper"
           },
           "useWeapon": {
             "accuracy": false,
@@ -328,7 +40,7 @@
             "primary": "ins",
             "secondary": "mig"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -353,23 +65,719 @@
           },
           "defense": "def",
           "fuid": "cognitive-focus",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
+          "effects": {
+            "entries": [
+              "focus"
+            ],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
           },
           "targeting": {
-            "rule": "special",
+            "rule": "single",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "name": "Cognitive Focus",
+            "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "DOBtjnZdanXuPRqy": {
+                    "type": "ruleElement",
+                    "_id": "DOBtjnZdanXuPRqy",
+                    "trigger": {
+                      "_id": "Sry2ltMpAYvYkBUa",
+                      "type": "performCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [
+                        "accuracy",
+                        "magic"
+                      ]
+                    },
+                    "predicates": {
+                      "Lw3YvRTsOnUBPy1h": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "Lw3YvRTsOnUBPy1h",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "xWiwmlyWgSjX6m8K": {
+                        "type": "modifyCheckRuleAction",
+                        "_id": "xWiwmlyWgSjX6m8K",
+                        "bonus": "$sl"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "A7MrxrxfDKnAqbnm": {
+                    "type": "ruleElement",
+                    "_id": "A7MrxrxfDKnAqbnm",
+                    "trigger": {
+                      "_id": "f4pz9aSChgNSBYI5",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [],
+                      "local": false,
+                      "identifier": ""
+                    },
+                    "predicates": {
+                      "mjxbVDAi3pjY51Tc": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "mjxbVDAi3pjY51Tc",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      },
+                      "0zURdqfxPfCjRhSi": {
+                        "type": "traitsRulePredicate",
+                        "_id": "0zURdqfxPfCjRhSi",
+                        "traits": {
+                          "entries": [
+                            "gain",
+                            "hit-point"
+                          ],
+                          "quantifier": "all"
+                        }
+                      }
+                    },
+                    "actions": {
+                      "mYbH78f8MSjL2Gzo": {
+                        "type": "messageRuleAction",
+                        "_id": "mYbH78f8MSjL2Gzo",
+                        "message": "<p>Your <strong>focus</strong> recovers extra @GAIN[&sl('cognitive-focus')*2 hp]{SL × 2 HP}.</p>"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "R1OHDd7sJEu9967V": {
+                    "type": "ruleElement",
+                    "_id": "R1OHDd7sJEu9967V",
+                    "trigger": {
+                      "_id": "1Mc0Ko9kFW543UK0",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [],
+                      "local": false,
+                      "identifier": ""
+                    },
+                    "actions": {
+                      "gL2C8YwZzHTmV4Ob": {
+                        "type": "messageRuleAction",
+                        "_id": "gL2C8YwZzHTmV4Ob",
+                        "message": "<p>Your <strong>focus</strong> recovers extra @GAIN[&sl('cognitive-focus')*2 mp]{SL × 2 MP}.</p>"
+                      }
+                    },
+                    "predicates": {
+                      "2hVcpxTfAMd4x1op": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "2hVcpxTfAMd4x1op",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      },
+                      "ZjlRUGVlgWRJLf8n": {
+                        "type": "traitsRulePredicate",
+                        "_id": "ZjlRUGVlgWRJLf8n",
+                        "traits": {
+                          "entries": [
+                            "gain",
+                            "mind-point"
+                          ],
+                          "quantifier": "all"
+                        }
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "mcr0Ct3QQjrsek8E": {
+                    "type": "ruleElement",
+                    "_id": "mcr0Ct3QQjrsek8E",
+                    "trigger": {
+                      "_id": "g5HpN1BwCrnS2s5H",
+                      "type": "combatRuleTrigger",
+                      "eventRelation": "source",
+                      "eventType": "startOfTurn",
+                      "parity": ""
+                    },
+                    "actions": {
+                      "JjuQxsQe3VjS7C7L": {
+                        "type": "applyEffectRuleAction",
+                        "_id": "JjuQxsQe3VjS7C7L",
+                        "effect": "focus"
+                      }
+                    },
+                    "predicates": {},
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "3vHmCpjussdJcEgM",
+            "type": "base",
+            "changes": [],
+            "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "_id": "EjarmObI7ZhvRqhz",
+        "sort": 200000
+      },
+      {
+        "name": "Hypercognition",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_hypercognition.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "esper"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "ins",
+            "secondary": "mig"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "source": "FUTF151",
+          "hasRoll": {
+            "value": false
+          },
+          "defense": "def",
+          "fuid": "hypercognition",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "name": "Hypercognition",
+            "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_hypercognition.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "3GJTI8ok6JnVSb9h": {
+                    "type": "ruleElement",
+                    "_id": "3GJTI8ok6JnVSb9h",
+                    "trigger": {
+                      "_id": "OUnQkETnJKHviYEO",
+                      "type": "calculateExpenseRuleTrigger",
+                      "eventRelation": "source",
+                      "resource": "mp",
+                      "expenseSource": "spell",
+                      "traits": {
+                        "entries": [],
+                        "quantifier": "any"
+                      },
+                      "identifier": "",
+                      "threshold": {
+                        "operator": "",
+                        "amount": 0
+                      }
+                    },
+                    "predicates": {
+                      "ne9InszuSAjoMZuo": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "ne9InszuSAjoMZuo",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      },
+                      "puwm9pIYRl9pMOWP": {
+                        "type": "targetingRulePredicate",
+                        "_id": "puwm9pIYRl9pMOWP",
+                        "rule": "single"
+                      }
+                    },
+                    "actions": {
+                      "vqEUySRncPvnpy8m": {
+                        "type": "modifyExpenseRuleAction",
+                        "_id": "vqEUySRncPvnpy8m",
+                        "amount": "-$sl*2",
+                        "operation": "add"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "FMJ65KcDiOEUzFnr": {
+                    "type": "ruleElement",
+                    "_id": "FMJ65KcDiOEUzFnr",
+                    "trigger": {
+                      "_id": "DzJOC5FtDIt4EGW5",
+                      "type": "calculateExpenseRuleTrigger",
+                      "eventRelation": "source",
+                      "resource": "mp",
+                      "expenseSource": "spell",
+                      "traits": {
+                        "entries": [],
+                        "quantifier": "any"
+                      },
+                      "identifier": "",
+                      "threshold": {
+                        "operator": "",
+                        "amount": 0
+                      }
+                    },
+                    "predicates": {
+                      "zDayx35nHIPslmjn": {
+                        "type": "targetingRulePredicate",
+                        "_id": "zDayx35nHIPslmjn",
+                        "rule": "multiple"
+                      },
+                      "gk3MjyYYXi6bN2FO": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "gk3MjyYYXi6bN2FO",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "hnkwHKWlXFzNreNK": {
+                        "type": "modifyExpenseRuleAction",
+                        "_id": "hnkwHKWlXFzNreNK",
+                        "amount": "-$sl",
+                        "operation": "add"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "KfTNS2FY3rStlm5m",
+            "type": "base",
+            "changes": [],
+            "description": "<p>The total MP cost of your <strong>spells</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "_id": "XFP606KAwDeeQ7gC",
+        "sort": 300000
+      },
+      {
+        "name": "Psychic Gifts",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong>.</p><hr /><p>For <strong>gift</strong> breakdown and a list of <strong>Psychic Gifts</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Esper Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "esper"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "ins",
+            "secondary": "mig"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "source": "FUTF151",
+          "hasRoll": {
+            "value": false
+          },
+          "defense": "def",
+          "fuid": "psychic-gifts",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "name": "Brainwave Clock",
+            "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "D5N1JmboaDyZFPzc": {
+                    "type": "ruleElement",
+                    "_id": "D5N1JmboaDyZFPzc",
+                    "actions": {
+                      "HjnLNGtPXTyrqcf5": {
+                        "type": "updateTrackRuleAction",
+                        "_id": "HjnLNGtPXTyrqcf5",
+                        "identifier": "brainwave-clock",
+                        "action": "reset",
+                        "notify": true
+                      }
+                    },
+                    "trigger": {
+                      "_id": "ykOI8xL7tsGMpIpx",
+                      "type": "combatRuleTrigger",
+                      "eventRelation": "",
+                      "eventType": "startOfCombat",
+                      "parity": ""
+                    },
+                    "selector": "self",
+                    "predicates": {},
+                    "enabled": true
+                  },
+                  "wrgz6uZUeNUDwhoe": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "2bYFszkDTDraX00x",
+                      "type": "combatRuleTrigger",
+                      "eventRelation": "",
+                      "eventType": "endOfCombat",
+                      "parity": ""
+                    },
+                    "_id": "wrgz6uZUeNUDwhoe",
+                    "actions": {
+                      "caTcaCtMhsDBeR5P": {
+                        "type": "updateTrackRuleAction",
+                        "_id": "caTcaCtMhsDBeR5P",
+                        "identifier": "brainwave-clock",
+                        "action": "reset",
+                        "amount": "",
+                        "notify": true
+                      }
+                    },
+                    "selector": "self",
+                    "predicates": {},
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": true,
+                  "id": "brainwave-clock",
+                  "name": "Brainwave Clock",
+                  "current": 0,
+                  "max": 4,
+                  "style": "clock",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "7cmcuxTm8MqCKIWi",
+            "type": "base",
+            "changes": [],
+            "description": "<p>This tracks your <strong>Brainwave Clock</strong> for your <strong>Psychic Gifts</strong>.</p><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "_id": "yJDa3pqtwkeYYXtZ",
+        "sort": 350000
+      },
+      {
+        "name": "Psychokinesis",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychokinesis.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Willpower</strong> (such as <strong>【DEX + WLP】</strong> for a <strong>shortbow</strong>). Additionally, your <strong>melee attacks</strong> with weapons belonging to the <strong>arcane</strong> or <strong>sword</strong> Categories may target <strong>ﬂying</strong> creatures.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "esper"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "ins",
+            "secondary": "mig"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "source": "FUTF151",
+          "hasRoll": {
+            "value": false
+          },
+          "defense": "def",
+          "fuid": "psychokinesis",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
         "effects": [],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
-        "_id": "8CQgC1qeOHOzZtWC",
-        "sort": 200000
+        "_id": "P7U5SAmR6rKSOON3",
+        "sort": 400000
       }
     ],
     "source": "",
@@ -386,12 +794,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759655107120,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1776191863076,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!JYVcIbnKAIA3m9yw"

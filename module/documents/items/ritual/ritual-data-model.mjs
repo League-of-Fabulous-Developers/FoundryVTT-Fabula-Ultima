@@ -6,7 +6,7 @@ import { RitualMigrations } from './ritual-migrations.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { ChatSectionOrder, CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
@@ -24,11 +24,10 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item, flags) => {
 	if (item?.system instanceof RitualDataModel) {
-		CommonSections.tags(
-			sections,
-			[
+		data.tags.push(
+			...[
 				{
 					tag: 'FU.MindAbbr',
 					value: item.system.mpCost.value,
@@ -45,14 +44,20 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 					flip: true,
 				},
 			],
-			CHECK_DETAILS,
 		);
 
 		if (item.system.hasClock.value) {
-			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
 		}
 
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		/** @type ResourceExpense **/
+		const expense = {
+			source: 'spell',
+			resource: 'mp',
+			amount: item.system.mpCost.value,
+		};
+		CommonSections.expense(data, actor, item, [], flags, expense);
 	}
 });
 
@@ -152,7 +157,9 @@ export class RitualDataModel extends FUStandardItemDataModel {
 		(this.clock ??= {}).value = potency.clock;
 		this.progress.max = potency.clock;
 
-		foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
+		if (this.parent.overrides) {
+			foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
+		}
 	}
 
 	afterApplyActiveEffects() {

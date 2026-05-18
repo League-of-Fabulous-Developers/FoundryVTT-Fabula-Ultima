@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For 3 Inventory Points, roll <strong>two d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> <strong>Basic</strong> benefits of @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}.</p><hr /><p>For 3 Inventory Points, roll <strong>two d20s</strong> and assign one to <strong>target</strong> and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,10 @@
       "value": 3
     },
     "source": "FUCR212",
-    "fuid": "basic-alchemy"
+    "fuid": "basic-alchemy",
+    "damage": {
+      "onApply": ""
+    }
   },
   "effects": [],
   "sort": 100000,
@@ -32,15 +35,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707098055601,
-    "modifiedTime": 1743184390529,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771879633264,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

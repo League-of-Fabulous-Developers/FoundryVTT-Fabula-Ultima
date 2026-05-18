@@ -1,92 +1,7 @@
-import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { Checks } from '../../../checks/checks.mjs';
-import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
-import { CommonSections } from '../../../checks/common-sections.mjs';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
-import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
-import { ExpressionContext } from '../../../expressions/expressions.mjs';
-import { CommonEvents } from '../../../checks/common-events.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
-
-const skillForAttributeCheck = 'skillForAttributeCheck';
-
-/**
- * @type RenderCheckHook
- */
-let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
-	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
-		const inspector = CheckConfiguration.inspect(check);
-		const weapon = fromUuidSync(inspector.getWeaponReference());
-
-		if (check.critical) {
-			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
-		}
-
-		let tags = getTags(item);
-		if (weapon) {
-			if (weapon.system.getTags instanceof Function) {
-				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
-			}
-		}
-		CommonSections.tags(sections, tags, CHECK_DETAILS);
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-
-		const targets = inspector.getTargets();
-		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
-
-/**
- * @type RenderCheckHook
- */
-let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
-	if (check.type === 'attribute' && item?.system instanceof SkillDataModel && check.additionalData[skillForAttributeCheck]) {
-		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
-		const inspector = CheckConfiguration.inspect(check);
-		CommonSections.itemFlavor(sections, skill);
-		CommonSections.tags(sections, getTags(skill), CHECK_DETAILS);
-		if (skill.system.hasResource.value) {
-			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
-		}
-		CommonSections.description(sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
-		CommonSections.actions(sections, actor, item, [], flags, inspector);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
-
-/**
- * @type RenderCheckHook
- */
-const onRenderDisplay = (sections, check, actor, item, flags) => {
-	if (check.type === 'display' && item?.system instanceof SkillDataModel) {
-		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
-		if (item.system.hasResource.value) {
-			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
-		}
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-		const inspector = CheckConfiguration.inspect(check);
-		const targets = inspector.getTargetsOrDefault();
-		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
-		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
-		if (!item.system.hasRoll.value) {
-			CommonSections.actions(sections, actor, item, targets, flags, inspector);
-		}
-		CommonEvents.skill(actor, item);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
-
-/**
- * @param {FUItem} skill
- * @return Tag[]
- */
-function getTags(skill) {
-	return [{ tag: 'FU.Class', separator: ':', value: skill.system.class.value, show: skill.system.class.value }, { tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value }, ...TraitUtils.toTags(skill.system.traits)];
-}
+import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @property {string} subtype.value
@@ -112,22 +27,6 @@ function getTags(skill) {
  * @property {Set<String>} traits
  */
 export class SkillDataModel extends BaseSkillDataModel {
-	static {
-		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
-		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
-		deprecationNotice(this, 'rollInfo.useWeapon.hrZero.value', 'damage.hrZero');
-		deprecationNotice(this, 'rollInfo.attributes.primary.value', 'attributes.primary');
-		deprecationNotice(this, 'rollInfo.attributes.secondary.value', 'attributes.secondary');
-		deprecationNotice(this, 'rollInfo.accuracy.value', 'accuracy');
-		deprecationNotice(this, 'rollInfo.damage.hasDamage.value', 'damage.hasDamage');
-		deprecationNotice(this, 'rollInfo.damage.value', 'damage.value');
-		deprecationNotice(this, 'rollInfo.damage.type.value', 'damage.type');
-		deprecationNotice(this, 'impdamage.hasImpDamage.value');
-		deprecationNotice(this, 'impdamage.value');
-		deprecationNotice(this, 'impdamage.impType.value');
-		deprecationNotice(this, 'impdamage.type.value');
-	}
-
 	static defineSchema() {
 		const { SchemaField, StringField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
@@ -146,101 +45,33 @@ export class SkillDataModel extends BaseSkillDataModel {
 		return source;
 	}
 
-	prepareBaseData() {
-		if (!this.hasRoll.value) {
-			this.useWeapon.accuracy = false;
-		}
-		if (!this.damage.hasDamage) {
-			this.useWeapon.damage = false;
-		}
-		// If not using weapon damage, and it's not set, reset to default
-		if (!this.useWeapon.damage && !this.damage.type) {
-			this.damage.type = 'physical';
-		}
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {Promise<void>}
-	 */
-	async roll(modifiers) {
-		if (this.hasRoll.value) {
-			if (this.useWeapon.accuracy) {
-				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
-			} else {
-				return Checks.attributeCheck(
-					this.parent.actor,
-					{
-						primary: this.attributes.primary,
-						secondary: this.attributes.secondary,
-					},
-					this.parent,
-					this.#initializeAttributeCheck(modifiers),
-				);
-			}
-		}
-		return Checks.display(this.parent.actor, this.parent, this.#initializeSkillDisplay(modifiers));
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {CheckCallback}
-	 * @remarks Expects a weapon
-	 */
-	#initializeSkillDisplay(modifiers) {
-		return async (check, actor, item) => {
-			const config = CheckConfiguration.configure(check);
-			await this.configureDisplayCheck(config, actor, item);
-		};
-	}
-
-	/**
-	 * @return {CheckCallback}
-	 */
-	#initializeAttributeCheck(modifiers) {
-		return async (check, actor, item) => {
-			const config = CheckConfiguration.configure(check);
-			await this.configureAttributeCheck(config, actor, item);
-			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
-		};
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {CheckCallback}
-	 * @remarks Expects a weapon
-	 */
-	#initializeAccuracyCheck(modifiers) {
-		return async (check, actor, item) => {
-			const weapon = await this.getWeapon(actor);
-			/** @type WeaponDataModel **/
-			const weaponData = weapon.system;
-			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
-			if (error) {
-				throw error;
-			}
-
-			check.primary = weaponCheck.primary;
-			check.secondary = weaponCheck.secondary;
-
-			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-
-			config.setWeaponReference(weapon);
-			config.setHrZero(this.damage.hrZero || modifiers.shift);
-			this.configureCheck(config);
-			await this.addSkillDamage(config, item, context, weaponData);
-			await this.addSkillAccuracy(config, actor, item, context);
-		};
-	}
-
 	shouldApplyEffect(effect) {
 		return this.level.value > 0;
 	}
 
 	get attributePartials() {
 		return [...this.commonPartials, ItemPartialTemplates.classField, ItemPartialTemplates.skillAttributes];
+	}
+
+	get retainedFieldPaths() {
+		return ['level.value'];
+	}
+
+	/**
+	 * @override
+	 */
+	getTags() {
+		return [
+			{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value },
+			{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: this.level.value },
+		];
+	}
+
+	get traitOptions() {
+		return TraitUtils.getOptions({
+			...DamageTraits,
+			...SkillTraits,
+		});
 	}
 
 	/**

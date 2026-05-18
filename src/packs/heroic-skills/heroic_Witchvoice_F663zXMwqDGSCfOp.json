@@ -1,14 +1,14 @@
 {
   "name": "Witchvoice",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
   "system": {
     "summary": {
       "value": "Draw enemy attacks using Condemn or verses"
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>.</p></blockquote><p>After you sing a <strong>haunting verse</strong>, or after you succeed on an Opposed Check for your <strong>Condemn</strong> Skill, you may choose one enemy among the targets of that <strong>verse</strong> or Skill.</p><p>If you do, choose one status effect that enemy is currently suffering from: that enemy becomes <strong>bewitched</strong> until the start of your next turn or until they recover from the chosen status effect. Enemies you have <strong>bewitched</strong> must include you among the targets of their attacks and offensive spells ( @ICON[offensive] ), if able.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>.</p><hr /><p>After you sing a <strong>haunting verse</strong>, or after you succeed on an Opposed Check for your <strong>Condemn</strong> Skill, you may choose one enemy among the targets of that <strong>verse</strong> or Skill.</p><p>If you do, choose one status effect that enemy is currently suffering from: that enemy becomes <strong>bewitched</strong> until the start of your next turn or until they recover from the chosen status effect. Enemies you have <strong>bewitched</strong> must include you among the targets of their attacks and offensive spells (@ICON[offensive]), if able.</p>",
     "class": {
-      "value": "Necromancer"
+      "value": "chanter, orator"
     },
     "showTitleCard": {
       "value": false
@@ -30,13 +30,32 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "witchvoice"
+    "fuid": "witchvoice",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.t4rE9i35cvOZiJp4",
+        "Compendium.projectfu.heroic-skills.Item.sZec7vI1z54PVdgL",
+        "Compendium.projectfu.heroic-skills.Item.Ye37QSABFzxlPXSk",
+        "Compendium.projectfu.heroic-skills.Item.bWLCemThlhNHfS5U",
+        "Compendium.projectfu.heroic-skills.Item.h37S8sQiTglvs4dP",
+        "Compendium.projectfu.heroic-skills.Item.hDXc6pWQ5VEyKg4O"
+      ],
+      "duration": {
+        "interval": null
+      },
+      "prompt": true
+    },
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    }
   },
   "effects": [],
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -47,10 +66,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1769031357327,
-    "lastModifiedBy": "bgUzjEHd80A79gwp"
+    "modifiedTime": 1775353905308,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "folder": "L3ZyYRKlHEggv0aF",
+  "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "F663zXMwqDGSCfOp",
   "ownership": {
     "default": 0,

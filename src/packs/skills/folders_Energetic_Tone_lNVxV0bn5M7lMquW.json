@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "W4fiI5cqJwfMJtiD",
+  "name": "Energetic Tone",
+  "color": "#b1bf45",
+  "sorting": "a",
+  "_id": "lNVxV0bn5M7lMquW",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771826681355
+  },
+  "_key": "!folders!lNVxV0bn5M7lMquW"
+}

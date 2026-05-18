@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve High Speed with bows, spears, and thrown weapons, and deny free attacks."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and must have acquired the <strong>High Speed</strong> Skill</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>. Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p><hr /><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.ZtkCjHSDVNy27Oid]{Effect: Silent Hunter}</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and must have acquired the <strong>High Speed</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "rogue, sharpshooter, weaponmaster"
     },
     "hasResource": {
       "value": false
@@ -46,21 +46,182 @@
       }
     },
     "source": "FUNF167",
-    "fuid": "silent-hunter"
+    "fuid": "silent-hunter",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Silent Hunter",
+      "img": "icons/creatures/abilities/cougar-pounce-stalk-black.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.1jiLF3jy7eEinL1k",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "QZjbYBzQFdYNUPvK": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "UaYkEucpybYKN4jP",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "QZjbYBzQFdYNUPvK",
+              "predicates": {
+                "pLXG4BEnSFnyF3bN": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "pLXG4BEnSFnyF3bN",
+                  "selector": "self",
+                  "effect": "effect-high-speed"
+                },
+                "9wLSn2z4GUUwZvas": {
+                  "type": "weaponRulePredicate",
+                  "_id": "9wLSn2z4GUUwZvas",
+                  "selector": "source",
+                  "categories": [
+                    "bow",
+                    "spear",
+                    "thrown"
+                  ]
+                }
+              },
+              "actions": {
+                "10RBDRCgiFRLmyQk": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "10RBDRCgiFRLmyQk",
+                  "amount": "&sl('high-speed')*5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            },
+            "eQW0MpwWnDw2ulSM": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "XnnH4QTkWc7IIa9f",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "eQW0MpwWnDw2ulSM",
+              "predicates": {
+                "eq59JmHCoW4WJuiv": {
+                  "type": "weaponRulePredicate",
+                  "_id": "eq59JmHCoW4WJuiv",
+                  "selector": "source",
+                  "categories": [
+                    "bow",
+                    "spear",
+                    "thrown"
+                  ]
+                }
+              },
+              "actions": {
+                "5cOJaAOZKQpY3kVj": {
+                  "type": "messageRuleAction",
+                  "_id": "5cOJaAOZKQpY3kVj",
+                  "message": "<p>Targets cannot make <strong>free attacks</strong> until end of turn.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "MMzKCD32cIZz0wrn",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you use the <strong>High Speed</strong> Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【High Speed SL × 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Silent Hunter",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.1jiLF3jy7eEinL1k",
+            "effectUuid": null,
+            "fuid": "silent-hunter"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771894417627,
+        "modifiedTime": 1771894861104,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!1jiLF3jy7eEinL1k.MMzKCD32cIZz0wrn"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.1jiLF3jy7eEinL1k",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744252143405,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1775355247977,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "1jiLF3jy7eEinL1k",

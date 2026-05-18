@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[cover] + @TYPE[affinity all resistance e:sot i:1 t:source]</p>",
+    "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.</p><hr /><p><strong>Target Receives:</strong> @TYPE[affinity all resistance e:sot i:1 t:source]</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Guardian"
+      "value": "guardian"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,6 +121,11 @@
     "fuid": "bodyguard",
     "targeting": {
       "rule": "single"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -132,7 +137,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -140,7 +146,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706503483660,
-    "modifiedTime": 1770411039394,
+    "modifiedTime": 1775585961693,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "xu7ltKbkoSkcBLDc",
+  "name": "Awaken",
+  "color": "#0c3533",
+  "sorting": "a",
+  "_id": "pE24kkaVePkF3jOd",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771475666618
+  },
+  "_key": "!folders!pE24kkaVePkF3jOd"
+}

@@ -1,0 +1,111 @@
+{
+  "folder": "2tE6Ya4uidA9PhD8",
+  "name": "Beast Damage Up",
+  "type": "effect",
+  "_id": "FPUU0L6IysBarInb",
+  "img": "systems/projectfu/styles/static/icons/beast.svg",
+  "system": {
+    "fuid": "beast-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Beast Damage Up",
+      "img": "systems/projectfu/styles/static/icons/beast.svg",
+      "origin": "Compendium.projectfu.actor-effects.Item.FPUU0L6IysBarInb",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Qta3ySRtjLuyNsMl",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.beast",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage you deal to <strong>beasts</strong> deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Beast Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.FPUU0L6IysBarInb",
+            "effectUuid": null,
+            "fuid": "beast-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774839963149,
+        "modifiedTime": 1774839986020,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!FPUU0L6IysBarInb.Qta3ySRtjLuyNsMl"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774839954408,
+    "modifiedTime": 1774839954408,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!FPUU0L6IysBarInb"
+}

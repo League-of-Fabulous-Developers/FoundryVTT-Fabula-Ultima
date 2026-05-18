@@ -7,6 +7,7 @@ import { SETTINGS } from '../../../settings.js';
 import { FloralistDataModel } from './floralist-data-model.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
+import { AdvancementDataModel } from './advancements-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -45,6 +46,8 @@ const CLASS_IP_BENEFITS = 2;
  * @property {PilotVehicleDataModel} vehicle
  * @property {CharacterSkillTracker} tlTracker
  * @property {FloralistDataModel} floralist
+ * @property {EquipDataModel} equipped
+ * @property {AdvancementDataModel[]} advancements
  * @inheritDoc
  */
 export class CharacterDataModel extends BaseCharacterDataModel {
@@ -89,8 +92,9 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 					}
 				},
 			}),
+			advancements: new ArrayField(new EmbeddedDataField(AdvancementDataModel, {})),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
-			// TODO: Refactor
+			// TODO: Refactor out
 			floralist: new EmbeddedDataField(FloralistDataModel, {}),
 		});
 	}
@@ -108,9 +112,11 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
 		this.#prepareBasicResources();
+		this.#prepareClockResources();
 		this.vehicle.prepareData();
 		this.floralist.prepareData();
 		this.derived.prepareData();
+		this.#prepareAdvancements();
 	}
 
 	/**
@@ -234,5 +240,24 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 		// Initialize fp and exp
 		this.resources.fp.value = this.resources.fp.value || 0;
 		this.resources.exp.value = this.resources.exp.value || 0;
+	}
+
+	#prepareClockResources() {
+		this.addClockResource('brainwave', 'brainwave-clock');
+		this.addClockResource('garden', 'garden');
+		this.addClockResource('zeroPower', 'zero-power');
+	}
+
+	#prepareAdvancements() {
+		// Initialize advancements if not set
+		if (!this.advancements) {
+			this.advancements = [];
+		}
+		// Add missing entries per level
+		const level = this.level.value;
+		const needed = level - this.advancements.length;
+		if (needed > 0) {
+			this.advancements.push(...Array.from({ length: needed }, () => new AdvancementDataModel({}, { parent: this })));
+		}
 	}
 }

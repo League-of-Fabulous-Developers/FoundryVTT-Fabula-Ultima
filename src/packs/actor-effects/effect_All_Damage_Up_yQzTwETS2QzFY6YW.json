@@ -3,72 +3,88 @@
   "name": "All Damage Up",
   "type": "effect",
   "_id": "yQzTwETS2QzFY6YW",
-  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
-    "fuid": "damage-up"
+    "fuid": "all-damage-up",
+    "source": ""
   },
   "effects": [
     {
+      "name": "All Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.yQzTwETS2QzFY6YW",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "All Damage Up",
-      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
-      "_id": "q0yFjkjUgr7JqfkI",
+      "_id": "jeuon4L9YwqeO6qd",
       "type": "base",
-      "system": {},
       "changes": [
         {
-          "key": "system.bonuses.damage.melee",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.ranged",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.spell",
+          "key": "system.bonuses.damage.all",
           "mode": 2,
           "value": "5",
           "priority": null
         }
       ],
-      "description": "<p>Increase All Damage by 5.</p>",
+      "description": "<p>You deal <strong>5 extra damage</strong> (be it with attacks, spells, Arcana, items, or any other method).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": ""
+          "Source": {
+            "name": "All Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.yQzTwETS2QzFY6YW",
+            "effectUuid": null,
+            "fuid": "all-damage-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725744732063,
-        "modifiedTime": 1736279165644,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
-        "exportSource": null
+        "createdTime": 1774824366987,
+        "modifiedTime": 1774824387002,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!yQzTwETS2QzFY6YW.q0yFjkjUgr7JqfkI"
+      "_key": "!items.effects!yQzTwETS2QzFY6YW.jeuon4L9YwqeO6qd"
     }
   ],
   "sort": 0,
@@ -80,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725744482585,
-    "modifiedTime": 1736279160515,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774763777319,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!yQzTwETS2QzFY6YW"

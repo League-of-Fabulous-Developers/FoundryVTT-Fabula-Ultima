@@ -1,0 +1,110 @@
+{
+  "folder": "qSSfpwMVmI4vgaWB",
+  "name": "Initiative Check Up",
+  "type": "effect",
+  "_id": "YEYStKTCZ6Ko2T6A",
+  "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
+  "system": {
+    "fuid": "initiative-check-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Initiative Check Up",
+      "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.YEYStKTCZ6Ko2T6A",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "pOk5XUkwU20CuIpJ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.init.bonus",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        }
+      ],
+      "description": "<p>If you have this item equipped at the start of a conflict, you gain a +4 bonus to your <strong>Initiative</strong> modifier.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Initiative Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.YEYStKTCZ6Ko2T6A",
+            "effectUuid": null,
+            "fuid": "initiative-check-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774758165473,
+        "modifiedTime": 1774758177118,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!YEYStKTCZ6Ko2T6A.pOk5XUkwU20CuIpJ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774684649279,
+    "modifiedTime": 1774758164327,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!YEYStKTCZ6Ko2T6A"
+}

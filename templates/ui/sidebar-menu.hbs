@@ -1,0 +1,19 @@
+  <section class="info flexcol">
+    <h1 class="pfuTools-sidebar__title">{{localize "FU.UiControlTitle"}}</h1>
+  </section>
+
+  {{#each tools as |group|}}
+    {{#if group.visible}}
+      <section class="pfuTools-sidebar__{{group.id}} pfuTools-sidebar__section flexcol form-group {{group.expandedClasses}}">
+        <h4 class="divider pfuTools-sidebar__header">{{localize group.label}}</h4>
+        {{#each group.tools as |tool|}}
+          {{#if tool.visible}}
+            <button type="button" data-action="clickToolButton" data-group="{{group.id}}" data-tool="{{@key}}" class="{{tool.expandedClasses}}">
+              {{#if tool.icon}}<i class="{{tool.icon}}"></i>{{/if}}
+              {{localize tool.label}}
+            </button>
+          {{/if}}
+        {{/each}}
+      </section>
+    {{/if}}
+  {{/each}}

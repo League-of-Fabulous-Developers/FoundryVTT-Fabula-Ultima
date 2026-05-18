@@ -2,6 +2,7 @@ import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
+import { CommonSections } from './common-sections.mjs';
 
 const critThresholdFlag = 'critThreshold.attributeCheck';
 
@@ -20,17 +21,12 @@ const onPrepareCheck = (check, actor) => {
 	}
 };
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-const onRenderCheck = (data, checkResult, actor, item) => {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, checkResult, actor, item, flags) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = checkResult;
 	if (type === 'attribute') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-		data.push({
+		data.sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			data: {
@@ -57,6 +53,9 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 				modifiers: checkResult.modifiers,
 			},
 		});
+
+		const targets = inspector.getTargetsOrDefault();
+		CommonSections.actions(data, actor, item, targets, flags, inspector);
 	}
 };
 

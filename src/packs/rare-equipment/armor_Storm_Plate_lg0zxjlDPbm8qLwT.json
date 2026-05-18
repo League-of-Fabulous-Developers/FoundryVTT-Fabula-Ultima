@@ -1,0 +1,172 @@
+{
+  "folder": "gimh5ZtzH3Sjgv0V",
+  "name": "Storm Plate",
+  "type": "armor",
+  "_id": "lg0zxjlDPbm8qLwT",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-storm.png",
+  "system": {
+    "fuid": "storm-plate",
+    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1450
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Bolt Thorns"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 11
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 1
+    },
+    "init": {
+      "value": -3
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Storm Plate",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-storm.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.lg0zxjlDPbm8qLwT",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "IE853aL9GdxyYPuq": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "2pmXEGjcKc4CwTR2",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "IE853aL9GdxyYPuq",
+              "predicates": {
+                "FWXbsvu9TaMK1ke5": {
+                  "type": "checkRulePredicate",
+                  "_id": "FWXbsvu9TaMK1ke5",
+                  "result": null,
+                  "outcome": "success"
+                },
+                "GefF1SeowMUK8zs1": {
+                  "type": "weaponRulePredicate",
+                  "_id": "GefF1SeowMUK8zs1",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "2tjSey33odzQbt73": {
+                  "type": "messageRuleAction",
+                  "_id": "2tjSey33odzQbt73",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 bolt] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "7OtFg6doGGC05by1",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Storm Plate",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.lg0zxjlDPbm8qLwT",
+            "effectUuid": null,
+            "fuid": "storm-plate"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774749740217,
+        "modifiedTime": 1775708988393,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!lg0zxjlDPbm8qLwT.7OtFg6doGGC05by1"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774749459601,
+    "modifiedTime": 1777530755176,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!lg0zxjlDPbm8qLwT"
+}

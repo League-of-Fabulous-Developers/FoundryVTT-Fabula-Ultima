@@ -6,7 +6,7 @@
 		<label class="resource-label">
 			{{name}}
 			<strong>【{{localize (lookup @root.FU.attributeAbbreviations system.attributes.primary.value)}} + {{localize (lookup @root.FU.attributeAbbreviations system.attributes.secondary.value)}}】 + {{system.accuracy.value}}</strong>
-			<strong> ⬥ </strong>
+			 <strong>⬥ </strong>
 			<strong>【{{#unless system.rollInfo.useWeapon.hrZero.value}}{{localize "FU.HighRollAbbr"}}{{else}}{{localize "FU.HRZero"}}{{/unless}} + {{system.damage.value}}】</strong> {{localize (lookup @root.FU.damageTypes system.damageType.value)}}
 		</label>
 	</div>

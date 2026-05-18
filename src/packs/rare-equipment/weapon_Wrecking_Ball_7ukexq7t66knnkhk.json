@@ -1,0 +1,208 @@
+{
+  "folder": "3ywX6HVujl6eTROw",
+  "name": "Wrecking Ball",
+  "type": "weapon",
+  "_id": "7ukexq7t66knnkhk",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/flail-single-black.png",
+  "system": {
+    "fuid": "wrecking-ball",
+    "description": "<p>This weapon deals 5 extra damage to <strong>constructs</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 450
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Construct Hunter"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "dex"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 8
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "flail"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Wrecking Ball",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/flail-single-black.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.7ukexq7t66knnkhk",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "IrVxNRBDTgFn5LTF": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "vbEWc0eomRfaDQwD",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "IrVxNRBDTgFn5LTF",
+              "actions": {
+                "t758iHhnsdAZ43A6": {
+                  "type": "messageRuleAction",
+                  "_id": "t758iHhnsdAZ43A6",
+                  "message": "<p>If <strong>construct</strong> target, deal 5 extra damage to them.</p>"
+                }
+              },
+              "predicates": {
+                "JuyScWKU2kDDTZMf": {
+                  "type": "speciesRulePredicate",
+                  "_id": "JuyScWKU2kDDTZMf",
+                  "species": [
+                    "construct"
+                  ]
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "6VCps36NljHAXzc9",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The weapon deals 5 extra damage to <strong>constructs</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Wrecking Ball",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.7ukexq7t66knnkhk",
+            "effectUuid": null,
+            "fuid": "wrecking-ball"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774730936531,
+        "modifiedTime": 1775709142007,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!7ukexq7t66knnkhk.6VCps36NljHAXzc9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774730183995,
+    "modifiedTime": 1777530885927,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!7ukexq7t66knnkhk"
+}

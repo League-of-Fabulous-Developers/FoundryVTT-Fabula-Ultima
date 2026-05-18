@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "XW8tPjIw2b07tMQv",
+  "name": "Symbol of Flux",
+  "color": "#123840",
+  "sorting": "a",
+  "_id": "2BkRkfGHqj9asxV7",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771878036247
+  },
+  "_key": "!folders!2BkRkfGHqj9asxV7"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "WHNpwToyVPMpfLEu",
+  "name": "Heroic Companion",
+  "color": "#689286",
+  "sorting": "a",
+  "_id": "F1T3CDFbG76byCfr",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477522457
+  },
+  "_key": "!folders!F1T3CDFbG76byCfr"
+}

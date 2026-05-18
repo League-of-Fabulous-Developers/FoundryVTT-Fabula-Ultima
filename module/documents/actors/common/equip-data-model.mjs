@@ -1,4 +1,14 @@
 /**
+ * @typedef CharacterEquipment
+ * @property mainHand
+ * @property offHand
+ * @property armor
+ * @property accessory
+ */
+
+import { FU } from '../../../helpers/config.mjs';
+
+/**
  * @property {string} armor
  * @property {string} mainHand
  * @property {string} offHand
@@ -8,7 +18,7 @@
  */
 export class EquipDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
+		const { ArrayField, StringField } = foundry.data.fields;
 		return {
 			armor: new StringField({ nullable: true }),
 			mainHand: new StringField({ nullable: true }),
@@ -16,6 +26,7 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 			accessory: new StringField({ nullable: true }),
 			phantom: new StringField({ nullable: true }),
 			arcanum: new StringField({ nullable: true }),
+			therioforms: new ArrayField(new StringField({ nullable: true }), {}),
 		};
 	}
 
@@ -25,6 +36,42 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 	 */
 	isEquipped(item) {
 		return item && Object.values(this).includes(item?.id);
+	}
+
+	/**
+	 * @returns {String[]} The ids of the default equipped items (in the actor).
+	 */
+	getDefaultItems() {
+		let equipment = [];
+		if (this.mainHand) {
+			equipment.push(this.mainHand);
+		}
+		if (this.offHand && this.offHand !== this.mainHand) {
+			equipment.push(this.offHand);
+		}
+		if (this.armor) {
+			equipment.push(this.armor);
+		}
+		if (this.accessory) {
+			equipment.push(this.accessory);
+		}
+		return equipment;
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @param {'mainHand', 'offHand', 'phantom', 'armor'} slot
+	 * @return {FUItem|null}
+	 */
+	static getEquipment(actor, slot) {
+		return (
+			[actor.system.equipped[slot]]
+				.filter((value) => value)
+				.map((value) => actor.items.get(value))
+				.filter((value) => value)
+				.filter((value) => value.type in FU.weaponItemTypes)
+				.at(0) ?? null
+		);
 	}
 
 	/**

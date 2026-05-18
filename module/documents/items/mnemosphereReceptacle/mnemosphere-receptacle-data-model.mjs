@@ -6,10 +6,10 @@ import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document
 import { MnemosphereDataModel } from '../mnemosphere/mnemosphere-data-model.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {
+const onRenderCheck = (data, check, actor, item, additionalFlags, targets) => {
 	if (item?.system instanceof MnemosphereReceptacleDataModel) {
-		CommonSections.slottedTechnospheres(sections, item.system.slotted);
-		CommonSections.description(sections, item.system.description, item.system.summary, undefined, false);
+		CommonSections.slottedTechnospheres(data.sections, item.system.slotted);
+		CommonSections.description(data.sections, item.system.description, item.system.summary, undefined, false);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);

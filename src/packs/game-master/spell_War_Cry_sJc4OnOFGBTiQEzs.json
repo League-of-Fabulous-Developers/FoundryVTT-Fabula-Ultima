@@ -1,15 +1,12 @@
 {
   "name": "War Cry",
   "type": "spell",
-  "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+  "img": "icons/sundries/flags/banner-flag-red-white.webp",
   "system": {
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks.</p><hr /><ul><li><p><strong>Targets Receive: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.62RZnGQvUWIEyeJ7 e:eos i:1 t:source]{Effect: War Cry}</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks.</p>",
     "class": {
       "value": "NPC"
     },
@@ -35,15 +32,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -64,12 +52,6 @@
     },
     "showTitleCard": {
       "value": false
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "scene"
@@ -108,25 +90,46 @@
       }
     },
     "source": "FUCR311",
-    "subtype": {},
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
+    "fuid": "war-cry",
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": true
     },
-    "fuid": "war-cry"
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.game-master.Item.aKy3uZj38HTEBtG1"
+      ]
+    },
+    "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1744756718945,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1771280721082,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

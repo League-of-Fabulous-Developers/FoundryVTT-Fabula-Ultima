@@ -21,6 +21,7 @@
     {
       "name": "Dynamotheria",
       "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",
+      "origin": "Compendium.projectfu.skills.Item.g7G1eUEz0VaS5bNg",
       "system": {
         "duration": {
           "event": "none",
@@ -33,23 +34,71 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "rFfosGMsDpKt4jW0": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "coZH7Gwi3IDzta4O",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "attribute",
+                  "group",
+                  "open",
+                  "opposed"
+                ],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "rFfosGMsDpKt4jW0",
+              "actions": {
+                "biFlO0DilXxVE79r": {
+                  "type": "messageRuleAction",
+                  "_id": "biFlO0DilXxVE79r",
+                  "message": "<p>If this Check was used to alter a Clock, you may fill or erase 1 additional section.</p>"
+                }
+              },
+              "predicates": {
+                "2nuqr6MP3AelKWyy": {
+                  "type": "checkRulePredicate",
+                  "_id": "2nuqr6MP3AelKWyy",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "mig"
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "outcome": "success"
+                }
+              }
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "14Q8Sxb3hhoejdBq",
+      "disabled": false,
+      "_id": "SouFd148aBfHiI7t",
       "type": "base",
       "changes": [
         {
@@ -59,25 +108,34 @@
           "priority": null
         }
       ],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. <span>You treat your <strong>Might</strong> as one die size higher (up to <strong>d12</strong>). </span>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Might</strong>, you may fill or erase 1 additional section of that Clock.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Dynamotheria",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.g7G1eUEz0VaS5bNg",
+            "effectUuid": null,
+            "fuid": "dynamotheria"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767290382194,
-        "modifiedTime": 1767291765989,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777757143906,
+        "modifiedTime": 1777761733979,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!g7G1eUEz0VaS5bNg.14Q8Sxb3hhoejdBq"
+      "_key": "!items.effects!g7G1eUEz0VaS5bNg.SouFd148aBfHiI7t"
     }
   ],
   "ownership": {

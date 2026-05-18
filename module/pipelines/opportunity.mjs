@@ -38,7 +38,7 @@ async function onOpportunity(event) {
 	if (game.dice3d) {
 		Hooks.once('diceSoNiceRollComplete', postChatMessage);
 	} else {
-		await postChatMessage();
+		event.renderData.postRenderActions.push(postChatMessage);
 	}
 }
 

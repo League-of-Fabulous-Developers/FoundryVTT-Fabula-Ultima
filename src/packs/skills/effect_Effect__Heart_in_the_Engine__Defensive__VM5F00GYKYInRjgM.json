@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Heart in the Engine (Defensive)",
+      "name": "Heart in the Engine (Defensive)",
       "_id": "ofTfzPUoJ68tPn9j",
       "type": "base",
       "system": {
@@ -37,7 +37,42 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "3HyLmQxShWZwvSNB": {
+              "type": "ruleElement",
+              "_id": "3HyLmQxShWZwvSNB",
+              "trigger": {
+                "_id": "HgbpT22P4pDtIjJf",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "",
+                "damageSources": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "actions": {
+                "tz40SVayshCE2Bff": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "tz40SVayshCE2Bff",
+                  "identifier": "effects-heart-in-the-engine-reduction"
+                }
+              },
+              "selector": "self"
+            }
+          }
+        }
       },
       "changes": [
         {
@@ -47,7 +82,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</span></p>",
+      "description": "<p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by<strong>【SL × 2】</strong>(applied before damage Affinities).</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,12 +92,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744656166925,
-        "modifiedTime": 1744656501200,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770633920940,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!VM5F00GYKYInRjgM.ofTfzPUoJ68tPn9j"

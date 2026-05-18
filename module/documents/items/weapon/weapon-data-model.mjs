@@ -8,9 +8,10 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { ActionTraits, DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
+import { WeaponBehaviourMixin } from './weapon-behaviour-mixin.mjs';
 
 /**
  * @param {CheckV2} check
@@ -34,7 +35,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				handedness: weapon.hands.value,
 			})
 			.addTraits(weapon.damageType.value)
-			.addTraits(Traits.Damage)
+			.addTraits(ActionTraits.Attack)
+			.addTraits(ActionTraits.Damage)
 			.addTraitsFromItemModel(weapon.traits)
 			.setTargetedDefense(weapon.defense)
 			.setDamageOverride(actor, 'attack')
@@ -44,15 +46,10 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(data, result, actor, item) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof WeaponDataModel) {
-		data.push(async () => ({
+		data.sections.push(async () => ({
 			order: CHECK_DETAILS,
 			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 			data: {
@@ -62,10 +59,10 @@ function onRenderCheck(data, result, actor, item) {
 				},
 			},
 		}));
-		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
-		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		data.tags.push(...item.system.getTags());
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
@@ -92,7 +89,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  * @property {Set<String>} traits
  */
-export class WeaponDataModel extends FUStandardItemDataModel {
+export class WeaponDataModel extends WeaponBehaviourMixin(FUStandardItemDataModel) {
 	static {
 		deprecationNotice(this, 'isCustomWeapon.value');
 	}
@@ -139,6 +136,14 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
+	}
+
+	/**
 	 * @param {KeyboardModifiers} modifiers
 	 * @return {Promise<void>}
 	 */
@@ -181,11 +186,10 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
-	 * @param {Boolean} includeTraits
 	 * @return {Tag[]}
 	 */
-	getTags(includeTraits = true) {
-		let result = [
+	getTags() {
+		return [
 			{
 				tag: `FU.${StringUtils.capitalize(this.category.value)}`,
 			},
@@ -196,9 +200,5 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 				tag: `FU.${this.hands.value === 'two-handed' ? 'TwoHanded' : 'OneHanded'}`,
 			},
 		];
-		if (includeTraits) {
-			result.push(...TraitUtils.toTags(this.traits));
-		}
-		return result;
 	}
 }

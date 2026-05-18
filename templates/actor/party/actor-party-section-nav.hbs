@@ -1,73 +1,17 @@
-<div class="side sidebar flex-group-center">
+<section class="nav sidebar flex-group-center">
 
+	<!-- NAV -->
 	<nav class="sheet-tabs tabs menu"
 		 aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
 		{{#each tabs as |tab|}}
-			<a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
-        class="button button-style{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}"
-				{{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
-				{{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
-				{{#if tab.label}}<span>{{localize tab.label}}</span>{{/if}}
-			</a>
+			{{#unless (eq tab.id "character")}}
+				<a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+				   class="button2{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}"
+				   {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+					{{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
+					{{#if tab.label}}<span>{{localize tab.label}}</span>{{/if}}
+				</a>
+			{{/unless}}
 		{{/each}}
 	</nav>
-
-	<div style="width: 100%;">
-		<!-- CLOCKS -->
-		<fieldset class="section-container title-fieldset desc resource-content">
-			<legend class="resource-label-m" aria-describedby="tooltip">
-				<a class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}" style="width: fit-content;">
-					<a data-action="addTrack">
-						<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
-					</a>
-				</a>
-			</legend>
-
-			<div class="progress-collection" style="background: unset;">
-				{{#each system.tracks }}
-					<div>
-						{{pfuProgressCollection ../document 'system.tracks' @index displayName=true prompt=true controls=../isGM }}
-					</div>
-				{{/each}}
-			</div>
-
-		</fieldset>
-
-		<!-- ACTIONS -->
-		<fieldset class="section-container title-fieldset desc resource-content">
-			<legend class="resource-label-m">
-				{{localize 'FU.Actions'}}
-			</legend>
-
-			{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="refreshSheet" tooltip="FU.Refresh" icon="fa fa-refresh"}}
-			{{#if isGM}}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="restParty" tooltip="FU.Rest" icon="fas fa-bed" }}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="rewardResource" tooltip="FU.AwardResources" icon="fas fa-feather" }}
-			{{/if}}
-			{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
-
-			{{#each actionHooks}}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="callHook" tooltip=this.name icon=this.icon option=this.hook}}
-			{{/each}}
-		</fieldset>
-
-		<!-- STATS -->
-		<fieldset class="section-container title-fieldset desc resource-content">
-			<legend class="resource-label-m">
-				{{localize 'FU.Stats'}}
-			</legend>
-			<div class="resources">
-				<i class="fu-icon--s {{pfuIconClass 'zenit'}}" data-tooltip="{{localize @root.currency}}"></i>
-				{{stats.zenit}}
-				<i class="fu-icon--s {{pfuIconClass 'exp'}}" data-tooltip="{{localize 'FU.ChatExpAwardEarnedExp'}}"></i>
-				{{stats.xp}}
-			</div>
-			<div class="resources">
-				<i class="fu-icon--s {{pfuIconClass 'fp'}}" data-tooltip="{{localize 'FU.ChatExpAwardSpentFabula'}}"></i>
-				{{stats.fp}}
-				<i class="fu-icon--s {{pfuIconClass 'up'}}" data-tooltip="{{localize 'FU.ChatExpAwardUltimaExp'}}"></i>
-				{{stats.up}}
-			</div>
-		</fieldset>
-	</div>
-</div>
+</section>

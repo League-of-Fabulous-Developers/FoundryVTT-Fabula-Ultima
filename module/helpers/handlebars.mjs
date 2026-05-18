@@ -2,6 +2,7 @@ import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
 import { FU } from './config.mjs';
 import { TraitUtils } from '../pipelines/traits.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -45,6 +46,42 @@ export const FUHandlebars = Object.freeze({
 			return str;
 		});
 
+		Handlebars.registerHelper('pfuHumanize', function (str) {
+			if (str && typeof str === 'string') {
+				return StringUtils.humanize(str);
+			}
+			return str;
+		});
+
+		Handlebars.registerHelper('pfuRomanNumeral', function (num) {
+			if (num === null || num === undefined || num < 0) return '';
+
+			const map = [
+				[1000, 'M'],
+				[900, 'CM'],
+				[500, 'D'],
+				[400, 'CD'],
+				[100, 'C'],
+				[90, 'XC'],
+				[50, 'L'],
+				[40, 'XL'],
+				[10, 'X'],
+				[9, 'IX'],
+				[5, 'V'],
+				[4, 'IV'],
+				[1, 'I'],
+			];
+
+			let result = '';
+			for (const [value, numeral] of map) {
+				while (num >= value) {
+					result += numeral;
+					num -= value;
+				}
+			}
+			return result;
+		});
+
 		Handlebars.registerHelper('pfuLocalizeTrait', function (trait) {
 			if (trait && typeof trait === 'string') {
 				return TraitUtils.localize(trait);
@@ -57,6 +94,17 @@ export const FUHandlebars = Object.freeze({
 				return str.toUpperCase();
 			}
 			return str;
+		});
+
+		Handlebars.registerHelper('pfuAcronym', function (str, threshold) {
+			if (str.length <= threshold) {
+				return str;
+			}
+			const split = str.trim().split(' ');
+			if (split.length > 1) {
+				return split.map((word) => word[0].toUpperCase()).join('.');
+			}
+			return split[0];
 		});
 
 		Handlebars.registerHelper('pfuHalf', function (value) {
@@ -155,6 +203,10 @@ export const FUHandlebars = Object.freeze({
 			return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
 		});
 
+		Handlebars.registerHelper('pfuSort', (array, key) => {
+			return [...array].sort((a, b) => (a[key] > b[key] ? 1 : -1));
+		});
+
 		Handlebars.registerHelper('pfuMath', function (left, operator, right) {
 			left = parseFloat(left);
 			right = parseFloat(right);
@@ -171,6 +223,14 @@ export const FUHandlebars = Object.freeze({
 			return Math.clamp(val, min, max);
 		});
 
+		Handlebars.registerHelper('pfuImage', (src, classes, label) => {
+			if (VideoHelper.hasVideoExtension(src)) {
+				return new Handlebars.SafeString(`<video class="${classes}" autoplay loop muted playsinline src="${src}" data-tooltip="${label}"></video>`);
+			} else {
+				return new Handlebars.SafeString(`<img class="${classes}" src="${src}" data-tooltip="${label}" alt="${label}">`);
+			}
+		});
+
 		Handlebars.registerHelper(
 			'pfuCheckOutcome',
 			/**
@@ -178,7 +238,7 @@ export const FUHandlebars = Object.freeze({
 			 * @param difficulty
 			 */
 			function (result, difficulty) {
-				if (result.critical) {
+				if (result.crit) {
 					return 'critical';
 				} else if (result.fumble) {
 					return 'fumble';
@@ -196,14 +256,30 @@ export const FUHandlebars = Object.freeze({
 			},
 		);
 
+		// Creates array from arguments
+		Handlebars.registerHelper('pfuArray', function (...args) {
+			return args.slice(0, -1);
+		});
+
+		// Render a fallback if the value is falsy for handlebars
+		Handlebars.registerHelper('pfuDefault', (value, fallback) => value ?? fallback);
+
+		// Creates a plain object from the handlebars named parameters
+		Handlebars.registerHelper('pfuHash', function (options) {
+			return options.hash;
+		});
+
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
 		Handlebars.registerHelper('pfuTraits', traits);
 		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
 		Handlebars.registerHelper('pfuBadge', badge);
+		Handlebars.registerHelper('pfuActorProfile', actorProfile);
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
 		Handlebars.registerHelper('pfuCompendium', compendium);
+		Handlebars.registerHelper('pfuArrayField', arrayField);
+		Handlebars.registerHelper('pfuHelpIcon', helpIcon);
 	},
 });
 
@@ -218,8 +294,10 @@ export const FUHandlebars = Object.freeze({
  * @property {Boolean} prompt Whether to support prompting a dialog to request a roll to affect this track
  * @property {Boolean} event Whether to dispatch an event on a change
  * @property {Boolean} controls
+ * @property {Boolean} compact If true, will present the controls in a more compact way.
  * @property action
  * @property {"clock"|"basic"} style
+ * @property {String} classes
  */
 
 const progressStyleTemplates = Object.freeze({
@@ -281,6 +359,8 @@ function renderProgress(progress, document, path, options, index = undefined) {
 					controls: controls,
 					action: action,
 					prompt: options.prompt,
+					classes: options.classes ?? '',
+					compact: options.compact,
 					displayName: options.displayName && (progress.name || document.name),
 				})
 			: '';
@@ -292,7 +372,7 @@ function renderProgress(progress, document, path, options, index = undefined) {
 function autoComplete(context) {
 	const dataset = context.hash;
 	let options = dataset.options;
-	if (typeof options === 'object') {
+	if (options !== null && typeof options === 'object' && !Array.isArray(options)) {
 		options = Object.keys(options);
 	}
 	const template = Handlebars.partials[systemTemplatePath('common/auto-complete')];
@@ -301,6 +381,7 @@ function autoComplete(context) {
 			? template({
 					name: dataset.name,
 					value: dataset.value,
+					placeholder: dataset.placeholder,
 					options: options,
 				})
 			: '';
@@ -373,15 +454,15 @@ function badge(key, options) {
 }
 
 /**
- * @typedef ItemAnchorOptions
+ * @typedef DocumentImageOptions
  * @property {String} label
- * @property {String}
+ * @property {String} classes
  * @property {'xs'|'s'|'m'|'l'|'xl'} size
  */
 
 /**
  * @param {FUItem} item
- * @param {ItemAnchorOptions} options
+ * @param {DocumentImageOptions} options
  * @returns {Handlebars.SafeString}
  */
 function itemAnchor(item, options) {
@@ -412,6 +493,37 @@ function itemAnchor(item, options) {
 }
 
 /**
+ * @param {FUActor} actor
+ * @param {DocumentImageOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function actorProfile(actor, options) {
+	if (!actor) {
+		console.warn(`Missing actor information for rendering. Ignoring...`);
+		return '';
+	}
+
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const size = options.size ?? 'xl';
+	const template = Handlebars.partials[systemTemplatePath('common/icons/actor')];
+	const html =
+		typeof template === 'function'
+			? template({
+					name: actor.name,
+					uuid: actor.uuid,
+					id: actor.id,
+					img: actor.img,
+					size: size,
+					classes: options?.classes,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
  * @param {String} tab
  * @param {CompendiumFilterInputOptions} options
  * @returns {Handlebars.SafeString}
@@ -426,6 +538,64 @@ function compendium(tab, options) {
 		typeof template === 'function'
 			? template({
 					tab: tab,
+					...options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @typedef FUArrayFieldOptions
+ * @property {*[]} array
+ * @property {String} label
+ * @property {String} path
+ * @property {'string'} type
+ * @property {String[]|undefined} options
+ */
+
+/**
+ * @param {FUArrayFieldOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function arrayField(options) {
+	options = options.hash;
+	const template = Handlebars.partials[systemTemplatePath('common/array-field')];
+	const html =
+		typeof template === 'function'
+			? template({
+					array: options.array,
+					label: options.label,
+					path: options.path,
+					type: options.type,
+					options: options.options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @typedef FUHandlebarsTooltipOptions
+ * @property {'help'|'info'|'warning'} type
+ * @property
+ */
+
+/**
+ * @param {String} text
+ * @param {FUHandlebarsTooltipOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function helpIcon(text, options) {
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const type = options.type ?? 'help';
+	const template = Handlebars.partials[systemTemplatePath('common/icons/tooltip')];
+	const html =
+		typeof template === 'function'
+			? template({
+					text: text,
+					type,
 					...options,
 				})
 			: '';

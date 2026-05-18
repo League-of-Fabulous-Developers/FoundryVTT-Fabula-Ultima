@@ -6,7 +6,7 @@ const fields = foundry.data.fields;
 
 /**
  * @extends RuleTriggerDataModel
- * @property {String} identifier The id of an Item to match.
+ * @property {String} identifier The id of an item to match.
  * @property {Set<CheckType>} checkTypes
  * @property {Set<FUItemGroup>} itemGroups
  * @property {Boolean} local
@@ -30,7 +30,7 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 			checkTypes: new fields.SetField(new fields.StringField()),
 			itemGroups: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
-			local: new fields.BooleanField({ initial: true }),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}
@@ -62,14 +62,17 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 		}
 
 		// If this RE is on an item, and it doesn't match the item in the event.
-		if (this.local && context.item) {
-			if (context.event.sourceInfo.itemUuid !== context.sourceInfo.itemUuid) {
+		if (this.local) {
+			if (!context.isLocalItem()) {
 				return false;
 			}
 		}
 
+		// Check identifier
 		if (this.identifier) {
-			return context.matchesItem(this.identifier);
+			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
 		}
 		return true;
 	}

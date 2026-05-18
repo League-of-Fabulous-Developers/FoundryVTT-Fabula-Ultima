@@ -1,6 +1,6 @@
 .cell-item-controls {
 	height: 100%;
-	padding-right: 5px;
+	padding: 0 5px 5px 0;
 
 	display: flex;
 	justify-content: end;

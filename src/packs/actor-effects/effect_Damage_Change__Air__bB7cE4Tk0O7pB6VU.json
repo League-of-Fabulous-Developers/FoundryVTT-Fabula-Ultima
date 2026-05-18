@@ -1,0 +1,111 @@
+{
+  "folder": "i0jimZH61f90h4La",
+  "name": "Damage Change (Air)",
+  "type": "effect",
+  "_id": "bB7cE4Tk0O7pB6VU",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "system": {
+    "fuid": "damage-change-air",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Damage Change (Air)",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.bB7cE4Tk0O7pB6VU",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "mbusLUheKGXFsmU3",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.normal",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your <strong>attacks</strong>, <strong>spells</strong>, and <strong>Skills</strong> becomes <strong>air</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Damage Change (Air)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.bB7cE4Tk0O7pB6VU",
+            "effectUuid": null,
+            "fuid": "damage-change-air"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774824917292,
+        "modifiedTime": 1774826292190,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!bB7cE4Tk0O7pB6VU.mbusLUheKGXFsmU3"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762589073,
+    "modifiedTime": 1774762589073,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!bB7cE4Tk0O7pB6VU"
+}

@@ -4,9 +4,9 @@
 	</section>
 {{/if}}
 <div style="display: grid; margin-top: 4px;">
-	<div class="unique-clock gap-10">
-		<div class="progress-container">
-			<div class="progress" style="--segments: {{progress.max}}; --size: 50px" data-segments="{{progress.max}}"
+	<div class="pfu-progress__chat gap-10">
+		<div class="pfu-progress__segments__container">
+			<div class="pfu-progress__segments" style="--segments: {{progress.max}}; --size: 50px" data-segments="{{progress.max}}"
 				 data-tooltip="{{localize 'FU.Progress'}}">
 				<div class="foreground"></div>
 				{{#each segments as |obj key|}}
@@ -16,14 +16,26 @@
 				{{/each}}
 			</div>
 		</div>
-		<div class="flexcol flex-group-center" style="display: flex; width: 100%;">
+		<div class="details">
 			{{#if displayName}}
-				<div class="rp-label">{{localize progress.name}}</div>
+				<div class="name">
+					{{#if progress.parent.parent.img}}
+						<img class="fu-icon--m" alt="icon" src="{{{progress.parent.parent.img}}}" />
+					{{/if}}
+					<span>{{localize progress.name}}</span>
+				</div>
 			{{/if}}
-			<div class="flex-group-center stats">
-				<span class="stat-current">{{progress.current}}</span>
-				<span class="stat-divider">/</span>
-				<span class="stat-max">{{progress.max}}</span>
+
+			<div class="divider">
+				<div class="divider-line"></div>
+				<i class="fas fa-diamond"></i>
+				<div class="divider-line"></div>
+			</div>
+
+			<div class="counter">
+				<span class="current">{{progress.current}}</span>
+				<span class="">/</span>
+				<span class="max">{{progress.max}}</span>
 			</div>
 		</div>
 	</div>

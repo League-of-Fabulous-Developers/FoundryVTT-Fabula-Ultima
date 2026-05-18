@@ -1,0 +1,110 @@
+{
+  "folder": "XMwGgKmPfunBVc8p",
+  "name": "Physical Absorption",
+  "type": "effect",
+  "_id": "XU3UN4eTFAcOBfHG",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+  "system": {
+    "fuid": "physical-absorption",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Physical Absorption",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.XU3UN4eTFAcOBfHG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "bcHlRGl795fNdYqS",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.physical.current",
+          "mode": 4,
+          "value": "3",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Absorption to <strong>physical</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Physical Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.XU3UN4eTFAcOBfHG",
+            "effectUuid": null,
+            "fuid": "physical-absorption"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774715938023,
+        "modifiedTime": 1774715963550,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!XU3UN4eTFAcOBfHG.bcHlRGl795fNdYqS"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774715934449,
+    "modifiedTime": 1774715937029,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!XU3UN4eTFAcOBfHG"
+}

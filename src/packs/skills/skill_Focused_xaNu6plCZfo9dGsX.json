@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Loremaster"
+      "value": "loremaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -135,7 +135,7 @@
         {
           "key": "system.resources.mp.bonus",
           "mode": 2,
-          "value": "3*@system.level.value",
+          "value": "3*$sl",
           "priority": null
         }
       ],
@@ -155,7 +155,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1770415683091,
+        "modifiedTime": 1771837306158,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
@@ -224,7 +224,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

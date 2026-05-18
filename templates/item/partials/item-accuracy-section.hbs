@@ -7,6 +7,22 @@
 			</label>
 		</legend>
 
+		<div class="grid grid-2col">
+			<div class="resource-content flexcol flex-group-center">
+				<label class="checkbox resource-label-sm">
+					<span>{{localize 'FU.UseWeaponAccuracy'}}</span>
+					<input type="checkbox" name="system.useWeapon.accuracy" {{ checked system.useWeapon.accuracy }} {{disabled (not system.hasRoll.value)}} />
+				</label>
+			</div>
+
+			<div class="resource-content flexcol flex-group-center">
+				<label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
+				<select name="system.defense" class="resource-inputs select-dropdown-m">
+					{{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr" blank="-"}}
+				</select>
+			</div>
+		</div>
+
 		<div class="grid grid-3col">
 			<div class=" flexcol flex-group-center">
 				<label for="system.attributes.primary" class="resource-label-m">{{localize 'FU.Primary'}}</label>
@@ -32,19 +48,6 @@
 			<div class=" flexcol flex-group-center">
 				<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
 				<input type="text" name="system.accuracy" value="{{ system.accuracy }}" class="resource-inputs select-dropdown-m" {{disabled (not system.hasRoll.value)}}/>
-			</div>
-			<div class="resource-content flexcol flex-group-center">
-				<label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
-				<select name="system.defense" class="resource-inputs select-dropdown-m">
-					{{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr" blank="-"}}
-				</select>
-			</div>
-
-			<div class="resource-content flexcol flex-group-center">
-				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.UseWeaponAccuracy'}}</span>
-					<input type="checkbox" name="system.useWeapon.accuracy" {{ checked system.useWeapon.accuracy }} {{disabled (not system.hasRoll.value)}} />
-				</label>
 			</div>
 		</div>
 	</fieldset>

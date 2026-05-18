@@ -1,6 +1,6 @@
 {
   "folder": "YUHjUEikuMRGOD9f",
-  "name": "Made with Love",
+  "name": "Made With Love",
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/gourmet/made_with_love.png",
   "system": {
@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>When you use the </span><strong>Cooking</strong><span> Skill and choose to apply the effects of the delicacy to yourself or an ally you can see, you may spend up to<strong>【SL × 10】</strong>MP. For every 10 MP you spend this way, you also apply the <strong>delicacy</strong>'s effects to another ally you can see.</span></p>",
+    "description": "<p><span>When you use the </span><strong>Cooking</strong><span> Skill and choose to apply the effects of the <strong>delicacy</strong> to yourself or an ally you can see, you may spend up to <strong>【SL × 10】</strong> MP. For every 10 MP you spend this way, you also apply the <strong>delicacy</strong>'s effects to another ally you can see.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Gourmet"
+      "value": "gourmet"
     },
     "useWeapon": {
       "accuracy": false,
@@ -63,12 +63,18 @@
     "targeting": {
       "rule": "special",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
   "flags": {
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -78,7 +84,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1770421071367,
+    "modifiedTime": 1775546479507,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

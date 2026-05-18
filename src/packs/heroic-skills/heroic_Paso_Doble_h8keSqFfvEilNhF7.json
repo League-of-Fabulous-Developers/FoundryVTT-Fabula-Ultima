@@ -9,7 +9,7 @@
     "summary": {
       "value": "Ignore the MP cost of Follow My Lead when you are in Crisis."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer </strong>Class, and must have acquired the <strong>Follow My Lead</strong> Skill.</p></blockquote><p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your @UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead} Skill.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Dancer</strong> Class, and must have acquired the <strong>Follow My Lead</strong> Skill.</p><hr /><p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your @UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead} Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Dancer"
+      "value": "dancer"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,39 +95,101 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "paso-doble"
+    "fuid": "paso-doble",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
-      "img": "icons/magic/control/control-influence-crown-yellow.webp",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Paso Doble",
-      "_id": "MweUOFKxGRLnhA52",
-      "type": "base",
+      "img": "icons/magic/control/control-influence-crown-yellow.webp",
       "system": {
-        "type": "default",
-        "predicate": {
-          "crisisInteraction": "active"
-        },
         "duration": {
           "event": "none",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "rules": {
+          "elements": {
+            "lhWH7pURWojI0Zgx": {
+              "type": "ruleElement",
+              "_id": "lhWH7pURWojI0Zgx",
+              "trigger": {
+                "_id": "67ua5hzY1RXHqhok",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "follow-my-lead"
+              },
+              "actions": {
+                "kgb5OOAOyfqNqBuE": {
+                  "type": "messageRuleAction",
+                  "_id": "kgb5OOAOyfqNqBuE",
+                  "message": "<p>While you are in <strong>Crisis</strong>, you ignore the MP cost.</p>"
+                }
+              }
+            },
+            "Q95dMk0g4AHFStD0": {
+              "type": "ruleElement",
+              "_id": "Q95dMk0g4AHFStD0",
+              "trigger": {
+                "_id": "lSPJvwv3It3BMmMf",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "follow-my-lead"
+              },
+              "actions": {
+                "GzWahT3Bq3W9768E": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "GzWahT3Bq3W9768E",
+                  "amount": "0",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Le5vpTg6eOOHgTTZ",
+      "type": "base",
       "changes": [],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">While you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, you ignore the MP cost for your <strong style=\"box-sizing:border-box;user-select:text\">Follow My Lead</strong> Skill. </span></p>",
+      "description": "<p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your <strong>Follow My Lead</strong> Skill.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -135,15 +199,15 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743650504464,
-        "modifiedTime": 1743650605687,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "exportSource": null
+        "createdTime": 1770763544541,
+        "modifiedTime": 1771283945234,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!h8keSqFfvEilNhF7.MweUOFKxGRLnhA52"
+      "_key": "!items.effects!h8keSqFfvEilNhF7.Le5vpTg6eOOHgTTZ"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -152,15 +216,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684669665,
-    "modifiedTime": 1743170725171,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771892871725,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

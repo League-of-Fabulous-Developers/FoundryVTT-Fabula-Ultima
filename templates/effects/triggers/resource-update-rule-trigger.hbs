@@ -1,13 +1,42 @@
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Resource'}}</span>
 	<select name="{{pfuConcat path ".resource"}}">
+		<option value="">-</option>
 		{{selectOptions options.resources selected=trigger.resource sort=true localize=true}}
 	</select>
 </label>
 
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Change'}}</span>
 	<select name="{{pfuConcat path ".change"}}">
+		<option value="">-</option>
 		{{selectOptions options.scalarChange selected=trigger.change sort=true localize=true}}
 	</select>
 </label>
+
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
+		<span>{{localize 'FU.ComparisonOperator'}}</span>
+		<select name="{{pfuConcat path ".changeThreshold.operator"}}">
+			<option value="">-</option>
+			{{selectOptions options.comparisonOperator selected=trigger.changeThreshold.operator sort=true localize=true}}
+		</select>
+	</label>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Amount'}}</span>
+		<input type="number" name="{{pfuConcat path ".changeThreshold.amount"}}" value="{{ trigger.changeThreshold.amount }}" />
+	</label>
+</div>
+
+<div class="fu-form__property-row">
+	<div class="fu-form__property">
+		<span>{{localize 'FU.Local'}}</span>
+		{{formGroup trigger.schema.fields.local value=trigger.local name=(pfuConcat path ".local") }}
+	</div>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Identifier'}}</span>
+		<input type="text" name={{pfuConcat path ".identifier"}} value="{{ trigger.identifier }}" />
+	</label>
+</div>

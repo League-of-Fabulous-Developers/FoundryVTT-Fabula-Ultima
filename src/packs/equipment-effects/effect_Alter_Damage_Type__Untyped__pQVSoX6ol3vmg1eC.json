@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Untyped)",
   "type": "effect",
   "_id": "pQVSoX6ol3vmg1eC",
-  "img": "systems/projectfu/styles/static/affinities/melee.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
   "system": {
-    "fuid": "alter-damage-type-untyped"
+    "fuid": "alter-damage-type-untyped",
+    "source": ""
   },
   "effects": [
     {
@@ -21,10 +22,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Untyped)",
-      "img": "systems/projectfu/styles/static/affinities/melee.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
       "_id": "OeYBD0qXY8yDrZs7",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>untyped</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725776568929,
-        "modifiedTime": 1725776594245,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732901527,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!pQVSoX6ol3vmg1eC.OeYBD0qXY8yDrZs7"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725776482515,
-    "modifiedTime": 1725776510413,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732898441,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!pQVSoX6ol3vmg1eC"

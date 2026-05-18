@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Tinkerer"
+      "value": "tinkerer"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "emergency-item"
+    "fuid": "emergency-item",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -147,10 +150,25 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
       },
       "changes": [],
-      "description": "<p><span class=\"fontstyle0\">Once per conflict scene, if you are in </span><span class=\"fontstyle2\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may perform an additional action on your turn. This action </span><span class=\"fontstyle2\"><strong>must </strong></span><span class=\"fontstyle0\">be the </span><span class=\"fontstyle2\"><strong>Inventory </strong></span><span class=\"fontstyle0\">action.</span> </p>",
+      "description": "<p>Once per conflict scene, if you are in <strong>Crisis</strong>, you may perform an additional action on your turn. This action <strong>must</strong> be the <strong>Inventory</strong> action. </p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -160,12 +178,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744748570567,
-        "modifiedTime": 1744748614369,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1775523400044,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!2MoV74xWJnF5Ru8u.1AGfKi86P13ZNwMs"
@@ -177,15 +195,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706508694101,
-    "modifiedTime": 1741964442531,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770618348861,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

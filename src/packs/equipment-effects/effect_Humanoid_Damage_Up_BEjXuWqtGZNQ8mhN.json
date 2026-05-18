@@ -1,0 +1,110 @@
+{
+  "folder": "2tE6Ya4uidA9PhD8",
+  "name": "Humanoid Damage Up",
+  "type": "effect",
+  "_id": "BEjXuWqtGZNQ8mhN",
+  "img": "systems/projectfu/styles/static/icons/humanoid.svg",
+  "system": {
+    "fuid": "humanoid-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Humanoid Damage Up",
+      "img": "systems/projectfu/styles/static/icons/humanoid.svg",
+      "origin": "Compendium.projectfu.equipment-effects.Item.BEjXuWqtGZNQ8mhN",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UUA4vRcjkUv08Lcr",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.humanoid",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage you deal to <strong>humanoids</strong> deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Humanoid Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.BEjXuWqtGZNQ8mhN",
+            "effectUuid": null,
+            "fuid": "humanoid-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774839806456,
+        "modifiedTime": 1774839863893,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!BEjXuWqtGZNQ8mhN.UUA4vRcjkUv08Lcr"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774839564186,
+    "modifiedTime": 1774839805468,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!BEjXuWqtGZNQ8mhN"
+}

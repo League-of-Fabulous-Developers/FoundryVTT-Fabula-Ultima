@@ -1,16 +1,16 @@
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.DamageType'}}</span>
-	{{formGroup action.schema.fields.damageTypes value=action.damageTypes options=options.damageTypeOptions name=(pfuConcat path ".damageTypes") classes="fu-rule-element__set stacked"}}
+	{{formGroup action.schema.fields.damageTypes value=action.damageTypes options=options.damageTypeOptions name=(pfuConcat path ".damageTypes") classes="fu-form__set stacked"}}
 </label>
 
 {{pfuTraits action.traits (pfuConcat path '.traits')}}
 
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Amount'}}</span>
 	<input type="text" name="{{pfuConcat path ".amount"}}" value="{{ action.amount }}" />
 </label>
 
-<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.Variant'}}">
+<label class="fu-form__property" data-tooltip="{{localize 'FU.Variant'}}">
 	<span>{{localize 'FU.Variant'}}</span>
 	<select name="{{pfuConcat path ".variant"}}">
 		<option value="">-</option>
@@ -18,12 +18,22 @@
 	</select>
 </label>
 
-<div class="fu-rule-element__group">
-	<label class="fu-rule-element__group__header flex-group-center">
+<label class="fu-form__property">
+	<span>{{localize 'FU.Effect'}}</span>
+	<input
+	 type="text"
+	 name="{{pfuConcat path ".effect"}}"
+	 value="{{action.effect}}"
+	 placeholder="e.g. Item.XYZ123.ActiveEffect.ABC123"
+	/>
+</label>
+
+<div class="fu-form__group">
+	<label class="fu-form__group__header flex-group-center">
 		<i class="ra ra-wrench"></i>{{localize 'FU.Cost'}}
 	</label>
-	<div class="fu-rule-element__property-row">
-		<label class="fu-rule-element__property">
+	<div class="fu-form__property-row">
+		<label class="fu-form__property">
 			<span>{{localize 'FU.Resource'}}</span>
 			<select name="{{pfuConcat path ".cost.resource"}}">
 				<option value="">-</option>
@@ -31,7 +41,7 @@
 			</select>
 		</label>
 
-		<label class="fu-rule-element__property">
+		<label class="fu-form__property">
 			<span>{{localize 'FU.Amount'}}</span>
 			<input type="number" name="{{pfuConcat path ".cost.amount"}}" value="{{ action.cost.amount }}" />
 		</label>

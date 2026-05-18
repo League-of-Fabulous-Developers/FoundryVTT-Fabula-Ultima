@@ -1,0 +1,111 @@
+{
+  "folder": "p8xEwV63WNoquCiM",
+  "name": "Effect: Golem Dance (Resistance)",
+  "type": "effect",
+  "_id": "Jhppf0TyPKJgfxUS",
+  "img": "icons/creatures/magical/construct-stone-earth-gray.webp",
+  "system": {
+    "fuid": "effect-golem-dance-resistance",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Golem Dance (Resistance)",
+      "img": "icons/creatures/magical/construct-stone-earth-gray.webp",
+      "origin": "Compendium.projectfu.skills.Item.Jhppf0TyPKJgfxUS",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "9NMq55HzYrySawd7",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.bolt",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the start of your next turn, you gain Resistance to <strong>bolt</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Golem Dance (Resistance)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.Jhppf0TyPKJgfxUS",
+            "effectUuid": null,
+            "fuid": "effect-golem-dance-resistance"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774641278297,
+        "modifiedTime": 1775844270779,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Jhppf0TyPKJgfxUS.9NMq55HzYrySawd7"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774641252264,
+    "modifiedTime": 1774641476492,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Jhppf0TyPKJgfxUS"
+}

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you work on a <strong>Project</strong>, up to <strong>【SL × 100】</strong> zenit of material costs are automatically paid; additionally, you generate an additional <strong>【SL】</strong> <strong>progress</strong> every day. If multiple characters with this Skill work on the same Project, the effects will be cumulative.</p>",
+    "description": "<p>When you work on a <strong>Project</strong>, up to <strong>【SL × 100】</strong> zenit of material costs are automatically paid; additionally, you generate an additional <strong>【SL】</strong> <strong>progress</strong> every day. If multiple characters with this Skill work on the same Project, the effects will be cumulative.</p><hr /><p>For <strong>Projects</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.8yqC3CkxUEUTTKe0]{Project Rules} or see <strong>Core Rulebook,</strong> page <strong>134</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Tinkerer"
+      "value": "tinkerer"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,15 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "visionary"
+    "fuid": "visionary",
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [],
   "ownership": {
@@ -127,15 +135,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706508759212,
-    "modifiedTime": 1741948161842,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1775596789191,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

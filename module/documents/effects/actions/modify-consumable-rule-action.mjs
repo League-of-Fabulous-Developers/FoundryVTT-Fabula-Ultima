@@ -45,17 +45,13 @@ export class ModifyConsumableRuleAction extends RuleActionDataModel {
 	async execute(context, selected) {
 		// TODO: Do different things based on the item traits?
 		if (context.event.builder) {
-			let amount = Number.parseInt(context.event.builder.amount);
 			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, context.targetActors);
 			if (this.bonus) {
-				const evalBonus = await Expressions.evaluateAsync(this.bonus, expressionContext);
-				amount += evalBonus;
+				context.event.builder.bonus += await Expressions.evaluateAsync(this.bonus, expressionContext);
 			}
 			if (this.multiplier) {
-				const evalMultiplier = await Expressions.evaluateAsync(this.multiplier, expressionContext, false);
-				amount *= evalMultiplier;
+				context.event.builder.multiplier *= await Expressions.evaluateAsync(this.multiplier, expressionContext, false);
 			}
-			context.event.builder.amount = amount;
 		}
 	}
 }

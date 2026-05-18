@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Sharpshooter"
+      "value": "sharpshooter"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "crossfire"
+    "fuid": "crossfire",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -177,7 +180,7 @@
                 "Jg8qePO1hy7kyP6V": {
                   "type": "messageRuleAction",
                   "_id": "Jg8qePO1hy7kyP6V",
-                  "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + MP equal to the Accuracy Check}.</p>"
+                  "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + Accuracy Check MP}.</p>"
                 }
               }
             }
@@ -200,7 +203,7 @@
       "_id": "ZUwqffH7kP8rWg0g",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -215,8 +218,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766863644203,
-        "modifiedTime": 1768582461308,
-        "lastModifiedBy": "bgUzjEHd80A79gwp"
+        "modifiedTime": 1771840136883,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"
     }
@@ -229,7 +232,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -237,8 +241,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706506746453,
-    "modifiedTime": 1768582494597,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770604787006,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

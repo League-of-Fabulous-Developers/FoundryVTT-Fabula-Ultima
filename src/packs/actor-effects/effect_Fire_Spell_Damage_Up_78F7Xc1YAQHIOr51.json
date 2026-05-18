@@ -1,0 +1,133 @@
+{
+  "folder": "iUWEn7Lso1K0AIOK",
+  "name": "Fire Spell Damage Up",
+  "type": "effect",
+  "_id": "78F7Xc1YAQHIOr51",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+  "system": {
+    "fuid": "fire-spell-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Fire Spell Damage Up",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.78F7Xc1YAQHIOr51",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Nu4XRN74PgC8fTeW": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "FrzJOSJo55R9QOFQ",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [
+                  "fire"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "Nu4XRN74PgC8fTeW",
+              "actions": {
+                "wmAZbrVbYiwA99kH": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "wmAZbrVbYiwA99kH",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "iyWE0GsdvXJ0pao9",
+      "type": "base",
+      "changes": [],
+      "description": "<p><strong>Spells</strong> you cast that deal <strong>fire</strong> damage deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Fire Spell Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.78F7Xc1YAQHIOr51",
+            "effectUuid": null,
+            "fuid": "fire-spell-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774823894330,
+        "modifiedTime": 1774823921000,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!78F7Xc1YAQHIOr51.iyWE0GsdvXJ0pao9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774764062735,
+    "modifiedTime": 1774764062735,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!78F7Xc1YAQHIOr51"
+}

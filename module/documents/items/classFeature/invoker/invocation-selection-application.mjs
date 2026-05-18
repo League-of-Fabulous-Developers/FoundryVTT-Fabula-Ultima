@@ -2,22 +2,21 @@ import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { InvocationTableRenderer } from '../../../../helpers/tables/invocation-table-renderer.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
+import { getTargeted } from '../../../../helpers/target-handler.mjs';
 
 export class InvocationSelectionApplication extends FUApplication {
 	static DEFAULT_OPTIONS = {
-		classes: ['form', 'invocations-selection'],
+		classes: [`projectfu`, `fu-dialog`],
 		window: {
 			title: 'FU.ClassFeatureInvocationsSelectDialogTitle',
 		},
 		position: {
-			width: 500,
+			width: 640,
 			height: 'auto',
 		},
 		actions: {
-			useInvocation: InvocationSelectionApplication.UseInvocation,
-			// The item name template from the table renderer we're using
-			// hard codes the data-action on its icon to `roll`
-			roll: InvocationSelectionApplication.UseInvocation,
+			selectWellspring: InvocationSelectionApplication.#selectWellspring,
+			useInvocation: InvocationSelectionApplication.#useInvocation,
 		},
 	};
 
@@ -30,6 +29,11 @@ export class InvocationSelectionApplication extends FUApplication {
 		},
 	};
 
+	/** @type WellspringElementData **/
+	#wellspring;
+	/** @type **/
+	#invocations;
+	/** @type InvocationsDataModel **/
 	#model;
 	#invocationTable = new InvocationTableRenderer();
 
@@ -40,31 +44,67 @@ export class InvocationSelectionApplication extends FUApplication {
 		return this.#model.app;
 	}
 
-	async _prepareContext(options = {}) {
-		const activeWellsprings = Object.entries(this.#model.actor.wellspringManager.activeWellsprings)
+	/**
+	 * @returns {WellspringElement[]}
+	 */
+	getActiveWellsprings() {
+		return Object.entries(this.#model.actor.wellspringManager.activeWellsprings)
 			.filter(([, value]) => value)
 			.map(([key]) => key);
+	}
+
+	async _prepareContext(options = {}) {
+		const activeWellsprings = this.getActiveWellsprings();
+		const targets = await getTargeted(false, false);
+		if (!this.#wellspring) {
+			this.#wellspring = WELLSPRINGS[activeWellsprings[0]];
+			await this.onWellspringChanged();
+		}
+		const wellsprings = await Promise.all(
+			activeWellsprings.map(async (element) => {
+				return {
+					wellspring: WELLSPRINGS[element],
+					table: await this.#invocationTable.renderTable(this.#model, { wellspring: element }),
+				};
+			}),
+		);
 
 		return {
+			invocations: this.#invocations,
+			wellspring: this.#wellspring,
+			targets: targets,
 			buttons: [{ type: 'submit', icon: 'fa-solid fa-times', label: 'Close' }],
-			wellsprings: await Promise.all(
-				activeWellsprings.map(async (element) => {
-					return {
-						wellspring: WELLSPRINGS[element],
-						table: await this.#invocationTable.renderTable(this.#model, { wellspring: element }),
-					};
-				}),
-			),
+			wellsprings: wellsprings,
 		};
 	}
 
-	static UseInvocation(event, elem) {
-		const invocation = elem.closest(`[data-invocation]`).dataset.invocation;
-		const element = elem.closest(`[data-element]`).dataset.element;
+	async onWellspringChanged() {
+		this.#invocations = await this.#model.getAvailableInvocations(this.#wellspring.key);
+	}
+
+	/**
+	 * @this InvocationSelectionApplication
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	static async #selectWellspring(event, target) {
+		const { element } = target.dataset;
+		this.#wellspring = WELLSPRINGS[element];
+		await this.onWellspringChanged();
+		this.render(true);
+	}
+
+	/**
+	 * @this InvocationSelectionApplication
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	static async #useInvocation(event, target) {
+		const { level, element } = target.dataset;
 		this.close({
 			use: {
 				element,
-				invocation,
+				invocation: level,
 			},
 		});
 	}

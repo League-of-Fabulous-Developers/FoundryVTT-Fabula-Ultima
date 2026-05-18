@@ -1,0 +1,130 @@
+{
+  "folder": "gFIBB0I6XXkT9Mo9",
+  "name": "Potion MP Restore Up",
+  "type": "effect",
+  "_id": "qvPhBVSkXZ3MGqpk",
+  "img": "systems/projectfu/styles/static/icons/resources/mp.png",
+  "system": {
+    "fuid": "potion-mp-restore-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Potion MP Restore Up",
+      "img": "systems/projectfu/styles/static/icons/resources/mp.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.qvPhBVSkXZ3MGqpk",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "j1JBe6rk6TSlPLXp": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "GOTwYkUIuYevBblW",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "potion",
+                    "restore",
+                    "mind-point"
+                  ],
+                  "quantifier": "all"
+                }
+              },
+              "_id": "j1JBe6rk6TSlPLXp",
+              "predicates": {},
+              "actions": {
+                "mF98YLWGNjkaKdT7": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "mF98YLWGNjkaKdT7",
+                  "bonus": "5",
+                  "multiplier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "rpHgYutv2PnmRFky",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you create a <strong>potion</strong> with your Inventory Points whose effects restore <strong>Mind Points</strong> while you have this equipped, it restores <strong>5 extra Mind Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Potion MP Restore Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.qvPhBVSkXZ3MGqpk",
+            "effectUuid": null,
+            "fuid": "potion-mp-restore-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774717584340,
+        "modifiedTime": 1774828047833,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!qvPhBVSkXZ3MGqpk.rpHgYutv2PnmRFky"
+    }
+  ],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774717410941,
+    "modifiedTime": 1774828019404,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!qvPhBVSkXZ3MGqpk"
+}

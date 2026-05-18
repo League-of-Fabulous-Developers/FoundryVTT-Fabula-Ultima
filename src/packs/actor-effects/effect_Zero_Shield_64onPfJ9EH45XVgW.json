@@ -31,7 +31,13 @@
             "max": 6,
             "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -66,12 +72,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1746365670284,
-        "modifiedTime": 1746366085349,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1774832223300,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!64onPfJ9EH45XVgW.eQuLX93g7C1kKqk6"

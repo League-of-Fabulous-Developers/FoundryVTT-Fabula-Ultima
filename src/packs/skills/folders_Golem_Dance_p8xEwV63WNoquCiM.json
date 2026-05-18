@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "l4GzpixRQaRbzHKh",
+  "name": "Golem Dance",
+  "color": "#f075f0",
+  "sorting": "a",
+  "_id": "p8xEwV63WNoquCiM",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774641429638
+  },
+  "_key": "!folders!p8xEwV63WNoquCiM"
+}

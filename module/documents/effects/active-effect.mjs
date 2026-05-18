@@ -60,6 +60,7 @@ function onApplyActiveEffect(actor, change, current) {
 Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
+	/** @type FUActor **/
 	const actor = effect.parent;
 	if (!actor || !actor.system || !actor.system.immunities) return true;
 
@@ -88,6 +89,20 @@ Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
 			});
 
 			return false; // Prevent the effect from being created
+		}
+	}
+
+	// Check if there is an instance of this effect already
+	if (effect.identifier) {
+		const matchingEffect = actor.resolveEffect(effect.identifier);
+		if (matchingEffect) {
+			const stackable = matchingEffect.stackable;
+			console.debug(`Found a matching effect of ${effect.identifier}. Stackable? ${stackable}`);
+			if (stackable) {
+				// TODO: Add a stacking message
+				matchingEffect.addStack();
+				return false;
+			}
 		}
 	}
 

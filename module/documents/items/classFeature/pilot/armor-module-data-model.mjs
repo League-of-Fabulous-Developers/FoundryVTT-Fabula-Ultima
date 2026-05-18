@@ -30,6 +30,7 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 			}),
 			martial: new BooleanField(),
 			quality: new StringField(),
+			cost: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }),
 			description: new HTMLField(),
 		};
 	}

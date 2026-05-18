@@ -1,0 +1,117 @@
+{
+  "folder": "0UHHHq1FmzM6HSrz",
+  "name": "Effect: Angel Dance (Damage)",
+  "type": "effect",
+  "_id": "pTGmqlUV6EvHquoQ",
+  "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+  "system": {
+    "fuid": "effect-angel-dance-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Angel Dance (Damage)",
+      "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "RQ4JkyAsLwLGcF8Z",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "light",
+          "priority": null
+        },
+        {
+          "key": "system.overrides.damageType.spell.normal",
+          "mode": 5,
+          "value": "light",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>light</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Angel Dance (Damage)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ",
+            "effectUuid": null,
+            "fuid": "effect-angel-dance-damage"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774640764731,
+        "modifiedTime": 1775844228142,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!pTGmqlUV6EvHquoQ.RQ4JkyAsLwLGcF8Z"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774640657045,
+    "modifiedTime": 1774640703429,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!pTGmqlUV6EvHquoQ"
+}

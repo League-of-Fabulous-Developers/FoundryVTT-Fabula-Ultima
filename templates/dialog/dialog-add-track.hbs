@@ -1,5 +1,5 @@
-<form>
-	<div class="flex-group-center flexrow resource-content desc">
+<main class="desc flexcol gap-8">
+	<div class="flex-group-center flexrow resource-content">
 		<label class="resource-label" for="name">{{localize 'FU.Name'}}</label>
 		<input type="text" id="name" name="name"/>
 
@@ -7,7 +7,7 @@
 		<input type="text" id="id" name="id" placeholder="{{localize 'Optional'}}"/>
 	</div>
 
-	<div class="flex-group-center flexrow resource-content desc">
+	<div class="flex-group-center flexrow resource-content">
 		<label class="resource-label" for="max">{{localize 'FU.ClockSections'}}</label>
 		<input class="resource-label" type="number" id="max" name="max" value="6"/>
 		{{#if selectStyle}}
@@ -19,4 +19,4 @@
 			</select>
 		{{/if}}
 	</div>
-</form> 
+</main>

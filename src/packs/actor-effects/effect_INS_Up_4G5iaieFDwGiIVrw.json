@@ -4,26 +4,49 @@
   "_id": "4G5iaieFDwGiIVrw",
   "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
   "system": {
-    "fuid": "effect"
+    "fuid": "ins-up"
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "INS Up",
       "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
-      "_id": "PcsvqBjmjPLOLyqI",
+      "origin": "Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "T8YR3R1jR13ceY95",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.attributes.ins",
@@ -32,31 +55,37 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Insight die size by 1.</p>",
+      "description": "<p>You treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "INS Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw",
+            "effectUuid": null,
+            "fuid": "ins-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
-        "exportSource": null
+        "createdTime": 1774816857171,
+        "modifiedTime": 1774816871298,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!4G5iaieFDwGiIVrw.PcsvqBjmjPLOLyqI"
+      "_key": "!items.effects!4G5iaieFDwGiIVrw.T8YR3R1jR13ceY95"
     }
   ],
-  "folder": "7NQvpwoHcTkOxvMv",
+  "folder": "mI21NJqZ45bnQ2S3",
   "ownership": {
     "default": 0,
     "dobQfkKFj2NK96cc": 3
@@ -65,12 +94,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725743137509,
-    "modifiedTime": 1725743139185,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774761642521,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "sort": 200000,

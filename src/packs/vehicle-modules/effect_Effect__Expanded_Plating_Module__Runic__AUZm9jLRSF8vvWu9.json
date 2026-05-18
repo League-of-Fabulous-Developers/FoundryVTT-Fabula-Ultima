@@ -1,0 +1,117 @@
+{
+  "folder": "9TI1Ne5OR4LRpyjf",
+  "name": "Effect: Expanded Plating Module (Runic)",
+  "type": "effect",
+  "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+  "system": {
+    "fuid": "effect-expanded-plating-module-runic",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Expanded Plating Module (Runic)",
+      "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.AUZm9jLRSF8vvWu9",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "EoSIwzcxuTrz1huN",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 4,
+          "value": "10",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.value",
+          "mode": 4,
+          "value": "11",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you are a passenger of a <strong>personal vehicle</strong> with the <strong>expanded plating module</strong> enabled, you may treat your Defense and Magic Defense scores as being equal to those provided by the <strong>Runic Plating module</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Expanded Plating Module (Runic)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.AUZm9jLRSF8vvWu9",
+            "effectUuid": null,
+            "fuid": "effect-expanded-plating-module-runic"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773722540181,
+        "modifiedTime": 1773722575895,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!AUZm9jLRSF8vvWu9.EoSIwzcxuTrz1huN"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1773722221040,
+    "modifiedTime": 1773722329729,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "AUZm9jLRSF8vvWu9",
+  "sort": 300000,
+  "_key": "!items!AUZm9jLRSF8vvWu9"
+}

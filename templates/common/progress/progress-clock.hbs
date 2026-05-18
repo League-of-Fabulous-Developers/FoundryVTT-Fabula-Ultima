@@ -1,7 +1,7 @@
-<div class="inline-desc flexrow flex-group-center" data-item-id="{{id}}">
+<div class="pfu-progress inline-desc flexrow flex-group-center resource-content {{classes}}" data-item-id="{{id}}">
 
-	<div class="progress-container">
-		<div class="progress" style="--segments: {{data.max}};" data-segments="{{data.max}}" data-index="{{index}}"
+	<div class="pfu-progress__segments__container" data-tooltip="{{data.current}}/{{data.max}}">
+		<div class="pfu-progress__segments" style="--segments: {{data.max}};" data-segments="{{data.max}}" data-index="{{index}}"
 			 data-action="{{action}}"
 			 data-id="{{id}}"
 			 data-index="{{index}}"
@@ -20,10 +20,22 @@
 	</div>
 
 	{{#if displayName}}
-		<label>
-			<span class="resource-label-sm">{{localize displayName}}</span>
-		</label>
+		<div class="pfu-progress__name__container">
+			{{#if compact}}
+				<a data-action="openTrackMenu" data-id="{{id}}"
+				   {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}
+				   data-index="{{index}}">
+					<span>{{localize displayName}}</span>
+				</a>
+			{{else}}
+				<label>
+					<span>{{localize displayName}}</span>
+				</label>
+			{{/if}}
+		</div>
 	{{/if}}
 
-	{{> 'systems/projectfu/templates/common/progress/partials/progress-controls.hbs'}}
+	{{#unless compact}}
+		{{> 'systems/projectfu/templates/common/progress/partials/progress-controls.hbs'}}
+	{{/unless}}
 </div>

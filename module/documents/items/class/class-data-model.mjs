@@ -20,12 +20,10 @@ const tagProperties = {
 	'benefits.rituals.spiritism.value': 'FU.Spiritism',
 };
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ClassDataModel) {
-		const tags = item.system.getTags();
-		CommonSections.tags(sections, tags);
-
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		data.tags.push(...item.system.getTags());
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 
@@ -53,13 +51,16 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} source.value
  */
 export class ClassDataModel extends FUStandardItemDataModel {
+	static MAX_LEVEL = 10;
+
 	static defineSchema() {
 		const { SchemaField, BooleanField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
+			// TODO: Remove once validated nothing refers
 			level: new SchemaField({
-				value: new NumberField({ initial: 1, min: 1, max: 10, nullable: false }),
-				max: new NumberField({ initial: 10, min: 1, nullable: false }),
+				//value: new NumberField({ initial: 1, min: 1, max: 10, nullable: false }),
 				min: new NumberField({ initial: 0, min: 0, nullable: false }),
+				max: new NumberField({ initial: 10, min: 1, nullable: false }),
 			}),
 			benefits: new SchemaField({
 				resources: new SchemaField({
@@ -111,19 +112,20 @@ export class ClassDataModel extends FUStandardItemDataModel {
 			.map(([, translation]) => ({ tag: translation }));
 	}
 
-	/**
-	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
-	 * @param {PointerEvent} event
-	 * @param {HTMLElement} target
-	 */
-	modifyClassLevel(event, target) {
-		const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
-
-		const { value, min, max } = this.level;
-		const newValue = value + change;
-
-		return this.parent.update({
-			'system.level.value': Math.clamp(newValue, min, max),
-		});
-	}
+	// TODO: Verify deprecated across the board
+	// /**
+	//  * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	//  * @param {PointerEvent} event
+	//  * @param {HTMLElement} target
+	//  */
+	// modifyClassLevel(event, target) {
+	// 	const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
+	//
+	// 	const { value, min, max } = this.level;
+	// 	const newValue = value + change;
+	//
+	// 	return this.parent.update({
+	// 		'system.level.value': Math.clamp(newValue, min, max),
+	// 	});
+	// }
 }

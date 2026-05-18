@@ -1,12 +1,10 @@
 {{#if system.floralist.planted}}
     <fieldset class="title-fieldset desc resource-content garden-section">
-        {{#unless system.floralist.garden.system.data.gardenName}}
-            <legend class="resource-label-m">{{localize 'FU.ClassFeatureGarden'}}</legend>
-        {{else}}
-            <legend class="item resource-label-m" data-item-id="{{ system.floralist.garden.id }}">
-                {{system.floralist.garden.system.data.gardenName}}
-            </legend>
-        {{/unless}}
+		{{#if actor.tracks.garden}}
+			<legend class="item resource-label-m" data-item-id="{{ actor.tracks.garden.id }}">
+				{{actor.tracks.garden.name}}
+			</legend>
+		{{/if}}
         <div class="items-list">
             <div class="item" data-item-id="{{system.floralist.planted.id}}">
                 <div class="flexrow">
@@ -28,26 +26,5 @@
                 </div>
             </div>
         </div>
-        {{#if system.floralist.garden}}
-            {{#with system.floralist.garden as |clock|}}
-                <hr>
-                <div class="item growth-clock" data-item-id="{{ clock.id }}">
-                    {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs" arr=clock.system.data.clock.progressArray data=clock.system.data.clock dataPath="system.data.clock" action="modifyClock"}}
-                    <a class="increment-button" data-action="modifyClock" data-resource-action="increment">
-                        <i class="fas fa-plus"></i>
-                    </a>
-                    <a class="decrement-button" data-action="modifyClock" data-resource-action="decrement">
-                        <i class="fas fa-minus"></i>
-                    </a>
-                    <h4 class="item-name rollable resource-content" data-item-id="{{clock.id}}" data-roll-type="item">
-                        {{#unless clock.system.data.clock.name}}
-                            <span class="resource-label-m">{{ localize "FU.ClassFeatureGardenClockDefaultName" }}</span>
-                        {{else}}
-                            <span class="resource-label-m">{{ clock.system.data.clock.name }}</span>
-                        {{/unless}}
-                    </h4>
-                </div>
-            {{/with}}
-        {{/if}}
     </fieldset>
 {{/if}}

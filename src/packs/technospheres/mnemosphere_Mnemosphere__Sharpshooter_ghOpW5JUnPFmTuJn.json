@@ -12,219 +12,25 @@
     "maxLevel": 5,
     "items": [
       {
-        "name": "Warning Shot",
+        "name": "Barrage",
         "type": "skill",
-        "_id": "l1NEdUuIaMzqL3iS",
-        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
+        "_id": "B5wab1o5e8pULMcn",
+        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_barrage.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict <strong>shaken</strong> on each target hit by the attack; <strong>or</strong> inflicts <strong>slow</strong> on each target hit by the attack; or each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points. Describe your maneuver!</p><hr><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}</p></li></ul>",
+          "description": "<p>When you perform a <strong>ranged</strong> attack, you may spend 10 Mind Points to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 4,
+            "max": 1,
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR205",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "warning-shot",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 600000
-      },
-      {
-        "name": "Ranged Weapon Mastery",
-        "type": "skill",
-        "_id": "477vmfEOe51IechT",
-        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 4,
-            "min": 0
-          },
-          "class": {
-            "value": "Sharpshooter"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR205",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "ranged-weapon-mastery",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [
-          {
-            "duration": {
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "rounds": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
-            },
-            "disabled": false,
-            "name": "Ranged Weapon Mastery",
-            "_id": "M8kqwCdFQHllfjGs",
-            "changes": [
-              {
-                "key": "system.bonuses.accuracy.accuracyRanged",
-                "mode": 2,
-                "value": "@system.level.value",
-                "priority": null
-              }
-            ],
-            "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a bonus equal to<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【SL</strong><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">】</strong>to all Accuracy Checks with <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">ranged </strong>weapons. </span></p>",
-            "transfer": true,
-            "statuses": [],
-            "flags": {
-              "projectfu": {
-                "source": "FUCR205"
-              }
-            },
-            "tint": "#ffffff",
-            "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
-            "type": "base",
-            "system": {
-              "type": "default",
-              "predicate": {
-                "crisisInteraction": "none",
-                "suppressed": false
-              },
-              "duration": {
-                "event": "none",
-                "interval": 1,
-                "tracking": "self",
-                "remaining": 0
-              },
-              "rules": {}
-            },
-            "origin": null,
-            "sort": 0
-          }
-        ],
-        "sort": 400000,
-        "flags": {
-          "core": {}
-        }
-      },
-      {
-        "name": "Hawkeye",
-        "type": "skill",
-        "_id": "BQe2xCKSHhOYL8OE",
-        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_hawkeye.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option: the next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong> you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll (HR)</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p><hr /><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]{Effect: Hawkeye (Range Weapon Up)}</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 5,
-            "min": 0
-          },
-          "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": true,
@@ -235,18 +41,18 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
-            "hasDamage": true,
+            "hasDamage": false,
             "value": 0,
             "type": "",
             "onRoll": "",
             "onApply": "",
-            "hrZero": true
+            "hrZero": false
           },
           "source": "FUCR205",
           "hasRoll": {
-            "value": true
+            "value": false
           },
           "hasResource": {
             "value": false
@@ -259,34 +65,52 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "hawkeye",
+          "fuid": "barrage",
           "cost": {
+            "amount": "10",
             "resource": "mp",
-            "amount": 0,
             "perTarget": false
           },
           "targeting": {
-            "rule": "special",
-            "max": 0
+            "rule": "self",
+            "max": 2
           },
-          "traits": []
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
         "effects": [],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
-        "sort": 300000
+        "sort": 100000
       },
       {
         "name": "Crossfire",
         "type": "skill",
-        "_id": "q12Sncr3vJXW5Nr4",
+        "_id": "iK5CzVs0JBnyk9cW",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to the total Result of their Accuracy Check in order to have the attack fail automatically against all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
+          "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -296,7 +120,7 @@
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": false,
@@ -307,7 +131,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -332,43 +156,158 @@
           },
           "defense": "def",
           "fuid": "crossfire",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
-        "effects": [],
+        "effects": [
+          {
+            "name": "Crossfire",
+            "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "XCJMRop9wZe4E0w6": {
+                    "type": "ruleElement",
+                    "_id": "XCJMRop9wZe4E0w6",
+                    "trigger": {
+                      "_id": "SvxRRbmMaWpg6AFW",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "",
+                      "checkTypes": [
+                        "accuracy"
+                      ],
+                      "itemGroups": [
+                        "attack"
+                      ],
+                      "identifier": "",
+                      "local": false
+                    },
+                    "predicates": {
+                      "mcYSEMAjvu14owAY": {
+                        "type": "factionRelationRulePredicate",
+                        "_id": "mcYSEMAjvu14owAY",
+                        "relation": "ally",
+                        "inclusive": true
+                      },
+                      "mOzdLT4f4tE4195B": {
+                        "type": "weaponRulePredicate",
+                        "_id": "mOzdLT4f4tE4195B",
+                        "weaponType": "ranged",
+                        "selector": "source",
+                        "martial": "",
+                        "handedness": "",
+                        "categories": []
+                      },
+                      "nwwnCFCojQZxCVQO": {
+                        "type": "weaponRulePredicate",
+                        "_id": "nwwnCFCojQZxCVQO",
+                        "selector": "self",
+                        "weaponType": "ranged",
+                        "martial": "",
+                        "handedness": "",
+                        "categories": []
+                      }
+                    },
+                    "actions": {
+                      "Jg8qePO1hy7kyP6V": {
+                        "type": "messageRuleAction",
+                        "_id": "Jg8qePO1hy7kyP6V",
+                        "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + Accuracy Check MP}.</p>"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "ZUwqffH7kP8rWg0g",
+            "type": "base",
+            "changes": [],
+            "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
         "sort": 200000
       },
       {
-        "name": "Barrage",
+        "name": "Hawkeye",
         "type": "skill",
-        "_id": "oIe4EuiVHHE7W45j",
-        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_barrage.png",
+        "_id": "qrZoUpAsgfT3P8ju",
+        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_hawkeye.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you perform a <strong>ranged</strong> attack, you may spend 10 Mind Points to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
+          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option:</p><ul><li><p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p></li><li><p>You may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 1,
+            "max": 5,
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": true,
@@ -379,14 +318,14 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": true,
             "value": 0,
-            "type": "physical",
+            "type": "",
             "onRoll": "",
             "onApply": "",
-            "hrZero": false
+            "hrZero": true
           },
           "source": "FUCR205",
           "hasRoll": {
@@ -402,24 +341,383 @@
             "max": 6,
             "enabled": false
           },
-          "defense": "def",
-          "fuid": "barrage",
+          "defense": "",
+          "fuid": "hawkeye",
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
           "cost": {
-            "amount": 10,
             "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        },
+        "sort": 300000
+      },
+      {
+        "name": "Ranged Weapon Mastery",
+        "type": "skill",
+        "_id": "zC55PPHV40CAySwZ",
+        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 4,
+            "min": 0
+          },
+          "class": {
+            "value": "sharpshooter"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR205",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "ranged-weapon-mastery",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "duration": {
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "rounds": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": false,
+            "name": "Ranged Weapon Mastery",
+            "_id": "M8kqwCdFQHllfjGs",
+            "changes": [
+              {
+                "key": "system.bonuses.accuracy.accuracyRanged",
+                "mode": 2,
+                "value": "@system.level.value",
+                "priority": null
+              }
+            ],
+            "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons. </p>",
+            "transfer": true,
+            "statuses": [],
+            "flags": {
+              "projectfu": {
+                "source": "FUCR205"
+              }
+            },
+            "tint": "#ffffff",
+            "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
+            "type": "base",
+            "system": {
+              "rules": {
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                },
+                "elements": {}
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 0
+              }
+            },
+            "origin": null,
+            "sort": 0
+          }
+        ],
+        "sort": 400000,
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
+        }
+      },
+      {
+        "name": "Warning Shot",
+        "type": "skill",
+        "_id": "sCxQvX2kGhBsmNc0",
+        "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>shaken</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>slow</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 4,
+            "min": 0
+          },
+          "class": {
+            "value": "sharpshooter"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR205",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "warning-shot",
+          "resource": {
+            "enabled": true,
+            "amount": "-10*$sl",
+            "type": "mp"
+          },
+          "effects": {
+            "entries": [
+              "shaken",
+              "slow"
+            ],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
             "perTarget": false
           },
           "targeting": {
             "rule": "special",
-            "max": 2
+            "max": 0
           },
           "traits": []
         },
-        "effects": [],
+        "effects": [
+          {
+            "name": "Warning Shot",
+            "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "paoUIB9kpHZM7lPC": {
+                    "type": "ruleElement",
+                    "_id": "paoUIB9kpHZM7lPC",
+                    "trigger": {
+                      "_id": "PKfluDPVu4hI9ClO",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [
+                        "accuracy"
+                      ],
+                      "itemGroups": [
+                        "attack"
+                      ],
+                      "identifier": "",
+                      "local": false
+                    },
+                    "actions": {
+                      "wctGWCNNFyK5NSh4": {
+                        "type": "messageRuleAction",
+                        "_id": "wctGWCNNFyK5NSh4",
+                        "message": "<p>Deal no damage to have targets: @EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
+                      }
+                    },
+                    "predicates": {
+                      "4vKUaXH8DGqR6Sr8": {
+                        "type": "checkRulePredicate",
+                        "_id": "4vKUaXH8DGqR6Sr8",
+                        "outcome": "success",
+                        "result": null,
+                        "parity": "",
+                        "attributes": {
+                          "primary": {
+                            "value": ""
+                          },
+                          "secondary": {
+                            "value": ""
+                          }
+                        },
+                        "quantifier": "any"
+                      },
+                      "ahxxYQd2oVRGq1vo": {
+                        "type": "weaponRulePredicate",
+                        "_id": "ahxxYQd2oVRGq1vo",
+                        "weaponType": "ranged",
+                        "selector": "self",
+                        "martial": "",
+                        "handedness": "",
+                        "categories": []
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "3KfzmQiRr49axQxk",
+            "type": "base",
+            "changes": [],
+            "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>shaken</strong>, <strong>slow</strong>, or <strong>lose MP</strong>.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false,
+            "classConverted": true
+          }
         },
-        "sort": 100000
+        "sort": 600000
       }
     ],
     "source": "",
@@ -436,12 +734,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759655402755,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1776192132500,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!ghOpW5JUnPFmTuJn"

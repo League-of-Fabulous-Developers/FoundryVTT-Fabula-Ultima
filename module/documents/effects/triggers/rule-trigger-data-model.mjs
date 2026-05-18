@@ -34,10 +34,7 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 	// TODO: Remove once design is done
 	static migrateData(source) {
 		if (source.eventRelation === 'none') {
-			source.eventRelation = '';
-		}
-		if (source.type === 'resourceExpendRuleTrigger') {
-			source.type = 'calculateExpenseRuleTrigger';
+			delete source.eventRelation;
 		}
 		return super.migrateData(source);
 	}

@@ -1,0 +1,110 @@
+{
+  "folder": "kjGE4lDUKcBzGLnt",
+  "name": "Poison Resistance",
+  "type": "effect",
+  "_id": "Uv1i2DAk0ADDnOGq",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
+  "system": {
+    "fuid": "poison-resistance",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Poison Resistance",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.Uv1i2DAk0ADDnOGq",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "KQSLDCmEMzd0MrUt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.poison",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>poison</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Poison Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.Uv1i2DAk0ADDnOGq",
+            "effectUuid": null,
+            "fuid": "poison-resistance"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774655263405,
+        "modifiedTime": 1774655468821,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Uv1i2DAk0ADDnOGq.KQSLDCmEMzd0MrUt"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774655259219,
+    "modifiedTime": 1774655463829,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Uv1i2DAk0ADDnOGq"
+}

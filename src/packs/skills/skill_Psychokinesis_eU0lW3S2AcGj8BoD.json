@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Esper"
+      "value": "esper"
     },
     "useWeapon": {
       "accuracy": {
@@ -129,7 +129,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

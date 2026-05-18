@@ -9,7 +9,7 @@
     "summary": {
       "value": "Strenghten attacks when you fight with weapon and shield."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p></blockquote><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defence boost</strong> customization (<strong>High Fantasy</strong>, page <strong>106</strong>), <strong>nor </strong>with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill (<strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p><hr /><p>As long as you have a <strong>weapon</strong> equipped in your <strong>main hand slot</strong> and a <strong>shield</strong> equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot</strong> be combined with <strong>custom weapons</strong> with the <strong>defense boost</strong> customization, <strong>nor</strong> with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "commander, guardian"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "hoplite"
+    "fuid": "hoplite",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -129,7 +139,7 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p>",
+      "description": "<p>As long as you have a <strong>weapon</strong> equipped in your <strong>main hand slot</strong> and a <strong>shield</strong> equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -165,15 +175,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684635660,
-    "modifiedTime": 1743170708568,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1775354925207,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

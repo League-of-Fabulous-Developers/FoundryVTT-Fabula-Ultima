@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>As long as you have a weapon belonging to the <strong>arcane</strong>, <strong>bow</strong>, <strong>brawling</strong>, <strong>flail</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category equipped, your \"<strong>blast</strong>\" <strong>invocations</strong> deal<strong>【SL】</strong>extra damage, and the extra damage granted by your \"<strong>hex</strong>\" <strong>invocations</strong> is increased by<strong>【SL】</strong>.</p>",
+    "description": "<p>As long as you have a weapon belonging to the <strong>arcane</strong>, <strong>bow</strong>, <strong>brawling</strong>, <strong>flail</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category equipped, your \"<strong>blast</strong>\" <strong>invocations</strong> deal <strong>【SL】</strong> extra damage, and the extra damage granted by your \"<strong>hex</strong>\" <strong>invocations</strong> is increased by <strong>【SL】</strong>.</p><hr /><p><em>Automatically applied to invocations while equipped with a weapon listed.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Invoker"
+      "value": "invoker"
     },
     "useWeapon": {
       "accuracy": false,
@@ -61,9 +61,133 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Wellspring Expansion",
+      "img": "systems/projectfu/styles/static/compendium/classes/invoker/wellspring_expansion.png",
+      "origin": "Compendium.projectfu.skills.Item.HlSeaheZt8969qI7",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "cmsMMyxMNYPLKrBj": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "TuEb3TmF5ErJIhO1",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "cmsMMyxMNYPLKrBj",
+              "predicates": {
+                "QTuyRKQeNK6QcYd9": {
+                  "type": "traitsRulePredicate",
+                  "_id": "QTuyRKQeNK6QcYd9",
+                  "traits": {
+                    "entries": [
+                      "invocation-blast"
+                    ]
+                  }
+                },
+                "bXqYeVHrM8otbScc": {
+                  "type": "weaponRulePredicate",
+                  "_id": "bXqYeVHrM8otbScc",
+                  "categories": [
+                    "arcane",
+                    "bow",
+                    "brawling",
+                    "flail",
+                    "sword",
+                    "thrown"
+                  ],
+                  "selector": "self"
+                }
+              },
+              "actions": {
+                "9DEpFT1FfRiIcHkp": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "9DEpFT1FfRiIcHkp",
+                  "amount": "$sl",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BE7hRoMlSX5MrQXw",
+      "type": "base",
+      "changes": [],
+      "description": "<p>As long as you have a weapon belonging to the <strong>arcane</strong>, <strong>bow</strong>, <strong>brawling</strong>, <strong>flail</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category equipped, your \"<strong>blast</strong>\" <strong>invocations</strong> deal<strong>【SL】</strong>extra damage, and the extra damage granted by your \"<strong>hex</strong>\" <strong>invocations</strong> is increased by<strong>【SL】</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Wellspring Expansion",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.HlSeaheZt8969qI7",
+            "effectUuid": null,
+            "fuid": "wellspring-expansion"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774600495618,
+        "modifiedTime": 1778185971212,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!HlSeaheZt8969qI7.BE7hRoMlSX5MrQXw"
+    }
+  ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
     "default": 0,
@@ -72,7 +196,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -82,7 +207,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1770413783845,
+    "modifiedTime": 1775593099101,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

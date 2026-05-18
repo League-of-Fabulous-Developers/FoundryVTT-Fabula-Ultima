@@ -3,14 +3,16 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
 const fields = foundry.data.fields;
 
 /**
- * @property {FUCheckParity} parity
+ * @property {FUParity} parity
  * @property {FUCheckOutcome} outcome
  * @property {ItemAttributesDataModel} attributes
  * @property {Number} result A specific result of the check.
+ * @property {FUPredicateQuantifier} quantifier
  */
 export class CheckRulePredicate extends RulePredicateDataModel {
 	static {
@@ -27,10 +29,15 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	// TODO: Finish porting..
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkParity) }),
+			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.parity) }),
 			outcome: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkOutcome) }),
 			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 			result: new fields.NumberField({ integer: true }),
+			quantifier: new fields.StringField({
+				initial: 'any',
+				blank: true,
+				choices: Object.keys(FU.predicateQuantifier),
+			}),
 		});
 	}
 
@@ -46,13 +53,19 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		if (!context.config) {
-			console.warn(`No configuration provided in the event ${context.eventType}.`);
-			// TODO: Provide 'optional' property?
-			return false;
+		let check = context.check;
+		let targets = context.targets;
+
+		if (!context.check || !context.targets) {
+			if (context.config) {
+				check = context.config.check;
+				targets = context.config.getTargets();
+			} else {
+				console.warn(`No configuration provided for check in the event ${context.eventType}.`);
+				return false;
+			}
 		}
 
-		const check = context.config.check;
 		if (!check) {
 			return false;
 		}
@@ -70,33 +83,75 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		if (this.outcome) {
 			switch (this.outcome) {
 				case 'critical':
-					if (!context.config.isCritical()) {
+					if (!check.critical) {
 						return false;
 					}
 					break;
 
 				case 'fumble':
-					if (!context.config.isFumble()) {
+					if (!check.fumble) {
 						return false;
 					}
 					break;
 
 				default:
-					if (context.config.isFumble()) {
-						return false;
-					}
-					for (const target of context.config.getTargets()) {
-						switch (target.result) {
-							case 'hit':
-								if (this.outcome !== 'success') {
-									return false;
+					{
+						// 'success' or 'failure'
+						if (this.outcome === 'success' && check.fumble) {
+							return false;
+						} else if (this.outcome === 'failure' && check.critical) {
+							return false;
+						}
+
+						const inspector = CheckConfiguration.inspect(check);
+						const difficulty = inspector.getDifficulty();
+						if (difficulty != null) {
+							if (this.outcome === 'success' && check.result < difficulty) {
+								return false;
+							} else if (this.outcome === 'failure' && check.result >= difficulty) {
+								return false;
+							}
+						} else {
+							const selected = targets;
+							if (selected.length > 0) {
+								switch (this.quantifier) {
+									case 'all':
+										if (
+											!selected.every((target) => {
+												if (target.result === 'hit') return this.outcome === 'success';
+												if (target.result === 'miss') return this.outcome === 'failure';
+												return true;
+											})
+										) {
+											return false;
+										}
+										break;
+
+									case 'any':
+										if (
+											!selected.some((target) => {
+												if (target.result === 'hit') return this.outcome === 'success';
+												if (target.result === 'miss') return this.outcome === 'failure';
+												return false;
+											})
+										) {
+											return false;
+										}
+										break;
+
+									case 'none':
+										if (
+											!selected.every((target) => {
+												if (target.result === 'hit') return this.outcome !== 'success';
+												if (target.result === 'miss') return this.outcome !== 'failure';
+												return true;
+											})
+										) {
+											return false;
+										}
+										break;
 								}
-								break;
-							case 'miss':
-								if (this.outcome !== 'failure') {
-									return false;
-								}
-								break;
+							}
 						}
 					}
 					break;
@@ -104,16 +159,22 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		}
 
 		// Check attributes
-		const a = [this.attributes.primary.value, this.attributes.secondary.value].filter(Boolean);
-		const b = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.result.primary, check.result.secondary];
-		if (a.length > 0) {
-			if (!a.every((v) => b.includes(v))) {
-				return false;
+		const predicateAttributes = [this.attributes.primary.value, this.attributes.secondary.value];
+		const checkAttributes = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.primary.attribute, check.secondary.attribute];
+		for (let i = 0; i < predicateAttributes.length; i++) {
+			const attribute = predicateAttributes[i];
+			if (attribute) {
+				const idx = checkAttributes.findIndex((value) => value === attribute);
+				if (idx >= 0) {
+					checkAttributes.splice(idx, 1);
+				} else {
+					return false;
+				}
 			}
 		}
 
 		// Check result
-		if (this.result > 0 && check.result <= this.result) {
+		if (this.result != null && check.result <= this.result) {
 			return false;
 		}
 

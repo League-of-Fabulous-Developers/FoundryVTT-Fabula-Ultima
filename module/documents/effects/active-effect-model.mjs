@@ -2,16 +2,23 @@ import { FU } from '../../helpers/config.mjs';
 import { ProgressDataModel } from '../items/common/progress-data-model.mjs';
 import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
+import { EffectStackingDataModel } from '../items/common/effect-stacking-data-model.mjs';
+
+/**
+ * @typedef FUActiveEffectDuration
+ * @property {FUEffectDuration} event The combat event which decrements the duration. Once it reaches 0, the effect is over.
+ * @property {Number} interval The number of occurrences between events
+ * @property {String} tracking Whom is the duration tracked on
+ */
 
 /**
  * @description The active effect model for this system.
  * @property {String} type The type of the effect
  * @property {ActiveEffectPredicateModel} predicate Used for toggling the effect
- * @property {FUEffectDuration} duration.event The combat event which decrements the duration. Once it reaches 0, the effect is over.
- * @property {Number} duration.interval The number of occurrences between events
+ * @property {FUActiveEffectDuration} duration
  * @property {Number} duration.remaining The number of intervals left.
- * @property {String} tracking Whom is the duration tracked on
  * @property {Object} rules Contains optional rules for this effect.
+ * @property {EffectStackingDataModel} rules.stacking Stacking rules for the effect.
  * @property {ModelCollection<RuleElementDataModel>} rules.elements Automation rules for this effect
  * @property {ProgressDataModel} rules.progress It can be used for tracking a clock, a resource, a counter, etc.
  * @remarks The remaining property is initialized, and must be updated.
@@ -41,9 +48,23 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 			}),
 			rules: new SchemaField({
 				progress: new EmbeddedDataField(ProgressDataModel, { required: false }),
+				stacking: new EmbeddedDataField(EffectStackingDataModel, { required: false }),
 				elements: new SubDocumentCollectionField(RuleElementDataModel),
 			}),
 		};
+	}
+
+	/**
+	 * @returns {boolean}
+	 */
+	get isIntervalBased() {
+		switch (this.duration.event) {
+			case 'startOfTurn':
+			case 'endOfTurn':
+			case 'endOfRound':
+				return true;
+		}
+		return false;
 	}
 
 	/**

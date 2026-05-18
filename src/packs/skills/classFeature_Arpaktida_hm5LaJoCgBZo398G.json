@@ -21,6 +21,7 @@
     {
       "name": "Arpaktida",
       "img": "icons/creatures/eyes/humanoid-single-red-brown.webp",
+      "origin": "Compendium.projectfu.skills.Item.hm5LaJoCgBZo398G",
       "system": {
         "duration": {
           "event": "none",
@@ -34,30 +35,70 @@
         },
         "rules": {
           "elements": {
-            "XlZuLj2evAwg9Lgj": {
+            "ECmjuXz6i55x4RuP": {
               "type": "ruleElement",
-              "_id": "XlZuLj2evAwg9Lgj",
               "trigger": {
-                "_id": "z7mWlYoUpBbWS1ze",
+                "_id": "8VgHnq1f2Xdqllcm",
                 "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": []
+                "itemGroups": [],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "ECmjuXz6i55x4RuP",
+              "actions": {
+                "0ZBCER8q1UCb6dgm": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "0ZBCER8q1UCb6dgm",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
               },
               "predicates": {
-                "XsOS2n2q5TnaoBkF": {
+                "d7u8awawyPFrJfGh": {
                   "type": "targetEffectRulePredicate",
-                  "_id": "XsOS2n2q5TnaoBkF",
+                  "_id": "d7u8awawyPFrJfGh",
+                  "effect": "crisis"
+                }
+              }
+            },
+            "nSDmXVzDNFAfWTQ2": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "RCaebIkI6de8LLO2",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "nSDmXVzDNFAfWTQ2",
+              "predicates": {
+                "3T62xBx0cQjiJC7U": {
+                  "type": "traitsRulePredicate",
+                  "_id": "3T62xBx0cQjiJC7U",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                },
+                "ad0rJeVnpB9jCxxi": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "ad0rJeVnpB9jCxxi",
                   "effect": "crisis"
                 }
               },
               "actions": {
-                "cHpLhpTvcCFkEZF2": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "cHpLhpTvcCFkEZF2",
-                  "amount": "5",
-                  "cost": {
-                    "resource": ""
-                  }
+                "lnXfekaGa3kiA3ka": {
+                  "type": "messageRuleAction",
+                  "_id": "lnXfekaGa3kiA3ka",
+                  "message": "<p>This dealt 5 extra damage. Remove this damage if its not the first time you dealt damage this turn.</p>"
                 }
               }
             }
@@ -68,16 +109,22 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "OKAIP7W9NuJUYMRY",
+      "disabled": false,
+      "_id": "dyp7joS5INqWgter",
       "type": "base",
       "changes": [
         {
@@ -87,25 +134,34 @@
           "priority": null
         }
       ],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. <span>You treat your <strong>Insight</strong> as one die size higher (up to <strong>d12</strong>). </span>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Arpaktida",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.hm5LaJoCgBZo398G",
+            "effectUuid": null,
+            "fuid": "arpaktida"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767290294355,
-        "modifiedTime": 1767291742822,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777742996253,
+        "modifiedTime": 1777757160970,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!hm5LaJoCgBZo398G.OKAIP7W9NuJUYMRY"
+      "_key": "!items.effects!hm5LaJoCgBZo398G.dyp7joS5INqWgter"
     }
   ],
   "ownership": {

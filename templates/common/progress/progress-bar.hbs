@@ -1,25 +1,28 @@
-<div class="inline-desc flexrow flex-group-center resource-content"
-	 style="border-radius: 6px 12px 12px 6px;">
+<div class="pfu-progress inline-desc flexrow flex-group-center {{classes}}">
 
-	<div class="item-progressbar flex-group-center" style="gap: 4px;">
-		{{#if displayName}}
-			<label class="resource-content">
-				<span class="resource-label-sm">{{localize displayName}}</span>
-			</label>
-		{{/if}}
-		<div class="bar bar-progress">
-			<div class="bar-progress-bar bar-project"
-				 style="width: {{pfuPercentage data.current
-													 data.max}};">
-			</div>
-			<span class="bar-value"></span>
+	<div class="pfu-progress__bar frame" data-tooltip="{{data.current}}/{{data.max}}">
+		<div class="bar"
+			 style="width: {{pfuPercentage data.current data.max}};">
 		</div>
 	</div>
 
-	<div class="resource-text-t buttons-inc">
-		<span data-resource="item.rp">{{ data.current }}</span>
-		<span>/</span>
-		<span>{{ data.max }}</span>
-	</div>
-	{{> 'systems/projectfu/templates/common/progress/partials/progress-controls.hbs'}}
+		{{#if displayName}}
+		<div class="pfu-progress__name__container">
+			{{#if compact}}
+				<a data-action="openTrackMenu" data-id="{{id}}"
+				   {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}
+				   data-index="{{index}}">
+					<span>{{localize displayName}}</span>
+				</a>
+			{{else}}
+				<label>
+					<span>{{localize displayName}}</span>
+				</label>
+			{{/if}}
+		</div>
+		{{/if}}
+
+	{{#unless compact}}
+		{{> 'systems/projectfu/templates/common/progress/partials/progress-controls.hbs'}}
+	{{/unless}}
 </div>

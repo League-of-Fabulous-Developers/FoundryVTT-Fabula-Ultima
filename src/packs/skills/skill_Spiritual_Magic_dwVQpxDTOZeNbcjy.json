@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, learn one Spiritist spell (see <strong>Core Rulebook</strong>, page <strong>208</strong>).</p><p>Offensive ( @ICON[offensive] ) Spiritist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><ul><li><p>For <strong>spell</strong> breakdown and a list of Spiritist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP]{Spiritist Rules}</p></li></ul>",
+    "description": "<p>Each time you acquire this Skill, learn one <strong>Spiritist</strong> spell.</p><p>Offensive (@ICON[offensive]) <strong>Spiritist</strong> spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>spell</strong> breakdown and a list of <strong>Spiritist</strong> spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP]{Spiritist Rules} or see <strong>Core Rulebook,</strong> page <strong>114</strong> and <strong>208</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Spiritist"
+      "value": "spiritist"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,18 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "spiritual-magic"
+    "fuid": "spiritual-magic",
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "traits": [
+      "grant-spell"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -127,15 +138,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706507930339,
-    "modifiedTime": 1744721598876,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1775737270348,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

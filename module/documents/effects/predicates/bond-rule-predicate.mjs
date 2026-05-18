@@ -5,7 +5,7 @@ import { FU } from '../../../helpers/config.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @property {FUBondPredicateKey} bond
+ * @property {FUBondEmotion} bond
  */
 export class BondRulePredicate extends RulePredicateDataModel {
 	static {

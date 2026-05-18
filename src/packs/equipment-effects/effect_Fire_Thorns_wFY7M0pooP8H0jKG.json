@@ -1,0 +1,142 @@
+{
+  "folder": "BlKCuhMT72VW7Anp",
+  "name": "Fire Thorns",
+  "type": "effect",
+  "_id": "wFY7M0pooP8H0jKG",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+  "system": {
+    "fuid": "fire-thorns",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Fire Thorns",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.wFY7M0pooP8H0jKG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Od3RcOqDtG7MVPry": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "FOP7YvERwHXmsAFB",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "Od3RcOqDtG7MVPry",
+              "predicates": {
+                "IuQw1aUF8X18ocTW": {
+                  "type": "checkRulePredicate",
+                  "_id": "IuQw1aUF8X18ocTW",
+                  "outcome": "success",
+                  "result": null
+                },
+                "uSZp81zUWayhaoiO": {
+                  "type": "weaponRulePredicate",
+                  "_id": "uSZp81zUWayhaoiO",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "JhUcQr8ahlHwZE0w": {
+                  "type": "messageRuleAction",
+                  "_id": "JhUcQr8ahlHwZE0w",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 fire] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "mUHJ05nrwscJKMT4",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>fire</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Fire Thorns",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.wFY7M0pooP8H0jKG",
+            "effectUuid": null,
+            "fuid": "fire-thorns"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774749007710,
+        "modifiedTime": 1774749957578,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!wFY7M0pooP8H0jKG.mUHJ05nrwscJKMT4"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774748435720,
+    "modifiedTime": 1774749006637,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!wFY7M0pooP8H0jKG"
+}

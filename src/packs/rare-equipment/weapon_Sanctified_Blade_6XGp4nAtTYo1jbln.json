@@ -1,0 +1,208 @@
+{
+  "folder": "3ywX6HVujl6eTROw",
+  "name": "Sanctified Blade",
+  "type": "weapon",
+  "_id": "6XGp4nAtTYo1jbln",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-long-gold.png",
+  "system": {
+    "fuid": "sanctified-blade",
+    "description": "<p>This weapon deals 5 extra damage to <strong>demon</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Demon Hunter"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 1
+    },
+    "defense": "def",
+    "damage": {
+      "value": 6
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "sword"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Sanctified Blade",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-long-gold.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.6XGp4nAtTYo1jbln",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "4WSI64ouUWepios6": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "SSFYs6CZTBoC3WHT",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "4WSI64ouUWepios6",
+              "actions": {
+                "724KQqyVujRYHLtq": {
+                  "type": "messageRuleAction",
+                  "_id": "724KQqyVujRYHLtq",
+                  "message": "<p>If <strong>demon</strong> target, deal 5 extra damage to them.</p>"
+                }
+              },
+              "predicates": {
+                "eXy86ZeRKTMueuax": {
+                  "type": "speciesRulePredicate",
+                  "_id": "eXy86ZeRKTMueuax",
+                  "species": [
+                    "demon"
+                  ]
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "d7B9sBtN1IFBP0xi",
+      "type": "base",
+      "changes": [],
+      "description": "<p>This weapon deals 5 extra damage to <strong>demons</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Sanctified Blade",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.6XGp4nAtTYo1jbln",
+            "effectUuid": null,
+            "fuid": "sanctified-blade"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774731573343,
+        "modifiedTime": 1775709133017,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!6XGp4nAtTYo1jbln.d7B9sBtN1IFBP0xi"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774731513931,
+    "modifiedTime": 1777530881417,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!6XGp4nAtTYo1jbln"
+}

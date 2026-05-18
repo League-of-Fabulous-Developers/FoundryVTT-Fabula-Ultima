@@ -9,7 +9,7 @@
     "summary": {
       "value": "You deal 10 damage of a type of your choice (air, bolt, earth, fire, or ice) to one creature you can see."
     },
-    "description": "",
+    "description": "<p>You deal 10 damage of a type of your choice (<strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>) to one creature you can see.</p>",
     "isFavored": {
       "value": false
     },
@@ -58,8 +58,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706516143319,
-    "modifiedTime": 1768876824738,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771880471785,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

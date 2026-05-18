@@ -24,6 +24,9 @@ export class ActorWellspringManager {
 		}
 	}
 
+	/**
+	 * @returns {WellspringDataModel[]}
+	 */
 	get activeWellsprings() {
 		let activeWellsprings = GameWellspringManager.currentSceneActiveWellsprings;
 		if (!activeWellsprings.isActive()) {

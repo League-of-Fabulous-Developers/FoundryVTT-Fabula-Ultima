@@ -3,28 +3,52 @@
   "name": "Poisoned Immunity",
   "type": "effect",
   "_id": "Ujw6SLorSRl0zQ7q",
-  "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+  "img": "systems/projectfu/styles/static/statuses/immunities/PoisonedImmune.webp",
   "system": {
-    "fuid": "poisoned-immunity"
+    "fuid": "poisoned-immunity",
+    "source": ""
   },
   "effects": [
     {
+      "name": "Poisoned Immunity",
+      "img": "systems/projectfu/styles/static/statuses/immunities/PoisonedImmune.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Poisoned Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
-      "_id": "rpBQNoFUtorB67wG",
+      "_id": "8Enw8VHBj2yA12IK",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.immunities.poisoned.base",
@@ -33,28 +57,34 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You are immune to <strong>poisoned</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Poisoned Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q",
+            "effectUuid": null,
+            "fuid": "poisoned-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725755481297,
-        "modifiedTime": 1725755509434,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774828416750,
+        "modifiedTime": 1774828428750,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!Ujw6SLorSRl0zQ7q.rpBQNoFUtorB67wG"
+      "_key": "!items.effects!Ujw6SLorSRl0zQ7q.8Enw8VHBj2yA12IK"
     }
   ],
   "sort": 200000,
@@ -66,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725755271555,
-    "modifiedTime": 1743124185466,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1774763259474,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!Ujw6SLorSRl0zQ7q"

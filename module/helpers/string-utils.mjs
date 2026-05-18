@@ -12,6 +12,35 @@ function kebabToPascal(str) {
 }
 
 /**
+ * Converts a camelCase string to kebab-case.
+ * @param {string} str
+ * @returns {string}
+ * @remarks Adds a hyphen before numbers.
+ */
+function camelToKebab(str) {
+	return str.replace(/([A-Z])/g, (_, char) => `-${char.toLowerCase()}`).replace(/([a-z])(\d)/g, (_, letter, digit) => `${letter}-${digit}`);
+}
+
+/**
+ * Converts a kebab-case, camelCase, snake_case, or PascalCase string into a
+ * human-readable label with capitalized words.
+ * @param {string} value
+ * @returns {string}
+ */
+function humanize(value) {
+	return (
+		value
+			// Insert space before uppercase letters in camelCase/PascalCase
+			.replace(/([a-z])([A-Z])/g, '$1 $2')
+			// Replace kebab and snake separators with spaces
+			.replace(/[-_]+/g, ' ')
+			// Capitalize the first letter of each word
+			.replace(/\b\w/g, (c) => c.toUpperCase())
+			.trim()
+	);
+}
+
+/**
  * @param {String} str
  * @returns {string}
  */
@@ -23,18 +52,32 @@ function titleToKebab(str) {
 }
 
 /**
- * @param {String} key
- * @param {Object} data
+ * Localizes a given key using the game's i18n system.
+ * @param {string} key - The localization key to look up.
+ * @param {Object} [data] - Optional interpolation data for formatted strings.
+ * @returns {string} The localized string, or an empty string if key is absent.
+ */
+function localize(key, data) {
+	if (!key) return '';
+	if (data) return game.i18n.format(key, data);
+	return typeof key === 'string' ? game.i18n.localize(key) : key.toString();
+}
+
+/**
+ * @param {String[]} keys
+ * @param {String} separator
  * @returns {String}
  */
-function localize(key, data = undefined) {
-	if (data) {
-		return game.i18n.format(key, data);
-	}
-	if (typeof key === 'string') {
-		return game.i18n.localize(key);
-	}
-	return key.toString();
+function localizeMultiple(keys, separator = ' ') {
+	return keys.map((k) => localize(k)).join(separator);
+}
+
+/**
+ * @param {String} key
+ * @returns {Boolean}
+ */
+function hasLocalization(key) {
+	return foundry.utils.hasProperty(game.i18n.translations, key) || foundry.utils.hasProperty(game.i18n._fallback, key);
 }
 
 /**
@@ -99,10 +142,14 @@ function fromBase64(base64) {
 
 export const StringUtils = Object.freeze({
 	kebabToPascal,
+	camelToKebab,
 	titleToKebab,
 	localize,
+	localizeMultiple,
+	hasLocalization,
 	capitalize,
 	truncate,
 	toBase64,
+	humanize,
 	fromBase64,
 });

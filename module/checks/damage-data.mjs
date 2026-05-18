@@ -2,6 +2,7 @@
  * @typedef ScalarModifier
  * @property {Boolean} enabled
  * @property {Number|String} amount
+ * @property {String[]} traits
  */
 
 /**
@@ -11,6 +12,7 @@
  * @property {number} amount
  * @property {DamageType[]} types
  * @property {String[]} traits
+ * @property {String} effect
  * @property {ResourceExpense} expense
  */
 
@@ -74,7 +76,7 @@ export class DamageData {
 	 */
 	get modifiers() {
 		return this._modifiers.filter((m) => {
-			return m.enabled && (m.amount > 0 || (m.traits && m.traits.length > 0));
+			return m.enabled && (m.amount !== 0 || (m.traits && m.traits.length > 0) || m.effect);
 		});
 	}
 
@@ -103,7 +105,9 @@ export class DamageData {
 			}
 			if (modifier.types) {
 				modifier.types.forEach((type) => {
-					available.add(type);
+					if (type) {
+						available.add(type);
+					}
 				});
 			}
 		}
@@ -141,6 +145,20 @@ export class DamageData {
 	}
 
 	/**
+	 * @returns {boolean}
+	 */
+	get hasTraits() {
+		return this._modifiers.some((m) => m.traits && m.traits.length > 0);
+	}
+
+	/**
+	 * @returns {boolean}
+	 */
+	get hasEffects() {
+		return this._modifiers.some((m) => m.effect);
+	}
+
+	/**
 	 * @param {String} label
 	 * @param {Number} amount
 	 * @param {DamageType[]} types
@@ -157,6 +175,13 @@ export class DamageData {
 			...data,
 		};
 		this._modifiers.push(modifier);
+	}
+
+	/**
+	 * @param {DamageModifier[]} modifiers
+	 */
+	addModifiers(modifiers) {
+		this._modifiers.push(...modifiers);
 	}
 
 	/**

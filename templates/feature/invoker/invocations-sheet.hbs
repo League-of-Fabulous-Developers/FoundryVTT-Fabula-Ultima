@@ -1,12 +1,16 @@
 <div class="invocations-sheet flexcol flexgrow-1">
-    <nav class='desc invocations-tabs tabs flexrow' data-group='invocationsTabs'>
-        <a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
+    <nav class="sheet-tabs tabs desc flexrow gap-5" data-group="invocations">
+        <a data-action="tab" data-group="invocations" data-tab="description" class="item rollable tab button-style">
+            <span>{{localize 'FU.Description'}}</span>
+        </a>
         {{#each additionalData.wellsprings}}
-            <a class='item tab-style' data-tab='{{@key}}'>{{localize nameShort}}</a>
+            <a data-action="tab" data-group="invocations" data-tab='{{@key}}' class="item rollable tab button-style">
+                <span>{{localize nameShort}}</span>
+            </a>
         {{/each}}
     </nav>
     <div class="invocations-content flexcol flexgrow-1">
-        <div class='tab flexcol flexgrow-1' data-group='invocationsTabs' data-tab='description'>
+        <div class='tab desc flexcol flexgrow-1' data-group='invocations' data-tab='description'>
             <fieldset class="desc title-fieldset resource-content flexcol flexgrow-1">
                 <legend class="resource-label-m">{{localize "FU.Description"}}</legend>
                 <div>
@@ -26,7 +30,7 @@
         </div>
         {{#each additionalData.wellsprings}}
             {{#with (lookup @root.system.data @key)}}
-                <div class='tab flexcol flexgrow-1' data-group='invocationsTabs' data-tab='{{@key}}'>
+                <div class='tab flexcol flexgrow-1' data-group='invocations' data-tab='{{@key}}'>
 					<!-- Basic -->
                     <fieldset class="desc title-fieldset resource-content flexgrow-1">
                         <legend class="resource-label-m">{{localize ../name}}</legend>

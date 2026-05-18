@@ -1,0 +1,110 @@
+{
+  "folder": "ZQq6XtjmjmCDudd9",
+  "name": "Attack Damage Change (Untyped)",
+  "type": "effect",
+  "_id": "tZDXWkBkSzTdCEu4",
+  "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
+  "system": {
+    "fuid": "attack-damage-change-untyped",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Attack Damage Change (Untyped)",
+      "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.tZDXWkBkSzTdCEu4",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "1EnyM3zVfqX0b6l6",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "untyped",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage dealt by your attacks becomes <strong>untyped</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Attack Damage Change (Untyped)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.tZDXWkBkSzTdCEu4",
+            "effectUuid": null,
+            "fuid": "attack-damage-change-untyped"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774666938348,
+        "modifiedTime": 1774666955763,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!tZDXWkBkSzTdCEu4.1EnyM3zVfqX0b6l6"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774666691749,
+    "modifiedTime": 1774666937456,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!tZDXWkBkSzTdCEu4"
+}

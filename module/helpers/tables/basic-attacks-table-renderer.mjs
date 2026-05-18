@@ -3,6 +3,7 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
+import { BonusesDataModel } from '../../documents/actors/common/bonuses-data-model.mjs';
 
 export class BasicAttacksTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
@@ -33,18 +34,35 @@ export class BasicAttacksTableRenderer extends FUTableRenderer {
 	}
 
 	static #getCheck(item) {
-		return {
+		const check = {
 			primary: item.system.attributes.primary.value,
 			secondary: item.system.attributes.secondary.value,
 			bonus: item.system.accuracy.value,
 		};
+		if (item.actor) {
+			const weaponType = item.system.type?.value;
+			const modifiers = BonusesDataModel.collectCheckBonuses(item.actor.system.bonuses, 'accuracy', weaponType);
+			const bonus = modifiers.reduce((total, m) => total + m.value, 0);
+			check.bonus += bonus;
+		}
+		return check;
 	}
 
 	static #getDamage(item) {
-		return {
+		const data = {
 			damage: item.system.damage.value,
 			type: item.system.damageType.value,
 			hrZero: item.system.rollInfo.useWeapon.hrZero.value,
 		};
+		if (item.actor) {
+			/** @type WeaponTraits **/
+			const weaponTraits = {
+				weaponType: item.system.type?.value,
+			};
+			const modifiers = BonusesDataModel.collectDamageBonuses(item.actor.system.bonuses, data.type, weaponTraits);
+			const bonus = modifiers.reduce((total, m) => total + m.amount, 0);
+			data.damage += bonus;
+		}
+		return data;
 	}
 }

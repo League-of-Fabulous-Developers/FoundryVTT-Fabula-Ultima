@@ -1,7 +1,7 @@
 {
   "name": "Predictable!",
   "type": "heroic",
-  "img": "icons/sundries/books/book-open-purple.webp",
+  "img": "icons/tools/scribal/magnifying-glass.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Force an enemy to spend MP to perform specific actions."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Loremaster</strong> Class.</span></p></blockquote><p><span>During a conflict, you may use an action and spend 20 Mind Points to anticipate the upcoming moves of a creature you can see, as long as you know <strong>two or more</strong> of that creature's Traits. If you do so, choose one type of action among the following: <strong>Attack, Guard, Objective, Spell, </strong>or<strong> Skill</strong>. Until the start of your next turn, the creature must spend 20 Mind Points whenever they wish to perform that action. If they can't, they must perform a different action.</span></p><hr /><ul><li><p><strong>You Spend:</strong> <span>@LOSS[20 mp]</span></p></li><li><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.1Oq4CktThiUInrbk]{Effect: Predictable!}</p></li></ul>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</span></p><hr /><p><span>During a conflict, you may use an action and spend 20 Mind Points to anticipate the upcoming moves of a creature you can see, as long as you know <strong>two or more</strong> of that creature's Traits. If you do so, choose one type of action among the following: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. Until the start of your next turn, the creature must spend 20 Mind Points whenever they wish to perform that action. If they can't, they must perform a different action.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Loremaster"
+      "value": "loremaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,31 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "predictable"
+    "fuid": "predictable",
+    "cost": {
+      "amount": "20"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.1Oq4CktThiUInrbk",
+        "Compendium.projectfu.heroic-skills.Item.NKj3kW2HgQU7MQoT",
+        "Compendium.projectfu.heroic-skills.Item.KJkbGHbryDDZJmLo",
+        "Compendium.projectfu.heroic-skills.Item.iuwlCR6pbHS2nY7m",
+        "Compendium.projectfu.heroic-skills.Item.G3I8yq23O6hJEPzP"
+      ],
+      "prompt": true
+    },
+    "resource": {
+      "enabled": true,
+      "type": "mp",
+      "amount": "-20"
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
@@ -102,15 +128,19 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706585767184,
-    "modifiedTime": 1744507381091,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1771889381035,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

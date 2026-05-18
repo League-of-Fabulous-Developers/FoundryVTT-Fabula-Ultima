@@ -1,0 +1,162 @@
+{
+  "folder": "PeIQShdNJKX55mJP",
+  "name": "Pyro Magi Robe",
+  "type": "armor",
+  "_id": "Q2dpVApOaS3gR6Vu",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-red.png",
+  "system": {
+    "fuid": "pyro-magi-robe",
+    "description": "<p>Spells you cast that deal <strong>fire</strong> damage deal <strong>5 extra damage</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1800
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Fire Spell Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 1
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 2
+    },
+    "init": {
+      "value": -2
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Pyro Magi Robe",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-red.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.Q2dpVApOaS3gR6Vu",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "OYMQ6u7ntgKck9so": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Moe74hZ2xcGEOJZS",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [
+                  "fire"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "OYMQ6u7ntgKck9so",
+              "actions": {
+                "ImGQjLP6gvwYw8JX": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "ImGQjLP6gvwYw8JX",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "O9iS7qNSDco6xpvo",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, spells you cast that deal <strong>fire</strong> damage deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Pyro Magi Robe",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.Q2dpVApOaS3gR6Vu",
+            "effectUuid": null,
+            "fuid": "pyro-magi-robe"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774747555955,
+        "modifiedTime": 1775708916269,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Q2dpVApOaS3gR6Vu.O9iS7qNSDco6xpvo"
+    }
+  ],
+  "sort": 112500,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774747448357,
+    "modifiedTime": 1777530660183,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Q2dpVApOaS3gR6Vu"
+}

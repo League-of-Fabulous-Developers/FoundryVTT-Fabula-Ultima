@@ -1,0 +1,159 @@
+{
+  "folder": "R6k4uTCimJ5mRGQU",
+  "name": "Merchant Garb",
+  "type": "armor",
+  "_id": "g0mWeuY472HzooD8",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/duster-graydark.png",
+  "system": {
+    "fuid": "merchant-garb",
+    "description": "<p>When a create a <strong>potion</strong> with your Inventory Points whose effects restore Hit Points, it restores <strong>5 extra Hit Points</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Remedy Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 1
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 1
+    },
+    "init": {
+      "value": -1
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Merchant Garb",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/duster-graydark.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.g0mWeuY472HzooD8",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "QjZShRbO5ssQ2Osq": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "9c19c5ujxtGhZsx9",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "potion",
+                    "restore",
+                    "hit-point"
+                  ],
+                  "quantifier": "all"
+                }
+              },
+              "_id": "QjZShRbO5ssQ2Osq",
+              "actions": {
+                "nLqVrN7cutyug1et": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "nLqVrN7cutyug1et",
+                  "bonus": "5",
+                  "multiplier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "FMdMUx1bkA1SrKfb",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you create a <strong>potion</strong> with your Inventory Points whose effects restore Hit Points while you have this equipped, it restores <strong>5 extra Hit Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Merchant Garb",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.g0mWeuY472HzooD8",
+            "effectUuid": null,
+            "fuid": "merchant-garb"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774719387593,
+        "modifiedTime": 1775708965891,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!g0mWeuY472HzooD8.FMdMUx1bkA1SrKfb"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774719297705,
+    "modifiedTime": 1777530740356,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!g0mWeuY472HzooD8"
+}

@@ -6,9 +6,13 @@ import { Checks } from '../../../../checks/checks.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
+import { FeatureTraits } from '../../../../pipelines/traits.mjs';
+import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
+import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
+import { ResourcePipeline } from '../../../../pipelines/resource-pipeline.mjs';
 
 const BASIC = 'FU.ClassFeatureInvocationsBasicName';
-
 const ADVANCED = 'FU.ClassFeatureInvocationsAdvancedName';
 
 const FIRST_SUPERIOR = 'FU.ClassFeatureInvocationsSuperiorNameFirst';
@@ -20,40 +24,78 @@ const RANKS = {
 	superior: 'FU.ClassFeatureInvocationsLevelSuperior',
 };
 
+const LOCALIZED_RANKS = {
+	basic: 'FU.ClassFeatureInvocationsLevelBasic',
+	advanced: 'FU.ClassFeatureInvocationsLevelAdvanced',
+	superior1: 'FU.ClassFeatureInvocationsLevelSuperior',
+	superior2: 'FU.ClassFeatureInvocationsLevelSuperior',
+};
+
+/**
+ * @typedef {'basic'|'advanced'|'superior1'|'superior2'} InvocationLevel
+ */
+
 const invocationKey = 'invocation';
 
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
+const onRenderCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
+		const { element, invocation } = check.additionalData[invocationKey];
+		data.tags.push({
+			tag: 'FU.Rank',
+			value: game.i18n.localize(RANKS[item.system.data.level]),
+			separator: ':',
+		});
+		// TODO: For custom invocations??
 		if (!check.additionalData[invocationKey]) {
-			CommonSections.tags(sections, [
-				{
-					tag: 'FU.Rank',
-					value: game.i18n.localize(RANKS[item.system.data.level]),
-					separator: ':',
-				},
-			]);
-			CommonSections.description(sections, item.system.description, item.system.summary.value);
+			CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		} else {
-			const { element, invocation } = check.additionalData[invocationKey];
-			sections.push({
+			data.sections.push({
 				partial: 'systems/projectfu/templates/feature/invoker/invocation-use-flavor.hbs',
 				data: {
 					uuid: item.uuid,
 					id: item.id,
+					img: item.img,
 					name: item.system.data[element][invocation].name,
 					icon: WELLSPRINGS[element].icon,
 				},
 				order: CHECK_FLAVOR,
 			});
-			CommonSections.description(sections, item.system.data[element][invocation].description);
+			CommonSections.description(data.sections, item.system.data[element][invocation].description);
 		}
+		const config = CheckConfiguration.configure(check);
+		config.addTraits(FeatureTraits.Invocation);
+		switch (invocation) {
+			case 'basic':
+				config.addTraits(FeatureTraits.InvocationBlast);
+				break;
+			case 'advanced':
+				config.addTraits(FeatureTraits.InvocationHex);
+				break;
+		}
+		/** @type ResourceExpense **/
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargetsOrDefault();
+		const cost = new ActionCostDataModel({
+			resource: 'mp',
+			amount: 5,
+			perTarget: false,
+		});
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		CommonSections.expense(data, actor, item, targets, flags, expense);
+
+		await CommonEvents.feature(actor, item, [FeatureTraits.Invocation], targets, data);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
+/**
+ * @property {String} level
+ * @property {String} description
+ */
 export class InvocationsDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, HTMLField } = foundry.data.fields;
@@ -86,6 +128,44 @@ export class InvocationsDataModel extends RollableClassFeatureDataModel {
 		return schema;
 	}
 
+	/**
+	 * @typedef AvailableInvocationData
+	 * @property key
+	 * @property img
+	 * @property wellspring
+	 * @property invocation
+	 * @property name
+	 * @property description
+	 */
+
+	/**
+	 * @param {WellspringElement}  wellspring
+	 * @returns {Promise<AvailableInvocationData[]>
+	 */
+	async getAvailableInvocations(wellspring) {
+		/**
+		 * @type {String[]}
+		 */
+		const availableInvocations = {
+			basic: ['basic'],
+			advanced: ['basic', 'advanced'],
+			superior: ['basic', 'advanced', 'superior1', 'superior2'],
+		}[this.level];
+
+		return Promise.all(
+			availableInvocations.map(async (invocation) => ({
+				key: `${wellspring}:${invocation}`,
+				label: LOCALIZED_RANKS[invocation],
+				img: this.item.img,
+				wellspring,
+				level: invocation,
+				invocation,
+				name: this[wellspring][invocation].name,
+				description: await TextEditor.enrichHTML(this[wellspring][invocation].description),
+			})),
+		);
+	}
+
 	static get template() {
 		return 'systems/projectfu/templates/feature/invoker/invocations-sheet.hbs';
 	}
@@ -105,8 +185,8 @@ export class InvocationsDataModel extends RollableClassFeatureDataModel {
 	static getTabConfigurations() {
 		return [
 			{
-				group: 'invocationsTabs',
-				navSelector: '.invocations-tabs',
+				group: 'invocations',
+				navSelector: '.sheet-tabs',
 				contentSelector: '.invocations-content',
 				initial: 'description',
 			},

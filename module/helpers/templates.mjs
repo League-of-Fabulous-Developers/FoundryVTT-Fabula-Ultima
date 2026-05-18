@@ -34,6 +34,8 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/actor/partials/actor-npc-skills.hbs',
 			'systems/projectfu/templates/actor/partials/actor-favorite.hbs',
 			'systems/projectfu/templates/actor/partials/actor-bonds.hbs',
+			'systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs',
+			'systems/projectfu/templates/actor/partials/actor-npc-widgets.hbs',
 
 			'systems/projectfu/templates/actor/partials/actor-progress-clock.hbs',
 			'systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs',
@@ -45,7 +47,6 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/item/partials/item-targeting.hbs',
 			'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 			'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
-			'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
 			'systems/projectfu/templates/item/partials/item-traits.hbs',
 
 			// Common partials
@@ -55,7 +56,10 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/common/traits.hbs',
 			'systems/projectfu/templates/common/icons/badge.hbs',
 			'systems/projectfu/templates/common/icons/item.hbs',
+			'systems/projectfu/templates/common/icons/tooltip.hbs',
+			'systems/projectfu/templates/common/icons/actor.hbs',
 			'systems/projectfu/templates/common/icons/compendium.hbs',
+			'systems/projectfu/templates/common/array-field.hbs',
 
 			// Effects
 			'systems/projectfu/templates/effects/active-effect-details.hbs',
@@ -104,12 +108,12 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 			'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 			'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
-			'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 			'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 			'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 			'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
 			'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 			'systems/projectfu/templates/chat/partials/chat-item-text.hbs',
+			'systems/projectfu/templates/chat/partials/chat-message-toggle.hbs',
 
 			// UI FUComponents
 			'systems/projectfu/templates/ui/combat-tracker.hbs',
@@ -122,6 +126,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-damage-bonuses.hbs',
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
+			'systems/projectfu/templates/app/partials/advancement-option-card.hbs',
 
 			// Optional Rule Templates
 			'systems/projectfu/templates/optional/feature-basic-preview.hbs',

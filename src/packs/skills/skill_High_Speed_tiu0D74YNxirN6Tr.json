@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
+    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</span></p><ul><li><p><span>Perform a <strong>free attack</strong> with a weapon you have equipped.</span></p></li><li><p><span>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</span></p></li></ul><p><span>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Rogue"
+      "value": "rogue"
     },
     "useWeapon": {
       "accuracy": {
@@ -121,24 +121,115 @@
     "fuid": "high-speed",
     "cost": {
       "amount": 10
+    },
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "High Speed",
+      "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "uZGa0bP1TXQ8Sqma": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "oAI80uE1x5YUF8z3",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "startOfCombat"
+              },
+              "_id": "uZGa0bP1TXQ8Sqma",
+              "actions": {
+                "28zPkL7Xf4utBu0o": {
+                  "type": "messageRuleAction",
+                  "_id": "28zPkL7Xf4utBu0o",
+                  "message": "<p><span>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</span></p><hr><p><span><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</span></p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "puwoCJqGrvIL3Tmq",
+      "type": "base",
+      "changes": [],
+      "description": "<p><span>At the start of a conflict, you may perform a <strong>free attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771839609017,
+        "modifiedTime": 1774637887691,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!tiu0D74YNxirN6Tr.puwoCJqGrvIL3Tmq"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504755033,
-    "modifiedTime": 1741971384010,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1774637761788,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

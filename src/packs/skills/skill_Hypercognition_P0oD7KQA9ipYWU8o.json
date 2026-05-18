@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> (High Fantasy, page <strong>138</strong>) that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
+    "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Esper"
+      "value": "esper"
     },
     "useWeapon": {
       "accuracy": {
@@ -117,6 +117,11 @@
     "fuid": "hypercognition",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -148,7 +153,8 @@
                 "traits": {
                   "entries": [],
                   "quantifier": "any"
-                }
+                },
+                "identifier": ""
               },
               "predicates": {
                 "ne9InszuSAjoMZuo": {
@@ -181,7 +187,8 @@
                 "traits": {
                   "entries": [],
                   "quantifier": "any"
-                }
+                },
+                "identifier": ""
               },
               "predicates": {
                 "zDayx35nHIPslmjn": {
@@ -202,6 +209,141 @@
                   "amount": "-$sl"
                 }
               }
+            },
+            "mXw9rjwnzlnCKaUG": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "XVqdSl8dLPxEFTct",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "verse"
+              },
+              "_id": "mXw9rjwnzlnCKaUG",
+              "predicates": {
+                "iDgzj12MiIb1rhbB": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "iDgzj12MiIb1rhbB",
+                  "effect": "focus"
+                },
+                "QE9dWopG2165TFwb": {
+                  "type": "targetingRulePredicate",
+                  "_id": "QE9dWopG2165TFwb"
+                }
+              },
+              "actions": {
+                "RhMesE1Xyp0IWniC": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "RhMesE1Xyp0IWniC",
+                  "amount": "-$sl*2"
+                }
+              }
+            },
+            "b5tf92xGllF7K1w4": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "091qN0WTDCQf526R",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "verse"
+              },
+              "_id": "b5tf92xGllF7K1w4",
+              "predicates": {
+                "AGtoIgnDgapJqnox": {
+                  "type": "targetingRulePredicate",
+                  "_id": "AGtoIgnDgapJqnox",
+                  "rule": "multiple"
+                },
+                "EPus8Nnghx38cuxJ": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "EPus8Nnghx38cuxJ",
+                  "effect": "focus"
+                }
+              },
+              "actions": {
+                "roKAnIwFzkK9gSmj": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "roKAnIwFzkK9gSmj",
+                  "amount": "-$sl"
+                }
+              }
+            },
+            "DfzsyLhzTpnrktKy": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "kCAxEMXfgzMvVnnZ",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "DfzsyLhzTpnrktKy",
+              "predicates": {
+                "nAJc81EHNkJB1q9P": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "nAJc81EHNkJB1q9P",
+                  "effect": "focus"
+                }
+              },
+              "actions": {
+                "Mc6mhxIA6N9kf0mf": {
+                  "type": "messageRuleAction",
+                  "_id": "Mc6mhxIA6N9kf0mf",
+                  "message": "<p>The cost of this spell has been reduced.</p>"
+                }
+              }
+            },
+            "JOM6TOxESvvtwjpG": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "xcNSHTNOD9kc4VCH",
+                "type": "featureRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "verse"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "JOM6TOxESvvtwjpG",
+              "predicates": {
+                "xneWC23XF7bd4UoX": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "xneWC23XF7bd4UoX",
+                  "effect": "focus"
+                }
+              },
+              "actions": {
+                "2EJg2UDoRG2uAKvs": {
+                  "type": "messageRuleAction",
+                  "_id": "2EJg2UDoRG2uAKvs",
+                  "message": "<p>The cost of this verse has been reduced.</p>"
+                }
+              }
             }
           },
           "progress": {
@@ -211,6 +353,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -222,7 +369,7 @@
       "_id": "KfTNS2FY3rStlm5m",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>The total MP cost of your <strong>spells</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -237,7 +384,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767266062677,
-        "modifiedTime": 1770369186552,
+        "modifiedTime": 1778182496505,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!P0oD7KQA9ipYWU8o.KfTNS2FY3rStlm5m"
@@ -252,7 +399,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -260,7 +408,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1770367840384,
+    "modifiedTime": 1771833577518,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

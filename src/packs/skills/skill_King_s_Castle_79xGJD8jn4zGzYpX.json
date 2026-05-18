@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend 10 Mind Points to choose one option:</span></p><ul><li><p><span class=\"fontstyle0\">No creature can recover HP or MP.</span></p></li><li><p><span class=\"fontstyle0\">All effects that restore Mind Points restore </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional MP.</span></p></li></ul><p><span class=\"fontstyle0\">The chosen effect lasts until the start of your next turn.</span> </p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
+    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover HP or MP.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong>additional MP.</p></li></ul><p>The chosen effect lasts until the start of your next turn. </p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Commander"
+      "value": "commander"
     },
     "useWeapon": {
       "accuracy": {
@@ -129,7 +129,11 @@
       "entries": [
         "Compendium.projectfu.skills.Item.lwzEcMwQICongcb5",
         "Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      },
+      "prompt": true
     }
   },
   "effects": [],
@@ -141,7 +145,8 @@
   "flags": {
     "core": {},
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
@@ -149,7 +154,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706555549756,
-    "modifiedTime": 1770332162838,
+    "modifiedTime": 1775523437640,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

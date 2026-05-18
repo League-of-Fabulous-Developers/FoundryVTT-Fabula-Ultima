@@ -1,0 +1,67 @@
+<section class="pfu-layout__menu">
+	<header>
+		<div class="form-group">
+			<label for="theme" class="fu-form__property">
+				{{localize "FU.Theme"}}
+				<select name="theme" data-action="changeTheme">
+					<option value="">{{localize "FU.Custom"}}</option>
+					{{#each themes}}
+						<option value="{{@key}}">{{localize (concat "FU.THEMES." @key)}}</option>
+					{{/each}}
+				</select>
+			</label>
+		</div>
+		<div class="form-group buttons">
+			<button type="button" data-action="importTheme" name="import">
+				<i class="fas fa-file-import"></i>{{localize "FU.Import"}}
+			</button>
+			<button type="button" data-action="exportTheme" name="export">
+				<i class="fas fa-file-export"></i>{{localize "FU.Export"}}
+			</button>
+		</div>
+	</header>
+	<main>
+		<div class="desc">
+			{{#each fields}}
+				{{#if (eq this.type "multiline-text")}}
+					<label class="fu-form__property" data-tooltip="{{localize hint}}">
+						<span>{{localize label}}</span>
+						<textarea name="{{@key}}" rows="5">{{lookup ../current @key}}</textarea>
+					</label>
+				{{else}}
+					<label class="fu-form__property" data-tooltip="{{localize hint}}">
+						<span>{{localize label}}</span>
+						{{#if (eq this.type "color")}}
+							<input type="color" name="{{@key}}" value="{{lookup ../current @key}}">
+						{{else if (eq this.type "image")}}
+							<input type="text" name="{{@key}}" value="{{lookup ../current @key}}">
+							<button
+							 type="button"
+							 data-action="filePicker"
+							 data-target="{{@key}}"
+							 data-type="image"
+							 title="Browse Files">
+								<i class="fas fa-file-import"></i>
+							</button>
+						{{else}}
+							<input type="text" name="{{@key}}" value="{{lookup ../current @key}}">
+						{{/if}}
+					</label>
+				{{/if}}
+			{{/each}}
+		</div>
+	</main>
+	<footer>
+		<div class="flexrow flex-group-center">
+			<button type="button" name="apply" data-action="applyTheme">
+				<i class="fas fa-palette"></i>{{localize "FU.Preview"}}
+			</button>
+			<button type="submit" name="submit" data-action="saveTheme">
+				<i class="fas fa-floppy-disk"></i>{{localize "FU.Save"}}
+			</button>
+			<button type="reset" name="reset">
+				<i class="fas fa-undo"></i>{{localize "FU.Reset"}}
+			</button>
+		</div>
+	</footer>
+</section>

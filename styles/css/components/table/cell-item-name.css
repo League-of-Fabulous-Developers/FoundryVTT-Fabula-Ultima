@@ -1,4 +1,6 @@
 .cell-item-name {
+	max-width: 30ch;
+
 	.cell-item-name__main {
 		display: flex;
 		gap: 0.25rem;
@@ -33,6 +35,14 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 			flex-shrink: 1;
+		}
+
+		a[data-link][draggable] {
+			cursor: grab;
+		}
+
+		a[data-link][draggable]:active {
+			cursor: grabbing;
 		}
 	}
 
@@ -94,4 +104,11 @@
 		line-height: 0;
 		vertical-align: middle;
 	}
+}
+
+a[data-action='roll'],
+a[data-action='rollEffect'],
+.cell-item-name a[data-link] {
+	--color-primary: var(--pfu-color-app-image-fill-1);
+	--color-secondary: var(--pfu-color-app-image-fill-2);
 }

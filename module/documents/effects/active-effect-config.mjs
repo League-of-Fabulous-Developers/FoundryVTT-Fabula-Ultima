@@ -1,7 +1,6 @@
 import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
-import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 import { RuleElements } from '../../pipelines/rule-elements.mjs';
 import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
@@ -10,6 +9,7 @@ import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mj
 import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 
 RuleElements.register();
 
@@ -90,7 +90,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 				{ id: 'details', icon: 'fa-solid fa-book' },
 				{ id: 'duration', icon: 'fa-solid fa-clock' },
 				{ id: 'predicates', label: 'FU.Predicate', icon: 'fa-solid fa-check' },
-				{ id: 'rules', label: 'FU.Rule', icon: 'fa-solid fa-list' },
+				{ id: 'rules', label: 'FU.Rule', icon: 'fa-solid fa-list', cssClass: 'scrollable' },
 				{ id: 'changes', icon: 'fa-solid fa-gears' },
 			],
 			initial: 'details',
@@ -150,7 +150,6 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						ruleTriggers: RuleTriggerRegistry.instance.localizedEntries,
 						damageTypeOptions: FoundryUtils.getFormOptions(FU.damageTypes),
 						itemGroupOptions: FoundryUtils.getFormOptions(FU.itemGroup),
-						damageSourceOptions: FoundryUtils.getFormOptions(FU.damageSource),
 						speciesOptions: FoundryUtils.getFormOptions(FU.species),
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
 						rankOptions: FoundryUtils.getFormOptions(FU.rank),
@@ -243,7 +242,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		statusForm.remove();
 
 		// Add toggle handler to track expanded/contracted state for RE summaries
-		const reElements = this.element.querySelectorAll(`.fu-foldout-item[data-rule-element]:not([data-rule-element=""])`); // Selector should grab only items with a *non-empty* data-rule-element
+		const reElements = this.element.querySelectorAll(`.pfu-foldout[data-rule-element]:not([data-rule-element=""])`); // Selector should grab only items with a *non-empty* data-rule-element
 		for (const elem of reElements) {
 			if (elem instanceof HTMLDetailsElement) {
 				elem.addEventListener('toggle', () => {
@@ -259,9 +258,22 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #addRuleElement(event, target) {
-		const type = RuleElementDataModel.TYPE;
-		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, type, this.document);
-		console.debug(`Added rule element`);
+		const triggerTypes = RuleTriggerRegistry.instance.localizedEntries;
+		const options = FoundryUtils.generateConfigOptions(triggerTypes);
+		const type = await FoundryUtils.selectOptionDialog(
+			StringUtils.localize('FU.AddElement', {
+				element: StringUtils.localize('FU.RuleElement'),
+			}),
+			options,
+		);
+
+		const triggerModel = RuleTriggerRegistry.instance.types[type];
+		const trigger = new triggerModel();
+		const data = {
+			trigger: trigger,
+		};
+		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, RuleElementDataModel.TYPE, this.document, data);
+		console.debug(`Added rule element with trigger ${type}`);
 	}
 
 	/**

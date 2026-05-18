@@ -1,12 +1,33 @@
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
+
+/**
+ * @typedef DialogSelectableItem
+ * @property {String} name
+ * @property {String} img
+ */
+
+/**
+ * @typedef ItemSelectionColumn
+ * @property {String} label
+ * @property {function(Item) : String} getContent
+ */
+
+/**
+ * @typedef {'grid'|'list'|'deck'|'grouped-list'} FUSelectionDialogStyle
+ */
 
 /**
  * @typedef ItemSelectionData
  * @property {String} title
  * @property {String} message
- * @property {FUItem[]|FUActiveEffect[]} items
+ * @property {DialogSelectableItem[]} items
+ * @property {Object[]} payload Associated data returned instead of the item reference.
+ * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
- * @property {'grid'|'list'} style
+ * @property {{name: string, items: Object[]}[]} groups
+ * @property {ItemSelectionColumn[]} columns Additional columns for the dialog.
+ * @property {FUSelectionDialogStyle} style
  * @property {Number} max
  * @property {(item: FUItem) => Promise<string>} getDescription
  * @property {String} okLabel
@@ -27,14 +48,22 @@ export class ItemSelectionDialog {
 	#selectedItems;
 
 	/**
+	 * @type {Number[]}
+	 */
+	#selectedIndexes;
+
+	/**
 	 * @param {ItemSelectionData} data
 	 */
 	constructor(data) {
 		data.style = data.style ?? 'grid';
+		data.title = data.title ?? StringUtils.localize('FU.Selection');
 		this.#data = data;
 		this.#selectedItems = [];
+		this.#selectedIndexes = [];
 		if (data.initial) {
 			this.#selectedItems.push(...data.initial);
+			this.#selectedIndexes.push(...data.initial.map((initial) => (initial._originalIndex !== undefined ? initial._originalIndex : data.items.findIndex((item) => item.id === initial.id))));
 		}
 	}
 
@@ -51,25 +80,41 @@ export class ItemSelectionDialog {
 	async open() {
 		// We cache the item descriptions here...
 		const descriptions = await Promise.all(this.data.items.map((item) => this.data.getDescription(item)));
+		// Additional columns
+		let columnData = {};
+		if (this.data.columns) {
+			for (const column of this.data.columns) {
+				columnData[column.label] = await Promise.all(this.data.items.map((item) => column.getContent(item)));
+			}
+		}
 		const context = {
 			...this.data,
-			descriptions: descriptions,
+			descriptions,
+			columnData,
 		};
 
 		/**
 		 * @param {HTMLElement} container
 		 * @param {HTMLElement} card
+		 * @param {Boolean} updateData
 		 */
-		const toggleCardSelection = (container, card) => {
-			const cardItem = this.data.items[card.dataset.index];
+		const toggleCardSelection = (container, card, updateData = true) => {
+			const index = Number.parseInt(card.dataset.index);
+			const cardItem = this.data.items[index];
 			if (!card.classList.contains('selected')) {
 				const selectedCards = container.querySelectorAll('.fu-item.selected');
 				if (selectedCards.length >= this.data.max) return;
 				card.classList.add('selected');
-				this.#selectedItems.push(cardItem);
+				if (updateData) {
+					this.#selectedItems.push(cardItem);
+					this.#selectedIndexes.push(index);
+				}
 			} else {
 				card.classList.remove('selected');
-				this.#selectedItems = this.#selectedItems.filter((it) => it !== cardItem);
+				if (updateData) {
+					this.#selectedItems = this.#selectedItems.filter((it) => it !== cardItem);
+					this.#selectedIndexes = this.#selectedIndexes.filter((it) => it !== index);
+				}
 			}
 		};
 
@@ -85,14 +130,18 @@ export class ItemSelectionDialog {
 				 *  @param {HTMLElement} dialog **/
 				selectAll: (event, dialog) => {
 					const inputs = dialog.closest('#items').querySelectorAll('input[name="selected"]');
+					const selectedIndexes = [];
 					for (const input of inputs) {
 						input.checked = true;
 						const card = input.closest('.fu-item');
 						if (card) {
 							card.classList.toggle('selected', true);
+							const index = Number.parseInt(card.dataset.index);
+							if (Number.isFinite(index)) selectedIndexes.push(index);
 						}
 					}
-					this.#selectedItems = this.data.initial;
+					this.#selectedItems = this.data.items;
+					this.#selectedIndexes = selectedIndexes;
 					return false;
 				},
 				/** @param {Event} event
@@ -107,6 +156,7 @@ export class ItemSelectionDialog {
 						}
 					}
 					this.#selectedItems = [];
+					this.#selectedIndexes = [];
 					return false;
 				},
 			},
@@ -122,26 +172,142 @@ export class ItemSelectionDialog {
 			render: async (event, dialog) => {
 				const document = dialog.element;
 				const container = document.querySelector('#items');
+				const searchInput = document.querySelector('[data-role="selection-filter"]');
+
+				const applySearchFilter = () => {
+					if (!container || !searchInput) return;
+					const query = searchInput.value.trim().toLocaleLowerCase();
+
+					for (const entry of container.querySelectorAll('.fu-item[data-index]')) {
+						const target = entry.closest('tr') ?? entry;
+						const name = (entry.dataset.name || entry.textContent || '').toLocaleLowerCase();
+						target.style.display = !query || name.includes(query) ? '' : 'none';
+					}
+
+					if (this.data.style !== 'grouped-list') return;
+					for (const header of container.querySelectorAll('.group-header')) {
+						let row = header.nextElementSibling;
+						let hasVisibleRows = false;
+						while (row && !row.classList.contains('group-header')) {
+							if (row.style.display !== 'none') {
+								hasVisibleRows = true;
+								break;
+							}
+							row = row.nextElementSibling;
+						}
+						header.style.display = hasVisibleRows ? '' : 'none';
+					}
+				};
+
+				searchInput?.addEventListener('input', applySearchFilter);
+
+				// Handle opening journal entries when clicking the icon
+				document.addEventListener(
+					'click',
+					(clickEvent) => {
+						const wrapper = clickEvent.target.closest('.journal-page-icon-wrapper[data-journal-uuid][data-page-uuid]');
+						if (wrapper) {
+							const journalUuid = wrapper.dataset.journalUuid;
+							const pageUuid = wrapper.dataset.pageUuid;
+							if (journalUuid && pageUuid) {
+								clickEvent.preventDefault();
+								clickEvent.stopPropagation();
+								const journal = fromUuidSync(journalUuid);
+								const page = fromUuidSync(pageUuid);
+
+								if (journal && page) {
+									const jSheet = journal.sheet;
+									const goToPage = () => {
+										if (typeof jSheet.goToPage === 'function') return jSheet.goToPage(page.id);
+										if (typeof jSheet.navigatePage === 'function') return jSheet.navigatePage(page.id);
+									};
+
+									if (jSheet.rendered) {
+										goToPage();
+										return;
+									}
+
+									Hooks.once('renderJournalSheet', (sheet) => {
+										if (sheet === jSheet) goToPage();
+									});
+									jSheet.render(true, { pageId: page.id });
+								}
+							}
+						}
+					},
+					true,
+				);
 
 				// Initial Selection
 				const inputs = container.querySelectorAll('input[name="selected"]:checked');
 				for (const input of inputs) {
 					const card = input.closest('.fu-item');
 					if (card) {
-						toggleCardSelection(container, card);
+						toggleCardSelection(container, card, false);
 					}
 				}
-				// ✅ Event handling
-				container.addEventListener('mousedown', async (event) => {
-					const card = event.target.closest('.fu-item');
-					if (!card) return;
-					toggleCardSelection(container, card);
-				});
+
+				if (this.data.style !== 'list' && this.data.style !== 'grouped-list') {
+					container.addEventListener('mousedown', async (event) => {
+						const card = event.target.closest('.fu-item');
+						if (!card) return;
+						toggleCardSelection(container, card);
+					});
+				} else {
+					container.addEventListener('change', (event) => {
+						const input = event.target;
+
+						// Handle group checkbox
+						if (input?.name === 'group-selected') {
+							const groupIndex = Number.parseInt(input.dataset.groupIndex);
+							if (Number.isFinite(groupIndex) && this.data.groups && this.data.groups[groupIndex]) {
+								const groupRow = input.closest('.group-header');
+								if (groupRow) {
+									const nextRow = groupRow.nextElementSibling;
+									let currentRow = nextRow;
+									// Toggle all pages in this group
+									while (currentRow && !currentRow.classList.contains('group-header')) {
+										const pageCheckbox = currentRow.querySelector('input[name="selected"]');
+										if (pageCheckbox) {
+											pageCheckbox.checked = input.checked;
+											pageCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+										}
+										currentRow = currentRow.nextElementSibling;
+									}
+								}
+							}
+							return;
+						}
+
+						// Handle individual page checkbox
+						if (input?.name !== 'selected') return;
+						const card = input.closest('.fu-item');
+						if (!card) return;
+						const index = Number.parseInt(card.dataset.index);
+						if (!Number.isFinite(index)) return;
+						const listItem = this.data.items[index];
+						if (input.checked) {
+							if (!this.#selectedIndexes.includes(index)) {
+								this.#selectedItems.push(listItem);
+								this.#selectedIndexes.push(index);
+							}
+						} else {
+							this.#selectedItems = this.#selectedItems.filter((it) => it !== listItem);
+							this.#selectedIndexes = this.#selectedIndexes.filter((it) => it !== index);
+						}
+					});
+				}
+
+				applySearchFilter();
 			},
 		});
 		if (result) {
-			console.debug(result);
-			return this.#selectedItems;
+			// If a custom payload is expected
+			if (this.data.payload) {
+				return this.#selectedIndexes.map((idx) => this.data.payload[idx]);
+			} else {
+				return this.#selectedItems;
+			}
 		} else {
 			throw Error('Canceled by user.');
 		}

@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Chanter"
+      "value": "chanter"
     },
     "useWeapon": {
       "accuracy": {
@@ -127,7 +127,8 @@
   },
   "flags": {
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {
