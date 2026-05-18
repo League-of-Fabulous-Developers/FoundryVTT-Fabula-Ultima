@@ -4,6 +4,8 @@ import { Checks } from './checks.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
+import { Flags } from '../helpers/flags.mjs';
+import { SETTINGS } from '../settings.js';
 
 function addRetargetEntry(application, menuItems) {
 	menuItems.unshift({
@@ -41,6 +43,10 @@ async function retarget(messageId) {
 	if (isCheck) {
 		const checkId = CheckConfiguration.inspect(message).getCheck().id;
 		let shouldDelete = false;
+		const relatedMessages = game.messages.filter((message) => {
+			const flag = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
+			return flag && flag.checkId === checkId;
+		});
 		await Checks.modifyCheck(checkId, (check, actor, item) => {
 			/** @type Token[] */
 			const targets = getTargeted(true);
@@ -52,6 +58,11 @@ async function retarget(messageId) {
 			return hasTargets;
 		});
 		if (shouldDelete) {
+			if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+				for (const message of relatedMessages) {
+					ui.chat.element.querySelectorAll(`.chat-log .chat-message[data-message-id="${message.id}"] a[data-action="revertDamage"]`).forEach((el) => el.click());
+				}
+			}
 			// Delete the existing message
 			await message.delete();
 		}

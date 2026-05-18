@@ -13,14 +13,16 @@ import FoundryUtils from './foundry-utils.mjs';
  * @property {String} actorUuid
  * @property {String} effectUuid
  * @property {String} fuid If an item is provided, used for referencing it from the compendium.
+ * @property {String} checkId
  */
 export class InlineSourceInfo {
-	constructor(name, actorUuid, itemUuid, effectUuid, fuid) {
+	constructor(name, actorUuid, itemUuid, effectUuid, fuid, checkId) {
 		this.name = name;
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
 		this.effectUuid = effectUuid;
 		this.fuid = fuid;
+		this.checkId = checkId;
 	}
 
 	/**
@@ -65,7 +67,7 @@ export class InlineSourceInfo {
 	 * @returns {InlineSourceInfo}
 	 */
 	static fromObject(obj) {
-		return new InlineSourceInfo(obj.name, obj.actorUuid, obj.itemUuid);
+		return new InlineSourceInfo(obj.name, obj.actorUuid, obj.itemUuid, obj.effectUuid, obj.fuid, obj.checkId);
 	}
 
 	/**
@@ -167,6 +169,7 @@ function determineSource(document, element) {
 	let itemUuid = null;
 	let actorUuid = null;
 	let effectUuid = null;
+	let checkId = null;
 	let fuid = element?.dataset?.fuid;
 
 	// ACTOR SHEET
@@ -241,6 +244,7 @@ function determineSource(document, element) {
 		else {
 			const check = document.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			if (check) {
+				checkId = check.id;
 				itemUuid = check.itemUuid;
 				if (check.itemName) {
 					name = check.itemName;
@@ -268,7 +272,7 @@ function determineSource(document, element) {
 			}
 		}
 	}
-	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
+	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid, checkId);
 }
 
 /**
