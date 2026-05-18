@@ -759,13 +759,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	async _onDragStart(ev) {
+		const { fromUuid } = foundry.utils;
 		const target = ev.currentTarget;
 
 		// Owned Items
 		if (target.dataset.itemId) {
 			let item = this.actor.items.get(target.dataset.itemId);
 			if (!item) {
-				item = fromUuidSync(target.dataset.uuid);
+				item = await fromUuid(target.dataset.uuid);
 			}
 			ev.dataTransfer.setData('text/plain', JSON.stringify(item.toDragData()));
 			return;
@@ -775,7 +776,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (target.dataset.effectId) {
 			let effect = this.actor.effects.get(target.dataset.effectId);
 			if (!effect) {
-				effect = fromUuidSync(target.dataset.uuid);
+				effect = await fromUuid(target.dataset.uuid);
 			}
 			ev.dataTransfer.setData('text/plain', JSON.stringify(effect.toDragData()));
 			return;
@@ -802,12 +803,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 	// ACTION HANDLERS //
 	/////////////////////
 
-	static #onEdit(event, target) {
+	static async #onEdit(event, target) {
 		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
 		let item = this.actor.items.get(itemId);
 		if (!item) {
 			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
-			item = foundry.utils.fromUuidSync(uuid);
+			item = await foundry.utils.fromUuid(uuid);
 		}
 
 		if (item) {
@@ -1252,7 +1253,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
-	static #onToggleFavorite(event, target) {
+	static async #onToggleFavorite(event, target) {
 		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
 		let item;
 		if (!itemId) {
@@ -1262,7 +1263,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (!item) {
 			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
 			if (uuid) {
-				item = fromUuidSync(uuid);
+				item = await fromUuid(uuid);
 			}
 		}
 
