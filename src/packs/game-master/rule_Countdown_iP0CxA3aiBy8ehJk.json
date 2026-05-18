@@ -1,0 +1,176 @@
+{
+  "type": "rule",
+  "name": "Countdown",
+  "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
+  "system": {
+    "fuid": "countdown",
+    "description": "",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": true
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false,
+      "name": "Countdown"
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Countdown",
+      "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
+      "origin": "Actor.UN1GO0JuY91ypu88.Item.AuVww8d7FhrHpMLx",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Zir80qeqEO7gbjFy": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "T1VIGf061kLySF4l",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "endOfRound",
+                "parity": ""
+              },
+              "_id": "Zir80qeqEO7gbjFy",
+              "actions": {
+                "fHXothwrgYobzGln": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "fHXothwrgYobzGln",
+                  "action": "update",
+                  "identifier": "countdown",
+                  "notify": true,
+                  "amount": "1"
+                }
+              },
+              "predicates": {},
+              "selector": "self",
+              "enabled": true
+            },
+            "vdSjJULlnKMNZxMQ": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "J6zLhtXSbY0Evy4a",
+                "type": "progressTrackRuleTrigger",
+                "eventRelation": "",
+                "identifier": "countdown",
+                "local": false,
+                "comparisonOperator": "max",
+                "value": null
+              },
+              "_id": "vdSjJULlnKMNZxMQ",
+              "actions": {
+                "ImaigXKHUgr6ihtm": {
+                  "type": "messageRuleAction",
+                  "_id": "ImaigXKHUgr6ihtm",
+                  "message": "<p>Objective achieved</p>"
+                }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": 0,
+        "combat": null,
+        "startRound": 37,
+        "startTurn": 0
+      },
+      "disabled": false,
+      "_id": "nuKuQNesIypDeX6K",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Countdown",
+            "actorUuid": null,
+            "itemUuid": "Actor.UN1GO0JuY91ypu88.Item.AuVww8d7FhrHpMLx",
+            "effectUuid": null,
+            "fuid": "rule"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!iP0CxA3aiBy8ehJk.nuKuQNesIypDeX6K"
+    }
+  ],
+  "folder": "EPexzx5pMkqZD8ai",
+  "ownership": {
+    "default": 0,
+    "UvCiJsCjJ2VCTD5X": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1779091486062,
+    "modifiedTime": 1779091486062,
+    "lastModifiedBy": "UvCiJsCjJ2VCTD5X"
+  },
+  "_id": "iP0CxA3aiBy8ehJk",
+  "sort": 0,
+  "_key": "!items!iP0CxA3aiBy8ehJk"
+}
