@@ -1813,14 +1813,8 @@
 		"Bar": "Bar",
 		"DurationIncrementMessage": "The duration of <strong>{label}</strong> has been extended to {current}.",
 		"ProgressAtMaximum": "<strong>{label}</strong> is already at maximum value.",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
+		"Search": "Search",
+		"Filter": "Filter",
 		"ThemeMenuName": "Theme Menu",
 		"ThemeMenuHint": "Configure the Theme.",
 		"ThemeMenuLabel": "Open Theme Menu",
@@ -1926,16 +1920,6 @@
 		"Export": "Export",
 		"Display": "Display",
 		"ControlJsonImportHint": "Image to use as an accent for the UI as a whole.",
-		"THEMES": {
-			"Default": "Greenly Default",
-			"ReactorFive": "Reactor Five",
-			"BravelyRed": "Bravely Red",
-			"AncientForest": "Ancient Forest",
-			"FabulaKnights": "Fabula Knights",
-			"Classic": "Classic",
-			"Modern": "Modern",
-			"Crystal": "Crystal"
-		},
 		"SkillPoints": "Skill Points",
 		"SkillPointsHint": "Only attribute modifications from skills are tracked. You will want to make use of active effects attached to skills for proper tracking.",
 		"PartySheetTheme": "Party Sheet Theme",
@@ -1965,14 +1949,6 @@
 		"Key": "Key",
 		"Value": "Value",
 		"Preview": "Preview",
-		"CODEX": {
-			"Character": "Character",
-			"Location": "Location",
-			"Faction": "Faction",
-			"Event": "Event",
-			"Lore": "Lore",
-			"Glossary": "Glossary"
-		},
 		"SwitchEquipment": "Switch Equipment",
 		"SwitchEquipmentChatMessage": "<strong>{actor}</strong> is now wearing the following equipment.",
 		"Advancement": "Advancement",
@@ -1992,6 +1968,32 @@
 		"AdvancementSkillClassNotFound": "The class in the selected skill could not be found.",
 		"AdvancementSpellLocked": "There should not be a spell selection in this advancement.",
 		"Synchronize": "Synchronize",
-		"SheetRenderingError": "A critical error occurred during the rendering of this sheet part. Please report the issue to the development team."
+		"SheetRenderingError": "A critical error occurred during the rendering of this sheet part. Please report the issue to the development team.",
+		"CODEX": {
+			"Character": "Character",
+			"Location": "Location",
+			"Faction": "Faction",
+			"Event": "Event",
+			"Lore": "Lore",
+			"Glossary": "Glossary"
+		},
+		"THEMES": {
+			"Default": "Greenly Default",
+			"ReactorFive": "Reactor Five",
+			"BravelyRed": "Bravely Red",
+			"AncientForest": "Ancient Forest",
+			"FabulaKnights": "Fabula Knights",
+			"Classic": "Classic",
+			"Modern": "Modern",
+			"Crystal": "Crystal"
+		},
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }

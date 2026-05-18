@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const SPREADSHEET_ID = '1WFG1LQv7KvdPpzn21D2s6e-E54Jirl-WDb8TKoJkg6M';
 
 // Insert your sheet names here
-const sheetNames = ['FU', 'FUID', 'ITEM', 'ACTOR', 'TYPES'];
+const sheetNames = ['FU', 'FUID', 'ITEM', 'ACTOR', 'TYPES', 'CODEX', 'THEMES'];
 
 // Input directory where CSV files will be saved
 const inputFolder = path.join(__dirname, 'import');

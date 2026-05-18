@@ -15,7 +15,7 @@ function convertUnicodeToHtml(value) {
 }
 
 // Function to save JSON data to files for each language
-function saveJsonToFile(data, typesData, fuidData, outputFolder) {
+function saveJsonToFile(data, typesData, fuidData, codexData, themesData, outputFolder) {
 	const langData = {};
 
 	// Determine languages from data
@@ -68,6 +68,26 @@ function saveJsonToFile(data, typesData, fuidData, outputFolder) {
 			}
 		});
 
+		// Populate CODEX section
+		const codexSection = {};
+		codexData.forEach((row) => {
+			const key = row.key;
+			const translation = convertUnicodeToHtml(row[lang]);
+			if (key && translation) {
+				codexSection[key] = translation;
+			}
+		});
+
+		// Populate THEMES section
+		const themesSection = {};
+		themesData.forEach((row) => {
+			const key = row.key;
+			const translation = convertUnicodeToHtml(row[lang]);
+			if (key && translation) {
+				themesSection[key] = translation;
+			}
+		});
+
 		// Create final JSON structure
 		const finalJson = {
 			ACTOR: langData[lang]['Project FU Localization - ACTOR'] || {},
@@ -75,6 +95,8 @@ function saveJsonToFile(data, typesData, fuidData, outputFolder) {
 			TYPES: typesSection,
 			FU: {
 				...(langData[lang]['Project FU Localization - FU'] || {}),
+				CODEX: codexSection,
+				THEMES: themesSection,
 				FUID: fuidSection,
 			},
 		};
@@ -90,17 +112,19 @@ const inputFolder = 'tools/csvtojson/import';
 const outputFolder = 'lang/';
 
 // CSV files to read
-const csvFiles = ['Project FU Localization - ACTOR.csv', 'Project FU Localization - ITEM.csv', 'Project FU Localization - FU.csv', 'Project FU Localization - FUID.csv'];
+const csvFiles = ['Project FU Localization - ACTOR.csv', 'Project FU Localization - ITEM.csv', 'Project FU Localization - FU.csv'];
 const csvData = csvFiles.map((file) => ({
 	name: path.basename(file, '.csv'),
 	data: readCsvData(path.join(inputFolder, file)),
 }));
 
-// Separate TYPES and FUID data processing
+// Separate TYPES, FUID, CODEX, and THEMES data processing
 const typesData = readCsvData(path.join(inputFolder, 'Project FU Localization - TYPES.csv'));
 const fuidData = readCsvData(path.join(inputFolder, 'Project FU Localization - FUID.csv'));
+const codexData = readCsvData(path.join(inputFolder, 'Project FU Localization - CODEX.csv'));
+const themesData = readCsvData(path.join(inputFolder, 'Project FU Localization - THEMES.csv'));
 
 // Save JSON to files for each language
-saveJsonToFile(csvData, typesData, fuidData, outputFolder);
+saveJsonToFile(csvData, typesData, fuidData, codexData, themesData, outputFolder);
 
 console.log('CSV to JSON conversion completed.');
