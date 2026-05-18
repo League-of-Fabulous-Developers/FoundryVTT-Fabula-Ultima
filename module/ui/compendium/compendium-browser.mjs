@@ -45,7 +45,9 @@ class SkillsCompendiumTableRenderer extends CompendiumTableRenderer {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			sl: CommonColumns.propertyColumn('FU.SkillLevel', 'system.level.max'),
 			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value', {
-				mapFunction: (value) => StringUtils.titleToKebab(value),
+				mapFunction: (value) => {
+					return CompendiumIndex.instance.getItemByFuidSync(value)?.name ?? StringUtils.titleToKebab(value);
+				},
 			}),
 		},
 	};
@@ -62,7 +64,11 @@ class SpellsCompendiumTableRenderer extends CompendiumTableRenderer {
 				localizationRecord: FU.duration,
 			}),
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.amount'),
-			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
+			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value', {
+				mapFunction: (value) => {
+					return CompendiumIndex.instance.getItemByFuidSync(value)?.name ?? StringUtils.titleToKebab(value);
+				},
+			}),
 		},
 	};
 }
