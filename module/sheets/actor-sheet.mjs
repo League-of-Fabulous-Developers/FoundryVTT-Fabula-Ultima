@@ -79,13 +79,13 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	/**
 	 * @param {PointerEvent} event
 	 */
-	#onAuxClick(event) {
+	async #onAuxClick(event) {
 		if (event.button === 1) {
 			const target = event.target;
 			let item = this.actor.items.get(target.closest('[data-item-id]')?.dataset?.itemId);
 
 			if (!item) {
-				item = foundry.utils.fromUuidSync(target.closest('[data-uuid]')?.dataset?.uuid);
+				item = await foundry.utils.fromUuid(target.closest('[data-uuid]')?.dataset?.uuid);
 			}
 
 			if (item) {
@@ -112,6 +112,14 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		console.warn('Unhandled action:', target.dataset.action, event, target);
 	}
 
+	/**
+	 * Because we need to conform to Foundry API definition we can not make this method or its parent '_onClickAction' async.
+	 * That unfortunately means that dispatching click actions to deeply nested items will _not_ work for actors in compendiums.
+	 *
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 * @return {boolean}
+	 */
 	#dispatchClickActionToItem(event, target) {
 		let success = false;
 
@@ -124,7 +132,8 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 
 		if (!item) {
 			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
-			item = foundry.utils.fromUuidSync(uuid);
+			// see jsdoc comment
+			item = foundry.utils.fromUuidSync(uuid, { strict: true });
 		}
 
 		if (item && item.system[target.dataset.action] instanceof Function) {
@@ -155,20 +164,20 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	}
 
 	async _onSortItem(event, item) {
-		const { fromUuidSync } = foundry.utils;
-		const source = fromUuidSync(item.uuid);
+		const { fromUuid } = foundry.utils;
+		const source = await fromUuid(item.uuid);
 
 		// Confirm the drop target
 		const dropTarget = event.target.closest('[data-uuid]');
 		if (!dropTarget) return;
-		const target = fromUuidSync(dropTarget.dataset.uuid);
+		const target = await fromUuid(dropTarget.dataset.uuid);
 		if (source.uuid === target.uuid) return;
 
 		// Identify sibling items based on adjacent HTML elements
 		const siblings = [];
 		for (const element of dropTarget.parentElement.children) {
 			const siblingId = element.dataset.uuid;
-			if (siblingId && siblingId !== source.uuid) siblings.push(fromUuidSync(element.dataset.uuid));
+			if (siblingId && siblingId !== source.uuid) siblings.push(await fromUuid(element.dataset.uuid));
 		}
 
 		// Perform the sort
