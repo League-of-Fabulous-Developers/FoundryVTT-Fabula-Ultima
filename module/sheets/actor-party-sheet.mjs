@@ -1615,15 +1615,11 @@ async function onRenderChatMessage(message, html) {
 	// Find all elements with data-action="revealNpc"
 	const elements = html.querySelectorAll('[data-action="revealNpc"]');
 	for (const el of elements) {
-		el.addEventListener(
-			'click',
-			async () => {
-				const uuid = el.dataset.uuid;
-				const party = await FUPartySheet.getActive();
-				return party.sheet.revealNpc(uuid);
-			},
-			{ once: true },
-		); // Optionally ensure it only attaches once
+		el.addEventListener('click', async () => {
+			const uuid = el.dataset.uuid;
+			const party = await FUPartySheet.getActive();
+			return party.sheet.revealNpc(uuid);
+		});
 	}
 }
 
