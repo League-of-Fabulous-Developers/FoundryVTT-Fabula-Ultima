@@ -402,8 +402,10 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 						if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
 							const traits = inspector.getTraits();
 							setTimeout(() => {
+								const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+								sourceInfo.checkId = checkData?.id;
 								game.projectfu.socket.requestPipeline('damage', {
-									sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+									sourceInfo: sourceInfo,
 									targets: hitTargets,
 									damageData,
 									traits,
