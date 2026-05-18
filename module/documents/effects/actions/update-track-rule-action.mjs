@@ -80,6 +80,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 				default:
 					{
 						// TODO: Add automatic application variant
+						const progress = actor.resolveProgress(id);
 						await actor.updateProgress(id, step);
 						if (this.notify) {
 							await ProgressDataModel.notifyUpdate(actor, progress, step, context.item);

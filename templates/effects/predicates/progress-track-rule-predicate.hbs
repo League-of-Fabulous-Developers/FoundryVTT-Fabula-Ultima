@@ -1,0 +1,19 @@
+<label class="fu-form__property">
+	<span>{{localize 'FU.Identifier'}}</span>
+	<input type="text" name="{{pfuConcat path ".identifier"}}" value="{{ predicate.identifier }}" />
+</label>
+
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
+		<span>{{localize 'FU.ComparisonOperator'}}</span>
+		<select name="{{pfuConcat path ".comparisonOperator"}}">
+			<option value="">-</option>
+			{{selectOptions predicate.schema.fields.comparisonOperator.choices selected=predicate.comparisonOperator sort=true localize=true}}
+		</select>
+	</label>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Value'}}</span>
+		<input type="number" name="{{pfuConcat path ".value"}}" value="{{ trigger.value }}" />
+	</label>
+</div>
