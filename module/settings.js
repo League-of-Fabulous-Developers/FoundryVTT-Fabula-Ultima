@@ -56,7 +56,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudAlwaysShow: 'optionCombatHudAlwaysShow',
 	optionCombatHudOrderByInitiative: 'optionCombatHudOrderByInitiative',
 	optionCombatHudShowPressureClock: 'optionCombatHudShowPressureClock',
-	optionCombatHudShowResourcesMode: 'optionCombatHudShowResourcesMode',
+	optionCombatHudShowNPCResourcesMode: 'optionCombatHudShowNPCResourcesMode',
 	// Theme
 	theme: 'theme',
 	themeFoundry: 'themeFoundry',
@@ -809,17 +809,17 @@ export const registerSystemSettings = async function () {
 		},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowResourcesMode, {
-		name: game.i18n.localize('FU.CombatHudShowResourcesMode'),
-		hint: game.i18n.localize('FU.CombatHudShowResourcesModeHint'),
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode, {
+		name: game.i18n.localize('FU.CombatHudShowNPCResourcesMode'),
+		hint: game.i18n.localize('FU.CombatHudShowNPCResourcesModeHint'),
 		scope: 'world',
 		config: false,
 		type: String,
 		choices: {
-			never: game.i18n.localize('FU.CombatHudShowResourcesModeNever'),
-			always: game.i18n.localize('FU.CombatHudShowResourcesModeAlways'),
-			'only-gm': game.i18n.localize('FU.CombatHudShowResourcesModeOnlyGM'),
-			'only-studied': game.i18n.localize('FU.CombatHudShowResourcesModeOnlyStudied'),
+			never: game.i18n.localize('FU.CombatHudShowNPCResourcesModeNever'),
+			always: game.i18n.localize('FU.CombatHudShowNPCResourcesModeAlways'),
+			'only-gm': game.i18n.localize('FU.CombatHudShowNPCResourcesModeOnlyGM'),
+			'only-studied': game.i18n.localize('FU.CombatHudShowNPCResourcesModeOnlyStudied'),
 		},
 		requiresReload: false,
 		onChange: () => {
