@@ -44,10 +44,14 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTurnIconsActive: 'optionCombatHudTurnIconsActive',
 	optionCombatHudTurnIconsOutOfTurns: 'optionCombatHudTurnIconsOutOfTurns',
 	optionCombatHudTurnIconsTurnsLeftHidden: 'optionCombatHudTurnIconsTurnsLeftHidden',
-	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
-	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
-	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
-	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
+	optionCombatHudTrackedPCResource1: 'optionCombatHudTrackedPCResource1',
+	optionCombatHudTrackedPCResource2: 'optionCombatHudTrackedPCResource2',
+	optionCombatHudTrackedPCResource3: 'optionCombatHudTrackedPCResource3',
+	optionCombatHudTrackedPCResource4: 'optionCombatHudTrackedPCResource4',
+	optionCombatHudTrackedNPCResource1: 'optionCombatHudTrackedNPCResource1',
+	optionCombatHudTrackedNPCResource2: 'optionCombatHudTrackedNPCResource2',
+	optionCombatHudTrackedNPCResource3: 'optionCombatHudTrackedNPCResource3',
+	optionCombatHudTrackedNPCResource4: 'optionCombatHudTrackedNPCResource4',
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatHudAlwaysShow: 'optionCombatHudAlwaysShow',
 	optionCombatHudOrderByInitiative: 'optionCombatHudOrderByInitiative',
@@ -144,6 +148,16 @@ function getClientSetting(setting, defaultValue) {
 		console.warn(`Unable to parse client setting!  Setting:`, setting, `Value:`, val);
 		return defaultValue;
 	}
+}
+
+/**
+ * Attempts to retrieve a setting from the world scope
+ * Used for defaulting values to old settings
+ * @param {string} setting - Key for the setting to retrieve
+ * @param {any} defaultValue - Default value to return, if setting is not found
+ */
+function getWorldSetting(setting, defaultValue) {
+	return game.settings.storage.get('world').getItem(`${SYSTEM}.setting`) ?? defaultValue;
 }
 
 /**
@@ -909,7 +923,47 @@ export const registerSystemSettings = async function () {
 		default: true,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, {
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource1, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource1'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: getWorldSetting('optionCombatHudTrackedResource1', 'hp'),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource2, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource2'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource2Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: getWorldSetting('optionCombatHudTrackedResource2', 'mp'),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource3, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource3'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource3Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: getWorldSetting('optionCombatHudTrackedResource3', 'ip'),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource4, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource4'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource4Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: getWorldSetting('optionCombatHudTrackedResource4', 'none'),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource1, {
 		name: game.i18n.localize('FU.CombatHudTrackedResource1'),
 		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'),
 		scope: 'world',
@@ -919,7 +973,7 @@ export const registerSystemSettings = async function () {
 		default: 'hp',
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, {
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource2, {
 		name: game.i18n.localize('FU.CombatHudTrackedResource2'),
 		hint: game.i18n.localize('FU.CombatHudTrackedResource2Hint'),
 		scope: 'world',
@@ -929,14 +983,24 @@ export const registerSystemSettings = async function () {
 		default: 'mp',
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, {
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource3, {
 		name: game.i18n.localize('FU.CombatHudTrackedResource3'),
 		hint: game.i18n.localize('FU.CombatHudTrackedResource3Hint'),
 		scope: 'world',
 		config: false,
 		type: String,
 		choices: FU.combatHudResources,
-		default: 'ip',
+		default: 'none',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource4, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource4'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource4Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'none',
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTheme, {
@@ -948,16 +1012,6 @@ export const registerSystemSettings = async function () {
 		default: 'fu-default',
 		choices: FU.combatHudThemes,
 		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, {
-		name: game.i18n.localize('FU.CombatHudTrackedResource4'),
-		hint: game.i18n.localize('FU.CombatHudTrackedResource4Hint'),
-		scope: 'world',
-		config: false,
-		type: String,
-		choices: FU.combatHudResources,
-		default: 'none',
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, {
