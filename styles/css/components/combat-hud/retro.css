@@ -271,7 +271,7 @@
 
 		.resource-text {
 			display: grid;
-			grid-template-columns: auto 1em auto;
+			grid-template-columns: 1fr auto 1fr;
 
 			:first-child {
 				text-align: right;

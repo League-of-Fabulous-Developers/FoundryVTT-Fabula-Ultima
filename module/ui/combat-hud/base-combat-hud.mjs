@@ -1,4 +1,5 @@
 import { FU, SYSTEM } from '../../helpers/config.mjs';
+import { Flags } from '../../helpers/flags.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { StudyRollHandler } from '../../pipelines/study-roll.mjs';
@@ -224,11 +225,12 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			// NPC
 			actorType = 'NPC';
 		}
+		const resourceOverrides = combatant.actor.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources) ?? [];
 		return [
-			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource1`]),
-			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource2`]),
-			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource3`]),
-			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource4`]),
+			resourceOverrides[0] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource1`]),
+			resourceOverrides[1] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource2`]),
+			resourceOverrides[2] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource3`]),
+			resourceOverrides[3] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource4`]),
 		];
 	}
 
@@ -437,7 +439,6 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		context.npcs.sort((a, b) => a.order - b.order);
 		context.combatants.sort((a, b) => a.order - b.order);
 
-		console.log('Combat HUD: Context:', context);
 		return context;
 	}
 
