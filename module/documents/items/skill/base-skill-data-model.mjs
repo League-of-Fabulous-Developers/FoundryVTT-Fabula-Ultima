@@ -19,6 +19,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ChatSectionOrder, CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
+import { SkillMigrations } from './skill-migrations.mjs';
 
 const skillForAttributeCheck = 'skillForAttributeCheck';
 
@@ -136,6 +137,12 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 		});
+	}
+
+	static migrateData(source) {
+		source = super.migrateData(source);
+		SkillMigrations.run(source);
+		return source;
 	}
 
 	prepareBaseData() {

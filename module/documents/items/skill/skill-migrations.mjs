@@ -31,8 +31,15 @@ function migrateRollInfo(source) {
 	}
 }
 
+function migrateAccuracy(source) {
+	if ('accuracy' in source && typeof source.accuracy === 'object' && 'value' in source.accuracy) {
+		source.accuracy = source.accuracy.value ?? 0;
+	}
+}
+
 export class SkillMigrations {
 	static run(source) {
 		migrateRollInfo(source);
+		migrateAccuracy(source);
 	}
 }
