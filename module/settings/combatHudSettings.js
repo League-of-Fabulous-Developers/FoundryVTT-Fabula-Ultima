@@ -20,6 +20,7 @@ export class CombatHudSettings extends FUApplication {
 		},
 		actions: {
 			resetPosition: CombatHudSettings.ResetPosition,
+			openUserConfig: CombatHudSettings.OpenUserConfig,
 		},
 	};
 
@@ -64,6 +65,16 @@ export class CombatHudSettings extends FUApplication {
 			initial: 'basics',
 		},
 	};
+
+	/**
+	 * @this {CombatHudSettings}
+	 */
+	static OpenUserConfig() {
+		game.user.sheet.render({ force: true });
+		Hooks.once('closeUserConfig', () => {
+			this.render();
+		});
+	}
 
 	static async ResetPosition() {
 		await game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, { x: 0, y: 0 });
@@ -160,6 +171,13 @@ export class CombatHudSettings extends FUApplication {
 				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied',
 			},
 			combatHudTurnIconsHint: new Handlebars.SafeString(game.i18n.format('FU.CombatHudTurnIconsHint', { materialSymbolsLink: materialSymbolsLink })),
+			optionCombatHudShowNPCResourcesMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode),
+			optionCombatHudShowNPCResourcesModeOptions: {
+				never: 'FU.CombatHudShowNPCResourcesModeNever',
+				always: 'FU.CombatHudShowNPCResourcesModeAlways',
+				'only-gm': 'FU.CombatHudShowNPCResourcesModeOnlyGM',
+				'only-studied': 'FU.CombatHudShowNPCResourcesModeOnlyStudied',
+			},
 		};
 	}
 
@@ -190,6 +208,7 @@ export class CombatHudSettings extends FUApplication {
 				optionCombatHudTurnIconsTurnsLeftHidden,
 				optionCombatHudTheme,
 				optionCombatHudShowNPCTurnsLeftMode,
+				optionCombatHudShowNPCResourcesMode,
 			} = formData.object;
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
@@ -218,6 +237,7 @@ export class CombatHudSettings extends FUApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, optionCombatHudTurnIconsActive);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns, optionCombatHudTurnIconsOutOfTurns);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden, optionCombatHudTurnIconsTurnsLeftHidden);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode, optionCombatHudShowNPCResourcesMode);
 		} else {
 			const {
 				experimentalCombatHud,
