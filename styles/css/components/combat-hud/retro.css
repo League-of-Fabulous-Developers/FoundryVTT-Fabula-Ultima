@@ -233,6 +233,7 @@
 		display: flex;
 		flex-direction: row;
 		flex-grow: 1;
+		column-gap: 4px;
 	}
 
 	.combat-hud-retro__combatant-effects--marquee {
@@ -261,5 +262,33 @@
 		-o-object-position: 50% 0;
 		object-position: 50% 0;
 		border: none;
+	}
+
+	.combat-hud-retro__resource-value-bar {
+		position: relative;
+		text-align: center;
+		padding: 2px;
+
+		.resource-text {
+			display: grid;
+			grid-template-columns: auto 1em auto;
+
+			:first-child {
+				text-align: right;
+			}
+
+			:last-child {
+				text-align: left;
+			}
+		}
+	}
+
+	.combat-hud-retro__resource-value-icon {
+		position: absolute;
+		left: 4px;
+	}
+
+	.bar-container {
+		flex-grow: 1;
 	}
 }

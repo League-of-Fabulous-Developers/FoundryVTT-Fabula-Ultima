@@ -19,8 +19,9 @@
           </div>
           {{#if showResources}}
             <div class="combat-hud-retro__combatant-resources combat-hud-retro__combatant-resources--npc">
-              {{> "systems/projectfu/templates/ui/combat-hud/retro/combat-hud-retro-bar.hbs" resource=actor.system.resources.hp label='FU.HealthPoints' inCrisis=actor.system.resources.hp.inCrisis barClass="bar-hp" icon="fa-solid fa-heart" }}
-              {{> "systems/projectfu/templates/ui/combat-hud/retro/combat-hud-retro-bar.hbs" resource=actor.system.resources.mp label='FU.HealthPoints' barClass="bar-mp" icon="fa-solid fa-hat-wizard icon" }}
+              {{#each trackedResources as |resource|}}
+              {{> (resource) actor=../actor }}
+              {{/each}}
             </div>
           {{/if}}
         </div>

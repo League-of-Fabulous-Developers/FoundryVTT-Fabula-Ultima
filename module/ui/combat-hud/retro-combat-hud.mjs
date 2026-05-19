@@ -14,16 +14,27 @@ export class RetroCombatHUD extends BaseCombatHUD {
 		hud: {
 			template: systemTemplatePath(`ui/combat-hud/combat-hud-default`),
 			templates: [
-				systemTemplatePath(`ui/combat-hud/retro/combat-hud-retro-npcs`),
-				systemTemplatePath(`ui/combat-hud/retro/combat-hud-retro-characters`),
+				systemTemplatePath(`ui/combat-hud/retro/npcs`),
+				systemTemplatePath(`ui/combat-hud/retro/characters`),
 				systemTemplatePath(`ui/combat-hud/combat-hud-portrait`),
-				systemTemplatePath(`ui/combat-hud/retro/combat-hud-retro-bar`),
+				systemTemplatePath(`ui/combat-hud/retro/bar`),
+				systemTemplatePath('ui/combat-hud/retro/bar-hp'),
+				systemTemplatePath('ui/combat-hud/retro/bar-mp'),
+				systemTemplatePath('ui/combat-hud/retro/bar-ip'),
+				// systemTemplatePath('ui/combat-hud/retro/bar-exp'),
+				// systemTemplatePath('ui/combat-hud/retro/bar-fp'),
+				// systemTemplatePath('ui/combat-hud/retro/bar-zp'),
 			],
 		},
 	};
 
 	get _elementClass() {
 		return 'combat-hud-retro';
+	}
+
+	_getResourcePartial(resource) {
+		if (resource === 'none') return null;
+		return systemTemplatePath(`ui/combat-hud/retro/bar-${resource}`);
 	}
 
 	async _prepareContext(options = {}) {

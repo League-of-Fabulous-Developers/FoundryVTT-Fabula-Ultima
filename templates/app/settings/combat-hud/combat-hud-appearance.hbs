@@ -1,0 +1,105 @@
+<section class="tab appearance {{tab.cssClass}} scrollable" data-group="primary" data-tab="appearance">
+	<div class="settings-form desc">
+    {{#if isGM}}
+      {{!-- optionCombatHudTheme --}}
+      <div class="form-group">
+        <label for="optionCombatHudTheme">{{localize "FU.CombatHudTheme"}}</label>
+        <div class="form-fields">
+          <select name="optionCombatHudTheme" id="optionCombatHudTheme">
+            {{selectOptions optionCombatHudThemeOptions selected=optionCombatHudTheme localize=true}}
+          </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudThemeHint"}}</p>
+      </div>
+    {{/if}}
+		{{!-- optionCombatHudOpacity --}}
+		<div class="form-group">
+			<label for="optionCombatHudOpacity">{{localize "FU.CombatHudOpacity"}}</label>
+			<div class="form-fields">
+				<input type="range" min="0" max="100" name="optionCombatHudOpacity" id="optionCombatHudOpacity"
+						value="{{optionCombatHudOpacity}}">
+			</div>
+			<p class="notes">{{localize "FU.CombatHudOpacityHint"}}</p>
+		</div>
+		{{!-- optionCombatHudWidth --}}
+		<div class="form-group">
+			<label for="optionCombatHudWidth">{{localize "FU.CombatHudWidth"}}</label>
+			<div class="form-fields">
+				<input type="range" min="0" max="100" name="optionCombatHudWidth" id="optionCombatHudWidth"
+						value="{{optionCombatHudWidth}}">
+			</div>
+			<p class="notes">{{localize "FU.CombatHudWidthHint"}}</p>
+		</div>
+		{{!-- optionCombatHudPositionButton --}}
+		<div class="form-group">
+			<label for="optionCombatHudPositionButton">{{localize "FU.CombatHudPositionButton"}}</label>
+			<div class="form-fields">
+				<select name="optionCombatHudPositionButton" id="optionCombatHudPositionButton">
+					{{selectOptions optionCombatHudPositionButtonOptions selected=optionCombatHudPositionButton localize=true}}
+				</select>
+			</div>
+			<p class="notes">{{localize "FU.CombatHudPositionButtonHint"}}</p>
+		</div>
+		{{!-- optionCombatHudPosition --}}
+		<div class="form-group">
+			<label for="optionCombatHudPosition">{{localize "FU.CombatHudPosition"}}</label>
+			<div class="form-fields">
+				<select name="optionCombatHudPosition" id="optionCombatHudPosition">
+					{{selectOptions optionCombatHudPositionOptions selected=optionCombatHudPosition localize=true}}
+				</select>
+			</div>
+			<p class="notes">{{localize "FU.CombatHudPositionHint"}}</p>
+		</div>
+
+		{{!-- Reset combat hud position --}}
+		<div class="form-group">
+			<label>{{localize "FU.CombatHudResetPosition"}}</label>
+			<button type="button" data-action="resetPosition">{{localize "FU.CombatHudResetPosition" }}</button>
+			<p class="notes">
+				{{localize "FU.CombatHudResetPositionHint"}}
+			</p>
+		</div>
+
+		{{!-- optionCombatHudPortrait --}}
+		<div class="form-group">
+			<label for="optionCombatHudPortrait">{{localize "FU.CombatHudPortrait"}}</label>
+			<div class="form-fields">
+				<select name="optionCombatHudPortrait" id="optionCombatHudPortrait">
+					{{selectOptions optionCombatHudPortraitOptions selected=optionCombatHudPortrait localize=true}}
+				</select>
+			</div>
+			<p class="notes">{{localize "FU.CombatHudPortraitHint"}}</p>
+		</div>
+    {{#if isGM}}
+      {{!--  Turn icons --}}
+      <h3>{{localize "FU.CombatHudTurnIcons"}}</h3>
+      <p class="notes">
+        {{combatHudTurnIconsHint}}
+      </p>
+      <div class="form-group">
+        <label for="optionCombatHudTurnIconsActive">{{localize "FU.CombatHudTurnIconsActive"}}</label>
+        <div class="form-fields">
+          <input type="text" class="mats-icon-picker" name="optionCombatHudTurnIconsActive" id="optionCombatHudTurnIconsActive" value="{{optionCombatHudTurnIconsActive}}">
+          <i class="mats-o mats-fill">{{optionCombatHudTurnIconsActive}}</i>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTurnIconsActiveHint"}}</p>
+      </div>
+      <div class="form-group">
+        <label for="optionCombatHudTurnIconsOutOfTurns">{{localize "FU.CombatHudTurnIconsOutOfTurns"}}</label>
+        <div class="form-fields">
+          <input type="text" class="mats-icon-picker" name="optionCombatHudTurnIconsOutOfTurns" id="optionCombatHudTurnIconsOutOfTurns" value="{{optionCombatHudTurnIconsOutOfTurns}}">
+          <i class="mats-o mats-fill">{{optionCombatHudTurnIconsOutOfTurns}}</i>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTurnIconsOutOfTurnsHint"}}</p>
+      </div>
+      <div class="form-group">
+        <label for="optionCombatHudTurnIconsTurnsLeftHidden">{{localize "FU.CombatHudTurnIconsTurnsLeftHidden"}}</label>
+        <div class="form-fields">
+          <input type="text" class="mats-icon-picker" name="optionCombatHudTurnIconsTurnsLeftHidden" id="optionCombatHudTurnIconsTurnsLeftHidden" value="{{optionCombatHudTurnIconsTurnsLeftHidden}}">
+          <i class="mats-o mats-fill">{{optionCombatHudTurnIconsTurnsLeftHidden}}</i>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTurnIconsTurnsLeftHiddenHint"}}</p>
+      </div>
+    {{/if}}
+  </div>
+</section>

@@ -88,7 +88,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 	static async update() {
 		if (BaseCombatHUD.shouldBeVisible && BaseCombatHUD.instance) {
 			await BaseCombatHUD.instance.render({ force: true });
-		} else {
+		} else if (BaseCombatHUD.instance) {
 			await BaseCombatHUD.instance.close({ animate: false });
 		}
 	}
@@ -114,6 +114,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 	/**
 	 * Initializes the combat HUD
 	 */
+	// TODO: Implement override settings?
 	static async init() {
 		if (!BaseCombatHUD.implementation) throw new Error('No combat HUD theme configured');
 
@@ -192,8 +193,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		if (theme === 'default') theme = '';
 		else theme = '-' + theme;
 
-		const basePath = 'systems/projectfu/templates/ui/partials/combat-bar-';
-		return basePath + resource + theme + '.hbs';
+		return systemTemplatePath(`ui/combat-hud/${theme}/combat-hud-${theme}-bar-${resource}`);
 	}
 
 	/**
@@ -215,6 +215,25 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		return combatant.img ?? CONST.DEFAULT_TOKEN;
 	}
 
+	_getCombatantTrackedResources(combatant) {
+		// TODO: Actor overrides
+		let actorType = '';
+		if (combatant.actor.type === 'character') {
+			actorType = 'PC';
+		} else {
+			// NPC
+			actorType = 'NPC';
+		}
+		return [
+			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource1`]),
+			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource2`]),
+			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource3`]),
+			game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource4`]),
+		];
+	}
+
+	_prepareTrackedResourceContext(resource) {}
+
 	/**
 	 * Prepares the context for a given combatant to be passed to our handlebars templates
 	 * @param {import('../combatant.mjs').Combatant} combatant
@@ -226,10 +245,8 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 
 		const zeroPower = Object.values(combatant.actor.tracks).find((track) => track.parent?.item?.system?.optionalType === FU.optionalFeatures.zeroPower);
 
-		const trackedResourcePart1 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1));
-		const trackedResourcePart2 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2));
-		const trackedResourcePart3 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3));
-		const trackedResourcePart4 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4));
+		const [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4] = this._getCombatantTrackedResources(combatant).map(this._getResourcePartial);
+		const trackedResources = [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4].filter((resource) => !!resource);
 
 		/** @type {import('./typedefs.mjs').CombatHUDCombatantContext} */
 		const actorData = {
@@ -244,10 +261,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			effects: activeEffects,
 			hasEffects: activeEffects.length > 0 && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects),
 			img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? await this._getCombatantThumbnail(combatant) : combatant.actor.img,
-			trackedResourcePart1,
-			trackedResourcePart2,
-			trackedResourcePart3,
-			trackedResourcePart4,
+			trackedResources,
 			showPressureClock: false,
 			portraitTooltip: `<h4>${combatant.name}</h4>`,
 			hideTurns: !FUCombat.showTurnsFor(combatant),
