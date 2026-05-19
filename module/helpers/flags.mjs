@@ -19,6 +19,11 @@ export const Flags = Object.freeze({
 	CurrentTurn: 'CurrentTurn',
 	FirstTurn: 'FirstTurn',
 	Favorite: 'favorite',
+	Actor: {
+		combatHud: {
+			trackedResources: 'trackedResources',
+		},
+	},
 	ActiveEffect: Object.freeze({
 		Source: 'Source',
 		Suppressed: 'Suppressed',
