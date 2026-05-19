@@ -1067,6 +1067,8 @@
 		"CombatHudPositionHint": "Adjust the position of the Combat HUD.",
 		"CombatHudPositionTop": "Top",
 		"CombatHudPositionBottom": "Bottom",
+		"CombatHudEnableOthers": "Enable for Others",
+		"CombatHudEnableOthersHint": "Click to enable the combat HUD for other users.",
 		"Hit": "Hit",
 		"Miss": "Miss",
 		"ChatCombatStart": "Combat started on round {round}.",
@@ -1237,6 +1239,9 @@
 		"CombatHudTrackedResource2Hint": "Choose the second resource to be shown as a bar in the Combat HUD.",
 		"CombatHudTrackedResource3": "Third Tracked Resource",
 		"CombatHudTrackedResource3Hint": "Choose the third resource to be shown as a bar in the Combat HUD.",
+		"CombatHudTrackedPCResources": "Tracked PC Resources",
+		"CombatHudTrackedNPCResources": "Tracked NPC Resources",
+		"CombatHudTrackedActorResources": "Tracked Resources: {name}",
 		"ClassFeaturePsychicGiftLabel": "Psychic Gift",
 		"ClassFeaturePsychicGiftTrigger": "Trigger",
 		"ClassFeatureTherioformLabel": "Therioform",
@@ -2008,6 +2013,26 @@
 		"AdversaryFilterMisc": "Miscellaneous",
 		"AbilityNoWeaponSelected": "No weapon selected!",
 		"ThemeFoundrySetting": "Apply Theme to Core Foundry",
-		"ThemeFoundrySettingHint": "If enabled, the theme configured for the ProjectFU system will also be applied to many parts of the core Foundry interface."
+		"ThemeFoundrySettingHint": "If enabled, the theme configured for the ProjectFU system will also be applied to many parts of the core Foundry interface.",
+		"COMBATHUD": {
+			"CONTEXT": {
+				"StartTurn": "Start Turn",
+				"StartTurnOutOfOrder": "Take Turn Out of Order",
+				"EndTurn": "End Turn",
+				"RemoveCombatant": "Remove Combatant",
+				"HideToken": "Hide Token",
+				"UnhideToken": "Unhide Token",
+				"ViewActorSheet": "View Actor Sheet",
+				"SelectActor": "Select Actor",
+				"ViewAdversary": "View Adversary Profile",
+				"EditAdversary": "Edit Adversary Profile",
+				"AddAdversary": "Add Adversary Profile"
+			},
+			"TABS": {
+				"Basics": "Basics",
+				"Appearance": "Appearance",
+				"TrackedResources": "Tracked Resources"
+			}
+		}
 	}
 }

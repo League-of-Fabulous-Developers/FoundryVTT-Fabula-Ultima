@@ -1,0 +1,91 @@
+<section class="tab trackedResources {{tab.cssClass}} scrollable" data-group="primary" data-tab="trackedResources">
+	<div class="settings-form desc">
+		{{#if isGM}}
+			<h3>{{localize "FU.CombatHudTrackedPCResources"}}</h3>
+			<div class="form-group">
+				<label for="optionCombatHudTrackedPCResource1">{{localize "FU.CombatHudTrackedResource1"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedPCResource1" id="optionCombatHudTrackedPCResource1">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedPCResource1 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource1Hint"}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="optionCombatHudTrackedPCResource2">{{localize "FU.CombatHudTrackedResource2"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedPCResource2" id="optionCombatHudTrackedPCResource2">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedPCResource2 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource2Hint"}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="optionCombatHudTrackedPCResource3">{{localize "FU.CombatHudTrackedResource3"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedPCResource3" id="optionCombatHudTrackedPCResource3">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedPCResource3 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource3Hint"}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="optionCombatHudTrackedPCResource4">{{localize "FU.CombatHudTrackedResource4"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedPCResource4" id="optionCombatHudTrackedPCResource4">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedPCResource4 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource4Hint"}}</p>
+			</div>
+
+			<h3>{{localize "FU.CombatHudTrackedNPCResources"}}</h3>
+			<div class="form-group">
+				<label for="optionCombatHudTrackedNPCResource1">{{localize "FU.CombatHudTrackedResource1"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedNPCResource1" id="optionCombatHudTrackedNPCResource1">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedNPCResource1 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource1Hint"}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="optionCombatHudTrackedNPCResource2">{{localize "FU.CombatHudTrackedResource2"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedNPCResource2" id="optionCombatHudTrackedNPCResource2">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedNPCResource2 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource2Hint"}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="optionCombatHudTrackedNPCResource3">{{localize "FU.CombatHudTrackedResource3"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedNPCResource3" id="optionCombatHudTrackedNPCResource3">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedNPCResource3 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource3Hint"}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="optionCombatHudTrackedNPCResource4">{{localize "FU.CombatHudTrackedResource4"}}</label>
+				<div class="form-fields">
+					<select name="optionCombatHudTrackedNPCResource4" id="optionCombatHudTrackedNPCResource4">
+						{{selectOptions trackedResources selected=optionCombatHudTrackedNPCResource4 localize=true}}
+					</select>
+				</div>
+				<p class="notes">{{localize "FU.CombatHudTrackedResource4Hint"}}</p>
+			</div>
+		{{else}}
+			{{#if hasCharacter}}
+			<h3>Character</h3>
+			{{/if}}
+		{{/if}}
+  </div>
+</section>
