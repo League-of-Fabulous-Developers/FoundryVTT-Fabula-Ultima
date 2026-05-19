@@ -1,11 +1,13 @@
 import FUApplication from '../ui/application.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
+import { Flags } from '../helpers/flags.mjs';
 
 export class CombatHudSettings extends FUApplication {
 	/** @type ApplicationConfiguration */
 	static DEFAULT_OPTIONS = {
-		classes: ['projectfu', 'combat-hud-config-app'],
+		classes: ['projectfu', 'combat-hud-config-app', 'sheet', 'backgroundstyle'],
 		id: 'combat-hud-settings',
 		position: {
 			width: 600,
@@ -22,8 +24,43 @@ export class CombatHudSettings extends FUApplication {
 
 	/** @type {Record<string, HandlebarsTemplatePart>} */
 	static PARTS = {
-		main: {
-			template: 'systems/projectfu/templates/app/settings/combat-hud.hbs',
+		tabs: {
+			template: systemTemplatePath('app/settings/combat-hud/combat-hud-tabs'),
+		},
+		basics: {
+			template: systemTemplatePath('app/settings/combat-hud/combat-hud-basics'),
+		},
+		appearance: {
+			template: systemTemplatePath('app/settings/combat-hud/combat-hud-appearance'),
+		},
+		trackedResources: {
+			template: systemTemplatePath('app/settings/combat-hud/combat-hud-resources'),
+		},
+
+		buttons: {
+			template: systemTemplatePath('app/settings/combat-hud/combat-hud-buttons'),
+		},
+	};
+
+	static TABS = {
+		primary: {
+			tabs: [
+				{
+					id: 'basics',
+					label: 'FU.COMBATHUD.TABS.Basics',
+					class: ['button-style'],
+				},
+				{
+					id: 'appearance',
+					label: 'FU.COMBATHUD.TABS.Appearance',
+				},
+				{
+					id: 'trackedResources',
+					label: 'FU.COMBATHUD.TABS.TrackedResources',
+				},
+			],
+
+			initial: 'basics',
 		},
 	};
 
@@ -41,9 +78,23 @@ export class CombatHudSettings extends FUApplication {
 		);
 	}
 
+	async _preparePartContext(partId, ctx, options) {
+		const context = await super._preparePartContext(partId, ctx, options);
+		if (partId in context.tabs) context.tab = context.tabs[partId];
+		return context;
+	}
+
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		Object.assign(context, this.getData());
+
+		context.tabs = this._prepareTabs('primary');
+
+		context.hasCharacter = !!game.user.character;
+		context.userCharacter = game.user.character;
+
+		context.characterTrackedResources = game.user.character.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources);
+
 		return context;
 	}
 
@@ -73,10 +124,14 @@ export class CombatHudSettings extends FUApplication {
 			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
 			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
 			isGM: game.user.isGM,
-			optionCombatHudTrackedResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
-			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
-			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
-			optionCombatHudTrackedResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+			optionCombatHudTrackedPCResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource1),
+			optionCombatHudTrackedPCResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource2),
+			optionCombatHudTrackedPCResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource3),
+			optionCombatHudTrackedPCResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource4),
+			optionCombatHudTrackedNPCResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource1),
+			optionCombatHudTrackedNPCResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource2),
+			optionCombatHudTrackedNPCResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource3),
+			optionCombatHudTrackedNPCResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource4),
 			optionCombatHudTurnIconsActive: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive),
 			optionCombatHudTurnIconsOutOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns),
 			optionCombatHudTurnIconsTurnsLeftHidden: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden),
@@ -107,10 +162,14 @@ export class CombatHudSettings extends FUApplication {
 				optionCombatHudEffectsMarqueeMode,
 				optionCombatHudReordering,
 				optionCombatHudShowOrderNumbers,
-				optionCombatHudTrackedResource1,
-				optionCombatHudTrackedResource2,
-				optionCombatHudTrackedResource3,
-				optionCombatHudTrackedResource4,
+				optionCombatHudTrackedPCResource1,
+				optionCombatHudTrackedPCResource2,
+				optionCombatHudTrackedPCResource3,
+				optionCombatHudTrackedPCResource4,
+				optionCombatHudTrackedNPCResource1,
+				optionCombatHudTrackedNPCResource2,
+				optionCombatHudTrackedNPCResource3,
+				optionCombatHudTrackedNPCResource4,
 				optionCombatHudTurnIconsActive,
 				optionCombatHudTurnIconsOutOfTurns,
 				optionCombatHudTurnIconsTurnsLeftHidden,
@@ -129,10 +188,16 @@ export class CombatHudSettings extends FUApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudReordering, optionCombatHudReordering);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, optionCombatHudTrackedResource1);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, optionCombatHudTrackedResource2);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, optionCombatHudTrackedResource3);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, optionCombatHudTrackedResource4);
+
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource1, optionCombatHudTrackedPCResource1);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource2, optionCombatHudTrackedPCResource2);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource3, optionCombatHudTrackedPCResource3);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedPCResource4, optionCombatHudTrackedPCResource4);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource1, optionCombatHudTrackedNPCResource1);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource2, optionCombatHudTrackedNPCResource2);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource3, optionCombatHudTrackedNPCResource3);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedNPCResource4, optionCombatHudTrackedNPCResource4);
+
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTheme, optionCombatHudTheme);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, optionCombatHudShowNPCTurnsLeftMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, optionCombatHudTurnIconsActive);
