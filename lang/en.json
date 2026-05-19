@@ -1242,6 +1242,7 @@
 		"CombatHudTrackedPCResources": "Tracked PC Resources",
 		"CombatHudTrackedNPCResources": "Tracked NPC Resources",
 		"CombatHudTrackedActorResources": "Tracked Resources: {name}",
+		"CombatHudTrackedActorResourceUseDefault": "Use Default ({value})",
 		"ClassFeaturePsychicGiftLabel": "Psychic Gift",
 		"ClassFeaturePsychicGiftTrigger": "Trigger",
 		"ClassFeatureTherioformLabel": "Therioform",
