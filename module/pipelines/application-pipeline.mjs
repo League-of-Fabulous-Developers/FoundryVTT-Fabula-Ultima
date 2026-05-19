@@ -121,7 +121,7 @@ async function handleArcanum(actor, item) {
 				details: currentArcanumData.dismiss,
 			});
 			CommonSections.content(renderData.sections, content, CHECK_DETAILS);
-			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumDismiss], renderData);
+			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumDismiss], [], renderData);
 			const builder = new FUChatBuilder(actor, item).withData(renderData);
 			await builder.create();
 		} else if (choice === 'pulse') {
@@ -137,7 +137,7 @@ async function handleArcanum(actor, item) {
 				details: currentArcanumData.pulse,
 			});
 			CommonSections.content(renderData.sections, content, CHECK_DETAILS);
-			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumPulse], renderData);
+			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumPulse], [], renderData);
 			const builder = new FUChatBuilder(actor, item).withData(renderData);
 			await builder.create();
 		}
@@ -173,13 +173,13 @@ async function handleArcanum(actor, item) {
 				});
 				// Calculate summon cost
 				/** @type ResourceExpense **/
-				const arcanumCostWithTraits = {
-					...arcanumCost,
+				const expense = await ResourcePipeline.calculateExpense(arcanumCost, actor, item, []);
+				const arcanumExpenseWithTraits = {
+					...expense,
 					traits: [FeatureTraits.ArcanumSummon],
 				};
-				const expense = await ResourcePipeline.calculateExpense(arcanumCostWithTraits, actor, item, []);
-				await CommonEvents.calculateExpense(actor, item, [], expense);
-				console.debug(`Arcanum summon cost: ${expense.amount}`);
+				await CommonEvents.calculateExpense(actor, item, [], arcanumExpenseWithTraits);
+				console.debug(`Arcanum summon cost: ${arcanumExpenseWithTraits.amount}`);
 				// Render sections
 				/** @type {FURenderData} **/
 				const renderData = {
@@ -195,8 +195,8 @@ async function handleArcanum(actor, item) {
 					details: selectedArcana.system.data.merge,
 				});
 				CommonSections.content(renderData.sections, content, CHECK_DETAILS);
-				CommonSections.expense(renderData, actor, item, [], flags, expense);
-				await CommonEvents.feature(actor, item, expense.traits, renderData);
+				CommonSections.expense(renderData, actor, item, [], flags, arcanumExpenseWithTraits);
+				await CommonEvents.feature(actor, item, arcanumExpenseWithTraits.traits, [], renderData);
 				const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
 				await builder.create();
 			} else {
@@ -238,14 +238,17 @@ async function handleTheriomorphosis(actor, item) {
 		// Calculate theriomorphosis cost
 		// If the item passed in has a cost, use it.
 		/** @type ResourceExpense **/
-		const therioformCost = {
+		const therioCost = {
 			resource: item.system.cost.resource ?? 'hp',
 			amount: item.system.cost.amount ?? 0,
+		};
+		const expense = await ResourcePipeline.calculateExpense(therioCost, actor, item, []);
+		const therioExpenseWithTraits = {
+			...expense,
 			traits: [FeatureTraits.TherioformManifest],
 		};
-		const expense = await ResourcePipeline.calculateExpense(therioformCost, actor, item, []);
-		await CommonEvents.calculateExpense(actor, item, [], expense);
-		console.debug(`Theriomorphosis cost: ${expense.amount}`);
+		await CommonEvents.calculateExpense(actor, item, [], therioExpenseWithTraits);
+		console.debug(`Theriomorphosis cost: ${therioExpenseWithTraits.amount}`);
 		// Render sections
 		/** @type {FURenderData} **/
 		const renderData = {
@@ -263,10 +266,10 @@ async function handleTheriomorphosis(actor, item) {
 			forms: selectedForms,
 		});
 		CommonSections.content(renderData.sections, content, CHECK_DETAILS);
-		if (expense.amount > 0) {
-			CommonSections.expense(renderData, actor, item, [], flags, expense);
+		if (therioExpenseWithTraits.amount > 0) {
+			CommonSections.expense(renderData, actor, item, [], flags, therioExpenseWithTraits);
 		}
-		await CommonEvents.feature(actor, item, expense.traits, renderData);
+		await CommonEvents.feature(actor, item, therioExpenseWithTraits.traits, [], renderData);
 		const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
 		await builder.create();
 	} else {
