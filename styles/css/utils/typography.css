@@ -10,9 +10,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
+/* We use a slightly modified version of PT Sans Narrow */
 @font-face {
-	font-family: 'PT Sans Narrow';
-	src: url('../../fonts/PTSans-Narrow.ttf') format('truetype');
+	font-family: 'PFU Sans Narrow';
+	src: url('../../fonts/PFUSans-Narrow.ttf') format('truetype');
 	font-style: normal;
 	font-weight: normal;
 	font-optical-sizing: auto;
@@ -134,7 +135,7 @@
    Typography Variables
    ========================= */
 :root {
-	--font-primary: 'PT Sans Narrow', sans-serif;
+	--font-primary: 'PFU Sans Narrow', sans-serif;
 	--font-secondary: 'Yanone Kaffeesatz', sans-serif;
 	--font-title: 'CreditValleybold';
 	--font-fancy: 'Playfair Display', 'Bodoni Moda', serif;

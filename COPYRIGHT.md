@@ -28,8 +28,7 @@ Supplied game rules in the system compendium adhere to and are published under t
 - [Material Symbols](https://developers.google.com/fonts/) under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 - [Credit Valley](https://www.fontsquirrel.com/fonts/credit-valley) by Larabie Fonts under the [Larabie Fonts License](https://www.fontsquirrel.com/license/Credit-Valley)
 - [Yanone Kaffeesatz](https://fonts.google.com/specimen/Yanone+Kaffeesatz) by [Yanone Kaffeesatz](https://github.com/yanone/kaffeesatz) under the [Open Font License](https://openfontlicense.org/)
-- PT Sans Narrow - The version of PT Sans Narrow included in this repository is slightly modified from the original.  Black lenticular brackets have been added to control the spacing of these glyphs.  It is released under the [Open Font License](https://openfontlicense.org/).
-  - The original [PT Sans Narrow](https://fonts.google.com/specimen/PT+Sans+Narrow) by ParaType under the [Open Font License](https://openfontlicense.org/)
+- PFUSans-Narrow.otf - A customized version of [PT Sans Narrow](https://fonts.google.com/specimen/PT+Sans+Narrow), both of which are under the [Open Font License](https://openfontlicense.org/)
 - [PT Sans Caption](https://fonts.google.com/specimen/PT+Sans+Caption) by ParaType under the [Open Font License](https://openfontlicense.org/)
 - [PT Sans](https://fonts.google.com/specimen/PT+Sans) by ParaType under the [Open Font License](https://openfontlicense.org/)
 - [EB Garamond](https://fonts.google.com/specimen/EB+Garamond) by Georg Duffner and Octavio Pardo under the [Open Font License](https://openfontlicense.org/)
