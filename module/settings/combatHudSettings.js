@@ -37,6 +37,7 @@ export class CombatHudSettings extends FUApplication {
 		},
 		trackedResources: {
 			template: systemTemplatePath('app/settings/combat-hud/combat-hud-resources'),
+			templates: [systemTemplatePath('app/settings/combat-hud/combat-hud-resources-actor')],
 		},
 
 		buttons: {
