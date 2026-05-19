@@ -1,4 +1,5 @@
 import { Targeting } from '../../../helpers/targeting.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 function migrateQualityToOpportunity(source) {
 	if ('quality' in source && source.quality.value && !('opportunity' in source)) {
@@ -50,10 +51,22 @@ function migratePerTargetCost(source) {
 	}
 }
 
+function removeInvalidDuration(source) {
+	if (source.duration?.value) {
+		const foundDuration = Object.keys(FU.duration).find((e) => {
+			return e === source.duration.value;
+		});
+		if (!foundDuration) {
+			source.duration.value = 'instantaneous';
+		}
+	}
+}
+
 export class SpellMigrations {
 	static run(source) {
 		migrateQualityToOpportunity(source);
 		migrateCostAndTargets(source);
 		migratePerTargetCost(source);
+		removeInvalidDuration(source);
 	}
 }

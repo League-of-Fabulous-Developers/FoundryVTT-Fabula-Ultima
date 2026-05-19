@@ -1,4 +1,3 @@
-import { SkillMigrations } from './skill-migrations.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
 import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
@@ -37,12 +36,6 @@ export class SkillDataModel extends BaseSkillDataModel {
 			}),
 			class: new SchemaField({ value: new StringField() }),
 		});
-	}
-
-	static migrateData(source) {
-		source = super.migrateData(source);
-		SkillMigrations.run(source);
-		return source;
 	}
 
 	shouldApplyEffect(effect) {

@@ -21,4 +21,18 @@ export class DamageDataModelV2 extends foundry.abstract.DataModel {
 			type: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes), blank: true, nullable: false }),
 		};
 	}
+	static migrateData(source) {
+		source = super.migrateData(source);
+		migrateDamage(source);
+		return source;
+	}
+}
+
+function migrateDamage(source) {
+	if (typeof source.hasDamage === 'object' && 'value' in source.hasDamage) {
+		source.hasDamage = source.hasDamage.value ?? false;
+	}
+	if (typeof source.type === 'object' && 'value' in source.type) {
+		source.type = source.type.value ?? 'physical';
+	}
 }
