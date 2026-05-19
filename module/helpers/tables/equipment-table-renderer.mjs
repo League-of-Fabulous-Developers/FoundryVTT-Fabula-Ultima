@@ -148,7 +148,7 @@ export class EquipmentTableRenderer extends TradableTableRenderer {
 				renderCell: EquipmentTableRenderer.#renderDetails,
 			},
 			cost: CommonColumns.textColumn({ columnLabel: 'FU.Cost', importance: 'high', getText: EquipmentTableRenderer.#getCost }),
-			controls: CommonColumns.itemControlsColumn({ headerAlignment: 'end', custom: EquipmentTableRenderer.#renderCustomControlsHeader }, TradableTableRenderer.getCellOptions()),
+			controls: CommonColumns.itemControlsColumn({ headerAlignment: 'end', type: [...includedItemTypes], label: 'FU.Equipment' }, TradableTableRenderer.getCellOptions()),
 		},
 	};
 
@@ -173,9 +173,5 @@ export class EquipmentTableRenderer extends TradableTableRenderer {
 			cost = Math.floor(cost * item.actor.system.rates.item);
 		}
 		return cost;
-	}
-
-	static #renderCustomControlsHeader() {
-		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/header/header-equipment-controls'), { action: 'createEquipment' });
 	}
 }

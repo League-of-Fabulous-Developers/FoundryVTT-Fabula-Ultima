@@ -1,0 +1,43 @@
+<div class="description-with-tags">
+	<div class="pfu-tags">
+		{{#if system.data.isShield}}
+			<div class="fu-tag">{{localize "FU.Shield"}}</div>
+			{{#if system.data.shield.defense}}
+				<div class="fu-tag">{{localize "FU.DefenseAbbr"}}: +{{system.data.shield.defense}}</div>
+			{{/if}}
+			{{#if system.data.shield.magicDefense}}
+				<div class="fu-tag">{{localize "FU.MagicDefenseAbbr"}}: +{{system.data.shield.magicDefense}}</div>
+			{{/if}}
+		{{else}}
+			<div class="fu-tag">{{localize (lookup additionalData.weaponTypes system.data.type)}}</div>
+			<div class="fu-tag">{{localize (lookup additionalData.weaponCategories system.data.category)}}</div>
+			{{#if system.data.complex}}
+				<div class="fu-tag">{{localize "FU.ClassFeatureWeaponModuleComplex" }}</div>
+			{{/if}}
+			<div class="fu-tag">
+				【
+				{{localize (lookup additionalData.attributes system.data.accuracy.attr1)}}
+				+
+				{{localize (lookup additionalData.attributes system.data.accuracy.attr2)}}
+				】
+				{{~#if system.data.accuracy.modifier}}+ {{system.data.accuracy.modifier}} {{/if}}
+				{{~localize "FU.Versus"}}
+				{{localize (lookup (lookup additionalData.defenses system.data.accuracy.defense) "abbr")}}
+			</div>
+			<div class="fu-tag">
+				【
+				{{localize "FU.HighRollAbbr"}}
+				+
+				{{system.data.damage.bonus}}
+				】
+				{{localize (lookup additionalData.damageTypes system.data.damage.type)}}
+			</div>
+		{{/if}}
+		{{#if system.data.quality}}
+			<div class="fu-tag">{{localize "FU.Quality"}}: {{system.data.quality}}</div>
+		{{/if}}
+	</div>
+	<div>
+		{{{additionalData.enrichedDescription}}}
+	</div>
+</div>

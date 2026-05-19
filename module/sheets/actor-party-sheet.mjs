@@ -27,6 +27,7 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
 import { CodexBrowser } from '../ui/codex-browser.mjs';
+import { VehicleModuleTableRenderer } from '../helpers/tables/vehicle-module-table-renderer.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -43,11 +44,9 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static DEFAULT_OPTIONS = {
 		actions: {
-			createItem: this.#onCreate,
 			editItem: this.#onEdit,
 			roll: this.#onRoll,
 			clearInventory: this.#onClearInventory,
-			createEquipment: this.#onCreateEquipment,
 			shareItem: this.#onShareItem,
 			lootItem: this.#onLootItem,
 			distributeZenit: this.#onDistributeZenit,
@@ -143,7 +142,11 @@ export class FUPartySheet extends FUActorSheet {
 	#technospheresTable = new TechnospheresTableRenderer();
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
-	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon', 'customWeapon');
+	#vehicleModulesTable = new VehicleModuleTableRenderer({ hideIfEmpty: true });
+	#otherItemsTable = new OtherItemsTableRenderer({
+		excludedTypes: ['accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon', 'customWeapon'],
+		excludedFeatureTypes: [FU.classFeatures.armorModule, FU.classFeatures.weaponModule, FU.classFeatures.supportModule],
+	});
 	#codexBrowser;
 	#codexDrop;
 	/** @type SheetExtensions **/
@@ -277,6 +280,7 @@ export class FUPartySheet extends FUActorSheet {
 				}
 				context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 				context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
+				context.vehicleModulesTable = await this.#vehicleModulesTable.renderTable(this.document);
 				context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 				break;
 			}
@@ -396,6 +400,7 @@ export class FUPartySheet extends FUActorSheet {
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#equipmentTable.activateListeners(this);
+		this.#vehicleModulesTable.activateListeners(this);
 		this.#technospheresTable.activateListeners(this);
 		this.#treasuresTable.activateListeners(this);
 		this.#consumablesTable.activateListeners(this);
@@ -1439,21 +1444,6 @@ export class FUPartySheet extends FUActorSheet {
 		return [];
 	}
 
-	static #onCreate(event, target) {
-		const type = target.dataset.type;
-
-		if (!type) {
-			return;
-		}
-		const itemData = {
-			type: type,
-		};
-
-		itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
-
-		foundry.documents.Item.create(itemData, { parent: this.actor });
-	}
-
 	static #onEdit(event, target) {
 		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
 		let item = this.actor.items.get(itemId);
@@ -1488,22 +1478,6 @@ export class FUPartySheet extends FUActorSheet {
 		if (clear) {
 			console.debug(`Clearing all items from actor ${this.actor}`);
 			return this.actor.clearEmbeddedItems();
-		}
-	}
-
-	static async #onCreateEquipment() {
-		const itemType = await foundry.applications.api.DialogV2.wait({
-			window: { title: `${game.i18n.localize('FU.Create')} ${game.i18n.localize('FU.Item')}` },
-			content: '',
-			rejectClose: false,
-			buttons: ['accessory', 'armor', 'shield', 'weapon'].map((choice) => ({
-				action: choice,
-				label: game.i18n.localize(CONFIG.Item.typeLabels[choice]),
-			})),
-		});
-
-		if (itemType) {
-			foundry.documents.Item.create({ type: itemType, name: foundry.documents.Item.defaultName({ type: itemType, parent: this.actor }) }, { parent: this.actor });
 		}
 	}
 

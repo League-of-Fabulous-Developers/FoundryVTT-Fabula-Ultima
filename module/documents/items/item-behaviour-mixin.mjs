@@ -155,10 +155,7 @@ export function ItemBehaviourMixin(BaseClass) {
 		get canStash() {
 			// Make exceptions for specific class features
 			if (this.type === 'classFeature') {
-				switch (this.system.featureType) {
-					case 'projectfu.ingredient':
-						return true;
-				}
+				return !!this.system.data.constructor.canStash;
 			}
 			// Handle basic item types
 			return stashableTypes.has(this.type);

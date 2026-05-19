@@ -7,8 +7,9 @@ import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-render
 import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
 import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
+import { VehicleModuleTableRenderer } from '../helpers/tables/vehicle-module-table-renderer.mjs';
 
 /**
  * @property {FUActor} actor
@@ -28,11 +29,9 @@ export class FUStashSheet extends FUActorSheet {
 		position: { width: 600, height: 768 },
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 		actions: {
-			createItem: this.#onCreate,
 			editItem: this.#onEdit,
 			roll: this.#onRoll,
 			clearInventory: this.#onClearInventory,
-			createEquipment: this.#onCreateEquipment,
 			lootItem: this.#onLootItem,
 			sellItem: this.#onSellItem,
 			buyItem: this.#onBuyItem,
@@ -55,7 +54,11 @@ export class FUStashSheet extends FUActorSheet {
 	#technospheresTable = new TechnospheresTableRenderer();
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
-	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+	#vehicleModulesTable = new VehicleModuleTableRenderer({ hideIfEmpty: true });
+	#otherItemsTable = new OtherItemsTableRenderer({
+		excludedTypes: ['accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon', 'customWeapon'],
+		excludedFeatureTypes: [FU.classFeatures.armorModule, FU.classFeatures.weaponModule, FU.classFeatures.supportModule],
+	});
 
 	/**
 	 * @inheritDoc
@@ -76,15 +79,17 @@ export class FUStashSheet extends FUActorSheet {
 		if (technoSphereMode) {
 			context.technospheresTable = await this.#technospheresTable.renderTable(this.document);
 		}
+		context.vehicleModulesTable = await this.#vehicleModulesTable.renderTable(this.document);
 		context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 		context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
-		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere', `customWeapon`] : [`customWeapon`] });
+		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 		return context;
 	}
 
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#equipmentTable.activateListeners(this);
+		this.#vehicleModulesTable.activateListeners(this);
 		this.#technospheresTable.activateListeners(this);
 		this.#treasuresTable.activateListeners(this);
 		this.#consumablesTable.activateListeners(this);
@@ -98,21 +103,6 @@ export class FUStashSheet extends FUActorSheet {
 		}
 
 		return super._onDropItem(event, item);
-	}
-
-	static #onCreate(event, target) {
-		const type = target.dataset.type;
-
-		if (!type) {
-			return;
-		}
-		const itemData = {
-			type: type,
-		};
-
-		itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
-
-		foundry.documents.Item.create(itemData, { parent: this.actor });
 	}
 
 	static #onEdit(event, target) {
@@ -149,22 +139,6 @@ export class FUStashSheet extends FUActorSheet {
 		if (clear) {
 			console.debug(`Clearing all items from actor ${this.actor}`);
 			return this.actor.clearEmbeddedItems();
-		}
-	}
-
-	static async #onCreateEquipment() {
-		const itemType = await foundry.applications.api.DialogV2.wait({
-			window: { title: `${game.i18n.localize('FU.Create')} ${game.i18n.localize('FU.Item')}` },
-			content: '',
-			rejectClose: false,
-			buttons: ['accessory', 'armor', 'shield', 'weapon'].map((choice) => ({
-				action: choice,
-				label: game.i18n.localize(CONFIG.Item.typeLabels[choice]),
-			})),
-		});
-
-		if (itemType) {
-			foundry.documents.Item.create({ type: itemType, name: foundry.documents.Item.defaultName({ type: itemType, parent: this.actor }) }, { parent: this.actor });
 		}
 	}
 

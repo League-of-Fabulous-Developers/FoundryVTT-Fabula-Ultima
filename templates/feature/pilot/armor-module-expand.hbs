@@ -1,0 +1,18 @@
+<div class="description-with-tags">
+	<div class="pfu-tags">
+		{{#if system.data.martial}}
+			<div class="fu-tag">{{localize "FU.Martial"}}</div>
+			<div class="fu-tag">{{localize "FU.DefenseAbbr"}}: {{system.data.defense.modifier}}</div>
+			<div class="fu-tag">{{localize "FU.MagicDefenseAbbr"}}: {{system.data.magicDefense.modifier}}</div>
+		{{else}}
+			<div class="fu-tag">{{localize "FU.DefenseAbbr"}}: {{localize (lookup additionalData.attributes system.data.defense.attribute)}} + {{system.data.defense.modifier}}</div>
+			<div class="fu-tag">{{localize "FU.MagicDefenseAbbr"}}: {{localize (lookup additionalData.attributes system.data.magicDefense.attribute)}} + {{system.data.magicDefense.modifier}}</div>
+		{{/if}}
+		{{#if system.data.quality}}
+			<div class="fu-tag">{{localize "FU.Quality"}}: {{system.data.quality}}</div>
+		{{/if}}
+	</div>
+	<div>
+		{{{additionalData.enrichedDescription}}}
+	</div>
+</div>

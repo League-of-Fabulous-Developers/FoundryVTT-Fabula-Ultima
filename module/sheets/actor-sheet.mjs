@@ -5,8 +5,10 @@ import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { createMenuTool, SETTINGS } from '../settings.js';
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
+import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
+import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -52,6 +54,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			configureSheetOptions: this.#configureSheetOptions,
 			addArrayElement: this.#addArrayElement,
 			removeArrayElement: this.#removeArrayElement,
+			createItem: this.#onCreateItem,
 		},
 	};
 
@@ -280,5 +283,103 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	static async #configureSheetOptions(event, target) {
 		const tool = createMenuTool(`${SYSTEM}.${SETTINGS.sheetOptions}`);
 		tool.click();
+	}
+
+	static async #onCreateItem(event, target) {
+		return this._onCreateItem(event, target);
+	}
+
+	async _onCreateItem(event, target) {
+		let type = target.dataset.type;
+		let subType = target.dataset.subType;
+
+		if (type && type.indexOf(',') >= 0) {
+			const knownItemTypes = new Set(Object.keys(CONFIG.Item.dataModels));
+			const choices = type
+				.split(',')
+				.map((itemType) => itemType.trim())
+				.filter((itemType) => knownItemTypes.has(itemType))
+				.map((itemType) => ({
+					action: itemType,
+					label: game.i18n.localize(CONFIG.Item.typeLabels[itemType]),
+				}));
+
+			type = await foundry.applications.api.DialogV2.wait({
+				window: { title: game.i18n.localize('FU.DialogCreateItemSelectTypeTitle') },
+				content: `<p>${game.i18n.localize('FU.DialogCreateItemSelectTypeContent')}</p>`,
+				buttons: choices,
+			});
+		}
+
+		if (!type) {
+			return;
+		}
+
+		const itemData = {
+			type: type,
+		};
+
+		if ((type === 'classFeature' || type === 'optionalFeature') && subType && subType.indexOf(',') >= 0) {
+			const registries = {
+				classFeature: ClassFeatureRegistry.instance,
+				optionalFeature: OptionalFeatureRegistry.instance,
+			};
+
+			const knownFeatureTypes = registries[type].qualifiedTypes;
+			const choices = subType
+				.split(',')
+				.map((featureType) => featureType.trim())
+				.filter((featureType) => featureType in knownFeatureTypes)
+				.map((featureType) => ({
+					action: featureType,
+					label: game.i18n.localize(knownFeatureTypes[featureType].translation),
+				}));
+
+			subType = await foundry.applications.api.DialogV2.wait({
+				window: { title: game.i18n.localize('FU.DialogCreateItemSelectTypeTitle') },
+				content: `<p>${game.i18n.localize('FU.DialogCreateItemSelectTypeContent')}</p>`,
+				buttons: choices,
+			});
+
+			if (!subType) {
+				return;
+			}
+		}
+
+		if (type === 'classFeature') {
+			itemData.system = { featureType: subType };
+			itemData.name = this._determineNewFeatureName(type, subType, this.actor);
+		} else if (type === 'optionalFeature') {
+			itemData.system = { optionalType: subType };
+			itemData.name = this._determineNewFeatureName(type, subType, this.actor);
+		} else {
+			itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
+		}
+
+		foundry.documents.Item.create(itemData, { parent: this.actor });
+	}
+
+	_determineNewFeatureName(type, subtype, actor) {
+		const registry = {
+			classFeature: FU.classFeatureRegistry,
+			optionalFeature: FU.optionalFeatureRegistry,
+		}[type];
+
+		const FeatureDataModel = registry.byKey(subtype);
+
+		if (!FeatureDataModel) {
+			return null;
+		}
+
+		const takenNames = new Set();
+		for (const document of actor.itemTypes[type]) {
+			takenNames.add(document.name);
+		}
+
+		const baseName = game.i18n.localize(FeatureDataModel.translation);
+		let name = baseName;
+		let index = 1;
+		while (takenNames.has(name)) name = `${baseName} (${++index})`;
+		return name;
 	}
 }
