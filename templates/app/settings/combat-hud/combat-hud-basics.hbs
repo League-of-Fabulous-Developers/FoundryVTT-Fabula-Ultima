@@ -77,6 +77,17 @@
 			</div>
 			<p class="notes">{{localize "FU.CombatHudShowNPCTurnsLeftModeHint"}}</p>
 		</div>
+
+		{{!-- optionCombatHudShowResourcesMode --}}
+		<div class="form-group">
+			<label for="optionCombatHudShowNPCResourcesMode">{{localize "FU.CombatHudShowNPCResourcesMode"}}</label>
+			<div class="form-fields">
+				<select name="optionCombatHudShowNPCResourcesMode" id="optionCombatHudShowNPCResourcesMode">
+					{{selectOptions optionCombatHudShowNPCResourcesModeOptions selected=optionCombatHudShowNPCResourcesMode localize=true}}
+				</select>
+			</div>
+			<p class="notes">{{localize "FU.CombatHudShowNPCResourcesModeHint"}}</p>
+		</div>
 		{{/if}}
 	</div>
 </section>
