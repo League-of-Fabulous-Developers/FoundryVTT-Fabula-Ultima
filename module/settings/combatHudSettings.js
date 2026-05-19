@@ -3,6 +3,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { BaseCombatHUD } from '../ui/combat-hud/base-combat-hud.mjs';
 
 export class CombatHudSettings extends FUApplication {
 	/** @type ApplicationConfiguration */
@@ -84,6 +85,12 @@ export class CombatHudSettings extends FUApplication {
 		return context;
 	}
 
+	_getLocalizedResource(resource) {
+		const localizationString = FU.combatHudResources[resource];
+		if (localizationString) return game.i18n.localize(localizationString);
+		return resource;
+	}
+
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		Object.assign(context, this.getData());
@@ -93,7 +100,15 @@ export class CombatHudSettings extends FUApplication {
 		context.hasCharacter = !!game.user.character;
 		context.userCharacter = game.user.character;
 
-		context.characterTrackedResources = game.user.character.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources);
+		const trackedResources = game.user.character?.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources) ?? ['default', 'default', 'default', 'default'];
+
+		for (let i = 0; i < 4; i++) {
+			context[`trackedActorResource${i + 1}`] = trackedResources[i] ?? 'default';
+			context[`trackedActorResources${i + 1}`] = {
+				default: game.i18n.format('FU.CombatHudTrackedActorResourceUseDefault', { value: this._getLocalizedResource(game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTrackedPCResource${i + 1}`])) }),
+				...FU.combatHudResources,
+			};
+		}
 
 		return context;
 	}
@@ -215,6 +230,10 @@ export class CombatHudSettings extends FUApplication {
 				optionCombatHudEffectsMarqueeDuration,
 				optionCombatHudEffectsMarqueeMode,
 				optionCombatHudShowOrderNumbers,
+				trackedActorResource1,
+				trackedActorResource2,
+				trackedActorResource3,
+				trackedActorResource4,
 			} = formData.object;
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
@@ -227,8 +246,13 @@ export class CombatHudSettings extends FUApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, optionCombatHudEffectsMarqueeDuration);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
+
+			if (game.user.character) {
+				await game.user.character.setFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources, [trackedActorResource1, trackedActorResource2, trackedActorResource3, trackedActorResource4]);
+			}
 		}
 
-		await foundry.applications.settings.SettingsConfig.reloadConfirm({ world: game.user.isGM });
+		BaseCombatHUD.implementation.update();
+		// await foundry.applications.settings.SettingsConfig.reloadConfirm({ world: game.user.isGM });
 	}
 }
