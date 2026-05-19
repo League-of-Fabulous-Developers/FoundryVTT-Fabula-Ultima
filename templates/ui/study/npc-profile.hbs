@@ -3,7 +3,7 @@
 		<!-- Left content here -->
 		<div class="left-column">
 			<a data-action="revealActor">
-				<img class="avatar" src="{{ img }}"/>
+				<img class="avatar" src="{{ img }}" />
 			</a>
 		</div>
 		<!-- Right content here -->
@@ -14,11 +14,11 @@
 			</div>
 
 			{{#unless revealStats}}
-			<fieldset class="section-container title-fieldset desc resource-content">
+				<fieldset class="section-container title-fieldset desc resource-content">
 					<span class="label centered-message">
 						{{localize 'FU.AdversaryNotStudied'}}
 					</span>
-			</fieldset>
+				</fieldset>
 			{{/unless}}
 			{{#if revealStats}}
 				<fieldset class="section-container title-fieldset desc resource-content">
@@ -31,7 +31,7 @@
 							<i class="fua fu-{{species}}"></i>
 						</div>
 						<span class="diamond-symbol">⬥</span>
-						<label class="flexcol"  data-tooltip="{{localize 'FU.HealthPoints'}}">
+						<label class="flexcol" data-tooltip="{{localize 'FU.HealthPoints'}}">
 							<i class="fas fa-heart"></i>
 							{{hp}}
 						</label>
@@ -77,6 +77,24 @@
 		</fieldset>
 	{{/if}}
 
+	{{#if statusImmunities}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize "FU.StatusEffectImmunity"}}
+			</legend>
+			<div class="grid grid-3col align-left">
+				{{#each statusImmunities}}
+					<div class="resource-content flex-group-center">
+						<label class="fu-icon__container immune">
+							<i class="fu-icon--s {{pfuIconClass this}}"></i>
+							<strong>{{localize (lookup @root.statusEffects this)}}</strong>
+						</label>
+					</div>
+				{{/each}}
+			</div>
+		</fieldset>
+	{{/if}}
+
 	{{#if revealPressurePoints}}
 		<fieldset class="section-container title-fieldset desc resource-content">
 			<legend class="resource-label-m">
@@ -101,21 +119,25 @@
 	{{/if}}
 
 	<!-- Bottom content here -->
-	{{#if detailed}}
-	<div class="bottom-row">
+	{{#if (or detailed abilitiesTable rulesTable)}}
+		<div class="bottom-row">
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
 					{{localize 'FU.Actions'}}
 				</legend>
 
 				<section class="desc fu-scrollable" style="max-height: 400px;">
-					{{{basicAttacksTable}}}
-					{{#if actor.system.useEquipment.value}}
-						{{{weaponsTable}}}
+					{{#if detailed}}
+						{{{basicAttacksTable}}}
+						{{#if actor.system.useEquipment.value}}
+							{{{weaponsTable}}}
+						{{/if}}
+						{{{spellsTable}}}
 					{{/if}}
-					{{{spellsTable}}}
+					{{{abilitiesTable}}}
+					{{{rulesTable}}}
 				</section>
 			</fieldset>
-	</div>
+		</div>
 	{{/if}}
 </div>

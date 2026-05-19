@@ -107,7 +107,7 @@
 }
 
 .npc-profile-weapons-table {
-	grid-template-columns: [name] auto [check] 120px [damage] 130px [equipStatus] 80px;
+	grid-template-columns: [name] auto [check] 150px [damage] 150px;
 }
 
 .npc-profile-spells-table {
