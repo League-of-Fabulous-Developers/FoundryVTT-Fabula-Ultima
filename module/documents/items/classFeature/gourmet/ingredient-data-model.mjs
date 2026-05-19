@@ -95,6 +95,10 @@ export class IngredientDataModel extends ClassFeatureDataModel {
 		};
 	}
 
+	static get canStash() {
+		return true;
+	}
+
 	onActorDrop(actor) {
 		// If the item is already on the actor, ignore this operation and instead operate as an organization
 		if (this.actor === actor) {

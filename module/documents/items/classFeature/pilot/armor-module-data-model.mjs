@@ -30,7 +30,7 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 			}),
 			martial: new BooleanField(),
 			quality: new StringField(),
-			cost: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }),
+			cost: new NumberField({ initial: 500, min: 0, integer: true, nullable: false }),
 			description: new HTMLField(),
 		};
 	}
@@ -43,6 +43,10 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/pilot/armor-module-preview.hbs';
 	}
 
+	static get expandTemplate() {
+		return 'systems/projectfu/templates/feature/pilot/armor-module-expand.hbs';
+	}
+
 	static get translation() {
 		return 'FU.ClassFeatureArmorModule';
 	}
@@ -51,9 +55,13 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 		return {
 			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			attributes: CONFIG.FU.attributeAbbreviations,
-			vehicle: model.actor?.system.vehicle.vehicle,
-			active: model.item === model.actor?.system.vehicle.armor || false,
+			vehicle: model.actor?.system.vehicle?.vehicle,
+			active: model.item === model.actor?.system.vehicle?.armor || false,
 		};
+	}
+
+	static get canStash() {
+		return true;
 	}
 
 	/**

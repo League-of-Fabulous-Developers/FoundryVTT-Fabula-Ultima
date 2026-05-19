@@ -95,8 +95,8 @@ function renderNameCell(renderCaption, cssClass, options) {
 
 /**
  * @typedef ItemControlsColumnHeaderRenderOptions
- * @property {string, (() => string)} [type]
- * @property {string} [subtype]
+ * @property {string, string[], (() => string|string[])} [type]
+ * @property {string, string[], (() => string|string[])} [subtype]
  * @property {string} [label]
  * @property {"start", "center", "end"} [headerAlignment]
  * @property {string|Promise<string>|(() => string|Promise<string>)} [custom]
@@ -145,6 +145,17 @@ function renderControlsHeader(options) {
 			if (options.type instanceof Function) {
 				options.type = options.type();
 			}
+			if (Array.isArray(options.type)) {
+				options.type = options.type.join(',');
+			}
+
+			if (options.subtype instanceof Function) {
+				options.subtype = options.subtype();
+			}
+			if (Array.isArray(options.subtype)) {
+				options.subtype = options.subtype.join(',');
+			}
+
 			return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/header/header-item-controls.hbs', options);
 		};
 	}

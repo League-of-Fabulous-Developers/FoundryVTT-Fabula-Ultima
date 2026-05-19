@@ -97,6 +97,10 @@
 	}
 }
 
+.vehicle-modules-table {
+	grid-template-columns: [name] 30% [preview] auto [cost] 100px [controls] 100px;
+}
+
 .invocations-table {
 	grid-template-columns: [name] auto [controls] 100px;
 	cursor: inherit;
