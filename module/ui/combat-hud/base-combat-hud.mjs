@@ -278,13 +278,13 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			})),
 			opacity: (game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) ?? 100) / 100,
 			zeropower: zeroPower?.system?.data ?? {
-				current: 0,
+				value: 0,
 				max: 0,
 			},
 		};
 
 		const showResourceMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode);
-		console.log('Show NPC resource mode:', showResourceMode);
+
 		if (combatant.actor.type === 'character') {
 			// Always show resource bars for PCs
 			actorData.showResources = true;
