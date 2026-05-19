@@ -283,7 +283,8 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			},
 		};
 
-		const showResourceMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowResourcesMode);
+		const showResourceMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode);
+		console.log('Show NPC resource mode:', showResourceMode);
 		if (combatant.actor.type === 'character') {
 			// Always show resource bars for PCs
 			actorData.showResources = true;
@@ -294,10 +295,15 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		} else if (showResourceMode === 'only-studied') {
 			// Show resource bars if Study result would show HP/MP
 			const partyActor = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
-			const adversaryEntry = partyActor?.getAdversary(combatant.actor.resolveUuid());
-			const studyResult = adversaryEntry ? StudyRollHandler.resolveStudyResult(adversaryEntry.study) : 'none';
-			if (partyActor && adversaryEntry && studyResult !== 'none') {
-				actorData.showResources = true;
+			const adversaryEntry = partyActor?.system.getAdversary(combatant.actor.resolveUuid());
+			actorData.showResources = false;
+
+			// TODO: HUD needs to refresh when study result is updated
+			if (adversaryEntry) {
+				const studyResult = adversaryEntry ? StudyRollHandler.resolveStudyResult(adversaryEntry.study) : 'none';
+				if (partyActor && adversaryEntry && studyResult !== 'none') {
+					actorData.showResources = true;
+				}
 			}
 		}
 

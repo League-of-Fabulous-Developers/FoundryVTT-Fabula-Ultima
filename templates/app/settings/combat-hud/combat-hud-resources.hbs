@@ -126,6 +126,10 @@
 					<p class="notes">{{localize "FU.CombatHudTrackedResource4Hint"}}</p>
 				</div>
 
+			{{ else }}
+				<div class="form-group">
+					<button type="button" data-action="openUserConfig">{{localize "FU.CombatHudTrackedActorResourcesNoCharacter"}}</button>
+				</div>
 			{{/if}}
 		{{/if}}
   </div>
