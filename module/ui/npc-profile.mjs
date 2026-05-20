@@ -166,7 +166,7 @@ export class NpcProfileWindow extends FUApplication {
 		context.statusEffects = FU.statusEffects;
 		context.statusImmunities = Object.entries(actor.system.immunities)
 			.filter(([, immune]) => immune)
-			.filter(([status]) => data.revealed?.statusImmunities[status])
+			.filter(([status]) => data.revealed?.statusImmunities?.[status])
 			.map(([status]) => status);
 
 		context.basicAttacksTable = await this.#basicAttacksTable.renderTable(actor);
