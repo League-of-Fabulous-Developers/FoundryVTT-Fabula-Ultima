@@ -529,7 +529,7 @@ export class FUActor extends Actor {
 			'system.resources.mp.value': maxMP,
 		};
 
-		if (recoverInventoryPoints) {
+		if (maxIP && recoverInventoryPoints) {
 			updateData['system.resources.ip.value'] = maxIP;
 		}
 
