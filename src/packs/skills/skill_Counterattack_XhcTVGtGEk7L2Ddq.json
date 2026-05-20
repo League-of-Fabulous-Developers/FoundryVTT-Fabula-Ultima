@@ -27,15 +27,12 @@
       "value": "weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
+      "accuracy": true,
+      "damage": true,
       "hrZero": {
         "value": false
-      }
+      },
+      "traits": true
     },
     "attributes": {
       "primary": {
@@ -49,13 +46,12 @@
       "value": 0
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
       "type": "",
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hrZero": true
     },
     "impdamage": {
       "hasImpDamage": {
@@ -244,7 +240,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706514121336,
-    "modifiedTime": 1778089801732,
+    "modifiedTime": 1779263144068,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

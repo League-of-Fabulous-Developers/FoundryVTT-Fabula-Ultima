@@ -5,16 +5,10 @@
   "_id": "HC27DMHBE4M54y6Y",
   "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_queens_gambit.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop’s Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King's Castle</strong> for free (spending the appropriate MP).</p></li></ul>",
     "showTitleCard": {
       "value": false
     },
@@ -27,15 +21,8 @@
       "value": "commander"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": true,
+      "damage": true
     },
     "attributes": {
       "primary": {
@@ -49,60 +36,14 @@
       "value": 0
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
       "type": "",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": true
     },
     "source": "FUHF141",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": true
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": true
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": true
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -148,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706555569192,
-    "modifiedTime": 1771831292694,
+    "modifiedTime": 1779263020954,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

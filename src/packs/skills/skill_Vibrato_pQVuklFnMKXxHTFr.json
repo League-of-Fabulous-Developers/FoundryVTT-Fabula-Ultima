@@ -5,16 +5,10 @@
   "_id": "pQVuklFnMKXxHTFr",
   "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_vibrato.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>After you sing a <strong>verse</strong> with <strong>low</strong> or <strong>medium volume</strong>, you may perform a <strong>free attack</strong> with a weapon you have equipped; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,82 +21,18 @@
       "value": "chanter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
-    },
-    "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
-    },
-    "accuracy": {
-      "value": 0
+      "accuracy": true,
+      "damage": true
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
       "type": "",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": true
     },
     "source": "FUHF137",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": true
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": true
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": true
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -116,7 +46,13 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "vibrato"
+    "fuid": "vibrato",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "accuracy": ""
   },
   "effects": [],
   "sort": 500000,
@@ -136,7 +72,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706551925144,
-    "modifiedTime": 1770268965880,
+    "modifiedTime": 1779264764872,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
