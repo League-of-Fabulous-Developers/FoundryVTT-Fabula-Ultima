@@ -6,6 +6,7 @@ import { FU, SYSTEM } from '../config.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ProgressDataModel } from '../../documents/items/common/progress-data-model.mjs';
 import { TextEditor } from '../text-editor.mjs';
+import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 const customWeaponFormTranslations = {
 	primaryForm: 'FU.CustomWeaponFormPrimary',
@@ -224,7 +225,7 @@ const descriptionRenderers = {
  */
 function renderCheck(check) {
 	const { primary, secondary, bonus } = check;
-	return `【${game.i18n.localize(FU.attributeAbbreviations[primary])} + ${game.i18n.localize(FU.attributeAbbreviations[secondary])}】${bonus ? `${bonus < 0 ? '-' : '+'} ${Math.abs(bonus)}` : ''}`;
+	return `【${game.i18n.localize(FU.attributeAbbreviations[primary])} + ${game.i18n.localize(FU.attributeAbbreviations[secondary])}】 ${bonus ? `${bonus < 0 ? '-' : '+'} ${Math.abs(bonus)}` : ''}`;
 }
 
 /**
@@ -238,7 +239,7 @@ function renderCheck(check) {
  */
 function renderDamage(damage) {
 	const { type, value, hrZero } = damage;
-	return `【${game.i18n.localize(hrZero ? 'FU.HRZero' : 'FU.HighRollAbbr')} ${value < 0 ? `- ${Math.abs(value)}` : `+ ${value}`}】${type ? game.i18n.localize(FU.damageTypes[type]) : ''}`;
+	return `【${game.i18n.localize(hrZero ? 'FU.HRZero' : 'FU.HighRollAbbr')} ${value < 0 ? `- ${Math.abs(value)}` : `+ ${value}`}】 ${type ? game.i18n.localize(FU.damageTypes[type]) : ''}`;
 }
 
 /**
@@ -315,6 +316,41 @@ function getDamageData(item, base) {
 	}
 }
 
+const renderSkillLikeCaption = async (item) => {
+	const context = new ExpressionContext(item.actor, item, []);
+	const blocks = [];
+	if (item.system.hasRoll.value) {
+		const baseCheck = {
+			primary: item.system.attributes.primary,
+			secondary: item.system.attributes.secondary,
+			bonus: await Expressions.evaluateAsync(item.system.accuracy, context),
+		};
+
+		const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
+
+		const weaponCheck = getCheckData(mainHandItem, baseCheck);
+		if (item.system.useWeapon.accuracy && weaponCheck) {
+			blocks.push(renderCheck(weaponCheck));
+		} else {
+			blocks.push(renderCheck(baseCheck));
+		}
+		if (item.system.damage.hasDamage) {
+			const baseDamage = {
+				value: await Expressions.evaluateAsync(item.system.damage.value, context),
+				type: item.system.damage.type,
+				hrZero: item.system.damage.hrZero,
+			};
+
+			const weaponDamage = getDamageData(mainHandItem, baseDamage);
+			if (item.system.useWeapon.damage && weaponDamage) {
+				blocks.push(renderDamage(weaponDamage));
+			} else {
+				blocks.push(renderDamage(baseDamage));
+			}
+		}
+	}
+	return blocks.join(' ⬥ ');
+};
 /**
  * Maps from Item type to a renderer that should be used.
  * Favorite captions should only be used for absolutely essential information like checks and damage values.
@@ -333,7 +369,7 @@ const captionRenderers = {
 			type: item.system.damageType.value,
 			hrZero: item.system.rollInfo.useWeapon.hrZero.value,
 		};
-		return renderCheck(check) + ' ⬥' + renderDamage(damage);
+		return renderCheck(check) + ' ⬥ ' + renderDamage(damage);
 	},
 	customWeapon: (item) => {
 		const parts = [];
@@ -357,76 +393,11 @@ const captionRenderers = {
 				parts.unshift(game.i18n.localize(customWeaponFormTranslations[item.system.activeForm]));
 			}
 		}
-		return parts.join(' ⬥');
+		return parts.join(' ⬥ ');
 	},
-	miscAbility: (item) => {
-		const blocks = [];
-		if (item.system.hasRoll.value) {
-			const baseCheck = {
-				primary: item.system.attributes.primary,
-				secondary: item.system.attributes.secondary,
-				bonus: item.system.accuracy,
-			};
-
-			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
-
-			const weaponCheck = getCheckData(mainHandItem, baseCheck);
-			if (item.system.useWeapon.accuracy && weaponCheck) {
-				blocks.push(renderCheck(weaponCheck));
-			} else {
-				blocks.push(renderCheck(baseCheck));
-			}
-			if (item.system.damage.hasDamage) {
-				const baseDamage = {
-					value: item.system.damage.value,
-					type: item.system.damage.type,
-					hrZero: item.system.damage.hrZero,
-				};
-
-				const weaponDamage = getDamageData(mainHandItem, baseDamage);
-				if (item.system.useWeapon.damage && weaponDamage) {
-					blocks.push(renderDamage(weaponDamage));
-				} else {
-					blocks.push(renderDamage(baseDamage));
-				}
-			}
-		}
-		return blocks.join(' ⬥');
-	},
-	skill: (item) => {
-		const blocks = [];
-		if (item.system.hasRoll.value) {
-			const baseCheck = {
-				primary: item.system.attributes.primary,
-				secondary: item.system.attributes.secondary,
-				bonus: item.system.accuracy,
-			};
-
-			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
-
-			const weaponCheck = getCheckData(mainHandItem, baseCheck);
-			if (item.system.useWeapon.accuracy && weaponCheck) {
-				blocks.push(renderCheck(weaponCheck));
-			} else {
-				blocks.push(renderCheck(baseCheck));
-			}
-			if (item.system.damage.hasDamage) {
-				const baseDamage = {
-					value: item.system.damage.value,
-					type: item.system.damage.type,
-					hrZero: item.system.damage.hrZero,
-				};
-
-				const weaponDamage = getDamageData(mainHandItem, baseDamage);
-				if (item.system.useWeapon.damage && weaponDamage) {
-					blocks.push(renderDamage(weaponDamage));
-				} else {
-					blocks.push(renderDamage(baseDamage));
-				}
-			}
-		}
-		return blocks.join(' ⬥');
-	},
+	heroic: renderSkillLikeCaption,
+	miscAbility: renderSkillLikeCaption,
+	skill: renderSkillLikeCaption,
 	spell: (item) => {
 		const blocks = [];
 		if (item.system.hasRoll.value) {
@@ -448,7 +419,7 @@ const captionRenderers = {
 				);
 			}
 		}
-		return blocks.join(' ⬥');
+		return blocks.join(' ⬥ ');
 	},
 	weapon: (item) => {
 		const check = {
@@ -461,7 +432,7 @@ const captionRenderers = {
 			type: item.system.damageType.value,
 			hrZero: item.system.rollInfo.useWeapon.hrZero.value,
 		};
-		return renderCheck(check) + ' ⬥' + renderDamage(damage);
+		return renderCheck(check) + ' ⬥ ' + renderDamage(damage);
 	},
 };
 
@@ -473,7 +444,7 @@ async function renderFeatureDetails(item) {
 const classDetailsRenderer = CommonColumns.textColumn({
 	importance: 'high',
 	alignment: 'end',
-	getText: (item) => `${game.i18n.localize('FU.Level')}: ${item.system.level.value} / ${item.system.level.max}`,
+	getText: (item) => `${game.i18n.localize('FU.Level')}: ${item.parent?.system.tlTracker?.getClassLevel(item) ?? 0} / ${item.system.level.max}`,
 }).renderCell;
 
 const heroicDetailsRenderer = CommonColumns.resourceColumn({
