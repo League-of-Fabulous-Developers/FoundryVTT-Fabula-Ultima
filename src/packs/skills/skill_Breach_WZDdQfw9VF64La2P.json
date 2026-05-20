@@ -5,19 +5,10 @@
   "_id": "WZDdQfw9VF64La2P",
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one <strong>shield</strong> equipped by the target.</p></li><li><p>You destroy the target’s equipped <strong>armor</strong>.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
-    "showTitleCard": {
-      "value": false
-    },
+    "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one <strong>shield</strong> equipped by the target.</p></li><li><p>You destroy the target's equipped <strong>armor</strong>.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
     "level": {
       "value": 1,
       "max": 3,
@@ -27,84 +18,20 @@
       "value": "weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
-    },
-    "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "accuracy": true,
+      "damage": false
     },
     "accuracy": {
       "value": 0
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
       "onApply": ""
     },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
-    },
     "source": "FUCR219",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -132,6 +59,9 @@
       "duration": {
         "interval": null
       }
+    },
+    "showTitleCard": {
+      "value": false
     }
   },
   "effects": [],
@@ -152,7 +82,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706514105557,
-    "modifiedTime": 1775597132829,
+    "modifiedTime": 1779262452093,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

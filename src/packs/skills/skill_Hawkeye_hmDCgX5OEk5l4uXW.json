@@ -5,16 +5,10 @@
   "_id": "hmDCgX5OEk5l4uXW",
   "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_hawkeye.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option:</p><ul><li><p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p></li><li><p>You may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,13 +21,9 @@
       "value": "sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
+      "accuracy": true,
       "damage": true,
-      "hrZero": {
-        "value": false
-      }
+      "traits": true
     },
     "attributes": {
       "primary": {
@@ -51,54 +41,10 @@
       "value": 0,
       "type": "",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": true
     },
     "source": "FUCR205",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": true
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": true
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -112,7 +58,12 @@
       "max": 6
     },
     "defense": "",
-    "fuid": "hawkeye"
+    "fuid": "hawkeye",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,7 +83,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706506760285,
-    "modifiedTime": 1770634023017,
+    "modifiedTime": 1779263107862,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
