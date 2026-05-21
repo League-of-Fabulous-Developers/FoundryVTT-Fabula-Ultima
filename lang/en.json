@@ -1999,6 +1999,8 @@
 		"DialogCreateItemSelectTypeContent": "Select the type of item you want to create:",
 		"DialogCreateItemSelectTypeTitle": "Select Item Type",
 		"CompendiumMigrateItemKeepImages": "Keep item images unchanged",
-		"CompendiumMigrateItemKeepNames": "Keep item names unchanged"
+		"CompendiumMigrateItemKeepNames": "Keep item names unchanged",
+		"MagicCheckDialogUseWeaponCheckTitle": "Use Weapon?",
+		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?"
 	}
 }
