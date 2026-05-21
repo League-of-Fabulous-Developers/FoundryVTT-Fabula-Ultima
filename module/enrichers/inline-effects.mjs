@@ -227,9 +227,13 @@ async function onRender(element) {
 			effectData.sourceInfo = renderContext.sourceInfo;
 
 			const tempActor = new foundry.documents.Actor.implementation({ name: 'Temp Actor', type: 'character' });
-			const tempEffect = new foundry.documents.ActiveEffect.implementation(effectData, { temporary: true, parent: tempActor });
-			const ActiveEffectSheetClass = tempEffect._getSheetClass();
-			const sheet = new ActiveEffectSheetClass({ document: tempEffect, editable: false });
+			const tempEffect = new foundry.documents.ActiveEffect.implementation(effectData, { parent: tempActor });
+			const ActiveEffectSheetClass = class extends tempEffect._getSheetClass() {
+				get isEditable() {
+					return false;
+				}
+			};
+			const sheet = new ActiveEffectSheetClass({ document: tempEffect });
 			sheet.render({ force: true });
 		}
 	});
