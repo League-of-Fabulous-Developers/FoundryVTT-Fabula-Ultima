@@ -1,6 +1,6 @@
 <section class="tab trackedResources {{tab.cssClass}} scrollable" data-group="primary" data-tab="trackedResources">
-	<div class="settings-form desc">
-		{{#if isGM}}
+	{{#if isGM}}
+		<div class="settings-form desc">
 			<h3>{{localize "FU.CombatHudTrackedPCResources"}}</h3>
 			<div class="form-group">
 				<label for="optionCombatHudTrackedPCResource1">{{localize "FU.CombatHudTrackedResource1"}}</label>
@@ -82,15 +82,15 @@
 				</div>
 				<p class="notes">{{localize "FU.CombatHudTrackedResource4Hint"}}</p>
 			</div>
-		{{else}}
-			{{#if hasCharacter}}
-				{{> "systems/projectfu/templates/app/settings/combat-hud/combat-hud-resources-actor.hbs" actor=userCharacter}}
+		</div>
+	{{else}}
+		{{#if hasCharacter}}
+			{{> "systems/projectfu/templates/app/settings/combat-hud/combat-hud-resources-actor.hbs" actor=userCharacter}}
 
-			{{ else }}
-				<div class="form-group">
-					<button type="button" data-action="openUserConfig">{{localize "FU.CombatHudTrackedActorResourcesNoCharacter"}}</button>
-				</div>
-			{{/if}}
+		{{ else }}
+			<div class="form-group">
+				<button type="button" data-action="openUserConfig">{{localize "FU.CombatHudTrackedActorResourcesNoCharacter"}}</button>
+			</div>
 		{{/if}}
-  </div>
+	{{/if}}
 </section>
