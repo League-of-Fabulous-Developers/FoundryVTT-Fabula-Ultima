@@ -1997,6 +1997,8 @@
 		},
 		"ClassFeatureVehicleModules": "Vehicle Modules",
 		"DialogCreateItemSelectTypeContent": "Select the type of item you want to create:",
-		"DialogCreateItemSelectTypeTitle": "Select Item Type"
+		"DialogCreateItemSelectTypeTitle": "Select Item Type",
+		"GreaterThanOrEqual": "Greater Than Or Equal",
+		"LessThanOrEqual": "Less Than Or Equal"
 	}
 }

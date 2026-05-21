@@ -5,6 +5,7 @@ import { FUHooks } from '../../../hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { TraitsPredicateDataModel } from '../../items/common/traits-predicate-data-model.mjs';
 import { FeatureTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs';
 
 const fields = foundry.data.fields;
 
@@ -31,7 +32,7 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({
 				initial: 'mp',
 				choices: Object.keys(FU.resources),
@@ -43,7 +44,11 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 				blank: true,
 			}),
 			threshold: new fields.SchemaField({
-				operator: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.comparisonOperator) }),
+				operator: new fields.StringField({
+					initial: '',
+					blank: true,
+					choices: Object.keys(FU.comparisonOperator),
+				}),
 				amount: new fields.NumberField({ initial: 0 }),
 			}),
 			identifier: new fields.StringField(),
@@ -51,7 +56,6 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 				options: TraitUtils.getOptions(FeatureTraits),
 			}),
 		});
-		return schema;
 	}
 
 	static get localization() {
@@ -84,20 +88,8 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 		if (this.threshold.operator) {
 			const amount = context.event.expense.amount;
 			if (Number.isInteger(amount)) {
-				switch (this.threshold.operator) {
-					case 'greaterThan':
-						if (amount >= this.threshold.amount) {
-							return true;
-						}
-						break;
-
-					case 'lessThan':
-						if (amount <= this.threshold.amount) {
-							return true;
-						}
-						break;
-				}
-				return false;
+				const comparisonOperation = ComparisonOperations[this.threshold.operator];
+				return comparisonOperation(amount, this.threshold.amount);
 			} else {
 				console.warn(`The given amount in the event was not an integer.`);
 			}
