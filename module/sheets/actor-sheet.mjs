@@ -9,6 +9,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
+import { CombatHudSettingsStandalone } from '../settings/combatHudSettingsStandalone.js';
 
 const { api, sheets } = foundry.applications;
 
@@ -36,6 +37,12 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 					ownership: 'OWNER',
 				},
 				{
+					action: 'configureCombatHUD',
+					icon: 'fa-solid fa-heart',
+					label: 'FU.ExperimentalCombatHudSettingsLabel',
+					ownership: 'OWNER',
+				},
+				{
 					action: 'configureSheetOptions',
 					icon: 'fas fa-book',
 					label: 'FU.SheetOptions',
@@ -55,6 +62,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			addArrayElement: this.#addArrayElement,
 			removeArrayElement: this.#removeArrayElement,
 			createItem: this.#onCreateItem,
+			configureCombatHUD: this.#onConfigureCombatHUD,
 		},
 	};
 
@@ -190,6 +198,15 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			await target.update(update);
 		}
 		return sortUpdates.map((value) => value.target);
+	}
+
+	/**
+	 * @this {FUActorSheet}
+	 *
+	 */
+	static async #onConfigureCombatHUD() {
+		const app = new CombatHudSettingsStandalone(this.document);
+		await app.render({ force: true });
 	}
 
 	/**
