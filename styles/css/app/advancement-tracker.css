@@ -278,6 +278,11 @@
 	z-index: 0;
 }
 
+.pfu-advancement__entry__card-ring-img-link {
+	display: block;
+	clip-path: circle(50%);
+}
+
 .pfu-advancement__entry__card-ring__badges {
 	position: absolute;
 	inset: 0;
