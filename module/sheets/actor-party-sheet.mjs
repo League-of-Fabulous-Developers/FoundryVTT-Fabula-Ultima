@@ -1053,7 +1053,7 @@ export class FUPartySheet extends FUActorSheet {
 			if (items.length > 0) groups.push({ name: group.name, items });
 		}
 
-		const selected = await new ItemSelectionDialog({
+		const { selected } = await new ItemSelectionDialog({
 			title: `${StringUtils.localize('CONTROLS.CommonSelect')} ${game.i18n.localize('FU.Actor')}`,
 			style: 'grouped-list',
 			groups,
@@ -1162,7 +1162,7 @@ export class FUPartySheet extends FUActorSheet {
 
 		try {
 			const dialog = new ItemSelectionDialog(data);
-			const selectedPages = await dialog.open();
+			const { selected: selectedPages } = await dialog.open();
 
 			if (selectedPages && selectedPages.length > 0) {
 				const pages = selectedPages.map((item) => item._originalPage);

@@ -574,8 +574,8 @@ export default class FoundryUtils {
 				if (!compendiumItem) {
 					continue;
 				}
-				const procedure = async () => {
-					await FoundryUtils.migrateItem(compendiumItem, item);
+				const procedure = async (options) => {
+					await FoundryUtils.migrateItem(compendiumItem, item, options);
 				};
 				updates.push({
 					item: item,
@@ -752,7 +752,8 @@ export default class FoundryUtils {
 			},
 		};
 		const dialog = new ItemSelectionDialog(data);
-		return await dialog.open();
+		const { selected } = await dialog.open();
+		return selected;
 	}
 
 	/**
@@ -776,18 +777,25 @@ export default class FoundryUtils {
 			},
 		};
 		const dialog = new ItemSelectionDialog(data);
-		const result = await dialog.open();
+		const { selected: result } = await dialog.open();
 		return result;
 	}
+
+	/**
+	 * @typedef ItemMigrationOptions
+	 * @property {boolean?} keepNames
+	 * @property {boolean?} keepImages
+	 */
 
 	/**
 	 * @desc Migrates the data of an item onto another.
 	 * @param {FUItem} sourceItem
 	 * @param {FUItem} targetItem
+	 * @param {ItemMigrationOptions} options
 	 * @returns {Promise}
 	 * @async
 	 */
-	static async migrateItem(sourceItem, targetItem) {
+	static async migrateItem(sourceItem, targetItem, options = {}) {
 		// Gather retained data model properties
 		const retainedFields = {};
 		for (const fieldPath of targetItem.system.retainedFieldPaths) {
@@ -801,8 +809,8 @@ export default class FoundryUtils {
 		// Properties
 		await targetItem.update(
 			{
-				name: sourceItem.name,
-				img: sourceItem.img,
+				name: options.keepNames ? targetItem.name : sourceItem.name,
+				img: options.keepImages ? targetItem.img : sourceItem.img,
 				system: foundry.utils.deepClone(sourceItem.system),
 				flags: foundry.utils.deepClone(sourceItem.flags),
 			},

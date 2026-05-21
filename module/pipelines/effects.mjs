@@ -741,7 +741,7 @@ async function promptEffectChoices(effectData, sourceInfo) {
 	};
 
 	const dialog = new ItemSelectionDialog(data);
-	const result = await dialog.open();
+	const { selected: result } = await dialog.open();
 	if (result && result.length > 0) {
 		return await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo, effectData.duration)));
 	}
