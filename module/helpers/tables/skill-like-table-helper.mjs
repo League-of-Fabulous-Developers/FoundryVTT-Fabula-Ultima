@@ -123,7 +123,7 @@ async function resolveDamageData(item, expressionContext, weapon) {
  */
 function findMatchingClassInArray(item, classes) {
 	const className = item.system?.class?.value;
-	if (className) {
+	if (className && classes) {
 		// Search for a class with the same name. If found, set the skill's class attribute to match its fu-id
 		const classFound = classes.find((classItem) => {
 			return classItem.name === className;
@@ -150,7 +150,7 @@ function findMatchingClassInArray(item, classes) {
  */
 async function findMatchingClass(item) {
 	if (item.system.class.value) {
-		const actorClasses = item.actor.items.filter((arrayItem) => {
+		const actorClasses = item.actor?.items.filter((arrayItem) => {
 			return arrayItem.type === 'class';
 		});
 		const foundActorClass = findMatchingClassInArray(item, actorClasses);

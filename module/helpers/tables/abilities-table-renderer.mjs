@@ -28,15 +28,15 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 			FU,
 		};
 
-		const mainWeapon = SkillLikeTableHelper.resolveMainWeapon(item, data);
+		const mainWeapon = SkillLikeTableHelper.resolveMainWeapon(item);
 		if (mainWeapon) {
 			data.weapon = mainWeapon.name;
 		}
 
-		const checkData = SkillLikeTableHelper.resolveCheckData(item, context, mainWeapon);
+		const checkData = await SkillLikeTableHelper.resolveCheckData(item, context, mainWeapon);
 		foundry.utils.mergeObject(data, checkData);
 
-		const damageData = SkillLikeTableHelper.resolveDamageData(item, context, mainWeapon);
+		const damageData = await SkillLikeTableHelper.resolveDamageData(item, context, mainWeapon);
 		foundry.utils.mergeObject(data, damageData);
 
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/caption/caption-skill'), data);
