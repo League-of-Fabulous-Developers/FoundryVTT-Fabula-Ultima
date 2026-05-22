@@ -31,6 +31,7 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  * @property {Number} max
  * @property {(item: FUItem) => Promise<string>} getDescription
  * @property {String} okLabel
+ * @property {Record<string, DataField>} additionalInputs
  */
 
 /**
@@ -75,7 +76,7 @@ export class ItemSelectionDialog {
 	}
 
 	/**
-	 * @returns {Promise<Object[]>} selected
+	 * @returns {Promise<{selected: Object[], additionalInputs: {}}>} selected
 	 */
 	async open() {
 		// We cache the item descriptions here...
@@ -118,7 +119,7 @@ export class ItemSelectionDialog {
 			}
 		};
 
-		const result = await foundry.applications.api.DialogV2.input({
+		let result = await foundry.applications.api.DialogV2.input({
 			window: {
 				title: this.data.title,
 			},
@@ -302,12 +303,24 @@ export class ItemSelectionDialog {
 			},
 		});
 		if (result) {
+			const returnValue = { selected: [], additionalInputs: {} };
+
+			result = foundry.utils.expandObject(result);
+			for (let [name, field] of Object.entries(this.data.additionalInputs ?? {})) {
+				let inputValue = result.additionalInputs[name];
+				if (inputValue && Array.isArray(field.choices) && Number.isFinite(Number(inputValue))) {
+					returnValue.additionalInputs[name] = field.choices[Number(inputValue)];
+				} else {
+					returnValue.additionalInputs[name] = inputValue;
+				}
+			}
 			// If a custom payload is expected
 			if (this.data.payload) {
-				return this.#selectedIndexes.map((idx) => this.data.payload[idx]);
+				returnValue.selected = this.#selectedIndexes.map((idx) => this.data.payload[idx]);
 			} else {
-				return this.#selectedItems;
+				returnValue.selected = this.#selectedItems;
 			}
+			return returnValue;
 		} else {
 			throw Error('Canceled by user.');
 		}

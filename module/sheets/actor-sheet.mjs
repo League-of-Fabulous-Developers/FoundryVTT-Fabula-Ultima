@@ -225,13 +225,20 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 					const text = item.system?.description ?? '';
 					return text;
 				},
+				additionalInputs: {
+					keepImages: new foundry.data.fields.BooleanField({ label: 'FU.CompendiumMigrateItemKeepImages', initial: true }),
+					keepNames: new foundry.data.fields.BooleanField({ label: 'FU.CompendiumMigrateItemKeepNames', initial: true }),
+				},
 			};
 			const dialog = new ItemSelectionDialog(data);
-			const result = await dialog.open();
+			const {
+				selected: result,
+				additionalInputs: { keepImages, keepNames },
+			} = await dialog.open();
 			if (result && result.length > 0) {
 				const uuids = new Set(result.map((item) => item.uuid));
 				const selectedUpdates = updates.filter((u) => uuids.has(u.item.uuid)).map((u) => u.procedure);
-				await Promise.all(selectedUpdates.map((fn) => fn()));
+				await Promise.all(selectedUpdates.map((fn) => fn({ keepImages, keepNames })));
 				ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: selectedUpdates.length }));
 			}
 		}
