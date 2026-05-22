@@ -4,6 +4,11 @@
 	}
 }
 
+.projectfu-combat-hud--disabled {
+	color: gray;
+	pointer-events: none;
+}
+
 @-webkit-keyframes effects-marquee {
 	0% {
 		-webkit-transform: translate(0, 0);
