@@ -1265,6 +1265,7 @@ export class FUPartySheet extends FUActorSheet {
 		if (data) {
 			new NpcProfileWindow(data, {
 				title: data.name,
+				party: this.document,
 			}).render(true);
 		} else {
 			ui.notifications.warn(`Did not find an NPC profile for ${uuid}`);

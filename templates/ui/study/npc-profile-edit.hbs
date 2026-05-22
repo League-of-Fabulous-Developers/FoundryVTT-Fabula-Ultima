@@ -35,7 +35,7 @@
 			<legend class="resource-label-m">
 				{{localize 'FU.Affinities'}}
 			</legend>
-			<div class="grid-2col">
+			<div class="grid-2col align-left">
 				{{#each affinities}}
 					<label>
 						<input type="checkbox"
@@ -51,7 +51,7 @@
 				<legend class="resource-label-m">
 					{{localize 'FU.PressurePoints'}}
 				</legend>
-				<div class="grid-2col">
+				<div class="grid-2col align-left">
 					{{#each weaponCategories}}
 						<label>
 							<input type="checkbox"
@@ -74,13 +74,65 @@
 			<legend class="resource-label-m">
 				{{localize 'FU.Traits'}}
 			</legend>
-			<div class="grid-2col">
+			<div class="grid-2col align-left">
 				{{#each traits}}
 					<label>
 						<input type="checkbox"
 							   name="traits.{{this}}"
 							   {{#if (pfuCollectionContains ../existing.revealed.traits this)}}checked{{/if}} />
 						{{this}}
+					</label>
+				{{/each}}
+			</div>
+		</fieldset>
+	{{/if}}
+
+	{{#if statusImmunities}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize "FU.StatusEffectImmunity"}}
+			</legend>
+			<div class="grid-2col align-left">
+				{{#each statusImmunities}}
+					<label>
+						<input type="checkbox"
+						       name="statusImmunities.{{this}}"
+						       {{#if (lookup ../existing.revealed.statusImmunities this)}}checked{{/if}} />
+						{{this}}
+					</label>
+				{{/each}}
+			</div>
+		</fieldset>
+	{{/if}}
+
+	{{#if actor.itemTypes.miscAbility}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize "FU.Actions"}}
+			</legend>
+			<div class="flexcol">
+				{{#each actor.itemTypes.miscAbility}}
+					<label>
+						<input type="checkbox" name="abilities.{{id}}"
+						       {{#if (lookup ../existing.revealed.abilities id)}}checked{{/if}} />
+						{{name}}
+					</label>
+				{{/each}}
+			</div>
+		</fieldset>
+	{{/if}}
+
+	{{#if actor.itemTypes.rule}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.SpecialRules'}}
+			</legend>
+			<div class="flexcol">
+				{{#each actor.itemTypes.rule}}
+					<label>
+						<input type="checkbox" name="rules.{{id}}"
+						       {{#if (lookup ../existing.revealed.rules id)}}checked{{/if}} />
+						{{name}}
 					</label>
 				{{/each}}
 			</div>

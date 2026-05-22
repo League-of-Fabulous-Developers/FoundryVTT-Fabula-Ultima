@@ -7,6 +7,8 @@ import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spe
 import { getSystemSetting, SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
+import { NpcProfileAbilitiesTableRenderer } from '../helpers/tables/npc-profile-abilities-table-renderer.mjs';
+import { NpcProfileRulesTableRenderer } from '../helpers/tables/npc-profile-rules-table-renderer.mjs';
 
 /**
  * @typedef NpcProfileRevealData
@@ -37,17 +39,25 @@ import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
  */
 export class NpcProfileWindow extends FUApplication {
 	constructor(data = {}, options = {}) {
-		options.title = data.name;
-		super(data, options);
-		this.data = data;
-		this._expanded = new Set();
-	}
+		const actor = fromUuidSync(data.uuid, { strict: true });
+		if (actor && actor.apps.npcProfile) {
+			return actor.apps.npcProfile;
+		}
 
-	/** @inheritdoc
-	 * @override
-	 * */
-	_initializeApplicationOptions(options) {
-		return super._initializeApplicationOptions(options);
+		options.title = data.name;
+		super(options);
+		this.data = data;
+
+		if (options.party) {
+			this.party = options.party;
+			delete options.party;
+
+			this.party.apps[this.id] = this;
+		}
+
+		if (actor) {
+			actor.apps.npcProfile = this;
+		}
 	}
 
 	/**
@@ -78,17 +88,23 @@ export class NpcProfileWindow extends FUApplication {
 	#basicAttacksTable = new NpcProfileBasicAttacksTableRenderer();
 	#weaponsTable = new NpcProfileWeaponsTableRenderer();
 	#spellsTable = new NpcProfileSpellsTableRenderer();
+	#abilitiesTable = new NpcProfileAbilitiesTableRenderer();
+	#rulesTable = new NpcProfileRulesTableRenderer();
 
 	/** @override */
 	async _prepareContext(options) {
 		let context = await super._prepareContext(options);
 
+		let data = this.data;
+		if (this.party) {
+			data = this.party.system.adversaries.find((value) => value.uuid === data.uuid);
+		}
 		/** @type FUActor **/
-		const actor = await fromUuid(this.data.uuid);
+		const actor = await fromUuid(data.uuid);
 		ActorSheetUtils.prepareCharacterData(actor);
 		/** @type NpcDataModel  **/
 		const system = actor.system;
-		const result = StudyRollHandler.resolveStudyResult(this.data.study);
+		const result = StudyRollHandler.resolveStudyResult(data.study);
 		let basic = false;
 		let complete = false;
 		let detailed = false;
@@ -106,13 +122,13 @@ export class NpcProfileWindow extends FUApplication {
 				detailed = true;
 				break;
 		}
-		const hasRevealedData = !!this.data.revealed;
+		const hasRevealedData = !!data.revealed;
 		// Stats
-		const revealStats = basic || !!this.data.revealed.traits;
+		const revealStats = basic || !!data.revealed.traits;
 		// Affinities
-		const revealAffinities = (hasRevealedData && !!this.data.revealed.affinities) || complete;
+		const revealAffinities = (hasRevealedData && !!data.revealed.affinities) || complete;
 		const affinities = Object.entries(system.affinities).map(([affinity, values]) => {
-			const reveal = complete || (revealAffinities && affinity in (this.data.revealed?.affinities ?? {}));
+			const reveal = complete || (revealAffinities && affinity in (data.revealed?.affinities ?? {}));
 			const value = reveal ? values.current : 0;
 			const acronymValue = FU.affTypeAbbr[value];
 			const fullName = FU.damageTypes[affinity];
@@ -127,9 +143,9 @@ export class NpcProfileWindow extends FUApplication {
 		});
 		// Pressure Points
 		const revealPressurePoints = getSystemSetting(SETTINGS.pressureSystem);
-		const pressurePoints = complete ? NpcProfileWindow.getPressurePointMap(actor) : this.data.revealed.pressurePoints;
+		const pressurePoints = complete ? NpcProfileWindow.getPressurePointMap(actor) : data.revealed.pressurePoints;
 
-		Object.assign(context, this.data);
+		Object.assign(context, data);
 		context.actor = actor;
 		context.name = actor.name;
 		context.img = actor.img;
@@ -146,13 +162,18 @@ export class NpcProfileWindow extends FUApplication {
 		context.level = system.level.value;
 		context.hp = system.resources.hp.max;
 		context.mp = system.resources.mp.max;
-		context.localizedSpecies = FU.species[this.data.species];
+		context.localizedSpecies = FU.species[data.species];
+		context.statusEffects = FU.statusEffects;
+		context.statusImmunities = Object.entries(actor.system.immunities)
+			.filter(([, immune]) => immune)
+			.filter(([status]) => data.revealed?.statusImmunities?.[status])
+			.map(([status]) => status);
 
-		// Ensure expanded state is initialized
-		context._expandedIds = Array.from(this._expanded);
 		context.basicAttacksTable = await this.#basicAttacksTable.renderTable(actor);
 		context.weaponsTable = await this.#weaponsTable.renderTable(actor);
 		context.spellsTable = await this.#spellsTable.renderTable(actor);
+		context.abilitiesTable = await this.#abilitiesTable.renderTable(actor, { revealed: data.revealed.abilities });
+		context.rulesTable = await this.#rulesTable.renderTable(actor, { revealed: data.revealed.rules });
 		context.weaponCategories = FU.weaponCategories;
 		return context;
 	}
@@ -162,6 +183,19 @@ export class NpcProfileWindow extends FUApplication {
 		this.#basicAttacksTable.activateListeners(this);
 		this.#weaponsTable.activateListeners(this);
 		this.#spellsTable.activateListeners(this);
+		this.#abilitiesTable.activateListeners(this);
+		this.#rulesTable.activateListeners(this);
+	}
+
+	async _onClose(options) {
+		super._onClose(options);
+		const actor = await fromUuid(this.data.uuid);
+		if (actor && actor.apps.npcProfile === this) {
+			delete actor.apps.npcProfile;
+		}
+		if (this.party) {
+			delete this.party.apps[this.id];
+		}
 	}
 
 	static async #revealActor() {
@@ -208,6 +242,9 @@ export class NpcProfileWindow extends FUApplication {
 
 		if (edit) {
 			console.debug(`Editing profile of ${JSON.stringify(existing)}`);
+			const statusImmunities = Object.entries(actor.system.immunities)
+				.filter(([, value]) => value.base)
+				.map(([status]) => status);
 			const content = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
 				actor,
 				existing: existing,
@@ -218,6 +255,7 @@ export class NpcProfileWindow extends FUApplication {
 				weaponCategories: FU.weaponCategories,
 				traits: traitsArray,
 				FU: FU,
+				statusImmunities: statusImmunities,
 			});
 			let updatedProfile = await FoundryUtils.input(game.i18n.localize('FU.NpcProfileUpdate'), content, {
 				render: (event, dialog) => {
@@ -274,6 +312,10 @@ export class NpcProfileWindow extends FUApplication {
 				if (existing.revealed.pressurePoints && Object.keys(existing.revealed.pressurePoints).length === 0) {
 					delete existing.revealed.pressurePoints;
 				}
+
+				existing.revealed.abilities = updatedProfile.abilities;
+				existing.revealed.rules = updatedProfile.rules;
+				existing.revealed.statusImmunities = updatedProfile.statusImmunities;
 
 				// Traits
 				const traits = Object.entries(updatedProfile.traits ?? {})
