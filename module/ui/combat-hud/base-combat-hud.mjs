@@ -284,7 +284,6 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 	async _onRender(context, options) {
 		await super._onRender(context, options);
 
-		this.element.css;
 		this._setSizeAndPosition();
 
 		this._addEventListener(`[data-role="combatant-portrait"]`, 'mouseenter', this._enemyCombatantMouseEnter);
@@ -570,10 +569,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 	 */
 	_calculateWindowPosition() {
 		const hOffset = -5;
-		const [uiLeft, uiMiddle, uiRight, uiBottom] = ['#ui-left', '#ui-middle', '#ui-right', '#hotbar'].map((selector) => document.querySelector(selector));
-
-		// let hudWidth = uiMiddle.clientWidth * uiLeft.clientWidth * .5;
-		// if (hudWidth < this.minWidth) hudWidth = this.minWidth;
+		const [uiLeft, uiMiddle, uiRight, uiBottom] = ['#ui-left', '#ui-middle', '#ui-right-column-1', '#hotbar'].map((selector) => document.querySelector(selector));
 
 		const hudWidth = Math.max(uiMiddle.clientWidth + uiLeft.clientWidth * 0.5 - (uiRight?.clientWidth ?? 0), this.minWidth);
 
