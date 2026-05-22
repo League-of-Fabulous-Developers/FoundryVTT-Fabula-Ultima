@@ -1,6 +1,7 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs';
 
 const fields = foundry.data.fields;
 
@@ -18,7 +19,7 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			value: new fields.NumberField({ blank: true }),
+			value: new fields.NumberField(),
 			identifier: new fields.StringField({ initial: '' }),
 			comparisonOperator: new fields.StringField({
 				initial: '',
@@ -45,17 +46,19 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 		const progress = context.character.actor.resolveProgress(this.identifier);
 		if (!progress) return false;
 
-		switch (this.comparisonOperator) {
-			case 'max':
-				return progress.current >= progress.max;
-			case 'greaterThan':
-				return progress.current > this.value;
-			case 'lessThan':
-				return progress.current < this.value;
-			case 'equals':
-				return progress.current === this.value;
+		if (!this.comparisonOperator) {
+			return false;
 		}
 
-		return false;
+		if (this.comparisonOperator === 'max') {
+			return progress.current >= progress.max;
+		}
+
+		if (!Number.isFinite(this.value)) {
+			return false;
+		}
+
+		const comparisonOperation = ComparisonOperations[this.comparisonOperator];
+		return comparisonOperation(progress.current, this.value);
 	}
 }

@@ -1038,7 +1038,7 @@ FU.scalarOperation = {
 };
 
 /**
- * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
+ * @typedef {"greaterThan" | "greaterThanOrEqual" | "equals" | "lessThanOrEqual" | "lessThan"} FUComparisonOperator
  */
 
 /**
@@ -1047,9 +1047,14 @@ FU.scalarOperation = {
  * @property {Number} amount
  */
 
+/**
+ * @type {Record<FUComparisonOperator, string>}
+ */
 FU.comparisonOperator = {
 	greaterThan: 'FU.GreaterThan',
+	greaterThanOrEqual: 'FU.GreaterThanOrEqual',
 	equals: 'FU.Equals',
+	lessThanOrEqual: 'FU.LessThanOrEqual',
 	lessThan: 'FU.LessThan',
 };
 

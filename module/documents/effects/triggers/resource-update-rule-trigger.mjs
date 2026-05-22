@@ -2,6 +2,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs';
 
 const fields = foundry.data.fields;
 
@@ -25,18 +26,21 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.resources) }),
 			change: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.scalarChange) }),
 			changeThreshold: new fields.SchemaField({
-				operator: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.comparisonOperator) }),
+				operator: new fields.StringField({
+					initial: '',
+					blank: true,
+					choices: Object.keys(FU.comparisonOperator),
+				}),
 				amount: new fields.NumberField({ initial: 0 }),
 			}),
 			itemGroups: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: false }),
 		});
-		return schema;
 	}
 
 	static get localization() {
@@ -81,18 +85,9 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 		}
 
 		if (this.changeThreshold.operator) {
-			switch (this.changeThreshold.operator) {
-				case 'greaterThan':
-					if (!(Math.abs(amount) >= Math.abs(this.changeThreshold.amount))) {
-						return false;
-					}
-					break;
-
-				case 'lessThan':
-					if (!(Math.abs(amount) <= Math.abs(this.changeThreshold.amount))) {
-						return false;
-					}
-					break;
+			const comparisonOperation = ComparisonOperations[this.threshold.operator];
+			if (!comparisonOperation(Math.abs(amount), Math.abs(this.changeThreshold.amount))) {
+				return false;
 			}
 		}
 
