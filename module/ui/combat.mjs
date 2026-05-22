@@ -455,9 +455,10 @@ export class FUCombat extends foundry.documents.Combat {
 	/** @inheritDoc */
 	_onUpdate(changed, options, userId) {
 		super._onUpdate(changed, options, userId);
-		if (game.combat?.id === this.id && ui.combatHud) {
-			ui.combatHud._onUpdateHUD();
-		}
+		BaseCombatHUD.update().catch(console.error);
+		// if (game.combat?.id === this.id && ui.combatHud) {
+		// 	ui.combatHud._onUpdateHUD();
+		// }
 	}
 
 	/**
