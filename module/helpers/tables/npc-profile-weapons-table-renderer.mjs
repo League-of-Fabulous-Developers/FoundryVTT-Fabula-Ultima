@@ -6,6 +6,7 @@ export class NpcProfileWeaponsTableRenderer extends WeaponsTableRenderer {
 		cssClass: 'npc-profile-weapons-table',
 		columns: {
 			'-=controls': null,
+			'-=equipStatus': null,
 		},
 	};
 }

@@ -6,6 +6,14 @@
 			</span>
 		</div>
 	{{/if}}
+	{{#if additionalInputs}}
+		<fieldset class="title-fieldset">
+			{{#each additionalInputs}}
+				{{formGroup this name=(concat "additionalInputs." @key) localize=true}}
+			{{/each}}
+		</fieldset>
+		<hr>
+	{{/if}}
 	<div class="fu-selection-dialog__filter">
 		<input type="search"
 			   class="resource-inputs select-dropdown-full"

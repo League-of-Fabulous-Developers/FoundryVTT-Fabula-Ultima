@@ -161,7 +161,7 @@ async function handleArcanum(actor, item) {
 		};
 
 		const dialog = new ItemSelectionDialog(data);
-		const result = await dialog.open();
+		const { selected: result } = await dialog.open();
 		if (result && result.length > 0) {
 			/** @type FUItem **/
 			const selectedArcana = result[0];
@@ -229,7 +229,7 @@ async function handleTheriomorphosis(actor, item) {
 	};
 
 	const dialog = new ItemSelectionDialog(data);
-	const selectedForms = await dialog.open();
+	const { selected: selectedForms } = await dialog.open();
 	if (selectedForms) {
 		await actor.update({
 			'system.equipped.therioforms': selectedForms.map(({ id }) => id),

@@ -8,7 +8,7 @@
 					<div class="pfu-advancement__entry__card-ring-border {{#if (pfuCollectionContains item.id @root.skillMap)}}invested{{else}}untracked{{/if}}">
 					</div>
 					<div class="pfu-advancement__entry__card-ring-img">
-						{{pfuItemAnchor item size='l'}}
+						{{pfuItemAnchor item size='l' classes="pfu-advancement__entry__card-ring-img-link"}}
 					</div>
 					{{#if (pfuCollectionContains item.id @root.skillMap)}}
 						{{#with (lookup @root.skillMap item.id) as |skill|}}
@@ -49,7 +49,7 @@
 				<div class="pfu-advancement__entry__card-ring">
 					<div class="pfu-advancement__entry__card-ring-border"></div>
 					<div class="pfu-advancement__entry__card-ring-img">
-						{{pfuItemAnchor entry size='l'}}
+						{{pfuItemAnchor entry size='l' classes="pfu-advancement__entry__card-ring-img-link"}}
 					</div>
 
 					{{!-- Badges --}}

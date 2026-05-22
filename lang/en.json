@@ -2000,5 +2000,9 @@
 		"DialogCreateItemSelectTypeTitle": "Select Item Type",
 		"GreaterThanOrEqual": "Greater Than Or Equal",
 		"LessThanOrEqual": "Less Than Or Equal"
+		"CompendiumMigrateItemKeepImages": "Keep item images unchanged",
+		"CompendiumMigrateItemKeepNames": "Keep item names unchanged",
+		"MagicCheckDialogUseWeaponCheckTitle": "Use Weapon?",
+		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?"
 	}
 }

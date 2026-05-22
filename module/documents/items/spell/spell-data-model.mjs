@@ -174,14 +174,23 @@ export class SpellDataModel extends FUStandardItemDataModel {
 
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
-				const weapon = await WeaponResolver.prompt(actor, true);
-				if (weapon) {
-					check.primary = weapon.data.accuracy.primary;
-					check.secondary = weapon.data.accuracy.secondary;
-					attributeOverride = true;
-					// TODO: Clean up
-					config.addWeaponAccuracy(weapon.item);
-					config.setWeaponReference(weapon.item);
+				const useWeapon = await foundry.applications.api.Dialog.confirm({
+					window: {
+						title: 'FU.MagicCheckDialogUseWeaponCheckTitle',
+					},
+					content: game.i18n.localize('FU.MagicCheckDialogUseWeaponCheckContent'),
+					rejectClose: false,
+				});
+				if (useWeapon) {
+					const weapon = await WeaponResolver.prompt(actor, true);
+					if (weapon) {
+						check.primary = weapon.data.accuracy.primary;
+						check.secondary = weapon.data.accuracy.secondary;
+						attributeOverride = true;
+						// TODO: Clean up
+						config.addWeaponAccuracy(weapon.item);
+						config.setWeaponReference(weapon.item);
+					}
 				}
 			}
 
