@@ -3,8 +3,8 @@
 /* ----------------------------------------- */
 /* HP/MP/IP Input Bar */
 .projectfu .bar-progress {
-	font-size: 18px;
-	height: 20px;
+	font-size: 14px;
+	height: 16px;
 	border: 1px solid #c7c7c7;
 	background-color: #656565;
 	-webkit-box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
@@ -174,8 +174,7 @@
 
 .resource-label-wrapper {
 	display: flex;
-	flex: 1 0 auto;
-	justify-content: center;
+	flex: 0 0 auto;
 }
 
 .resource-icon {
@@ -185,6 +184,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	max-height: min-content;
 }
 
 .resource-value-wrapper {
@@ -198,7 +198,7 @@
 	place-self: flex-end;
 
 	input.resource-value-current {
-		width: 11ch;
+		width: 14ch;
 		padding: 0.25rem calc(50% + 1ch) 0.25rem 0.5rem;
 		background: var(--pfu-color-app-control-fill);
 		text-align: right;
@@ -209,7 +209,7 @@
 	.resource-value-divider {
 		position: absolute;
 		height: var(--input-height);
-		width: 11ch;
+		width: 14ch;
 		padding: 0.25em 0.5rem 0.25rem 0.5rem;
 		text-align: center;
 		right: 0;
@@ -221,7 +221,7 @@
 	.resource-value-max {
 		position: absolute;
 		height: var(--input-height);
-		width: 11ch;
+		width: 14ch;
 		padding: 0.25rem 0.5rem 0.25rem calc(50% + 1ch);
 		text-align: left;
 		right: 0;

@@ -141,6 +141,7 @@
 .projectfu .rest-button {
 	gap: 0.25rem;
 	font-weight: bold;
+	max-width: 4rem;
 }
 
 .projectfu .img-and-zenit-container {
@@ -149,7 +150,14 @@
 }
 
 .projectfu .zenit-and-rest-container {
+	display: flex;
 	gap: 0.25rem;
+	justify-content: space-between;
+}
+.projectfu .zenit-container {
+	flex: 1 0 auto;
+	display: flex;
+	place-content: flex-end;
 }
 
 .projectfu.actor .sheet-header .header-fields {

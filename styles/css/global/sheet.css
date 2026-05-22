@@ -101,7 +101,7 @@
 
 .projectfu .sheet-header .header-fields {
 	flex: 1;
-	gap: 8px;
+	gap: 5px;
 	border: none;
 	background: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
 	background-blend-mode: multiply;
@@ -145,6 +145,7 @@
 	}
 
 	.pc-level-container {
+
 		.level-field:first-of-type input {
 			border-radius: 0 10px 0 0;
 		}
@@ -174,15 +175,40 @@
 		grid-column: span 2;
 	}
 
+
+
 	.resources {
-		gap: 5px;
+		gap: 2px;
+
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		max-height: 6rem;
+		align-items: stretch;
+
+		&:has(.rest-button.minimal) {
+			grid-template-rows: repeat(2, 1fr);
+			grid-template-columns: 1fr auto;
+		}
+
+		.rest-button {
+			flex: 1 1 min-content;
+
+			&.minimal {
+				grid-row: span 2;
+				flex: 0 1 2rem;
+				min-height: 100%;
+			}
+
+		}
 	}
 
 	.derived {
 		grid-column: span 2;
 		display: flex;
 		justify-content: space-evenly;
-		padding: 0.5rem;
+		padding: 0.25rem;
 
 		> * {
 			display: flex;
