@@ -19,9 +19,8 @@
           </div>
           {{#if showResources}}
             <div class="combat-hud-retro__combatant-resources combat-hud-retro__combatant-resources--npc">
-              {{log "NPC" this}}
               {{#each trackedResources as |resource|}}
-              {{> (resource) ../this }}
+                {{> (resource) ../this }}
               {{/each}}
             </div>
           {{/if}}

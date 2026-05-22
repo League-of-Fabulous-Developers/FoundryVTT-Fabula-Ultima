@@ -42,7 +42,10 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			frame: false,
 			positioned: false,
 		},
-		actions: {},
+		actions: {
+			StartTurn: BaseCombatHUD.StartTurn,
+			EndTurn: BaseCombatHUD.EndTurn,
+		},
 	};
 
 	static PARTS = {
@@ -52,15 +55,33 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		},
 	};
 
+	/** @this {BaseCombatHUD} */
+	static StartTurn() {
+		console.log('StartTurn action');
+	}
+
+	/** @this {BaseCombatHUD} */
+	static EndTurn() {
+		console.log('EndTurn action');
+	}
+
 	get minWidth() {
 		return 700;
+	}
+
+	_onStartTurn(combatant) {
+		if (combatant) return ui.combat.handleStartTurn(combatant);
+	}
+
+	_onEndTurn(combatant) {
+		if (combatant) return ui.combat.handleEndTurn(combatant);
 	}
 
 	/** @type {boolean} */
 	static get shouldBeVisible() {
 		if (!game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud) || game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) return false;
 		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudAlwaysShow)) return true;
-		if (game.combat?.isActive) return true;
+		if (BaseCombatHUD.combat?.isActive) return true;
 		return false;
 	}
 
@@ -102,6 +123,14 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		this.classes[theme.id] = theme;
 	}
 
+	static get combat() {
+		return game.combat;
+	}
+
+	get combat() {
+		return BaseCombatHUD.combat;
+	}
+
 	/** Returns whether or not this particular class is active */
 	static get active() {
 		return false;
@@ -135,18 +164,144 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		console.log('Combat HUD: Initialized');
 	}
 
+	/** @type {Record<string, Function>} */
+	_resourcePartialRenderFuncs = {};
+
+	/**
+	 * Convenience function to add an event listener ot a set of HTML elements
+	 * @param {string} selector
+	 * @param {string} event
+	 * @param {Function} listener
+	 */
+	_addEventListener(selector, event, listener) {
+		const elements = Array.from(this.element.querySelectorAll(selector));
+		for (const element of elements) {
+			if (element instanceof HTMLElement) element.addEventListener(event, listener.bind(this));
+		}
+	}
+
+	_enemyCombatantMouseEnter(e) {
+		e.preventDefault();
+		if (!canvas.ready) return;
+
+		const token = canvas.tokens.get(e.target.dataset.tokenId);
+		if (token?.isVisible) token._onHoverIn(e, { hoverOutOthers: true });
+	}
+
+	_enemyCombatantMouseLeave(e) {
+		e.preventDefault();
+		if (!canvas.ready) return;
+
+		const token = canvas.tokens.get(e.target.dataset.tokenId);
+		if (token?.isVisible) token._onHoverOut(e);
+	}
+
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		await this._loadBarPartials();
+	}
+
+	/**
+	 *
+	 * @param {FUCombatant} combatant
+	 * @returns {boolean}
+	 */
+	_canStartTurn(combatant) {
+		const turnsLeft = this.combat.countTurnsLeft();
+		return this.combat.started && turnsLeft[combatant.id] > 0;
+	}
+
+	_canEndTurn(combatant) {}
+
+	/**
+	 *
+	 * @param {*} combatant
+	 * @param {*} menuItems
+	 * @returns {ContextMenuEntry[]}
+	 */
+	_getCombatantContextMenuItems(combatant, context, menuItems) {
+		// TODO: These properties change in v14
+		// name = label
+		// condition = visible
+		// callback = onClick
+
+		menuItems.push(
+			{
+				name: 'FU.CombatHudTurnIconsOutOfTurns',
+				icon: `<i class="mats-o">${context.icons.outOfTurns}</i>`,
+				classes: 'projectfu-combat-hud--disabled disabled',
+				condition: () => game.combat.started && context.turnsLeft[combatant.id] <= 0,
+				callback: () => {
+					/* This space intentionally left blank */
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.StartTurn',
+				icon: `<i class="mats-o mats-fill">counter_${Math.max(context.turnsLeft[combatant.id], 0)}</i>`,
+				condition: () => game.combat.started && this.combat.current?.combatantId !== combatant.id && context.turnsLeft[combatant.id] > 0,
+				callback: () => this._onStartTurn(combatant),
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.StartTurnOutOfOrder',
+				icon: `<i class="mats-o">counter_${Math.max(context.turnsLeft[combatant.id], 0)}</i>`,
+				condition: () => true,
+				callback: () => {},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.EndTurn',
+				icon: `<i class="mats-o mats-fill">${context.icons.active}</i>`,
+				condition: () => game.combat.started && this.combat.current?.combatantId === combatant.id,
+				callback: () => this._onEndTurn(combatant),
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.UnhideToken',
+				icon: `<i class="mats-o mats-fill">visibility</i>`,
+				condition: () => this.combat.isOwner && combatant.token.hidden,
+				callback: () => {
+					foundry.ui.combat._onToggleHidden(combatant);
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.HideToken',
+				icon: '<i class="mats-o mats-fill" data-action="toggleHidden">visibility_off</i>',
+				condition: () => this.combat.isOwner && !combatant.token.hidden,
+				callback: () => {
+					foundry.ui.combat._onToggleHidden(combatant);
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.RemoveCombatant',
+				icon: `<i class="mats-o mats-fill">delete</i>`,
+				condition: () => this.combat.isOwner,
+				callback: async () => {
+					await combatant.delete();
+				},
+			},
+		);
+		return menuItems;
+	}
+
 	async _onRender(context, options) {
 		await super._onRender(context, options);
 
 		this.element.css;
 		this._setSizeAndPosition();
 
+		this._addEventListener(`[data-role="combatant-portrait"]`, 'mouseenter', this._enemyCombatantMouseEnter);
+		this._addEventListener(`[data-role="combatant-portrait"]`, 'mouseleave', this._enemyCombatantMouseLeave);
+
+		const elements = Array.from(this.element.querySelectorAll(`[data-role="combatant-portrait"]`));
+		for (const element of elements) {
+			if (element instanceof HTMLElement) {
+				const combatant = BaseCombatHUD.combat.combatants.find((combatant) => combatant.token.id === element.dataset.tokenId);
+				const menuItems = [];
+				this._getCombatantContextMenuItems(combatant, context, menuItems);
+				new foundry.applications.ux.ContextMenu.implementation(this.element, `[data-role="combatant-portrait"][data-token-id="${element.dataset.tokenId}"]`, menuItems, { jQuery: false, fixed: true });
+			}
+		}
+
 		Hooks.callAll(FUHooks.COMBAT_HUD.render, this, context, options);
 	}
-
-	// lerp(a, b, alpha) {
-	// 	return a + alpha * (b - a);
-	// }
 
 	_setSizeAndPosition() {
 		// TODO: Handle popping out (both PopOut! module and v14 native method)
@@ -234,7 +389,91 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		];
 	}
 
-	_prepareTrackedResourceContext(resource) {}
+	_shouldShowResources(combatant) {
+		if (game.user.isGM) return true;
+		if (combatant.actor.type === 'character') return true;
+		if (combatant.token.disposition == CONFIG.TOKEN_DISPOSITIONS.FRIENDLY) return true;
+
+		const showResourceMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode);
+		if (showResourceMode === 'never') return false;
+		if (showResourceMode === 'always') return true;
+
+		const partyActor = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
+		const adversaryEntry = partyActor?.system.getAdversary(combatant.actor.resolveUuid());
+		if (adversaryEntry) {
+			const studyResult = adversaryEntry ? StudyRollHandler.resolveStudyResult(adversaryEntry.study) : 'none';
+			return studyResult !== 'none';
+		}
+
+		return false;
+	}
+
+	_getCombatantZeroPower(combatant) {
+		return combatant.actor.items.find((item) => item.system.optionalType === FU.optionalFeatures.zeroPower);
+	}
+
+	_getResourceAbbreviation(combatant, resource) {
+		if (FU.resourcesAbbr[resource]) return FU.resourcesAbbr[resource];
+		if (resource === 'zeropower') return FU.optionalFeatures.zeroPower;
+		return resource;
+	}
+
+	_getCombatantResource(combatant, resource) {
+		const track = combatant.actor.resolveProgress(resource);
+		if (track) {
+			return {
+				current: track.current,
+				max: track.max,
+			};
+		}
+
+		const res = combatant.actor.system.resources[resource];
+		if (res) {
+			return {
+				current: res.value,
+				max: res.max,
+			};
+		}
+
+		// Special case time!
+		if (resource === 'zeropower') {
+			const zeroPower = this._getCombatantZeroPower(combatant);
+			if (zeroPower) {
+				return {
+					current: zeroPower.data.progress?.current ?? 0,
+					max: zeroPower.data.progress?.max ?? 0,
+				};
+			}
+		}
+
+		return undefined;
+	}
+
+	_getCombatantTooltip(combatant, context) {
+		const lines = [`<h4>${combatant.name}</h4>`, `<hr>`];
+
+		if (context.showResources) {
+			const resources = ['hp', 'mp', ...this._getCombatantTrackedResources(combatant)].filter((res, i, arr) => arr.indexOf(res) === i);
+			for (const resource of resources) {
+				if (resource !== 'none') {
+					const resValue = this._getCombatantResource(combatant, resource);
+					const key = resValue?.max ? 'FU.CombatHudResourceBarTooltip' : 'FU.CombatHudResourceScalarTooltip';
+
+					lines.push(`<p>${game.i18n.format(key, { ...resValue, resource: game.i18n.localize(this._getResourceAbbreviation(combatant, resource)) })}</p>`);
+				}
+			}
+			if (resources.length) lines.push('<hr>');
+		}
+
+		if (combatant.actor.type === 'npc' && game.user.isGM) {
+			lines.push(`<p>${game.i18n.localize('FU.CombatHudSelectCombatantTooltip')}</p>`);
+		} else {
+			lines.push(`<p>${game.i18n.localize('FU.CombatHudViewAdversaryTooltip')}</p>`);
+		}
+
+		lines.push(`<p>${game.i18n.localize('FU.CombatHudContextMenuTooltip')}</p>`);
+		return lines.join('\n');
+	}
 
 	/**
 	 * Prepares the context for a given combatant to be passed to our handlebars templates
@@ -250,7 +489,6 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		const [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4] = this._getCombatantTrackedResources(combatant).map(this._getResourcePartial);
 		const trackedResources = [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4].filter((resource) => !!resource);
 
-		/** @type {import('./typedefs.mjs').CombatHUDCombatantContext} */
 		const actorData = {
 			id: combatant.id,
 			name: combatant.name,
@@ -265,7 +503,6 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? await this._getCombatantThumbnail(combatant) : combatant.actor.img,
 			trackedResources,
 			showPressureClock: false,
-			portraitTooltip: `<h4>${combatant.name}</h4>`,
 			hideTurns: !FUCombat.showTurnsFor(combatant),
 			order: 0,
 			tracks: (Object.values(combatant.actor.tracks) ?? []).map((track) => ({
@@ -283,29 +520,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			},
 		};
 
-		const showResourceMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCResourcesMode);
-
-		if (combatant.actor.type === 'character') {
-			// Always show resource bars for PCs
-			actorData.showResources = true;
-		} else if (showResourceMode === 'never') {
-			actorData.showResources = false;
-		} else if (showResourceMode === 'only-gm' && game.user.isGM) {
-			actorData.showResources = true;
-		} else if (showResourceMode === 'only-studied') {
-			// Show resource bars if Study result would show HP/MP
-			const partyActor = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
-			const adversaryEntry = partyActor?.system.getAdversary(combatant.actor.resolveUuid());
-			actorData.showResources = false;
-
-			// TODO: HUD needs to refresh when study result is updated
-			if (adversaryEntry) {
-				const studyResult = adversaryEntry ? StudyRollHandler.resolveStudyResult(adversaryEntry.study) : 'none';
-				if (partyActor && adversaryEntry && studyResult !== 'none') {
-					actorData.showResources = true;
-				}
-			}
-		}
+		actorData.showResources = this._shouldShowResources(combatant);
 
 		const barCount = [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4].filter((item) => !!item).length;
 
@@ -344,6 +559,8 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 				};
 			}
 		}
+
+		actorData.portraitTooltip = this._getCombatantTooltip(combatant, actorData);
 
 		return actorData;
 	}
@@ -394,7 +611,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		context.isCompact = false;
 		context.mirrorFactionList = false;
 
-		const combat = game.combat;
+		const combat = this.combat;
 		combat.populateData(context);
 
 		context.combatants = [];
@@ -445,7 +662,24 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		context.npcs.sort((a, b) => a.order - b.order);
 		context.combatants.sort((a, b) => a.order - b.order);
 
+		console.log('Context:', context);
 		return context;
+	}
+
+	/**
+	 * Stores compiled versions of the resource partials, for insertion into combatant tooltips
+	 */
+	async _loadBarPartials() {
+		const [barHp, barMp, barIp, barZeropower, barZenit, barFp, barXp] = await foundry.applications.handlebars.loadTemplates(['hp', 'mp', 'ip', 'zeropower', 'zenit', 'fp', 'exp'].map((res) => this._getResourcePartial(res)));
+		this._resourcePartialRenderFuncs = {
+			hp: barHp,
+			mp: barMp,
+			ip: barIp,
+			zeropower: barZeropower,
+			zenit: barZenit,
+			fp: barFp,
+			exp: barXp,
+		};
 	}
 
 	constructor(options) {
