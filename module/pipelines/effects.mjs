@@ -757,17 +757,25 @@ function onRenderChatMessage(message, element) {
 		return;
 	}
 
-	Pipeline.handleClickRevert(message, element, 'removeEffect', (dataset) => {
-		const actorId = dataset.actorId;
-		const effectId = dataset.id;
-		console.debug(`Removing effect ${effectId} from ${actorId}`);
-		/** @type FUActor **/
-		const actor = fromUuidSync(actorId);
-		const effect = actor.effects.get(effectId);
-		if (effect) {
-			effect.delete();
-		}
-	});
+	Pipeline.handleClickRevert(
+		message,
+		element,
+		'removeEffect',
+		(dataset) => {
+			const actorId = dataset.actorId;
+			const effectId = dataset.id;
+			console.debug(`Removing effect ${effectId} from ${actorId}`);
+			/** @type FUActor **/
+			const actor = fromUuidSync(actorId);
+			const effect = actor.effects.get(effectId);
+			if (effect) {
+				effect.delete();
+			}
+		},
+		(actionName, el) => {
+			return `${actionName}+${el.dataset.actorId}+${el.dataset.id}`;
+		},
+	);
 
 	Pipeline.handleClick(message, element, 'applyEffect', async (dataset) => {
 		const effectId = dataset.effectId;

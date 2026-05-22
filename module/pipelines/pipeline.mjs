@@ -163,14 +163,15 @@ function handleClick(message, html, actionName, onClick) {
  * @param {HTMLElement} html
  * @param {String} actionName
  * @param {(data: Object) => Promise<void>} action
+ * @param {(actionName: string, element: HTMLElement) => string?} getCustomActionId
  */
-async function handleClickRevert(message, html, actionName, action) {
-	html.querySelectorAll(`a[data-action="${actionName}"]`).forEach((element) => {
-		const messageContent = html.querySelector('.message-content');
-		const reverted = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName);
+async function handleClickRevert(message, html, actionName, action, getCustomActionId) {
+	const elements = [...html.querySelectorAll(`a[data-action="${actionName}"]`).values()];
+	elements.forEach((element) => {
+		const actionId = getCustomActionId ? getCustomActionId(actionName, element) : actionName;
+		const reverted = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionId);
 
 		if (reverted) {
-			messageContent?.classList.add('strikethrough');
 			element.classList.add('action-disabled');
 		} else {
 			element.addEventListener('click', async (event) => {
@@ -178,7 +179,7 @@ async function handleClickRevert(message, html, actionName, action) {
 				try {
 					await action({ ...element.dataset });
 					const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
-					revertedActions.push(actionName);
+					revertedActions.push(actionId);
 					await message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
 				} catch (ex) {
 					console.debug(ex);
@@ -186,6 +187,10 @@ async function handleClickRevert(message, html, actionName, action) {
 			});
 		}
 	});
+	if (elements.length && elements.every((elem) => elem.classList.contains('action-disabled'))) {
+		const messageContent = html.querySelector('.message-content');
+		messageContent?.classList.add('strikethrough');
+	}
 }
 
 /**
