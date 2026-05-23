@@ -52,6 +52,7 @@
 					<input type="text" name="adversarySearch" id="adversarySearch" value="{{adversarySearch}}" placeholder="Search...">
 				</label>
 
+				{{#if (gt adversaryMiscFilters.length 0 )}}
 				<fieldset class="title-fieldset desc resource-content">
 					<legend class="resource-label-full">{{localize "FU.AdversaryFilterMisc"}}</legend>
 					{{#each adversaryMiscFilters as |filter|}}
@@ -63,6 +64,7 @@
 						</div>
 					{{/each}}
 				</fieldset>
+				{{/if}}
 
 				<fieldset class="title-fieldset desc resource-content">
 					<legend class="resource-label-full">{{localize 'FU.Rank'}}</legend>
