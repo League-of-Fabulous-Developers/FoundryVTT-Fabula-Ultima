@@ -13,19 +13,7 @@ export class RetroCombatHUD extends BaseCombatHUD {
 		...super.PARTS,
 		hud: {
 			template: systemTemplatePath(`ui/combat-hud/combat-hud-default`),
-			templates: [
-				systemTemplatePath(`ui/combat-hud/retro/npcs`),
-				systemTemplatePath(`ui/combat-hud/retro/characters`),
-				systemTemplatePath(`ui/combat-hud/combat-hud-portrait`),
-				systemTemplatePath(`ui/combat-hud/retro/bar`),
-				systemTemplatePath('ui/combat-hud/retro/bar-hp'),
-				systemTemplatePath('ui/combat-hud/retro/bar-mp'),
-				systemTemplatePath('ui/combat-hud/retro/bar-ip'),
-				systemTemplatePath('ui/combat-hud/retro/bar-exp'),
-				systemTemplatePath('ui/combat-hud/retro/bar-fp'),
-				systemTemplatePath('ui/combat-hud/retro/bar-zeropower'),
-				systemTemplatePath('ui/combat-hud/retro/bar-zenit'),
-			],
+			templates: [systemTemplatePath(`ui/combat-hud/retro/npcs`), systemTemplatePath(`ui/combat-hud/retro/characters`), systemTemplatePath(`ui/combat-hud/combat-hud-portrait`), systemTemplatePath(`ui/combat-hud/retro/bar`)],
 		},
 	};
 
