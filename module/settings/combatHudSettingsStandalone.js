@@ -57,16 +57,36 @@ export class CombatHudSettingsStandalone extends FUApplication {
 
 		context.trackedResources = FU.combatHudResources;
 
-		const trackedResources = game.user.character?.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources) ?? ['default', 'default', 'default', 'default'];
+		const maxTrackedResources = 4;
+		const trackedResources = this.actor?.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources) ?? new Array(maxTrackedResources).fill('default');
 
-		for (let i = 0; i < 4; i++) {
+		for (let i = 0; i < maxTrackedResources; i++) {
+			const trackEntries = Object.entries(this.actor.tracks);
 			context[`trackedActorResource${i + 1}`] = trackedResources[i] ?? 'default';
-			context[`trackedActorResources${i + 1}`] = {
-				default: game.i18n.format('FU.CombatHudTrackedActorResourceUseDefault', { value: this._getLocalizedResource(game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTrackedPCResource${i + 1}`])) }),
-				...FU.combatHudResources,
-			};
+			context[`trackedActorResources${i + 1}`] = [
+				{
+					value: 'default',
+					label: game.i18n.format('FU.CombatHudTrackedActorResourceUseDefault', { value: this._getLocalizedResource(game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTrackedPCResource${i + 1}`])) }),
+				},
+				...Object.entries(FU.combatHudResources)
+					.map(([key, value]) => ({
+						value: key,
+						label: value,
+						group: 'Default', // This will be localized
+					}))
+					.sort((a, b) => a.value.localeCompare(b.value)),
+				// Actor-specific tracks
+				...trackEntries
+					.map(([key, value]) => ({
+						value: `tracks.${key}`,
+						label: value.name ? value.name : key,
+						group: 'FU.CombatHudTrackedResourcesActorGroup', // This will be localized
+					}))
+					.sort((a, b) => a.value.localeCompare(b.value)),
+			];
 		}
 
+		console.log('Context:', context);
 		return context;
 	}
 

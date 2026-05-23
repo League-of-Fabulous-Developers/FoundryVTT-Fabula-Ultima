@@ -351,6 +351,100 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		return systemTemplatePath(`ui/combat-hud/${theme}/combat-hud-${theme}-bar-${resource}`);
 	}
 
+	_getResourcePath(resource) {
+		if (resource === 'none') return '';
+		if (resource === 'zeropower' || resource.startsWith('tracks.')) return resource;
+
+		return `system.resources.${resource}`;
+	}
+
+	_getResourceLabel(combatant, resource) {
+		if (FU.combatHudResources[resource]) return FU.combatHudResources[resource];
+
+		const model = foundry.utils.getProperty(combatant.actor, resource);
+
+		if (model) {
+			if (model.name) return model.name;
+			if (model.parent.name) return model.parent.name;
+			if (model.parent.parent?.name) return model.parent.parent.name;
+		}
+
+		return resource;
+	}
+
+	_getResourceClass(combatant, resource) {
+		let resourceClass = `bar-${resource}`;
+
+		if (resource === 'hp' && combatant.actor.system.resources.hp.inCrisis) resourceClass += ' bar-hp-crisis';
+
+		return resourceClass;
+	}
+
+	_getResourceIcon(combatant, resource) {
+		switch (resource) {
+			case 'hp':
+				return 'fa-solid fa-heart';
+			case 'mp':
+				return 'fa-solid fa-hat-wizard icon';
+			case 'fp':
+				return 'fa-solid fa-feather';
+			case 'exp':
+				return 'fa-solid fa-feather-pointed icon';
+			case 'zenit':
+				return 'fuk fu-zenit icon-aff';
+			case 'zeropower':
+				return 'ra ra-aura';
+		}
+		return '';
+	}
+
+	_getResourceImage(combatant, resource) {
+		if (resource.startsWith('tracks.')) {
+			const track = foundry.utils.getProperty(combatant.actor, resource);
+			if (track.parent.img) return track.parent.img;
+			if (track.parent.parent?.img) return track.parent.parent.img;
+		}
+		return '';
+	}
+
+	_getResourceBackgroundStyle(combatant, resource) {
+		switch (resource) {
+			case 'tracks.pressure':
+			case 'clocks.pressure':
+				return 'background:var(--background-critical)';
+			case 'tracks.garden':
+			case 'clocks.garden':
+				return 'background-image:linear-gradient(90deg, #c60478, rgba(255, 255, 255, 0.5));background-color:red;';
+			case 'tracks.brainwave-clock':
+			case 'clocks.brainwave-clock':
+				return 'background-image:linear-gradient(90deg, #3b1e3f, rgba(255, 255, 255, 0.5));background-color:#1d0920';
+		}
+	}
+
+	/**
+	 * Returns context for a given resource partial
+	 * @param {string} resource
+	 * @returns
+	 */
+	_getResourceContext(combatant, resource) {
+		if (resource === 'none') return;
+		const resourceValue = this._getCombatantResource(combatant, resource);
+
+		return {
+			path: this._getResourcePath(resource),
+			label: this._getResourceLabel(combatant, resource),
+			abbr: this._getResourceAbbreviation(resource),
+			current: resourceValue?.current ?? 0,
+			max: resourceValue?.max ?? 0,
+			class: this._getResourceClass(combatant, resource),
+			backgroundStyle: this._getResourceBackgroundStyle(combatant, resource),
+			icon: this._getResourceIcon(combatant, resource),
+			image: this._getResourceImage(combatant, resource),
+			inCrisis: resource === 'hp' && combatant.actor.system.resources.hp.inCrisis,
+			crisisScore: resource === 'hp' ? combatant.actor.system.resources.hp.crisisScore : 0,
+		};
+	}
+
 	/**
 	 * Retrieve a source image for a combatant.
 	 * Modified from CombatTracker._getCombatantThumbnail()
@@ -381,10 +475,10 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		}
 		const resourceOverrides = combatant.actor.getFlag(Flags.Scope, Flags.Actor.combatHud.trackedResources) ?? [];
 		return [
-			resourceOverrides[0] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource1`]),
-			resourceOverrides[1] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource2`]),
-			resourceOverrides[2] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource3`]),
-			resourceOverrides[3] ?? game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource4`]),
+			resourceOverrides[0] && resourceOverrides[0] !== 'default' ? resourceOverrides[0] : game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource1`]),
+			resourceOverrides[1] && resourceOverrides[1] !== 'default' ? resourceOverrides[1] : game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource2`]),
+			resourceOverrides[2] && resourceOverrides[2] !== 'default' ? resourceOverrides[2] : game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource3`]),
+			resourceOverrides[3] && resourceOverrides[3] !== 'default' ? resourceOverrides[3] : game.settings.get(SYSTEM, SETTINGS[`optionCombatHudTracked${actorType}Resource4`]),
 		];
 	}
 
@@ -432,6 +526,14 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 				current: res.value,
 				max: res.max,
 			};
+		} else {
+			const track = foundry.utils.getProperty(combatant.actor, resource);
+			if (track) {
+				return {
+					current: track.current,
+					max: track.max,
+				};
+			}
 		}
 
 		// Special case time!
@@ -485,8 +587,12 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 
 		const zeroPower = Object.values(combatant.actor.tracks).find((track) => track.parent?.item?.system?.optionalType === FU.optionalFeatures.zeroPower);
 
-		const [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4] = this._getCombatantTrackedResources(combatant).map(this._getResourcePartial);
-		const trackedResources = [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4].filter((resource) => !!resource);
+		const trackedResources = this._getCombatantTrackedResources(combatant)
+			.map((resource) => ({
+				template: this._getResourcePartial(combatant, resource),
+				context: this._getResourceContext(combatant, resource),
+			}))
+			.filter((context) => !!context.context);
 
 		const actorData = {
 			id: combatant.id,
@@ -521,7 +627,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 
 		actorData.showResources = this._shouldShowResources(combatant);
 
-		const barCount = [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4].filter((item) => !!item).length;
+		const barCount = actorData.trackedResources.length;
 
 		switch (barCount) {
 			case 1:

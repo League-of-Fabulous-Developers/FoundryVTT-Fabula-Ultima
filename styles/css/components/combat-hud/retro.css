@@ -288,6 +288,10 @@
 		left: 4px;
 	}
 
+	.combat-hud-retro__resource-value-image {
+		width: 16px;
+	}
+
 	.bar-container {
 		flex-grow: 1;
 	}

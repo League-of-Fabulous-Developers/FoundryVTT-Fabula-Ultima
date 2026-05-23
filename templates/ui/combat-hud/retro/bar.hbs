@@ -1,26 +1,32 @@
 <div class="bar-container">
+    {{ log "Bar context" this}}
     <div class="bar bar-progress" data-tooltip="{{localize label}}">
         {{#unless isCompact}}
-            <div class="bar-progress-bar {{barClass}}" style="width: {{pfuPercentage resource.value resource.max}}"></div>
+            <div class="bar-progress-bar {{class}}" style="width: {{pfuPercentage current max}};{{backgroundStyle}}"></div>
             {{#if inCrisis}}
-            <div class="center-line" style="left: calc({{resource.crisisScore}} / {{resource.max}} * 100%)"></div>
+            <div class="center-line" style="left: calc({{crisisScore}} / {{max}} * 100%)"></div>
             {{/if}}
             <span class="bar-value"></span>
         {{else}}
             <div class="resource-value-compact">
                 <div class="resource-text">
-                    <span>{{ resource.value }} / {{ resource.max }}</span>
+                    <span>{{ current }} / {{ max }}</span>
                 </div>
             </div>
         {{/unless}}
     </div>  
     {{#unless isCompact}}
         <div class="resource-value combat-hud-retro__resource-value-bar">
-            <i class="{{icon}} combat-hud-retro__resource-value-icon"></i>
+            {{#if icon}}
+                <i class="{{icon}} combat-hud-retro__resource-value-icon"></i>
+            {{/if}}
+            {{#if image}}
+                <img src="{{image}}" class="combat-hud-retro__resource-value-icon combat-hud-retro__resource-value-image">
+            {{/if}}
             <div class="resource-text">
-                <span>{{resource.value}}</span>
+                <span>{{current}}</span>
                 <span>&nbsp;/&nbsp;</span>
-                <span>{{resource.max}}</span>
+                <span>{{max}}</span>
             </div>
         </div>
     {{/unless}}
