@@ -74,7 +74,13 @@ system.resources.mp.max
 	</div>
 </div>
 
+<a class="rest-button button-style minimal" data-tooltip="{{ localize 'FU.Reset' }}"
+   aria-describedby="tooltip" data-action="rest" >
+	<i class="fa fa-arrow-rotate-left"></i>
+</a>
+
 {{#if (eq actor.type "character")}}
+	<div class="divider"></div>
 	<!-- IP -->
 	<div class="resource-container resource-content" data-tooltip="{{localize 'FU.InventoryPoints'}}<br>Current: {{
 	system.resources.ip.value

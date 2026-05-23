@@ -15,13 +15,8 @@
 			{{!- HP/MP/IP/FP|UP --}}
 			<div class="resources flexrow flex-group-center">
 				{{>"systems/projectfu/templates/actor/partials/actor-point-bars.hbs" actor=actor}}
-
 				{{#if (eq actor.type "character")}}
 					<div class="flexrow zenit-and-rest-container">
-						<a class="rest-button button-style" data-tooltip="{{ localize 'FU.Rest' }}"
-						   aria-describedby="tooltip" data-action="rest" >
-							<i class="fa fa-moon"></i><span>{{ localize 'FU.Rest' }}</span>
-						</a>
 						<div class="zenit-container">
 							<!-- Zenit -->
 							<a class="item rollable tab button-style zenit-style" data-tooltip="{{pfuGetSetting 'optionRenameCurrency'}}">
@@ -43,12 +38,7 @@
 						</div>
 					</div>
 				{{/if}}
-				{{#if (and (eq actor.type "npc") (ne actor.system.rank.value "companion"))}}
-					<a class="rest-button button-style minimal" data-tooltip="{{ localize 'FU.Reset' }}"
-					   aria-describedby="tooltip" data-action="rest" >
-						<i class="fa fa-arrow-rotate-left"></i>
-					</a>
-				{{/if}}
+
 			</div>
 
 

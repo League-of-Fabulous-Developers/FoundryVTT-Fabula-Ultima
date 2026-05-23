@@ -145,7 +145,6 @@
 	}
 
 	.pc-level-container {
-
 		.level-field:first-of-type input {
 			border-radius: 0 10px 0 0;
 		}
@@ -175,21 +174,24 @@
 		grid-column: span 2;
 	}
 
-
-
 	.resources {
 		gap: 2px;
 
 		display: grid;
 		grid-auto-flow: column;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr auto;
 		grid-template-rows: repeat(2, 1fr);
 		max-height: 6rem;
 		align-items: stretch;
 
-		&:has(.rest-button.minimal) {
+		&:has(.bar-ip) {
 			grid-template-rows: repeat(2, 1fr);
-			grid-template-columns: 1fr auto;
+			grid-template-columns: 1fr auto auto 1fr;
+
+			.divider {
+				grid-row: span 2;
+				width: 1rem;
+			}
 		}
 
 		.rest-button {
@@ -197,10 +199,10 @@
 
 			&.minimal {
 				grid-row: span 2;
+
 				flex: 0 1 2rem;
 				min-height: 100%;
 			}
-
 		}
 	}
 
