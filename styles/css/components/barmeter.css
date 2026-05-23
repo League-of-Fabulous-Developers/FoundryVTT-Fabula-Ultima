@@ -139,8 +139,6 @@
 		transition: opacity 0.25s ease-in;
 		pointer-events: none;
 		flex: 0 0 auto;
-		margin-top: 1px;
-		margin-left: 1px;
 		text-shadow: 0 0 2px black;
 
 		&.fa-caret-left {
@@ -197,8 +195,21 @@
 	--input-height: 28px;
 	place-self: flex-end;
 
-	input.resource-value-current {
+	&.value-small {
+		input.resource-value-current,
+		.resource-value-divider,
+		.resource-value-max {
+			width: 10ch;
+		}
+	}
+
+	input.resource-value-current,
+	.resource-value-divider,
+	.resource-value-max {
 		width: 14ch;
+	}
+
+	input.resource-value-current {
 		padding: 0.25rem calc(50% + 1ch) 0.25rem 0.5rem;
 		background: var(--pfu-color-app-control-fill);
 		text-align: right;
@@ -209,7 +220,6 @@
 	.resource-value-divider {
 		position: absolute;
 		height: var(--input-height);
-		width: 14ch;
 		padding: 0.25em 0.5rem 0.25rem 0.5rem;
 		text-align: center;
 		right: 0;
@@ -221,7 +231,6 @@
 	.resource-value-max {
 		position: absolute;
 		height: var(--input-height);
-		width: 14ch;
 		padding: 0.25rem 0.5rem 0.25rem calc(50% + 1ch);
 		text-align: left;
 		right: 0;

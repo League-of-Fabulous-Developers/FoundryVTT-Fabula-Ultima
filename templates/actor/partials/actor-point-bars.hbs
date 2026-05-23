@@ -76,7 +76,11 @@ system.resources.mp.max
 
 <a class="rest-button button-style minimal" data-tooltip="{{ localize 'FU.Reset' }}"
    aria-describedby="tooltip" data-action="rest" >
-	<i class="fa fa-arrow-rotate-left"></i>
+	{{#if (eq actor.type "character")}}
+		<i class="fa fa-moon"></i>
+	{{else}}
+		<i class="fa fa-arrow-rotate-left"></i>
+	{{/if}}
 </a>
 
 {{#if (eq actor.type "character")}}
@@ -95,7 +99,7 @@ system.resources.mp.max
 				<i class="resource-icon fu-icon--s {{pfuIconClass 'ip'}}"></i>
 			</label>
 		</div>
-		<div class="resource-value-wrapper">
+		<div class="resource-value-wrapper value-small">
 			<input class="resource-value-current bar-start" type="number"
 				   name="system.resources.ip.value"
 				   value="{{ system.resources.ip.value }}" data-dtype="Number" />

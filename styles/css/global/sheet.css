@@ -114,12 +114,6 @@
 		border: none;
 	}
 
-	.resource-content.level-field {
-		border: none;
-		background: none;
-		margin: 0 1px 0 1px;
-	}
-
 	.npc-level-container,
 	.pc-level-container {
 		label {
@@ -144,11 +138,15 @@
 		}
 	}
 
-	.pc-level-container {
-		.level-field:first-of-type input {
+	.pc-level-container .level-field {
+		border: none;
+		background: none;
+		margin: 0 1px 0 1px;
+
+		&:first-of-type input {
 			border-radius: 0 10px 0 0;
 		}
-		.level-field:last-of-type input {
+		&:last-of-type input {
 			border-radius: 10px 0 0 0;
 		}
 	}
