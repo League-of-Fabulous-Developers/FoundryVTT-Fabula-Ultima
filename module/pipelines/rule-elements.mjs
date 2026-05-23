@@ -55,13 +55,13 @@ import { RankRulePredicate } from '../documents/effects/predicates/rank-rule-pre
 import { ItemRollRuleTrigger } from '../documents/effects/triggers/item-roll-rule-trigger.mjs';
 import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calculate-expense-rule-trigger.mjs';
 import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-trigger.mjs';
-import { FUItem } from '../documents/items/item.mjs';
 import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-message-rule-trigger.mjs';
 import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigger.mjs';
 import { FlagRulePredicate } from '../documents/effects/predicates/flag-rule-predicate.mjs';
 
 import { ProgressTrackRuleTrigger } from '../documents/effects/triggers/progress-track-rule-trigger.mjs';
 import { ProgressTrackRulePredicate } from '../documents/effects/predicates/progress-track-predicate.mjs';
+import { FUItem } from '../documents/items/item.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
@@ -324,23 +324,6 @@ function getSceneCharacters(targets) {
 }
 
 /**
- * @param {FUActiveEffect} effect
- * @returns {Promise<game.projectfu.FUItem|null>}
- */
-async function getTemporaryItem(effect) {
-	const temporaryItem = await FUItem.create(
-		{
-			name: 'TemporaryItem',
-			type: 'rule',
-		},
-		{ temporary: true },
-	);
-	temporaryItem.name = effect.name;
-	temporaryItem.img = effect.img;
-	return temporaryItem;
-}
-
-/**
  * @param {ActiveEffect|FUActiveEffect} effect
  * @returns {boolean}
  */
@@ -399,7 +382,11 @@ async function evaluate(type, event, source, targets, data = undefined) {
 			}
 			// If not, we will use a dummy item
 			else {
-				contextData.item = await getTemporaryItem(effect);
+				contextData.item = new FUItem({
+					name: effect.name,
+					img: effect.img,
+					type: 'rule',
+				});
 			}
 			const context = new RuleElementContext(contextData);
 
