@@ -1999,7 +1999,7 @@
 		"DialogCreateItemSelectTypeContent": "Select the type of item you want to create:",
 		"DialogCreateItemSelectTypeTitle": "Select Item Type",
 		"GreaterThanOrEqual": "Greater Than Or Equal",
-		"LessThanOrEqual": "Less Than Or Equal"
+		"LessThanOrEqual": "Less Than Or Equal",
 		"CompendiumMigrateItemKeepImages": "Keep item images unchanged",
 		"CompendiumMigrateItemKeepNames": "Keep item names unchanged",
 		"MagicCheckDialogUseWeaponCheckTitle": "Use Weapon?",
