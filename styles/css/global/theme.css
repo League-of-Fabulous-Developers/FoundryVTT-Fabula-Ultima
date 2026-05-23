@@ -130,7 +130,8 @@
 		--range-thumb-border-color: var(--pfu-color-app-control-highlight-border);
 	}
 
-	& select option {
+	& select option,
+	& select optgroup {
 		background: var(--pfu-color-app-control-fill-1);
 		border-color: var(--pfu-color-app-control-border);
 		color: var(--pfu-color-app-control-content);

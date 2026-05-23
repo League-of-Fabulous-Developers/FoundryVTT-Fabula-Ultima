@@ -20,7 +20,7 @@
           {{#if showResources}}
             <div class="combat-hud-retro__combatant-resources combat-hud-retro__combatant-resources--npc">
               {{#each trackedResources as |resource|}}
-                {{> (resource) ../this }}
+                {{> (lookup resource "template") resource.context}}
               {{/each}}
             </div>
           {{/if}}
