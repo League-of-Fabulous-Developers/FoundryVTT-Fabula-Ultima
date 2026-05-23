@@ -22,7 +22,6 @@ export class RetroCombatHUD extends BaseCombatHUD {
 				systemTemplatePath('ui/combat-hud/retro/bar-mp'),
 				systemTemplatePath('ui/combat-hud/retro/bar-ip'),
 				systemTemplatePath('ui/combat-hud/retro/bar-exp'),
-				systemTemplatePath('ui/combat-hud/retro/simple-bar'),
 				systemTemplatePath('ui/combat-hud/retro/bar-fp'),
 				systemTemplatePath('ui/combat-hud/retro/bar-zeropower'),
 				systemTemplatePath('ui/combat-hud/retro/bar-zenit'),
@@ -36,7 +35,8 @@ export class RetroCombatHUD extends BaseCombatHUD {
 
 	_getResourcePartial(resource) {
 		if (resource === 'none') return null;
-		return systemTemplatePath(`ui/combat-hud/retro/bar-${resource}`);
+
+		return systemTemplatePath(`ui/combat-hud/retro/bar`);
 	}
 
 	async _prepareContext(options = {}) {
