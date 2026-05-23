@@ -373,10 +373,10 @@ function collectMultipliers(context) {
 	let applyAffinity = true;
 
 	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
-		const pressure = context.actor.resolveProgress('pressure');
-		const stagger = context.actor.resolveEffect('stagger');
+		const hasPressureClock = !!context.actor.resolveProgress('pressure');
+		const isStaggered = !!context.actor.resolveEffect('stagger')?.active;
 		// If they are not staggered, do not apply VU to the damage
-		if (pressure && !stagger && context.affinity === -1) applyAffinity = false;
+		if (hasPressureClock && !isStaggered && context.affinity === FU.affValue.vulnerability) applyAffinity = false;
 	}
 
 	if (applyAffinity) context.addModifier('affinity', affinityModifier);
