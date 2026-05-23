@@ -1249,6 +1249,7 @@
 		"CombatHudTrackedActorResources": "Tracked Resources: {name}",
 		"CombatHudTrackedActorResourceUseDefault": "Use Default ({value})",
 		"CombatHudTrackedActorResourcesNoCharacter": "Select a Character",
+		"CombatHudTrackedResourcesActorGroup": "Actor-specific Resources",
 		"ClassFeaturePsychicGiftLabel": "Psychic Gift",
 		"ClassFeaturePsychicGiftTrigger": "Trigger",
 		"ClassFeatureTherioformLabel": "Therioform",
