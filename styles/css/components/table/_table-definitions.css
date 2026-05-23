@@ -15,6 +15,10 @@
 	.item {
 		height: min-content;
 	}
+
+	.cell-item-name {
+		max-width: 30ch;
+	}
 }
 
 .classes-table {

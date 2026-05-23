@@ -3,18 +3,18 @@
 {{#if roll~}}
 	{{~#if useWeaponAccuracy}}
 		{{#if weapon}}
-			{{#if class}} ⬥&#xFEFF;{{/if~}}
-			{{#if weapon}} {{weapon}} ⬥&#xFEFF;{{~/if~}}
-			<span style="white-space: nowrap;">【{{localize (lookup FU.attributeAbbreviations roll.primary)}}&nbsp;+&nbsp;{{localize (lookup FU.attributeAbbreviations roll.secondary)}}】
-				{{~#if (gt roll.modifier 0)}}+{{roll.modifier}}{{/if~}}
-				{{~#if (lt roll.modifier 0)}}-{{pfuMathAbs roll.modifier}}{{/if~}}
+			{{#if class}} ⬥&nbsp;{{/if~}}
+			{{#if weapon}}<span style="white-space: nowrap;">{{weapon}}</span> ⬥&nbsp;{{~/if~}}
+			<span style="white-space: nowrap;">【{{localize (lookup FU.attributeAbbreviations roll.primary)}} + {{localize (lookup FU.attributeAbbreviations roll.secondary)}}】
+				{{~#if (gt roll.modifier 0)}} + {{roll.modifier}}{{/if~}}
+				{{~#if (lt roll.modifier 0)}} - {{pfuMathAbs roll.modifier}}{{/if~}}
 			</span>
 		{{~/if~}}
 	{{else}}
-		{{#if class}} ⬥&#xFEFF;{{/if~}}
-		<span style="white-space: nowrap;">【{{localize (lookup FU.attributeAbbreviations roll.primary)}}&nbsp;+&nbsp;{{localize (lookup FU.attributeAbbreviations roll.secondary)}}】
-			{{~#if (gt roll.modifier 0)}}+{{roll.modifier}}{{/if}}
-			{{~#if (lt roll.modifier 0)}}-{{pfuMathAbs roll.modifier}}{{/if}}
+		{{#if class}} ⬥&nbsp;{{/if~}}
+		<span style="white-space: nowrap;">【{{localize (lookup FU.attributeAbbreviations roll.primary)}} + {{localize (lookup FU.attributeAbbreviations roll.secondary)}}】
+			{{~#if (gt roll.modifier 0)}} + {{roll.modifier}}{{/if}}
+			{{~#if (lt roll.modifier 0)}} - {{pfuMathAbs roll.modifier}}{{/if}}
 		</span>
 	{{~/if~}}
 {{~/if}}
@@ -22,21 +22,22 @@
 {{#if damage}}
 	{{#if useWeaponDamage}}
 		{{#if weapon}}
-			{{#if (or roll class)}} ⬥&#xFEFF;{{/if~}}
-			【{{#if roll}}{{#if damage.hrZero}}{{localize 'FU.HRZero'}}{{else}}{{localize 'FU.HighRollAbbr'}}{{/if}}&nbsp;+&nbsp;{{/if}}{{damage.value}}】&#xFEFF;
-			{{~localize (lookup FU.damageTypes damage.type)}}
+			{{#if (or roll class)}} ⬥&nbsp;{{/if~}}
+			<span style="white-space: nowrap;">【{{#if roll}}{{#if damage.hrZero}}{{localize 'FU.HRZero'}}{{else}}{{localize 'FU.HighRollAbbr'}}{{/if}} + {{/if}}{{damage.value}}】
+				{{localize (lookup FU.damageTypes damage.type)}}
+			</span>
 		{{~/if}}
 	{{else}}
-		{{#if (or roll class)}} ⬥&#xFEFF;{{/if~}}
-		【{{#if roll}}{{#if damage.hrZero}}{{else}}{{localize 'FU.HighRollAbbr'}}&nbsp;+&nbsp;{{/if}}{{/if}}{{damage.value}}】&#xFEFF;
-		{{~localize (lookup FU.damageTypes damage.type)}}
+		{{#if (or roll class)}} ⬥&nbsp;{{/if~}}
+		<span style="white-space: nowrap;">【{{#if roll}}{{#if damage.hrZero}}{{else}}{{localize 'FU.HighRollAbbr'}} + {{/if}}{{/if}}{{damage.value}}】
+			{{localize (lookup FU.damageTypes damage.type)}}
+		</span>
 	{{~/if}}
 {{~/if}}
 
-{{#if weapon}}
-{{else}}
+{{#unless weapon}}
 	{{#if (or useWeaponAccuracy useWeaponDamage)}}
-		{{#if (or roll (or class damage))}} ⬥&#xFEFF;{{/if~}}
-		<span style="white-space: nowrap;">&nbsp;{{localize 'FU.AbilityNoWeaponEquipped'}}</span>
+		{{#if (or roll (or class damage))}} ⬥&nbsp;{{/if~}}
+		<span style="white-space: nowrap;">{{localize 'FU.AbilityNoWeaponEquipped'}}</span>
 	{{/if}}
-{{/if}}
+{{/unless}}
