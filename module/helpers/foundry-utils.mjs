@@ -205,6 +205,7 @@ export default class FoundryUtils {
 			name: 'option',
 			type: 'checkboxes',
 			value: selected,
+			sort: true,
 		});
 
 		const selectGroup = fields.createFormGroup({
