@@ -5,6 +5,7 @@ import { FUHooks } from '../../hooks.mjs';
 import { StudyRollHandler } from '../../pipelines/study-roll.mjs';
 import { SETTINGS } from '../../settings.js';
 import { FUCombat } from '../combat.mjs';
+import { NpcProfileWindow } from '../npc-profile.mjs';
 
 const DEFAULT_THEME_KEY = 'fu-default';
 
@@ -45,6 +46,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		actions: {
 			StartTurn: BaseCombatHUD.StartTurn,
 			EndTurn: BaseCombatHUD.EndTurn,
+			clickCombatant: BaseCombatHUD.ClickCombatant,
 		},
 	};
 
@@ -65,6 +67,18 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		console.log('EndTurn action');
 	}
 
+	/**
+	 *
+	 * @param {PointerEvent} e
+	 * @param {HTMLElement} elem
+	 * @this {BaseCombatHUD}
+	 */
+	static ClickCombatant(e, elem) {
+		const combatant = this.combat.combatants.get(elem.dataset.combatantId);
+		e.preventDefault();
+		this._onClickCombatant(combatant);
+	}
+
 	get minWidth() {
 		return 700;
 	}
@@ -75,6 +89,29 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 
 	_onEndTurn(combatant) {
 		if (combatant) return ui.combat.handleEndTurn(combatant);
+	}
+
+	_clickTimeout = undefined;
+	_onClickCombatant(combatant) {
+		if (this._clickTimeout) {
+			this._onDoubleClickCombatant(combatant);
+			clearTimeout(this._clickTimeout);
+			this._clickTimeout = undefined;
+			return;
+		}
+
+		this._clickTimeout = setTimeout(() => {
+			if (!combatant.actor.testUserPermission(game.user, 'OBSERVER')) return;
+			console.log('Click');
+			const isShiftActive = game.keyboard.isModifierActive(foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.SHIFT);
+			combatant.token.object.control({ releaseOthers: !isShiftActive });
+		}, 250);
+	}
+
+	_onDoubleClickCombatant(combatant) {
+		console.log('Double click');
+		if (!combatant.actor.testUserPermission(game.user, 'OBSERVER') && !game.user.isGM) return;
+		combatant.actor.sheet.render(true);
 	}
 
 	/** @type {boolean} */
@@ -227,15 +264,6 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 
 		menuItems.push(
 			{
-				name: 'FU.CombatHudTurnIconsOutOfTurns',
-				icon: `<i class="mats-o">${context.icons.outOfTurns}</i>`,
-				classes: 'projectfu-combat-hud--disabled disabled',
-				condition: () => game.combat.started && context.turnsLeft[combatant.id] <= 0,
-				callback: () => {
-					/* This space intentionally left blank */
-				},
-			},
-			{
 				name: 'FU.COMBATHUD.CONTEXT.StartTurn',
 				icon: `<i class="mats-o mats-fill">counter_${Math.max(context.turnsLeft[combatant.id], 0)}</i>`,
 				condition: () => game.combat.started && this.combat.current?.combatantId !== combatant.id && context.turnsLeft[combatant.id] > 0,
@@ -252,6 +280,61 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 				icon: `<i class="mats-o mats-fill">${context.icons.active}</i>`,
 				condition: () => game.combat.started && this.combat.current?.combatantId === combatant.id,
 				callback: () => this._onEndTurn(combatant),
+			},
+			{
+				name: 'FU.CombatHudTurnIconsOutOfTurns',
+				icon: `<i class="mats-o">${context.icons.outOfTurns}</i>`,
+				classes: 'projectfu-combat-hud--disabled disabled',
+				condition: () => game.combat.started && context.turnsLeft[combatant.id] <= 0,
+				callback: () => {
+					/* This space intentionally left blank */
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.ViewActorSheet',
+				icon: `<i class="mats-o mats-fill">person</i>`,
+				condition: () => combatant.isOwner,
+				callback: () => {
+					combatant.actor.sheet.render({ force: true });
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.SelectActor',
+				icon: `<i class="mats-o mats-fill">select</i>`,
+				condition: () => combatant.isOwner,
+				callback: () => {
+					combatant.token.object.control();
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.ViewAdversary',
+				icon: `<i class="mats-o mats-fill">swords</i>`,
+				condition: () => combatant.isNPC && !!game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty))?.system.getAdversary(combatant.actor.uuid),
+				callback: () => {
+					const party = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
+					if (!party) return;
+					party.sheet.revealNpc(combatant.actor.uuid);
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.EditAdversary',
+				icon: `<i class="mats-o mats-fill">edit</i>`,
+				condition: () => combatant.isNPC && combatant.isOwner && !!game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty))?.system.getAdversary(combatant.actor.uuid),
+				callback: () => {
+					const party = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
+					if (!party) return;
+					return NpcProfileWindow.updateNpcProfile(party.system, combatant.actor.uuid, true);
+				},
+			},
+			{
+				name: 'FU.COMBATHUD.CONTEXT.AddAdversary',
+				icon: `<i class="mats-o mats-fill">add</i>`,
+				condition: () => combatant.isNPC && !game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty))?.system.getAdversary(combatant.actor.uuid),
+				callback: () => {
+					const party = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
+					if (!party) return;
+					party.system.addOrUpdateAdversary(combatant.actor, 0);
+				},
 			},
 			{
 				name: 'FU.COMBATHUD.CONTEXT.UnhideToken',
@@ -418,6 +501,13 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			case 'tracks.brainwave-clock':
 			case 'clocks.brainwave-clock':
 				return 'background-image:linear-gradient(90deg, #3b1e3f, rgba(255, 255, 255, 0.5));background-color:#1d0920';
+			// Grave points are handled a bit weird
+			// These variations are an attempt at future-proofing
+			case 'tracks.Beyond The Realms Of Death':
+			case 'tracks.Grave Points':
+			case 'tracks.beyond-the-realms-of-death':
+			case 'tracks.grave-points':
+				return 'background-image:linear-gradient(90deg, #6b6d7d, rgba(255, 255, 255, 0.5));background-color:#022124';
 		}
 	}
 
@@ -560,7 +650,10 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 					const resValue = this._getCombatantResource(combatant, resource);
 					const key = resValue?.max ? 'FU.CombatHudResourceBarTooltip' : 'FU.CombatHudResourceScalarTooltip';
 
-					lines.push(`<p>${game.i18n.format(key, { ...resValue, resource: game.i18n.localize(this._getResourceAbbreviation(combatant, resource)) })}</p>`);
+					const abbr = this._getResourceAbbreviation(combatant, resource);
+					const label = abbr === resource ? this._getResourceLabel(combatant, resource) : abbr;
+
+					lines.push(`<p>${game.i18n.format(key, { ...resValue, resource: game.i18n.localize(label) })}</p>`);
 				}
 			}
 			if (resources.length) lines.push('<hr>');
@@ -571,6 +664,8 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		} else {
 			lines.push(`<p>${game.i18n.localize('FU.CombatHudViewAdversaryTooltip')}</p>`);
 		}
+
+		if (combatant.actor.testUserPermission(game.user, 'OWNER')) lines.push(`<p>${game.i18n.localize('FU.CombatHudViewActorSheetTooltip')}</p>`);
 
 		lines.push(`<p>${game.i18n.localize('FU.CombatHudContextMenuTooltip')}</p>`);
 		return lines.join('\n');
