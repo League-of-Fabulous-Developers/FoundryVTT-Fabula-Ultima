@@ -1,14 +1,14 @@
 {{!-- Adversaries  --}}
 <section class="tab {{tab.cssClass}}" data-tab="adversaries" data-group="primary">
-	<div class="adversaries content" style="height:100%">
+	<div class="adversaries content">
 		{{#unless (gt adversaries.length 0)}}
 			<div class="label centered-message">
 				{{localize 'FU.AdversariesEmpty'}}
 			</div>
 		{{/unless}}
 
-		<div class="flexrow" style="align-items:start;max-height:100%">
-			<div class="flex3" style="max-height:100%;overflow-y:auto;overflow-x:hidden">
+		<div class="wrapper">
+			<div class="flex3 entry-list">
 				{{#each (pfuSort adversaries 'name')}}
 					<div class="section-container entry character-option {{#if this.active}}active{{/if}}"
 						data-uuid="{{this.uuid}}" data-type="npc">
@@ -47,7 +47,7 @@
 			</div>
 
 			{{!-- Filters --}}
-			<aside class="fu-application__sidebar flex1 flexcol" style="justify-content:start">
+			<aside class="fu-application__sidebar flex1 flexcol filter-list">
 				<label class="search">
 					<input type="text" name="adversarySearch" id="adversarySearch" value="{{adversarySearch}}" placeholder="Search...">
 				</label>
@@ -58,7 +58,7 @@
 					{{#each adversaryMiscFilters as |filter|}}
 						<div>
 							<label class="fu-filter-option">
-								<input type="checkbox" data-category="misc" data-option="{{filter.value}}">
+								<input type="checkbox" data-category="misc" data-option="{{filter.value}}" {{checked filter.checked}}>
 								{{localize filter.label}}
 							</label>
 						</div>
@@ -71,7 +71,7 @@
 					{{#each adversaryRanks as |rank|}}
 						<div>
 							<label class="fu-filter-option">
-								<input type="checkbox" data-category="rank" data-option="{{rank.value}}">
+								<input type="checkbox" data-category="rank" data-option="{{rank.value}}" {{checked rank.checked}}>
 								{{localize rank.label}}
 							</label>
 						</div>
@@ -83,7 +83,7 @@
 					{{#each adversarySpecies as |species|}}
 						<div>
 							<label class="fu-filter-option">
-								<input type="checkbox" data-category="species" data-option="{{species.value}}">
+								<input type="checkbox" data-category="species" data-option="{{species.value}}" {{checked species.checked}}>
 								{{localize species.label}}
 							</label>
 						</div>

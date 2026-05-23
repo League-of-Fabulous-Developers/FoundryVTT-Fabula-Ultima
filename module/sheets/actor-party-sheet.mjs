@@ -219,10 +219,10 @@ export class FUPartySheet extends FUActorSheet {
 		};
 
 		// Ranks are purposefully not sorted, so they appear in natural order
-		context.adversaryRanks = Object.entries(FU.rank).map(([key, value]) => ({ value: key, label: value }));
+		context.adversaryRanks = Object.entries(FU.rank).map(([key, value]) => ({ value: key, label: value, checked: !!this.#adversaryFilters.rank?.includes(key) }));
 		context.adversarySpecies = Object.entries(FU.species)
-			.sort((a, b) => a[1].localeCompare(b[1]))
-			.map(([key, value]) => ({ value: key, label: value }));
+			.map(([key, value]) => ({ value: key, label: game.i18n.localize(value), checked: !!this.#adversaryFilters.species?.includes(key) }))
+			.sort((a, b) => a.label.localeCompare(b.label));
 
 		context.adversarySearch = this.#lastAdversarySearch;
 
@@ -401,7 +401,7 @@ export class FUPartySheet extends FUActorSheet {
 				}
 			}
 
-			element.style.display = display ? 'flex' : 'none';
+			element.classList.toggle('hidden', !display);
 		}
 	}
 
@@ -422,8 +422,7 @@ export class FUPartySheet extends FUActorSheet {
 						searchInput.addEventListener(
 							'input',
 							HTMLUtils.debounce(() => {
-								const text = searchInput.value.toLowerCase() || '';
-								this.#lastAdversarySearch = text;
+								this.#lastAdversarySearch = searchInput.value;
 								this._applyAdversaryFilters();
 							}, 150),
 						);
@@ -552,6 +551,8 @@ export class FUPartySheet extends FUActorSheet {
 
 		// Update the code browser
 		this.codexBrowser.refresh(this.actor, this.element);
+
+		await this._applyAdversaryFilters();
 	}
 
 	/** @inheritdoc */
