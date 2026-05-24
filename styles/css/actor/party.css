@@ -189,6 +189,23 @@
 			box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
 		}
 
+		.wrapper {
+			align-items: start;
+			max-height: 100%;
+			display: flex;
+			flex-direction: row;
+		}
+
+		.entry-list {
+			max-height: 100%;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+
+		.filter-list {
+			justify-content: start;
+		}
+
 		.entry {
 			display: flex;
 			flex-direction: row;
@@ -291,6 +308,10 @@
 			border: none;
 			display: block;
 		}
+	}
+
+	.adversaries.content {
+		height: 100%;
 	}
 
 	.codex {

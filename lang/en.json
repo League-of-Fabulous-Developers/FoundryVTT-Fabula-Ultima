@@ -2003,6 +2003,8 @@
 		"CompendiumMigrateItemKeepImages": "Keep item images unchanged",
 		"CompendiumMigrateItemKeepNames": "Keep item names unchanged",
 		"MagicCheckDialogUseWeaponCheckTitle": "Use Weapon?",
-		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?"
+		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?",
+		"AdversaryInActiveCombat": "In Active Combat",
+		"AdversaryFilterMisc": "Miscellaneous"
 	}
 }

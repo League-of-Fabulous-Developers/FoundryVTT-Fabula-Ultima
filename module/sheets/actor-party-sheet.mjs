@@ -28,6 +28,7 @@ import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
 import { CodexBrowser } from '../ui/codex-browser.mjs';
 import { VehicleModuleTableRenderer } from '../helpers/tables/vehicle-module-table-renderer.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -151,6 +152,9 @@ export class FUPartySheet extends FUActorSheet {
 	#codexDrop;
 	/** @type SheetExtensions **/
 	#extensions;
+	#lastAdversarySearch = '';
+
+	#adversaryFilters = {};
 
 	constructor(...args) {
 		super(...args);
@@ -213,6 +217,19 @@ export class FUPartySheet extends FUActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
+
+		// Ranks are purposefully not sorted, so they appear in natural order
+		context.adversaryRanks = Object.entries(FU.rank).map(([key, value]) => ({ value: key, label: value, checked: !!this.#adversaryFilters.rank?.includes(key) }));
+		context.adversarySpecies = Object.entries(FU.species)
+			.map(([key, value]) => ({ value: key, label: game.i18n.localize(value), checked: !!this.#adversaryFilters.species?.includes(key) }))
+			.sort((a, b) => a.label.localeCompare(b.label));
+
+		context.adversarySearch = this.#lastAdversarySearch;
+
+		context.adversaryMiscFilters = [];
+
+		if (game.combat) context.adversaryMiscFilters.unshift({ value: 'inCombat', label: 'FU.AdversaryInActiveCombat', checked: !!this.#adversaryFilters.misc?.includes('inCombat') });
+
 		context.currency = getCurrencyString();
 		if (this.extensions) {
 			await this.extensions.prepareContext(context);
@@ -344,6 +361,50 @@ export class FUPartySheet extends FUActorSheet {
 		this.setupCharacterContextMenu(html);
 	}
 
+	async _applyAdversaryFilters() {
+		const elements = Array.from(this.element.querySelectorAll('.adversaries .section-container.entry.character-option'));
+		for (const element of elements) {
+			let display = true;
+
+			const uuid = element.dataset.uuid;
+			if (!uuid) continue;
+
+			const adversary = this.party.getAdversary(uuid);
+			if (!adversary) continue;
+
+			if (this.#lastAdversarySearch && !adversary.name.toLowerCase().includes(this.#lastAdversarySearch.toLowerCase())) display = false;
+
+			if (this.#adversaryFilters.rank) {
+				for (const rank of this.#adversaryFilters.rank) {
+					if (adversary.rank !== rank) {
+						display = false;
+						continue;
+					}
+				}
+			}
+
+			if (this.#adversaryFilters.species) {
+				for (const species of this.#adversaryFilters.species) {
+					if (adversary.species !== species) {
+						display = false;
+						continue;
+					}
+				}
+			}
+
+			if (this.#adversaryFilters.misc) {
+				for (const misc of this.#adversaryFilters.misc) {
+					switch (misc) {
+						case 'inCombat':
+							if (!game.combat.hasInstancedActor(adversary.uuid)) display = false;
+					}
+				}
+			}
+
+			element.classList.toggle('hidden', !display);
+		}
+	}
+
 	/**
 	 * Attach event listeners to rendered template parts.
 	 * @param {string} partId The id of the part being rendered
@@ -354,6 +415,36 @@ export class FUPartySheet extends FUActorSheet {
 	_attachPartListeners(partId, html, options) {
 		super._attachPartListeners(partId, html, options);
 		switch (partId) {
+			case 'adversaries':
+				{
+					const searchInput = this.element.querySelector('#adversarySearch');
+					if (searchInput instanceof HTMLInputElement) {
+						searchInput.addEventListener(
+							'input',
+							HTMLUtils.debounce(() => {
+								this.#lastAdversarySearch = searchInput.value;
+								this._applyAdversaryFilters();
+							}, 150),
+						);
+					}
+
+					const filterChecks = Array.from(this.element.querySelectorAll(`.fu-filter-option input[type="checkbox"]`));
+					for (const check of filterChecks) {
+						check.addEventListener('change', () => {
+							const category = check.dataset.category;
+							const option = check.dataset.option;
+							this.#adversaryFilters[category] ??= [];
+							if (check.checked) {
+								this.#adversaryFilters[category].push(option);
+							} else if (Array.isArray(this.#adversaryFilters[category])) {
+								const index = this.#adversaryFilters[category].indexOf(option);
+								if (index !== -1) this.#adversaryFilters[category].splice(index, 1);
+							}
+							this._applyAdversaryFilters();
+						});
+					}
+				}
+				break;
 			case 'codex':
 				{
 					this.codexBrowser.attachListeners(html);
@@ -460,6 +551,8 @@ export class FUPartySheet extends FUActorSheet {
 
 		// Update the code browser
 		this.codexBrowser.refresh(this.actor, this.element);
+
+		await this._applyAdversaryFilters();
 	}
 
 	/** @inheritdoc */

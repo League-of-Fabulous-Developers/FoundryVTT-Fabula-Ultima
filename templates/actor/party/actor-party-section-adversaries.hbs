@@ -1,46 +1,96 @@
 {{!-- Adversaries  --}}
 <section class="tab {{tab.cssClass}}" data-tab="adversaries" data-group="primary">
-	<section class="adversaries content">
+	<div class="adversaries content">
 		{{#unless (gt adversaries.length 0)}}
 			<div class="label centered-message">
 				{{localize 'FU.AdversariesEmpty'}}
 			</div>
 		{{/unless}}
 
-		{{#each (pfuSort adversaries 'name')}}
-			<div class="section-container entry character-option {{#if this.active}}active{{/if}}"
-				 data-uuid="{{this.uuid}}" data-type="npc">
-				<div class="portrait">
-					<a data-action="revealNpc" data-actor="{{this.uuid}}">
-						<img src="{{ this.img }}" data-tooltip="{{ this.name }}" />
-					</a>
-				</div>
-				<div class="data">
-					<header>
-						<div class="name" data-tooltip="{{this.uuid}}">
-							{{name}}
+		<div class="wrapper">
+			<div class="flex3 entry-list">
+				{{#each (pfuSort adversaries 'name')}}
+					<div class="section-container entry character-option {{#if this.active}}active{{/if}}"
+						data-uuid="{{this.uuid}}" data-type="npc">
+						<div class="portrait">
+							<a data-action="revealNpc" data-actor="{{this.uuid}}">
+								<img src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+							</a>
 						</div>
-						<div class="blurb pfu-tags">
-							<div class="fu-tag {{_rank}}">
-								{{#if (eq this.studyResult 'none')}}
-									{{localize 'FU.Unknown'}} {{localize this.rank}}
-								{{else}}
-									{{localize this.species }} {{localize this.rank}}
-								{{/if}}
-							</div>
+						<div class="data">
+							<header>
+								<div class="name" data-tooltip="{{this.uuid}}">
+									{{name}}
+								</div>
+								<div class="blurb pfu-tags">
+									<div class="fu-tag {{_rank}}">
+										{{#if (eq this.studyResult 'none')}}
+											{{localize 'FU.Unknown'}} {{localize this.rank}}
+										{{else}}
+											{{localize this.species }} {{localize this.rank}}
+										{{/if}}
+									</div>
+								</div>
+								<div class="study">
+									{{#if this.isRevealed }}
+										<i data-tooltip="FU.StudyRevealed" class="ra ra-light-bulb"></i>
+									{{/if}}
+									{{#if (gt this.study 0)}}
+										<span data-tooltip="{{this.study}}">{{this.studyPercent}}%</span>
+									{{/if}}
+								</div>
+								</a>
+							</header>
 						</div>
-						<div class="study">
-							{{#if this.isRevealed }}
-								<i data-tooltip="FU.StudyRevealed" class="ra ra-light-bulb"></i>
-							{{/if}}
-							{{#if (gt this.study 0)}}
-								<span data-tooltip="{{this.study}}">{{this.studyPercent}}%</span>
-							{{/if}}
-						</div>
-						</a>
-					</header>
-				</div>
+					</div>
+				{{/each}}
 			</div>
-		{{/each}}
-	</section>
+
+			{{!-- Filters --}}
+			<aside class="fu-application__sidebar flex1 flexcol filter-list">
+				<label class="search">
+					<input type="text" name="adversarySearch" id="adversarySearch" value="{{adversarySearch}}" placeholder="Search...">
+				</label>
+
+				{{#if (gt adversaryMiscFilters.length 0 )}}
+				<fieldset class="title-fieldset desc resource-content">
+					<legend class="resource-label-full">{{localize "FU.AdversaryFilterMisc"}}</legend>
+					{{#each adversaryMiscFilters as |filter|}}
+						<div>
+							<label class="fu-filter-option">
+								<input type="checkbox" data-category="misc" data-option="{{filter.value}}" {{checked filter.checked}}>
+								{{localize filter.label}}
+							</label>
+						</div>
+					{{/each}}
+				</fieldset>
+				{{/if}}
+
+				<fieldset class="title-fieldset desc resource-content">
+					<legend class="resource-label-full">{{localize 'FU.Rank'}}</legend>
+					{{#each adversaryRanks as |rank|}}
+						<div>
+							<label class="fu-filter-option">
+								<input type="checkbox" data-category="rank" data-option="{{rank.value}}" {{checked rank.checked}}>
+								{{localize rank.label}}
+							</label>
+						</div>
+					{{/each}}
+				</fieldset>
+
+				<fieldset class="title-fieldset desc resource-content">
+					<legend class="resource-label-full">{{localize 'FU.Species'}}</legend>
+					{{#each adversarySpecies as |species|}}
+						<div>
+							<label class="fu-filter-option">
+								<input type="checkbox" data-category="species" data-option="{{species.value}}" {{checked species.checked}}>
+								{{localize species.label}}
+							</label>
+						</div>
+					{{/each}}
+				</fieldset>
+				
+			</aside>
+		</div>
+	</div>
 </section>
