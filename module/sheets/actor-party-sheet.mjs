@@ -228,7 +228,7 @@ export class FUPartySheet extends FUActorSheet {
 
 		context.adversaryMiscFilters = [];
 
-		if (game.combat) context.adversaryMiscFilters.unshift({ value: 'inCombat', label: 'FU.AdversaryInActiveCombat' });
+		if (game.combat) context.adversaryMiscFilters.unshift({ value: 'inCombat', label: 'FU.AdversaryInActiveCombat', checked: !!this.#adversaryFilters.misc?.includes('inCombat') });
 
 		context.currency = getCurrencyString();
 		if (this.extensions) {
