@@ -193,10 +193,10 @@
 	--pfu-app-accent-position-left: -47px;
 
 	/* Assets */
-	--pfu-app-accent-image: url('/systems/projectfu/styles/static/ui/logo.png');
-	--pfu-app-section-bg-image: url('/systems/projectfu/styles/static/ui/Bkg_pattern_highres.png');
-	--pfu-app-bg-image: url('/systems/projectfu/styles/static/ui/Hojitas_highres.png');
+	--pfu-app-accent-image: url('static/ui/logo.png');
+	--pfu-app-section-bg-image: url('static/ui/Bkg_pattern_highres.png');
+	--pfu-app-bg-image: url('static/ui/Hojitas_highres.png');
 	--pfu-app-bg-blend-mode: overlay;
 	--pfu-app-bg-size: 100% auto;
-	--pfu-sidebar-bg-image: url('/systems/projectfu/styles/static/ui/HojitasDouble_highres.png');
+	--pfu-sidebar-bg-image: url('static/ui/HojitasDouble_highres.png');
 }
