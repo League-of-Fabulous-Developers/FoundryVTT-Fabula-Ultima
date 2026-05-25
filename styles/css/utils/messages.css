@@ -11,6 +11,7 @@
 	font-size: 1rem;
 	font-weight: bold;
 }
+
 .chat-message .chat-header {
 	padding: 0.125rem 0;
 	-webkit-box-align: center;
@@ -19,6 +20,7 @@
 	margin-bottom: 0.125rem;
 	gap: 5px;
 }
+
 .chat-message .chat-header img {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 2.25rem;
@@ -31,6 +33,7 @@
 	position: relative;
 	cursor: pointer;
 }
+
 .chat-message .chat-header h2,
 .chat-message .chat-header h3 {
 	border-bottom: none !important;
@@ -42,6 +45,7 @@
 	font-weight: bold;
 	font-variant: small-caps;
 }
+
 .chat-message .chat-header h2 {
 	margin: 0 0.5rem;
 	font-size: 1.25rem;
@@ -120,10 +124,12 @@
 	border-radius: 10px;
 	border-top: 1px solid #c9c7b8;
 }
+
 .chat-message .chat-desc strong,
 .chat-message.whisper .chat-desc strong {
 	color: #272a2a;
 }
+
 .chat-message .chat-desc .resource-label,
 .chat-message.whisper .chat-desc .resource-label {
 	color: #2b4a42;
@@ -131,6 +137,7 @@
 	font-size: 16px;
 	border: transparent;
 }
+
 .chat-message .chat-desc .summary,
 .chat-message.whisper .chat-desc .summary {
 	margin: 0 0 0.188rem 0.625rem;
@@ -141,6 +148,7 @@
 	line-height: 1.45em;
 	color: #3d665a;
 }
+
 .chat-message .chat-desc p,
 .chat-message.whisper .chat-desc p {
 	font-family: 'PFU Sans Narrow', sans-serif;
@@ -229,6 +237,7 @@
 	font-size: 1.1rem;
 	font-variant: small-caps;
 }
+
 .detail-desc label.total {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -244,6 +253,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -257,6 +267,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.total .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -266,6 +277,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -285,6 +297,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.success {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -300,6 +313,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.success .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -313,6 +327,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.success .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -322,6 +337,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.success .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -341,6 +357,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.failure {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -356,6 +373,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.failure .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -369,6 +387,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.failure .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -378,6 +397,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.failure .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -397,6 +417,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.critical {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -412,6 +433,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.critical .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -425,6 +447,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.critical .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -434,6 +457,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.critical .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -453,6 +477,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.critical::before,
 .detail-desc label.total.critical::after {
 	font-family: 'Material Symbols Outlined';
@@ -466,12 +491,15 @@
 	-ms-flex-item-align: center;
 	align-self: center;
 }
+
 .detail-desc label.total.critical::before {
 	content: 'arrow_back_ios_new';
 }
+
 .detail-desc label.total.critical::after {
 	content: 'arrow_forward_ios';
 }
+
 .detail-desc label.total.critical .startcap,
 .detail-desc label.total.critical .endcap {
 	padding: 0;
@@ -479,6 +507,7 @@
 	-ms-flex: 1 2 0px;
 	flex: 1 2 0px;
 }
+
 .detail-desc label.total.fumble {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -494,6 +523,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.fumble .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -507,6 +537,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.fumble .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -516,6 +547,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.total.fumble .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -535,6 +567,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.total.fumble::before,
 .detail-desc label.total.fumble::after {
 	font-family: 'Material Symbols Outlined';
@@ -548,12 +581,15 @@
 	-ms-flex-item-align: center;
 	align-self: center;
 }
+
 .detail-desc label.total.fumble::before {
 	content: 'arrow_forward_ios';
 }
+
 .detail-desc label.total.fumble::after {
 	content: 'arrow_back_ios_new';
 }
+
 .detail-desc label.total.fumble .startcap,
 .detail-desc label.total.fumble .endcap {
 	padding: 0;
@@ -577,6 +613,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -590,6 +627,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -599,6 +637,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -618,6 +657,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.physical {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -633,6 +673,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.physical .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -646,6 +687,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.physical .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -655,6 +697,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.physical .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -674,6 +717,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.air {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -689,6 +733,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.air .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -702,6 +747,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.air .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -711,6 +757,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.air .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -730,6 +777,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.bolt {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -745,6 +793,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.bolt .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -758,6 +807,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.bolt .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -767,6 +817,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.bolt .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -786,6 +837,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.dark {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -801,6 +853,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.dark .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -814,6 +867,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.dark .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -823,6 +877,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.dark .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -842,6 +897,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.earth {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -857,6 +913,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.earth .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -870,6 +927,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.earth .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -879,6 +937,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.earth .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -898,6 +957,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.fire {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -913,6 +973,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.fire .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -926,6 +987,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.fire .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -935,6 +997,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.fire .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -954,6 +1017,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.ice {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -969,6 +1033,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.ice .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -982,6 +1047,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.ice .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -991,6 +1057,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.ice .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1010,6 +1077,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.light {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -1025,6 +1093,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.light .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -1038,6 +1107,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.light .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1047,6 +1117,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.light .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1066,6 +1137,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.poison {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -1081,6 +1153,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.poison .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -1094,6 +1167,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.poison .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1103,6 +1177,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.poison .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1122,6 +1197,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.untyped {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -1137,6 +1213,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.untyped .startcap {
 	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
 	display: -webkit-box;
@@ -1150,6 +1227,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .detail-desc label.damageType.untyped .startcap.detail {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1159,6 +1237,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .detail-desc label.damageType.untyped .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1178,6 +1257,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .detail-desc > div {
 	margin: 0;
 	height: 100% !important;
@@ -1198,6 +1278,7 @@
 	position: relative;
 	font-size: 0.875rem;
 }
+
 .detail-desc > div::before {
 	content: '';
 	position: absolute;
@@ -1207,10 +1288,12 @@
 	width: 1px;
 	background-color: #412a3a;
 }
+
 .detail-desc > div:nth-child(3)::before,
 .detail-desc > div:last-child::before {
 	display: none;
 }
+
 .detail-desc .icon-letter {
 	position: sticky;
 	background-color: #2b4a42;
@@ -1224,6 +1307,7 @@
 	flex: 0 0 16px;
 	text-align: center;
 }
+
 .detail-desc .crisis {
 	color: red;
 }
@@ -1255,6 +1339,7 @@
 	display: flex;
 	gap: 5px;
 }
+
 .combineAccDmg .accuracy-check {
 	-webkit-box-flex: 1;
 	-ms-flex-positive: 1;
@@ -1265,6 +1350,7 @@
 .group-check-supporters .group-check-supporters-supporter > *:not(:last-child) {
 	border-right: 1px solid black;
 }
+
 .group-check-supporters .group-check-supporters-title {
 	font-weight: bolder;
 }
@@ -1278,6 +1364,7 @@
 	-ms-flex-direction: column;
 	flex-direction: column;
 }
+
 .message-content .targets .target.total {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -1293,6 +1380,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .message-content .targets .target.total .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -1306,6 +1394,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .message-content .targets .target.total .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1325,6 +1414,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .message-content .targets .target.total.hit {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -1340,6 +1430,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .message-content .targets .target.total.hit .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -1353,6 +1444,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .message-content .targets .target.total.hit .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1372,6 +1464,7 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .message-content .targets .target.total.miss {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;
@@ -1387,6 +1480,7 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
 .message-content .targets .target.total.miss .startcap {
 	text-shadow: none;
 	display: -webkit-box;
@@ -1400,6 +1494,7 @@
 	justify-content: start;
 	padding: 0 5px;
 }
+
 .message-content .targets .target.total.miss .endcap {
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -1419,9 +1514,11 @@
 	justify-content: end;
 	padding: 0 5px;
 }
+
 .message-content .targets .target:not(:last-child) {
 	margin-bottom: 0.125em;
 }
+
 .message-content .targets .target .hit,
 .message-content .targets .target .miss {
 	white-space: nowrap;
@@ -1432,6 +1529,7 @@
 	font-variant: small-caps;
 	text-align: right;
 }
+
 .message-content .targets .target.flexrow {
 	gap: 0.25em;
 }
@@ -1439,346 +1537,228 @@
 .exp-award {
 	font-family: 'PFU Sans Narrow', sans-serif;
 }
+
 .exp-award .exp-calculation {
 	grid-template-columns: 3fr 1fr;
 }
+
 .exp-award .exp-calculation > :not(legend) {
 	font-size: var(--font-size-15);
 }
+
 .exp-award .exp-calculation > .d-contents:nth-child(even):not(.exp-total) > * {
 	background-color: color-mix(in srgb, #3d665a 20%, transparent);
 }
+
 .exp-award .exp-calculation .exp-total > * {
 	border-top: 1px solid #3d665a;
 }
+
 .exp-award .active-characters .character:not(:last-child) {
 	margin-bottom: 0.5em;
 }
 
-.editor .editor-edit,
-.editor .editor-content,
-.editor .journal-entry-page,
-.editor .message-content,
-.journal-entry-content .editor-edit,
-.journal-entry-content .editor-content,
-.journal-entry-content .journal-entry-page,
-.journal-entry-content .message-content,
-.editor-container .editor-edit,
-.editor-container .editor-content,
-.editor-container .journal-entry-page,
-.editor-container .message-content,
-.chat-message .editor-edit,
-.chat-message .editor-content,
-.chat-message .journal-entry-page,
-.chat-message .message-content {
-	font-weight: normal;
-}
-.editor .editor-edit h1,
-.editor .editor-edit h2,
-.editor .editor-edit h3,
-.editor .editor-content h1,
-.editor .editor-content h2,
-.editor .editor-content h3,
-.editor .journal-entry-page h1,
-.editor .journal-entry-page h2,
-.editor .journal-entry-page h3,
-.editor .message-content h1,
-.editor .message-content h2,
-.editor .message-content h3,
-.journal-entry-content .editor-edit h1,
-.journal-entry-content .editor-edit h2,
-.journal-entry-content .editor-edit h3,
-.journal-entry-content .editor-content h1,
-.journal-entry-content .editor-content h2,
-.journal-entry-content .editor-content h3,
-.journal-entry-content .journal-entry-page h1,
-.journal-entry-content .journal-entry-page h2,
-.journal-entry-content .journal-entry-page h3,
-.journal-entry-content .message-content h1,
-.journal-entry-content .message-content h2,
-.journal-entry-content .message-content h3,
-.editor-container .editor-edit h1,
-.editor-container .editor-edit h2,
-.editor-container .editor-edit h3,
-.editor-container .editor-content h1,
-.editor-container .editor-content h2,
-.editor-container .editor-content h3,
-.editor-container .journal-entry-page h1,
-.editor-container .journal-entry-page h2,
-.editor-container .journal-entry-page h3,
-.editor-container .message-content h1,
-.editor-container .message-content h2,
-.editor-container .message-content h3,
-.chat-message .editor-edit h1,
-.chat-message .editor-edit h2,
-.chat-message .editor-edit h3,
-.chat-message .editor-content h1,
-.chat-message .editor-content h2,
-.chat-message .editor-content h3,
-.chat-message .journal-entry-page h1,
-.chat-message .journal-entry-page h2,
-.chat-message .journal-entry-page h3,
-.chat-message .message-content h1,
-.chat-message .message-content h2,
-.chat-message .message-content h3 {
-	border-bottom: 2px solid #2b4a42;
-}
-.editor .editor-edit h1,
-.editor .editor-content h1,
-.editor .journal-entry-page h1,
-.editor .message-content h1,
-.journal-entry-content .editor-edit h1,
-.journal-entry-content .editor-content h1,
-.journal-entry-content .journal-entry-page h1,
-.journal-entry-content .message-content h1,
-.editor-container .editor-edit h1,
-.editor-container .editor-content h1,
-.editor-container .journal-entry-page h1,
-.editor-container .message-content h1,
-.chat-message .editor-edit h1,
-.chat-message .editor-content h1,
-.chat-message .journal-entry-page h1,
-.chat-message .message-content h1 {
-	line-height: 1.2em;
-}
-.editor .editor-edit h2,
-.editor .editor-edit h3,
-.editor .editor-edit h4,
-.editor .editor-content h2,
-.editor .editor-content h3,
-.editor .editor-content h4,
-.editor .journal-entry-page h2,
-.editor .journal-entry-page h3,
-.editor .journal-entry-page h4,
-.editor .message-content h2,
-.editor .message-content h3,
-.editor .message-content h4,
-.journal-entry-content .editor-edit h2,
-.journal-entry-content .editor-edit h3,
-.journal-entry-content .editor-edit h4,
-.journal-entry-content .editor-content h2,
-.journal-entry-content .editor-content h3,
-.journal-entry-content .editor-content h4,
-.journal-entry-content .journal-entry-page h2,
-.journal-entry-content .journal-entry-page h3,
-.journal-entry-content .journal-entry-page h4,
-.journal-entry-content .message-content h2,
-.journal-entry-content .message-content h3,
-.journal-entry-content .message-content h4,
-.editor-container .editor-edit h2,
-.editor-container .editor-edit h3,
-.editor-container .editor-edit h4,
-.editor-container .editor-content h2,
-.editor-container .editor-content h3,
-.editor-container .editor-content h4,
-.editor-container .journal-entry-page h2,
-.editor-container .journal-entry-page h3,
-.editor-container .journal-entry-page h4,
-.editor-container .message-content h2,
-.editor-container .message-content h3,
-.editor-container .message-content h4,
-.chat-message .editor-edit h2,
-.chat-message .editor-edit h3,
-.chat-message .editor-edit h4,
-.chat-message .editor-content h2,
-.chat-message .editor-content h3,
-.chat-message .editor-content h4,
-.chat-message .journal-entry-page h2,
-.chat-message .journal-entry-page h3,
-.chat-message .journal-entry-page h4,
-.chat-message .message-content h2,
-.chat-message .message-content h3,
-.chat-message .message-content h4 {
-	line-height: 1.2em;
-}
-.editor .editor-edit hr,
-.editor .editor-content hr,
-.editor .journal-entry-page hr,
-.editor .message-content hr,
-.journal-entry-content .editor-edit hr,
-.journal-entry-content .editor-content hr,
-.journal-entry-content .journal-entry-page hr,
-.journal-entry-content .message-content hr,
-.editor-container .editor-edit hr,
-.editor-container .editor-content hr,
-.editor-container .journal-entry-page hr,
-.editor-container .message-content hr,
-.chat-message .editor-edit hr,
-.chat-message .editor-content hr,
-.chat-message .journal-entry-page hr,
-.chat-message .message-content hr {
-	margin: 5px 0;
-}
-.editor .editor-edit p,
-.editor .editor-content p,
-.editor .journal-entry-page p,
-.editor .message-content p,
-.journal-entry-content .editor-edit p,
-.journal-entry-content .editor-content p,
-.journal-entry-content .journal-entry-page p,
-.journal-entry-content .message-content p,
-.editor-container .editor-edit p,
-.editor-container .editor-content p,
-.editor-container .journal-entry-page p,
-.editor-container .message-content p,
-.chat-message .editor-edit p,
-.chat-message .editor-content p,
-.chat-message .journal-entry-page p,
-.chat-message .message-content p {
-	margin: 0;
-	line-height: 1.2em;
-}
-.editor .editor-edit h1 + p,
-.editor .editor-edit h2 + p,
-.editor .editor-edit h3 + p,
-.editor .editor-edit h4 + p,
-.editor .editor-edit h5 + p,
-.editor .editor-edit h6 + p,
-.editor .editor-edit p + p,
-.editor .editor-content h1 + p,
-.editor .editor-content h2 + p,
-.editor .editor-content h3 + p,
-.editor .editor-content h4 + p,
-.editor .editor-content h5 + p,
-.editor .editor-content h6 + p,
-.editor .editor-content p + p,
-.editor .journal-entry-page h1 + p,
-.editor .journal-entry-page h2 + p,
-.editor .journal-entry-page h3 + p,
-.editor .journal-entry-page h4 + p,
-.editor .journal-entry-page h5 + p,
-.editor .journal-entry-page h6 + p,
-.editor .journal-entry-page p + p,
-.editor .message-content h1 + p,
-.editor .message-content h2 + p,
-.editor .message-content h3 + p,
-.editor .message-content h4 + p,
-.editor .message-content h5 + p,
-.editor .message-content h6 + p,
-.editor .message-content p + p,
-.journal-entry-content .editor-edit h1 + p,
-.journal-entry-content .editor-edit h2 + p,
-.journal-entry-content .editor-edit h3 + p,
-.journal-entry-content .editor-edit h4 + p,
-.journal-entry-content .editor-edit h5 + p,
-.journal-entry-content .editor-edit h6 + p,
-.journal-entry-content .editor-edit p + p,
-.journal-entry-content .editor-content h1 + p,
-.journal-entry-content .editor-content h2 + p,
-.journal-entry-content .editor-content h3 + p,
-.journal-entry-content .editor-content h4 + p,
-.journal-entry-content .editor-content h5 + p,
-.journal-entry-content .editor-content h6 + p,
-.journal-entry-content .editor-content p + p,
-.journal-entry-content .journal-entry-page h1 + p,
-.journal-entry-content .journal-entry-page h2 + p,
-.journal-entry-content .journal-entry-page h3 + p,
-.journal-entry-content .journal-entry-page h4 + p,
-.journal-entry-content .journal-entry-page h5 + p,
-.journal-entry-content .journal-entry-page h6 + p,
-.journal-entry-content .journal-entry-page p + p,
-.journal-entry-content .message-content h1 + p,
-.journal-entry-content .message-content h2 + p,
-.journal-entry-content .message-content h3 + p,
-.journal-entry-content .message-content h4 + p,
-.journal-entry-content .message-content h5 + p,
-.journal-entry-content .message-content h6 + p,
-.journal-entry-content .message-content p + p,
-.editor-container .editor-edit h1 + p,
-.editor-container .editor-edit h2 + p,
-.editor-container .editor-edit h3 + p,
-.editor-container .editor-edit h4 + p,
-.editor-container .editor-edit h5 + p,
-.editor-container .editor-edit h6 + p,
-.editor-container .editor-edit p + p,
-.editor-container .editor-content h1 + p,
-.editor-container .editor-content h2 + p,
-.editor-container .editor-content h3 + p,
-.editor-container .editor-content h4 + p,
-.editor-container .editor-content h5 + p,
-.editor-container .editor-content h6 + p,
-.editor-container .editor-content p + p,
-.editor-container .journal-entry-page h1 + p,
-.editor-container .journal-entry-page h2 + p,
-.editor-container .journal-entry-page h3 + p,
-.editor-container .journal-entry-page h4 + p,
-.editor-container .journal-entry-page h5 + p,
-.editor-container .journal-entry-page h6 + p,
-.editor-container .journal-entry-page p + p,
-.editor-container .message-content h1 + p,
-.editor-container .message-content h2 + p,
-.editor-container .message-content h3 + p,
-.editor-container .message-content h4 + p,
-.editor-container .message-content h5 + p,
-.editor-container .message-content h6 + p,
-.editor-container .message-content p + p,
-.chat-message .editor-edit h1 + p,
-.chat-message .editor-edit h2 + p,
-.chat-message .editor-edit h3 + p,
-.chat-message .editor-edit h4 + p,
-.chat-message .editor-edit h5 + p,
-.chat-message .editor-edit h6 + p,
-.chat-message .editor-edit p + p,
-.chat-message .editor-content h1 + p,
-.chat-message .editor-content h2 + p,
-.chat-message .editor-content h3 + p,
-.chat-message .editor-content h4 + p,
-.chat-message .editor-content h5 + p,
-.chat-message .editor-content h6 + p,
-.chat-message .editor-content p + p,
-.chat-message .journal-entry-page h1 + p,
-.chat-message .journal-entry-page h2 + p,
-.chat-message .journal-entry-page h3 + p,
-.chat-message .journal-entry-page h4 + p,
-.chat-message .journal-entry-page h5 + p,
-.chat-message .journal-entry-page h6 + p,
-.chat-message .journal-entry-page p + p,
-.chat-message .message-content h1 + p,
-.chat-message .message-content h2 + p,
-.chat-message .message-content h3 + p,
-.chat-message .message-content h4 + p,
-.chat-message .message-content h5 + p,
-.chat-message .message-content h6 + p,
-.chat-message .message-content p + p {
-	margin-top: 10px;
-}
-.editor .editor-edit blockquote,
-.editor .editor-content blockquote,
-.editor .journal-entry-page blockquote,
-.editor .message-content blockquote,
-.journal-entry-content .editor-edit blockquote,
-.journal-entry-content .editor-content blockquote,
-.journal-entry-content .journal-entry-page blockquote,
-.journal-entry-content .message-content blockquote,
-.editor-container .editor-edit blockquote,
-.editor-container .editor-content blockquote,
-.editor-container .journal-entry-page blockquote,
-.editor-container .message-content blockquote,
-.chat-message .editor-edit blockquote,
-.chat-message .editor-content blockquote,
-.chat-message .journal-entry-page blockquote,
-.chat-message .message-content blockquote {
-	line-height: 1.2em;
-}
-.editor .editor-edit .editor-content,
-.editor .editor-content .editor-content,
-.editor .journal-entry-page .editor-content,
-.editor .message-content .editor-content,
-.journal-entry-content .editor-edit .editor-content,
-.journal-entry-content .editor-content .editor-content,
-.journal-entry-content .journal-entry-page .editor-content,
-.journal-entry-content .message-content .editor-content,
-.editor-container .editor-edit .editor-content,
-.editor-container .editor-content .editor-content,
-.editor-container .journal-entry-page .editor-content,
-.editor-container .message-content .editor-content,
-.chat-message .editor-edit .editor-content,
-.chat-message .editor-content .editor-content,
-.chat-message .journal-entry-page .editor-content,
-.chat-message .message-content .editor-content {
-	font-size: 16px;
-	line-height: 1.2em;
-	width: 100%;
+.projectfu {
+	.editor .editor-edit,
+	.editor .editor-content,
+	.editor .message-content,
+	.editor-container .editor-edit,
+	.editor-container .editor-content,
+	.editor-container .message-content,
+	.chat-message .editor-edit,
+	.chat-message .editor-content,
+	.chat-message .message-content {
+		font-weight: normal;
+	}
+
+	.editor .editor-edit h1,
+	.editor .editor-edit h2,
+	.editor .editor-edit h3,
+	.editor .editor-content h1,
+	.editor .editor-content h2,
+	.editor .editor-content h3,
+	.editor .message-content h1,
+	.editor .message-content h2,
+	.editor .message-content h3,
+	.editor-container .editor-edit h1,
+	.editor-container .editor-edit h2,
+	.editor-container .editor-edit h3,
+	.editor-container .editor-content h1,
+	.editor-container .editor-content h2,
+	.editor-container .editor-content h3,
+	.editor-container .message-content h1,
+	.editor-container .message-content h2,
+	.editor-container .message-content h3,
+	.chat-message .editor-edit h1,
+	.chat-message .editor-edit h2,
+	.chat-message .editor-edit h3,
+	.chat-message .editor-content h1,
+	.chat-message .editor-content h2,
+	.chat-message .editor-content h3,
+	.chat-message .message-content h1,
+	.chat-message .message-content h2,
+	.chat-message .message-content h3 {
+		border-bottom: 2px solid #2b4a42;
+	}
+
+	.editor .editor-edit h1,
+	.editor .editor-content h1,
+	.editor .message-content h1,
+	.editor-container .editor-edit h1,
+	.editor-container .editor-content h1,
+	.editor-container .message-content h1,
+	.chat-message .editor-edit h1,
+	.chat-message .editor-content h1,
+	.chat-message .message-content h1 {
+		line-height: 1.2em;
+	}
+
+	.editor .editor-edit h2,
+	.editor .editor-edit h3,
+	.editor .editor-edit h4,
+	.editor .editor-content h2,
+	.editor .editor-content h3,
+	.editor .editor-content h4,
+	.editor .message-content h2,
+	.editor .message-content h3,
+	.editor .message-content h4,
+	.editor-container .editor-edit h2,
+	.editor-container .editor-edit h3,
+	.editor-container .editor-edit h4,
+	.editor-container .editor-content h2,
+	.editor-container .editor-content h3,
+	.editor-container .editor-content h4,
+	.editor-container .message-content h2,
+	.editor-container .message-content h3,
+	.editor-container .message-content h4,
+	.chat-message .editor-edit h2,
+	.chat-message .editor-edit h3,
+	.chat-message .editor-edit h4,
+	.chat-message .editor-content h2,
+	.chat-message .editor-content h3,
+	.chat-message .editor-content h4,
+	.chat-message .message-content h2,
+	.chat-message .message-content h3,
+	.chat-message .message-content h4 {
+		line-height: 1.2em;
+	}
+
+	.editor .editor-edit hr,
+	.editor .editor-content hr,
+	.editor .message-content hr,
+	.editor-container .editor-edit hr,
+	.editor-container .editor-content hr,
+	.editor-container .message-content hr,
+	.chat-message .editor-edit hr,
+	.chat-message .editor-content hr,
+	.chat-message .message-content hr {
+		margin: 5px 0;
+	}
+
+	.editor .editor-edit p,
+	.editor .editor-content p,
+	.editor .message-content p,
+	.editor-container .editor-edit p,
+	.editor-container .editor-content p,
+	.editor-container .message-content p,
+	.chat-message .editor-edit p,
+	.chat-message .editor-content p,
+	.chat-message .message-content p {
+		margin: 0;
+		line-height: 1.2em;
+	}
+
+	.editor .editor-edit h1 + p,
+	.editor .editor-edit h2 + p,
+	.editor .editor-edit h3 + p,
+	.editor .editor-edit h4 + p,
+	.editor .editor-edit h5 + p,
+	.editor .editor-edit h6 + p,
+	.editor .editor-edit p + p,
+	.editor .editor-content h1 + p,
+	.editor .editor-content h2 + p,
+	.editor .editor-content h3 + p,
+	.editor .editor-content h4 + p,
+	.editor .editor-content h5 + p,
+	.editor .editor-content h6 + p,
+	.editor .editor-content p + p,
+	.editor .message-content h1 + p,
+	.editor .message-content h2 + p,
+	.editor .message-content h3 + p,
+	.editor .message-content h4 + p,
+	.editor .message-content h5 + p,
+	.editor .message-content h6 + p,
+	.editor .message-content p + p,
+	.editor-container .editor-edit h1 + p,
+	.editor-container .editor-edit h2 + p,
+	.editor-container .editor-edit h3 + p,
+	.editor-container .editor-edit h4 + p,
+	.editor-container .editor-edit h5 + p,
+	.editor-container .editor-edit h6 + p,
+	.editor-container .editor-edit p + p,
+	.editor-container .editor-content h1 + p,
+	.editor-container .editor-content h2 + p,
+	.editor-container .editor-content h3 + p,
+	.editor-container .editor-content h4 + p,
+	.editor-container .editor-content h5 + p,
+	.editor-container .editor-content h6 + p,
+	.editor-container .editor-content p + p,
+	.editor-container .message-content h1 + p,
+	.editor-container .message-content h2 + p,
+	.editor-container .message-content h3 + p,
+	.editor-container .message-content h4 + p,
+	.editor-container .message-content h5 + p,
+	.editor-container .message-content h6 + p,
+	.editor-container .message-content p + p,
+	.chat-message .editor-edit h1 + p,
+	.chat-message .editor-edit h2 + p,
+	.chat-message .editor-edit h3 + p,
+	.chat-message .editor-edit h4 + p,
+	.chat-message .editor-edit h5 + p,
+	.chat-message .editor-edit h6 + p,
+	.chat-message .editor-edit p + p,
+	.chat-message .editor-content h1 + p,
+	.chat-message .editor-content h2 + p,
+	.chat-message .editor-content h3 + p,
+	.chat-message .editor-content h4 + p,
+	.chat-message .editor-content h5 + p,
+	.chat-message .editor-content h6 + p,
+	.chat-message .editor-content p + p,
+	.chat-message .message-content h1 + p,
+	.chat-message .message-content h2 + p,
+	.chat-message .message-content h3 + p,
+	.chat-message .message-content h4 + p,
+	.chat-message .message-content h5 + p,
+	.chat-message .message-content h6 + p,
+	.chat-message .message-content p + p {
+		margin-top: 10px;
+	}
+
+	.editor .editor-edit blockquote,
+	.editor .editor-content blockquote,
+	.editor .message-content blockquote,
+	.editor-container .editor-edit blockquote,
+	.editor-container .editor-content blockquote,
+	.editor-container .message-content blockquote,
+	.chat-message .editor-edit blockquote,
+	.chat-message .editor-content blockquote,
+	.chat-message .message-content blockquote {
+		line-height: 1.2em;
+	}
+
+	.editor .editor-edit .editor-content,
+	.editor .editor-content .editor-content,
+	.editor .message-content .editor-content,
+	.editor-container .editor-edit .editor-content,
+	.editor-container .editor-content .editor-content,
+	.editor-container .message-content .editor-content,
+	.chat-message .editor-edit .editor-content,
+	.chat-message .editor-content .editor-content,
+	.chat-message .message-content .editor-content {
+		font-size: 16px;
+		line-height: 1.2em;
+		width: 100%;
+	}
 }
 
 .title-fieldset legend {
@@ -1840,25 +1820,30 @@
 		-webkit-transform 0.2s ease-in-out,
 		-webkit-box-shadow 0.2s ease-in-out;
 }
+
 .button-style:hover {
 	background: -webkit-gradient(linear, left bottom, left top, from(rgb(220, 211, 116)), to(rgb(255, 247, 154)));
 	background: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%);
 	color: #047470;
 	text-shadow: none;
 }
+
 .button-style i {
 	font-size: 0.875rem;
 	line-height: 1;
 }
+
 .button-style a {
 	font-family: 'PT Sans Caption', sans-serif;
 	font-size: 1rem;
 }
+
 .button-style.study-style {
 	width: 100% !important;
 	-ms-flex-pack: distribute;
 	justify-content: space-around;
 }
+
 .button-style.active {
 	color: #fff79a;
 	border: 1px solid #753002;
@@ -1870,35 +1855,42 @@
 		1px 1px 2px #753002,
 		-1px -1px 2px #753002;
 }
+
 .button-style.active:hover {
 	text-shadow: none;
 }
+
 .button-style.action-style {
 	width: 100% !important;
 	height: 100% !important;
 	display: flex;
 	gap: 4px;
 }
+
 .button-style button {
 	border-radius: inherit;
 	color: inherit;
 	background: inherit;
 	border: inherit;
 }
+
 .button-style button:hover,
 .button-style button:focus {
 	-webkit-box-shadow: unset;
 	box-shadow: unset;
 }
+
 .button-style#behavior-action {
 	padding: 5px;
 	font-size: 0.875rem;
 }
+
 .button-style button:disabled {
 	opacity: 0.7;
 	cursor: not-allowed;
 	pointer-events: none;
 }
+
 .button-style:has(button:disabled) {
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -1925,6 +1917,7 @@
 	& .pfu-progress__segments {
 		& input[type='radio'].pie {
 			background: unset;
+
 			&:hover,
 			&:hover ~ .pie,
 			&:checked:has(~ .pie:hover),
@@ -1968,6 +1961,7 @@
 	& .items-list .item,
 	& .items-list .item .item-name {
 	}
+
 	& .items-list .effect,
 	& .items-list .item .item-name {
 		color: var(--color-primary);
@@ -2016,6 +2010,7 @@
 			&:focus {
 				outline: none;
 			}
+
 			&:disabled {
 				opacity: unset;
 			}
@@ -2120,6 +2115,7 @@
 		& a:hover {
 			color: var(--pfu-color-app-item-header-content-focus);
 			text-shadow: inherit;
+
 			> *:hover {
 				color: inherit;
 			}

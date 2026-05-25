@@ -2006,6 +2006,8 @@
 		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?",
 		"AdversaryInActiveCombat": "In Active Combat",
 		"AdversaryFilterMisc": "Miscellaneous",
-		"AbilityNoWeaponSelected": "No weapon selected!"
+		"AbilityNoWeaponSelected": "No weapon selected!",
+		"ThemeFoundrySetting": "Apply Theme to Core Foundry",
+		"ThemeFoundrySettingHint": "If enabled, the theme configured for the ProjectFU system will also be applied to many parts of the core Foundry interface."
 	}
 }
