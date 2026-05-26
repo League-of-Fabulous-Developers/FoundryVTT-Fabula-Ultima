@@ -375,7 +375,7 @@ export class FUActor extends Actor {
 	 */
 	getItemsByFuid(fuid, type) {
 		const fuidFilter = (i) => i.system.fuid === fuid;
-		if (!type) return this.items.filter(fuidFilter);
+		if (!type) return this.allItems().filter(fuidFilter).toArray();
 		const itemTypes = this.itemTypes;
 		if (!Object.prototype.hasOwnProperty.call(itemTypes, type)) {
 			throw new Error(`Type ${type} is invalid!`);
