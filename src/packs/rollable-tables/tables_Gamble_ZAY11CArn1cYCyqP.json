@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2){Half Current HP}) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]).</p>",
+      "description": "<p>You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2) hp]{Half Current HP}) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]{Half Current MP}).</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!ZAY11CArn1cYCyqP.N9DlB2tFVZr3lukP"
