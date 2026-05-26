@@ -2005,6 +2005,7 @@
 		"MagicCheckDialogUseWeaponCheckTitle": "Use Weapon?",
 		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?",
 		"AdversaryInActiveCombat": "In Active Combat",
-		"AdversaryFilterMisc": "Miscellaneous"
+		"AdversaryFilterMisc": "Miscellaneous",
+		"AbilityNoWeaponSelected": "No weapon selected!"
 	}
 }
