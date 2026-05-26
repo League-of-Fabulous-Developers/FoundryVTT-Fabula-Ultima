@@ -800,14 +800,25 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'spells':
 				{
-					const spells = await this.index.getItemsOfType('spell');
-					const classes = ['Elementalist', 'Entropist', 'Spiritist', 'NPC']; // hardcoded for now
-					const classOptions = classes.map((c) => {
+					const [spells, classes] = await Promise.all([this.index.getItemsOfType('spell'), this.index.getItemsOfType('class')]);
+					const classesWithSpells = spells
+						.map((spell) => spell.system.class.value)
+						.reduce((set, fuid) => {
+							set.add(fuid);
+							return set;
+						}, new Set());
+
+					const classOptions = classesWithSpells.map((fuid) => {
+						let label;
+						if (fuid.toLowerCase() === 'npc') label = 'ACTOR.TypeNpc';
+						else label = classes.find((item) => item.system.fuid === fuid)?.name ?? fuid;
+
 						return {
-							value: c,
-							label: c,
+							value: fuid,
+							label,
 						};
 					});
+
 					await this.onRenderTables(
 						[
 							{
