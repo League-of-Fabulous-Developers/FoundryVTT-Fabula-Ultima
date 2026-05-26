@@ -79,7 +79,7 @@
 					<label>
 						<input type="checkbox"
 							   name="traits.{{this}}"
-							   {{#if (pfuCollectionContains ../existing.revealed.traits this)}}checked{{/if}} />
+							   {{#if (pfuCollectionContains this ../existing.revealed.traits)}}checked{{/if}} />
 						{{this}}
 					</label>
 				{{/each}}
