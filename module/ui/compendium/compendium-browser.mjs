@@ -66,6 +66,7 @@ class SpellsCompendiumTableRenderer extends CompendiumTableRenderer {
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.amount'),
 			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value', {
 				mapFunction: (value) => {
+					if (value.toLowerCase() === 'npc') return 'ACTOR.TypeNpc';
 					return CompendiumIndex.instance.getItemByFuidSync(value)?.name ?? StringUtils.titleToKebab(value);
 				},
 			}),
