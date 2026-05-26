@@ -38,25 +38,25 @@ import { NpcProfileRulesTableRenderer } from '../helpers/tables/npc-profile-rule
  * @inheritDoc
  */
 export class NpcProfileWindow extends FUApplication {
-	constructor(data = {}, options = {}) {
-		const actor = fromUuidSync(data.uuid, { strict: true });
-		if (actor && actor.apps.npcProfile) {
+	#actor;
+	#data;
+
+	constructor(actor, data = {}, options = {}) {
+		if (actor.apps.npcProfile) {
 			return actor.apps.npcProfile;
 		}
 
-		options.title = data.name;
+		options.title = actor.name;
 		super(options);
-		this.data = data;
+		this.#data = data;
+		this.#actor = actor;
+		this.#actor.apps.npcProfile = this;
 
 		if (options.party) {
 			this.party = options.party;
 			delete options.party;
 
 			this.party.apps[this.id] = this;
-		}
-
-		if (actor) {
-			actor.apps.npcProfile = this;
 		}
 	}
 
@@ -95,7 +95,7 @@ export class NpcProfileWindow extends FUApplication {
 	async _prepareContext(options) {
 		let context = await super._prepareContext(options);
 
-		let data = this.data;
+		let data = this.#data;
 		if (this.party) {
 			data = this.party.system.adversaries.find((value) => value.uuid === data.uuid);
 		}
@@ -189,8 +189,8 @@ export class NpcProfileWindow extends FUApplication {
 
 	async _onClose(options) {
 		super._onClose(options);
-		const actor = await fromUuid(this.data.uuid);
-		if (actor && actor.apps.npcProfile === this) {
+		const actor = this.#actor;
+		if (actor.apps.npcProfile === this) {
 			delete actor.apps.npcProfile;
 		}
 		if (this.party) {
@@ -199,10 +199,8 @@ export class NpcProfileWindow extends FUApplication {
 	}
 
 	static async #revealActor() {
-		const uuid = this.data.uuid;
-		const actor = fromUuidSync(uuid);
-		if (actor) {
-			actor.sheet.render(true);
+		if (this.#actor) {
+			this.#actor.sheet.render(true);
 		} else {
 			ui.notifications.error('The referenced actor is no longer present');
 		}
