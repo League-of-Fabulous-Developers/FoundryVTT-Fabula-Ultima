@@ -3,13 +3,8 @@ import { Flags } from '../../helpers/flags.mjs';
 import { CompendiumIndex } from '../../ui/compendium/compendium-index.mjs';
 
 async function convertClassAttributeFromClassLists(item, classes) {
-	let updates = {
-		flags: {
-			[SYSTEM]: {
-				[Flags.ClassConverted]: true,
-			},
-		},
-	};
+	let updates = {};
+	let conversionResolved = true;
 
 	const classAttribute = item.system?.class?.value;
 	if (classAttribute) {
@@ -34,6 +29,10 @@ async function convertClassAttributeFromClassLists(item, classes) {
 					continue;
 				}
 			}
+
+			// Class reference could not be resolved against any known class list. Skip the conversion flag
+			// so the converter can retry on a later session when the matching class becomes available.
+			conversionResolved = false;
 		}
 
 		if (fuids.length > 0) {
@@ -46,7 +45,20 @@ async function convertClassAttributeFromClassLists(item, classes) {
 		}
 	}
 
-	item.update(updates);
+	// Only mark the item as converted if every class reference resolved. Items that failed to
+	// resolve (e.g., class compendium not yet loaded, or class not present in the world) keep the
+	// flag unset so the converter can retry next time.
+	if (conversionResolved) {
+		updates.flags = {
+			[SYSTEM]: {
+				[Flags.ClassConverted]: true,
+			},
+		};
+	}
+
+	if (Object.keys(updates).length > 0) {
+		await item.update(updates);
+	}
 }
 
 async function convertActorItemsClassAttributes(actorSource) {
@@ -93,11 +105,41 @@ async function convertGameItemsClassAttributes() {
 	}
 }
 
+/**
+ * Convert a single item's class attribute. Used by the createItem hook so that newly added
+ * items get their class reference normalized immediately, rather than waiting for the next
+ * world reload.
+ * @param {Item} item The newly created item. Skipped if it's not a class-bearing type or
+ *                    already has the conversion flag.
+ */
+async function convertSingleItem(item) {
+	if (!item) return;
+	if (item.type !== 'skill' && item.type !== 'spell' && item.type !== 'heroic') return;
+	if (item.flags?.projectfu?.classConverted) return;
+
+	// Collect class lookup sources: actor classes (if item belongs to an actor), world classes,
+	// and compendium classes.
+	const actorClasses = item.parent?.items?.filter((i) => i.type === 'class') ?? [];
+	const worldClasses = game.items.filter((i) => i.type === 'class');
+	const compendiumClasses = await CompendiumIndex.instance.getClasses();
+	const allClasses = [...actorClasses, ...worldClasses, ...compendiumClasses.class];
+
+	await convertClassAttributeFromClassLists(item, allClasses);
+}
+
 export class ClassFuidConverter {
 	static run() {
 		for (const actor of game.actors) {
 			convertActorItemsClassAttributes(actor);
 		}
 		convertGameItemsClassAttributes();
+	}
+
+	/**
+	 * Convert a single item. Safe to call from the createItem hook.
+	 * @param {Item} item
+	 */
+	static convertItem(item) {
+		return convertSingleItem(item);
 	}
 }

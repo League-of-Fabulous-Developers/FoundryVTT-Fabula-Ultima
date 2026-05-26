@@ -529,6 +529,14 @@ Hooks.once('ready', async function () {
 		item.toggleFavorite(true);
 	});
 
+	// Normalize class references on freshly created skill/spell/heroic items so that mismatched
+	// case (e.g. system.class.value = "Predator" vs class fuid "predator") gets fixed immediately
+	// instead of only on the next world reload.
+	Hooks.on('createItem', (item, options, userId) => {
+		if (game.userId !== userId) return; // Only the creating user should run the conversion
+		ClassFuidConverter.convertItem(item);
+	});
+
 	ClassFuidConverter.run();
 });
 
