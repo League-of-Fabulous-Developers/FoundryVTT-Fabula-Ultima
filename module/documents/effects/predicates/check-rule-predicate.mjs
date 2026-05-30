@@ -118,8 +118,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 									case 'all':
 										if (
 											!selected.every((target) => {
-												if (target.result === 'hit') return this.outcome === 'success';
-												if (target.result === 'miss') return this.outcome === 'failure';
+												if (target.data.result === 'hit') return this.outcome === 'success';
+												if (target.data.result === 'miss') return this.outcome === 'failure';
 												return true;
 											})
 										) {
@@ -130,8 +130,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 									case 'any':
 										if (
 											!selected.some((target) => {
-												if (target.result === 'hit') return this.outcome === 'success';
-												if (target.result === 'miss') return this.outcome === 'failure';
+												if (target.data.result === 'hit') return this.outcome === 'success';
+												if (target.data.result === 'miss') return this.outcome === 'failure';
 												return false;
 											})
 										) {
@@ -142,8 +142,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 									case 'none':
 										if (
 											!selected.every((target) => {
-												if (target.result === 'hit') return this.outcome !== 'success';
-												if (target.result === 'miss') return this.outcome !== 'failure';
+												if (target.data.result === 'hit') return this.outcome !== 'success';
+												if (target.data.result === 'miss') return this.outcome !== 'failure';
 												return true;
 											})
 										) {
