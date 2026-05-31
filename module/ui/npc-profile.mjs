@@ -238,7 +238,10 @@ export class NpcProfileWindow extends FUApplication {
 			.map((value) => value.trim())
 			.filter(Boolean);
 		// Pressure Points
-		const pressurePoints = NpcProfileWindow.getPressurePointMap(actor);
+		let pressurePoints;
+		if (getSystemSetting(SETTINGS.pressureSystem)) {
+			pressurePoints = NpcProfileWindow.getPressurePointMap(actor);
+		}
 
 		if (edit) {
 			console.debug(`Editing profile of ${JSON.stringify(existing)}`);
