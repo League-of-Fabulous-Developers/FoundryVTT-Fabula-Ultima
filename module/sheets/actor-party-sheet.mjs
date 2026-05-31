@@ -1355,8 +1355,9 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	async revealNpc(uuid) {
 		const data = this.party.getAdversary(uuid);
-		if (data) {
-			new NpcProfileWindow(data, {
+		const actor = await foundry.utils.fromUuid(data?.uuid);
+		if (data && actor) {
+			new NpcProfileWindow(actor, data, {
 				title: data.name,
 				party: this.document,
 			}).render(true);
