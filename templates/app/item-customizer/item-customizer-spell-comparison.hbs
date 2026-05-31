@@ -5,7 +5,7 @@
 		</div>
 		<label class="resource-label">
 			{{name}}
-			{{#if system.isOffensive.value}}
+			{{#if system.hasRoll.value}}
 				<strong>【{{localize (lookup @root.FU.attributeAbbreviations system.attributes.primary.value)}}
 					+ {{localize (lookup @root.FU.attributeAbbreviations system.attributes.secondary.value)}}】
 					+ {{system.accuracy.value}}</strong>
