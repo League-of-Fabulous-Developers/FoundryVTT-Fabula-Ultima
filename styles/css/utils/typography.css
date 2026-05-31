@@ -233,7 +233,6 @@
 /* ----------------------------------------- */
 /* Application Sheets                     
 /* ----------------------------------------- */
-.application.journal-sheet:not([id$='-popout']),
 .application.projectfu:not([id$='-popout']),
 .chat-message.message {
 	font-family: var(--font-primary);
@@ -724,7 +723,6 @@
 }
 
 /* Scoped CSS specifically for ProseMirror element */
-.application.journal-sheet,
 .application.projectfu {
 	.journal-entry-page,
 	.editor-content {

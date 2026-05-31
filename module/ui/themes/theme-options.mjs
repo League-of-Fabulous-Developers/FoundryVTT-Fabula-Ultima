@@ -406,6 +406,9 @@ const defaultTheme = Object.freeze({
 });
 
 function initialize() {
+	if (getSystemSetting('themeFoundry')) {
+		document.body.classList.add('apply-theme-foundry');
+	}
 	Theme.from(getSystemSetting('theme')).apply();
 	Hooks.once('ready', () => {
 		const MODULE_ID = 'projectfu-theme'; // Replace with the module's ID

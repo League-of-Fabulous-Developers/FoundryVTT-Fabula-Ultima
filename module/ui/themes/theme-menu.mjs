@@ -42,21 +42,11 @@ export class ThemeMenu extends FUApplication {
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.current = getSystemSetting('theme');
+		context.themeFoundry = getSystemSetting('themeFoundry');
 		const themes = await Themes.getSystemThemes();
 		context.fields = ThemeOptionFields;
-		context.themes = themes;
+		context.themes = [...Object.keys(themes).map((themeName) => ({ value: themeName, label: `FU.THEMES.${themeName}` }))];
 		return context;
-	}
-
-	/**
-	 * @desc Updates the theme upon form submission.
-	 * @param {Event} event The submit event that initiated the update.
-	 * @param {*} formData The data collected from the submitted form.
-	 */
-	_updateObject(event, formData) {
-		const data = foundry.utils.expandObject(formData);
-		setSystemSetting('theme', data);
-		console.info(`Set theme data`);
 	}
 
 	setThemeFields(form, themeData) {
@@ -221,7 +211,9 @@ export class ThemeMenu extends FUApplication {
 	 */
 	static async #saveTheme(event, target, formData) {
 		const data = FoundryUtils.getFormData(target);
+
 		setSystemSetting('theme', data);
+		setSystemSetting('themeFoundry', data.themeFoundry);
 		console.info(`Set theme data`);
 	}
 }

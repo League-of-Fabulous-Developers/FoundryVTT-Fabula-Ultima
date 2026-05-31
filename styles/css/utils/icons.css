@@ -1,7 +1,6 @@
 :root {
 	--icon-ful-sl-star: url('../../static/icons/ful-sl-star.svg');
 	--icon-fus-sl-star: url('../../static/icons/fus-sl-star.svg');
-	--icon-fus-star: url('../../static/icons/fus-star.svg');
 	--icon-fus-star2: url('../../static/icons/fus-star2.svg');
 	--icon-fus-star2-border: url('../../static/icons/fus-star2-border.svg');
 	--icon-fu-check-result: url('../../static/icons/check-result.svg');
@@ -101,7 +100,7 @@
 
 	--icon-fu--damage: url('../../static/icons/inline/damage.svg');
 	--icon-fu--type: url('../../static/icons/inline/type.svg');
-	--icon-fu--pointer: url('/systems/projectfu/styles/static/ui/pointer.png');
+	--icon-fu--pointer: url('../../static/ui/pointer.png');
 }
 
 .fu-dex {
@@ -436,10 +435,6 @@
 	background-image: var(--icon-fus-sl-star);
 }
 
-.fus-star {
-	background-image: var(--icon-fus-star);
-}
-
 .fus-star2 {
 	background-image: var(--icon-fus-star2);
 }
@@ -453,7 +448,7 @@
 }
 
 .fu-effect-placeholder {
-	background-image: url('/icons/svg/aura.svg');
+	background-image: url('../../../../../icons/svg/aura.svg');
 }
 
 .fu-weapon-enchant {
