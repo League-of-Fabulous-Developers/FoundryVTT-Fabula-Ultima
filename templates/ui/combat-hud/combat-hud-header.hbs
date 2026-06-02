@@ -1,35 +1,40 @@
 <div class="projectfu-combat-hud__header">
   <div class="{{elementClass}}__window-button {{elementClass}}__window-button--compact {{elementClass}}__window-button {{buttonPositionClass}}">
-      <a class="compact" title="Toggle compact mode" data-action="toggleCompact">
+      <a class="compact" data-tooltip="{{localize "FU.CombatHudCompactButtonTitle"}}" data-action="toggleCompact">
           <i class="fas fa-caret-down {{#if isCompact }}hidden{{/if}}"></i>
           <i class="fas fa-caret-up {{#unless isCompact }}hidden{{/unless}}"></i>
       </a>
   </div>
   {{#if showPopoutButton}}
   <div class="{{elementClass}}__window-button {{elementClass}}__window-button--popout {{buttonPositionClass}}">
-      <a class="popout" title="Popout Combat HUD" data-target="combat-hud" data-action="popout">
+      <a class="popout" data-tooltip="{{localize "FU.CombatHudPopoutButtonTitle"}}" data-target="combat-hud" data-action="popout">
           <i class="fas fa-up-right-from-square"></i>
       </a>
   </div>
   {{/if}}
   <div class="{{elementClass}}__window-button {{elementClass}}__window-button--minimize {{buttonPositionClass}}">
-      <a class="minimize" title="Minimize Combat HUD" data-action="minimize">
+      <a class="minimize" data-tooltip="{{localize "FU.CombatHudMinimizeButtonTitle"}}" data-action="minimize">
           <i class="fas fa-minus"></i>
       </a>
   </div>
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--refresh {{buttonPositionClass}}">
+    <a class="refresh" data-tooltip="{{localize "FU.CombatHudResetButtonTitle"}}" data-action="refreshHud">
+        <i class="fa-solid fa-rotate"></i>
+    </a>
+  </div>
   <div class="{{elementClass}}__window-button {{elementClass}}__window-button--drag {{buttonPositionClass}}" draggable="true">
-      <a class="drag" title="Drag Combat HUD">
+      <a class="drag" data-tooltip="{{localize "FU.CombatHudDragButtonTitle"}}">
           <i class="fas fa-arrows-alt"></i>
       </a>
   </div>
   {{#if isGM}}
   <div class="{{elementClass}}__window-button {{elementClass}}__window-button--start {{buttonPositionClass}}">
-      <a class="start" title="Start Combat" data-action="start">
+      <a class="start" data-tooltip="{{localize "FU.CombatHudStartButtonTitle"}}" data-action="start">
           <i class="fas fa-play"></i>
       </a>
   </div>
   <div class="{{elementClass}}__window-button {{elementClass}}__window-button--stop {{buttonPositionClass}}">
-      <a class="stop" title="Stop Combat" data-action="stop">
+      <a class="stop" data-tooltip="{{localize "FU.CombatHudStopButtonTitle"}}" data-action="stop">
           <i class="fas fa-stop"></i>
       </a>
   </div>
