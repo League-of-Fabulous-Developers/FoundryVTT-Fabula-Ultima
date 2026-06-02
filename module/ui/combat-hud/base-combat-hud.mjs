@@ -47,6 +47,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			StartTurn: BaseCombatHUD.StartTurn,
 			EndTurn: BaseCombatHUD.EndTurn,
 			clickCombatant: BaseCombatHUD.ClickCombatant,
+			refreshHud: BaseCombatHUD.RefreshHUD,
 		},
 	};
 
@@ -77,6 +78,11 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		const combatant = this.combat.combatants.get(elem.dataset.combatantId);
 		e.preventDefault();
 		this._onClickCombatant(combatant);
+	}
+
+	/** @this {BaseCombatHUD} */
+	static async RefreshHUD() {
+		await this.render();
 	}
 
 	get minWidth() {
