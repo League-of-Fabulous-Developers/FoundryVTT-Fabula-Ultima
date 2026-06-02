@@ -83,6 +83,9 @@
 		right: 0.5em;
 	}
 	.combat-hud-retro__window-button--popout {
+		right: 15em;
+	}
+	.combat-hud-retro__window-button--refresh {
 		right: 7.5em;
 	}
 	.combat-hud-retro__window-button--compact {
