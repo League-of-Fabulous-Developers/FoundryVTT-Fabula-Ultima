@@ -151,20 +151,25 @@ jobs:
             # Publish the new version to the FoundryVTT package registry.
             - name: Publish to FoundryVTT
               if: ${{ !github.event.release.prerelease }}
+              env:
+                  FVTT_TOKEN: ${{ secrets.FVTT_RELEASE_TOKEN }}
+                  VERSION: ${{ steps.get_version.outputs.version-without-v }}
+                  MANIFEST: 'https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/system.json'
+                  NOTES: 'https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}'
               run: |
                   curl -X POST \
                     'https://foundryvtt.com/_api/packages/release_version/' \
-                    --header 'Authorization: ${{ secrets.FVTT_RELEASE_TOKEN }}' \
+                    --header "Authorization: ${FVTT_TOKEN}" \
                     --header 'Content-Type: application/json' \
-                    --data '{
-                      "id": "projectfu",
-                      "release": {
-                        "version": "${{ steps.get_version.outputs.version-without-v }}",
-                        "manifest": "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/system.json",
-                        "notes": "https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}",
-                        "compatibility": {
-                          "minimum": "13",
-                          "verified": "13"
+                    --data "{
+                      \"id\": \"projectfu\",
+                      \"release\": {
+                        \"version\": \"${VERSION}\",
+                        \"manifest\": \"${MANIFEST}\",
+                        \"notes\": \"${NOTES}\",
+                        \"compatibility\": {
+                          \"minimum\": \"13\",
+                          \"verified\": \"13\"
                         }
                       }
-                    }'
+                    }"
