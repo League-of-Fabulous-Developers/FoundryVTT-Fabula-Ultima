@@ -3,6 +3,8 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
+import { ExpressionContext } from '../../expressions/expressions.mjs';
+import { SkillLikeTableHelper } from './skill-like-table-helper.mjs';
 
 export class AbilitiesTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
@@ -21,72 +23,21 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 	};
 
 	static async #renderCaption(item) {
+		const context = new ExpressionContext(item.actor, item, []);
 		const data = {
 			FU,
 		};
 
-		if (item.system.hasRoll.value) {
-			let mainWeapon;
-
-			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
-			if (item.system.useWeapon.accuracy) {
-				data.useWeapon = true;
-
-				if (mainHandItem && mainHandItem.type in FU.weaponItemTypes) {
-					mainWeapon = mainHandItem;
-					data.weapon = mainWeapon.name;
-				}
-			}
-			let weaponDamage;
-			if (item.system.useWeapon.accuracy && mainWeapon) {
-				if (mainWeapon.type === 'weapon') {
-					data.roll = {
-						primary: mainWeapon.system.attributes.primary.value,
-						secondary: mainWeapon.system.attributes.secondary.value,
-						modifier: mainWeapon.system.accuracy.value + item.system.accuracy,
-					};
-					weaponDamage = {
-						value: mainWeapon.system.damage.value,
-						type: mainWeapon.system.damageType.value,
-					};
-				}
-				if (mainWeapon.type === 'customWeapon') {
-					data.roll = {
-						primary: mainWeapon.system.attributes.primary,
-						secondary: mainWeapon.system.attributes.secondary,
-						modifier: mainWeapon.system.accuracy,
-					};
-					weaponDamage = {
-						value: mainWeapon.system.damage.value,
-						type: mainWeapon.system.damage.type,
-					};
-				}
-			} else {
-				data.roll = {
-					primary: item.system.attributes.primary,
-					secondary: item.system.attributes.secondary,
-					modifier: item.system.accuracy,
-				};
-			}
-
-			if (item.system.damage.hasDamage) {
-				if (item.system.useWeapon.damage && mainWeapon) {
-					if (!weaponDamage) throw new Error('Missing weapon damage data. This is a bug, please report it to the maintainers of the system.');
-					const { value: damageValue, type: damageType } = weaponDamage;
-					data.damage = {
-						value: item.system.damage.value + damageValue,
-						type: item.system.damage.type || damageType,
-						hrZero: item.system.damage.hrZero,
-					};
-				} else {
-					data.damage = {
-						value: item.system.damage.value,
-						type: item.system.damage.type,
-						hrZero: item.system.damage.hrZero,
-					};
-				}
-			}
+		const mainWeapon = SkillLikeTableHelper.resolveMainWeapon(item);
+		if (mainWeapon) {
+			data.weapon = mainWeapon.name;
 		}
+
+		const checkData = await SkillLikeTableHelper.resolveCheckData(item, context, mainWeapon);
+		foundry.utils.mergeObject(data, checkData);
+
+		const damageData = await SkillLikeTableHelper.resolveDamageData(item, context, mainWeapon);
+		foundry.utils.mergeObject(data, damageData);
 
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/caption/caption-skill'), data);
 	}

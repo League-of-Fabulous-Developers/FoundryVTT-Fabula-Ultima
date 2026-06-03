@@ -28,6 +28,12 @@ Hooks.on('preUpdateActor', async (document, changed) => {
 		if (roleChanged || levelChanged) {
 			setRoleAttributes(document, newRole, newLevel);
 		}
+
+		if (foundry.utils.hasProperty(changed, 'system.references.actor')) {
+			if (!changed.system.references.actor) {
+				foundry.utils.setProperty(changed, 'system.references.skill', null);
+			}
+		}
 	}
 });
 
@@ -75,6 +81,9 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {string} associatedTherioforms
  * @property {NpcSkillTracker} spTracker
  * @property {TraitsDataModel} pressurePoints
+ * @property {Object} references
+ * @property {FUActor|null} actor
+ * @property {string|null} skill
  */
 export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {

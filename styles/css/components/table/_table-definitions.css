@@ -15,6 +15,10 @@
 	.item {
 		height: min-content;
 	}
+
+	.cell-item-name {
+		max-width: 30ch;
+	}
 }
 
 .classes-table {
@@ -97,6 +101,10 @@
 	}
 }
 
+.vehicle-modules-table {
+	grid-template-columns: [name] 30% [preview] auto [cost] 100px [controls] 100px;
+}
+
 .invocations-table {
 	grid-template-columns: [name] auto [controls] 100px;
 	cursor: inherit;
@@ -107,7 +115,7 @@
 }
 
 .npc-profile-weapons-table {
-	grid-template-columns: [name] auto [check] 120px [damage] 130px [equipStatus] 80px;
+	grid-template-columns: [name] auto [check] 150px [damage] 150px;
 }
 
 .npc-profile-spells-table {

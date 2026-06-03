@@ -365,36 +365,22 @@
 					<!-- Companion -->
 					{{#if (or (eq actor.system.rank.value "companion") (eq actor.system.rank.value "custom"))}}
 						<label class="resource-label-sm flexcol flex-group-center"
-							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}"
-							   for="refActor">
+							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}">
 							<i class="fa-solid fa-user-group"></i>
 							{{localize 'FU.Player'}}
 							<span class="resource-label-m">LV: {{refActorLevel}}</span>
-							<select name="system.references.actor" id="refActor" class="resource-inputs">
-								<option value="">—</option>
-								{{#each ownedActors as |owned|}}
-									<option value="{{owned.id}}"
-											{{#if (eq ../system.references.actor.id owned.id)}}selected{{/if}}>
-										{{owned.name}}
-									</option>
-								{{/each}}
+							<select name="system.references.actor" class="resource-inputs">
+								{{selectOptions ownedActors blank="—" selected=refActorId sort=true}}
 							</select>
 						</label>
 
 						<label class="resource-label-sm flexcol flex-group-center"
-							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}"
-							   for="refSkill">
+							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}">
 							<i class="fa-solid fa-cogs"></i>
 							{{localize 'FU.Skill'}}
 							<span class="resource-label-m">SL: {{refSkillLevel}}</span>
-							<select name="system.references.skill" id="refSkill" class="resource-inputs">
-								<option value="">—</option>
-								{{#each availableSkills as |skill|}}
-									<option value="{{skill.uuid}}"
-											{{#if (eq ../system.references.skill skill.uuid)}}selected{{/if}}>
-										{{skill.name}}
-									</option>
-								{{/each}}
+							<select name="system.references.skill" class="resource-inputs">
+								{{selectOptions availableSkills blank="—" selected=refSkill sort=true}}
 							</select>
 						</label>
 					{{/if}}

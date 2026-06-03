@@ -189,6 +189,14 @@ export class CompendiumIndex {
 		if (!this.#itemsByType || force) {
 			this.#itemsByType = await this.getEntries('Item', null, Object.values(CompendiumIndex.itemFields));
 		}
+		if (!this.#itemsByFuid || force) {
+			// const entries = await this.getEntries('Item', null, Object.values(CompendiumIndex.itemFields));
+			this.#itemsByFuid = Object.fromEntries(
+				Object.values(this.#itemsByType)
+					.flat()
+					.map((item) => [item.system.fuid, item]),
+			);
+		}
 		return this.#itemsByType;
 	}
 
@@ -210,6 +218,18 @@ export class CompendiumIndex {
 		}
 
 		return this.#itemsByFuid[fuid] ?? null;
+	}
+
+	/**
+	 *
+	 * @param {string} fuid A unique identifier used by the system
+	 * @returns {CompendiumIndexEntry} A compendium index entry
+	 * @remarks This version of the function will *not* load the index if it isn't already.
+	 * @see {@link getItemByFuid}
+	 */
+	getItemByFuidSync(fuid) {
+		if (!this.#itemsByFuid) return undefined;
+		return this.#itemsByFuid[fuid];
 	}
 
 	/**

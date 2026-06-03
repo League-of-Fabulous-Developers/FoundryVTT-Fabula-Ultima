@@ -25,9 +25,17 @@
 						<i class="fa fa-university button-style"></i>
 					</a>
 				</div>
+				{{/if}}
+				{{#if (or (eq actor.type "character") (and (eq actor.type "npc") (eq actor.system.rank.value "companion")))}}
 				<a class="rest-button button-style" data-tooltip="{{ localize 'FU.Rest' }}"
 					aria-describedby="tooltip" data-action="rest" >
-						<i class="fa fa-moon"></i><span>Rest</span>
+						<i class="fa fa-moon"></i><span>{{ localize 'FU.Rest' }}</span>
+					</a>
+				{{/if}}
+				{{#if (and (eq actor.type "npc") (ne actor.system.rank.value "companion"))}}
+					<a class="rest-button button-style" data-tooltip="{{ localize 'FU.Reset' }}"
+					   aria-describedby="tooltip" data-action="rest" >
+						<i class="fa fa-arrow-rotate-left"></i><span>{{localize "FU.Reset"}}</span>
 					</a>
 				{{/if}}
 			</div>

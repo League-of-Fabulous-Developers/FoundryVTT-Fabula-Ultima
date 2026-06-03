@@ -1,14 +1,17 @@
 <section class="pfu-layout__menu">
 	<header>
 		<div class="form-group">
-			<label for="theme" class="fu-form__property">
+			<label class="fu-form__property">
 				{{localize "FU.Theme"}}
 				<select name="theme" data-action="changeTheme">
-					<option value="">{{localize "FU.Custom"}}</option>
-					{{#each themes}}
-						<option value="{{@key}}">{{localize (concat "FU.THEMES." @key)}}</option>
-					{{/each}}
+					{{selectOptions themes selected=current blank="FU.Custom" valueAttr="value" labelAttr="label" localize=true}}
 				</select>
+			</label>
+		</div>
+		<div class="form-group">
+			<label class="fu-form__property">
+				{{localize "FU.ThemeFoundrySetting"}}
+				<input type="checkbox" name="themeFoundry" {{checked themeFoundry}}>
 			</label>
 		</div>
 		<div class="form-group buttons">

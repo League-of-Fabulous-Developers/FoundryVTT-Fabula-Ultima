@@ -45,7 +45,9 @@ class SkillsCompendiumTableRenderer extends CompendiumTableRenderer {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			sl: CommonColumns.propertyColumn('FU.SkillLevel', 'system.level.max'),
 			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value', {
-				mapFunction: (value) => StringUtils.titleToKebab(value),
+				mapFunction: (value) => {
+					return CompendiumIndex.instance.getItemByFuidSync(value)?.name ?? StringUtils.titleToKebab(value);
+				},
 			}),
 		},
 	};
@@ -62,7 +64,12 @@ class SpellsCompendiumTableRenderer extends CompendiumTableRenderer {
 				localizationRecord: FU.duration,
 			}),
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.amount'),
-			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
+			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value', {
+				mapFunction: (value) => {
+					if (value.toLowerCase() === 'npc') return 'ACTOR.TypeNpc';
+					return CompendiumIndex.instance.getItemByFuidSync(value)?.name ?? StringUtils.titleToKebab(value);
+				},
+			}),
 		},
 	};
 }
@@ -794,14 +801,25 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'spells':
 				{
-					const spells = await this.index.getItemsOfType('spell');
-					const classes = ['Elementalist', 'Entropist', 'Spiritist', 'NPC']; // hardcoded for now
-					const classOptions = classes.map((c) => {
+					const [spells, classes] = await Promise.all([this.index.getItemsOfType('spell'), this.index.getItemsOfType('class')]);
+					const classesWithSpells = spells
+						.map((spell) => spell.system.class.value)
+						.reduce((set, fuid) => {
+							set.add(fuid);
+							return set;
+						}, new Set());
+
+					const classOptions = classesWithSpells.map((fuid) => {
+						let label;
+						if (fuid.toLowerCase() === 'npc') label = 'ACTOR.TypeNpc';
+						else label = classes.find((item) => item.system.fuid === fuid)?.name ?? fuid;
+
 						return {
-							value: c,
-							label: c,
+							value: fuid,
+							label,
 						};
 					});
+
 					await this.onRenderTables(
 						[
 							{

@@ -8,9 +8,10 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
  */
 export class SupportModuleDataModel extends ClassFeatureDataModel {
 	static defineSchema() {
-		const { BooleanField, HTMLField } = foundry.data.fields;
+		const { BooleanField, NumberField, HTMLField } = foundry.data.fields;
 		return {
 			complex: new BooleanField(),
+			cost: new NumberField({ min: 0, initial: 1000, integer: true, nullable: false }),
 			description: new HTMLField(),
 		};
 	}
@@ -23,6 +24,10 @@ export class SupportModuleDataModel extends ClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/pilot/support-module-preview.hbs';
 	}
 
+	static get expandTemplate() {
+		return 'systems/projectfu/templates/feature/pilot/support-module-expand.hbs';
+	}
+
 	static get translation() {
 		return 'FU.ClassFeatureSupportModule';
 	}
@@ -30,9 +35,13 @@ export class SupportModuleDataModel extends ClassFeatureDataModel {
 	static async getAdditionalData(model) {
 		return {
 			enrichedDescription: await TextEditor.enrichHTML(model.description),
-			vehicle: model.actor?.system.vehicle.vehicle,
-			active: model.actor?.system.vehicle.supports.includes(model.item) ?? false,
+			vehicle: model.actor?.system.vehicle?.vehicle,
+			active: model.actor?.system.vehicle?.supports.includes(model.item) ?? false,
 		};
+	}
+
+	static get canStash() {
+		return true;
 	}
 
 	transferEffects() {

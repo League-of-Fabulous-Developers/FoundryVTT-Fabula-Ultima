@@ -3,12 +3,21 @@
    ========================= */
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* We use a slightly modified version of PT Sans Narrow */
+@font-face {
+	font-family: 'PFU Sans Narrow';
+	src: url('../../fonts/PFUSans-Narrow.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+	font-optical-sizing: auto;
+}
 
 @font-face {
 	font-family: 'Yanone Kaffeesatz';
@@ -126,7 +135,7 @@
    Typography Variables
    ========================= */
 :root {
-	--font-primary: 'PT Sans Narrow', sans-serif;
+	--font-primary: 'PFU Sans Narrow', sans-serif;
 	--font-secondary: 'Yanone Kaffeesatz', sans-serif;
 	--font-title: 'CreditValleybold';
 	--font-fancy: 'Playfair Display', 'Bodoni Moda', serif;
@@ -224,7 +233,6 @@
 /* ----------------------------------------- */
 /* Application Sheets                     
 /* ----------------------------------------- */
-.application.journal-sheet:not([id$='-popout']),
 .application.projectfu:not([id$='-popout']),
 .chat-message.message {
 	font-family: var(--font-primary);
@@ -715,7 +723,6 @@
 }
 
 /* Scoped CSS specifically for ProseMirror element */
-.application.journal-sheet,
 .application.projectfu {
 	.journal-entry-page,
 	.editor-content {

@@ -114,7 +114,7 @@ export class MnemosphereSheet extends FUItemSheet {
 	#heroicsTable = new MnemosphereHeroicsTableRenderer();
 	#spellsTable = new MnemosphereSpellsTableRenderer();
 	#featuresTable = new MnemosphereClassFeatureTables();
-	#otherItemsTable = new OtherItemsTableRenderer('skill', 'heroic', 'spell', 'classFeature');
+	#otherItemsTable = new OtherItemsTableRenderer(['skill', 'heroic', 'spell', 'classFeature']);
 
 	get isEditable() {
 		return super.isEditable && (!this.item.isEmbedded || !this.#sheetLocked);

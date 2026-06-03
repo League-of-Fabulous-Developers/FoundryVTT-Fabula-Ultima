@@ -383,7 +383,7 @@ async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
  */
 function getItemCost(item) {
 	let cost = 0;
-	if (item.type === 'customWeapon') {
+	if (['customWeapon', 'classFeature', 'optionalFeature'].includes(item.type)) {
 		cost = item.system.cost;
 	} else {
 		cost = item.system.cost.value;

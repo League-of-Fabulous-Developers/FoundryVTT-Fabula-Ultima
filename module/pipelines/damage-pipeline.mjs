@@ -369,12 +369,17 @@ function collectMultipliers(context) {
 		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	// When the pressure system is active, Affinities other than VU are still applied
-	// as Pressure Points are evaluated on HP loss rather than damage
-	if (!game.settings.get(SYSTEM, SETTINGS.pressureSystem) || (context.affinity !== 0 && context.affinity !== -1)) {
-		const modifier = affinityDamageModifier[context.affinity]();
-		context.addModifier('affinity', modifier);
+	const affinityModifier = affinityDamageModifier[context.affinity]();
+	let applyAffinity = true;
+
+	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+		const hasPressureClock = !!context.actor.resolveProgress('pressure');
+		const isStaggered = !!context.actor.resolveEffect('stagger')?.active;
+		// If they are not staggered, do not apply VU to the damage
+		if (hasPressureClock && !isStaggered && context.affinity === FU.affValue.vulnerability) applyAffinity = false;
 	}
+
+	if (applyAffinity) context.addModifier('affinity', affinityModifier);
 }
 
 /**

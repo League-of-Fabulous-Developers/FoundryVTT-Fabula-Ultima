@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p><span>When you </span><strong>rest</strong><span> inside a settlement, you gain <strong>【SL】 ingredients</strong></span>.</p><p>You may use an action and combine <strong>2 or 3 ingredients</strong> to prepare a <strong>delicacy</strong> and choose one option: you apply its effects to yourself or an ally you can see; <strong>or</strong> you perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply the delicacy's effects to each enemy hit by the attack.</p><p>You may carry <strong>up to 10 +【SL × 5】ingredients</strong>, and they <strong>will never spoil until you use them</strong>; if you take this Skill during character creation, you begin play with <strong>ten </strong>ingredients with random tastes.</p><hr /><p>For <strong>cooking</strong> breakdown and a list of <strong>Ingredients &amp; Delicacies</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4]{Gourmet Rules} or see <strong>Natural Fantasy Atlas</strong>, page <strong>150</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4.JournalEntryPage.fDzgptyBKkS5y2YY]{Cookbook VTT Instructions}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><span>When you </span><strong>rest</strong><span> inside a settlement, you gain <strong>【SL】 ingredients</strong></span>.</p><p>You may use an action and combine <strong>2 or 3 ingredients</strong> to prepare a <strong>delicacy</strong> and choose one option: you apply its effects to yourself or an ally you can see; <strong>or</strong> you perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply the delicacy's effects to each enemy hit by the attack.</p><p>You may carry <strong>up to 10 +【SL × 5】ingredients</strong>, and they <strong>will never spoil until you use them</strong>; if you take this Skill during character creation, you begin play with <strong>ten</strong> ingredients with random tastes.</p><hr /><p>For <strong>cooking</strong> breakdown and a list of <strong>Ingredients &amp; Delicacies</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4]{Gourmet Rules} or see <strong>Natural Fantasy Atlas</strong>, page <strong>150</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4.JournalEntryPage.fDzgptyBKkS5y2YY]{Cookbook VTT Instructions}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,10 +23,6 @@
       "accuracy": true,
       "damage": false
     },
-    "attributes": {
-      "primary": "ins",
-      "secondary": "mig"
-    },
     "accuracy": 0,
     "defense": "",
     "damage": {
@@ -39,7 +31,7 @@
       "type": "untyped",
       "onRoll": "",
       "onApply": "",
-      "hrZero": true
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -83,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1775546574504,
+    "modifiedTime": 1779263078128,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

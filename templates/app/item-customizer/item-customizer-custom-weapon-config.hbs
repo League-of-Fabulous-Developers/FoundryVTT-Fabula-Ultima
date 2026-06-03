@@ -1,0 +1,66 @@
+<form class="resource-content desc">
+	{{#if system.isTransforming}}
+		<fieldset class="desc gap-2 mb-5" style="--font-size-12: var(--font-size-15);">
+			<label>{{localize "FU.CustomWeaponFormActive"}}</label>
+			<div class="form-fields">
+				<div class="form-group">
+				{{radioBoxes "system.activeForm" weaponForms checked=system.activeForm}}
+				</div>
+			</div>
+		</fieldset>
+	{{/if}}
+	<fieldset class="desc grid grid-3col gap-5 mb-5">
+		<label>
+			{{localize 'FU.Primary'}}
+			<select name="system.{{system.activeForm}}.attributes.primary">
+				{{selectOptions FU.attributeAbbreviations selected=system.attributes.primary localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.Secondary'}}
+			<select name="system.{{system.activeForm}}.attributes.secondary">
+				{{selectOptions FU.attributeAbbreviations selected=system.attributes.secondary localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize "FU.Accuracy"}}
+			<input type="number" name="system.{{system.activeForm}}.accuracy" value="{{system.accuracy}}" />
+		</label>
+	</fieldset>
+
+	<fieldset class="grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;">
+		<label>
+			{{localize 'FU.DamageBonus'}}
+			<input type="number" name="system.{{system.activeForm}}.damage.value" value="{{system.damage.value}}" />
+		</label>
+
+		<label>
+			{{localize 'FU.DamageType'}}
+			<select name="system.{{system.activeForm}}.damage.type">
+				{{selectOptions FU.damageTypes selected=system.damage.type localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.HRZero'}}
+			<input type="checkbox" data-action="toggleHrZero" {{checked hrZero}} />
+		</label>
+
+		<label>
+			{{localize 'FU.WeaponType'}}
+			<select name="system.{{system.activeForm}}.type">
+				{{selectOptions FU.weaponTypes selected=system.type localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.DefenseType'}}
+			<select name="system.defense">
+				{{selectOptions FU.defenses selected=system.defense localize=true labelAttr='abbr'}}
+			</select>
+		</label>
+
+	</fieldset>
+</form>

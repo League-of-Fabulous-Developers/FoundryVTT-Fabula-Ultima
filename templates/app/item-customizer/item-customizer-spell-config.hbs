@@ -3,16 +3,16 @@
 	<fieldset class="desc grid grid-2col gap-5 mb-5">
 		<label>
 			{{localize "FU.IsOffensive"}}
-			<input type="checkbox" name="system.isOffensive.value" {{checked system.isOffensive.value}} />
+			<input type="checkbox" name="system.hasRoll.value" {{checked system.hasRoll.value}} />
 		</label>
 
 		<label>
 			{{localize "FU.HasDamage"}}
-			<input type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{checked system.rollInfo.damage.hasDamage.value}} {{disabled (not system.isOffensive.value)}} />
+			<input type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{checked system.rollInfo.damage.hasDamage.value}} {{disabled (not system.hasRoll.value)}} />
 		</label>
 
 	</fieldset>
-	<fieldset class="desc grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not system.isOffensive.value)}}>
+	<fieldset class="desc grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not system.hasRoll.value)}}>
 		<label>
 			{{localize 'FU.Primary'}}
 			<select name="system.attributes.primary.value">
@@ -33,7 +33,7 @@
 		</label>
 	</fieldset>
 
-	<fieldset class="grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not (and system.isOffensive.value system.rollInfo.damage.hasDamage.value))}}>
+	<fieldset class="grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not (and system.hasRoll.value system.rollInfo.damage.hasDamage.value))}}>
 		<label>
 			{{localize 'FU.DamageBonus'}}
 			<input type="number" name="system.rollInfo.damage.value" value="{{system.rollInfo.damage.value}}" />

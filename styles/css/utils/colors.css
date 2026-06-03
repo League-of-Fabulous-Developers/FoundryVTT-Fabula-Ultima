@@ -377,7 +377,7 @@
 }
 
 /* ===================== DARK THEME OVERRIDES ===================== */
-.theme-dark {
+.theme-dark .projectfu {
 	/* ===================== CORE BACKGROUND COLORS ===================== */
 	--color-primary-bg: #151f1f;
 	--color-secondary-bg: #252525;

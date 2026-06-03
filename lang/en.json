@@ -1994,6 +1994,20 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"ClassFeatureVehicleModules": "Vehicle Modules",
+		"DialogCreateItemSelectTypeContent": "Select the type of item you want to create:",
+		"DialogCreateItemSelectTypeTitle": "Select Item Type",
+		"GreaterThanOrEqual": "Greater Than Or Equal",
+		"LessThanOrEqual": "Less Than Or Equal",
+		"CompendiumMigrateItemKeepImages": "Keep item images unchanged",
+		"CompendiumMigrateItemKeepNames": "Keep item names unchanged",
+		"MagicCheckDialogUseWeaponCheckTitle": "Use Weapon?",
+		"MagicCheckDialogUseWeaponCheckContent": "Use weapon accuracy for Magic Check?",
+		"AdversaryInActiveCombat": "In Active Combat",
+		"AdversaryFilterMisc": "Miscellaneous",
+		"AbilityNoWeaponSelected": "No weapon selected!",
+		"ThemeFoundrySetting": "Apply Theme to Core Foundry",
+		"ThemeFoundrySettingHint": "If enabled, the theme configured for the ProjectFU system will also be applied to many parts of the core Foundry interface."
 	}
 }

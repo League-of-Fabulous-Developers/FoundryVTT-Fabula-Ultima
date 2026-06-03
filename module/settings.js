@@ -51,6 +51,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	// Theme
 	theme: 'theme',
+	themeFoundry: 'themeFoundry',
 	themeOptions: 'themeOptions',
 	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
@@ -274,6 +275,17 @@ export const registerSystemSettings = async function () {
 			console.info(`Applying theme ${value}`);
 			return Theme.from(value).apply();
 		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.themeFoundry, {
+		name: game.i18n.localize('FU.ThemeFoundrySetting'),
+		hint: game.i18n.localize('FU.ThemeFoundrySettingHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
+		onChange: (setting) => document.body.classList.toggle('apply-theme-foundry', setting),
 	});
 
 	// CHAT MESSAGE OPTIONS

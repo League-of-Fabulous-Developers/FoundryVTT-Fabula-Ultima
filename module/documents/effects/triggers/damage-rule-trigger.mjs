@@ -2,6 +2,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs';
 
 const fields = foundry.data.fields;
 
@@ -28,7 +29,7 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			damageType: new fields.StringField({
 				initial: '',
 				choices: Object.keys(FU.damageTypes),
@@ -41,11 +42,14 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 			}),
 			itemGroups: new fields.SetField(new fields.StringField()),
 			damageThreshold: new fields.SchemaField({
-				operator: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.comparisonOperator) }),
+				operator: new fields.StringField({
+					initial: '',
+					blank: true,
+					choices: Object.keys(FU.comparisonOperator),
+				}),
 				amount: new fields.NumberField({ initial: 0 }),
 			}),
 		});
-		return schema;
 	}
 
 	static migrateData(source) {
@@ -85,20 +89,10 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 		}
 
 		if (this.damageThreshold.operator) {
-			switch (this.damageThreshold.operator) {
-				case 'greaterThan':
-					if (context.event.amount >= this.damageThreshold.amount) {
-						return true;
-					}
-					break;
-
-				case 'lessThan':
-					if (context.event.amount <= this.damageThreshold.amount) {
-						return true;
-					}
-					break;
+			const comparisonOperation = ComparisonOperations[this.threshold.operator];
+			if (!comparisonOperation(context.event.amount, this.threshold.amount)) {
+				return false;
 			}
-			return false;
 		}
 
 		if (this.affinity) {

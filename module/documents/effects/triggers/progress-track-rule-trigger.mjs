@@ -2,6 +2,7 @@ import { FU } from '../../../helpers/config.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
+import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs';
 
 const fields = foundry.data.fields;
 
@@ -22,8 +23,8 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
-			value: new fields.NumberField({ blank: true }),
+		return Object.assign(super.defineSchema(), {
+			value: new fields.NumberField(),
 			identifier: new fields.StringField({ initial: '' }),
 			local: new fields.BooleanField({ initial: false }),
 			comparisonOperator: new fields.StringField({
@@ -35,8 +36,6 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 				},
 			}),
 		});
-
-		return schema;
 	}
 
 	static get localization() {
@@ -66,16 +65,15 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 		const actorProgress = context.character?.actor?.resolveProgress(this.identifier);
 		if (actorProgress !== progress) return false;
 
-		switch (this.comparisonOperator) {
-			case 'max':
-				return progress.current >= progress.max;
-			case 'greaterThan':
-				return progress.current > this.value;
-			case 'lessThan':
-				return progress.current < this.value;
-			case 'equals':
-				return progress.current === this.value;
+		if (this.comparisonOperator === 'max') {
+			return progress.current >= progress.max;
 		}
-		return false;
+
+		if (!Number.isInteger(this.value)) {
+			return false;
+		}
+
+		const comparisonOperation = ComparisonOperations[this.comparisonOperator];
+		return comparisonOperation(progress.current, this.value);
 	}
 }

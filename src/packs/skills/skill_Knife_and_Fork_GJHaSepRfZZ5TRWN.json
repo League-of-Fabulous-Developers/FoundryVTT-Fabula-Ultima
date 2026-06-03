@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/gourmet/knife_and_fork.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>When you perform the <strong>free attack</strong> granted by the <strong>Cooking</strong> Skill, if you combined <strong>no more than 2 ingredients</strong>, you may have the attack deal damage as normal. If you do, you treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -25,11 +21,8 @@
     },
     "useWeapon": {
       "accuracy": true,
-      "damage": true
-    },
-    "attributes": {
-      "primary": "ins",
-      "secondary": "mig"
+      "damage": true,
+      "traits": true
     },
     "accuracy": 0,
     "defense": "",
@@ -62,6 +55,11 @@
     "targeting": {
       "rule": "special",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -78,7 +76,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1770409639011,
+    "modifiedTime": 1779263095026,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

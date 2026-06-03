@@ -48,4 +48,8 @@ export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 		}
 		return undefined;
 	}
+
+	get cost() {
+		return this.data.cost;
+	}
 }

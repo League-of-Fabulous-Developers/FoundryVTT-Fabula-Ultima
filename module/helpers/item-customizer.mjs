@@ -97,6 +97,46 @@ class WeaponModuleHandler extends ItemHandler {
 	}
 }
 
+class CustomWeaponHandler extends ItemHandler {
+	#hrZero = false;
+
+	static supports(item) {
+		return item?.type === 'customWeapon';
+	}
+
+	get comparisonTemplate() {
+		return 'systems/projectfu/templates/app/item-customizer/item-customizer-custom-weapon-comparison.hbs';
+	}
+
+	get configurationTemplate() {
+		return 'systems/projectfu/templates/app/item-customizer/item-customizer-custom-weapon-config.hbs';
+	}
+
+	prepareComparison(context) {
+		super.prepareComparison(context);
+		context.workingCopy.hrZero = this.#hrZero;
+	}
+
+	prepareConfiguration(context) {
+		super.prepareConfiguration(context);
+		context.hrZero = this.#hrZero;
+		if (this.item.system.isTransforming) {
+			context.weaponForms = {
+				primaryForm: this.item.system.primaryForm.name || game.i18n.localize('FU.CustomWeaponFormPrimary'),
+				secondaryForm: this.item.system.secondaryForm.name || game.i18n.localize('FU.CustomWeaponFormSecondary'),
+			};
+		}
+	}
+
+	toggleHrZero(event, target) {
+		this.#hrZero = target.checked;
+	}
+
+	roll() {
+		this.workingCopy.roll({ shift: this.#hrZero });
+	}
+}
+
 /**
  * @type {Record<string, typeof ItemHandler>}
  */
@@ -105,6 +145,7 @@ const ITEM_HANDLERS = {
 	basic: WeaponHandler,
 	spell: SpellHandler,
 	weaponModule: WeaponModuleHandler,
+	customWeapon: CustomWeaponHandler,
 };
 
 export class ItemCustomizer extends FUApplication {
@@ -170,7 +211,7 @@ export class ItemCustomizer extends FUApplication {
 			ui.notifications.error('No item');
 			throw new Error('No item');
 		}
-		this.#workingCopy = item.toObject(false);
+		this.#workingCopy = this.#createWorkingCopy(this.#item);
 
 		const HandlerConstructor = Object.values(ITEM_HANDLERS)
 			.filter((handler) => handler.supports(item))
@@ -205,10 +246,10 @@ export class ItemCustomizer extends FUApplication {
 		context = { ...context };
 
 		if (partId === 'comparison') {
-			this.#handler.prepareComparison(context);
 			context.item = this.#item;
 			context.workingCopy = this.#workingCopy;
 			context.template = this.#handler.comparisonTemplate;
+			this.#handler.prepareComparison(context);
 		}
 
 		if (partId === 'config') {
@@ -218,35 +259,58 @@ export class ItemCustomizer extends FUApplication {
 		return super._preparePartContext(partId, context, options);
 	}
 
+	/**
+	 * @override
+	 */
+	_onClickAction(event, target) {
+		const action = target.dataset.action;
+
+		if (typeof this.#handler[action] === 'function') {
+			this.#handler[action](event, target);
+			event.stopPropagation();
+			event.preventDefault();
+			this.render();
+			return;
+		}
+
+		console.warn('Unhandled action:', target.dataset.action, event, target);
+	}
+
+	#createWorkingCopy(item) {
+		return item.clone({}, { keepId: true });
+	}
+
 	static async #onModify() {
-		await this.#item.update(this.#workingCopy);
+		await this.#item.update(this.#workingCopy.toObject(true));
 		ui.notifications.info(`${this.#item.name} modified for ${this.#actor.name}`);
 		this.close();
 	}
 
 	static async #onClone() {
-		const newItemData = foundry.utils.deepClone(this.#workingCopy);
-		newItemData.name = `${newItemData.name} (Modified)`;
-		await Item.create(newItemData, { parent: this.#actor });
+		this.#workingCopy.updateSource({ _id: null, name: `${this.#workingCopy.name} (Modified)` });
+		await Item.create(this.#workingCopy, { parent: this.#actor });
 
 		ui.notifications.info(`${this.#item.name} cloned and added to ${this.#actor.name}`);
 		this.close();
 	}
 
 	static #onRoll() {
-		const clonedItem = this.#item.clone(this.#workingCopy, { keepId: true });
-		clonedItem.roll();
+		if (typeof this.#handler.roll === 'function') {
+			this.#handler.roll();
+		} else {
+			this.#workingCopy.roll();
+		}
 		this.close();
 	}
 
 	static #onReset() {
-		this.#workingCopy = this.#item.toObject(false);
+		this.#workingCopy = this.#createWorkingCopy(this.#item);
 		this.render();
 	}
 
 	static #onConfigFormSubmit(event, form, formData) {
 		const data = foundry.utils.expandObject(formData.object);
-		foundry.utils.mergeObject(this.#workingCopy, data);
+		this.#workingCopy.updateSource(data);
 		this.render();
 	}
 }

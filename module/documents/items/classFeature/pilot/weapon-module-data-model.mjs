@@ -117,7 +117,7 @@ export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFea
 				choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
 			}),
 			complex: new BooleanField(),
-			cost: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }),
+			cost: new NumberField({ initial: 500, min: 0, integer: true, nullable: false }),
 			quality: new StringField(),
 			shield: new SchemaField({
 				defense: new NumberField({ initial: 2 }),
@@ -134,6 +134,10 @@ export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFea
 
 	static get previewTemplate() {
 		return 'systems/projectfu/templates/feature/pilot/weapon-module-preview.hbs';
+	}
+
+	static get expandTemplate() {
+		return 'systems/projectfu/templates/feature/pilot/weapon-module-expand.hbs';
 	}
 
 	static get translation() {
@@ -154,10 +158,14 @@ export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFea
 			damageTypes: FU.damageTypes,
 			weaponTypes: weaponModuleTypes,
 			weaponCategories: FU.weaponCategoriesWithoutCustom,
-			vehicle: model.actor?.system.vehicle.vehicle,
+			vehicle: model.actor?.system.vehicle?.vehicle,
 			active: model.actor?.system.vehicle?.weapons.includes(model.item) ?? false,
 			defenses: FU.defenses,
 		};
+	}
+
+	static get canStash() {
+		return true;
 	}
 
 	/**

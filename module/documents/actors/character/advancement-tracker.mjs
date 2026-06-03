@@ -665,7 +665,7 @@ export class AdvancementTracker {
 		});
 
 		/** @type AdvancementSkillUpdate[] **/
-		const result = await dialog.open();
+		const { selected: result } = await dialog.open();
 		if (result) {
 			await Promise.all(result.map((update) => update.item.update({ 'system.level.value': update.targetLevel })));
 			ui.notifications.info(`Synchronized ${result.length} skills.`);
@@ -689,7 +689,7 @@ export class AdvancementTracker {
 			getDescription: (item) => item.system.description,
 			title: 'FU.AdvancementsPruneItems',
 		});
-		const result = await dialog.open();
+		const { selected: result } = await dialog.open();
 		if (result) {
 			await actor.deleteEmbeddedDocuments(
 				'Item',

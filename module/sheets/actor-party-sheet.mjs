@@ -27,6 +27,8 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
 import { CodexBrowser } from '../ui/codex-browser.mjs';
+import { VehicleModuleTableRenderer } from '../helpers/tables/vehicle-module-table-renderer.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -43,11 +45,9 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static DEFAULT_OPTIONS = {
 		actions: {
-			createItem: this.#onCreate,
 			editItem: this.#onEdit,
 			roll: this.#onRoll,
 			clearInventory: this.#onClearInventory,
-			createEquipment: this.#onCreateEquipment,
 			shareItem: this.#onShareItem,
 			lootItem: this.#onLootItem,
 			distributeZenit: this.#onDistributeZenit,
@@ -143,11 +143,18 @@ export class FUPartySheet extends FUActorSheet {
 	#technospheresTable = new TechnospheresTableRenderer();
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
-	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon', 'customWeapon');
+	#vehicleModulesTable = new VehicleModuleTableRenderer({ hideIfEmpty: true });
+	#otherItemsTable = new OtherItemsTableRenderer({
+		excludedTypes: ['accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon', 'customWeapon'],
+		excludedFeatureTypes: [FU.classFeatures.armorModule, FU.classFeatures.weaponModule, FU.classFeatures.supportModule],
+	});
 	#codexBrowser;
 	#codexDrop;
 	/** @type SheetExtensions **/
 	#extensions;
+	#lastAdversarySearch = '';
+
+	#adversaryFilters = {};
 
 	constructor(...args) {
 		super(...args);
@@ -210,6 +217,19 @@ export class FUPartySheet extends FUActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
+
+		// Ranks are purposefully not sorted, so they appear in natural order
+		context.adversaryRanks = Object.entries(FU.rank).map(([key, value]) => ({ value: key, label: value, checked: !!this.#adversaryFilters.rank?.includes(key) }));
+		context.adversarySpecies = Object.entries(FU.species)
+			.map(([key, value]) => ({ value: key, label: game.i18n.localize(value), checked: !!this.#adversaryFilters.species?.includes(key) }))
+			.sort((a, b) => a.label.localeCompare(b.label));
+
+		context.adversarySearch = this.#lastAdversarySearch;
+
+		context.adversaryMiscFilters = [];
+
+		if (game.combat) context.adversaryMiscFilters.unshift({ value: 'inCombat', label: 'FU.AdversaryInActiveCombat', checked: !!this.#adversaryFilters.misc?.includes('inCombat') });
+
 		context.currency = getCurrencyString();
 		if (this.extensions) {
 			await this.extensions.prepareContext(context);
@@ -284,6 +304,7 @@ export class FUPartySheet extends FUActorSheet {
 				}
 				context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 				context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
+				context.vehicleModulesTable = await this.#vehicleModulesTable.renderTable(this.document);
 				context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 				break;
 			}
@@ -340,6 +361,50 @@ export class FUPartySheet extends FUActorSheet {
 		this.setupCharacterContextMenu(html);
 	}
 
+	async _applyAdversaryFilters() {
+		const elements = Array.from(this.element.querySelectorAll('.adversaries .section-container.entry.character-option'));
+		for (const element of elements) {
+			let display = true;
+
+			const uuid = element.dataset.uuid;
+			if (!uuid) continue;
+
+			const adversary = this.party.getAdversary(uuid);
+			if (!adversary) continue;
+
+			if (this.#lastAdversarySearch && !adversary.name.toLowerCase().includes(this.#lastAdversarySearch.toLowerCase())) display = false;
+
+			if (this.#adversaryFilters.rank) {
+				for (const rank of this.#adversaryFilters.rank) {
+					if (adversary.rank !== rank) {
+						display = false;
+						continue;
+					}
+				}
+			}
+
+			if (this.#adversaryFilters.species) {
+				for (const species of this.#adversaryFilters.species) {
+					if (adversary.species !== species) {
+						display = false;
+						continue;
+					}
+				}
+			}
+
+			if (this.#adversaryFilters.misc) {
+				for (const misc of this.#adversaryFilters.misc) {
+					switch (misc) {
+						case 'inCombat':
+							if (!game.combat.hasInstancedActor(adversary.uuid)) display = false;
+					}
+				}
+			}
+
+			element.classList.toggle('hidden', !display);
+		}
+	}
+
 	/**
 	 * Attach event listeners to rendered template parts.
 	 * @param {string} partId The id of the part being rendered
@@ -350,6 +415,36 @@ export class FUPartySheet extends FUActorSheet {
 	_attachPartListeners(partId, html, options) {
 		super._attachPartListeners(partId, html, options);
 		switch (partId) {
+			case 'adversaries':
+				{
+					const searchInput = this.element.querySelector('#adversarySearch');
+					if (searchInput instanceof HTMLInputElement) {
+						searchInput.addEventListener(
+							'input',
+							HTMLUtils.debounce(() => {
+								this.#lastAdversarySearch = searchInput.value;
+								this._applyAdversaryFilters();
+							}, 150),
+						);
+					}
+
+					const filterChecks = Array.from(this.element.querySelectorAll(`.fu-filter-option input[type="checkbox"]`));
+					for (const check of filterChecks) {
+						check.addEventListener('change', () => {
+							const category = check.dataset.category;
+							const option = check.dataset.option;
+							this.#adversaryFilters[category] ??= [];
+							if (check.checked) {
+								this.#adversaryFilters[category].push(option);
+							} else if (Array.isArray(this.#adversaryFilters[category])) {
+								const index = this.#adversaryFilters[category].indexOf(option);
+								if (index !== -1) this.#adversaryFilters[category].splice(index, 1);
+							}
+							this._applyAdversaryFilters();
+						});
+					}
+				}
+				break;
 			case 'codex':
 				{
 					this.codexBrowser.attachListeners(html);
@@ -403,6 +498,7 @@ export class FUPartySheet extends FUActorSheet {
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#equipmentTable.activateListeners(this);
+		this.#vehicleModulesTable.activateListeners(this);
 		this.#technospheresTable.activateListeners(this);
 		this.#treasuresTable.activateListeners(this);
 		this.#consumablesTable.activateListeners(this);
@@ -455,6 +551,8 @@ export class FUPartySheet extends FUActorSheet {
 
 		// Update the code browser
 		this.codexBrowser.refresh(this.actor, this.element);
+
+		await this._applyAdversaryFilters();
 	}
 
 	/** @inheritdoc */
@@ -1048,7 +1146,7 @@ export class FUPartySheet extends FUActorSheet {
 			if (items.length > 0) groups.push({ name: group.name, items });
 		}
 
-		const selected = await new ItemSelectionDialog({
+		const { selected } = await new ItemSelectionDialog({
 			title: `${StringUtils.localize('CONTROLS.CommonSelect')} ${game.i18n.localize('FU.Actor')}`,
 			style: 'grouped-list',
 			groups,
@@ -1157,7 +1255,7 @@ export class FUPartySheet extends FUActorSheet {
 
 		try {
 			const dialog = new ItemSelectionDialog(data);
-			const selectedPages = await dialog.open();
+			const { selected: selectedPages } = await dialog.open();
 
 			if (selectedPages && selectedPages.length > 0) {
 				const pages = selectedPages.map((item) => item._originalPage);
@@ -1257,9 +1355,11 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	async revealNpc(uuid) {
 		const data = this.party.getAdversary(uuid);
-		if (data) {
-			new NpcProfileWindow(data, {
+		const actor = await foundry.utils.fromUuid(data?.uuid);
+		if (data && actor) {
+			new NpcProfileWindow(actor, data, {
 				title: data.name,
+				party: this.document,
 			}).render(true);
 		} else {
 			ui.notifications.warn(`Did not find an NPC profile for ${uuid}`);
@@ -1446,21 +1546,6 @@ export class FUPartySheet extends FUActorSheet {
 		return [];
 	}
 
-	static #onCreate(event, target) {
-		const type = target.dataset.type;
-
-		if (!type) {
-			return;
-		}
-		const itemData = {
-			type: type,
-		};
-
-		itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
-
-		foundry.documents.Item.create(itemData, { parent: this.actor });
-	}
-
 	static #onEdit(event, target) {
 		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
 		let item = this.actor.items.get(itemId);
@@ -1495,22 +1580,6 @@ export class FUPartySheet extends FUActorSheet {
 		if (clear) {
 			console.debug(`Clearing all items from actor ${this.actor}`);
 			return this.actor.clearEmbeddedItems();
-		}
-	}
-
-	static async #onCreateEquipment() {
-		const itemType = await foundry.applications.api.DialogV2.wait({
-			window: { title: `${game.i18n.localize('FU.Create')} ${game.i18n.localize('FU.Item')}` },
-			content: '',
-			rejectClose: false,
-			buttons: ['accessory', 'armor', 'shield', 'weapon'].map((choice) => ({
-				action: choice,
-				label: game.i18n.localize(CONFIG.Item.typeLabels[choice]),
-			})),
-		});
-
-		if (itemType) {
-			foundry.documents.Item.create({ type: itemType, name: foundry.documents.Item.defaultName({ type: itemType, parent: this.actor }) }, { parent: this.actor });
 		}
 	}
 
