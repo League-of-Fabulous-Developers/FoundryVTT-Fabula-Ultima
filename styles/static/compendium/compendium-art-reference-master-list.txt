@@ -1,15 +1,20 @@
-**Pixeltier** - All art referenced below are used in the system compendium and are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
-fantasy-rpg: rpg - [Pixeltier’s Icons: Fantasy RPG (16x16)](https://pixeltier.itch.io/pixeltiers-16x16-rpg-icon-pack)
-modern-rpg - [Pixeltier's Icons: Modern Survival RPG (16x16)](https://pixeltier.itch.io/pixeltiers-modern-rpg-icon-set)
-alchemy-rpg - [Pixeltier’s Icons: Alchemy Ingredients & Tools (16x16)](https://pixeltier.itch.io/pixeltiers-alchemy-rpg-icon-pack)
-cyberpunk-rpg - [Pixeltier’s Icons: Cyberpunk RPG (16x16)](https://pixeltier.itch.io/pixeltiers-cyberpunk-rpg-icon-pack)
-halloween-rpg - [Pixeltier’s Icons: FREE Halloween Items (16x16)](https://pixeltier.itch.io/pixeltiers-icons-free-halloween-items)
-sword-rpg - [Pixeltier’s Icons: Swords (16x16)](https://pixeltier.itch.io/pixeltiers-icons-swords)
-magic-rpg - [Pixeltier’s Icons: Magic & Wizardry (16x16)](https://pixeltier.itch.io/pixeltiers-icons-staves-spellbooks-orbs-scrolls)
+Compendium art reference
 
-----------------------------------------------------
+This file maps each compendium folder to its source artist or pack.
+When a folder is fully sourced from one creator, the whole folder is credited together.
+Exceptions are called out inline.
+
+Pixeltier packs
+License for Pixeltier can be found here: https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/styles/static/compendium/license.txt
+fantasy-rpg: Pixeltier’s Icons: Fantasy RPG (16x16) https://pixeltier.itch.io/pixeltiers-16x16-rpg-icon-pack
+modern-rpg: Pixeltier’s Icons: Modern Survival RPG (16x16) https://pixeltier.itch.io/pixeltiers-modern-rpg-icon-set
+alchemy-rpg: Pixeltier’s Icons: Alchemy Ingredients & Tools (16x16) https://pixeltier.itch.io/pixeltiers-alchemy-rpg-icon-pack
+cyberpunk-rpg: Pixeltier’s Icons: Cyberpunk RPG (16x16) https://pixeltier.itch.io/pixeltiers-cyberpunk-rpg-icon-pack
+halloween-rpg: Pixeltier’s Icons: FREE Halloween Items (16x16) https://pixeltier.itch.io/pixeltiers-icons-free-halloween-items
+sword-rpg: Pixeltier’s Icons: Swords (16x16) https://pixeltier.itch.io/pixeltiers-icons-swords
+magic-rpg: Pixeltier’s Icons: Magic & Wizardry (16x16) https://pixeltier.itch.io/pixeltiers-icons-staves-spellbooks-orbs-scrolls
+
 [projectfu\styles\static\compendium\armor\*]
-
 Armor/Shield Assets:
 no-armor (modern-rpg, shirt_063)
 travel-garb (fantasy-rpg, jacket_1)
@@ -23,31 +28,28 @@ runic-plate (fantasy-rpg, armor_5)
 steel-plate (fantasy-rpg, armor_72)
 bronze-shield (fantasy-rpg, shield_65)
 
----------------------------------------------------
 [projectfu\styles\static\compendium\consumables\*]
-
 Consumables Assets:
 elixir (alchemy-rpg, bottle_002)
 remedy (alchemy-rpg, bottle_001)
 tonic (alchemy-rpg, bottle_004)
 elemental-shard (fantasy-rpg, crystal_7)
-tent (custom-made by drak273)
+magic-tent (custom-made by drak273)
 
---------------------------------------------------
 [projectfu\styles\static\compendium\ui\*]
-
 UI Assets:
-coins_5 (fantasy-rpg, coins_5)
+coins_5 (Pixeltier, fantasy-rpg, coins_5)
+fp (Pixeltier)
+up (Pixeltier)
+xp (Pixeltier)
 
---------------------------------------------------
 [projectfu\styles\static\compendium\weapon-modules\*]
-
 Weapon Modules Assets:
 arcane-module (fantasy-rpg, magicweapon_20)
 axe-module (fantasy-rpg, axe_122)
 blade-module (fantasy-rpg, sword_164)
 bow-module (fantasy-rpg, bow_25)
-claw_module (fantasy-rpg, magicweapon_12)
+claw-module (fantasy-rpg, magicweapon_12)
 claymore-module (sword-rpg, sword_020)
 esoteric-module (fantasy-rpg, magicweapon_3)
 flail-module (fantasy-rpg, weapon_182)
@@ -61,9 +63,7 @@ scythe-module (halloween-rpg, scyther)
 sword-module (fantasy-rpg, sword_165)
 trident-module (fantasy-rpg, misc-weapon-weapon_94)
 
-----------------------------------------------------
 [projectfu\styles\static\compendium\weapons\*]
-
 Weapon Assets:
 broadaxe (fantasy-rpg, axe_40)
 bronze-sword (fantasy-rpg, sword_136)
@@ -74,6 +74,8 @@ heavy-spear (fantasy-rpg, weapon_25)
 improvied-melee (fantasy-rpg, log_7)
 improvised-ranged (fantasy-rpg, fabric3_3)
 iron-hammer (fantasy-rpg, hammer_14)
+iron-knuckle (current version custom-made by Mildew)
+iron-knuckle (previous version custom-made by RubenE, social: @only_ruben_draw)
 katana (fantasy-rpg, sword_130)
 light-spear (fantasy-rpg, weapon_3)
 pistol (fantasy-rpg, gun_1)
@@ -85,44 +87,8 @@ steel-dagger (fantasy-rpg, sword_88)
 tome (fantasy-rpg, book_11)
 unarmed-strike (fantasy-rpg, glove_1)
 waraxe (fantasy-rpg, axe_16)
- 
-iron-knuckles (current version custom-made by Mildew)
-iron-knuckles (previous version custom-made by RubenE) (Social: @/only_ruben_draw)
 
---------------------------------------------------
-[projectfu\styles\static\compendium\classes\arcanum\*]
-
-Arcanum Assets:
-arcanum-of-the-frost (fantasy-rpg, gem_7)
-arcanum-of-the-grimoire (fantasy-rpg, gem_9)
-arcanum-of-the-oak (fantasy-rpg, gem_09)
-arcanum-of-the-sword (fantasy-rpg, gem_05)
-arcanum-of-the-tower (fantasy-rpg, gem_02)
-arcanum-of-the-wheel (fantasy-rpg, gem_10)
-arcanum-of-the-forge (fantasy-rpg, recolor of gem_*)
-arcanum-of-the-gate (fantasy-rpg, recolor of gem_*)
-arcanum-of-the-sky (fantasy-rpg, recolor of gem_*)
-
---------------------------------------------------
-[projectfu\styles\static\compendium\classes\*]
-[projectfu\styles\static\compendium\technospheres\*]
-
-A majority of the pixel art, unless specified otherwise, found in the following folders are provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
-Javier Aumente (Tarot) (Contact Email: <jaauvel@gmail.com>)
-With the exception of the following:
-[projectfu\styles\static\compendium\classes\arcanist\arcanum*] (fantasy-rpg, gem_*)
-[projectfu\styles\static\compendium\classes\arcanist-rework\arcanum*] (fantasy-rpg, recolor of gem_*)
-[projectfu\styles\static\compendium\classes\guardian\twin-shields\*] Twin Shield Assets: twin-shield (fantasy-rpg, recolor of shield_110)
-[projectfu\styles\static\compendium\classes\elementalist\spells\boulder.png] Boulder (custom-made by Kami lucky)
-
---------------------------------------------------
-The Mnemosphere icons in the following folders are a combination of the respective class icon by Javier Aumente (Tarot) and orb_002.png by Pixeltier, created with permission by the respective authors.
-[projectfu\styles\static\compendium\classes\*\*_mnemosphere.png]
-
-
---------------------------------------------------
 [projectfu\styles\static\compendium\rare-equipment\accessories\*]
-
 Accessory Assets:
 amulet-goldring-black (fantasy-rpg, recolor of amulet_23)
 amulet-goldring-blue (fantasy-rpg, amulet_13)
@@ -183,9 +149,7 @@ shoe-lightbrown-short (fantasy-rpg, shoe_15)
 star-iron (magic-rpg, recolor of falling_star)
 tophat (modern-rpg, hat_020)
 
---------------------------------------------------
 [projectfu\styles\static\compendium\rare-equipment\armor\*]
-
 Armor Assets:
 armor-arcane (fantasy-rpg, armor_114)
 armor-avenger (fantasy-rpg, armor_8)
@@ -206,9 +170,7 @@ robe-red (fantasy-rpg, recolor of cloak_3)
 robe-yellow (fantasy-rpg, recolor of cloak_3)
 shirt-red (fantasy-rpg, shirt_28)
 
---------------------------------------------------
 [projectfu\styles\static\compendium\rare-equipment\shields\*]
-
 Shield Assets:
 shield-crusader (fantasy-rpg, shield_142)
 shield-knight-black (fantasy-rpg, shield_34)
@@ -223,9 +185,7 @@ shield-reinforced (fantasy-rpg, shield_86)
 shield-skull-brown (fantasy-rpg, shield_116)
 shield-spiked (fantasy-rpg, shield_25)
 
---------------------------------------------------
 [projectfu\styles\static\compendium\rare-equipment\weapons\*]
-
 Weapon Assets:
 bow-yellow (fantasy-rpg, bow_5)
 crossbow-copperlight (fantasy-rpg, bow_21)
@@ -248,14 +208,34 @@ sword-great (fantasy-rpg, sword_021)
 sword-long-gold (fantasy-rpg, sword_long_002)
 sword-swipe (fantasy-rpg, sword_040)
 
---------------------------------------------------
-[projectfu\styles\static\icons\actions\*]
-
-Action Icon Assets provided by:
-Mildew - https://ko-fi.com/not_mildew
-
---------------------------------------------------
+[projectfu\styles\static\compendium\classes\*]
+Most class art is by Javier Aumente (Tarot) with explicit permission to use for the ProjectFU/Fultimator project.
+With the exception of the following:
+[projectfu\styles\static\compendium\classes\arcanist\arcanum\*]
+Pixeltier gem assets
+[projectfu\styles\static\compendium\classes\arcanist\arcanum_v2.png]
+Javier Aumente (Tarot), Pixeltier-derived arcanum art
+[projectfu\styles\static\compendium\classes\arcanist-rework\arcanum\*]
+Pixeltier gem assets and recolors
+[projectfu\styles\static\compendium\classes\arcanist-rework\arcanum_v2.png]
+Javier Aumente (Tarot), Pixeltier-derived arcanum art
+[projectfu\styles\static\compendium\classes\guardian\twin-shields\twin-shields.png]
+shared project art provided with Tarot permission
+[projectfu\styles\static\compendium\classes\elementalist\spells\boulder.png]
+custom-made by Kami lucky
 [projectfu\styles\static\compendium\classes\floralist\magiseeds\*]
+Magiseed icon assets provided by Kami lucky
 
-Magiseed Icon Assets provided by:
-Kami lucky
+The Mnemosphere icons in the following folders are a combination of the respective class icon by Javier Aumente (Tarot) and orb_002.png by Pixeltier, created with permission by the respective authors.
+[projectfu\styles\static\compendium\classes\*\*_mnemosphere.png]
+
+[projectfu\styles\static\compendium\technospheres\*]
+These folders use the same source split as the class mnemospheres.
+[projectfu\styles\static\compendium\technospheres\hoplospheres\*]
+Javier Aumente (Tarot)
+[projectfu\styles\static\compendium\technospheres\mnemospheres\*]
+combined Tarot class icon plus Pixeltier orb_002.png
+
+Notes
+Folder-level attribution is used whenever a whole folder shares the same source.
+See license.txt for the Pixeltier usage summary.

@@ -1,0 +1,162 @@
+Static art reference
+
+This file is the definitive folder map for `styles/static`.
+The compendium subtree keeps its own detailed inventory in `styles/static/compendium/compendium-art-reference-master-list.txt`.
+
+[projectfu\styles\static\affinities\*]
+Fabula Ultima license kit (Public Domain) affinity symbols generated via IcoMoon.
+
+[projectfu\styles\static\affinities\icons\*]
+t3nshi (explicit permission).
+water.png - Mildew (explicit permission).
+
+[projectfu\styles\static\icons\actions\*]
+Mildew (explicit permission).
+
+[projectfu\styles\static\icons\attributes\*]
+t3nshi (explicit permission).
+
+[projectfu\styles\static\icons\checks\*]
+t3nshi (explicit permission).
+
+[projectfu\styles\static\icons\inline\*]
+game-icons.net (CC BY 3.0), Lorc
+
+[projectfu\styles\static\icons\beast.svg]
+game-icons.net (CC BY 3.0), Lorc
+
+[projectfu\styles\static\icons\check-result.svg]
+game-icons.net (CC BY 3.0), Lorc
+
+[projectfu\styles\static\icons\check.svg]
+game-icons.net (CC BY 3.0), Delapouite
+
+[projectfu\styles\static\icons\construct.svg]
+game-icons.net (CC BY 3.0), Delapouite
+
+[projectfu\styles\static\icons\demon.svg]
+game-icons.net (CC BY 3.0), Lorc
+
+[projectfu\styles\static\icons\elemental.svg]
+game-icons.net (CC BY 3.0), Lorc
+
+[projectfu\styles\static\icons\ful-martial.svg]
+game-icons.net (CC BY 3.0), Skoll.
+
+[projectfu\styles\static\icons\ful-sl-star.svg]
+Spyrella (CC0).
+
+[projectfu\styles\static\icons\fus-martial.svg]
+game-icons.net (CC BY 3.0), Skoll.
+
+[projectfu\styles\static\icons\fus-sl-star.svg]
+Spyrella (CC0).
+
+[projectfu\styles\static\icons\ful-offensive.svg]
+game-icons.net (CC BY 3.0), sbed.
+
+[projectfu\styles\static\icons\fus-offensive.svg]
+game-icons.net (CC BY 3.0), sbed.
+
+[projectfu\styles\static\icons\fus-star2-border.svg]
+Shourn (CC0).
+
+[projectfu\styles\static\icons\fus-star2.svg]
+Shourn (CC0).
+
+[projectfu\styles\static\icons\fus-weapon-enchant.svg]
+game-icons.net (CC BY 3.0), Lorc 
+
+[projectfu\styles\static\icons\humanoid.svg]
+game-icons.net (CC BY 3.0), Delapouite
+
+[projectfu\styles\static\icons\monster.svg]
+game-icons.net (CC BY 3.0), Delapouite
+
+[projectfu\styles\static\icons\plant.svg]
+game-icons.net (CC BY 3.0), Delapouite
+
+[projectfu\styles\static\icons\resources\*]
+t3nshi (explicit permission).
+
+[projectfu\styles\static\icons\weapons\*]
+arcane.png, bow.png, dagger.png, firearm.png, flail.png, heavy.png, spear.png, sword.png, thrown.png - mostly Pixeltier (purchased pack).
+brawling.png - Mildew (explicit permission).
+
+[projectfu\styles\static\icons\undead.svg]
+game-icons.net (CC BY 3.0), Skoll
+
+[projectfu\styles\static\statuses\*]
+Default status icons and templates from t3nshi (explicit permission), with derivatives by Rusty and Spyrella.
+
+[projectfu\styles\static\statuses\tails\*]
+t3nshi (explicit permission).
+
+[projectfu\styles\static\statuses\immunities\*]
+t3nshi (explicit permission).
+
+[projectfu\styles\static\statuses\Poisoned.webp]
+Frozedon (explicit permission).
+
+[projectfu\styles\static\ui\Acento_highres.png]
+Joline / Liquitty (explicit permission).
+[projectfu\styles\static\ui\Bkg_highres.png]
+Joline / Liquitty (explicit permission).
+[projectfu\styles\static\ui\Bkg_pattern_highres.png]
+Joline / Liquitty (explicit permission).
+[projectfu\styles\static\ui\Hojitas_highres.png]
+Joline / Liquitty (explicit permission).
+[projectfu\styles\static\ui\HojitasDouble_highres.png]
+Joline / Liquitty (explicit permission).
+
+[projectfu\styles\static\ui\Fabula Ultima Mod Logo - White Background.png]
+Fabula Ultima license kit (Public Domain).
+
+[projectfu\styles\static\ui\Page_deco.png]
+Liquitty (explicit permission).
+[projectfu\styles\static\ui\Page_deco_half.png]
+Liquitty (explicit permission).
+[projectfu\styles\static\ui\backgrounds\codex-entry.png]
+Azurelol (explicit permission).
+[projectfu\styles\static\ui\chat-stagger.png]
+game-icons.net (CC BY 3.0), Lorc
+[projectfu\styles\static\ui\codex-entry.svg]
+game-icons.net (CC BY 3.0), Lorc
+[projectfu\styles\static\ui\equipment-doll.png]
+project-specific UI art and layout asset.
+[projectfu\styles\static\ui\hoplosphere-slot-occupied.png]
+Shourn (CC0).
+[projectfu\styles\static\ui\hoplosphere-slot.png]
+Shourn (CC0).
+[projectfu\styles\static\ui\logo.png]
+Shourn (CC0).Liquitty (explicit permission).
+[projectfu\styles\static\ui\logo2.png]
+Liquitty (explicit permission).
+[projectfu\styles\static\ui\mnemosphere-slot-occupied.png]
+Shourn (CC0).
+[projectfu\styles\static\ui\mnemosphere-slot.png]
+Shourn (CC0).
+[projectfu\styles\static\ui\pfu-logo.png]
+Liquitty (explicit permission).
+[projectfu\styles\static\ui\pointer.png]
+Cyrus (explicit permission).
+[projectfu\styles\static\ui\simbol_deco.png]
+Liquitty (explicit permission).
+
+[projectfu\styles\static\ui\combat-hud\pc_bg.svg]
+kzmz (explicit permission).
+
+[projectfu\styles\static\ui\combat-hud\pixel\*]
+edit.png, fp-feather-color.png, glove-pointer-shadow.png, glove-pointer.png, lock-locked.png, lock-unlocked.png, minimize.png, move.png, pixel-border-2x.png, pixel-border-3x.png, pixel-border.png, pop-out.png, start.png, stop.png, ui-down.png, ui-left.png, ui-right.png, ui-up.png, zenit.png - Cyrus (explicit permission).
+
+[projectfu\styles\static\ui\patterns\*]
+pattern_hojita.png, pattern_hojita_half.png - Liquitty (explicit permission).
+
+[projectfu\styles\static\ui\themes\*]
+ancient-forest.json, bravely-red.json, fabula-knights.json, greenly-default.json, reactor-five.json - Azurelol (explicit permission).
+
+[projectfu\styles\static\compendium\*]
+See `styles/static/compendium/compendium-art-reference-master-list.txt` for the detailed compendium inventory.
+
+Notes
+Use `*` on a folder header when the entire folder is owned by one source.
