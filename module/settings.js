@@ -354,18 +354,22 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [
-			SETTINGS.optionQuirks,
-			SETTINGS.optionZeroPower,
-			SETTINGS.optionArcanumPulse,
-			SETTINGS.optionCampingRules,
-			SETTINGS.useRevisedStudyRule,
-			SETTINGS.technospheres,
-			SETTINGS.pressureSystem,
-			SETTINGS.optionPressureGaugeShow,
-			SETTINGS.optionPressureGaugePosition,
-			SETTINGS.optionPressureGaugeTheme,
-		]),
+		type: createConfigurationApp(
+			'FU.OptionalRules',
+			[
+				SETTINGS.optionQuirks,
+				SETTINGS.optionZeroPower,
+				SETTINGS.optionArcanumPulse,
+				SETTINGS.optionCampingRules,
+				SETTINGS.useRevisedStudyRule,
+				SETTINGS.technospheres,
+				SETTINGS.pressureSystem,
+				SETTINGS.optionPressureGaugeShow,
+				SETTINGS.optionPressureGaugePosition,
+				SETTINGS.optionPressureGaugeTheme,
+			],
+			'FU.OptionalRulesTPLNotice',
+		),
 		restricted: true,
 	});
 
@@ -1148,11 +1152,17 @@ export const registerSystemSettings = async function () {
  * @return {typeof SettingsConfigurationApp}
  * @remarks Expects the settings to be various settings to be already registered, but hidden.
  */
-function createConfigurationApp(name, settings) {
+function createConfigurationApp(name, settings, headerText = '') {
 	return class ConfigApp extends SettingsConfigurationApp {
 		static DEFAULT_OPTIONS = {
 			window: { title: name },
 		};
+
+		async _prepareContext(options) {
+			const context = await super._prepareContext(options);
+			context.headerText = headerText;
+			return context;
+		}
 
 		constructor() {
 			super(settings);

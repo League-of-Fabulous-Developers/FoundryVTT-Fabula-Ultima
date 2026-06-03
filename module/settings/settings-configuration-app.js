@@ -1,5 +1,6 @@
 import FUApplication from '../ui/application.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 
 export class SettingsConfigurationApp extends FUApplication {
 	/** @type ApplicationConfiguration */
@@ -15,7 +16,10 @@ export class SettingsConfigurationApp extends FUApplication {
 	/** @type {Record<string, HandlebarsTemplatePart>} */
 	static PARTS = {
 		main: {
-			template: 'systems/projectfu/templates/app/settings/settings-config-app.hbs',
+			template: systemTemplatePath('app/settings/settings-config-app'),
+		},
+		footer: {
+			template: 'templates/generic/form-footer.hbs',
 		},
 	};
 
@@ -77,6 +81,9 @@ export class SettingsConfigurationApp extends FUApplication {
 		Object.assign(context, {
 			settings: this.#settingData,
 		});
+
+		context.buttons = [{ type: 'submit', icon: 'fa-solid fa-floppy-disk', label: 'FU.SettingsSave' }];
+
 		return context;
 	}
 
