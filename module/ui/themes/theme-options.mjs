@@ -167,7 +167,7 @@ export const ThemeOptionFields = ObjectUtils.deepFreeze({
 	colorAppBodyPrimaryFill2: { label: 'FU.ColorAppBodyPrimaryFill2Label', type: 'color' },
 
 	/* Apps - Controls */
-	colorAppControlContent: { label: 'FU.ColorControlContentLabel', type: 'color' },
+	colorAppControlContent: { label: 'FU.ColorAppControlContentLabel', type: 'color' },
 	colorAppControlFocusContent: { label: 'FU.ColorAppControlFocusContentLabel', type: 'color' },
 	colorAppControlBorder: { label: 'FU.ColorAppControlBorderLabel', type: 'color' },
 	colorAppControlShadow: { label: 'FU.ColorAppControlShadowLabel', type: 'color' },
