@@ -152,7 +152,11 @@
 .projectfu .zenit-and-rest-container {
 	display: flex;
 	gap: 0.25rem;
-	justify-content: space-between;
+	justify-content: flex-end;
+
+	.button-style.flex0 {
+		flex: 0 0 24px;
+	}
 }
 .projectfu .zenit-container {
 	flex: 1 0 auto;

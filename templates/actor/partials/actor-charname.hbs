@@ -1,73 +1,77 @@
 <div class="charname-container">
 	<div class="charname">
 		<input name="name" type="text" value="{{ actor.name }}" placeholder="Name" data-tooltip="{{ actor.name }}"
-			   class="resource-inputs-charname" />
+		       class="resource-inputs-charname" />
 	</div>
 	<div class="pronouns">
 		<input name="system.resources.pronouns.name" type="text" value="{{ system.resources.pronouns.name }}"
-			   placeholder="Pronouns" data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}"
-			   size="{{#if (gt system.resources.pronouns.name.length 7)}}{{ system.resources.pronouns.name.length }}{{else}}7{{/if}}" oninput="this.size = Math.max(7, this.value.length)"/>
+		       placeholder="Pronouns" data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}"
+		       size="{{#if
+				(gt system.resources.pronouns.name.length 7)}}{{ system.resources.pronouns.name.length }}{{else}}7{{/if}}"
+		       oninput="this.size = Math.max(7, this.value.length)" />
 	</div>
 </div>
 {{#if (eq actor.type "character")}}
-	<span class="pc-level-container">
+	<div class="pc-level-container">
 		<!-- Level -->
-		<span class="resource-content level-field flexcol flex-group-center">
+		<div class="resource-content level-field flexcol flex-group-center">
 			<label class="resource-label-m" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
 				<i class="fas fa-chart-simple icon"></i>{{localize
-			 'FU.LevelAbbr'}} </label>
-			<input name="system.level.value" value="{{ system.level.value }}" type="number" data-dtype="Number"
-				   class="resource-inputs" />
-		</span>
-			<!-- Experience -->
-		<span class="resource-content level-field flexcol flex-group-center">
+			 'FU.LevelAbbr'}}
+			</label>
+			<input name="system.level.value" value="{{ system.level.value }}" type="number"
+			       class="resource-inputs" />
+		</div>
+		<!-- Experience -->
+		<div class="resource-content level-field flexcol flex-group-center">
 			<label class="resource-label-m" data-tooltip="{{localize 'FU.Exp'}}" aria-describedby="tooltip">
 				<i class="fas fa-feather-pointed icon"></i>
 				{{localize 'FU.ExpAbbr'}}
 				{{#if (gte system.resources.exp.value 10)}}
-					<i class="fas fa-hand-point-up is-levelup float-text" data-action="levelUp" data-tooltip="{{localize 'FU.LevelUp'}}"
+					<i class="fas fa-hand-point-up is-levelup float-text" data-action="levelUp"
+					   data-tooltip="{{localize 'FU.LevelUp'}}"
 					   aria-describedby="tooltip"></i>
 				{{/if}}
 			</label>
 			<input name="system.resources.exp.value" value="{{ system.resources.exp.value }}" type="number"
-				   data-dtype="Number" class="resource-inputs" />
-    </span>
-    <div class="bar bar-progress">
-        <div class="bar-progress-bar bar-level"></div>
-    </div>
-</span>
+				   class="resource-inputs" />
+		</div>
+		<div class="bar bar-progress">
+			<div class="bar-progress-bar bar-level" style="width: {{pfuPercentage this.actor.system.resources.exp.value 10}};"></div>
+		</div>
+	</div>
 {{/if}}
 {{#if (eq actor.type "npc")}}
 	<div class="resource-content npc-level-container">
 		<!-- Level -->
 		<label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Level'}}"
-			   aria-describedby="tooltip">
+		       aria-describedby="tooltip">
 			<i class="fas fa-chart-simple icon"></i>
 			{{localize 'FU.LevelAbbr'}}
 		</label>
 		<input type="number" name="system.level.value" min="5" max="60" step="5" value="{{ system.level.value }}"
-			   class="resource-inputs level-input" />
+		       class="resource-inputs level-input" />
 		<!-- Rank -->
 		<label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Rank'}}"
-			   aria-describedby="tooltip"> <i
+		       aria-describedby="tooltip"> <i
 		 class="fas fa-feather-pointed icon"></i>{{localize
 		 'FU.Rank'}} </label>
 		{{#if (eq system.rank.value 'champion')}}
-		<span class="rank-combined resource-inputs">
+			<span class="rank-combined resource-inputs">
 			<select name="system.rank.value" class="resource-inputs rank-select">
 				{{selectOptions FU.rank selected=system.rank.value localize=true}}
 			</select>
 
 				<span class="resource-inputs champion-input">
 					<input type="number" name="system.rank.replacedSoldiers" min="1" max="6"
-						   value="{{system.rank.replacedSoldiers}}"
-						   class="resource-inputs" />
+					       value="{{system.rank.replacedSoldiers}}"
+					       class="resource-inputs" />
 				</span>
 		</span>
 		{{else}}
-		<select name="system.rank.value" class="resource-inputs rank-select">
-			{{selectOptions FU.rank selected=system.rank.value localize=true}}
-		</select>
+			<select name="system.rank.value" class="resource-inputs rank-select">
+				{{selectOptions FU.rank selected=system.rank.value localize=true}}
+			</select>
 		{{/if}}
 		{{>"systems/projectfu/templates/actor/partials/actor-creatures.hbs" actor=actor}}
 	</div>

@@ -1007,13 +1007,23 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const crisisHP = this.actor.system.resources.hp.crisisScore;
+		const confirmed = await foundry.applications.api.Dialog.confirm({
+			window: {
+				title: game.i18n.localize('FU.DialogCrisisHPTitle'),
+			},
+			content: game.i18n.format('FU.DialogCrisisHPContent', { actor: this.actor.name }),
+			rejectClose: false,
+		});
 
-		const updateData = {
-			'system.resources.hp.value': crisisHP,
-		};
-		await this.actor.update(updateData);
-		this.actor.sheet.render(true);
+		if (confirmed) {
+			const crisisHP = this.actor.system.resources.hp.crisisScore;
+
+			const updateData = {
+				'system.resources.hp.value': crisisHP,
+			};
+			await this.actor.update(updateData);
+			this.actor.sheet.render(true);
+		}
 	}
 
 	/**

@@ -112,6 +112,7 @@
 		transform: translateX(10px);
 	}
 }
+
 @keyframes hz-bounce-r {
 	from {
 		transform: translateX(-5px);
@@ -144,6 +145,7 @@
 		&.fa-caret-left {
 			animation: hz-bounce-l 1s ease-in-out infinite alternate;
 		}
+
 		&.fa-caret-right {
 			animation: hz-bounce-r 1s ease-in-out infinite alternate;
 		}
@@ -233,6 +235,7 @@
 		height: var(--input-height);
 		padding: 0.25rem 0.5rem 0.25rem calc(50% + 1ch);
 		text-align: left;
+		top: 0;
 		right: 0;
 		pointer-events: none;
 		color: var(--pfu-color-app-control-content);
@@ -257,5 +260,25 @@
 
 	100% {
 		opacity: 1;
+	}
+}
+
+.projectfu .bar-progress-segmented {
+	font-size: 14px;
+	height: 16px;
+	border: 1px solid #c7c7c7;
+	box-shadow: 0.125em 0.125em 0 0.0625em rgba(0, 0, 0, 0.5) inset;
+	position: relative;
+	display: flex;
+	justify-content: space-evenly;
+
+	.bar-progress-segmented__segment {
+		flex: 1;
+		box-shadow: 0 0 0 0.0625em rgba(0, 0, 0, 0.5) inset;
+
+		&.bar-progress-segmented__segment--inactive {
+			box-shadow: unset;
+			background-color: #656565;
+		}
 	}
 }

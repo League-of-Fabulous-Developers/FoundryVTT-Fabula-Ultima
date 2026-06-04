@@ -269,6 +269,32 @@ export const FUHandlebars = Object.freeze({
 			return options.hash;
 		});
 
+		Handlebars.registerHelper('pfuTimes', function (times, options) {
+			if (typeof times !== 'number') {
+				throw new Error('Must pass number of iterations to #pfuTimes');
+			}
+
+			const fn = options.fn;
+			const data = Handlebars.Utils.createFrame(options.data ?? {});
+			let result = '';
+
+			for (let i = 0; i < times; i++) {
+				if (data) {
+					data.index = i;
+					data.first = i === 0;
+					data.last = i === times - 1;
+				}
+
+				result =
+					result +
+					fn(this, {
+						data: data,
+					});
+			}
+
+			return result;
+		});
+
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
