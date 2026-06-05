@@ -12,6 +12,10 @@ export class NpcProfileAbilitiesTableRenderer extends AbilitiesTableRenderer {
 		getItems: NpcProfileAbilitiesTableRenderer.#getItems,
 	};
 
+	constructor() {
+		super('miscAbility');
+	}
+
 	static #getItems(document, options) {
 		options.revealed ??= {};
 		return document.itemTypes.miscAbility.filter((ability) => !!options.revealed[ability.id]);

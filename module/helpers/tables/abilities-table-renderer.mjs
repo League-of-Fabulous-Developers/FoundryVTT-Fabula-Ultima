@@ -10,10 +10,15 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'abilities-table',
-		getItems: (document) => document.itemTypes.miscAbility,
+		getItems: AbilitiesTableRenderer.#getItems,
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
-			name: CommonColumns.itemNameColumn({ columnName: 'FU.OtherAction', headerSpan: 2, renderCaption: AbilitiesTableRenderer.#renderCaption, cssClass: (item) => (item.parent.type === 'npc' ? 'before-ability-icon' : '') }),
+			name: CommonColumns.itemNameColumn({
+				columnName: AbilitiesTableRenderer.#getNameColumnName,
+				headerSpan: 2,
+				renderCaption: AbilitiesTableRenderer.#renderCaption,
+				cssClass: (item) => (item.parent.type === 'npc' ? 'before-ability-icon' : ''),
+			}),
 			combinedProgress: {
 				hideHeader: true,
 				renderCell: AbilitiesTableRenderer.#renderCombinedProgress,
@@ -21,6 +26,31 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 			controls: CommonColumns.itemControlsColumn({ type: 'miscAbility', label: 'TYPES.Item.miscAbility' }),
 		},
 	};
+
+	#itemType;
+
+	constructor(itemType, overrides) {
+		super(overrides);
+		if (this.tableConfig.getItems === AbilitiesTableRenderer.#getItems && !itemType) {
+			throw new Error('Must provide itemType');
+		}
+		this.#itemType = itemType;
+	}
+
+	static #getItems(document) {
+		return document.itemTypes[this.#itemType];
+	}
+
+	static #getNameColumnName() {
+		switch (this.#itemType) {
+			case 'rule':
+				return game.i18n.localize('FU.SpecialRules');
+			case 'miscAbility':
+				return game.i18n.localize('FU.OtherAction');
+			default:
+				return game.i18n.localize(CONFIG.Item.typeLabels[this.#itemType] ?? this.#itemType);
+		}
+	}
 
 	static async #renderCaption(item) {
 		const context = new ExpressionContext(item.actor, item, []);
