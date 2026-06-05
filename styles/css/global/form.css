@@ -23,6 +23,21 @@
 	background-position: right top;
 }
 
+.fu-form__grid {
+	display: grid;
+	grid-template-columns: auto 1fr;
+
+	.fu-form__property {
+		display: grid;
+		grid-column: 1 / -1;
+		grid-template-columns: subgrid;
+
+		--property-label-width: initial;
+		--property-select-width: initial;
+		--property-input-width: initial;
+	}
+}
+
 .fu-form__button {
 	background-color: var(--color-primary);
 	color: #ebf7af;

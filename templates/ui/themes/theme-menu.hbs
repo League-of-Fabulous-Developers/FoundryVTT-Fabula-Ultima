@@ -4,7 +4,8 @@
 			<label class="fu-form__property">
 				{{localize "FU.Theme"}}
 				<select name="theme" data-action="changeTheme">
-					{{selectOptions themes selected=current blank="FU.Custom" valueAttr="value" labelAttr="label" localize=true}}
+					{{selectOptions themes selected=current blank="FU.Custom" valueAttr="value" labelAttr="label"
+					                localize=true}}
 				</select>
 			</label>
 		</div>
@@ -24,19 +25,24 @@
 		</div>
 	</header>
 	<main>
-		<div class="desc">
+		<div class="desc fu-form__grid">
 			{{#each fields}}
 				{{#if (eq this.type "multiline-text")}}
 					<label class="fu-form__property" data-tooltip="{{localize hint}}">
 						<span>{{localize label}}</span>
+						<span class="flexrow">
 						<textarea name="{{@key}}" rows="5">{{lookup ../current @key}}</textarea>
+						</span>
 					</label>
 				{{else}}
 					<label class="fu-form__property" data-tooltip="{{localize hint}}">
 						<span>{{localize label}}</span>
 						{{#if (eq this.type "color")}}
+							<span class="flexrow">
 							<input type="color" name="{{@key}}" value="{{lookup ../current @key}}">
+							</span>
 						{{else if (eq this.type "image")}}
+							<span class="flexrow">
 							<input type="text" name="{{@key}}" value="{{lookup ../current @key}}">
 							<button
 							 type="button"
@@ -46,8 +52,11 @@
 							 title="Browse Files">
 								<i class="fas fa-file-import"></i>
 							</button>
+							</span>
 						{{else}}
+							<span class="flexrow">
 							<input type="text" name="{{@key}}" value="{{lookup ../current @key}}">
+							</span>
 						{{/if}}
 					</label>
 				{{/if}}
