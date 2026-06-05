@@ -55,7 +55,7 @@ export class CookbookDataModel extends RollableClassFeatureDataModel {
 		let tastes = { ...TASTES };
 		if (model.actor) {
 			for (const taste of Object.keys(tastes)) {
-				tastes[taste] = model.actor.getFlag(SYSTEM, getTasteAliasFlag(taste)) || TASTES[taste];
+				tastes[taste] = String(model.actor.getFlag(SYSTEM, getTasteAliasFlag(taste)) || TASTES[taste]);
 			}
 		}
 		return {
