@@ -179,7 +179,7 @@ async function applyRecovery(sourceInfo, targets, resourceType, amount, uncapped
 }
 
 async function applyLoss(sourceInfo, targets, resourceType, amount) {
-	const request = new ResourceRequest(sourceInfo, targets, resourceType, amount);
+	const request = new ResourceRequest(sourceInfo, targets, resourceType, amount < 0 ? amount : -amount);
 	return ResourcePipeline.processLoss(request);
 }
 
