@@ -1,6 +1,8 @@
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
+import { InlineSourceInfo } from './inline-helper.mjs';
 
 /**
  * @param {UserData} user
@@ -134,6 +136,7 @@ async function spendMetaCurrency(actor, force = false) {
 				},
 			};
 			ChatMessage.create(data);
+			await CommonEvents.resource(actor, [actor], InlineSourceInfo.fromObject(actor), 'fp', -1, null, null);
 			await actor.update({
 				'system.resources.fp.value': actor.system.resources.fp.value - 1,
 			});
@@ -158,6 +161,7 @@ async function gainMetaCurrency(actor) {
 		metaCurrency = game.i18n.localize('FU.Ultima');
 	}
 	if (metaCurrency) {
+		await CommonEvents.resource(actor, [actor], InlineSourceInfo.fromObject(actor), 'fp', 1, null, null);
 		await actor.update({
 			'system.resources.fp.value': actor.system.resources.fp.value + 1,
 		});
