@@ -167,7 +167,8 @@
                 "eventRelation": "source",
                 "checkTypes": [
                   "magic"
-                ]
+                ],
+                "identifier": ""
               },
               "predicates": {
                 "YAHJUD5SD1ClxolQ": {
@@ -177,6 +178,9 @@
                   "attributes": {
                     "primary": {
                       "value": "dex"
+                    },
+                    "secondary": {
+                      "value": ""
                     }
                   }
                 },
@@ -213,6 +217,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -238,8 +247,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743535722306,
-        "modifiedTime": 1771832393259,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1780819122735,
+        "lastModifiedBy": "VpDy3go69LzoCFsX",
         "exportSource": null
       },
       "_key": "!items.effects!v6rTedHMjbLuLdN3.DhBhEANF8jRMaBo4"
