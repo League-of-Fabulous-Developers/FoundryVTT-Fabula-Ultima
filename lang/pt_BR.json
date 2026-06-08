@@ -1888,6 +1888,7 @@
 		"ColorControlActiveFill1Label": "Preenchimento do Controle Ativo (Início)",
 		"ColorControlActiveFill2Label": "Preenchimento do Controle Ativo (Fim)",
 		"ColorAppBorderLabel": "Borda do Aplicativo",
+		"ColorAppControlContentLabel": "App Control Content",
 		"ColorAppControlFocusContentLabel": "Conteúdo do Controle do Aplicativo em Foco",
 		"ColorAppControlBorderLabel": "Borda do Controle do Aplicativo",
 		"ColorAppControlShadowLabel": "Sombra do Controle do Aplicativo",
@@ -1984,6 +1985,8 @@
 		"ThemeFoundrySetting": "Aplicar Tema ao Foundry Core",
 		"ThemeFoundrySettingHint": "Se ativado, o tema configurado para o sistema ProjectFU também será aplicado a muitas partes da interface principal do Foundry.",
 		"OptionalRulesTPLNotice": "<i class='fa-solid fa-triangle-exclamation warning'></i> <strong>Observação:</strong> Vários dos itens abaixo não estão incluídos nos compêndios distribuídos com o sistema, pois não são cobertos pela Licença de Terceiros do Fabula Ultima e exigirão entrada manual para sua criação.<br>Esses itens incluem: Peculiaridades, Poderes Zero, Arcanos variantes e Atividades de Acampamento.",
+		"DialogCrisisHPTitle": "Set HP to Crisis score?",
+		"DialogCrisisHPContent": "Reset {actor}'s HP to their Crisis score?",
 		"CODEX": {
 			"Character": "Personagem",
 			"Location": "Local",

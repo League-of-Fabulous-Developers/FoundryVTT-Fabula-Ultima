@@ -1888,6 +1888,7 @@
 		"ColorControlActiveFill1Label": "Control Active Fill (Start)",
 		"ColorControlActiveFill2Label": "Control Active Fill (End)",
 		"ColorAppBorderLabel": "App Border",
+		"ColorAppControlContentLabel": "App Control Content",
 		"ColorAppControlFocusContentLabel": "App Control Focus Content",
 		"ColorAppControlBorderLabel": "App Control Border",
 		"ColorAppControlShadowLabel": "App Control Shadow",
@@ -1984,6 +1985,8 @@
 		"ThemeFoundrySetting": "Apply Theme to Core Foundry",
 		"ThemeFoundrySettingHint": "If enabled, the theme configured for the ProjectFU system will also be applied to many parts of the core Foundry interface.",
 		"OptionalRulesTPLNotice": "<i class='fa-solid fa-triangle-exclamation warning'></i> <strong>Note:</strong> Several of the items below are not included in the compendia distributed with the system, as they are not covered by the Fabula Ultima Third Party License, and will require manual entry to create them.<br>These items include:  Quirks, Zero Powers, variant Arcana, and Camping Activities",
+		"DialogCrisisHPTitle": "Set HP to Crisis score?",
+		"DialogCrisisHPContent": "Reset {actor}'s HP to their Crisis score?",
 		"CODEX": {
 			"Character": "Character",
 			"Location": "Location",

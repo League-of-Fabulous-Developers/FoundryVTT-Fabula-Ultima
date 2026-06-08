@@ -1822,7 +1822,7 @@
 		"ThemeMenuJsonImportHint": "Image to use as an accent for the UI as a whole.",
 		"ThemesDefaultLabel": "Default",
 		"ThemesDefaultHint": "The default theme that ships with the module.",
-		"ColorControlContentLabel": "Control Content",
+		"ColorControlContentLabel": "App Control Content",
 		"ColorControlContentHint": "App Control Content (Hint)",
 		"ColorControlFill1Label": "App Control Fill (Start)",
 		"ColorControlFill2Label": "App Control Fill (End)",
@@ -1985,6 +1985,8 @@
 		"ThemeFoundrySetting": "Apply Theme to Core Foundry",
 		"ThemeFoundrySettingHint": "If enabled, the theme configured for the ProjectFU system will also be applied to many parts of the core Foundry interface.",
 		"OptionalRulesTPLNotice": "<i class='fa-solid fa-triangle-exclamation warning'></i> <strong>Note:</strong> Several of the items below are not included in the compendia distributed with the system, as they are not covered by the Fabula Ultima Third Party License, and will require manual entry to create them.<br>These items include:  Quirks, Zero Powers, variant Arcana, and Camping Activities",
+		"DialogCrisisHPTitle": "Set HP to Crisis score?",
+		"DialogCrisisHPContent": "Reset {actor}'s HP to their Crisis score?",
 		"CODEX": {
 			"Character": "Character",
 			"Location": "Location",
@@ -2010,8 +2012,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"DialogCrisisHPTitle": "Set HP to Crisis score?",
-		"DialogCrisisHPContent": "Reset {actor}'s HP to their Crisis score?"
+		}
 	}
 }
