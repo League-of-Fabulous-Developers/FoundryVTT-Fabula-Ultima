@@ -2010,6 +2010,8 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"DialogCrisisHPTitle": "Set HP to Crisis score?",
+		"DialogCrisisHPContent": "Reset {actor}'s HP to their Crisis score?"
 	}
 }
