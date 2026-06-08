@@ -362,15 +362,16 @@ export class CheckConfigurer extends CheckInspector {
 			};
 		}
 
-		const entries = this.check.additionalData[EFFECTS].entries;
+		const entries = new Set(this.check.additionalData[EFFECTS].entries);
 
 		for (const effect of effects) {
 			if (Array.isArray(effect)) {
-				entries.push(...effect);
+				effect.forEach((value) => entries.add(value));
 			} else {
-				entries.push(effect);
+				entries.add(effect);
 			}
 		}
+		this.check.additionalData[EFFECTS].entries = [...entries];
 
 		return this;
 	}
