@@ -1,17 +1,17 @@
 {{~#if roll~}}
-	【{{~localize roll.primary~}}&nbsp;+&nbsp;{{~localize roll.secondary~}}】&#xFEFF;
+	【{{~localize roll.primary~}}&nbsp;+&nbsp;{{~localize roll.secondary~}}】&nbsp;
 	{{~#if (gt roll.bonus 0)}}+&nbsp;{{roll.bonus~}}{{~/if~}}
 	{{~#if (lt roll.bonus 0)}}-&nbsp;{{roll.bonus~}}{{~/if~}}
-	{{~#if damage~}}
-		&ZeroWidthSpace;⬥&#xFEFF;【{{~#if damage.hrZero~}}
+	{{~#if damage}}
+		⬥&nbsp;【{{~#if damage.hrZero~}}
 			{{~localize 'FU.HRZero'~}}
 			{{~else~}}
 			{{~localize 'FU.HighRollAbbr'~}}
 		{{~/if~}}
-		&nbsp;+&nbsp;{{~damage.value~}}】&NoBreak;{{~localize damage.type~}}
+		&nbsp;+&nbsp;{{~damage.value~}}】&nbsp;{{~localize damage.type~}}
 	{{~/if~}}
 {{else}}
 	{{~#if damage~}}
-		【{{~damage.value~}}】&NoBreak;{{~localize damage.type~}}
+		【{{~damage.value~}}】&nbsp;{{localize damage.type~}}
 	{{/if}}
 {{~/if~}}
