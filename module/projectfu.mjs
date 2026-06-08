@@ -115,7 +115,7 @@ import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
-import { FUSidebar, FUSidebarApplication } from './ui/sidebar.mjs';
+import { FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 
@@ -310,9 +310,17 @@ Hooks.once('init', async () => {
 	Object.assign(CONFIG.ui, {
 		combat: FUCombatTracker,
 		chat: FUChatLog,
-		sidebar: FUSidebar,
 		pfuTools: FUSidebarApplication,
 	});
+
+	CONFIG.ui.sidebar.TABS.pfuTools = {
+		tooltip: 'FU.UiControlTitle',
+		icon: 'fu-control fu-star-2',
+	};
+	// Force the settings tab to the bottom of the list
+	const settingsTab = CONFIG.ui.sidebar.TABS.settings;
+	delete CONFIG.ui.sidebar.TABS.settings;
+	CONFIG.ui.sidebar.TABS.settings = settingsTab;
 
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;

@@ -17,3 +17,14 @@
 	row-gap: 0.5rem;
 	padding-bottom: 1.5rem;
 }
+
+#sidebar .fu-control.fu-star-2::before {
+	display: inline-block;
+	content: '';
+	background-image: var(--icon-fus-star2);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: calc(var(--control-size) - 8px);
+	width: calc(var(--control-size) - 8px);
+}
