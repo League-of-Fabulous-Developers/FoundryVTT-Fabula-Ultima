@@ -526,6 +526,111 @@
 	initial-value: url('../../static/ui/pointer.png');
 }
 
+:root {
+	--icon-ful-sl-star: url('../../static/icons/ful-sl-star.svg');
+	--icon-fus-sl-star: url('../../static/icons/fus-sl-star.svg');
+	--icon-fus-star2: url('../../static/icons/fus-star2.svg');
+	--icon-fus-star2-border: url('../../static/icons/fus-star2-border.svg');
+	--icon-fu-check-result: url('../../static/icons/check-result.svg');
+
+	--icon-fus-offensive: url('../../static/icons/fus-offensive.svg');
+	--icon-fus-martial: url('../../static/icons/fus-martial.svg');
+	--icon-ful-offensive: url('../../static/icons/ful-offensive.svg');
+	--icon-ful-martial: url('../../static/icons/ful-martial.svg');
+
+	--icon-fu-shaken: url('../../static/statuses/Shaken.webp');
+	--icon-fu-dazed: url('../../static/statuses/Dazed.webp');
+	--icon-fu-slow: url('../../static/statuses/Slow.webp');
+	--icon-fu-weak: url('../../static/statuses/Weak.webp');
+	--icon-fu-enraged: url('../../static/statuses/Enraged.webp');
+	--icon-fu-poisoned: url('../../static/statuses/Poisoned.webp');
+
+	--icon-fu-flying: url('../../static/statuses/Flying.webp');
+	--icon-fu-guard: url('../../static/statuses/Guard.webp');
+	--icon-fu-cover: url('../../static/statuses/Cover.webp');
+	--icon-fu-aura: url('../../static/statuses/Aura.webp');
+	--icon-fu-barrier: url('../../static/statuses/Barrier.webp');
+	--icon-fu-focus: url('../../static/statuses/Focus.png');
+	--icon-fu-stagger: url('../../static/statuses/Stagger.webp');
+
+	--icon-fu-dex: url('../../static/icons/attributes/dex-glyph.png');
+	--icon-fu-ins: url('../../static/icons/attributes/ins-glyph.png');
+	--icon-fu-mig: url('../../static/icons/attributes/mig-glyph.png');
+	--icon-fu-wlp: url('../../static/icons/attributes/wlp-glyph.png');
+
+	--icon-fu-hp: url('../../static/icons/resources/hp.png');
+	--icon-fu-mp: url('../../static/icons/resources/mp.png');
+	--icon-fu-ip: url('../../static/icons/resources/ip.png');
+	--icon-fu-fp: url('../../static/icons/resources/fp.png');
+	--icon-fu-up: url('../../static/icons/resources/up.png');
+	--icon-fu-zenit: url('../../static/icons/resources/zenit.png');
+	--icon-fu-xp: url('../../static/icons/resources/xp.png');
+
+	--icon-fu-check-accuracy: url('../../static/icons/checks/check_accuracy.png');
+	--icon-fu-check-attribute: url('../../static/icons/checks/check_attribute.png');
+	--icon-fu-check-magic: url('../../static/icons/checks/check_magic.png');
+	--icon-fu-check-open: url('../../static/icons/checks/check_open.png');
+	--icon-fu-check-opposed: url('../../static/icons/checks/check_opposed.png');
+	--icon-fu-check-ritual: url('../../static/icons/checks/check_ritual.png');
+
+	--icon-fu-roll-base: url('../../static/icons/checks/roll_base.png');
+	--icon-fu-roll-difficulty: url('../../static/icons/checks/roll_difficulty.png');
+	--icon-fu-roll-high: url('../../static/icons/checks/roll_high.png');
+	--icon-fu-roll-modifier: url('../../static/icons/checks/roll_modifier.png');
+	--icon-fu-roll-result: url('../../static/icons/checks/roll_result.png');
+	--icon-fu-roll-target: url('../../static/icons/checks/roll_target.png');
+
+	--icon-fu-ins-up: url('../../static/statuses/InsUp.webp');
+	--icon-fu-ins-down: url('../../static/statuses/InsDown.webp');
+	--icon-fu-dex-up: url('../../static/statuses/DexUp.webp');
+	--icon-fu-dex-down: url('../../static/statuses/DexDown.webp');
+	--icon-fu-mig-up: url('../../static/statuses/MigUp.webp');
+	--icon-fu-mig-down: url('../../static/statuses/MigDown.webp');
+	--icon-fu-wlp-up: url('../../static/statuses/WlpUp.webp');
+	--icon-fu-wlp-down: url('../../static/statuses/WlpDown.webp');
+
+	--icon-fu-up-up: url('../../static/statuses/UltimaUp.png');
+	--icon-fu-up-down: url('../../static/statuses/UltimaDown.png');
+
+	--icon-fu-beast: url('../../static/icons/beast.svg');
+	--icon-fu-construct: url('../../static/icons/construct.svg');
+	--icon-fu-demon: url('../../static/icons/demon.svg');
+	--icon-fu-elemental: url('../../static/icons/elemental.svg');
+	--icon-fu-humanoid: url('../../static/icons/humanoid.svg');
+	--icon-fu-monster: url('../../static/icons/monster.svg');
+	--icon-fu-plant: url('../../static/icons/plant.svg');
+	--icon-fu-undead: url('../../static/icons/undead.svg');
+
+	--icon-fu--air: url('../../static/affinities/icons/air.png');
+	--icon-fu--bolt: url('../../static/affinities/icons/bolt.png');
+	--icon-fu--dark: url('../../static/affinities/icons/dark.png');
+	--icon-fu--earth: url('../../static/affinities/icons/earth.png');
+	--icon-fu--fire: url('../../static/affinities/icons/fire.png');
+	--icon-fu--ice: url('../../static/affinities/icons/ice.png');
+	--icon-fu--light: url('../../static/affinities/icons/light.png');
+	--icon-fu--physical: url('../../static/affinities/icons/physical.png');
+	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
+	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
+	--icon-fu--water: url('../../static/affinities/icons/water.png');
+
+	--icon-fu--arcane: url('../../static/icons/weapons/arcane.png');
+	--icon-fu--bow: url('../../static/icons/weapons/bow.png');
+	--icon-fu--brawling: url('../../static/icons/weapons/brawling.png');
+	--icon-fu--dagger: url('../../static/icons/weapons/dagger.png');
+	--icon-fu--firearm: url('../../static/icons/weapons/firearm.png');
+	--icon-fu--flail: url('../../static/icons/weapons/flail.png');
+	--icon-fu--heavy: url('../../static/icons/weapons/heavy.png');
+	--icon-fu--spear: url('../../static/icons/weapons/spear.png');
+	--icon-fu--sword: url('../../static/icons/weapons/sword.png');
+	--icon-fu--thrown: url('../../static/icons/weapons/thrown.png');
+
+	--icon-fu--action-spell: url('../../static/icons/actions/action_spell.png');
+
+	--icon-fu--damage: url('../../static/icons/inline/damage.svg');
+	--icon-fu--type: url('../../static/icons/inline/type.svg');
+	--icon-fu--pointer: url('../../static/ui/pointer.png');
+}
+
 .fu-dex {
 	background-image: var(--icon-fu-dex);
 }
