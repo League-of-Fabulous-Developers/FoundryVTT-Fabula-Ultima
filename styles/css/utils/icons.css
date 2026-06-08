@@ -1,3 +1,531 @@
+@property --icon-ful-sl-star {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/ful-sl-star.svg');
+}
+
+@property --icon-fus-sl-star {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/fus-sl-star.svg');
+}
+
+@property --icon-fus-star2 {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/fus-star2.svg');
+}
+
+@property --icon-fus-star2-border {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/fus-star2-border.svg');
+}
+
+@property --icon-fu-check-result {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/check-result.svg');
+}
+
+@property --icon-fus-offensive {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/fus-offensive.svg');
+}
+
+@property --icon-fus-martial {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/fus-martial.svg');
+}
+
+@property --icon-ful-offensive {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/ful-offensive.svg');
+}
+
+@property --icon-ful-martial {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/ful-martial.svg');
+}
+
+@property --icon-fu-shaken {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Shaken.webp');
+}
+
+@property --icon-fu-dazed {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Dazed.webp');
+}
+
+@property --icon-fu-slow {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Slow.webp');
+}
+
+@property --icon-fu-weak {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Weak.webp');
+}
+
+@property --icon-fu-enraged {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Enraged.webp');
+}
+
+@property --icon-fu-poisoned {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Poisoned.webp');
+}
+
+@property --icon-fu-flying {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Flying.webp');
+}
+
+@property --icon-fu-guard {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Guard.webp');
+}
+
+@property --icon-fu-cover {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Cover.webp');
+}
+
+@property --icon-fu-aura {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Aura.webp');
+}
+
+@property --icon-fu-barrier {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Barrier.webp');
+}
+
+@property --icon-fu-focus {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Focus.png');
+}
+
+@property --icon-fu-stagger {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/Stagger.webp');
+}
+
+@property --icon-fu-dex {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/dex-glyph.png');
+}
+
+@property --icon-fu-ins {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/ins-glyph.png');
+}
+
+@property --icon-fu-mig {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/mig-glyph.png');
+}
+
+@property --icon-fu-wlp {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/wlp-glyph.png');
+}
+
+@property --icon-fu-hp {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/hp.png');
+}
+
+@property --icon-fu-mp {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/mp.png');
+}
+
+@property --icon-fu-ip {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/ip.png');
+}
+
+@property --icon-fu-fp {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/fp.png');
+}
+
+@property --icon-fu-up {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/up.png');
+}
+
+@property --icon-fu-zenit {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/zenit.png');
+}
+
+@property --icon-fu-xp {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/resources/xp.png');
+}
+
+@property --icon-fu-check-accuracy {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/check_accuracy.png');
+}
+
+@property --icon-fu-check-attribute {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/check_attribute.png');
+}
+
+@property --icon-fu-check-magic {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/check_magic.png');
+}
+
+@property --icon-fu-check-open {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/check_open.png');
+}
+
+@property --icon-fu-check-opposed {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/check_opposed.png');
+}
+
+@property --icon-fu-check-ritual {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/check_ritual.png');
+}
+
+@property --icon-fu-roll-base {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/roll_base.png');
+}
+
+@property --icon-fu-roll-difficulty {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/roll_difficulty.png');
+}
+
+@property --icon-fu-roll-high {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/roll_high.png');
+}
+
+@property --icon-fu-roll-modifier {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/roll_modifier.png');
+}
+
+@property --icon-fu-roll-result {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/roll_result.png');
+}
+
+@property --icon-fu-roll-target {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/checks/roll_target.png');
+}
+
+@property --icon-fu-ins-up {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/InsUp.webp');
+}
+
+@property --icon-fu-ins-down {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/InsDown.webp');
+}
+
+@property --icon-fu-dex-up {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/DexUp.webp');
+}
+
+@property --icon-fu-dex-down {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/DexDown.webp');
+}
+
+@property --icon-fu-mig-up {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/MigUp.webp');
+}
+
+@property --icon-fu-mig-down {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/MigDown.webp');
+}
+
+@property --icon-fu-wlp-up {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/WlpUp.webp');
+}
+
+@property --icon-fu-wlp-down {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/WlpDown.webp');
+}
+
+@property --icon-fu-up-up {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/UltimaUp.png');
+}
+
+@property --icon-fu-up-down {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/statuses/UltimaDown.png');
+}
+
+@property --icon-fu-beast {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/beast.svg');
+}
+
+@property --icon-fu-construct {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/construct.svg');
+}
+
+@property --icon-fu-demon {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/demon.svg');
+}
+
+@property --icon-fu-elemental {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/elemental.svg');
+}
+
+@property --icon-fu-humanoid {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/humanoid.svg');
+}
+
+@property --icon-fu-monster {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/monster.svg');
+}
+
+@property --icon-fu-plant {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/plant.svg');
+}
+
+@property --icon-fu-undead {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/undead.svg');
+}
+
+@property --icon-fu--air {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/air.png');
+}
+
+@property --icon-fu--bolt {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/bolt.png');
+}
+
+@property --icon-fu--dark {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/dark.png');
+}
+
+@property --icon-fu--earth {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/earth.png');
+}
+
+@property --icon-fu--fire {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/fire.png');
+}
+
+@property --icon-fu--ice {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/ice.png');
+}
+
+@property --icon-fu--light {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/light.png');
+}
+
+@property --icon-fu--physical {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/physical.png');
+}
+
+@property --icon-fu--poison {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/poison.png');
+}
+
+@property --icon-fu--untyped {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/untyped.png');
+}
+
+@property --icon-fu--water {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/affinities/icons/water.png');
+}
+
+@property --icon-fu--arcane {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/arcane.png');
+}
+
+@property --icon-fu--bow {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/bow.png');
+}
+
+@property --icon-fu--brawling {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/brawling.png');
+}
+
+@property --icon-fu--dagger {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/dagger.png');
+}
+
+@property --icon-fu--firearm {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/firearm.png');
+}
+
+@property --icon-fu--flail {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/flail.png');
+}
+
+@property --icon-fu--heavy {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/heavy.png');
+}
+
+@property --icon-fu--spear {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/spear.png');
+}
+
+@property --icon-fu--sword {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/sword.png');
+}
+
+@property --icon-fu--thrown {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/weapons/thrown.png');
+}
+
+@property --icon-fu--action-spell {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/actions/action_spell.png');
+}
+
+@property --icon-fu--damage {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/inline/damage.svg');
+}
+
+@property --icon-fu--type {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/inline/type.svg');
+}
+
+@property --icon-fu--pointer {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/ui/pointer.png');
+}
+
 :root {
 	--icon-ful-sl-star: url('../../static/icons/ful-sl-star.svg');
 	--icon-fus-sl-star: url('../../static/icons/fus-sl-star.svg');
