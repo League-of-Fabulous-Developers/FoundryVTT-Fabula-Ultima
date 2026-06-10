@@ -2014,6 +2014,8 @@
 			"ChangeWarning1": "Proceed with caution!"
 		},
 		"NpcEquipmentSettings": "NPC Equipment",
-		"NpcEquipmentSettingsHint": "Controls whether NPCs can acquire the 'Use Equipment' skill, and the initial skill points available for 'Humanoid' NPCs."
+		"NpcEquipmentSettingsHint": "Controls whether NPCs can acquire the 'Use Equipment' skill, and the initial skill points available for 'Humanoid' NPCs.",
+		"SettingGroupCheckAutomaticPrompt": "Enable automatic Support Check prompts",
+		"SettingGroupCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts a Group Check."
 	}
 }

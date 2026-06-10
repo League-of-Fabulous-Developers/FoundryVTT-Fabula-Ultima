@@ -4,6 +4,7 @@ import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 
 const supportCheckKey = 'supportCheck';
 
@@ -177,10 +178,20 @@ const getBond = (check) => {
 	return check.additionalData[supportCheckKey].bond ?? [];
 };
 
+const onCreateChatMessage = (chatMessage, options, userId) => {
+	const groupCheckFlag = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
+	if (userId !== game.user.id && groupCheckFlag && getSystemSetting(SETTINGS.groupCheckAutomaticPrompt)) {
+		if (groupCheckFlag.status === 'open') {
+			handleSupportCheck(groupCheckFlag);
+		}
+	}
+};
+
 const initialize = () => {
 	Hooks.on('renderChatLog', attachSupportCheckListener);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderSupportCheck);
+	Hooks.on('createChatMessage', onCreateChatMessage);
 };
 
 export const SupportCheck = Object.freeze({
