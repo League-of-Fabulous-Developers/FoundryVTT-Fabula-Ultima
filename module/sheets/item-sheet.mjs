@@ -439,7 +439,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			const config = this._findItemConfig(itemData.type);
 			if (config) {
 				// Check if there is an active ProseMirror editor
-				const activeEditor = document.querySelector('.editor-content.ProseMirror');
+				const activeEditor = this.element.querySelector('.editor-content.ProseMirror');
 				if (itemData.type === 'effect') {
 					if (activeEditor) {
 						// Handle effect drop into ProseMirror editor
