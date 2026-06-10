@@ -10,10 +10,10 @@ const supportCheckKey = 'supportCheck';
 
 /**
  * @param {GroupCheckV2Flag} groupCheck
+ * @param {FUActor} character
  * @return {Promise<void>}
  */
-async function handleSupportCheck(groupCheck) {
-	const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+async function handleSupportCheck(groupCheck, character) {
 	if (!character) {
 		ui.notifications.error('FU.GroupCheckMissingCharacter', { localize: true });
 		return;
@@ -49,6 +49,7 @@ async function handleSupportCheck(groupCheck) {
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
+				checkType: game.i18n.localize(groupCheck.initiative ? 'FU.InitiativeCheck' : 'FU.GroupCheck'),
 				bonds,
 			}),
 			ok: {
@@ -98,7 +99,8 @@ function attachSupportCheckListener(chatLog, html) {
 				if (groupCheck && groupCheck.status === 'open') {
 					event.target.disabled = true;
 					try {
-						await handleSupportCheck(groupCheck);
+						const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+						await handleSupportCheck(groupCheck, character);
 					} finally {
 						event.target.disabled = false;
 					}
@@ -179,10 +181,21 @@ const getBond = (check) => {
 };
 
 const onCreateChatMessage = (chatMessage, options, userId) => {
+	const character = game.user.character;
+	if (game.user.isGM || !character) {
+		return;
+	}
+
+	/** @type GroupCheckV2Flag */
 	const groupCheckFlag = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
-	if (userId !== game.user.id && groupCheckFlag && getSystemSetting(SETTINGS.groupCheckAutomaticPrompt)) {
-		if (groupCheckFlag.status === 'open') {
-			handleSupportCheck(groupCheckFlag);
+
+	if (groupCheckFlag?.status === 'open' && groupCheckFlag.leader !== character.id && getSystemSetting(SETTINGS.groupCheckAutomaticPrompt)) {
+		if (groupCheckFlag.initiative) {
+			if (character.inCombat) {
+				handleSupportCheck(groupCheckFlag, character);
+			}
+		} else {
+			handleSupportCheck(groupCheckFlag, character);
 		}
 	}
 };
