@@ -1,7 +1,6 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
@@ -31,7 +30,10 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		return Object.assign(super.defineSchema(), {
 			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.parity) }),
 			outcome: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkOutcome) }),
-			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
+			attributes: new fields.SchemaField({
+				primary: new fields.SchemaField({ value: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.attributes) }) }),
+				secondary: new fields.SchemaField({ value: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.attributes) }) }),
+			}),
 			result: new fields.NumberField({ integer: true }),
 			quantifier: new fields.StringField({
 				initial: 'any',
