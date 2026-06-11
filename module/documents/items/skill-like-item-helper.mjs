@@ -120,7 +120,7 @@ const initializeAttributeCheck = (modifiers) => {
 		const targets = config.getTargets();
 		const context = ExpressionContext.fromTargetData(actor, item, targets);
 
-		config.check.additionalData[skillForAttributeCheck] = item.parent.uuid;
+		config.check.additionalData[skillForAttributeCheck] = item.uuid;
 		await configureCheck(config, actor, item);
 		await addSkillAccuracy(config, actor, item, context);
 		if (item.system.defense && targets.length === 1) {
@@ -175,7 +175,6 @@ const configureCheck = async (config, actor, item) => {
 	config.addTraits('skill');
 	config.addTraitsFromItemModel(item.system.traits);
 	config.setEffects(item.system.effects);
-	config.addTraitsFromItemModel(item.system.traits);
 	if (item.system.resource.enabled) {
 		config.setResource(item.system.resource.type, item.system.resource.amount);
 	}
@@ -279,7 +278,7 @@ const getWeapon = async (actor) => {
  * @type RenderCheckHook
  */
 const onRenderAccuracyCheck = async (data, check, actor, item) => {
-	if (check.type === 'accuracy' && skillLikeTypes.has(item?.system?.constructor)) {
+	if (check.type === 'accuracy' && skillLikeTypes.some((type) => foundry.utils.isSubclass(item?.system?.constructor, type))) {
 		const inspector = CheckConfiguration.inspect(check);
 		const weapon = await fromUuid(inspector.getWeaponReference());
 
@@ -309,11 +308,9 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'attribute' && skillLikeTypes.has(item?.system?.constructor) && check.additionalData[skillForAttributeCheck]) {
 		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
-		const inspector = CheckConfiguration.inspect(check);
 		CommonSections.itemFlavor(data.sections, skill);
 		data.tags.push(...(skill.system.getTags?.() ?? []));
 		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
-		CommonSections.actions(data, actor, item, [], flags, inspector);
 
 		if (check.critical) {
 			CommonSections.opportunity(data.sections, skill.system.opportunity, CHECK_DETAILS);

@@ -19,6 +19,7 @@ function resolveItemGroup(item) {
 			case 'optionalFeature':
 			case 'classFeature':
 			case 'miscAbility':
+			case 'rule':
 				source = 'skill';
 				break;
 			case 'consumable':

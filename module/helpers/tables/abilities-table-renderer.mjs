@@ -6,6 +6,10 @@ import { FU } from '../config.mjs';
 import { ExpressionContext } from '../../expressions/expressions.mjs';
 import { SkillLikeTableHelper } from './skill-like-table-helper.mjs';
 
+const itemTypeIcons = {
+	miscAbility: 'before-ability-icon',
+};
+
 export class AbilitiesTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
@@ -17,13 +21,13 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 				columnName: AbilitiesTableRenderer.#getNameColumnName,
 				headerSpan: 2,
 				renderCaption: AbilitiesTableRenderer.#renderCaption,
-				cssClass: (item) => (item.parent.type === 'npc' ? 'before-ability-icon' : ''),
+				cssClass: AbilitiesTableRenderer.#getItemIcon,
 			}),
 			combinedProgress: {
 				hideHeader: true,
 				renderCell: AbilitiesTableRenderer.#renderCombinedProgress,
 			},
-			controls: CommonColumns.itemControlsColumn({ type: 'miscAbility', label: 'TYPES.Item.miscAbility' }),
+			controls: CommonColumns.itemControlsColumn({ type: AbilitiesTableRenderer.#getItemType, label: AbilitiesTableRenderer.#getItemTypeLabel }),
 		},
 	};
 
@@ -50,6 +54,22 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 			default:
 				return game.i18n.localize(CONFIG.Item.typeLabels[this.#itemType] ?? this.#itemType);
 		}
+	}
+
+	static #getItemIcon(item) {
+		if (item.parent.type === 'npc') {
+			return itemTypeIcons[item.type] || '';
+		} else {
+			return '';
+		}
+	}
+
+	static #getItemType() {
+		return this.#itemType;
+	}
+
+	static #getItemTypeLabel() {
+		return CONFIG.Item.typeLabels[this.#itemType] ?? this.#itemType;
 	}
 
 	static async #renderCaption(item) {
