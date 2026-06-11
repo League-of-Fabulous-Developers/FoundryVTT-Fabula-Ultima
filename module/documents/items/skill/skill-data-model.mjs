@@ -26,6 +26,10 @@ import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits
  * @property {Set<String>} traits
  */
 export class SkillDataModel extends BaseSkillDataModel {
+	constructor(...args) {
+		super(...args);
+	}
+
 	static defineSchema() {
 		const { SchemaField, StringField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
