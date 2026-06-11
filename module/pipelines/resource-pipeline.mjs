@@ -175,6 +175,9 @@ function calculateMissingResource(actor, resourcePath) {
  */
 async function createChatMessage(request, actor, amount, flavor, template, message, renderData) {
 	const chat = new FUChatBuilder(actor, request.item).withData(renderData).withFlags(Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true)).withFlavor(flavor);
+	if (request.resourceType === 'fp' && !request.gain) {
+		chat.withFlags(Pipeline.initializedFlags(Flags.ChatMessage.UseMetaCurrency, amount));
+	}
 	CommonSections.template(
 		chat.sections,
 		template,

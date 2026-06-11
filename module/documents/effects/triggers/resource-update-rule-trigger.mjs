@@ -85,7 +85,7 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 		}
 
 		if (this.changeThreshold.operator) {
-			const comparisonOperation = ComparisonOperations[this.threshold.operator];
+			const comparisonOperation = ComparisonOperations[this.changeThreshold.operator];
 			if (!comparisonOperation(Math.abs(amount), Math.abs(this.changeThreshold.amount))) {
 				return false;
 			}
