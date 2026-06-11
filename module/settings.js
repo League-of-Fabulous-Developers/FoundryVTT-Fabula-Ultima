@@ -116,6 +116,7 @@ export const SETTINGS = Object.freeze({
 	optionCompendiumBrowserPacks: 'optionCompendiumBrowserPacks',
 	// Checks
 	groupCheckAutomaticPrompt: 'groupCheckAutomaticPrompt',
+	initiativeCheckAutomaticPrompt: 'initiativeCheckAutomaticPrompt',
 });
 
 /**
@@ -1166,6 +1167,16 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		requiresReload: false,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.initiativeCheckAutomaticPrompt, {
+		name: game.i18n.localize('FU.SettingInitiativeCheckAutomaticPrompt'),
+		hint: game.i18n.localize('FU.SettingInitiativeCheckAutomaticPromptHint'),
+		scope: 'user',
+		config: true,
+		type: Boolean,
+		requiresReload: false,
+		default: true,
 	});
 };
 

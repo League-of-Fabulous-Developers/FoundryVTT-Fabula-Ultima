@@ -52,6 +52,7 @@ async function handleSupportCheck(groupCheck, character) {
 				checkType: game.i18n.localize(groupCheck.initiative ? 'FU.InitiativeCheck' : 'FU.GroupCheck'),
 				bonds,
 			}),
+			rejectClose: true,
 			ok: {
 				callback: (event, button, dialog) => {
 					const selected = dialog.element.querySelector('[name=bond]:checked').value;
@@ -189,12 +190,12 @@ const onCreateChatMessage = (chatMessage, options, userId) => {
 	/** @type GroupCheckV2Flag */
 	const groupCheckFlag = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
 
-	if (groupCheckFlag?.status === 'open' && groupCheckFlag.leader !== character.id && getSystemSetting(SETTINGS.groupCheckAutomaticPrompt)) {
-		if (groupCheckFlag.initiative) {
+	if (groupCheckFlag?.status === 'open' && groupCheckFlag.leader !== character.id) {
+		if (groupCheckFlag.initiative && getSystemSetting(SETTINGS.initiativeCheckAutomaticPrompt)) {
 			if (character.inCombat) {
 				handleSupportCheck(groupCheckFlag, character);
 			}
-		} else {
+		} else if (getSystemSetting(SETTINGS.groupCheckAutomaticPrompt)) {
 			handleSupportCheck(groupCheckFlag, character);
 		}
 	}
