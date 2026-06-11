@@ -1,6 +1,6 @@
 <div class="tab flexcol {{tab.cssClass}}" data-group="primary"
-	 style="overflow-x: hidden;"
-	 data-tab="settings">
+     style="overflow-x: hidden;"
+     data-tab="settings">
 
 	<div class="fu-form grid grid-2col gap-5">
 		{{!-- Base Affinity Section --}}
@@ -17,16 +17,16 @@
 							<span
 							 style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 								<img class="affinity-icon"
-									 src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
-									 alt="{{key}}"
-									 style="width: 24px; height: 24px;">
+								     src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
+								     alt="{{key}}"
+								     style="width: 24px; height: 24px;">
 								<span class="resource-label-sm">{{affinity.label}}</span>
 							</span>
 							</label>
 							<select name="system.affinities.{{ key }}.base"
-									class="resource-inputs select-dropdown"
-									data-tooltip="{{ affinity.base }}: {{ affinity.affTypeBase }}"
-									data-dtype="Number">
+							        class="resource-inputs select-dropdown"
+							        data-tooltip="{{ affinity.base }}: {{ affinity.affTypeBase }}"
+							        data-dtype="Number">
 								{{selectOptions @root.FU.affTypeAbbr selected=affinity.base localize=true}}
 							</select>
 						</div>
@@ -45,14 +45,14 @@
 				<div class="header-fields grid grid-5col" style="margin: 5px 0;">
 					{{!-- Health --}}
 					<div class="resource-content">
-						<label class="fu-form__property resource-label-sm stack" >
+						<label class="fu-form__property resource-label-sm stack">
 							<i class="fu-icon--s {{pfuIconClass 'hp'}}"></i>
 							{{localize 'FU.HealthAbbr'}}
 							<input type="number"
-								   name="system.resources.hp.bonus"
-								   value="{{system.resources.hp.bonus}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.resources.hp.bonus"
+							       value="{{system.resources.hp.bonus}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.resources.hp.bonus}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -65,10 +65,10 @@
 							<i class="fu-icon--s {{pfuIconClass 'mp'}}"></i>
 							{{localize 'FU.MindAbbr'}}
 							<input type="number"
-								   name="system.resources.mp.bonus"
-								   value="{{system.resources.mp.bonus}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.resources.mp.bonus"
+							       value="{{system.resources.mp.bonus}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.resources.mp.bonus includeZero=true}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -82,10 +82,10 @@
 								<i class="fu-icon--s {{pfuIconClass 'ip'}}"></i>
 								{{localize 'FU.InventoryAbbr'}}
 								<input type="number"
-									   name="system.resources.ip.bonus"
-									   value="{{system.resources.ip.bonus}}"
-									   data-dtype="Number"
-									   class="resource-inputs bonus"
+								       name="system.resources.ip.bonus"
+								       value="{{system.resources.ip.bonus}}"
+								       data-dtype="Number"
+								       class="resource-inputs bonus"
 									{{#if actor.overrides.system.resources.ip.bonus includeZero=true}}
 									   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 									{{/if}} />
@@ -100,10 +100,10 @@
 							<i class="fu-icon--s {{pfuIconClass 'def'}}"></i>
 							{{localize 'FU.DefenseAbbr'}}
 							<input type="number"
-								   name="system.derived.def.bonus"
-								   value="{{system.derived.def.bonus}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.derived.def.bonus"
+							       value="{{system.derived.def.bonus}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.derived.def.bonus includeZero=true}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -116,10 +116,10 @@
 							<i class="fu-icon--s {{pfuIconClass 'mdef'}}"></i>
 							{{localize 'FU.MagicDefenseAbbr'}}
 							<input type="number"
-								   name="system.derived.mdef.bonus"
-								   value="{{system.derived.mdef.bonus}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.derived.mdef.bonus"
+							       value="{{system.derived.mdef.bonus}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.derived.mdef.bonus includeZero=true}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -132,10 +132,10 @@
 							<i class="fu-icon--s {{pfuIconClass 'init'}}"></i>
 							{{localize 'FU.InitiativeAbbr'}}
 							<input type="number"
-								   name="system.derived.init.bonus"
-								   value="{{system.derived.init.bonus}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.derived.init.bonus"
+							       value="{{system.derived.init.bonus}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.derived.init.bonus includeZero=true}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -148,10 +148,10 @@
 							<i class="fu-icon--s {{pfuIconClass 'accuracy'}}"></i>
 							{{localize 'FU.AccuracyCheck'}}
 							<input type="number"
-								   name="system.bonuses.accuracy.accuracyCheck"
-								   value="{{system.bonuses.accuracy.accuracyCheck}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.bonuses.accuracy.accuracyCheck"
+							       value="{{system.bonuses.accuracy.accuracyCheck}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.bonuses.accuracy.accuracyCheck includeZero=true}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -164,10 +164,10 @@
 							<i class="fu-icon--s {{pfuIconClass 'magic'}}"></i>
 							{{localize 'FU.MagicCheck'}}
 							<input type="number"
-								   name="system.bonuses.accuracy.magicCheck"
-								   value="{{system.bonuses.accuracy.magicCheck}}"
-								   data-dtype="Number"
-								   class="resource-inputs bonus"
+							       name="system.bonuses.accuracy.magicCheck"
+							       value="{{system.bonuses.accuracy.magicCheck}}"
+							       data-dtype="Number"
+							       class="resource-inputs bonus"
 								{{#if actor.overrides.system.bonuses.accuracy.magicCheck includeZero=true}}
 								   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 								{{/if}} />
@@ -178,14 +178,14 @@
 					{{#if (eq actor.type "npc")}}
 						<div class="resource-content">
 							<label class="fu-form__property resource-label-sm stack"
-								   data-tooltip="{{localize 'FU.MeleeDamageBonus'}}">
+							       data-tooltip="{{localize 'FU.MeleeDamageBonus'}}">
 								<i class="fu-icon--s {{pfuIconClass 'melee'}}"></i>
 								<span>{{localize 'FU.Melee'}}</span>
 								<input type="number"
-									   name="system.bonuses.damage.melee"
-									   value="{{system.bonuses.damage.melee}}"
-									   data-dtype="Number"
-									   class="resource-inputs bonus"
+								       name="system.bonuses.damage.melee"
+								       value="{{system.bonuses.damage.melee}}"
+								       data-dtype="Number"
+								       class="resource-inputs bonus"
 									{{#if actor.overrides.system.bonuses.damage.melee includeZero=true}}
 									   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 									{{/if}} />
@@ -195,14 +195,14 @@
 
 						<div class="resource-content">
 							<label class="fu-form__property resource-label-sm stack"
-								data-tooltip="{{localize 'FU.RangedDamageBonus'}}">
+							       data-tooltip="{{localize 'FU.RangedDamageBonus'}}">
 								<i class="fu-icon--s {{pfuIconClass 'range'}}"></i>
 								<span>{{localize 'FU.Ranged'}}</span>
 								<input type="number"
-									   name="system.bonuses.damage.ranged"
-									   value="{{system.bonuses.damage.ranged}}"
-									   data-dtype="Number"
-									   class="resource-inputs bonus"
+								       name="system.bonuses.damage.ranged"
+								       value="{{system.bonuses.damage.ranged}}"
+								       data-dtype="Number"
+								       class="resource-inputs bonus"
 									{{#if actor.overrides.system.bonuses.damage.ranged includeZero=true}}
 									   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 									{{/if}} />
@@ -211,14 +211,14 @@
 
 						<div class="resource-content">
 							<label class="fu-form__property resource-label-sm stack"
-								   data-tooltip="{{localize 'FU.SpellDamageBonus'}}">
+							       data-tooltip="{{localize 'FU.SpellDamageBonus'}}">
 								<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
 								<span>{{localize 'FU.Spell'}}</span>
 								<input type="number"
-									   name="system.bonuses.damage.spell"
-									   value="{{system.bonuses.damage.spell}}"
-									   data-dtype="Number"
-									   class="resource-inputs bonus"
+								       name="system.bonuses.damage.spell"
+								       value="{{system.bonuses.damage.spell}}"
+								       data-dtype="Number"
+								       class="resource-inputs bonus"
 									{{#if actor.overrides.system.bonuses.damage.spell includeZero=true}}
 									   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 									{{/if}} />
@@ -244,12 +244,12 @@
 								<i class="fu-icon__container fu-icon--s {{pfuIconClass key}}"></i>
 								<span class="resource-label-sm">{{immunity.label}}</span>
 								<input type="checkbox"
-									   id="immunity-{{key}}"
-									   name="system.immunities.{{key}}.base"  
+								       id="immunity-{{key}}"
+								       name="system.immunities.{{key}}.base"
 									{{#if (lookup @root.actor.overrides.system.immunities key)}}
 									   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
 									{{/if}}
-									   {{#if immunity.base}}checked{{/if}}
+									{{#if immunity.base}}checked{{/if}}
 									{{checked immunity.base}}>
 							</label>
 						</div>
@@ -273,7 +273,7 @@
 		{{!-- Settings Section --}}
 		{{#if (eq actor.type "npc")}}
 
-			{{!-- SP TRACKER --}}
+		{{!-- SP TRACKER --}}
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="fu-form__title resource-label-m">
 					{{localize 'FU.SkillPoints'}}
@@ -310,10 +310,10 @@
 								<span>{{localize label}}</span>
 
 								<input type="number"
-									   value="{{this.value}}"
-									   data-dtype="Number"
-									   class="resource-inputs bonus"
-									   readonly />
+								       value="{{this.value}}"
+								       data-dtype="Number"
+								       class="resource-inputs bonus"
+								       readonly />
 							</label>
 						{{/each}}
 					</div>
@@ -354,18 +354,21 @@
 				</legend>
 				<div class="flexrow flex-group-center">
 					<!-- Use Equipment -->
-					{{#unless (eq actor.system.species.value 'beast')}}
-						<label class="resource-label-sm flexcol flex-group-center" data-tooltip="{{localize 'FU.UseEquipmentHint'}}">
-							<i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
-							{{localize 'FU.UseEquipment'}}
-							<input class="use-equipment" type="checkbox" name="system.useEquipment.value"
-								{{ checked system.useEquipment.value }} data-action="useEquipment" />
-						</label>
-					{{/unless}}
+					{{#if (pfuGetSetting 'npcEquipment')}}
+						{{#unless (eq actor.system.species.value 'beast')}}
+							<label class="resource-label-sm flexcol flex-group-center"
+							       data-tooltip="{{localize 'FU.UseEquipmentHint'}}">
+								<i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
+								{{localize 'FU.UseEquipment'}}
+								<input class="use-equipment" type="checkbox" name="system.useEquipment.value"
+									{{ checked system.useEquipment.value }} data-action="useEquipment" {{#if (eq actor.system.species.value 'humanoid')}}disabled{{/if}} />
+							</label>
+						{{/unless}}
+					{{/if}}
 					<!-- Companion -->
 					{{#if (or (eq actor.system.rank.value "companion") (eq actor.system.rank.value "custom"))}}
 						<label class="resource-label-sm flexcol flex-group-center"
-							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}">
+						       data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}">
 							<i class="fa-solid fa-user-group"></i>
 							{{localize 'FU.Player'}}
 							<span class="resource-label-m">LV: {{refActorLevel}}</span>
@@ -375,7 +378,7 @@
 						</label>
 
 						<label class="resource-label-sm flexcol flex-group-center"
-							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}">
+						       data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}">
 							<i class="fa-solid fa-cogs"></i>
 							{{localize 'FU.Skill'}}
 							<span class="resource-label-m">SL: {{refSkillLevel}}</span>

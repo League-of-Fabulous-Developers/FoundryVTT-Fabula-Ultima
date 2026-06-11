@@ -1,3 +1,5 @@
+import { getSystemSetting, SETTINGS } from '../../../settings.js';
+
 /**
  * @desc Calculates the skill points used for this NPC.
  */
@@ -35,10 +37,15 @@ export class NpcSkillTracker {
 		});
 
 		const exclusions = ['unarmed-strike'];
-		const equipmentTypes = ['weapon', 'shield', 'armor'];
 		const excludedItems = exclusions.flatMap((fuid) => this.#data.actor.getSingleItemByFuid(fuid) ?? []);
-		const equipmentItems = equipmentTypes.flatMap((type) => this.#data.actor.itemTypes[type]).filter((item) => !excludedItems.includes(item));
-		const equipment = this.#data.species.value === 'humanoid' ? [] : equipmentItems;
+		let equipment;
+		if (getSystemSetting(SETTINGS.npcEquipment)) {
+			const equipmentTypes = ['weapon', 'shield', 'armor'];
+			const equipmentItems = equipmentTypes.flatMap((type) => this.#data.actor.itemTypes[type]).filter((item) => !excludedItems.includes(item));
+			equipment = this.#data.species.value === 'humanoid' ? [] : equipmentItems;
+		} else {
+			equipment = [];
+		}
 
 		return [
 			{ label: 'FU.SpecialAttacks', value: specialAttacks.length, items: specialAttacks, tooltip: specialAttacks.map((s) => s.name).join('<br>') },
@@ -80,7 +87,14 @@ export class NpcSkillTracker {
 	#calcAvailableSkillsFromSpecies() {
 		let number = 4;
 		const species = this.#data.species.value;
-		if (species === 'demon' || species === 'plant' || species === 'humanoid') {
+		if (species === 'humanoid') {
+			if (getSystemSetting(SETTINGS.npcEquipment)) {
+				return 3;
+			} else {
+				return 4;
+			}
+		}
+		if (species === 'demon' || species === 'plant') {
 			number = 3;
 		}
 		if (species === 'construct' || species === 'elemental' || species === 'undead') {

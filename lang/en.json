@@ -2012,6 +2012,8 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"NpcEquipmentSettings": "NPC Equipment",
+		"NpcEquipmentSettingsHint": "Controls whether NPCs can acquire the 'Use Equipment' skill, and the initial skill points available for 'Humanoid' NPCs."
 	}
 }
