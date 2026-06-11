@@ -16,13 +16,34 @@ import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document
  * @property {"armor", "weapon", false} socketed
  */
 export class MnemosphereDataModel extends PseudoDocumentEnabledTypeDataModel {
+	constructor(data, options) {
+		for (let item of data.items) {
+			if (item.type === 'skill' && item.system.level === 1) {
+				throw new Error();
+			}
+		}
+		super(data, options);
+	}
+
 	static defineSchema() {
 		const { StringField, NumberField } = foundry.data.fields;
 		return {
 			source: new StringField({ blank: true }),
 			summary: new StringField({ blank: true }),
 			class: new StringField({ blank: true }),
-			level: new NumberField({ initial: 1, min: 1, validate: (value, options) => value <= (options.source.maxLevel ?? 5) }),
+			level: new NumberField({
+				initial: 1,
+				min: 1,
+				validate: (value, options) => {
+					if (options.source) {
+						return value <= (options.source?.system.maxLevel ?? 5);
+					}
+					if (options.model) {
+						return value <= (options.model?.maxLevel ?? 5);
+					}
+					return undefined;
+				},
+			}),
 			maxLevel: new NumberField({ initial: 5, min: 1, max: 10 }),
 			items: new PseudoDocumentCollectionField(PseudoItem),
 		};

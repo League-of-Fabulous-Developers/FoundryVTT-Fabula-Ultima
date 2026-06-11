@@ -48,7 +48,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 
 		const RegistryModel = this.#getRegistryModel(model);
 
-		return new RegistryModel(value, { parent: model, ...options });
+		return new RegistryModel(value, { ...options, parent: model, clean: true });
 	}
 
 	getInitialValue(data) {
