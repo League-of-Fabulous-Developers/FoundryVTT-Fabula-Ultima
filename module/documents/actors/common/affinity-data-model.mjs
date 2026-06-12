@@ -10,11 +10,11 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 		const { NumberField } = foundry.data.fields;
 		return {
 			base: new NumberField({ initial: 0, min: -1, max: 3, integer: true, nullable: false }),
+			current: new NumberField({ min: -1, max: 3, integer: true, nullable: false, persisted: false }),
 		};
 	}
 
-	constructor(data, options) {
-		super(data, options);
+	_configure(options) {
 		const holder = {
 			vulnerable: this.base === -1,
 			resistant: this.base === 1,
@@ -44,6 +44,9 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 				return 0;
 			},
 			set: (newValue) => {
+				if (!Number.isInteger(newValue)) {
+					return;
+				}
 				delete this.current;
 				let value = MathHelper.clamp(newValue, -1, 3);
 				Object.defineProperty(this, 'current', {
@@ -59,19 +62,7 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 			},
 		});
 
-		Object.defineProperty(this, 'downgrade', {
-			value: () => {
-				holder.vulnerable = true;
-			},
-		});
-
-		Object.defineProperty(this, 'upgrade', {
-			value: () => {
-				holder.resistant = true;
-			},
-		});
-
-		['vulnerability', 'vulnerable', 'vul', 'vu'].forEach((value) => {
+		['downgrade', 'vulnerability', 'vulnerable', 'vul', 'vu'].forEach((value) => {
 			Object.defineProperty(this, value, {
 				value: () => {
 					holder.vulnerable = true;
@@ -79,7 +70,7 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 			});
 		});
 
-		['resistance', 'resistant', 'res', 'rs'].forEach((value) => {
+		['upgrade', 'resistance', 'resistant', 'res', 'rs'].forEach((value) => {
 			Object.defineProperty(this, value, {
 				value: () => {
 					holder.resistant = true;

@@ -56,7 +56,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 */
 		prepareBaseData() {
 			super.prepareBaseData();
-			for (let change of this.changes) {
+			for (let change of this.system.changes) {
 				if (HIGH_PRIORITY_CHANGES.has(change.key)) {
 					change.priority = change.mode;
 				} else if (LOW_PRIORITY_CHANGES.has(change.key)) {
@@ -201,14 +201,14 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @param {EffectChangeData} change
 		 * @returns {{}|*}
 		 */
-		apply(target, change) {
+		static applyChange(target, change) {
 			// Support expressions
 			if (change.value && typeof change.value === 'string') {
 				try {
 					// First, evaluate using built-in support
 					const expression = Roll.replaceFormulaData(change.value, this.parent);
 					// Second, evaluate with our custom expressions
-					const context = this.resolveExpressionContext(target);
+					const context = this.resolveExpressionContext(target, change);
 					const value = Expressions.evaluate(expression, context);
 					change.value = String(value ?? 0);
 					console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
@@ -225,19 +225,16 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				}
 			}
 
-			const changes = super.apply(target, change);
-			if (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM && changes[change.key] == null) {
-				delete changes[change.key];
-			}
-			return changes;
+			return super.applyChange(target, change);
 		}
 
 		/**
 		 * @description Resolves the context based on the target type
 		 * @param {FUActor|FUItem} target
+		 * @param {EffectChangeData} change
 		 * @returns {ExpressionContext}
 		 */
-		resolveExpressionContext(target) {
+		static resolveExpressionContext(target, change) {
 			let actor;
 			let item;
 
@@ -254,9 +251,9 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			}
 
 			const context = new ExpressionContext(actor, item, [target]);
-			context.effect = this;
-			if (this.sourceInfo) {
-				context.setSourceItem(this.sourceInfo.itemUuid);
+			context.effect = change.effect;
+			if (change.effect.sourceInfo) {
+				context.setSourceItem(context.effect.sourceInfo.itemUuid);
 			}
 			return context;
 		}
