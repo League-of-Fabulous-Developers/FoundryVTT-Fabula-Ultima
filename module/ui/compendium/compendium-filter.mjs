@@ -49,6 +49,9 @@ export class CompendiumFilter {
 			if (this.categories) {
 				for (const category of Object.values(this.categories)) {
 					if (category.selected?.size > 0) {
+						// Make sure we show Heroic Skills that are universal.
+						if (entry.type === 'heroic' && entry.metadata.class === undefined) return true;
+
 						const paths = Array.isArray(category.propertyPath) ? category.propertyPath : [category.propertyPath];
 						const matchesAnyPath = paths.some((path) => {
 							const value = foundry.utils.getProperty(entry, path);
