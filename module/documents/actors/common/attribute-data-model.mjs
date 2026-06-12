@@ -22,6 +22,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 		const { NumberField } = foundry.data.fields;
 		return {
 			base: new NumberField({ initial: 8, min: minimumValue, max: maximumValue, integer: true, nullable: false, validate: isEven }),
+			current: new NumberField({ initial: (source) => source.base, min: minimumValue, max: maximumValue, integer: true, nullable: false, persisted: false }),
 		};
 	}
 
@@ -29,7 +30,6 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 		super(data, options);
 
 		// Set the initial current to start off the base value
-		this._current = this.base;
 
 		Object.defineProperty(this, 'current', {
 			configurable: false,
