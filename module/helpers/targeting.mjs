@@ -42,9 +42,10 @@ const STRICT_TARGETING = false;
  * @param {FUActor[] | Token[] | TargetData[]} targets
  * @returns {FUActor[]|FUItem}
  */
-async function filterTargetsByRule(actor, item, targets) {
+async function processTargetData(actor, item, targets) {
 	if (!item.system.targeting) {
-		throw Error(`"No targeting data model in the given item ${item.name}`);
+		ui.notifications.warn(`"No targeting data model in the given item ${item.name}`);
+		return targets;
 	}
 
 	/**
@@ -56,19 +57,13 @@ async function filterTargetsByRule(actor, item, targets) {
 		case 'self':
 			return [];
 		case 'single':
-			if (targets.length === 0) {
-				return [];
-			} else if (targets.length > 1) {
+			if (targets.length > 1) {
 				ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
-				return [];
 			}
-			return [targets[0]];
+			return targets;
 		case 'multiple':
-			if (targets.length === 0) {
-				return [];
-			} else if (targets.length > targeting.max.value) {
+			if (targets.length > targeting.max) {
 				ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
-				return [];
 			}
 			return targets;
 		case 'weapon': {
@@ -202,7 +197,7 @@ export const Targeting = Object.freeze({
 		weapon: 'weapon',
 		special: 'special',
 	},
-	filterTargetsByRule,
+	processTargetData,
 	getSerializedTargetData,
 	serializeTargetData,
 	deserializeTargetData,

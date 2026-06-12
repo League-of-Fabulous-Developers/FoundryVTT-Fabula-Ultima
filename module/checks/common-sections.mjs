@@ -451,7 +451,7 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 			let rule;
 			if (item && item.system.targeting) {
 				rule = item.system.targeting.rule ?? Targeting.rule.multiple;
-				targetData = await Targeting.filterTargetsByRule(actor, item, targetData);
+				targetData = await Targeting.processTargetData(actor, item, targetData);
 			} else {
 				rule = targetData?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
 			}
