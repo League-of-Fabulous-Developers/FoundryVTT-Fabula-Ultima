@@ -114,6 +114,9 @@ export const SETTINGS = Object.freeze({
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
 	// Compendium Browser
 	optionCompendiumBrowserPacks: 'optionCompendiumBrowserPacks',
+	// Checks
+	groupCheckAutomaticPrompt: 'groupCheckAutomaticPrompt',
+	initiativeCheckAutomaticPrompt: 'initiativeCheckAutomaticPrompt',
 });
 
 /**
@@ -1154,6 +1157,26 @@ export const registerSystemSettings = async function () {
 		requiresReload: true,
 		default: 'all',
 		choices: FU.compendiumBrowserPacks,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.groupCheckAutomaticPrompt, {
+		name: game.i18n.localize('FU.SettingGroupCheckAutomaticPrompt'),
+		hint: game.i18n.localize('FU.SettingGroupCheckAutomaticPromptHint'),
+		scope: 'user',
+		config: true,
+		type: Boolean,
+		requiresReload: false,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.initiativeCheckAutomaticPrompt, {
+		name: game.i18n.localize('FU.SettingInitiativeCheckAutomaticPrompt'),
+		hint: game.i18n.localize('FU.SettingInitiativeCheckAutomaticPromptHint'),
+		scope: 'user',
+		config: true,
+		type: Boolean,
+		requiresReload: false,
+		default: true,
 	});
 };
 

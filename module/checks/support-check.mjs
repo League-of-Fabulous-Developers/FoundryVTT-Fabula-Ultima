@@ -4,15 +4,16 @@ import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 
 const supportCheckKey = 'supportCheck';
 
 /**
  * @param {GroupCheckV2Flag} groupCheck
+ * @param {FUActor} character
  * @return {Promise<void>}
  */
-async function handleSupportCheck(groupCheck) {
-	const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+async function handleSupportCheck(groupCheck, character) {
 	if (!character) {
 		ui.notifications.error('FU.GroupCheckMissingCharacter', { localize: true });
 		return;
@@ -48,8 +49,10 @@ async function handleSupportCheck(groupCheck) {
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
+				checkType: game.i18n.localize(groupCheck.initiative ? 'FU.InitiativeCheck' : 'FU.GroupCheck'),
 				bonds,
 			}),
+			rejectClose: true,
 			ok: {
 				callback: (event, button, dialog) => {
 					const selected = dialog.element.querySelector('[name=bond]:checked').value;
@@ -97,7 +100,8 @@ function attachSupportCheckListener(chatLog, html) {
 				if (groupCheck && groupCheck.status === 'open') {
 					event.target.disabled = true;
 					try {
-						await handleSupportCheck(groupCheck);
+						const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+						await handleSupportCheck(groupCheck, character);
 					} finally {
 						event.target.disabled = false;
 					}
@@ -177,10 +181,31 @@ const getBond = (check) => {
 	return check.additionalData[supportCheckKey].bond ?? [];
 };
 
+const onCreateChatMessage = (chatMessage, options, userId) => {
+	const character = game.user.character;
+	if (game.user.isGM || !character) {
+		return;
+	}
+
+	/** @type GroupCheckV2Flag */
+	const groupCheckFlag = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
+
+	if (groupCheckFlag?.status === 'open' && groupCheckFlag.leader !== character.id) {
+		if (groupCheckFlag.initiative && getSystemSetting(SETTINGS.initiativeCheckAutomaticPrompt)) {
+			if (character.inCombat) {
+				handleSupportCheck(groupCheckFlag, character);
+			}
+		} else if (getSystemSetting(SETTINGS.groupCheckAutomaticPrompt)) {
+			handleSupportCheck(groupCheckFlag, character);
+		}
+	}
+};
+
 const initialize = () => {
 	Hooks.on('renderChatLog', attachSupportCheckListener);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderSupportCheck);
+	Hooks.on('createChatMessage', onCreateChatMessage);
 };
 
 export const SupportCheck = Object.freeze({
