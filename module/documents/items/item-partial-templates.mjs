@@ -2,8 +2,8 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 
 /**
  * @typedef FUPartialTemplate
- * @property {String} template
- * @property {String} group
+ * @property {string} template
+ * @property {string} [group]
  */
 
 /**

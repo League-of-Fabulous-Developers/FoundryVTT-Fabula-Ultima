@@ -153,35 +153,44 @@ function onRenderChatMessage(document, html) {
 		link.addEventListener('click', function (event) {
 			console.debug(`Targeting ${this.dataset.id}`);
 			const actor = fromUuidSync(this.dataset.id);
-			const token = actor.token?.object;
-			if (!validateCombatant(token)) return;
-			return pingCombatant(token);
+			const token = findToken(actor);
+			if (token) {
+				return pingCombatant(token);
+			}
 		});
 	});
 }
 
 Hooks.on(`renderChatMessageHTML`, onRenderChatMessage);
 
-function validateCombatant(token) {
+function findToken(actor) {
 	const canvas = game.canvas;
-	if (!canvas.ready || token.scene.id !== canvas.scene.id) {
-		return false;
+	if (!canvas.ready) {
+		return null;
 	}
-	if (!token.visible) {
-		return ui.notifications.warn(game.i18n.localize('COMBAT.WarnNonVisibleToken'));
+
+	const tokens = actor.getDependentTokens({ scenes: [canvas.scene] });
+	if (tokens.length === 0) {
+		return null;
 	}
-	return true;
+
+	const token = tokens.find((token) => token.visible);
+	if (!token) {
+		ui.notifications.warn(game.i18n.localize('COMBAT.WarnNonVisibleToken'));
+		return null;
+	}
+	return token;
 }
 
 async function pingCombatant(token) {
 	const canvas = game.canvas;
-	await canvas.ping(token.center);
+	await canvas.ping(token.getCenterPoint());
 	await panToCombatant(token);
 }
 
 async function panToCombatant(token) {
 	const canvas = game.canvas;
-	const { x, y } = token.center;
+	const { x, y } = token.getCenterPoint();
 	await canvas.animatePan({ x, y, scale: Math.max(canvas.stage.scale.x, 0.5) });
 }
 

@@ -23,7 +23,6 @@ import { HeroicsTableRenderer } from '../helpers/tables/heroics-table-renderer.m
 import { FeatureTables } from '../helpers/tables/feature-tables-renderer.mjs';
 import { AbilitiesTableRenderer } from '../helpers/tables/abilities-table-renderer.mjs';
 import { ProjectsTableRenderer } from '../helpers/tables/projects-table-renderer.mjs';
-import { RulesTableRenderer } from '../helpers/tables/rules-table-renderer.mjs';
 import { RitualsTableRenderer } from '../helpers/tables/rituals-table-renderer.mjs';
 import { SpellsTableRenderer } from '../helpers/tables/spells-table-renderer.mjs';
 import { WeaponsTableRenderer } from '../helpers/tables/weapons-table-renderer.mjs';
@@ -181,9 +180,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 	// tables required for both player characters and npcs
 	#favoritesTable = new FavoritesTableRenderer();
 	#skillsTable = new SkillsTableRenderer();
-	#abilitiesTable = new AbilitiesTableRenderer();
+	#abilitiesTable = new AbilitiesTableRenderer('miscAbility');
 	#spellsTable = new SpellsTableRenderer();
-	#rulesTable = new RulesTableRenderer();
+	#rulesTable = new AbilitiesTableRenderer('rule');
 	#treasuresTable = new TreasuresTableRenderer();
 	#weaponsTable = new WeaponsTableRenderer();
 	#shieldsTable = new ShieldsTableRenderer();

@@ -263,7 +263,7 @@ export class FUTableRenderer {
 		const { getItems, tablePreset, sort, columns: columnConfigs = {}, cssClass, renderDescription, renderRowCaption, hideIfEmpty: configHideIfEmpty, advancedConfig } = this.tableConfig;
 
 		/** @type {CompendiumIndexEntry[]} */
-		const items = await Promise.resolve(getItems(document, options));
+		const items = await getItems(document, options);
 
 		let shouldHideIfEmpty = configHideIfEmpty ?? false;
 		if (options.hideIfEmpty != null) {

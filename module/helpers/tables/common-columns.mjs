@@ -97,7 +97,7 @@ function renderNameCell(renderCaption, cssClass, options) {
  * @typedef ItemControlsColumnHeaderRenderOptions
  * @property {string, string[], (() => string|string[])} [type]
  * @property {string, string[], (() => string|string[])} [subtype]
- * @property {string} [label]
+ * @property {string, (() => string)} [label]
  * @property {"start", "center", "end"} [headerAlignment]
  * @property {string|Promise<string>|(() => string|Promise<string>)} [custom]
  */
@@ -134,23 +134,29 @@ function itemControlsColumn(headerOptions, cellOptions = {}) {
 }
 
 /**
- * @param {ItemControlsColumnHeaderRenderOptions} options
+ * @param {ItemControlsColumnHeaderRenderOptions} headerOptions
  * @return {() => Promise<string>}
  */
-function renderControlsHeader(options) {
-	if (options.custom) {
-		return options.custom;
+function renderControlsHeader(headerOptions) {
+	if (headerOptions.custom) {
+		return headerOptions.custom;
 	} else {
-		return async () => {
+		return async function () {
+			const options = { ...headerOptions };
+			if (options.label instanceof Function) {
+				options.label = options.label.call(this);
+				console.log(options.label);
+			}
+
 			if (options.type instanceof Function) {
-				options.type = options.type();
+				options.type = options.type.call(this);
 			}
 			if (Array.isArray(options.type)) {
 				options.type = options.type.join(',');
 			}
 
 			if (options.subtype instanceof Function) {
-				options.subtype = options.subtype();
+				options.subtype = options.subtype.call(this);
 			}
 			if (Array.isArray(options.subtype)) {
 				options.subtype = options.subtype.join(',');
