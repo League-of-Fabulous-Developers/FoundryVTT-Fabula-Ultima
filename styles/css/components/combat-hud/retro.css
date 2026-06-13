@@ -38,19 +38,19 @@
 
 	.combat-hud-retro__window-button {
 		position: absolute;
-		color: #ffffff;
+		color: var(--pfu-color-app-item-header-content);
+		text-shadow: 1px 1px var(--pfu-color-app-item-header-content-shadow, black);
+		box-shadow: 3px 3px var(--pfu-color-app-item-header-shadow);
+		background: var(--pfu-color-app-item-header-fill);
+
 		z-index: 99;
 		/*
   Set !important because some themes will set pointer-events to none on the main application
   element, and the selector for that is more specific than this one.
    */
 		pointer-events: initial !important;
-		text-shadow: 1px 1px 1px #000000;
 		-webkit-box-shadow: 3px 3px #2b4a42;
-		box-shadow: 3px 3px #2b4a42;
 		border-radius: 10px;
-		background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc)), #2b4a42;
-		background: linear-gradient(to bottom, #2c584d, #a0cdbc), #2b4a42;
 		padding: 0.5em 1em 0.5em 1em;
 		height: var(--hud-buttons-height);
 		width: var(--hud-buttons-width);
@@ -115,7 +115,8 @@
 		-webkit-box-shadow: 2px 4px var(--hud-boxshadow-color);
 		box-shadow: 2px 4px var(--hud-boxshadow-color);
 		border-radius: 10px;
-		background: var(--hud-background-gradient);
+		background: var(--pfu-color-app-item-header-fill);
+
 		padding: 0.25em;
 		display: -webkit-box;
 		display: -ms-flexbox;
@@ -156,6 +157,10 @@
 		gap: 4px;
 		position: relative;
 		pointer-events: initial;
+
+		color: var(--pfu-color-control-content);
+		text-shadow: 1px 1px var(--pfu-color-app-item-header-content-shadow, black);
+		background: var(--pfu-color-control-fill-1);
 	}
 
 	.combat-hud-retro__combatant-info {
