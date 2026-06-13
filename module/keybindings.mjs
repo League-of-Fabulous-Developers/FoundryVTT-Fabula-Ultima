@@ -1,9 +1,11 @@
 import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
 import { Flags } from './helpers/flags.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
+import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 
 export const FUKeybindings = Object.freeze({
 	openPartySheet: 'openPartySheet',
+	openCompendiumBrowser: 'openCompendiumBrowser',
 	showTokenDragRuler: 'showTokenDragRuler',
 });
 
@@ -21,6 +23,14 @@ export const registerKeyBindings = async function () {
 		},
 		restricted: false, // Set to true if only GMs should use it
 		precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+	});
+
+	game.keybindings.register(Flags.Scope, FUKeybindings.openCompendiumBrowser, {
+		name: game.i18n.localize('FU.CompendiumBrowserOpen'),
+		editable: [{ key: 'KeyB' }],
+		onDown: () => {
+			CompendiumBrowser.open({}, {});
+		},
 	});
 
 	game.keybindings.register(Flags.Scope, FUKeybindings.showTokenDragRuler, {
