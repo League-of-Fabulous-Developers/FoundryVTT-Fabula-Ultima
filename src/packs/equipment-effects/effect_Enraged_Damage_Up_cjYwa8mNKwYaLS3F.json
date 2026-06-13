@@ -1,0 +1,144 @@
+{
+  "folder": "Eyh5P2Dt6MZzu84a",
+  "name": "Enraged Damage Up",
+  "type": "effect",
+  "_id": "cjYwa8mNKwYaLS3F",
+  "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
+  "system": {
+    "fuid": "enraged-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Enraged Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.cjYwa8mNKwYaLS3F",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Ak5L2KsgvMVngMPP": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "llJFgRNHIPY10tF3",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "Ak5L2KsgvMVngMPP",
+              "predicates": {
+                "fnUO5mOAeZCH6nU4": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "fnUO5mOAeZCH6nU4",
+                  "effect": "enraged"
+                }
+              },
+              "actions": {
+                "kTnomBRVOqMYwSWB": {
+                  "type": "messageRuleAction",
+                  "_id": "kTnomBRVOqMYwSWB",
+                  "message": "<p>You dealt 5 extra damage to a <strong>enraged</strong> creature.</p>"
+                },
+                "2AyjpwATKDRdyN4p": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "2AyjpwATKDRdyN4p",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "qM1CSPgpZJPUsQL5",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>enraged</strong> creatures.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Enraged Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.cjYwa8mNKwYaLS3F",
+            "effectUuid": null,
+            "fuid": "enraged-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781341297416,
+        "modifiedTime": 1781341347038,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!cjYwa8mNKwYaLS3F.qM1CSPgpZJPUsQL5"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781341274391,
+    "modifiedTime": 1781341296501,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!cjYwa8mNKwYaLS3F"
+}

@@ -10,9 +10,11 @@ const fields = foundry.data.fields;
  * @description Trigger based on a {@linkcode DamageEvent}
  * @extends RuleTriggerDataModel
  * @property {DamageType} damageTypes
+ * @property {FUAffinity} affinity
  * @property {Set<FUItemGroup>} itemGroups
  * @property {FUThreshold} damageThreshold
- * @property {FUAffinity} affinity
+ * @property {String} identifier
+ * @property {Boolean} local
  * @inheritDoc
  */
 export class DamageRuleTrigger extends RuleTriggerDataModel {
@@ -49,6 +51,8 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 				}),
 				amount: new fields.NumberField({ initial: 0 }),
 			}),
+			identifier: new fields.StringField(),
+			local: new fields.BooleanField({ initial: false }),
 		});
 	}
 
@@ -73,10 +77,24 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		// Prevent [action > trigger> cascading
+		// Prevent [action > trigger > cascading
 		if (context.origin === context.event.origin) {
 			return false;
 		}
+
+		// If this RE is on an item, and it doesn't match the item in the event.
+		if (this.local) {
+			if (!context.isLocalItem()) {
+				return false;
+			}
+		}
+		// Check identifier
+		else if (this.identifier) {
+			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
+		}
+
 		if (this.damageType) {
 			if (this.damageType !== context.event.type) {
 				return false;

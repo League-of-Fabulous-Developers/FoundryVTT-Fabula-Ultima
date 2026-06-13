@@ -16,7 +16,6 @@ const fields = foundry.data.fields;
  * @property {TraitsDataModel} traits
  * @property {Set<DamageType>} damageTypes
  * @property {ActionCostDataModel} cost
- * @property {String} effect Optionally, an effect to be applied.
  * @property {String} variant
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
@@ -27,7 +26,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.CALCULATE_DAMAGE_EVENT],
+			eventTypes: [FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.DAMAGE_EVENT],
 		};
 	}
 
@@ -46,7 +45,6 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				blank: true,
 				choices: Object.keys(FU.modifyDamageVariant),
 			}),
-			effect: new fields.StringField({ blank: true }),
 		});
 	}
 
@@ -82,50 +80,73 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 						return;
 					}
 					for (let sl = 1; sl <= skill.level.value; sl++) {
-						context.config.getDamage().addModifier(context.label, _amount * sl, types, {
-							expense: {
-								amount: this.cost.amount * sl,
-								resource: this.cost.resource,
-							},
-							traits: this.traits.values,
-							effect: this.effect,
-							enabled: false,
-						});
+						const expense = {
+							amount: this.cost.amount * sl,
+							resource: this.cost.resource,
+						};
+						this.modifyDamage(context, context.label, _amount * sl, types, expense, this.traits.values, false);
 					}
 					break;
 				}
 
 				case 'psychicGift': {
 					const brainwave = context.character.actor.resolveProgress('brainwave-clock');
-					context.config.getDamage().addModifier(context.label, _amount, types, {
-						expense: {
-							amount: Math.max(5, this.cost.amount * brainwave.current),
-							resource: this.cost.resource,
-							traits: [FeatureTraits.Gift],
-						},
-						traits: this.traits.values,
-						effect: this.effect,
-						enabled: false,
-					});
+					const expense = {
+						amount: Math.max(5, this.cost.amount * brainwave.current),
+						resource: this.cost.resource,
+						traits: [FeatureTraits.Gift],
+					};
+					this.modifyDamage(context, context.label, _amount, types, expense, this.traits.values, false);
 					break;
 				}
 			}
 		} else {
 			if (this.damageTypes.size > 0 || this.cost.amount > 0 || !this.traits.empty) {
-				context.config.getDamage().addModifier(context.label, _amount, types, {
-					expense: this.cost,
-					traits: this.traits.values,
-					effect: this.effect,
-					enabled: !this.cost.assigned,
-				});
-			} else {
-				context.config.addDamageBonus(context.label, _amount);
-				// TODO: Verify...
-				context.config.addTraits(this.traits.values);
-				if (this.effect) {
-					context.config.addEffects(this.effect);
+				this.modifyDamage(context, context.label, _amount, types, this.cost, this.traits.values, !this.cost?.assigned);
+			} else if (_amount) {
+				switch (context.eventType) {
+					case FUHooks.CALCULATE_DAMAGE_EVENT:
+						{
+							context.config.addDamageBonus(context.label, _amount);
+						}
+						break;
+
+					case FUHooks.DAMAGE_EVENT:
+						{
+							context.event.damageContext.addBonus(context.label, _amount);
+						}
+						break;
 				}
 			}
+		}
+	}
+
+	modifyDamage(context, label, amount, types, expense, traits, enabled) {
+		switch (context.eventType) {
+			case FUHooks.CALCULATE_DAMAGE_EVENT:
+				{
+					context.config.getDamage().addModifier(label, amount, types, {
+						expense: expense,
+						traits: traits,
+						enabled: enabled,
+					});
+				}
+				break;
+
+			case FUHooks.DAMAGE_EVENT:
+				{
+					const damageContext = context.event.damageContext;
+					if (amount) {
+						damageContext.addBonus(label, amount);
+					}
+					if (types && types.length > 0) {
+						damageContext.damageType = types[0];
+					}
+					if (traits && !traits.empty) {
+						traits.forEach((value) => damageContext.traits.add(value));
+					}
+				}
+				break;
 		}
 	}
 }

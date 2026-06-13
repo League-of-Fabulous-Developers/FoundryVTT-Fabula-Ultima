@@ -1,0 +1,145 @@
+{
+  "folder": "fRD9lkQMClSvp8jJ",
+  "name": "Weak Damage Up",
+  "type": "effect",
+  "_id": "LNwXr86SA7c1Rq64",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "system": {
+    "fuid": "weak-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Weak Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.LNwXr86SA7c1Rq64",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "GoF9pVR8npxuKdZC": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "LZ6CQ0ppXoSKIn0M",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "GoF9pVR8npxuKdZC",
+              "predicates": {
+                "h2UWukL3aEcNShLp": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "h2UWukL3aEcNShLp",
+                  "effect": "weak"
+                }
+              },
+              "actions": {
+                "Uztm9oBqj7frENGz": {
+                  "type": "messageRuleAction",
+                  "_id": "Uztm9oBqj7frENGz",
+                  "message": "<p>You dealt 5 extra damage to a <strong>weak</strong> creature.</p>"
+                },
+                "98mChaktdUgMtceW": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "98mChaktdUgMtceW",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "JrRX6EW41O2l39st",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>weak</strong> creatures.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Slayer (Weak)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.LNwXr86SA7c1Rq64",
+            "effectUuid": null,
+            "fuid": "slayer-weak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781325777276,
+        "modifiedTime": 1781341067859,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!LNwXr86SA7c1Rq64.JrRX6EW41O2l39st"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781325406038,
+    "modifiedTime": 1781341065421,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!LNwXr86SA7c1Rq64"
+}

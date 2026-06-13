@@ -52,6 +52,14 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	}
 
 	/**
+	 * @param {"hit", "miss"} result
+	 * @param {object} target
+	 */
+	isResult(result, target) {
+		return target.data?.result === result || target.result === result;
+	}
+
+	/**
 	 * @override
 	 */
 	validateContext(context) {
@@ -120,8 +128,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 									case 'all':
 										if (
 											!selected.every((target) => {
-												if (target.data.result === 'hit') return this.outcome === 'success';
-												if (target.data.result === 'miss') return this.outcome === 'failure';
+												if (this.isResult('hit', target)) return this.outcome === 'success';
+												if (this.isResult('miss', target)) return this.outcome === 'failure';
 												return true;
 											})
 										) {
@@ -132,8 +140,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 									case 'any':
 										if (
 											!selected.some((target) => {
-												if (target.data.result === 'hit') return this.outcome === 'success';
-												if (target.data.result === 'miss') return this.outcome === 'failure';
+												if (this.isResult('hit', target)) return this.outcome === 'success';
+												if (this.isResult('miss', target)) return this.outcome === 'failure';
 												return false;
 											})
 										) {
@@ -144,8 +152,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 									case 'none':
 										if (
 											!selected.every((target) => {
-												if (target.data.result === 'hit') return this.outcome !== 'success';
-												if (target.data.result === 'miss') return this.outcome !== 'failure';
+												if (this.isResult('hit', target)) return this.outcome !== 'success';
+												if (this.isResult('miss', target)) return this.outcome !== 'failure';
 												return true;
 											})
 										) {

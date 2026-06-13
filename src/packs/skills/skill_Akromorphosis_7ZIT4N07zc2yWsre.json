@@ -164,7 +164,6 @@
                   "type": "modifyDamageRuleAction",
                   "_id": "SuWfIjzNFYkQ3J8V",
                   "amount": "6+($sl*2)",
-                  "effect": "",
                   "cost": {
                     "amount": null
                   }

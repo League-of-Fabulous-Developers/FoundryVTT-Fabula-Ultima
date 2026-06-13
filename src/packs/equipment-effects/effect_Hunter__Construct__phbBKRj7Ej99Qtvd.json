@@ -32,15 +32,16 @@
             "dKIFJw3pm1dHfarA": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "Vo5AOku3ScFCaSfd",
-                "type": "renderCheckRuleTrigger",
+                "_id": "zQLxL8C3LJQJ9tPD",
+                "type": "damageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "accuracy"
-                ],
-                "itemGroups": [
-                  "attack"
-                ],
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
                 "local": true,
                 "identifier": ""
               },
@@ -58,7 +59,15 @@
                 "OKfK4ycC1O8MAI4P": {
                   "type": "messageRuleAction",
                   "_id": "OKfK4ycC1O8MAI4P",
-                  "message": "<p>If <strong>construct</strong> target, deal 5 extra damage to them.</p>"
+                  "message": "<p>This dealt 5 extra damage to a <strong>construct</strong>.</p>"
+                },
+                "0LM7QrRKEB0nVGiq": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "0LM7QrRKEB0nVGiq",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               }
             }
@@ -86,7 +95,7 @@
       "_id": "LksbSK4OBzir93gF",
       "type": "base",
       "changes": [],
-      "description": "<p>The weapon deals 5 extra damage to <strong>constructs</strong>.</p>",
+      "description": "<p>The weapon deals <strong>5 extra damage</strong> to <strong>constructs</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -110,7 +119,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774723996261,
-        "modifiedTime": 1774729470712,
+        "modifiedTime": 1781325226000,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!phbBKRj7Ej99Qtvd.LksbSK4OBzir93gF"

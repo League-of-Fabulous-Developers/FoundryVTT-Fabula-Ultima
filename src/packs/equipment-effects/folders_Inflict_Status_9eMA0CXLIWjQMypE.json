@@ -6,7 +6,7 @@
   "sorting": "a",
   "_id": "9eMA0CXLIWjQMypE",
   "description": "",
-  "sort": 0,
+  "sort": 100000,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -16,7 +16,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-    "modifiedTime": 1774765232337
+    "modifiedTime": 1781324989775
   },
   "_key": "!folders!9eMA0CXLIWjQMypE"
 }

@@ -1,0 +1,144 @@
+{
+  "folder": "ys7VHxUuD1EkvRXO",
+  "name": "Vicious",
+  "type": "effect",
+  "_id": "nWKLeTVgiUS1FN6c",
+  "img": "systems/projectfu/styles/static/statuses/Crisis.webp",
+  "system": {
+    "fuid": "vicious",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Vicious",
+      "img": "systems/projectfu/styles/static/statuses/Crisis.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.nWKLeTVgiUS1FN6c",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "9Ir2XoSDvNGkmUsQ": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "1jCG3MOEOW685oNw",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "9Ir2XoSDvNGkmUsQ",
+              "predicates": {
+                "O5pAp2pFKh0QSS0A": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "O5pAp2pFKh0QSS0A",
+                  "effect": "crisis"
+                }
+              },
+              "actions": {
+                "G5Iw2PXfw2SeaS2W": {
+                  "type": "messageRuleAction",
+                  "_id": "G5Iw2PXfw2SeaS2W",
+                  "message": "<p>This dealt 5 extra damage to a creature in <strong>crisis</strong>.</p>"
+                },
+                "tzyMSdz9c2MmVDBd": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "tzyMSdz9c2MmVDBd",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "9f8oPJbmWKZdGhOj",
+      "type": "base",
+      "changes": [],
+      "description": "<p>This weapon deals <strong>5 extra damage</strong> to creatures in <strong>crisis</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Vicious",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.nWKLeTVgiUS1FN6c",
+            "effectUuid": null,
+            "fuid": "vicious"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781324696570,
+        "modifiedTime": 1781325209012,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!nWKLeTVgiUS1FN6c.9f8oPJbmWKZdGhOj"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781324687311,
+    "modifiedTime": 1781324695491,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!nWKLeTVgiUS1FN6c"
+}

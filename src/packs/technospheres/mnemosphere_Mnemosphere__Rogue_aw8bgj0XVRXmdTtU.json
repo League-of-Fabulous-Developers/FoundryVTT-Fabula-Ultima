@@ -135,7 +135,6 @@
                         "type": "modifyDamageRuleAction",
                         "_id": "a5eygozQFnmIGLi8",
                         "amount": "(min($tsc, 1)*$sl)+$tsc",
-                        "effect": "",
                         "cost": {
                           "amount": null,
                           "resource": "mp",

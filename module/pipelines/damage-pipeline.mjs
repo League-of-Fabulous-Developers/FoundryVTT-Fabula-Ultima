@@ -444,8 +444,23 @@ async function process(request) {
 
 		// Create an initial context then run the pipeline
 		let context = new DamagePipelineContext(request, actor);
-
 		resolveAffinity(context);
+		const originalTraits = new Set(request.traits);
+		/** @type FURenderData **/
+		let renderData = {
+			tags: [],
+			sections: [],
+			postRenderActions: [],
+			flags: [],
+		};
+		await CommonEvents.damage(actor, context, request.damageType, request.origin, renderData);
+
+		// Reevaluate affinities if the damage type or traits changed from the event
+		const diffTraits = originalTraits.symmetricDifference(context.traits);
+		if ((context.damageType && context.damageType != request.damageType) || (diffTraits && diffTraits.size > 0)) {
+			resolveAffinity(context);
+		}
+
 		if (!overrideResult(context)) {
 			await collectIncrements(context);
 			collectMultipliers(context);
@@ -504,16 +519,8 @@ async function process(request) {
 		// Dispatch damage event, which may end up modifying the damage message
 		updates.push(
 			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then(async (result) => {
-				/** @type FURenderData **/
-				let renderData = {
-					tags: [],
-					sections: [],
-					postRenderActions: [],
-					flags: [],
-				};
-
-				await CommonEvents.damage(request.damageType, FU.affinityKeyByValue[context.affinity], damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
 				await CommonEvents.resource(request.sourceActor, request.targets, context.sourceInfo, resource, -damageTaken, request.origin, renderData);
+
 				TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
 
 				// Chat message
@@ -524,7 +531,7 @@ async function process(request) {
 				chat.withFlags(flags);
 				const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 					damage: damageTaken,
-					damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
+					damageType: game.i18n.localize(FU.damageTypes[context.damageType]),
 					pressureTrigger: context.pressureTrigger,
 					icon: FU.affIcon[context.damageType],
 				});
