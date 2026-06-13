@@ -188,6 +188,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	#shieldsTable = new ShieldsTableRenderer();
 	#armorsTable = new ArmorsTableRenderer();
 	#accessoriesTable = new AccessoriesTableRenderer();
+	#itemTemporaryEffectsTable = new ActiveEffectsTableRenderer('item', { hideIfEmpty: true });
 	#temporaryEffectsTable = new ActiveEffectsTableRenderer('temporary');
 	#passiveEffectsTable = new ActiveEffectsTableRenderer('passive');
 	#inactiveEffectsTable = new ActiveEffectsTableRenderer('inactive');
@@ -478,6 +479,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'effects':
+				context.itemTemporaryEffectsTable = await this.#itemTemporaryEffectsTable.renderTable(this.document);
 				context.temporaryEffectsTable = await this.#temporaryEffectsTable.renderTable(this.document);
 				context.passiveEffectsTable = await this.#passiveEffectsTable.renderTable(this.document);
 				context.inactiveEffectsTable = await this.#inactiveEffectsTable.renderTable(this.document);
@@ -554,6 +556,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		this.#npcOtherItemsTable.activateListeners(this);
 		this.#activeBehaviorsTable.activateListeners(this);
 		this.#inactiveBehaviorsTable.activateListeners(this);
+		this.#itemTemporaryEffectsTable.activateListeners(this);
 		this.#temporaryEffectsTable.activateListeners(this);
 		this.#passiveEffectsTable.activateListeners(this);
 		this.#inactiveEffectsTable.activateListeners(this);
