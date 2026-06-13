@@ -1,11 +1,11 @@
 {
-  "folder": "fRD9lkQMClSvp8jJ",
-  "name": "Slayer (Slow)",
+  "folder": "Eyh5P2Dt6MZzu84a",
+  "name": "Enraged Damage Up",
   "type": "effect",
-  "_id": "ikU24FlltAhl6tnp",
-  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "_id": "cjYwa8mNKwYaLS3F",
+  "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
   "system": {
-    "fuid": "slayer-slow",
+    "fuid": "enraged-damage-up",
     "cost": {
       "value": 0
     },
@@ -13,9 +13,9 @@
   },
   "effects": [
     {
-      "name": "Slayer (Slow)",
-      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
-      "origin": "Compendium.projectfu.actor-effects.Item.ikU24FlltAhl6tnp",
+      "name": "Enraged Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.cjYwa8mNKwYaLS3F",
       "system": {
         "duration": {
           "event": "none",
@@ -29,10 +29,10 @@
         },
         "rules": {
           "elements": {
-            "utMnUkDvnQ53RVcj": {
+            "Ak5L2KsgvMVngMPP": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "kGgBgHqRZYygX03q",
+                "_id": "llJFgRNHIPY10tF3",
                 "type": "damageRuleTrigger",
                 "eventRelation": "source",
                 "damageType": "",
@@ -45,22 +45,23 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "utMnUkDvnQ53RVcj",
+              "_id": "Ak5L2KsgvMVngMPP",
               "predicates": {
-                "pdb9uPsYRbXQrpcj": {
+                "fnUO5mOAeZCH6nU4": {
                   "type": "targetEffectRulePredicate",
-                  "_id": "pdb9uPsYRbXQrpcj"
+                  "_id": "fnUO5mOAeZCH6nU4",
+                  "effect": "enraged"
                 }
               },
               "actions": {
-                "upTmaZIgpy8FfZp5": {
+                "kTnomBRVOqMYwSWB": {
                   "type": "messageRuleAction",
-                  "_id": "upTmaZIgpy8FfZp5",
-                  "message": "<p>You dealt 5 extra damage to a <strong>slow</strong> creature.</p>"
+                  "_id": "kTnomBRVOqMYwSWB",
+                  "message": "<p>You dealt 5 extra damage to a <strong>enraged</strong> creature.</p>"
                 },
-                "rxUZgrdwmWRsHMaT": {
+                "2AyjpwATKDRdyN4p": {
                   "type": "modifyDamageRuleAction",
-                  "_id": "rxUZgrdwmWRsHMaT",
+                  "_id": "2AyjpwATKDRdyN4p",
                   "amount": "5",
                   "cost": {
                     "amount": null
@@ -85,15 +86,14 @@
         }
       },
       "duration": {
-        "rounds": 1,
         "startTime": null,
         "combat": null
       },
       "disabled": false,
-      "_id": "H2VtLJOw64yHY2rZ",
+      "_id": "qM1CSPgpZJPUsQL5",
       "type": "base",
       "changes": [],
-      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>slow</strong> creatures.</p>",
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>enraged</strong> creatures.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -101,11 +101,11 @@
       "flags": {
         "projectfu": {
           "Source": {
-            "name": "Slayer (Slow)",
+            "name": "Enraged Damage Up",
             "actorUuid": null,
-            "itemUuid": "Compendium.projectfu.actor-effects.Item.ikU24FlltAhl6tnp",
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.cjYwa8mNKwYaLS3F",
             "effectUuid": null,
-            "fuid": "slayer-slow"
+            "fuid": "enraged-damage-up"
           }
         }
       },
@@ -116,11 +116,11 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1781325722697,
-        "modifiedTime": 1781325765231,
+        "createdTime": 1781341297416,
+        "modifiedTime": 1781341347038,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!ikU24FlltAhl6tnp.H2VtLJOw64yHY2rZ"
+      "_key": "!items.effects!cjYwa8mNKwYaLS3F.qM1CSPgpZJPUsQL5"
     }
   ],
   "sort": 0,
@@ -136,9 +136,9 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1781325400987,
-    "modifiedTime": 1781325449312,
+    "createdTime": 1781341274391,
+    "modifiedTime": 1781341296501,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "_key": "!items!ikU24FlltAhl6tnp"
+  "_key": "!items!cjYwa8mNKwYaLS3F"
 }

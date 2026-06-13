@@ -75,9 +75,19 @@ function attack(inspector, actor, item) {
 /**
  * @description Dispatched when an actor suffers damage
  * @typedef DamageEvent
- * @property {FUActor} targetActor
  * @property {DamagePipelineContext} damageContext
- * @property {DamageType} damageType
+ * @property {CharacterInfo|null} source
+ * @property {DamageType} type
+ * @property {FUAffinity} affinity
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {FUItemGroup} itemGroup
+ * @property {Number} amount
+ * @property {CharacterInfo} target
+ * @property {FUItem} item
+ * @property {FUActor} actor
+ * @property {Token} token
+ * @property {Set<String>} traits
+ * @property {FURenderData} renderData
  * @property {String} origin An id used to prevent cascading.
  */
 

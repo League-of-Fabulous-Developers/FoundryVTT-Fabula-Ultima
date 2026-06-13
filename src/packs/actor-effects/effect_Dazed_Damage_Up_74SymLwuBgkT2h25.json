@@ -1,11 +1,11 @@
 {
-  "folder": "P94YI9AEfsdd9keg",
-  "name": "Slayer (Poisoned)",
+  "folder": "fRD9lkQMClSvp8jJ",
+  "name": "Dazed Damage Up",
   "type": "effect",
-  "_id": "YNsyrQgakH5jCAuH",
-  "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+  "_id": "74SymLwuBgkT2h25",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
-    "fuid": "slayer-poisoned",
+    "fuid": "dazed-damage-up",
     "cost": {
       "value": 0
     },
@@ -13,9 +13,9 @@
   },
   "effects": [
     {
-      "name": "Slayer (Poisoned)",
-      "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
-      "origin": "Compendium.projectfu.equipment-effects.Item.YNsyrQgakH5jCAuH",
+      "name": "Dazed Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.74SymLwuBgkT2h25",
       "system": {
         "duration": {
           "event": "none",
@@ -29,10 +29,10 @@
         },
         "rules": {
           "elements": {
-            "K9XY1fziv8YGRB1z": {
+            "g1lSdMsxQxyXD0LP": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "1uiYDQiMLqm0r7gN",
+                "_id": "AfJVrrhlOJGFT0fE",
                 "type": "damageRuleTrigger",
                 "eventRelation": "source",
                 "damageType": "",
@@ -42,26 +42,26 @@
                   "operator": "",
                   "amount": 0
                 },
-                "local": true,
+                "local": false,
                 "identifier": ""
               },
-              "_id": "K9XY1fziv8YGRB1z",
+              "_id": "g1lSdMsxQxyXD0LP",
               "predicates": {
-                "Ie0sGqmygdA7kKMo": {
+                "OddKYvVcRwmwfDgZ": {
                   "type": "targetEffectRulePredicate",
-                  "_id": "Ie0sGqmygdA7kKMo",
-                  "effect": "poisoned"
+                  "_id": "OddKYvVcRwmwfDgZ",
+                  "effect": "dazed"
                 }
               },
               "actions": {
-                "zYolEWsz4bGoZjh4": {
+                "PDv3Q0OW5sPPX70J": {
                   "type": "messageRuleAction",
-                  "_id": "zYolEWsz4bGoZjh4",
-                  "message": "<p>This dealt 5 extra damage to a <strong>poisoned</strong> creature.</p>"
+                  "_id": "PDv3Q0OW5sPPX70J",
+                  "message": "<p>You dealt 5 extra damage to a <strong>dazed</strong> creature.</p>"
                 },
-                "Bsy5fh5Y4wGaDiiJ": {
+                "lDI0jYheCwGKEa6d": {
                   "type": "modifyDamageRuleAction",
-                  "_id": "Bsy5fh5Y4wGaDiiJ",
+                  "_id": "lDI0jYheCwGKEa6d",
                   "amount": "5",
                   "cost": {
                     "amount": null
@@ -86,14 +86,15 @@
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
       "disabled": false,
-      "_id": "DqkR68hQcNgw8zpM",
+      "_id": "s0F5MR0OG4IHqSg5",
       "type": "base",
       "changes": [],
-      "description": "<p>This weapon deals <strong>5 extra damage</strong> to <strong>poisoned</strong> creatures.</p>",
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>dazed</strong> creatures.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -101,11 +102,11 @@
       "flags": {
         "projectfu": {
           "Source": {
-            "name": "Slayer (Poisoned)",
+            "name": "Slayer (Dazed)",
             "actorUuid": null,
-            "itemUuid": "Compendium.projectfu.equipment-effects.Item.YNsyrQgakH5jCAuH",
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.74SymLwuBgkT2h25",
             "effectUuid": null,
-            "fuid": "slayer-poisoned"
+            "fuid": "slayer-dazed"
           }
         }
       },
@@ -116,11 +117,11 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1781323733458,
-        "modifiedTime": 1781325121010,
+        "createdTime": 1781325061891,
+        "modifiedTime": 1781340991899,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!YNsyrQgakH5jCAuH.DqkR68hQcNgw8zpM"
+      "_key": "!items.effects!74SymLwuBgkT2h25.s0F5MR0OG4IHqSg5"
     }
   ],
   "sort": 0,
@@ -136,9 +137,9 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1781323600219,
-    "modifiedTime": 1781323732045,
+    "createdTime": 1781325035874,
+    "modifiedTime": 1781340986563,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "_key": "!items!YNsyrQgakH5jCAuH"
+  "_key": "!items!74SymLwuBgkT2h25"
 }

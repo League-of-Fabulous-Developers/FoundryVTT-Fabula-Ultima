@@ -1,11 +1,11 @@
 {
   "folder": "fRD9lkQMClSvp8jJ",
-  "name": "Slayer (Poisoned)",
+  "name": "Poisoned Damage Up",
   "type": "effect",
   "_id": "095Z7ek5M3qpfkTX",
   "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
-    "fuid": "slayer-poisoned",
+    "fuid": "poisoned-damage-up",
     "cost": {
       "value": 0
     },
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Slayer (Poisoned)",
+      "name": "Poisoned Damage Up",
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.095Z7ek5M3qpfkTX",
       "system": {
@@ -118,7 +118,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1781325540085,
-        "modifiedTime": 1781325594340,
+        "modifiedTime": 1781341025036,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!095Z7ek5M3qpfkTX.ZQ529fc7KHGeDMQj"
@@ -138,7 +138,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1781325412154,
-    "modifiedTime": 1781325441430,
+    "modifiedTime": 1781341021854,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!095Z7ek5M3qpfkTX"
