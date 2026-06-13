@@ -73,8 +73,16 @@ const getPushParams = async (actor) => {
 		/** @type {(jQuery) => (CheckPush | false)} */
 		ok: {
 			callback: (event, html, dialog) => {
-				const index = Number(dialog.element.querySelector('input[name=bond]:checked').value);
-				return bonds[index] || false;
+				const index = Number(dialog.element.querySelector('input[name=bond]:checked')?.value || -1);
+				const ignoreFp = dialog.element.querySelector('input[name="ignore-fp"]').checked;
+
+				if (index < 0 || index >= bonds.length) {
+					return false;
+				}
+				return {
+					...bonds[index],
+					ignoreFp: ignoreFp,
+				};
 			},
 		},
 		rejectClose: false,
@@ -128,7 +136,9 @@ const handlePush = async (check, actor, item) => {
 		}
 		terms.push(new NumericTerm({ number: modifierTotal }));
 
-		CheckConfiguration.registerMetaCurrencyExpenditure(check, actor);
+		if (!pushParams.ignoreFp) {
+			CheckConfiguration.registerMetaCurrencyExpenditure(check, actor);
+		}
 
 		return { roll: Roll.fromTerms(terms) };
 	} else {

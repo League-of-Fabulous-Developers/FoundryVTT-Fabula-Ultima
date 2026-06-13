@@ -1,5 +1,5 @@
 <fieldset class="title-fieldset desc resource-content"
-		  style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+		  style="display: flex; flex-wrap: wrap; justify-content: space-around; padding: 0px 10px; margin: 0px 0px 4px 0px;">
 	<legend class="resource-label-full">
 		<label class="flexrow gap-4">
 			{{#if actor}}
@@ -7,11 +7,11 @@
 					 data-actor-id="{{actor.uuid}}"
 					 class="fu-icon fu-icon--s">
 			{{/if}}
-			<a data-link draggable="true" data-uuid="{{item.uuid}}" data-type="Item" data-tooltip="{{item.name}}">
-				<img src="{{item.img}}" alt="{{item.name}}" data-item-id="{{item.id}}" class="fu-icon fu-icon--s">
+			<a data-link data-type="Item" {{#if item.uuid}}draggable="true" data-uuid="{{item.uuid}}"{{/if}}>
+				<img src="{{item.img}}" alt="{{item.name}}" {{#if item.id}}data-item-id="{{item.id}}"{{/if}} class="fu-icon fu-icon--s" style="display: block">
 			</a>
 			{{item.name}}
 		</label>
 	</legend>
-	<span id="chat-item-text" {{#if actor}}data-actor-id="{{actor.uuid}}"{{/if}} data-item-id="{{item.uuid}}">{{{text}}}</span>
+	<div class='chat-item-text' id="chat-item-text" {{#if actor}}data-actor-id="{{actor.uuid}}"{{/if}} data-item-id="{{item.uuid}}">{{{text}}}</div>
 </fieldset>

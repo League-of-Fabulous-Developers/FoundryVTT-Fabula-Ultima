@@ -1,6 +1,5 @@
 <div class='fu-icon__container flex-group-center'
-	 style="flex-direction: column;"
-	 data-tooltip="{{localize label}}">
+	 style="flex-direction: {{#if (ne flexDir undefined)}}{{flexDir}}{{else}}column{{/if}}; {{#if (ne gap undefined)}}gap: {{gap}};{{/if}}">
 	<div class='fu-icon__badge'>
 		<i class='fu-icon--{{size}} {{icon}}'></i>
 		{{#if (ne value undefined)}}
@@ -8,6 +7,8 @@
 		{{/if}}
 	</div>
 	{{#unless compact}}
-		<span class="fu-icon__badge-label">{{localize label}}</span>
+		<span class="fu-icon__badge-label" {{#if (ne fontSize undefined)}}style="font-size: var(--font-size-{{fontSize}});"{{/if}}>
+			{{localize label}}
+		</span>
 	{{/unless}}
 </div>

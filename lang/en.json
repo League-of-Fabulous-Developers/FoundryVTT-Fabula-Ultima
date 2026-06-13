@@ -702,6 +702,7 @@
 		"DialogRerollLabel": "Invoke",
 		"DialogRerollMissingTrait": "No Trait selected",
 		"DialogRerollMissingDice": "No dice selected",
+		"DialogChooseDice": "Choose One or Both Dice",
 		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Retarget Token(s)",
 		"ChatContextRerollFabula": "Invoke Trait to Reroll",
@@ -729,6 +730,7 @@
 		"DialogCheckOpenCheck": "Open Check",
 		"DialogCheckOpposedCheck": "Opposed Check",
 		"DialogCheckRitualCheck": "Ritual Check",
+		"HighRoll": "High Roll",
 		"HighRollAbbr": "HR",
 		"HighRollZero": "HR0",
 		"ExperimentalCombatTracker": "Enable Experimental Combat Tracker",
@@ -2020,6 +2022,7 @@
 		"SettingInitiativeCheckAutomaticPrompt": "Automatic Initiative Check prompt",
 		"SettingInitiativeCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts an Initiative Check and your primary Character is part of the active Combat.",
 		"ActiveEffectSuppressed": "This effect is suppressed. It will not be applied to the actor.",
-		"TemporaryEffectsItems": "Temporary Effects On Items"
+		"TemporaryEffectsItems": "Temporary Effects On Items",
+		"DieSize": "Die Size"
 	}
 }

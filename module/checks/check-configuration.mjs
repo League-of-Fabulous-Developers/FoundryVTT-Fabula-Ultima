@@ -549,7 +549,7 @@ export class CheckConfigurer extends CheckInspector {
 					targetResult = 'hit';
 				} else if (this.check.fumble) {
 					targetResult = 'miss';
-				} else {
+				} else if (difficulty) {
 					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
 				}
 				// Update the original

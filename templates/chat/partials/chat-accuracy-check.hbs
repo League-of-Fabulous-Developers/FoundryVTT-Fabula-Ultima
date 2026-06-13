@@ -6,7 +6,7 @@
     >
 		<i class="fu-icon--s {{pfuIconClass 'target' }}"></i>
         <div class="startcap"></div>
-        <div class="" style="flex: 0 1 auto;">{{result}} <label>vs</label> {{pfuUppercase additionalData.targetedDefense}}{{pfuUppercase details.defense}}</div>
+        <div class="" style="flex: 0 1 auto;">{{result}} <label>{{localize 'FU.Versus'}}</label> {{pfuUppercase additionalData.targetedDefense}}{{pfuUppercase details.defense}}</div>
         <div class="endcap"></div>
 		<a data-action="retarget" data-tooltip="{{localize 'FU.ChatContextRetarget'}}">
 			<span class="fu-tag button flex-group-center" style="font-size:1rem">
@@ -20,16 +20,16 @@
 <div class="pfu-chat-message__toggle-section accuracy-check-results {{#if (pfuGetSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-3col flex3'>
-            <div data-tooltip="(Die Size: {{primary.dice}})">
-				{{pfuIconAttribute primary.attribute}}
+            <div data-tooltip="{{localize 'FU.DieSize'}}: {{primary.dice}}">
+				{{pfuIconAttribute primary.attribute flexDir='row' gap='4px' borderless=true size='xs'}}
                 <label class="detail">{{primary.result}}</label>
             </div>
-            <div data-tooltip="(Die Size: {{secondary.dice}})">
-				{{pfuIconAttribute secondary.attribute}}
+            <div data-tooltip="{{localize 'FU.DieSize'}}: {{secondary.dice}}">
+				{{pfuIconAttribute secondary.attribute flexDir='row' gap='4px' borderless=true size='xs'}}
                 <label class="detail">{{secondary.result}}</label>
             </div>
-            <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}" {{/if}}>
-				{{pfuBadge 'mod' label='FU.ModAbbr' }}
+            <div data-tooltip="{{#if modifiers}}{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}{{else}}{{localize 'FU.AccuracyCheckBaseAccuracy'}}: 0{{/if}}"">
+				{{pfuBadge 'mod' label='FU.ModAbbr' flexDir='row' size='xs'}}
                 <label class="detail">{{modifierTotal}}</label>
             </div>
         </div>
