@@ -1,0 +1,144 @@
+{
+  "folder": "fRD9lkQMClSvp8jJ",
+  "name": "Slayer (Slow)",
+  "type": "effect",
+  "_id": "ikU24FlltAhl6tnp",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "system": {
+    "fuid": "slayer-slow",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Slayer (Slow)",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.ikU24FlltAhl6tnp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "utMnUkDvnQ53RVcj": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "kGgBgHqRZYygX03q",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "utMnUkDvnQ53RVcj",
+              "predicates": {
+                "pdb9uPsYRbXQrpcj": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "pdb9uPsYRbXQrpcj"
+                }
+              },
+              "actions": {
+                "upTmaZIgpy8FfZp5": {
+                  "type": "messageRuleAction",
+                  "_id": "upTmaZIgpy8FfZp5",
+                  "message": "<p>You dealt 5 extra damage to a <strong>slow</strong> creature.</p>"
+                },
+                "rxUZgrdwmWRsHMaT": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "rxUZgrdwmWRsHMaT",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "H2VtLJOw64yHY2rZ",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>slow</strong> creatures.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Slayer (Slow)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.ikU24FlltAhl6tnp",
+            "effectUuid": null,
+            "fuid": "slayer-slow"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781325722697,
+        "modifiedTime": 1781325765231,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!ikU24FlltAhl6tnp.H2VtLJOw64yHY2rZ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781325400987,
+    "modifiedTime": 1781325449312,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!ikU24FlltAhl6tnp"
+}

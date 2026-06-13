@@ -99,15 +99,16 @@
             "nfOWtD6i25a8TS8Q": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "HNRrZjSsMEiBACwY",
-                "type": "renderCheckRuleTrigger",
+                "_id": "S1oEzIPvWRBxvaf1",
+                "type": "damageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "accuracy"
-                ],
-                "itemGroups": [
-                  "attack"
-                ],
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
                 "local": true,
                 "identifier": ""
               },
@@ -125,7 +126,15 @@
                 "keVbTysjUWeOxVc5": {
                   "type": "messageRuleAction",
                   "_id": "keVbTysjUWeOxVc5",
-                  "message": "<p>If <strong>beast</strong> target, deal 5 extra damage to them.</p>"
+                  "message": "<p>This dealt 5 extra damage to a <strong>beast</strong>.</p>"
+                },
+                "gLsYYs5Wu2HVs52E": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "gLsYYs5Wu2HVs52E",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               }
             }
@@ -177,7 +186,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774730050671,
-        "modifiedTime": 1775709124176,
+        "modifiedTime": 1781322537203,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!82nMd9rEWFnQuaH1.kj0QRzgcXP4HCtgr"

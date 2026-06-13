@@ -99,15 +99,16 @@
             "IrVxNRBDTgFn5LTF": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "vbEWc0eomRfaDQwD",
-                "type": "renderCheckRuleTrigger",
+                "_id": "fRDndheuVS7y1xsE",
+                "type": "damageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "accuracy"
-                ],
-                "itemGroups": [
-                  "attack"
-                ],
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
                 "local": true,
                 "identifier": ""
               },
@@ -116,7 +117,15 @@
                 "t758iHhnsdAZ43A6": {
                   "type": "messageRuleAction",
                   "_id": "t758iHhnsdAZ43A6",
-                  "message": "<p>If <strong>construct</strong> target, deal 5 extra damage to them.</p>"
+                  "message": "<p>This dealt 5 extra damage to a <strong>construct</strong>.</p>"
+                },
+                "luh3W675bVzEBp3i": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "luh3W675bVzEBp3i",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               },
               "predicates": {
@@ -177,7 +186,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774730936531,
-        "modifiedTime": 1775709142007,
+        "modifiedTime": 1781322615806,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!7ukexq7t66knnkhk.6VCps36NljHAXzc9"

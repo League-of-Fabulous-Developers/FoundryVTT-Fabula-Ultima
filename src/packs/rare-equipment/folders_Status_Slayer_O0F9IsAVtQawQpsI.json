@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "1aYXCBUk8bxv64DS",
+  "name": "Status Slayer",
+  "color": "#6a1616",
+  "sorting": "a",
+  "_id": "O0F9IsAVtQawQpsI",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!O0F9IsAVtQawQpsI"
+}

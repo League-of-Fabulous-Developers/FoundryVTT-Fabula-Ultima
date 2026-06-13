@@ -127,7 +127,6 @@
                   "type": "modifyDamageRuleAction",
                   "_id": "9DEpFT1FfRiIcHkp",
                   "amount": "$sl",
-                  "effect": "",
                   "cost": {
                     "amount": null
                   }

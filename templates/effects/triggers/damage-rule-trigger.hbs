@@ -34,3 +34,14 @@
 	</label>
 </div>
 
+<div class="fu-form__property-row">
+	<div class="fu-form__property">
+		<span>{{localize 'FU.Local'}}</span>
+		{{formGroup trigger.schema.fields.local value=trigger.local name=(pfuConcat path ".local") }}
+	</div>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Identifier'}}</span>
+		<input type="text" name={{pfuConcat path ".identifier"}} value="{{ trigger.identifier }}" />
+	</label>
+</div>

@@ -1,0 +1,145 @@
+{
+  "folder": "fRD9lkQMClSvp8jJ",
+  "name": "Slayer (Dazed)",
+  "type": "effect",
+  "_id": "74SymLwuBgkT2h25",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "system": {
+    "fuid": "slayer-dazed",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Slayer (Dazed)",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.74SymLwuBgkT2h25",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "g1lSdMsxQxyXD0LP": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "AfJVrrhlOJGFT0fE",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "g1lSdMsxQxyXD0LP",
+              "predicates": {
+                "OddKYvVcRwmwfDgZ": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "OddKYvVcRwmwfDgZ",
+                  "effect": "dazed"
+                }
+              },
+              "actions": {
+                "PDv3Q0OW5sPPX70J": {
+                  "type": "messageRuleAction",
+                  "_id": "PDv3Q0OW5sPPX70J",
+                  "message": "<p>You dealt 5 extra damage to a <strong>dazed</strong> creature.</p>"
+                },
+                "lDI0jYheCwGKEa6d": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "lDI0jYheCwGKEa6d",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "s0F5MR0OG4IHqSg5",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>dazed</strong> creatures.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Slayer (Dazed)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.74SymLwuBgkT2h25",
+            "effectUuid": null,
+            "fuid": "slayer-dazed"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781325061891,
+        "modifiedTime": 1781325474476,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!74SymLwuBgkT2h25.s0F5MR0OG4IHqSg5"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781325035874,
+    "modifiedTime": 1781325051543,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!74SymLwuBgkT2h25"
+}

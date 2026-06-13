@@ -1,4 +1,5 @@
 import { FUHooks } from '../hooks.mjs';
+import { FU } from '../helpers/config.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CharacterInfo } from '../helpers/character-info.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
@@ -74,40 +75,33 @@ function attack(inspector, actor, item) {
 /**
  * @description Dispatched when an actor suffers damage
  * @typedef DamageEvent
- * @property {CharacterInfo|null} source
- * @property {DamageType} type
- * @property {FUAffinity} affinity
- * @property {InlineSourceInfo} sourceInfo
- * @property {FUItemGroup} itemGroup
- * @property {Number} amount
- * @property {CharacterInfo} target
- * @property {FUItem} item
- * @property {FUActor} actor
- * @property {Token} token
- * @property {Set<String>} traits
- * @property {FURenderData} renderData
+ * @property {FUActor} targetActor
+ * @property {DamagePipelineContext} damageContext
+ * @property {DamageType} damageType
  * @property {String} origin An id used to prevent cascading.
  */
 
-async function damage(type, affinity, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
-	const source = CharacterInfo.fromActor(sourceActor);
+async function damage(targetActor, damageContext, damageType, origin, renderData) {
 	const target = CharacterInfo.fromActor(targetActor);
-	const item = sourceInfo.resolveItem();
+	const source = CharacterInfo.fromActor(damageContext.sourceActor);
+	const item = damageContext.sourceInfo.resolveItem();
 	const itemGroup = ItemUtils.resolveItemGroup(item);
+	const affinity = FU.affinityKeyByValue[damageContext.affinity];
 
 	/** @type DamageEvent  **/
 	const damageEvent = {
-		amount: amount,
+		damageContext: damageContext,
+		amount: damageContext.amount,
 		item: item,
-		type: type,
+		type: damageType,
 		affinity: affinity,
 		source: source,
-		sourceActor: sourceInfo,
+		sourceActor: damageContext.sourceActor,
 		itemGroup: itemGroup,
 		target: target,
 		actor: target.actor,
 		token: target.token,
-		traits: traits,
+		traits: damageContext.traits,
 		origin: origin,
 		renderData: renderData,
 	};
