@@ -1,5 +1,5 @@
 import { Flags } from '../../helpers/flags.mjs';
-import { SYSTEM } from '../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { PseudoItem } from '../items/pseudo-item.mjs';
@@ -37,18 +37,43 @@ const HIGH_PRIORITY_CHANGES = new Set([
 const LOW_PRIORITY_CHANGES = new Set(['system.resources.hp.max', 'system.resources.mp.max', 'system.resources.ip.max']);
 
 const defaultImage = 'icons/svg/aura.svg';
-const DEFAULT_PRIORITY = 50;
 
 export function ActiveEffectBehaviourMixin(BaseDocument) {
 	return class FUActiveEffectBehaviourMixin extends BaseDocument {
 		// TODO: Remove once everyone's migrated
 		static migrateData(source) {
+			source = super.migrateData(source);
+
 			const crisisInteraction = 'CrisisInteraction';
 			const type = 'type';
 
 			this._addDataFieldMigration(source, `flags.${SYSTEM}.${type}`, 'system.type');
 			this._addDataFieldMigration(source, `flags.${SYSTEM}.${crisisInteraction}`, 'system.predicate.crisisInteraction');
-			return super.migrateData(source);
+
+			if (Array.isArray(source.system?.changes)) {
+				const customChangeKeys = new Set([
+					'system.attributes.dex',
+					'system.attributes.ins',
+					'system.attributes.mig',
+					'system.attributes.wlp',
+					'system.affinities.air',
+					'system.affinities.bolt',
+					'system.affinities.dark',
+					'system.affinities.earth',
+					'system.affinities.fire',
+					'system.affinities.ice',
+					'system.affinities.light',
+					'system.affinities.physical',
+					'system.affinities.poison',
+				]);
+				for (const change of source.system.changes) {
+					if (change.type.startsWith('custom') && customChangeKeys.has(change.key)) {
+						change.type = FU.changeTypes.apply;
+					}
+				}
+			}
+
+			return source;
 		}
 
 		/**
@@ -58,13 +83,11 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			super.prepareBaseData();
 			for (let change of this.system.changes) {
 				if (HIGH_PRIORITY_CHANGES.has(change.key)) {
-					change.priority = change.mode;
+					change.phase = 'initial';
 				} else if (LOW_PRIORITY_CHANGES.has(change.key)) {
-					change.priority = (change.mode + 1) * 10 + 100;
+					change.phase = 'final';
 				} else {
-					if (!change.priority) {
-						change.priority = DEFAULT_PRIORITY;
-					}
+					change.phase = 'default';
 				}
 			}
 		}
@@ -211,7 +234,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 					const context = this.resolveExpressionContext(target, change);
 					const value = Expressions.evaluate(expression, context);
 					change.value = String(value ?? 0);
-					console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
+					console.debug(`Assigning ${change.key} (TYPE ${change.type}): ${change.value}`);
 				} catch (e) {
 					console.error(e);
 					ui.notifications?.error(

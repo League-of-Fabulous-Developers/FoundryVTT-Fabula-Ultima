@@ -1,3 +1,5 @@
+import { FU } from '../../helpers/config.mjs';
+
 /**
  * @type {ActiveEffectData[]}
  */
@@ -19,7 +21,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.derived.mdef.value',
-				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+				type: 'upgrade',
 				value: '12',
 			},
 		],
@@ -36,7 +38,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.derived.def.value',
-				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+				type: 'upgrade',
 				value: '12',
 			},
 		],
@@ -65,7 +67,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -82,7 +84,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -99,7 +101,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -116,12 +118,12 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -154,53 +156,53 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.affinities.physical',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 
 			{
 				key: 'system.affinities.air',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.bolt',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.dark',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.earth',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.fire',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.ice',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.light',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.poison',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.bonuses.accuracy.opposedCheck',
-				mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+				type: 'add',
 				value: '2',
 			},
 		],
@@ -212,7 +214,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -229,7 +231,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -251,7 +253,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -268,7 +270,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -315,7 +317,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -342,7 +344,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -359,12 +361,12 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -381,7 +383,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -398,7 +400,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -415,7 +417,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -467,7 +469,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.bonuses.turns',
-				mode: 2,
+				type: 'add',
 				value: '0',
 			},
 		],

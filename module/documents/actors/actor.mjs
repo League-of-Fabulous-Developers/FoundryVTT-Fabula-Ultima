@@ -89,6 +89,8 @@ export class FUActor extends foundry.documents.Actor {
 	 * is queried and has a roll executed directly from it).
 	 */
 	prepareDerivedData() {
+		super.prepareDerivedData();
+		this.applyActiveEffects('default');
 		this.items.forEach((item) => item.applyActiveEffects());
 	}
 
