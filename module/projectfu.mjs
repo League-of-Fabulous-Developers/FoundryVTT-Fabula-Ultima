@@ -325,7 +325,11 @@ Hooks.once('init', async () => {
 	// Register status effects
 	CONFIG.statusEffects = statusEffects;
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
-	CONFIG.ActiveEffect.changeTypes[`${SYSTEM}.apply`] = {
+	CONFIG.ActiveEffect.phases.default = {
+		label: 'FU.ActiveEffectPhaseDefault',
+		hint: 'FU.ActiveEffectPhaseDefaultHint',
+	};
+	CONFIG.ActiveEffect.changeTypes[FU.changeTypes.apply] = {
 		label: 'FU.ActiveEffectChangeTypeApply',
 		defaultPriority: 0,
 		handler: (model, change, options) => {

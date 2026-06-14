@@ -26,39 +26,32 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	constructor(data, options) {
-		super(data, options);
-
-		// Set the initial current to start off the base value
+	_configure(options) {
+		// will get set during _initialize
+		let current = undefined;
 
 		Object.defineProperty(this, 'current', {
 			configurable: false,
 			enumerable: true,
 			get: () => {
-				return MathHelper.clamp(2 * Math.floor(this._current / 2), 6, 12);
+				return MathHelper.clamp(2 * Math.floor(current / 2), 6, 12);
 			},
 			set: (newValue) => {
-				if (Number.isNumeric(newValue)) {
-					this._current = Number(newValue);
+				if (Number.isInteger(newValue)) {
+					current = newValue;
 				}
 			},
 		});
 
 		Object.defineProperty(this, 'upgrade', {
 			value: () => {
-				const newValue = this.current + 2;
-				if (newValue <= maximumValue) {
-					this.current = newValue;
-				}
+				current += 2;
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				const newValue = this.current - 2;
-				if (newValue >= minimumValue) {
-					this.current = newValue;
-				}
+				current -= 2;
 			},
 		});
 	}
