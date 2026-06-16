@@ -1,0 +1,111 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Airmid",
+  "type": "classFeature",
+  "_id": "C5Gi6kQzgzU9b2vS",
+  "img": "icons/magic/nature/elemental-plant-humanoid.webp",
+  "system": {
+    "fuid": "airmid",
+    "summary": {
+      "value": "Protector of apothecaries and teacher of purifying arts."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Herabalist's Favor</h3><p>When you summon this Arcanum, you gain <strong>3 Medicine Points</strong>. When this Arcanum is dismissed, you lose all <strong>Medicine Points</strong>.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action and spend <strong>1 Medicine Point</strong> to choose one ally you can see. If you do, that ally recovers an amount of Hit Points equal to your <strong>Crisis</strong> score and recovers from a single status effect of your choice.</p><hr><p><strong>You Gain:</strong> @PROGRESS[medicine-points update 3]{Gain 3 Medicine Points}</p><p><strong>You Spend:</strong> @PROGRESS[medicine-points update -1]{Spend 1 Medicine Point}<br><strong>Target Recovers:</strong> @GAIN[floor($mhp/2) hp]{Your Crisis HP}</p>",
+      "pulse": "",
+      "dismiss": "<h3>Cleansing Roots</h3><p>You deal 20 <strong>earth</strong> damage to every enemy you can see, or 30 <strong>earth</strong> damage if you had <strong>no Medicine Points</strong> left when you dismiss this Arcanum. Then, if one or more enemies that lost Hit Points this way are affected by one or more spells with a <strong>duration</strong> of \"Scene\", they stop being affected by those spells.</p><hr><p><strong>Enemies Suffer:</strong> @DMG[&step(20,30,40)+10*(1-min(1,&cs('medicine-points'))) earth]{20/30 Earth}<br><strong>You Lose:</strong> @PROGRESS[medicine-points reset]{Lose All Medicine Points}</p>",
+      "domains": "exorcism, healing, plants"
+    },
+    "source": "FUBC32"
+  },
+  "effects": [
+    {
+      "name": "Merged: Airmid",
+      "img": "icons/magic/nature/elemental-plant-humanoid.webp",
+      "origin": "Compendium.projectfu.skills.Item.C5Gi6kQzgzU9b2vS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": true,
+            "id": "medicine-points",
+            "name": "Medicine Points",
+            "current": 0,
+            "max": 3,
+            "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "d8BnPIG5Md80ijf8",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You are merged with <strong>Airmid</strong>. This tracks your <strong>Medicine Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Airmid",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.C5Gi6kQzgzU9b2vS",
+            "effectUuid": null,
+            "fuid": "airmid"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781628198319,
+        "modifiedTime": 1781636262805,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!C5Gi6kQzgzU9b2vS.d8BnPIG5Md80ijf8"
+    }
+  ],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781628019309,
+    "modifiedTime": 1781645465343,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!C5Gi6kQzgzU9b2vS"
+}

@@ -1,0 +1,149 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Tiamat",
+  "type": "classFeature",
+  "_id": "29oLW7n3OmgpzURY",
+  "img": "icons/creatures/abilities/dragon-ice-breath-blue.webp",
+  "system": {
+    "fuid": "tiamat",
+    "summary": {
+      "value": "The Dragonmother, reigning over oceans and serpents."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Supreme Serpent</h3><p>You gain Resistance to <strong>ice</strong> damage.</p><p>When you deal damage, as long as that damage is <strong>ice</strong>, you deal 5 extra damage and all that damage ignores Resistances.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to perform a <strong>free attack</strong> with a weapon you have equipped. If you do, all damage dealt by the attack becomes <strong>ice</strong>, its type cannot change, and each creature that loses Hit Points due to it suffers <strong>slow</strong>.</p><hr><p><strong>Enemy Suffers:</strong> @EFFECT[slow]</p>",
+      "pulse": "",
+      "dismiss": "<h3>Tides of an Endless Ocean</h3><p>Choose one option:</p><ul><li><p>Fill 2 sections of every Clock present on the scene.</p></li><li><p>Erase 2 sections of every Clock present on the scene.</p></li><li><p>You force every <strong>soldier</strong>-rank enemy present on the scene that is in <strong>Crisis</strong> and is <strong>not a Villain</strong> to immediately leave the scene.</p></li></ul><p>Once you use any of its options, this <strong>dismiss</strong> effect is no longer available until next dawn.</p>",
+      "domains": "chaos, saltwater, serpents"
+    },
+    "source": "FUBC37"
+  },
+  "effects": [
+    {
+      "name": "Merged: Tiamat",
+      "img": "icons/creatures/abilities/dragon-ice-breath-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.29oLW7n3OmgpzURY",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "VPAWCJdsZgaS6Psm": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "lUv76O7gkBmJk4Ma",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [],
+                "damageTypes": [
+                  "ice"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "VPAWCJdsZgaS6Psm",
+              "actions": {
+                "bklLYkrsSTXYrp58": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "bklLYkrsSTXYrp58",
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  },
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "i61oDu3JjfmpbTYC",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are merged with <strong>Tiamat</strong>. You gain Resistance to <strong>ice</strong> damage. When you deal damage, as long as that damage is <strong>ice</strong>, you deal 5 extra damage and all that damage ignores Resistances.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Tiamat",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.29oLW7n3OmgpzURY",
+            "effectUuid": null,
+            "fuid": "tiamat"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781650251644,
+        "modifiedTime": 1781650346196,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!29oLW7n3OmgpzURY.i61oDu3JjfmpbTYC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781650082000,
+    "modifiedTime": 1781650385703,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!29oLW7n3OmgpzURY"
+}

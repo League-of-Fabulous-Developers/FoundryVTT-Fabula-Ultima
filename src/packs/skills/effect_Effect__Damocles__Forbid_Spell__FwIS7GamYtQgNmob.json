@@ -1,0 +1,104 @@
+{
+  "folder": "ND39cAGUi0EvjaJW",
+  "name": "Effect: Damocles (Forbid Spell)",
+  "type": "effect",
+  "_id": "FwIS7GamYtQgNmob",
+  "img": "icons/skills/melee/sword-twirl-orange.webp",
+  "system": {
+    "fuid": "effect-damocles-forbid-spell",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Damocles (Forbid Spell)",
+      "img": "icons/skills/melee/sword-twirl-orange.webp",
+      "origin": "Compendium.projectfu.skills.Item.FwIS7GamYtQgNmob",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LOikASLALP7lzU3f",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you perform the <strong>Spell</strong> action, you lose 10 Hit Points (after the action has been resolved). This amount increases to 20 Hit Points if the <strong>Arcanist</strong> is <strong>level 30 or higher</strong>. This lasts until the start of the <strong>Arcanist's</strong> next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Damocles (Forbid Spell)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.FwIS7GamYtQgNmob",
+            "effectUuid": null,
+            "fuid": "effect-damocles-forbid-spell"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781641400203,
+        "modifiedTime": 1781641410461,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!FwIS7GamYtQgNmob.LOikASLALP7lzU3f"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781641334520,
+    "modifiedTime": 1781641352008,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!FwIS7GamYtQgNmob"
+}

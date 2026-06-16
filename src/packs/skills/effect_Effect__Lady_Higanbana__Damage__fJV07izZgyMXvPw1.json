@@ -1,0 +1,145 @@
+{
+  "folder": "jpkCW9eoZDUZOkmI",
+  "name": "Effect: Lady Higanbana (Damage)",
+  "type": "effect",
+  "_id": "fJV07izZgyMXvPw1",
+  "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
+  "system": {
+    "fuid": "effect-lady-higanbana-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Lady Higanbana (Damage)",
+      "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.fJV07izZgyMXvPw1",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "UCaLlKxSrNRfeO4A": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "UqNx837lkDHgF0w8",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "UCaLlKxSrNRfeO4A",
+              "predicates": {
+                "u5Xd0ihKv3ekN2KE": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "u5Xd0ihKv3ekN2KE",
+                  "selector": "self",
+                  "effect": "crisis"
+                }
+              },
+              "actions": {
+                "pBoavTD6aUgQFmAr": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "pBoavTD6aUgQFmAr",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "YBaBeXmOHtQqfXx6",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>As long as you are merged with this Arcanum and <strong>it is not your turn</strong>, your attacks deal 5 extra damage, or 10 extra damage if you are also in <strong>Crisis</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Lady Higanbana (Damage)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.fJV07izZgyMXvPw1",
+            "effectUuid": null,
+            "fuid": "effect-lady-higanbana-damage"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781646065050,
+        "modifiedTime": 1781646331162,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!fJV07izZgyMXvPw1.YBaBeXmOHtQqfXx6"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781645882921,
+    "modifiedTime": 1781646064060,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!fJV07izZgyMXvPw1"
+}

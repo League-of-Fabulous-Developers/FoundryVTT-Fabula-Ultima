@@ -1,0 +1,111 @@
+{
+  "folder": "jpkCW9eoZDUZOkmI",
+  "name": "Effect: Lady Higanbana (No HP Recovery)",
+  "type": "effect",
+  "_id": "evHua0Xq9vExaHNj",
+  "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
+  "system": {
+    "fuid": "effect-lady-higanbana-no-hp-recovery",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Lady Higanbana (No HP Recovery)",
+      "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.evHua0Xq9vExaHNj",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "aiTQW17hSnr7kfNL",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.multipliers.incomingRecovery.hp",
+          "mode": 1,
+          "value": "0",
+          "priority": null
+        }
+      ],
+      "description": "<p>You cannot recover Hit Points until the start of the <strong>Arcanist's</strong> next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Lady Higanbana (No HP Recovery)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.evHua0Xq9vExaHNj",
+            "effectUuid": null,
+            "fuid": "effect-lady-higanbana-no-hp-recovery"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781646437178,
+        "modifiedTime": 1781646489573,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!evHua0Xq9vExaHNj.aiTQW17hSnr7kfNL"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781646433174,
+    "modifiedTime": 1781646435960,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!evHua0Xq9vExaHNj"
+}

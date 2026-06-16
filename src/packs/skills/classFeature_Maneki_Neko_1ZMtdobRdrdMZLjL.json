@@ -1,0 +1,111 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Maneki-Neko",
+  "type": "classFeature",
+  "_id": "1ZMtdobRdrdMZLjL",
+  "img": "icons/commodities/currency/coin-engraved-sun-smile-copper.webp",
+  "system": {
+    "fuid": "maneki-neko",
+    "summary": {
+      "value": "The ever-grinning patron of gamblers."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Paw Slap</h3><p>After you roll dice for a Magic Check or Accuracy Check, you may choose one of the numbers shown on those dice: that number becomes your <strong>meowgic nyamber</strong> and replaces any <strong>meowgic nyamber</strong> you previously obtained.</p><p>After a creature you can see rolls dice for a Check, if you have a <strong>meowgic nyamber</strong>, you may expend it to replace the number shown by one of those dice with that number. You cannot use this effect on a Check that generated a <strong>meowgic nyamber</strong>, and you cannot generate a <strong>meowgic nyamber</strong> with a Check you used this effect on.</p><p>When this Arcanum is <strong>dismissed</strong>, if you have a <strong>meowgic nyamber</strong>, you lose it.</p>",
+      "pulse": "",
+      "dismiss": "<h3>Coin Cascade</h3><p>You deal 30 <strong>physical</strong> damage to every enemy you can see. If you lost a <strong>meowgic nyamber</strong> by dismissing this Arcanum, the type of this damage changes based on the number you lost: <strong>air</strong> (1 and 6), <strong>bolt</strong> (2 and 7), <strong>fire</strong> (3 and 8), <strong>ice</strong> (4 and 9), <strong>earth</strong> (5 and 10), <strong>dark</strong> (11 or higher).</p><hr><p><strong>Enemies Suffer:</strong> @DMG[&step(30,40,50) physical]{Physical Damage}, @DMG[&step(30,40,50) air]{Air Damage}, @DMG[&step(30,40,50) bolt]{Bolt Damage}, @DMG[&step(30,40,50) fire]{Fire Damage}, @DMG[&step(30,40,50) ice]{Ice Damage}, @DMG[&step(30,40,50) earth]{Earth Damage}, or @DMG[&step(30,40,50) dark]{Dark Damage}</p>",
+      "domains": "coincidences, prosperity, unforeseen events"
+    },
+    "source": "FUBC35"
+  },
+  "effects": [
+    {
+      "name": "Merged: Maneki-Neko",
+      "img": "icons/commodities/currency/coin-engraved-sun-smile-copper.webp",
+      "origin": "Compendium.projectfu.skills.Item.1ZMtdobRdrdMZLjL",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": true,
+            "id": "meowgic-nyamber",
+            "name": "Meowgic Nyamber",
+            "current": 0,
+            "max": 12,
+            "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LCM9ynAklI91n6IG",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You are merged with <strong>Maneki-Neko</strong>. You can use this to track your <strong>meowgic nyamber</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Maneki-Neko",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.1ZMtdobRdrdMZLjL",
+            "effectUuid": null,
+            "fuid": "maneki-neko"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781648552053,
+        "modifiedTime": 1781648637665,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!1ZMtdobRdrdMZLjL.LCM9ynAklI91n6IG"
+    }
+  ],
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781645426027,
+    "modifiedTime": 1781648741732,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!1ZMtdobRdrdMZLjL"
+}

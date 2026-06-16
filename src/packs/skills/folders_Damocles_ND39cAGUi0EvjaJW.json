@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "w3kDLFUJnb8HVdJf",
+  "name": "Damocles",
+  "color": null,
+  "sorting": "a",
+  "_id": "ND39cAGUi0EvjaJW",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!ND39cAGUi0EvjaJW"
+}
