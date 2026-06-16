@@ -38,12 +38,8 @@
       }
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "wlp"
     },
     "accuracy": "$sl",
     "damage": {
@@ -278,7 +274,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706504776432,
-    "modifiedTime": 1771886338849,
+    "modifiedTime": 1781596849594,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
