@@ -5,7 +5,6 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { FU } from '../helpers/config.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
-import { CharacterSkillTracker } from '../documents/actors/character/character-skill-tracker.mjs';
 
 /**
  * @typedef Roll
@@ -586,7 +585,7 @@ function countClasses(actor) {
 function countMasteredClasses(actor) {
 	return (
 		actor.getItemsByType('class').filter((c) => {
-			const skillTracker = new CharacterSkillTracker(actor.system);
+			const skillTracker = actor.system.tlTracker;
 			const current = skillTracker.getClassLevel(c);
 			return current === c.system.level.max;
 		})?.length ?? 0

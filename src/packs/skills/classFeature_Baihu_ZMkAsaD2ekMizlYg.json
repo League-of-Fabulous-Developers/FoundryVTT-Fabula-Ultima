@@ -11,7 +11,7 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<h3>Presence of the Great Tiger</h3><p>When you deal damage, you may change its type to <strong>air</strong> or <strong>physical</strong>.</p><p>When you deal damage for the first time on your turn during a conflict, as long as that damage is <strong>air</strong> or <strong>physical</strong> and your Defense score is equal to or higher than 12, you deal 5 extra damage and that damage ignores Resistances.</p><hr><p><strong>You Gain On Start Turn:</strong> @EFFECT[Compendium.projectfu.skills.Item.pNq1QR6QeND249Xs]</p>",
+      "merge": "<h3>Presence of the Great Tiger</h3><p>When you deal damage, you may change its type to <strong>air</strong> or <strong>physical</strong>.</p><p>When you deal damage for the first time on your turn during a conflict, as long as that damage is <strong>air</strong> or <strong>physical</strong> and your Defense score is equal to or higher than 12, you deal 5 extra damage and that damage ignores Resistances.</p><hr><p><strong>You Gain On Turn Start (if Def is 12+):</strong> @EFFECT[Compendium.projectfu.skills.Item.pNq1QR6QeND249Xs]</p>",
       "pulse": "",
       "dismiss": "<h3>Wind and Steel</h3><p>Choose one option:</p><ul><li><p>You deal 30 <strong>air</strong> damage to every enemy you can see.</p></li><li><p>Until the end of the current scene, you and every ally present on the scene may treat your Defense score as being equal to 12 (you may use the normal score if better). This score increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p></li></ul><hr><p><strong>Enemies Suffer:</strong> @DMG[&step(30,40,50) air]{Air Damage}<strong><br>You & Allies Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.DeELsKaLRreJV5Bn]</p>",
       "domains": "beasts, metal, wind"
@@ -132,7 +132,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1781636419299,
-    "modifiedTime": 1781645465343,
+    "modifiedTime": 1781987563809,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!ZMkAsaD2ekMizlYg"

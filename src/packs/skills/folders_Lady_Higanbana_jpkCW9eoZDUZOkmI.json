@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "w3kDLFUJnb8HVdJf",
   "name": "Lady Higanbana",
-  "color": null,
+  "color": "#80c2a6",
   "sorting": "a",
   "_id": "jpkCW9eoZDUZOkmI",
   "description": "",
@@ -15,7 +15,8 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "lastModifiedBy": null
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1781987439368
   },
   "_key": "!folders!jpkCW9eoZDUZOkmI"
 }
