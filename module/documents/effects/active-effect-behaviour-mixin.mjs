@@ -222,14 +222,15 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		/**
 		 * @param {FUActor|FUItem} target
 		 * @param {EffectChangeData} change
+		 * @param {{replacementData?: Object, modifyTarget?: boolean}} options
 		 * @returns {{}|*}
 		 */
-		static applyChange(target, change) {
+		static applyChange(target, change, options) {
 			// Support expressions
-			if (change.value && typeof change.value === 'string') {
+			if (change.value && typeof change.value === 'string' && change.type in CONST.ACTIVE_EFFECT_CHANGE_TYPES) {
 				try {
 					// First, evaluate using built-in support
-					const expression = Roll.replaceFormulaData(change.value, this.parent);
+					const expression = Roll.replaceFormulaData(change.value, change.effect.parent);
 					// Second, evaluate with our custom expressions
 					const context = this.resolveExpressionContext(target, change);
 					const value = Expressions.evaluate(expression, context);
@@ -248,7 +249,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				}
 			}
 
-			return super.applyChange(target, change);
+			return super.applyChange(target, change, options);
 		}
 
 		/**

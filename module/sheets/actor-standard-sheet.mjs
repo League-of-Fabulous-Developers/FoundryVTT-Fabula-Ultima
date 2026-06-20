@@ -603,25 +603,25 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (folder?.type !== 'Item') return super._onDropFolder(event, folder);
 
 		const allFolders = [folder, ...folder.getSubfolders(true)];
-		const folderIds = new Set(allFolders.map((f) => f.id));
 
-		const worldItems = allFolders.flatMap((f) => f.contents ?? []);
-		const packItems = [];
-		for (const pack of game.packs.filter((p) => p.metadata.type === 'Item')) {
-			const docs = await pack.getDocuments();
-			packItems.push(...docs.filter((i) => folderIds.has(i.folder?.id ?? i.folder)));
+		const items = [];
+		const effectItems = [];
+		for (let folder of allFolders) {
+			let pack = folder.pack ? game.packs.get(folder.pack) : null;
+			for (let item of folder.contents) {
+				if (pack) {
+					item = await pack.getDocument(item._id);
+				}
+				if (item.type === 'effect') {
+					effectItems.push(item);
+				} else {
+					items.push(item);
+				}
+			}
 		}
 
-		const allItems = [...worldItems, ...packItems];
-		const itemDataArray = allItems
-			.filter((i) => i && typeof i.toObject === 'function')
-			.map((i) => {
-				const data = i.toObject();
-				delete data._id;
-				return data;
-			});
-
-		await this.actor.createEmbeddedDocuments('Item', itemDataArray);
+		await this.actor.createEmbeddedDocuments('Item', items);
+		await Promise.all(effectItems.map((effect) => this._importEffectData(effect)));
 		return folder;
 	}
 
