@@ -154,6 +154,30 @@
 	initial-value: url('../../static/icons/attributes/wlp-glyph.png');
 }
 
+@property --icon-fu-dex-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/dex-borderless.png');
+}
+
+@property --icon-fu-ins-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/ins-borderless.png');
+}
+
+@property --icon-fu-mig-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/mig-borderless.png');
+}
+
+@property --icon-fu-wlp-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/wlp-borderless.png');
+}
+
 @property --icon-fu-hp {
 	syntax: '<url>';
 	inherits: true;

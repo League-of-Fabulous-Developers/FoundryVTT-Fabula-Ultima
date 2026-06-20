@@ -1,13 +1,13 @@
 <div class='fu-icon__container flex-group-center'
-	 style="flex-direction: {{#if (ne flexDir undefined)}}{{flexDir}}{{else}}column{{/if}}; {{#if (ne gap undefined)}}gap: {{gap}};{{/if}}">
+	 style="flex-direction: {{#if flexDir}}{{flexDir}}{{else}}column{{/if}}; {{#if gap includeZero=true}}gap: {{gap}};{{/if}}">
 	<div class='fu-icon__badge'>
 		<i class='fu-icon--{{size}} {{icon}}'></i>
-		{{#if (ne value undefined)}}
+		{{#if value includeZero=true}}
 			<span class="fu-icon__badge-overlay">{{value}}</span>
 		{{/if}}
 	</div>
 	{{#unless compact}}
-		<span class="fu-icon__badge-label" {{#if (ne fontSize undefined)}}style="font-size: var(--font-size-{{fontSize}});"{{/if}}>
+		<span class="fu-icon__badge-label" {{#if fontSize}}style="font-size: var(--font-size-{{fontSize}});"{{/if}}>
 			{{localize label}}
 		</span>
 	{{/unless}}

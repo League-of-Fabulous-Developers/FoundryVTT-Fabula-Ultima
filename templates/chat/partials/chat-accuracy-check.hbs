@@ -28,7 +28,7 @@
 				{{pfuIconAttribute secondary.attribute flexDir='row' gap='4px' borderless=true size='xs'}}
                 <label class="detail">{{secondary.result}}</label>
             </div>
-            <div data-tooltip="{{#if modifiers}}{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}{{else}}{{localize 'FU.AccuracyCheckBaseAccuracy'}}: 0{{/if}}"">
+            <div data-tooltip="{{#if modifiers}}{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}{{else}}{{localize 'FU.AccuracyCheckBaseAccuracy'}}: 0{{/if}}">
 				{{pfuBadge 'mod' label='FU.ModAbbr' flexDir='row' size='xs'}}
                 <label class="detail">{{modifierTotal}}</label>
             </div>

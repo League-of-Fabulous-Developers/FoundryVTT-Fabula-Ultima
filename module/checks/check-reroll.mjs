@@ -143,13 +143,9 @@ const getRerollParams = async (check, actor) => {
 
 				const ignoreFp = dialog.element.querySelector('input[name="ignore-fp"]').checked;
 
-				if (!trait) {
-					return false;
-				}
-
 				return {
-					trait: trait.value,
-					value: trait.dataset.value ?? '',
+					trait: trait?.value,
+					value: trait?.dataset.value ?? '',
 					selection: selection,
 					ignoreFp: ignoreFp,
 				};
