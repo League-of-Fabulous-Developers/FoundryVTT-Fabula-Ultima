@@ -110,6 +110,7 @@ export class SpellsTableRenderer extends FUTableRenderer {
 		}
 		return classes.join(' ');
 	}
+
 	static findMatchingClassInArray(item, classes) {
 		const className = item.system?.class?.value;
 		if (className) {
@@ -130,14 +131,15 @@ export class SpellsTableRenderer extends FUTableRenderer {
 				return classFoundWithFuid;
 			}
 		}
-		return;
+		return null;
 	}
 
 	static async findMatchingClass(item) {
 		if (item.system.class.value) {
-			const actorClasses = item.actor.items.filter((arrayItem) => {
-				return arrayItem.type === 'class';
-			});
+			const actorClasses =
+				item.actor?.items.filter((arrayItem) => {
+					return arrayItem.type === 'class';
+				}) || [];
 			const foundActorClass = SpellsTableRenderer.findMatchingClassInArray(item, actorClasses);
 			if (foundActorClass) {
 				return foundActorClass;
