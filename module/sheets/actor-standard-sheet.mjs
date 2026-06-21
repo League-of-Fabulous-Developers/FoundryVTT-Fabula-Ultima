@@ -407,7 +407,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
 					context.effectsWithClocks = this.actor
 						.allApplicableEffects()
-						.filter((e) => e.system.rules.progress.enabled)
+						.filter((e) => e.system.rules.progress?.enabled)
 						.toArray();
 				}
 				break;
