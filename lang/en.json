@@ -2020,6 +2020,7 @@
 		"SettingInitiativeCheckAutomaticPrompt": "Automatic Initiative Check prompt",
 		"SettingInitiativeCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts an Initiative Check and your primary Character is part of the active Combat.",
 		"ActiveEffectSuppressed": "This effect is suppressed. It will not be applied to the actor.",
-		"TemporaryEffectsItems": "Temporary Effects On Items"
+		"TemporaryEffectsItems": "Temporary Effects On Items",
+		"DefaultGridUnit": "Travel Day(s)"
 	}
 }

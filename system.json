@@ -419,7 +419,8 @@
 	},
 	"socket": true,
 	"grid": {
-		"distance": 5,
+		"type": 0,
+		"distance": 1,
 		"units": "ft"
 	},
 	"primaryTokenAttribute": "resources.hp",

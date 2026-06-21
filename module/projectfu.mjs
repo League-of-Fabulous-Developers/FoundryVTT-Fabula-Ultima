@@ -460,7 +460,10 @@ Hooks.once('i18nInit', () => {
 	}
 });
 
-Hooks.once('setup', () => {});
+Hooks.once('setup', () => {
+	// Set the value here rather than system.json so it can be localized
+	game.system.grid.units = game.i18n.localize('FU.DefaultGridUnit');
+});
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
