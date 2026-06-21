@@ -154,6 +154,30 @@
 	initial-value: url('../../static/icons/attributes/wlp-glyph.png');
 }
 
+@property --icon-fu-dex-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/dex-borderless.png');
+}
+
+@property --icon-fu-ins-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/ins-borderless.png');
+}
+
+@property --icon-fu-mig-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/mig-borderless.png');
+}
+
+@property --icon-fu-wlp-bl {
+	syntax: '<url>';
+	inherits: true;
+	initial-value: url('../../static/icons/attributes/wlp-borderless.png');
+}
+
 @property --icon-fu-hp {
 	syntax: '<url>';
 	inherits: true;
@@ -558,6 +582,11 @@
 	--icon-fu-mig: url('../../static/icons/attributes/mig-glyph.png');
 	--icon-fu-wlp: url('../../static/icons/attributes/wlp-glyph.png');
 
+	--icon-fu-dex-bl: url('../../static/icons/attributes/dex-borderless.png');
+	--icon-fu-ins-bl: url('../../static/icons/attributes/ins-borderless.png');
+	--icon-fu-mig-bl: url('../../static/icons/attributes/mig-borderless.png');
+	--icon-fu-wlp-bl: url('../../static/icons/attributes/wlp-borderless.png');
+
 	--icon-fu-hp: url('../../static/icons/resources/hp.png');
 	--icon-fu-mp: url('../../static/icons/resources/mp.png');
 	--icon-fu-ip: url('../../static/icons/resources/ip.png');
@@ -635,6 +664,10 @@
 	background-image: var(--icon-fu-dex);
 }
 
+.fu-ins {
+	background-image: var(--icon-fu-ins);
+}
+
 .fu-mig {
 	background-image: var(--icon-fu-mig);
 }
@@ -643,8 +676,20 @@
 	background-image: var(--icon-fu-wlp);
 }
 
-.fu-ins {
-	background-image: var(--icon-fu-ins);
+.fu-dex-bl {
+	background-image: var(--icon-fu-dex-bl);
+}
+
+.fu-ins-bl {
+	background-image: var(--icon-fu-ins-bl);
+}
+
+.fu-mig-bl {
+	background-image: var(--icon-fu-mig-bl);
+}
+
+.fu-wlp-bl {
+	background-image: var(--icon-fu-wlp-bl);
 }
 
 .fu-hp {

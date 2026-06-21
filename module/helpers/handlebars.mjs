@@ -463,7 +463,12 @@ function badge(key, options) {
 	if (options.hash) {
 		options = options.hash;
 	}
-	const icon = FU.allIcon[key];
+
+	let icon = FU.allIcon[key];
+	if (options.borderless) {
+		icon += '-bl';
+	}
+
 	const size = options.size ?? 's';
 	const template = Handlebars.partials[systemTemplatePath('common/icons/badge')];
 	const html =
@@ -474,6 +479,9 @@ function badge(key, options) {
 					size: size,
 					value: options.value,
 					compact: options.compact,
+					flexDir: options.flexDir,
+					gap: options.gap,
+					fontSize: options.fontSize,
 				})
 			: '';
 	return new Handlebars.SafeString(html);
