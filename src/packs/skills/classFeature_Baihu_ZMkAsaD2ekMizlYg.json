@@ -1,0 +1,139 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Baihu",
+  "type": "classFeature",
+  "_id": "ZMkAsaD2ekMizlYg",
+  "img": "icons/creatures/abilities/cougar-pounce-stalk-black.webp",
+  "system": {
+    "fuid": "baihu",
+    "summary": {
+      "value": "The white tiger of the West, ruling over battle and beasts."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Presence of the Great Tiger</h3><p>When you deal damage, you may change its type to <strong>air</strong> or <strong>physical</strong>.</p><p>When you deal damage for the first time on your turn during a conflict, as long as that damage is <strong>air</strong> or <strong>physical</strong> and your Defense score is equal to or higher than 12, you deal 5 extra damage and that damage ignores Resistances.</p><hr><p><strong>You Gain On Turn Start (if Def is 12+):</strong> @EFFECT[Compendium.projectfu.skills.Item.pNq1QR6QeND249Xs]</p>",
+      "pulse": "",
+      "dismiss": "<h3>Wind and Steel</h3><p>Choose one option:</p><ul><li><p>You deal 30 <strong>air</strong> damage to every enemy you can see.</p></li><li><p>Until the end of the current scene, you and every ally present on the scene may treat your Defense score as being equal to 12 (you may use the normal score if better). This score increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p></li></ul><hr><p><strong>Enemies Suffer:</strong> @DMG[&step(30,40,50) air]{Air Damage}<strong><br>You & Allies Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.DeELsKaLRreJV5Bn]</p>",
+      "domains": "beasts, metal, wind"
+    },
+    "source": "FUBC33"
+  },
+  "effects": [
+    {
+      "name": "Merged: Baihu",
+      "img": "icons/creatures/abilities/cougar-pounce-stalk-black.webp",
+      "origin": "Compendium.projectfu.skills.Item.ZMkAsaD2ekMizlYg",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "XWzexIGXvTEGs708": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "eK39bGrCxHpuSiTm",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "XWzexIGXvTEGs708",
+              "actions": {
+                "WkHhCHfTcaSLbasd": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "WkHhCHfTcaSLbasd",
+                  "damageTypes": [
+                    "physical",
+                    "air"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "2ly3Kc201vd0j6ly",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You are merged with <strong>Baihu</strong>. When you deal damage, you may change its type to <strong>air</strong> or <strong>physical</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Baihu",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.ZMkAsaD2ekMizlYg",
+            "effectUuid": null,
+            "fuid": "baihu"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781637071764,
+        "modifiedTime": 1781637168307,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!ZMkAsaD2ekMizlYg.2ly3Kc201vd0j6ly"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781636419299,
+    "modifiedTime": 1781987563809,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!ZMkAsaD2ekMizlYg"
+}

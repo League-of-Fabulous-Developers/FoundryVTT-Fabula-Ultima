@@ -547,6 +547,30 @@ Hooks.once('ready', async function () {
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
 
+// Add grid toggle to scene config
+Hooks.on('renderSceneConfig', (app, element, context, options) => {
+	const container = element.querySelector(`.tab[data-group="sheet"][data-tab="grid"]`);
+	if (!(container instanceof HTMLElement)) return void console.warn('Grid tab not found in SceneConfig');
+
+	const rulerState = app.document.getFlag(Flags.Scope, Flags.Scene.DragRulerState) ?? 'default';
+
+	const field = foundry.applications.fields.createFormGroup({
+		label: game.i18n.localize('FU.DragRulerState'),
+		hint: game.i18n.localize('FU.DragRulerStateHint'),
+		input: foundry.applications.fields.createSelectInput({
+			name: `flags.${Flags.Scope}.${Flags.Scene.DragRulerState}`,
+			required: false,
+			options: [
+				{ value: 'default', label: game.i18n.localize('FU.DragRulerStateDefault'), selected: rulerState === 'default' },
+				{ value: 'enabled', label: game.i18n.localize('FU.DragRulerStateEnabled'), selected: rulerState === 'enabled' },
+				{ value: 'disabled', label: game.i18n.localize('FU.DragRulerStateDisabled'), selected: rulerState === 'disabled' },
+			],
+		}),
+	});
+
+	container.append(field);
+});
+
 // Register the "Doubles" SFX trigger for DiceSoNice
 Hooks.once('diceSoNiceReady', (dice3d) => {
 	dice3d.addSFXTrigger(

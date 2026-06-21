@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You send lightning striking at your foe. You deal <strong>【HR + 25】bolt</strong> damage to the target; this damage ignores Resistances.</p>",
+    "description": "<p>You send lightning striking at your foe. You deal <strong>【HR + 25】 bolt</strong> damage to the target; this damage ignores Resistances.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -116,7 +116,8 @@
       "prompt": false,
       "duration": {
         "event": "",
-        "tracking": ""
+        "tracking": "",
+        "interval": null
       }
     }
   },
@@ -142,7 +143,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771454311794,
-    "modifiedTime": 1771454315969,
+    "modifiedTime": 1781650984403,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "jZRTJfKbjPzSvKV4",

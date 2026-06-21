@@ -280,14 +280,6 @@ export class FUActor extends Actor {
 		}
 	}
 
-	// TODO: Use the above name
-	/**
-	 * @returns {ActiveEffect[]}
-	 */
-	get combinedEffects() {
-		return Array.from(this.allEffects());
-	}
-
 	/**
 	 * @override
 	 * @returns {FUActiveEffect[]}

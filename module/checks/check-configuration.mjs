@@ -541,19 +541,21 @@ export class CheckConfigurer extends CheckInspector {
 				return;
 			}
 			const targetedDefense = this.getTargetedDefense();
-			for (let t = 0; t < targets.length; t++) {
-				const target = targets[t];
-				const difficulty = target.defenses[targetedDefense];
-				let targetResult;
-				if (this.check.critical) {
-					targetResult = 'hit';
-				} else if (this.check.fumble) {
-					targetResult = 'miss';
-				} else {
-					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
+			if (targetedDefense) {
+				for (let t = 0; t < targets.length; t++) {
+					const target = targets[t];
+					const difficulty = target.defenses[targetedDefense];
+					let targetResult;
+					if (this.check.critical) {
+						targetResult = 'hit';
+					} else if (this.check.fumble) {
+						targetResult = 'miss';
+					} else {
+						targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
+					}
+					// Update the original
+					this.check.additionalData[TARGETS][t].result = targetResult;
 				}
-				// Update the original
-				this.check.additionalData[TARGETS][t].result = targetResult;
 			}
 		}
 	}

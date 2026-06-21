@@ -1,0 +1,124 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Rangda",
+  "type": "classFeature",
+  "_id": "DZLOjMQSHt5LB5Vf",
+  "img": "icons/magic/unholy/silhouette-light-fire-blue.webp",
+  "system": {
+    "fuid": "rangda",
+    "summary": {
+      "value": "The powerful witch queen, teacher of dark arts."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Haunting Dance</h3><p>After you and/or one or more allies you can see lose Hit Points, you gain <strong>1 Sorcery Point</strong>.</p><p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and you deal extra damage equal to your current <strong>Sorcery Points</strong>.</p><p>When this Arcanum is dismissed, you lose all <strong>Sorcery Points</strong>.</p><hr><p><strong>You Gain:</strong> @PROGRESS[sorcery-points update 1]{Gain 1 Sorcery Point}</p>",
+      "pulse": "",
+      "dismiss": "<h3>Feast of Body and Soul</h3><p>You deal an amount of <strong>poison</strong> damage equal to <strong>【the amount of Sorcery Points you lost by dismissing this Arcanum, multiplied by 5】</strong> to one enemy you can see. If this damage reduces that enemy to 0 Hit Points, you and every ally you can see recover an amount of HP and MP equal to that enemy's <strong>Crisis</strong> score.</p><hr><p><strong>Enemy Suffers:</strong> @DMG[&cs('sorcery-points')*5+&step(0,10,20) poison]{Poison Damage}<br><strong>You Lose:</strong> @PROGRESS[sorcery-points reset]{Lose All Sorcery Points}</p>",
+      "domains": "medicine, poisons, witchcraft"
+    },
+    "source": "FUBC36"
+  },
+  "effects": [
+    {
+      "name": "Merged: Rangda",
+      "img": "icons/magic/unholy/silhouette-light-fire-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.DZLOjMQSHt5LB5Vf",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": true,
+            "id": "sorcery-points",
+            "name": "Sorcery Points",
+            "current": 0,
+            "max": 12,
+            "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "9XOwPkH8iMwzwwfN",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "poison",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "&cs('sorcery-points')",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are merged with <strong>Rangda</strong>. All damage you deal becomes <strong>poison</strong>, its type cannot change, and you deal extra damage equal to your current <strong>Sorcery Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Rangda",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.DZLOjMQSHt5LB5Vf",
+            "effectUuid": null,
+            "fuid": "rangda"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781649577529,
+        "modifiedTime": 1781649695953,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!DZLOjMQSHt5LB5Vf.9XOwPkH8iMwzwwfN"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781649410641,
+    "modifiedTime": 1781649843953,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!DZLOjMQSHt5LB5Vf"
+}

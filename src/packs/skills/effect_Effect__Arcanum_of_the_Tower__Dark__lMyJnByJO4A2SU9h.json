@@ -1,5 +1,5 @@
 {
-  "folder": "w3kDLFUJnb8HVdJf",
+  "folder": "lUTuYwx8TclTWDcT",
   "name": "Effect: Arcanum of the Tower (Dark)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771045329206,
-    "modifiedTime": 1771045406937,
+    "modifiedTime": 1781627885463,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "lMyJnByJO4A2SU9h",
-  "sort": 200000,
+  "sort": 300000,
   "_key": "!items!lMyJnByJO4A2SU9h"
 }

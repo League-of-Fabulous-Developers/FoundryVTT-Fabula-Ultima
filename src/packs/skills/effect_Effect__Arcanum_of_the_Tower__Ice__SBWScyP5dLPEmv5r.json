@@ -1,5 +1,5 @@
 {
-  "folder": "w3kDLFUJnb8HVdJf",
+  "folder": "lUTuYwx8TclTWDcT",
   "name": "Effect: Arcanum of the Tower (Ice)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771045333820,
-    "modifiedTime": 1771045511797,
+    "modifiedTime": 1781627887425,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "SBWScyP5dLPEmv5r",
-  "sort": 0,
+  "sort": 112500,
   "_key": "!items!SBWScyP5dLPEmv5r"
 }

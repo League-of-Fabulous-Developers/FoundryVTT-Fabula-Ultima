@@ -9,20 +9,21 @@
 	{{/each}}
 </fieldset>
 <fieldset class="resource-content flexrow">
-	<div class="flexrow">
-		<label class="checkbox">
-			<input type="checkbox" name="results" value="attr1" class="flex0">
-			{{pfuIconAttribute attr1.attribute value=attr1.result}}
-		</label>
-		<label class="checkbox">
-			<input type="checkbox" name="results" value="attr2" class="flex0">
-			{{pfuIconAttribute attr2.attribute value=attr2.result}}
-		</label>
-	</div>
-	<div class="flexrow">
-		<label class="checkbox">
-			<input type="checkbox" name="ignore-fp">
-			<span>{{localize 'FU.DialogIgnoreFPCost'}}</span>
-		</label>
-	</div>
+	<legend>{{localize 'FU.DialogChooseDice'}}</legend>
+	<label class="checkbox">
+		<input type="checkbox" name="results" value="attr1" class="flex0">
+		{{pfuIconAttribute attr1.attribute value=attr1.dice flexDir='row' gap='12px' borderless=true}}
+		<span>: {{localize 'FU.Result'}} {{attr1.result}}</span>
+	</label>
+	<label class="checkbox">
+		<input type="checkbox" name="results" value="attr2" class="flex0">
+		{{pfuIconAttribute attr2.attribute value=attr2.dice flexDir='row' gap='12px' borderless=true}}
+		<span>: {{localize 'FU.Result'}} {{attr2.result}}</span>
+	</label>
+</fieldset>
+<fieldset class="resource-content flexrow">
+	<label class="checkbox">
+		<input type="checkbox" name="ignore-fp">
+		<span>{{localize 'FU.DialogIgnoreFPCost'}}</span>
+	</label>
 </fieldset>

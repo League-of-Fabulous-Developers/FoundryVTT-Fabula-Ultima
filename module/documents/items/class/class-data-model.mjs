@@ -86,13 +86,6 @@ export class ClassDataModel extends FUStandardItemDataModel {
 		});
 	}
 
-	/**
-	 * @returns {Boolean}
-	 */
-	get mastered() {
-		return this.level.value === this.level.max;
-	}
-
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.classBenefits];
 	}

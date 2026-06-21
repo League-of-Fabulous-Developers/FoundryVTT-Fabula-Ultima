@@ -702,6 +702,7 @@
 		"DialogRerollLabel": "Invoke",
 		"DialogRerollMissingTrait": "No Trait selected",
 		"DialogRerollMissingDice": "No dice selected",
+		"DialogChooseDice": "Choose One or Both Dice",
 		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Retarget Token(s)",
 		"ChatContextRerollFabula": "Invoke Trait to Reroll",
@@ -729,6 +730,7 @@
 		"DialogCheckOpenCheck": "Open Check",
 		"DialogCheckOpposedCheck": "Opposed Check",
 		"DialogCheckRitualCheck": "Ritual Check",
+		"HighRoll": "High Roll",
 		"HighRollAbbr": "HR",
 		"HighRollZero": "HR0",
 		"ExperimentalCombatTracker": "Enable Experimental Combat Tracker",
@@ -1563,6 +1565,11 @@
 		"DragRulerSettingsEnableGridlessHint": "Enable to show distance measurement when dragging a token in a scene with no grid.",
 		"DragRulerSettingsEnableGriddedLabel": "Enable Drag Ruler for Gridded Scenes",
 		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
+		"DragRulerState": "Token Drag Ruler",
+		"DragRulerStateHint": "Set to 'Default' to use global defaults for grid type, otherwise set to 'Enabled' or 'Disabled' to override.",
+		"DragRulerStateDefault": "Default",
+		"DragRulerStateEnabled": "Enabled",
+		"DragRulerStateDisabled": "Disabled",
 		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
 		"Track": "Track",
 		"Tracks": "Tracks",
@@ -2021,6 +2028,7 @@
 		"SettingInitiativeCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts an Initiative Check and your primary Character is part of the active Combat.",
 		"ActiveEffectSuppressed": "This effect is suppressed. It will not be applied to the actor.",
 		"TemporaryEffectsItems": "Temporary Effects On Items",
-		"DefaultGridUnit": "Travel Day(s)"
+		"DefaultGridUnit": "Travel Day(s)",
+		"DieSize": "Die Size"
 	}
 }

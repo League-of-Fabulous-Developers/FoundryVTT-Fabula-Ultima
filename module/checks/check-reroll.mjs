@@ -111,11 +111,13 @@ const getRerollParams = async (check, actor) => {
 	const attr1 = {
 		attribute: check.primary.attribute,
 		result: check.primary.result,
+		dice: check.primary.dice,
 	};
 
 	const attr2 = {
 		attribute: check.secondary.attribute,
 		result: check.secondary.result,
+		dice: check.secondary.dice,
 	};
 
 	/** @type RerollParams */
@@ -142,8 +144,8 @@ const getRerollParams = async (check, actor) => {
 				const ignoreFp = dialog.element.querySelector('input[name="ignore-fp"]').checked;
 
 				return {
-					trait: trait.value,
-					value: trait.dataset.value ?? '',
+					trait: trait?.value,
+					value: trait?.dataset.value ?? '',
 					selection: selection,
 					ignoreFp: ignoreFp,
 				};

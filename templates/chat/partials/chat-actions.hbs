@@ -10,15 +10,15 @@
 					</div>
                     <!-- Accuracy Information -->
 					{{#if (or (eq target.result "hit") (eq target.result "miss"))}}
-						<div class="endcap gap-5" style="flex: 0 1 auto;">
-							<span class="{{target.result}}">
-								{{#if (eq target.result "hit")}}
-									{{localize 'FU.Hit'}}
-								{{else}}
-									{{localize 'FU.Miss'}}
-								{{/if}}
-							</span>
-					  </div>
+					<div class="endcap gap-5" style="flex: 0 1 auto;">
+						<span class="{{target.result}}">
+							{{#if (eq target.result "hit")}}
+								{{localize 'FU.Hit'}} {{localize 'FU.Versus'}} {{lookup target.defenses ../defense}}
+							{{else}}
+								{{localize 'FU.Miss'}} {{localize 'FU.Versus'}} {{lookup target.defenses ../defense}}
+							{{/if}}
+						</span>
+					</div>
 					{{/if}}
                 </span>
                 <!-- Actions -->

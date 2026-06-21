@@ -10,8 +10,17 @@
 <div class="pfu-chat-message__toggle-section accuracy-check-results {{#if (pfuGetSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-2col desc flex2'>
-            <div>
-				{{pfuBadge 'hr' label='FU.HighRollAbbr' }}
+            <div data-tooltip="{{localize 'FU.HighRoll'}}:
+                    {{#if (not damage.hrZero)}}
+                        {{#if (gte check.primary.result check.secondary.result)}}
+                            {{check.primary.result}}
+                        {{else}}
+                            {{check.secondary.result}}
+                        {{/if}}
+                    {{else}}
+                        0
+                    {{/if}}" style='padding: 2px 4px'>
+				{{pfuBadge 'hr' label='FU.HighRollAbbr' flexDir='row' gap='2px' size='xs'}}
                 <label class="detail">
                     {{#if (not damage.hrZero)}}
                         {{#if (gte check.primary.result check.secondary.result)}}
@@ -19,11 +28,13 @@
                         {{else}}
                             {{check.secondary.result}}
                         {{/if}}
+                    {{else}}
+                        0
                     {{/if}}
                 </label>
             </div>
-            <div {{#if damage.modifiers}}data-tooltip="{{#each damage.modifiers}}{{localize label}}: {{amount}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-				{{pfuBadge 'mod' label='FU.ModAbbr' }}
+            <div data-tooltip="{{#if damage.modifiers}}{{#each damage.modifiers}}{{localize label}}: {{amount}}{{#unless @last}}<br>{{/unless}}{{/each}}{{else}}{{localize 'FU.BaseDamage'}}: 0{{/if}}" style='padding: 2px 4px'>
+				{{pfuBadge 'mod' label='FU.ModAbbr' flexDir='row' size='xs'}}
                 <label class="detail">{{damage.modifierTotal}}</label>
             </div>
         </div>
