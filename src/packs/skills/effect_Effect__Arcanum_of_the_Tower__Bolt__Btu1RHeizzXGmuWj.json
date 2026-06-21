@@ -1,5 +1,5 @@
 {
-  "folder": "w3kDLFUJnb8HVdJf",
+  "folder": "lUTuYwx8TclTWDcT",
   "name": "Effect: Arcanum of the Tower (Bolt)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771045327454,
-    "modifiedTime": 1771045343155,
+    "modifiedTime": 1781627883630,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "Btu1RHeizzXGmuWj",
-  "sort": 300000,
+  "sort": 200000,
   "_key": "!items!Btu1RHeizzXGmuWj"
 }

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "w3kDLFUJnb8HVdJf",
+  "name": "Arcanum of the Tower",
+  "color": "#80c2a6",
+  "sorting": "a",
+  "_id": "lUTuYwx8TclTWDcT",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1781627931519
+  },
+  "_key": "!folders!lUTuYwx8TclTWDcT"
+}

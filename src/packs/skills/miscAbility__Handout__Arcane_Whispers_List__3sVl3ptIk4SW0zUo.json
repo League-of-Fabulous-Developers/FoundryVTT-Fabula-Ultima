@@ -1,0 +1,118 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "[Handout: Arcane Whispers List]",
+  "type": "miscAbility",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum_v2.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/magic/nature/elemental-plant-humanoid.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.C5Gi6kQzgzU9b2vS]{Airmid}</p></td></tr><tr><td><p><em>Protector of apothecaries and teacher of purifying arts.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> exorcism, healing, plants</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Herbalist's Favor</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>When you summon this Arcanum, you gain <strong>3 Medicine Points</strong>. When this Arcanum is dismissed, you lose all <strong>Medicine Points</strong>.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action and spend <strong>1 Medicine Point</strong> to choose one ally you can see. If you do, that ally recovers an amount of Hit Points equal to your <strong>Crisis</strong> score and recovers from a single status effect of your choice.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Cleansing Roots</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal 20 <strong>earth</strong> damage to every enemy you can see, or 30 <strong>earth</strong> damage if you had <strong>no Medicine Points</strong> left when you dismiss this Arcanum. Then, if one or more enemies that lost Hit Points this way are affected by one or more spells with a <strong>duration</strong> of \"Scene\", they stop being affected by those spells.</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/creatures/abilities/cougar-pounce-stalk-black.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.ZMkAsaD2ekMizlYg]{Baihu}</p></td></tr><tr><td><p><em>The white tiger of the West, ruling over battle and beasts.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> beasts, metal, wind</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Presence of the Great Tiger</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>When you deal damage, you may change its type to <strong>air</strong> or <strong>physical</strong>.</p><p>When you deal damage for the first time on your turn during a conflict, as long as that damage is <strong>air</strong> or <strong>physical</strong> and your Defense score is equal to or higher than 12, you deal 5 extra damage and that damage ignores Resistances.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Wind and Steel</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>Choose one option:</p><ul><li><p>You deal 30 <strong>air</strong> damage to every enemy you can see.</p></li><li><p>Until the end of the current scene, you and every ally present on the scene may treat your Defense score as being equal to 12 (you may use the normal score if better). This score increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p></li></ul></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/skills/melee/sword-twirl-orange.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.VligC3jj4sOcvP0a]{Damocles}</p></td></tr><tr><td><p><em>The ghastly sword, looming over tyrants.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> dread, hesitation, punishment</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Impending Judgment</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You gain Resistance to <strong>dark</strong> and <strong>light</strong> damage.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to choose one enemy you can see and choose one action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, and <strong>Spell</strong>. If you do, until the start of your next turn that enemy loses 10 Hit Points whenever they perform the chosen action (after the action has been resolved). This amount increases to 20 Hit Points if you are <strong>level 30 or higher</strong>.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Rain of Swords</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal 30 <strong>light</strong> damage to every enemy you can see. Each creature that loses Hit Points due to this damage suffers <strong>shaken</strong>.</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/creatures/abilities/dragon-fire-breath-orange.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.6Ni4vBwTODsXnc1A]{Fafnir}</p></td></tr><tr><td><p><em>The invulnerable chtonic dragon, who guards legendary treasures.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> fire, protection, wealth</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Scales of the Ardent Sovereign</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You gain Resistance to <strong>fire</strong> damage. Additionally, as long as you are <strong>not in Crisis</strong>, you also gain Resistance to <strong>physical</strong> damage.</p><p>All damage you deal becomes <strong>fire</strong>, its type cannot change, and it ignores Resistances; as long as you are in <strong>Crisis</strong>, it also ignores Immunities.</p><p>When you deal damage to <strong>only one creature</strong> with a spell, you deal 10 extra damage.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Molten Gold</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal 20 <strong>fire</strong> damage to every enemy you can see, or 30 <strong>fire</strong> damage if you are in <strong>Crisis</strong>; this damage ignores Immunities and Resistances. Then, you and every ally present on the scene regain 2 Inventory Points for every enemy reduced to 0 Hit Points by this damage.</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/creatures/birds/corvid-call-sound-glowing.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.ZWCPjjDOViHlvgEc]{Huginn &amp; Muninn}</p></td></tr><tr><td><p><em>The twin ravens, messengers and spies of the gods.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> knowledge, memory, storms</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Winged Messengers</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You gain Resistance to <strong>air</strong> and <strong>bolt</strong> damage, and you are immune to <strong>dazed</strong>.</p><p>At the end of your turn during a conflict, you may choose one creature you can see. If you do, choose one option: the Game Master reveals one of that creature's <strong>Traits</strong>; <strong>or</strong>, the Game Master reveals that creature's Affinity to one damage type of your choice.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Stormborn Twins</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>Choose <strong>air</strong> or <strong>bolt</strong>. You deal 20 damage of the chosen type to one creature you can see; then, you deal 20 damage of the other type to one creature you can see (the same or a different one). Damage dealt by this effect ignores Resistances, and it ignores the Immunities of any creature you know <strong>two or more Traits</strong> of.</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/creatures/magical/humanoid-silhouette-dashing-blue.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.Sfsuz6nJWErVBvg8]{Lady Higanbana}</p></td></tr><tr><td><p><em>The tearful spirit who mourns those fallen in battle.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> death, isolation, melancholy</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Scarlet Blossoms</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>If you have acquired the <strong>Counterattack</strong> Skill, it also applies to enemy <strong>ranged</strong> attacks.</p><p>During conflict scenes, as long as you are <strong>merged</strong> with this Arcanum and <strong>it is not your turn</strong>, your attacks deal 5 extra damage, or 10 extra damage if you are also in <strong>Crisis</strong>.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Sepulchral Shroud</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal 40 <strong>dark</strong> damage to one creature you can see; damage dealt by this effect ignores Immunities and Resistances. If a creature loses Hit Points this way, they cannot recover Hit Points until the start of your next turn.</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/commodities/currency/coin-engraved-sun-smile-copper.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.1ZMtdobRdrdMZLjL]{Maneki-Neko}</p></td></tr><tr><td><p><em>The ever-grinning patron of gamblers.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> coincidences, prosperity, unforeseen events</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Paw Slap</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>After you roll dice for a Magic Check or Accuracy Check, you may choose one of the numbers shown on those dice: that number becomes your <strong>meowgic nyamber</strong> and replaces any <strong>meowgic nyamber</strong> you previously obtained.</p><p>After a creature you can see rolls dice for a Check, if you have a <strong>meowgic nyamber</strong>, you may expend it to replace the number shown by one of those dice with that number. You cannot use this effect on a Check that generated a <strong>meowgic nyamber</strong>, and you cannot generate a <strong>meowgic nyamber</strong> with a Check you used this effect on.</p><p>When this Arcanum is <strong>dismissed</strong>, if you have a <strong>meowgic nyamber</strong>, you lose it.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Coin Cascade</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal 30 <strong>physical</strong> damage to every enemy you can see. If you lost a <strong>meowgic nyamber</strong> by dismissing this Arcanum, the type of this damage changes based on the number you lost: <strong>air</strong> (1 and 6), <strong>bolt</strong> (2 and 7), <strong>fire</strong> (3 and 8), <strong>ice</strong> (4 and 9), <strong>earth</strong> (5 and 10), <strong>dark</strong> (11 or higher).</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/magic/fire/flame-burning-eye.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.d1LEGde56neUIAeZ]{Marchosias}</p></td></tr><tr><td><p><em>The most courageous and loyal among fallen celestials.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> fire, loyalty, vigor</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Glyphclaws</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You are immune to <strong>shaken</strong> and <strong>weak</strong>.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to deal an amount of <strong>physical</strong> damage equal to <strong>【10 + twice the number of Heroic Skills you have acquired】</strong> to each of up to two enemies you can see. If you do and at least one of those enemies loses Hit Points due to this damage, you gain <strong>1 Glyph Point</strong>.</p><p>When this Arcanum is dismissed, you lose all <strong>Glyph Points</strong>.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Seal of Fire</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal 30 <strong>fire</strong> damage to one enemy you can see; this damage ignores Immunities and Resistances. If you lost <strong>3 or more Glyph Points</strong> by dismissing this Arcanum, choose one option for this effect:</p><ul><li><p>It deals 10 extra damage.</p></li><li><p>It deals damage to each of up to two enemies you can see (instead of only one enemy).</p></li></ul></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/magic/unholy/silhouette-light-fire-blue.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.DZLOjMQSHt5LB5Vf]{Rangda}</p></td></tr><tr><td><p><em>The powerful witch queen, teacher of dark arts.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> medicine, poisons, witchcraft</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Haunting Dance</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>After you and/or one or more allies you can see lose Hit Points, you gain <strong>1 Sorcery Point</strong>.</p><p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and you deal extra damage equal to your current <strong>Sorcery Points</strong>.</p><p>When this Arcanum is dismissed, you lose all <strong>Sorcery Points</strong>.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Feast of Body and Soul</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You deal an amount of <strong>poison</strong> damage equal to <strong>【the amount of Sorcery Points you lost by dismissing this Arcanum, multiplied by 5】</strong> to one enemy you can see. If this damage reduces that enemy to 0 Hit Points, you and every ally you can see recover an amount of HP and MP equal to that enemy's <strong>Crisis</strong> score.</p></td></tr></tbody></table><p></p><p></p><table><tbody><tr><td rowspan=\"2\" data-colwidth=\"51\" style=\"width:100px\"><img src=\"icons/creatures/abilities/dragon-ice-breath-blue.webp\" /></td><td><p>@UUID[Compendium.projectfu.skills.Item.29oLW7n3OmgpzURY]{Tiamat}</p></td></tr><tr><td><p><em>The Dragonmother, reigning over oceans and serpents.</em></p></td></tr><tr><td data-colwidth=\"51\"><p></p></td><td><p><strong>Domains:</strong> chaos, saltwater, serpents</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Merge</strong></p></td><td><p><strong>Supreme Serpent</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>You gain Resistance to <strong>ice</strong> damage.</p><p>When you deal damage, as long as that damage is <strong>ice</strong>, you deal 5 extra damage and all that damage ignores Resistances.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to perform a <strong>free attack</strong> with a weapon you have equipped. If you do, all damage dealt by the attack becomes <strong>ice</strong>, its type cannot change, and each creature that loses Hit Points due to it suffers <strong>slow</strong>.</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Dismiss</strong></p></td><td><p><strong>Tides of an Endless Ocean</strong></p></td></tr><tr><td colspan=\"2\" data-colwidth=\"51,0\"><p>Choose one option:</p><ul><li><p>Fill 2 sections of every Clock present on the scene.</p></li><li><p>Erase 2 sections of every Clock present on the scene.</p></li><li><p>You force every <strong>soldier</strong>-rank enemy present on the scene that is in <strong>Crisis</strong> and is <strong>not a Villain</strong> to immediately leave the scene.</p></li></ul><p>Once you use any of its options, this <strong>dismiss</strong> effect is no longer available until next dawn.</p></td></tr></tbody></table><p></p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "source": "FUBC32",
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "handout-arcane-whispers-list",
+    "targeting": {
+      "rule": "self",
+      "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781654927938,
+    "modifiedTime": 1781987381709,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "3sVl3ptIk4SW0zUo",
+  "sort": 0,
+  "_key": "!items!3sVl3ptIk4SW0zUo"
+}

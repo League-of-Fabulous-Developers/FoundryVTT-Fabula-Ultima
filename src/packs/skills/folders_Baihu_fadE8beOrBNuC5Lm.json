@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "w3kDLFUJnb8HVdJf",
+  "name": "Baihu",
+  "color": "#80c2a6",
+  "sorting": "a",
+  "_id": "fadE8beOrBNuC5Lm",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1781637852207
+  },
+  "_key": "!folders!fadE8beOrBNuC5Lm"
+}

@@ -1,0 +1,111 @@
+{
+  "folder": "fadE8beOrBNuC5Lm",
+  "name": "Effect: Baihu (Defense)",
+  "type": "effect",
+  "_id": "DeELsKaLRreJV5Bn",
+  "img": "icons/creatures/abilities/cougar-pounce-stalk-black.webp",
+  "system": {
+    "fuid": "effect-baihu-defense",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Baihu (Defense)",
+      "img": "icons/creatures/abilities/cougar-pounce-stalk-black.webp",
+      "origin": "Compendium.projectfu.skills.Item.DeELsKaLRreJV5Bn",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "uk7r6vu9TEhLxa1w",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 4,
+          "value": "&step(12,13,14)",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the end of the current scene, you may treat your Defense score as being equal to 12 (you may use the normal score if better). This score increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Baihu (Defense)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.DeELsKaLRreJV5Bn",
+            "effectUuid": null,
+            "fuid": "effect-baihu-defense"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781637353961,
+        "modifiedTime": 1781637445664,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!DeELsKaLRreJV5Bn.uk7r6vu9TEhLxa1w"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781637228669,
+    "modifiedTime": 1781637237608,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!DeELsKaLRreJV5Bn"
+}

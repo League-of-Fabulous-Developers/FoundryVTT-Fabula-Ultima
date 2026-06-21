@@ -1,0 +1,124 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Marchosias",
+  "type": "classFeature",
+  "_id": "d1LEGde56neUIAeZ",
+  "img": "icons/magic/fire/flame-burning-eye.webp",
+  "system": {
+    "fuid": "marchosias",
+    "summary": {
+      "value": "The most courageous and loyal among fallen celestials."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Glyphclaws</h3><p>You are immune to <strong>shaken</strong> and <strong>weak</strong>.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to deal an amount of <strong>physical</strong> damage equal to <strong>【10 + twice the number of Heroic Skills you have acquired】</strong> to each of up to two enemies you can see. If you do and at least one of those enemies loses Hit Points due to this damage, you gain <strong>1 Glyph Point</strong>.</p><p>When this Arcanum is dismissed, you lose all <strong>Glyph Points</strong>.</p><hr><p><strong>Enemies Suffer:</strong> @DMG[10+2*$mcc physical]{Physical Damage}<br><strong>You Gain:</strong> @PROGRESS[glyph-points update 1]{Gain 1 Glyph Point}</p>",
+      "pulse": "",
+      "dismiss": "<h3>Seal of Fire</h3><p>You deal 30 <strong>fire</strong> damage to one enemy you can see; this damage ignores Immunities and Resistances. If you lost <strong>3 or more Glyph Points</strong> by dismissing this Arcanum, choose one option for this effect:</p><ul><li><p>It deals 10 extra damage.</p></li><li><p>It deals damage to each of up to two enemies you can see (instead of only one enemy).</p></li></ul><hr><p><strong>Enemy Suffers:</strong> @DMG[&step(30,40,50) fire]{30 Fire} or @DMG[&step(40,50,60) fire]{40 Fire}<br><strong>You Lose:</strong> @PROGRESS[glyph-points reset]{Lose All Glyph Points}</p>",
+      "domains": "fire, loyalty, vigor"
+    },
+    "source": "FUBC36"
+  },
+  "effects": [
+    {
+      "name": "Merged: Marchosias",
+      "img": "icons/magic/fire/flame-burning-eye.webp",
+      "origin": "Compendium.projectfu.skills.Item.d1LEGde56neUIAeZ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": true,
+            "id": "glyph-points",
+            "name": "Glyph Points",
+            "current": 0,
+            "max": 3,
+            "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "0xSgaEtRg8TbPXm9",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.shaken.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        },
+        {
+          "key": "system.immunities.weak.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are merged with <strong>Marchosias</strong>. You are immune to <strong>shaken</strong> and <strong>weak</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Marchoasias",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.d1LEGde56neUIAeZ",
+            "effectUuid": null,
+            "fuid": "marchoasias"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781649297485,
+        "modifiedTime": 1781651815965,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!d1LEGde56neUIAeZ.0xSgaEtRg8TbPXm9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781648784952,
+    "modifiedTime": 1781651809979,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!d1LEGde56neUIAeZ"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcane Whispers",
+  "color": "#80c2a6",
+  "sorting": "a",
+  "_id": "kUc2zsChQG6DOEAK",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1781627924193
+  },
+  "_key": "!folders!kUc2zsChQG6DOEAK"
+}

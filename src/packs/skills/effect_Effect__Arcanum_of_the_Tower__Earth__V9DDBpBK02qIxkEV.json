@@ -1,5 +1,5 @@
 {
-  "folder": "w3kDLFUJnb8HVdJf",
+  "folder": "lUTuYwx8TclTWDcT",
   "name": "Effect: Arcanum of the Tower (Earth)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771045331370,
-    "modifiedTime": 1771045439489,
+    "modifiedTime": 1781627886114,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "V9DDBpBK02qIxkEV",
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!V9DDBpBK02qIxkEV"
 }

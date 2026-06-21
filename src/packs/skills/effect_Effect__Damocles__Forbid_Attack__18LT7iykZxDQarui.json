@@ -1,0 +1,104 @@
+{
+  "folder": "ND39cAGUi0EvjaJW",
+  "name": "Effect: Damocles (Forbid Attack)",
+  "type": "effect",
+  "_id": "18LT7iykZxDQarui",
+  "img": "icons/skills/melee/sword-twirl-orange.webp",
+  "system": {
+    "fuid": "effect-damocles-forbid-attack",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Damocles (Forbid Attack)",
+      "img": "icons/skills/melee/sword-twirl-orange.webp",
+      "origin": "Compendium.projectfu.skills.Item.18LT7iykZxDQarui",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "L7sziJBc12mOum3j",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you perform the <strong>Attack</strong> action, you lose 10 Hit Points (after the action has been resolved). This amount increases to 20 Hit Points if the <strong>Arcanist</strong> is <strong>level 30 or higher</strong>. This lasts until the start of the <strong>Arcanist's</strong> next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Damocles (Forbid Attack)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.18LT7iykZxDQarui",
+            "effectUuid": null,
+            "fuid": "effect-damocles-forbid-attack"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781639912543,
+        "modifiedTime": 1781641187204,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!18LT7iykZxDQarui.L7sziJBc12mOum3j"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781639737163,
+    "modifiedTime": 1781639744298,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!18LT7iykZxDQarui"
+}
