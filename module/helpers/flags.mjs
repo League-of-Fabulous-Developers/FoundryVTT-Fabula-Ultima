@@ -65,6 +65,9 @@ export const Flags = Object.freeze({
 		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
 	ClassConverted: 'classConverted',
+	Scene: {
+		DragRulerState: 'dragRulerState',
+	},
 });
 
 export const FlagUtility = Object.freeze({
