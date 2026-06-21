@@ -4,6 +4,7 @@ import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
 import { TextEditor } from '../text-editor.mjs';
+import { getSystemSetting, SETTINGS } from '../../settings.js';
 
 const customWeaponFormTranslations = {
 	primaryForm: 'FU.CustomWeaponFormPrimary',
@@ -66,7 +67,7 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 				renderHeader: () => game.i18n.localize('FU.EquipStatus'),
 				renderCell: WeaponsTableRenderer.#renderEquipStatus,
 			},
-			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon,customWeapon' }),
+			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: () => (getSystemSetting(SETTINGS.technospheres) ? 'customWeapon' : 'weapon,customWeapon') }),
 		},
 		actions: {
 			technosphere: WeaponsTableRenderer.#technosphereAction,
