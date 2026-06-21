@@ -18,6 +18,8 @@ export class PseudoDocumentCollectionField extends foundry.data.fields.ArrayFiel
 		throw new Error('A PseudoDocumentCollectionField must specify a PseudoDocument subclass as its type');
 	}
 
+	static hierarchical = true;
+
 	/**
 	 * A reference to the DataModel subclass of the embedded document element
 	 * @type {typeof PseudoDocument}

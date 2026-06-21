@@ -82,11 +82,18 @@ export const getTechnosphereSlotInfo = (slottedTechnospheres, totalSlots, maxMne
 			if (item.type === 'mnemosphere') {
 				const tooltipParts = [`${item.name} ${item.system.class?.trim() ? `(${item.system?.class})` : ''}`];
 				for (let skill of item.system.activeSkills) {
-					tooltipParts.push(`${skill.name} (${skill.system.level.value} / ${skill.system.level.value})`);
+					tooltipParts.push(`${skill.name} (${skill.system.level.value} / ${skill.system.level.max})`);
 				}
 				for (let heroic of item.system.heroics) {
 					tooltipParts.push(heroic.name);
 				}
+				for (let spell of item.system.spells) {
+					tooltipParts.push(`${spell.name} (${game.i18n.localize('FU.Spell')})`);
+				}
+				for (let classFeature of item.system.classFeatures) {
+					tooltipParts.push(`${classFeature.name} (${game.i18n.localize(classFeature.system.data.constructor.translation)})`);
+				}
+
 				slot.tooltip = tooltipParts.join('<br>');
 			}
 		}

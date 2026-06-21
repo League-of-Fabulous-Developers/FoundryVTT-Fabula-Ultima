@@ -185,4 +185,36 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 		const cls = this.#getRegistryModel(this.#getTypeValue(options.model));
 		return cls?.validateJoint(changes);
 	}
+
+	/** @override */
+	_updateDiff(key, value, options, state) {
+		// * -> null or special data field operators
+		if (!value || value instanceof foundry.data.operators.DataFieldOperator) return super._updateDiff(key, value, options, state);
+
+		// Pre-validation of the requested value
+		let failure = this.validate(value, { strict: false, phase: 'pre', partial: true, model: options.model });
+		if (failure?.unresolved) {
+			state.failure.fields[key] = failure;
+			state.failure.unresolved = true;
+			return; // Prevent assignment
+		}
+
+		// * -> {}
+		if (!foundry.utils.isPlainObject(state.source[key])) state.source[key] = {};
+		const diff = foundry.utils.diffObject(state.source[key], value);
+		if (foundry.utils.isEmpty(diff)) return;
+		const result = foundry.utils.mergeObject(state.source[key], diff, { applyOperators: true, inplace: false });
+
+		// Post-validation of the resulting value
+		failure ||= this.validate(result, { strict: false, phase: 'post', partial: true });
+		if (failure && !failure?.empty && failure.unresolved) {
+			state.failure.fields[key] = failure;
+			state.failure.unresolved = true;
+			return; // Prevent assignment
+		}
+
+		// Assign results to diff and source
+		state.diff[key] = diff;
+		state.source[key] = result;
+	}
 }

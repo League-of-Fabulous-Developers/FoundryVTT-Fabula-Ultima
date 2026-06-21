@@ -1,8 +1,12 @@
-import { PseudoDocumentCollectionField } from './pseudo-document-collection-field.mjs';
+import { BasePseudoDocument } from './base-pseudo-document.mjs';
 
-export class PseudoDocument extends foundry.abstract.DataModel {
-	constructor(...args) {
-		super(...args);
+/**
+ * This class is the pseudo document mirror to the core ClientDocumentMixin.
+ * It is maintained separately for easier synchronization with the core class.
+ */
+export class PseudoDocument extends BasePseudoDocument {
+	constructor(data, context) {
+		super(data, context);
 
 		/**
 		 * A collection of Application instances which should be re-rendered whenever this document is updated.
@@ -25,46 +29,7 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		Object.defineProperty(this, '_sheet', { value: null, writable: true, enumerable: false });
 	}
 
-	_configure({ parentCollection = null } = {}) {
-		if (this.schema.fields['_id'] && (!Object.getOwnPropertyDescriptor(this, '_id') || this._id === null)) {
-			const field = this.schema.fields['_id'];
-			const sourceValue = this._source['_id'];
-			const value = field.initialize(sourceValue, this, {});
-			Object.defineProperty(this, '_id', { value, writable: true, configurable: true });
-		}
-
-		/**
-		 * An immutable reverse-reference to the name of the collection that this Document exists in on its parent, if any.
-		 * @type {string|null}
-		 */
-		Object.defineProperty(this, 'parentCollection', {
-			value: this._getParentCollection(parentCollection),
-			writable: false,
-		});
-
-		// Construct Embedded Collections
-		const collections = {};
-		for (const [fieldName, field] of Object.entries(this.constructor.schema.fields)) {
-			if (field instanceof PseudoDocumentCollectionField) {
-				const data = this._source[fieldName];
-				const c = (collections[fieldName] = new field.constructor.implementation(fieldName, this, data));
-				Object.defineProperty(this, fieldName, { value: c, writable: true });
-			}
-		}
-
-		/**
-		 * A mapping of embedded PseudoDocument collections which exist in this model.
-		 * @type {Record<string, Collection>}
-		 */
-		Object.defineProperty(this, 'collections', { value: Object.seal(collections), writable: false });
-
-		/**
-		 * A mapping of embedded PseudoDocument collections which exist
-		 */
-		Object.defineProperty(this, 'nestedCollections', { value: {}, writable: false });
-	}
-
-	static LOCALIZATION_PREFIXES = foundry.abstract.Document.LOCALIZATION_PREFIXES;
+	static name = 'PseudoDocument';
 
 	_initialize(options) {
 		super._initialize(options);
@@ -75,58 +40,534 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		Object.entries(this.collections).forEach(([fieldName, collection]) => {
 			collection.updateSource(this._source[fieldName]);
 		});
-		setTimeout(() => this.render());
+		// TODO: still needed?
+		// setTimeout(() => this.render());
 		this._safePrepareData();
 	}
 
-	static get metadata() {
-		return Object.freeze({
-			coreTypes: [],
-			hasTypeData: false,
-			label: 'PseudoDocument',
-		});
+	/**
+	 * Return a reference to the parent Collection instance that contains this Document.
+	 * @this {PseudoDocument}
+	 * @returns {Collection|null}
+	 */
+	get collection() {
+		return this.parent?.[this.parentCollection];
 	}
 
-	static get TYPES() {
-		return Object.keys(game.model[this.documentName]);
+	/** @override */
+	get compendium() {
+		return this.parentFoundryDocument?.compendium ?? null;
 	}
 
-	static get documentName() {
-		throw new Error('PseudoDocuments must define their document name');
-	}
-	get documentName() {
-		return this.constructor.documentName;
+	/* -------------------------------------------- */
+
+	/**
+	 * Is this document in a compendium? A stricter check than Document#inCompendium.
+	 * @type {boolean}
+	 * @override
+	 */
+	get inCompendium() {
+		return this.parentFoundryDocument?.inCompendium ?? false;
 	}
 
-	static get hasTypeData() {
-		return this.metadata.hasTypeData;
+	/**
+	 * Is this PseudoDocument persisted?
+	 *
+	 * A PseudoDocument is persisted if its parent Document is persisted.
+	 * @type {boolean}
+	 */
+	get persisted() {
+		return this.parentFoundryDocument?.persisted === true;
 	}
 
-	static get schema() {
-		if (this._schema) {
-			return this._schema;
-		}
-		const base = this.baseDocument;
-		// eslint-disable-next-line no-prototype-builtins
-		if (!base.hasOwnProperty('_schema')) {
-			const schema = new foundry.data.fields.SchemaField(Object.freeze(base.defineSchema()));
-			Object.defineProperty(base, '_schema', { value: schema, writable: false });
-		}
-		Object.defineProperty(this, '_schema', { value: base._schema, writable: false });
-		return base._schema;
+	/**
+	 * A boolean indicator for whether the current game User has ownership rights for this Document.
+	 * Different Document types may have more specialized rules for what constitutes ownership.
+	 * @type {boolean}
+	 * @memberof ClientDocumentMixin#
+	 */
+	get isOwner() {
+		return this.testUserPermission(game.user, 'OWNER');
 	}
 
-	static get baseDocument() {
-		let cls;
-		let parent = this;
-		while (parent) {
-			cls = parent;
-			parent = Object.getPrototypeOf(cls);
-			if (parent === PseudoDocument) {
-				return cls;
+	/**
+	 * Test whether this Document is owned by any non-Gamemaster User.
+	 * @type {boolean}
+	 */
+	get hasPlayerOwner() {
+		return game.users.some((u) => !u.isGM && this.testUserPermission(u, 'OWNER'));
+	}
+
+	/* ---------------------------------------- */
+
+	/**
+	 * A boolean indicator for whether the current game User has exactly LIMITED visibility (and no greater).
+	 * @type {boolean}
+	 */
+	get limited() {
+		return this.testUserPermission(game.user, 'LIMITED', { exact: true });
+	}
+
+	/**
+	 * Return a string which creates a dynamic link to this Document instance.
+	 * @returns {string}
+	 */
+	get link() {
+		return `@UUID[${this.uuid}]{${foundry.utils.escapeHTML(this.name)}}`;
+	}
+
+	/**
+	 * Return the permission level that the current game User has over this Document.
+	 * See the {@link CONST.DOCUMENT_OWNERSHIP_LEVELS} object for an enumeration of these levels.
+	 * @type {DocumentOwnershipNumber}
+	 *
+	 * @example Get the permission level the current user has for a document
+	 * ```js
+	 * game.user.id; // "dkasjkkj23kjf"
+	 * actor.ownership; // {default: 1, dkasjkkj23kjf: 2}
+	 * actor.permission; // 2
+	 * ```
+	 */
+	get permission() {
+		if (game.user.isGM) return CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+		return this.parentFoundryDocument.permission;
+	}
+
+	get sheet() {
+		if (!this._sheet) {
+			const cls = this._getSheetClass();
+
+			// Application V1 Document Sheets
+			if (foundry.utils.isSubclass(cls, foundry.appv1.api.Application)) {
+				this._sheet = new cls(this, { editable: this.isOwner });
+			}
+
+			// Application V2 Document Sheets
+			else if (foundry.utils.isSubclass(cls, foundry.applications.api.DocumentSheetV2)) {
+				this._sheet = new cls({ document: this });
+			}
+
+			// No valid sheet class
+			else {
+				this._sheet = null;
 			}
 		}
-		throw new Error(`Base PseudoDocument class identification failed for "${this.documentName}"`);
+		return this._sheet;
+	}
+
+	/**
+	 * A boolean indicator for whether the current game User has at least limited visibility for this Document.
+	 * Different Document types may have more specialized rules for what determines visibility.
+	 * @type {boolean}
+	 */
+	get visible() {
+		if (this.parent && !this.parent.visible) return false;
+		return this.testUserPermission(game.user, 'LIMITED');
+	}
+
+	/**
+	 * Obtain the FormApplication class constructor which should be used to configure this Document.
+	 * @returns {Function|null}
+	 * @private
+	 */
+	_getSheetClass() {
+		const cfg = CONFIG[this.documentName];
+		const type = this.type ?? CONST.BASE_DOCUMENT_TYPE;
+		const sheets = cfg.sheetClasses[type] || {};
+
+		// Sheet selection overridden at the instance level
+		const override = this.getFlag('core', 'sheetClass') ?? null;
+		if (override !== null && override in sheets) return sheets[override].cls;
+
+		// Default sheet selection for the type
+		const classes = Object.values(sheets);
+		// it's a foundry global
+		// eslint-disable-next-line no-undef
+		if (!classes.length) return BaseSheet;
+		return (classes.find((s) => s.default) ?? classes.pop()).cls;
+	}
+
+	/**
+	 * Safely prepare data for a Document, catching any errors.
+	 * @internal
+	 */
+	_safePrepareData() {
+		try {
+			this.prepareData();
+		} catch (err) {
+			Hooks.onError('PseudoDocument#prepareData', err, {
+				msg: `Failed data preparation for ${this.uuid}`,
+				log: 'error',
+				uuid: this.uuid,
+			});
+		}
+	}
+
+	/**
+	 * Prepare data for the Document. This method is called automatically by the DataModel#_initialize workflow.
+	 * This method provides an opportunity for Document classes to define special data preparation logic.
+	 * The work done by this method should be idempotent. There are situations in which prepareData may be called more
+	 * than once.
+	 * @memberof PseudoDocument#
+	 */
+	prepareData() {
+		const isTypeData = this.system instanceof foundry.abstract.TypeDataModel;
+		if (isTypeData) this.system.prepareBaseData();
+		this.prepareBaseData();
+		this.prepareEmbeddedDocuments();
+		if (isTypeData) this.system.prepareDerivedData();
+		this.prepareDerivedData();
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Prepare data related to this Document itself, before any embedded Documents or derived data is computed.
+	 * @memberof PseudoDocument#
+	 */
+	prepareBaseData() {}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Prepare all embedded Document instances which exist within this primary Document.
+	 * @memberof PseudoDocument#
+	 */
+	prepareEmbeddedDocuments() {
+		for (const collectionName of Object.keys(this.collections || {})) {
+			for (let e of this.collections[collectionName]) {
+				e._safePrepareData();
+			}
+		}
+		for (const collectionName of Object.keys(this.nestedCollections || {})) {
+			for (let e of this.nestedCollections[collectionName]) {
+				e._safePrepareData();
+			}
+		}
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Apply transformations or derivations to the values of the source data object.
+	 * Compute data fields whose values are not stored to the database.
+	 * @memberof PseudoDocument#
+	 */
+	prepareDerivedData() {}
+
+	/**
+	 * Render all Application instances which are connected to this document by calling their respective
+	 * @see Application#render
+	 * @param {boolean} [force=false]     Force rendering
+	 * @param {object} [context={}]       Optional context
+	 * @memberof ClientDocumentMixin#
+	 */
+	render(force = false, context = {}) {
+		for (let app of Object.values(this.apps)) {
+			app.render(force, foundry.utils.deepClone(context));
+		}
+	}
+
+	/**
+	 * Determine the sort order for this Document by positioning it relative a target sibling.
+	 * See SortingHelper.performIntegerSort for more details
+	 * @param {object} [options]            Sorting options provided to SortingHelper.performIntegerSort
+	 * @param {object} [options.updateData] Additional data changes applied to each sorted document
+	 * @param {object} [options.sortOptions] Options passed to the foundry.utils.performIntegerSort method
+	 * @returns {Promise<Document>}       The Document after it has been re-sorted
+	 */
+	async sortRelative({ updateData = {}, ...sortOptions } = {}) {
+		const sorting = foundry.utils.performIntegerSort(this, sortOptions);
+		const updates = [];
+		for (const s of sorting) {
+			const doc = s.target;
+			const update = foundry.utils.mergeObject(updateData, s.update, { inplace: false });
+			update._id = doc._id;
+			if (doc.sheet && doc.sheet.rendered) await doc.sheet.submit({ updateData: update });
+			else updates.push(update);
+		}
+		if (updates.length) await this.constructor.updateDocuments(updates, { parent: this.parent, pack: this.pack });
+		return this;
+	}
+
+	/**
+	 * Create a content link for this document.
+	 * @param {object} eventData                     The parsed object of data provided by the drop transfer event.
+	 * @param {object} [options]                     Additional options to configure link generation.
+	 * @param {ClientDocument} [options.relativeTo]  A document to generate a link relative to.
+	 * @param {string} [options.label]               A custom label to use instead of the document's name.
+	 * @returns {string}
+	 * @internal
+	 */
+	_createDocumentLink(eventData, { relativeTo, label } = {}) {
+		if (!relativeTo && !label) return this.link;
+		label ??= foundry.utils.escapeHTML(this.name);
+		if (relativeTo) return `@UUID[${foundry.utils.buildRelativeUuid(this, relativeTo)}]{${label}}`;
+		return `@UUID[${this.uuid}]{${label}}`;
+	}
+
+	/**
+	 * Handle clicking on a content link for this document.
+	 * @param {MouseEvent} event    The triggering click event.
+	 * @returns {any}
+	 * @protected
+	 */
+	_onClickDocumentLink(event) {
+		return this.sheet.render(true);
+	}
+
+	/** @inheritDoc */
+	async _preCreate(data, options, user) {
+		const allowed = await super._preCreate(data, options, user);
+		if (allowed === false) return false;
+
+		// Forward to type data model
+		if (this.system instanceof foundry.abstract.TypeDataModel) {
+			return this.system._preCreate(data, options, user);
+		}
+	}
+
+	/** @inheritDoc */
+	_onCreate(data, options, userId) {
+		super._onCreate(data, options, userId);
+
+		// Update support metadata
+		game.issues._countDocumentSubType(this.constructor, this._source);
+
+		// Forward to type data model
+		if (this.system instanceof foundry.abstract.TypeDataModel) {
+			this.system._onCreate(data, options, userId);
+		}
+	}
+
+	/** @override */
+	static async _onCreateOperation(documents, operation, user) {
+		// Render the sheet for each created document
+		if (!operation.renderSheet || user.id !== game.user.id) return;
+		for (const [i, document] of documents.entries()) {
+			document.sheet?.render(true, {
+				renderContext: `create${this.documentName}`,
+				renderData: operation.data[i],
+			});
+		}
+	}
+
+	/** @inheritDoc */
+	async _preUpdate(changes, options, user) {
+		const allowed = await super._preUpdate(changes, options, user);
+		if (allowed === false) return false;
+
+		// Forward to type data model
+		if (this.system instanceof foundry.abstract.TypeDataModel) {
+			return this.system._preUpdate(changes, options, user);
+		}
+	}
+
+	/** @inheritDoc */
+	_onUpdate(changed, options, userId) {
+		super._onUpdate(changed, options, userId);
+
+		// Clear cached sheet if a new sheet is chosen, or the Document's sub-type changes.
+		const sheetChanged = 'type' in changed || 'sheetClass' in (changed.flags?.core || {});
+		if (!options.preview && sheetChanged) this._onSheetChange();
+		// Otherwise re-render associated applications.
+		else if (options.render !== false) {
+			const options = {
+				renderContext: `update${this.documentName}`,
+				renderData: changed,
+			};
+			this.render(false, options);
+		}
+
+		// Update Compendium and global indices
+		if (this.inCompendium && !this.isEmbedded) {
+			if (this instanceof foundry.documents.Folder) this.collection.folders.set(this.id, this);
+			else this.collection.indexDocument(this);
+		}
+		if ('name' in changed) game.documentIndex.replaceDocument(this);
+
+		// Forward to type data model
+		if (this.system instanceof foundry.abstract.TypeDataModel) {
+			this.system._onUpdate(changed, options, userId);
+		}
+	}
+
+	/** @inheritDoc */
+	async _preDelete(options, user) {
+		const allowed = await super._preDelete(options, user);
+		if (allowed === false) return false;
+
+		// Forward to type data model
+		if (this.system instanceof foundry.abstract.TypeDataModel) {
+			return this.system._preDelete(options, user);
+		}
+	}
+
+	/** @inheritDoc */
+	_onDelete(options, userId) {
+		super._onDelete(options, userId);
+		this.#closeApplications(this);
+
+		// Update support metadata
+		game.issues._countDocumentSubType(this.constructor, this._source, { decrement: true });
+
+		// Forward to type data model
+		if (this.system instanceof foundry.abstract.TypeDataModel) {
+			this.system._onDelete(options, userId);
+		}
+	}
+
+	/**
+	 * Close open Applications for this Document and its children.
+	 * @param {ClientDocument} document
+	 * @param {object} [closingOptions]
+	 */
+	#closeApplications(document, closingOptions) {
+		closingOptions ??= {
+			submit: false,
+			renderContext: `delete${this.documentName}`,
+			renderData: this,
+		};
+		Object.values(document.apps).forEach((a) => a.close(closingOptions));
+		for (const collection of Object.values(document.collections)) {
+			for (const child of collection) {
+				this.#closeApplications(child, closingOptions);
+			}
+		}
+		for (const collection of Object.values(document.nestedCollections)) {
+			for (const child of collection) {
+				this.#closeApplications(child, closingOptions);
+			}
+		}
+	}
+
+	/**
+	 * Orchestrate dispatching descendant document events to parent documents when embedded children are modified.
+	 * @param {string} event                The event name, preCreate, onCreate, etc...
+	 * @param {string} collection           The collection name being modified within this parent document
+	 * @param {Array<*>} args               Arguments passed to each dispatched function
+	 * @param {ClientDocument} [_parent]    The document with directly modified embedded documents.
+	 *                                      Either this document or a descendant of this one.
+	 * @internal
+	 */
+	_dispatchDescendantDocumentEvents(event, collection, args, _parent) {
+		_parent ||= this;
+
+		// Dispatch the event to this Document
+		const fn = this[`_${event}DescendantDocuments`];
+		if (typeof fn !== 'function') throw new Error(`Invalid descendant document event "${event}"`);
+		fn.call(this, _parent, collection, ...args);
+
+		// Bubble the event to the parent Document
+		/** @type ClientDocument */
+		const parent = this.parentDocument;
+		if (!parent) return;
+		parent._dispatchDescendantDocumentEvents(event, collection, args, _parent);
+	}
+
+	/**
+	 * Actions taken after descendant documents have been created, but before changes are applied to the client data.
+	 * @param {Document} parent         The direct parent of the created Documents, may be this Document or a child
+	 * @param {string} collection       The collection within which documents are being created
+	 * @param {object[]} data           The source data for new documents that are being created
+	 * @param {object} options          Options which modified the creation operation
+	 * @param {string} userId           The ID of the User who triggered the operation
+	 * @protected
+	 */
+	_preCreateDescendantDocuments(parent, collection, data, options, userId) {}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Actions taken after descendant documents have been created and changes have been applied to client data.
+	 * @param {Document} parent         The direct parent of the created Documents, may be this Document or a child
+	 * @param {string} collection       The collection within which documents were created
+	 * @param {Document[]} documents    The array of created Documents
+	 * @param {object[]} data           The source data for new documents that were created
+	 * @param {object} options          Options which modified the creation operation
+	 * @param {string} userId           The ID of the User who triggered the operation
+	 * @protected
+	 */
+	_onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
+		if (options.render === false) return;
+		this.render(false, { renderContext: `create${collection}`, renderData: data });
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Actions taken after descendant documents have been updated, but before changes are applied to the client data.
+	 * @param {Document} parent         The direct parent of the updated Documents, may be this Document or a child
+	 * @param {string} collection       The collection within which documents are being updated
+	 * @param {object[]} changes        The array of differential Document updates to be applied
+	 * @param {object} options          Options which modified the update operation
+	 * @param {string} userId           The ID of the User who triggered the operation
+	 * @protected
+	 */
+	_preUpdateDescendantDocuments(parent, collection, changes, options, userId) {}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Actions taken after descendant documents have been updated and changes have been applied to client data.
+	 * @param {Document} parent         The direct parent of the updated Documents, may be this Document or a child
+	 * @param {string} collection       The collection within which documents were updated
+	 * @param {Document[]} documents    The array of updated Documents
+	 * @param {object[]} changes        The array of differential Document updates which were applied
+	 * @param {object} options          Options which modified the update operation
+	 * @param {string} userId           The ID of the User who triggered the operation
+	 * @protected
+	 */
+	_onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+		if (options.render === false) return;
+		this.render(false, { renderContext: `update${collection}`, renderData: changes });
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Actions taken after descendant documents have been deleted, but before deletions are applied to the client data.
+	 * @param {Document} parent         The direct parent of the deleted Documents, may be this Document or a child
+	 * @param {string} collection       The collection within which documents were deleted
+	 * @param {string[]} ids            The array of document IDs which were deleted
+	 * @param {object} options          Options which modified the deletion operation
+	 * @param {string} userId           The ID of the User who triggered the operation
+	 * @protected
+	 */
+	_preDeleteDescendantDocuments(parent, collection, ids, options, userId) {}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Actions taken after descendant documents have been deleted and those deletions have been applied to client data.
+	 * @param {Document} parent         The direct parent of the deleted Documents, may be this Document or a child
+	 * @param {string} collection       The collection within which documents were deleted
+	 * @param {Document[]} documents    The array of Documents which were deleted
+	 * @param {string[]} ids            The array of document IDs which were deleted
+	 * @param {object} options          Options which modified the deletion operation
+	 * @param {string} userId           The ID of the User who triggered the operation
+	 * @protected
+	 */
+	_onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+		if (options.render === false) return;
+		this.render(false, { renderContext: `delete${collection}`, renderData: ids });
+	}
+
+	/**
+	 * Whenever the Document's sheet changes, close any existing applications for this Document, and re-render the new
+	 * sheet if one was already open.
+	 * @param {object} [options]
+	 * @param {boolean} [options.sheetOpen]  Whether the sheet was originally open and needs to be re-opened.
+	 * @internal
+	 */
+	async _onSheetChange({ sheetOpen } = {}) {
+		sheetOpen ??= this.sheet.rendered;
+		await Promise.all(Object.values(this.apps).map((app) => app.close()));
+		this._sheet = null;
+		if (sheetOpen) this.sheet.render(true);
+
+		// Re-draw the parent sheet in case of a dependency on the child sheet.
+		this.parent?.sheet?.render(false);
 	}
 
 	/**
@@ -147,53 +588,343 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		return game.i18n.localize(baseNameKey);
 	}
 
-	get id() {
-		return this._id;
-	}
-
-	_getParentCollection(parentCollection) {
-		if (parentCollection) return parentCollection;
-		return this.schema.parent.name;
-	}
-
 	/**
-	 * Return a reference to the parent Collection instance that contains this Document.
-	 * @this {PseudoDocument}
-	 * @returns {Collection|null}
+	 * Present a Dialog form to create a new Document of this type.
+	 * Choose a name and a type from a select menu of types.
+	 * @param {object} data                Document creation data
+	 * @param {DatabaseCreateOperation} [createOptions]  Document creation options.
+	 * @param {object} [options={}]        Options forwarded to DialogV2.prompt
+	 * @param {{id: string; name: string}[]} [options.folders] Available folders in which the new Document can be place
+	 * @param {string[]} [options.types]   A restriction of the selectable sub-types of the Dialog.
+	 * @param {string} [options.template]  A template to use for the dialog contents instead of the default.
+	 * @param {object} [options.context]   Additional render context to provide to the template.
+	 * @param {ApplicationRenderOptions} [renderOptions]  Options to forward to the document sheet's render call.
+	 * @returns {Promise<Document|null>}   A Promise which resolves to the created Document, or null if the dialog was
+	 *                                     closed.
 	 */
-	get collection() {
-		return this.parent[this.parentCollection];
-	}
-
-	/**
-	 * The Document this PseudoDocument belongs to. May be nested multiple layers deep.
-	 * @return {null|foundry.abstract.Document}
-	 */
-	get parentFoundryDocument() {
-		let current = this.parent;
-		while (current !== null) {
-			if (current instanceof foundry.abstract.Document) {
-				return current;
-			}
-			current = current.parent;
-		}
+	static async createDialog(data = {}, createOptions = {}, { folders, types, template, context, ...dialogOptions } = {}, renderOptions = {}) {
 		return null;
 	}
 
 	/**
-	 * The Document or PseudoDocument this PseudoDocument is nested in.
-	 * @return {null|foundry.abstract.Document|PseudoDocument}
+	 * Present a Dialog form to confirm deletion of this Document.
+	 * @param {object} [options] Additional options passed to `DialogV2.confirm`
+	 * @param {DatabaseDeleteOperation} [operation]  Document deletion options.
+	 * @returns {Promise<Document>} A Promise that resolves to the deleted Document
 	 */
-	get parentDocument() {
-		let current = this.parent;
-		while (current !== null) {
-			if (current instanceof foundry.abstract.Document || current instanceof PseudoDocument) {
-				return current;
-			}
-			current = current.parent;
+	async deleteDialog(options = {}, operation = {}) {
+		const positionKeys = ['top', 'left', 'width', 'height', 'scale', 'zIndex'];
+		if (positionKeys.some((k) => k in options)) {
+			foundry.utils.logCompatibilityWarning('options is now an object containing entries supported by DialogV2.confirm.', { since: 13, until: 15 });
+			options.position = positionKeys.reduce((position, key) => {
+				if (options[key] !== undefined) position[key] = options[key];
+				delete options[key];
+				return position;
+			}, {});
 		}
-		return null;
+		let content = options.content;
+		const type = game.i18n.localize(this.constructor.metadata.label);
+		if (!content) {
+			const question = game.i18n.localize('COMMON.AreYouSure');
+			const warning = game.i18n.localize('SIDEBAR.DeleteWarning', { type });
+			content = `<p><strong>${question}</strong> ${warning}</p>`;
+		}
+		return foundry.applications.api.DialogV2.confirm(
+			foundry.utils.mergeObject(
+				{
+					content,
+					yes: { callback: () => this.delete(operation) },
+					window: {
+						icon: 'fa-solid fa-trash',
+						title: `${game.i18n.localize('DOCUMENT.Delete', { type })}: ${this.name}`,
+					},
+				},
+				options,
+			),
+		);
 	}
+
+	/**
+	 * Export document data to a JSON file which can be saved by the client and later imported into a different session.
+	 * Only world Documents may be exported.
+	 * @param {object} [options]      Additional options passed to the {@link ClientDocument#toCompendium} method
+	 */
+	exportToJSON(options = {}) {
+		throw new Error('Only world Documents may be exported');
+	}
+
+	/**
+	 * Serialize salient information about this Document when dragging it.
+	 * @returns {object}  An object of drag data.
+	 */
+	toDragData() {
+		const dragData = { type: this.documentName };
+		if (this.id) dragData.uuid = this.uuid;
+		else dragData.data = this.toObject();
+		return dragData;
+	}
+
+	/**
+	 * A helper function to handle obtaining the relevant Document from dropped data provided via a DataTransfer event.
+	 * The dropped data could have:
+	 * 1. A data object explicitly provided
+	 * 2. A UUID
+	 *
+	 * @param {object} data           The data object extracted from a DataTransfer event
+	 * @returns {Promise<Document>}   The resolved Document
+	 * @throws If a Document could not be retrieved from the provided data.
+	 */
+	static async fromDropData(data) {
+		let document = null;
+
+		// Case 1 - Data explicitly provided
+		if (data.data) document = new this(data.data);
+		// Case 2 - UUID provided
+		else if (data.uuid) document = await foundry.utils.fromUuid(data.uuid);
+
+		// Ensure that we retrieved a valid document
+		if (!document) {
+			throw new Error('Failed to resolve Document from provided DragData. Either data or a UUID must be provided.');
+		}
+		if (document.documentName !== this.documentName) {
+			throw new Error(`Invalid Document type '${document.type}' provided to ${this.name}.fromDropData.`);
+		}
+
+		// Flag the source UUID
+		const { _stats: stats, uuid, compendium } = document;
+		if (stats && uuid) {
+			if (!stats.compendiumSource && compendium) {
+				document.updateSource({ '_stats.compendiumSource': uuid });
+			} else if (!stats.duplicateSource && !compendium) {
+				document.updateSource({ '_stats.duplicateSource': uuid });
+			}
+		}
+		return document;
+	}
+
+	/**
+	 * Create the Document from the given source with migration applied to it.
+	 * Only primary Documents may be imported.
+	 *
+	 * This function must be used to create a document from data that predates the current core version.
+	 * It must be given nonpartial data matching the schema it had in the core version it is coming from.
+	 * It applies legacy migrations to the source data before calling {@link foundry.abstract.Document.fromSource}.
+	 * If this function is not used to import old data, necessary migrations may not applied to the data
+	 * resulting in an incorrectly imported document.
+	 *
+	 * The core version is recorded in the `_stats` field, which all primary documents have. If the given source data
+	 * doesn't contain a `_stats` field, the data is assumed to be pre-V10, when the `_stats` field didn't exist yet.
+	 * The `_stats` field must not be stripped from the data before it is exported!
+	 * @param {object} source                  The document data that is imported.
+	 * @param {DocumentConstructionContext} [context] The model construction context passed to
+	 *                                                {@link foundry.abstract.Document.fromSource}. Strict validation is
+	 *                                                enabled by default.
+	 * @returns {Promise<Document>}
+	 */
+	static async fromImport(source, context) {
+		throw new Error('Only primary Documents may be imported');
+	}
+
+	/**
+	 * Update this Document using a provided JSON string.
+	 * Only world Documents may be imported.
+	 * @this {ClientDocument}
+	 * @param {string} json                 Raw JSON data to import
+	 * @returns {Promise<ClientDocument>}   The updated Document instance
+	 */
+	async importFromJSON(json) {
+		throw new Error('Only world Documents may be imported');
+	}
+
+	/**
+	 * Render an import dialog for updating the data related to this Document through an exported JSON file
+	 * @returns {Promise<void>}
+	 */
+	async importFromJSONDialog() {}
+
+	/**
+	 * Transform the Document data to be stored in a Compendium pack.
+	 * Remove any features of the data which are world-specific.
+	 * @param {CompendiumCollection} [pack]   A specific pack being exported to
+	 * @param {ToCompendiumOptions} [options] Additional options which modify how the document is converted
+	 * @returns {object}                      A data object of cleaned data suitable for compendium import
+	 */
+	toCompendium(pack, { clearSort = true, clearFolder = false, clearFlags = false, clearSource = true, clearOwnership = true, clearState = true, keepId = false } = {}) {
+		const data = this.toObject();
+		const fieldsToClearRecursively = [];
+		if (!keepId) delete data._id;
+		if (clearSort) delete data.sort;
+		if (clearFolder) delete data.folder;
+		if (clearFlags) delete data.flags;
+		if (clearSource) fieldsToClearRecursively.push('_stats.compendiumSource', '_stats.duplicateSource', '_stats.exportSource');
+		if (clearOwnership) fieldsToClearRecursively.push('author');
+		if (clearState) delete data.active;
+		this.constructor._clearFieldsRecursively(data, fieldsToClearRecursively);
+		if (clearOwnership)
+			this.constructor._clearFieldsRecursively(data, ['ownership'], {
+				callback: (data) => {
+					if (!('ownership' in data)) return;
+					const defaultOwnership = foundry.utils.getProperty(data, 'ownership.default');
+					foundry.utils.deleteProperty(data, 'ownership');
+					if (typeof defaultOwnership === 'number') data.ownership = { default: defaultOwnership };
+				},
+			});
+		return data;
+	}
+
+	/**
+	 * Create a content link for this Document.
+	 * @param {Partial<EnrichmentAnchorOptions>} [options]  Additional options to configure how the link is constructed.
+	 * @returns {HTMLAnchorElement}
+	 */
+	toAnchor({ attrs = {}, dataset = {}, classes = [], name, icon } = {}) {
+		// Build dataset
+		const documentConfig = CONFIG[this.documentName];
+		const documentName = game.i18n.localize(`DOCUMENT.${this.documentName}`);
+		let anchorIcon = icon ?? documentConfig.sidebarIcon;
+		if (!classes.includes('content-link')) classes.unshift('content-link');
+		attrs = foundry.utils.mergeObject({ draggable: 'true' }, attrs);
+		dataset = foundry.utils.mergeObject(
+			{
+				link: '',
+				uuid: this.uuid,
+				id: this.id,
+				type: this.documentName,
+				pack: this.pack,
+				tooltip: documentName,
+			},
+			dataset,
+		);
+
+		// If this is a typed document, add the type to the dataset
+		if (this.type) {
+			const typeLabel = documentConfig.typeLabels[this.type];
+			const typeName = game.i18n.has(typeLabel) ? `${game.i18n.localize(typeLabel)}` : '';
+			attrs['aria-label'] ??= typeName ? game.i18n.localize('DOCUMENT.TypePageFormat', { type: typeName, page: documentName }) : documentName;
+			dataset.tooltip = '';
+			anchorIcon = icon ?? documentConfig.typeIcons?.[this.type] ?? documentConfig.sidebarIcon;
+		}
+
+		name ??= this.name;
+		return TextEditor.implementation.createAnchor({ attrs, dataset, name, classes, icon: anchorIcon });
+	}
+
+	/**
+	 * Convert a Document to some HTML display for embedding purposes.
+	 * @param {DocumentHTMLEmbedConfig} config  Configuration for embedding behavior.
+	 * @param {EnrichmentOptions} [options]     The original enrichment options for cases where the Document embed
+	 *                                          content also contains text that must be enriched.
+	 * @returns {Promise<HTMLDocumentEmbedElement|HTMLElement|null>} A representation of the Document as HTML content,
+	 *                                          or null if such a representation could not be generated.
+	 */
+	async toEmbed(config, options = {}) {
+		let content = await this._buildEmbedHTML(config, options);
+		for (const handler of CONFIG[this.documentName].embedHandlers ?? []) {
+			content = await handler(this, content, config, options);
+		}
+		if (!content) return null;
+
+		// Structure the embed as inline or figure unless it is already explicitly a <document-embed> element
+		const embedCls = foundry.applications.elements.HTMLDocumentEmbedElement;
+		let embed;
+		if (foundry.utils.isElementInstanceOf(content, embedCls)) embed = content;
+		else {
+			if (config.inline) embed = await this._createInlineEmbed(content, config, options);
+			else embed = await this._createFigureEmbed(content, config, options);
+		}
+
+		// Attach required attributes
+		if (embed) {
+			embed.setAttribute('uuid', this.uuid);
+			embed.dataset.uuid = this.uuid;
+			embed.dataset.contentEmbed = '';
+			if (config.classes) embed.classList.add(...config.classes.split(' '));
+		}
+		return embed;
+	}
+
+	/**
+	 * Specific callback actions to take when the embedded HTML for this Document has been added to the DOM.
+	 * @param {HTMLDocumentEmbedElement} element      The embedded document HTML
+	 */
+	onEmbed(element) {
+		if (this.system instanceof foundry.abstract.TypeDataModel) this.system.onEmbed(element);
+	}
+
+	/**
+	 * A method that can be overridden by subclasses to customize embedded HTML generation.
+	 * @param {DocumentHTMLEmbedConfig} config  Configuration for embedding behavior.
+	 * @param {EnrichmentOptions} [options]     The original enrichment options for cases where the Document embed
+	 *                                          content also contains text that must be enriched.
+	 * @returns {Promise<HTMLElement|HTMLCollection|null>}  Either a single root element to append, or a collection of
+	 *                                                      elements that comprise the embedded content.
+	 * @protected
+	 */
+	async _buildEmbedHTML(config, options = {}) {
+		return this.system instanceof foundry.abstract.TypeDataModel ? this.system.toEmbed(config, options) : null;
+	}
+
+	/**
+	 * A method that can be overridden by subclasses to customize inline embedded HTML generation.
+	 * @param {HTMLElement|HTMLCollection} content  The embedded content.
+	 * @param {DocumentHTMLEmbedConfig} [config]    Configuration for embedding behavior.
+	 * @param {EnrichmentOptions} [options]         The original enrichment options for cases where the Document embed
+	 *                                              content also contains text that must be enriched.
+	 * @returns {Promise<HTMLElement|null>}
+	 * @protected
+	 */
+	async _createInlineEmbed(content, config, options) {
+		const embed = new foundry.applications.elements.HTMLDocumentEmbedElement();
+		if (content instanceof HTMLCollection) embed.append(...content);
+		else embed.append(content);
+		return embed;
+	}
+
+	/**
+	 * A method that can be overridden by subclasses to customize the generation of the embed figure.
+	 * @param {HTMLElement|HTMLCollection} content  The embedded content.
+	 * @param {DocumentHTMLEmbedConfig} config      Configuration for embedding behavior.
+	 * @param {EnrichmentOptions} [options]         The original enrichment options for cases where the Document embed
+	 *                                              content also contains text that must be enriched.
+	 * @returns {Promise<HTMLElement|null>}
+	 * @protected
+	 */
+	async _createFigureEmbed(content, { cite, caption, captionPosition = 'bottom', label }, options) {
+		const figure = document.createElement('figure');
+		if (content instanceof HTMLCollection) figure.append(...content);
+		else figure.append(content);
+		if (cite || caption) {
+			const figcaption = document.createElement('figcaption');
+			if (caption) {
+				const el = document.createElement('strong');
+				el.classList.add('embed-caption');
+				el.append(label || this.name);
+				figcaption.append(el);
+			}
+			if (cite) {
+				const el = document.createElement('cite');
+				el.append(this.toAnchor());
+				figcaption.append(el);
+			}
+			figure.insertAdjacentElement(captionPosition === 'bottom' ? 'beforeend' : 'afterbegin', figcaption);
+			if (captionPosition === 'top' && cite) figure.append(figcaption.querySelector(':scope > cite'));
+		}
+		figure.classList.add('content-embed'); // For backwards compatibility
+		return this._createInlineEmbed(figure);
+	}
+
+	/**
+	 * @deprecated since v14
+	 * @ignore
+	 */
+	getRelativeUUID(relative) {
+		foundry.utils.logCompatibilityWarning('ClientDocument#getRelativeUUID has been deprecated in favor of foundry.utils.buildRelativeUuid', { since: 14, until: 16, once: true });
+		return foundry.utils.buildRelativeUuid(this.uuid, relative);
+	}
+
+	// --------------------------------
+	// Actual PseudoDocument methods
+	// --------------------------------
 
 	/**
 	 * @return {Actor|null}
@@ -223,531 +954,9 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		return null;
 	}
 
-	/**
-	 * A Universally Unique Identifier (uuid) for this PseudoDocument instance.
-	 * @type {string}
-	 */
-	get uuid() {
-		return [this.parentDocument.uuid, this.constructor.documentName, this.id].join('.');
-	}
-
-	/**
-	 * A boolean indicator for whether the current game User has ownership rights for this Document.
-	 * Different Document types may have more specialized rules for what constitutes ownership.
-	 * @type {boolean}
-	 * @memberof ClientDocumentMixin#
-	 */
-	get isOwner() {
-		return this.testUserPermission(game.user, 'OWNER');
-	}
-
-	get sheet() {
-		if (!this._sheet) {
-			const cls = this._getSheetClass();
-
-			// Application V1 Document Sheets
-			if (foundry.utils.isSubclass(cls, foundry.appv1.api.Application)) {
-				this._sheet = new cls(this, { editable: this.isOwner });
-			}
-
-			// Application V2 Document Sheets
-			else if (foundry.utils.isSubclass(cls, foundry.applications.api.DocumentSheetV2)) {
-				this._sheet = new cls({ document: this });
-			}
-
-			// No valid sheet class
-			else {
-				this._sheet = null;
-			}
-		}
-		return this._sheet;
-	}
-
-	get isEmbedded() {
-		return true;
-	}
-
 	get isPseudoDocument() {
 		return true;
 	}
 
-	/**
-	 * Obtain the FormApplication class constructor which should be used to configure this Document.
-	 * @returns {Function|null}
-	 * @private
-	 */
-	_getSheetClass() {
-		const cfg = CONFIG[this.documentName];
-		const type = this.type ?? CONST.BASE_DOCUMENT_TYPE;
-		const sheets = cfg.sheetClasses[type] || {};
-
-		// Sheet selection overridden at the instance level
-		const override = this.getFlag('core', 'sheetClass') ?? null;
-		if (override !== null && override in sheets) return sheets[override].cls;
-
-		// Default sheet selection for the type
-		const classes = Object.values(sheets);
-		// it's a foundry global
-		// eslint-disable-next-line no-undef
-		if (!classes.length) return BaseSheet;
-		return (classes.find((s) => s.default) ?? classes.pop()).cls;
-	}
-
-	/**
-	 * Handle clicking on a content link for this document.
-	 * @param {MouseEvent} event    The triggering click event.
-	 * @returns {any}
-	 * @protected
-	 */
-	_onClickDocumentLink(event) {
-		return this.sheet.render(true);
-	}
-
-	toObject(source = true) {
-		const data = super.toObject(source);
-		return this.constructor.shimData(data);
-	}
-
-	/**
-	 * Get the value of a "flag" for this document
-	 * See the setFlag method for more details on flags
-	 *
-	 * @param {string} scope        The flag scope which namespaces the key
-	 * @param {string} key          The flag key
-	 * @return {*}                  The flag value
-	 */
-	getFlag(scope, key) {
-		const scopes = globalThis.CONFIG.DatabaseBackend.getFlagScopes();
-		if (!scopes.includes(scope)) {
-			throw new Error(`Flag scope "${scope}" is not valid or not currently active`);
-		}
-
-		if (!this.flags || !(scope in this.flags)) {
-			return undefined;
-		}
-		return foundry.utils.getProperty(this.flags?.[scope], key);
-	}
-
 	/* -------------------------------------------- */
-
-	/**
-	 * Assign a "flag" to this document.
-	 * Flags represent key-value type data which can be used to store flexible or arbitrary data required by either
-	 * the core software, game systems, or user-created modules.
-	 *
-	 * Each flag should be set using a scope which provides a namespace for the flag to help prevent collisions.
-	 *
-	 * Flags set by the core software use the "core" scope.
-	 * Flags set by game systems or modules should use the canonical name attribute for the module
-	 * Flags set by an individual world should "world" as the scope.
-	 *
-	 * Flag values can assume almost any data type. Setting a flag value to null will delete that flag.
-	 *
-	 * @param {string} scope        The flag scope which namespaces the key
-	 * @param {string} key          The flag key
-	 * @param {*} value             The flag value
-	 * @return {Promise<Document>}  A Promise resolving to the updated document
-	 */
-	async setFlag(scope, key, value) {
-		const scopes = globalThis.CONFIG.DatabaseBackend.getFlagScopes();
-		if (!scopes.includes(scope)) {
-			throw new Error(`Flag scope "${scope}" is not valid or not currently active`);
-		}
-		return this.update({
-			flags: {
-				[scope]: {
-					[key]: value,
-				},
-			},
-		});
-	}
-
-	/**
-	 * Remove a flag assigned to the document
-	 * @param {string} scope        The flag scope which namespaces the key
-	 * @param {string} key          The flag key
-	 * @return {Promise<Document>}  The updated document instance
-	 */
-	async unsetFlag(scope, key) {
-		const scopes = globalThis.CONFIG.DatabaseBackend.getFlagScopes();
-		if (!scopes.includes(scope)) {
-			throw new Error(`Flag scope "${scope}" is not valid or not currently active`);
-		}
-		const head = key.split('.');
-		const tail = `-=${head.pop()}`;
-		key = ['flags', scope, ...head, tail].join('.');
-		return this.update({ [key]: null });
-	}
-
-	/**
-	 * Update this Document using incremental data, saving it to the database.
-	 * @see PseudoDocument.updateDocuments
-	 * @param {object} [data={}]          Differential update data which modifies the existing values of this document
-	 * @param {Partial<Omit<DatabaseUpdateOperation, "updates">>} [operation={}]  Parameters of the update operation
-	 * @returns {Promise<PseudoDocument>}       The updated Document instance
-	 */
-	async update(data = {}, operation = {}) {
-		data._id = this.id;
-		this.constructor.updateDocuments([data], { parent: this.parent });
-		return this;
-	}
-
-	/**
-	 * Render all Application instances which are connected to this document by calling their respective
-	 * @see Application#render
-	 * @param {boolean} [force=false]     Force rendering
-	 * @param {object} [context={}]       Optional context
-	 * @memberof ClientDocumentMixin#
-	 */
-	render(force = false, context = {}) {
-		for (let app of Object.values(this.apps)) {
-			app.render(force, foundry.utils.deepClone(context));
-		}
-	}
-
-	/**
-	 * Create multiple Documents using provided input data.
-	 * Data is provided as an array of objects where each individual object becomes one new Document.
-	 *
-	 * @param {Array<object|PseudoDocument>} data  An array of data objects or existing pseudo documents to persist.
-	 * @param {Partial<{parent: PseudoDocument | EnablePseudoDocumentsMixin}>} operation={}  Parameters of the requested creation
-	 *                                  operation
-	 * @return {Promise<PseudoDocument[]>}
-	 */
-	static async createDocuments(data = [], { parent } = {}) {
-		if (!parent) {
-			throw new Error('PseudoDocument operations require a parent');
-		}
-		const collection = parent.getEmbeddedCollection(this.documentName);
-		const documents = [];
-		for (let initialData of data) {
-			initialData._id = foundry.utils.randomID();
-			const document = collection.createDocument(initialData);
-			documents.push(document.toObject(true));
-		}
-
-		let { changeObject, nestedCollection } = this._gatherChangeData(parent);
-		//console.log(changeObject, nestedCollection);
-		nestedCollection.push(...documents);
-		await parent.parentFoundryDocument.update(changeObject);
-		const newDocuments = data.map((value) => collection.get(value._id));
-		console.log(
-			'PseudoDocuments created',
-			data,
-			newDocuments,
-			data.map((value, index) => value === newDocuments[index]),
-		);
-		return newDocuments;
-	}
-
-	/**
-	 * Update multiple Document instances using provided differential data.
-	 * Data is provided as an array of objects where each individual object updates one existing Document.
-	 *
-	 * @param {object[]} updates          An array of differential data objects, each used to update a single Document
-	 * @param {Partial<{parent: PseudoDocument | EnablePseudoDocumentsMixin}>} operation={} Parameters of the database update
-	 *                                    operation
-	 * @return {Promise<PseudoDocument[]>}      An array of updated Document instances
-	 */
-	static async updateDocuments(updates = [], { parent } = {}) {
-		if (!parent) {
-			throw new Error('PseudoDocument operations require a parent');
-		}
-
-		const collection = parent.getEmbeddedCollection(this.documentName);
-
-		let { changeObject, nestedCollection } = this._gatherChangeData(parent);
-		for (const update of updates) {
-			const item = nestedCollection.find((item) => item._id === update._id);
-			const expandedUpdate = foundry.utils.expandObject(update);
-			console.log(foundry.utils.duplicate(item), foundry.utils.duplicate(expandedUpdate), foundry.utils.diffObject(item, expandedUpdate, { deletionKeys: true }));
-			foundry.utils.mergeObject(item, expandedUpdate, {});
-			console.log(foundry.utils.duplicate(item), foundry.utils.duplicate(expandedUpdate), foundry.utils.diffObject(item, expandedUpdate, { deletionKeys: true }));
-		}
-		await parent.parentFoundryDocument.update(changeObject);
-		const updated = updates.map((value) => collection.get(value._id));
-		setTimeout(() => updated.forEach((document) => document.render(false, { renderContext: 'update', renderData: document })));
-		console.log('PseudoDocuments updated', updates, updated);
-		return updated;
-	}
-
-	/**
-	 * Delete one or multiple existing Documents using an array of provided ids.
-	 * Data is provided as an array of string ids for the documents to delete.
-	 *
-	 * @param {string[]} ids              An array of string ids for the documents to be deleted
-	 * @param {Partial<{parent: PseudoDocument | EnablePseudoDocumentsMixin}>} operation={}  Parameters of the database deletion
-	 *                                    operation
-	 * @return {Promise<PseudoDocument>}      An array of deleted Document instances
-	 */
-	static async deleteDocuments(ids = [], { parent } = {}) {
-		if (!parent) {
-			throw new Error('PseudoDocument operations require a parent');
-		}
-		const collection = parent.getEmbeddedCollection(this.documentName);
-		const deletedDocuments = ids.map((id) => collection.get(id)).filter((value) => !!value);
-		let { changeObject, nestedCollection } = this._gatherChangeData(parent);
-		nestedCollection.splice(0, nestedCollection.length, ...nestedCollection.filter((value) => !ids.includes(value._id)));
-		await parent.parentFoundryDocument.update(changeObject);
-		setTimeout(() => deletedDocuments.forEach((document) => document._onDelete()));
-		console.log('PseudoDocuments deleted', ids, deletedDocuments);
-		return deletedDocuments;
-	}
-
-	/**
-	 * Delete this PseudoDocument.
-	 * @see PseudoDocument.deleteDocuments
-	 * @param {Partial<Omit<DatabaseDeleteOperation, "ids">>} [operation={}]  Parameters of the deletion operation
-	 * @returns {Promise<PseudoDocument>}       The deleted PseudoDocument instance
-	 */
-	async delete(operation = {}) {
-		operation.parent = this.parent;
-		await this.constructor.deleteDocuments([this.id], operation);
-		this.parent.getEmbeddedCollection(this.documentName).delete(this.id);
-		return this;
-	}
-
-	/**
-	 * @param {PseudoDocument | EnablePseudoDocumentsMixin} parent
-	 * @private
-	 */
-	static _gatherChangeData(parent) {
-		/**
-		 * @type {{index: string | number, type: "object" | "array"}[]}
-		 */
-		const traversalInstructions = [];
-		let current = parent;
-
-		if (current.getEmbeddedCollection) {
-			traversalInstructions.push({ type: 'object', index: current.getEmbeddedCollection(this.documentName).name });
-		}
-
-		while (current !== null && !(current instanceof foundry.abstract.Document)) {
-			if (current instanceof PseudoDocument) {
-				traversalInstructions.unshift({ type: 'array', index: current.id });
-				traversalInstructions.unshift({ type: 'object', index: current.parentCollection });
-			} else {
-				traversalInstructions.unshift({ type: 'object', index: current.schema.name });
-			}
-			current = current.parent;
-		}
-
-		/**
-		 * @type {{type: "object"|"array", index: string|number, value: any}[]}
-		 */
-		const traversalLog = [];
-		current = parent.parentFoundryDocument.toObject(true);
-
-		for (let { type, index } of traversalInstructions) {
-			if (type === 'object') {
-				current = current[index];
-				traversalLog.push({ type, index, value: current });
-			} else if (type === 'array') {
-				const arrayIndex = current.findIndex((value) => value._id === index);
-				current = current[arrayIndex];
-				traversalLog.push({ type: 'array', index: arrayIndex, value: current });
-			}
-		}
-
-		const firstArray = traversalLog.findIndex((value) => Array.isArray(value.value));
-
-		const baseKey = traversalLog
-			.slice(0, firstArray + 1)
-			.map((value) => value.index)
-			.join('.');
-		const nestedCollection = traversalLog.findLast((value) => Array.isArray(value.value));
-		return {
-			changeObject: { [baseKey]: traversalLog[firstArray].value },
-			nestedCollection: nestedCollection.value,
-		};
-	}
-
-	/**
-	 * A compatibility method that returns the appropriate name of a pseudo collection within this Document.
-	 * @param {string} name    An existing collection name or a document name.
-	 * @returns {string|null}  The provided collection name if it exists, the first available collection for the
-	 *                         document name provided, or null if no appropriate embedded collection could be found.
-	 */
-	static getCollectionName(name) {
-		if (name in this.schema.fields) return name;
-		for (const [fieldName, field] of Object.entries(this.schema.fields)) {
-			if (field instanceof PseudoDocumentCollectionField && (field.model.name === name || field.model.documentName === name)) return fieldName;
-		}
-		return null;
-	}
-
-	/**
-	 * Obtain a reference to the Array of source data within the data object for a certain embedded Document name
-	 * @param {string} embeddedName   The name of the embedded Document type
-	 * @return {PseudoDocumentCollection}   The Collection instance of embedded Documents of the requested type
-	 */
-	getEmbeddedCollection(embeddedName) {
-		const collectionName = this.constructor.getCollectionName(embeddedName);
-		if (!collectionName && this.system && this.system.getEmbeddedCollection) {
-			return this.system.getEmbeddedCollection(embeddedName);
-		}
-		if (!collectionName) {
-			throw new Error(`${embeddedName} is not a valid embedded Document within the ${this.constructor.name} Document`);
-		}
-		const field = this.constructor.schema.fields[collectionName];
-		return field.getCollection(this);
-	}
-
-	/**
-	 * Get an embedded document by its id from a named collection in the parent document.
-	 * @param {string} embeddedName              The name of the embedded Document type
-	 * @param {string} id                        The id of the child document to retrieve
-	 * @param {object} [options]                 Additional options which modify how embedded documents are retrieved
-	 * @param {boolean} [options.strict=false]   Throw an Error if the requested id does not exist. See Collection#get
-	 * @param {boolean} [options.invalid=false]  Allow retrieving an invalid Embedded Document.
-	 * @return {PseudoDocument}                        The retrieved embedded Document instance, or undefined
-	 * @throws If the embedded collection does not exist, or if strict is true and the Embedded Document could not be
-	 *         found.
-	 */
-	getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
-		const collection = this.getEmbeddedCollection(embeddedName);
-		return collection.get(id, { invalid, strict });
-	}
-
-	/**
-	 * Create multiple embedded Document instances within this parent Document using provided input data.
-	 * @param {string} embeddedName                     The name of the embedded Document type
-	 * @param {object[]} data                           An array of data objects used to create multiple documents
-	 * @param {DatabaseUpdateOperation} [operation={}]  Parameters of the database update workflow
-	 * @return {Promise<PseudoDocument[]>}                    An array of created Document instances
-	 */
-	async createEmbeddedDocuments(embeddedName, data = [], operation = {}) {
-		const collection = this.getEmbeddedCollection(embeddedName); // Validation only
-		operation.parent = this;
-		const cls = collection.documentClass;
-		return cls.createDocuments(data, operation);
-	}
-
-	/**
-	 * Test whether a certain User has a requested permission level (or greater) over the Document
-	 * @param {foundry.documents.BaseUser} user       The User being tested
-	 * @param {string|number} permission      The permission level from DOCUMENT_OWNERSHIP_LEVELS to test
-	 * @param {object} options                Additional options involved in the permission test
-	 * @param {boolean} [options.exact=false]     Require the exact permission level requested?
-	 * @return {boolean}                      Does the user have this permission level over the Document?
-	 */
-	testUserPermission(user, permission, { exact = false } = {}) {
-		return this.parentFoundryDocument.testUserPermission(user, permission, { exact });
-	}
-
-	/**
-	 * Safely prepare data for a Document, catching any errors.
-	 * @internal
-	 */
-	_safePrepareData() {
-		try {
-			this.prepareData();
-		} catch (err) {
-			Hooks.onError('PseudoDocument#prepareData', err, {
-				msg: `Failed data preparation for ${this.uuid}`,
-				log: 'error',
-				uuid: this.uuid,
-			});
-		}
-	}
-
-	/* -------------------------------------------- */
-
-	/**
-	 * Prepare data for the Document. This method is called automatically by the DataModel#_initialize workflow.
-	 * This method provides an opportunity for Document classes to define special data preparation logic.
-	 * The work done by this method should be idempotent. There are situations in which prepareData may be called more
-	 * than once.
-	 * @memberof ClientDocumentMixin#
-	 */
-	prepareData() {
-		const isTypeData = this.system instanceof foundry.abstract.TypeDataModel;
-		if (isTypeData) this.system.prepareBaseData();
-		this.prepareBaseData();
-		this.prepareEmbeddedDocuments();
-		if (isTypeData) this.system.prepareDerivedData();
-		this.prepareDerivedData();
-	}
-
-	/* -------------------------------------------- */
-
-	/**
-	 * Prepare data related to this Document itself, before any embedded Documents or derived data is computed.
-	 * @memberof ClientDocumentMixin#
-	 */
-	prepareBaseData() {}
-
-	/* -------------------------------------------- */
-
-	/**
-	 * Prepare all embedded Document instances which exist within this primary Document.
-	 * @memberof ClientDocumentMixin#
-	 */
-	prepareEmbeddedDocuments() {
-		for (const collectionName of Object.keys(this.collections || {})) {
-			for (let e of this.collections[collectionName]) {
-				e._safePrepareData();
-			}
-		}
-		for (const collectionName of Object.keys(this.nestedCollections || {})) {
-			for (let e of this.nestedCollections[collectionName]) {
-				e._safePrepareData();
-			}
-		}
-	}
-
-	/* -------------------------------------------- */
-
-	/**
-	 * Apply transformations or derivations to the values of the source data object.
-	 * Compute data fields whose values are not stored to the database.
-	 * @memberof ClientDocumentMixin#
-	 */
-	prepareDerivedData() {}
-
-	_onDelete() {
-		Object.values(this.apps).forEach((app) => app.close({ force: true }));
-		Object.values(this.collections).forEach((collection) => collection.forEach((doc) => doc._onDelete()));
-		Object.values(this.nestedCollections).forEach((collection) => collection.forEach((doc) => doc._onDelete()));
-	}
-
-	/**
-	 * Serialize salient information about this Document when dragging it.
-	 * @returns {object}  An object of drag data.
-	 */
-	toDragData() {
-		const dragData = { type: this.documentName };
-		if (this.id) dragData.uuid = this.uuid;
-		else dragData.data = this.toObject();
-		return dragData;
-	}
-
-	/**
-	 * Define a simple migration from one field name to another.
-	 * The value of the data can be transformed during the migration by an optional application function.
-	 * @param {object} data     The data object being migrated
-	 * @param {string} oldKey   The old field name
-	 * @param {string} newKey   The new field name
-	 * @param {(data: object) => any} [apply]  An application function, otherwise the old value is applied
-	 * @returns {boolean}       Whether a migration was applied.
-	 * @internal
-	 */
-	static _addDataFieldMigration(data, oldKey, newKey, apply) {
-		const { hasProperty, getProperty, setProperty, deleteProperty } = foundry.utils;
-		if (!hasProperty(data, newKey) && hasProperty(data, oldKey)) {
-			let oldTarget = data;
-			let oldTargetKey = oldKey;
-			if (oldKey.includes('.')) {
-				const parts = oldKey.split('.');
-				oldTarget = getProperty(data, parts.slice(0, -1).join('.'));
-				oldTargetKey = parts.at(-1);
-			}
-			const oldProp = Object.getOwnPropertyDescriptor(oldTarget, oldTargetKey);
-			if (oldProp && !oldProp.writable) return false;
-			setProperty(data, newKey, apply ? apply(data) : getProperty(data, oldKey));
-			deleteProperty(data, oldKey);
-			return true;
-		}
-		return false;
-	}
 }
