@@ -556,11 +556,8 @@ export class CompendiumIndex {
 	 * @returns {Promise<ClassEntries>}
 	 */
 	async getClasses() {
-		let classes = await this.getItemsOfType('class');
-		classes = classes.filter((c) => !c.name.toLowerCase().includes('legacy'));
-
 		const entries = {
-			class: classes,
+			class: await this.getItemsOfType('class'),
 			classFeature: await this.getItemsOfType('classFeature'),
 		};
 		return entries;
