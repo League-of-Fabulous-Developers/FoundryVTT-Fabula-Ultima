@@ -51,6 +51,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				weaponCategory: item.system.category,
 				handedness: 'two-handed',
 			})
+			.addTraits(Traits.Attack)
 			.addTraits(Traits.Damage)
 			.addTraits(item.system.getDamageType())
 			.addTraits(...item.system.traits)
