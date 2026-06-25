@@ -6,6 +6,8 @@ import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { BonusesDataModel } from '../documents/actors/common/bonuses-data-model.mjs';
 
+const ACCURACY_PREPARED = 'accuracyPrepared';
+
 /**
  * @param {CheckV2} check
  * @param {FUActor} actor
@@ -13,8 +15,8 @@ import { BonusesDataModel } from '../documents/actors/common/bonuses-data-model.
  * @param {CheckCallbackRegistration} registerCallback
  */
 const onPrepareCheck = (check, actor, item, registerCallback) => {
-	const { type, modifiers } = check;
-	if (type === 'accuracy') {
+	const { type, modifiers, additionalData } = check;
+	if (type === 'accuracy' && additionalData[ACCURACY_PREPARED] !== true) {
 		handleGenericBonus(actor, modifiers);
 		registerCallback(handleWeaponTraitAccuracyBonuses, Number.MAX_VALUE);
 	}
@@ -137,6 +139,16 @@ const initialize = () => {
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 };
 
+/**
+ * Mark a check as having their accuracy bonuses already prepared, skipping the accuracy processing during `prepareCheck`.
+ * Useful for cases where bonuses are taken from a check dry run.
+ * @param {CheckV2} check
+ */
+const markPrepared = (check) => {
+	check.additionalData[ACCURACY_PREPARED] = true;
+};
+
 export const AccuracyCheck = Object.freeze({
 	initialize,
+	markPrepared,
 });

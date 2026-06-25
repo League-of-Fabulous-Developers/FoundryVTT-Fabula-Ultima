@@ -8,6 +8,7 @@ import { CheckHooks } from '../../checks/check-hooks.mjs';
 import { CommonSections } from '../../checks/common-sections.mjs';
 import { ChatSectionOrder, CHECK_DETAILS } from '../../checks/default-section-order.mjs';
 import { CommonEvents } from '../../checks/common-events.mjs';
+import { AccuracyCheck } from '../../checks/accuracy-check.mjs';
 
 const skillForAttributeCheck = 'skillForAttributeCheck';
 
@@ -91,6 +92,7 @@ const initializeAccuracyCheck = (modifiers) => {
 				if (weaponCheckInspect.getTargetedDefense()) {
 					config.setTargetedDefense(weaponCheckInspect.getTargetedDefense());
 				}
+				AccuracyCheck.markPrepared(check);
 			}
 		} else {
 			check.primary = item.system.attributes.primary;
