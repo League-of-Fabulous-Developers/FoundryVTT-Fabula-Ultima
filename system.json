@@ -207,17 +207,6 @@
 			}
 		},
 		{
-			"label": "Legacy",
-			"type": "Item",
-			"name": "legacy",
-			"path": "packs/legacy",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"label": "Sample Rare Equipment",
 			"type": "Item",
 			"name": "rare-equipment",
@@ -265,12 +254,6 @@
 			"sorting": "a",
 			"color": "#237B71",
 			"packs": ["handouts"]
-		},
-		{
-			"name": "Pregenerated PCs",
-			"sorting": "a",
-			"color": "#276625",
-			"packs": []
 		}
 	],
 	"languages": [
