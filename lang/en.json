@@ -1994,6 +1994,16 @@
 		"OptionalRulesTPLNotice": "<i class='fa-solid fa-triangle-exclamation warning'></i> <strong>Note:</strong> Several of the items below are not included in the compendia distributed with the system, as they are not covered by the Fabula Ultima Third Party License, and will require manual entry to create them.<br>These items include:  Quirks, Zero Powers, variant Arcana, and Camping Activities",
 		"DialogCrisisHPTitle": "Set HP to Crisis score?",
 		"DialogCrisisHPContent": "Reset {actor}'s HP to their Crisis score?",
+		"NpcEquipmentSettings": "NPC Equipment",
+		"NpcEquipmentSettingsHint": "Controls whether NPCs can acquire the 'Use Equipment' skill, and the initial skill points available for 'Humanoid' NPCs.\"",
+		"SettingGroupCheckAutomaticPrompt": "Automatic Group Check prompt",
+		"SettingGroupCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts a Group Check.\"",
+		"SettingInitiativeCheckAutomaticPrompt": "Automatic Initiative Check prompt",
+		"SettingInitiativeCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts an Initiative Check and your primary Character is part of the active Combat.\"",
+		"ActiveEffectSuppressed": "This effect is suppressed. It will not be applied to the actor.",
+		"TemporaryEffectsItems": "Temporary Effects On Items",
+		"DefaultGridUnit": "Travel Day(s)",
+		"DieSize": "Die Size",
 		"CODEX": {
 			"Character": "Character",
 			"Location": "Location",
@@ -2019,16 +2029,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"NpcEquipmentSettings": "NPC Equipment",
-		"NpcEquipmentSettingsHint": "Controls whether NPCs can acquire the 'Use Equipment' skill, and the initial skill points available for 'Humanoid' NPCs.",
-		"SettingGroupCheckAutomaticPrompt": "Automatic Group Check prompt",
-		"SettingGroupCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts a Group Check.",
-		"SettingInitiativeCheckAutomaticPrompt": "Automatic Initiative Check prompt",
-		"SettingInitiativeCheckAutomaticPromptHint": "Enable to automatically open the Support Check prompt, whenever another player starts an Initiative Check and your primary Character is part of the active Combat.",
-		"ActiveEffectSuppressed": "This effect is suppressed. It will not be applied to the actor.",
-		"TemporaryEffectsItems": "Temporary Effects On Items",
-		"DefaultGridUnit": "Travel Day(s)",
-		"DieSize": "Die Size"
+		}
 	}
 }
