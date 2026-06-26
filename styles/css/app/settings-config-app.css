@@ -14,6 +14,14 @@
 		}
 	}
 
+	.warning {
+		color: #eed202;
+	}
+
+	.scrollable {
+		margin-right: 0;
+	}
+
 	.setting {
 		padding-bottom: 0.5em;
 	}

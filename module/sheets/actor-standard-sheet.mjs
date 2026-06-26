@@ -23,7 +23,6 @@ import { HeroicsTableRenderer } from '../helpers/tables/heroics-table-renderer.m
 import { FeatureTables } from '../helpers/tables/feature-tables-renderer.mjs';
 import { AbilitiesTableRenderer } from '../helpers/tables/abilities-table-renderer.mjs';
 import { ProjectsTableRenderer } from '../helpers/tables/projects-table-renderer.mjs';
-import { RulesTableRenderer } from '../helpers/tables/rules-table-renderer.mjs';
 import { RitualsTableRenderer } from '../helpers/tables/rituals-table-renderer.mjs';
 import { SpellsTableRenderer } from '../helpers/tables/spells-table-renderer.mjs';
 import { WeaponsTableRenderer } from '../helpers/tables/weapons-table-renderer.mjs';
@@ -181,14 +180,15 @@ export class FUStandardActorSheet extends FUActorSheet {
 	// tables required for both player characters and npcs
 	#favoritesTable = new FavoritesTableRenderer();
 	#skillsTable = new SkillsTableRenderer();
-	#abilitiesTable = new AbilitiesTableRenderer();
+	#abilitiesTable = new AbilitiesTableRenderer('miscAbility');
 	#spellsTable = new SpellsTableRenderer();
-	#rulesTable = new RulesTableRenderer();
+	#rulesTable = new AbilitiesTableRenderer('rule');
 	#treasuresTable = new TreasuresTableRenderer();
 	#weaponsTable = new WeaponsTableRenderer();
 	#shieldsTable = new ShieldsTableRenderer();
 	#armorsTable = new ArmorsTableRenderer();
 	#accessoriesTable = new AccessoriesTableRenderer();
+	#itemTemporaryEffectsTable = new ActiveEffectsTableRenderer('item', { hideIfEmpty: true });
 	#temporaryEffectsTable = new ActiveEffectsTableRenderer('temporary');
 	#passiveEffectsTable = new ActiveEffectsTableRenderer('passive');
 	#inactiveEffectsTable = new ActiveEffectsTableRenderer('inactive');
@@ -405,6 +405,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
 					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
+					context.effectsWithClocks = this.actor
+						.allApplicableEffects()
+						.filter((e) => e.system.rules.progress?.enabled)
+						.toArray();
 				}
 				break;
 
@@ -479,6 +483,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'effects':
+				context.itemTemporaryEffectsTable = await this.#itemTemporaryEffectsTable.renderTable(this.document);
 				context.temporaryEffectsTable = await this.#temporaryEffectsTable.renderTable(this.document);
 				context.passiveEffectsTable = await this.#passiveEffectsTable.renderTable(this.document);
 				context.inactiveEffectsTable = await this.#inactiveEffectsTable.renderTable(this.document);
@@ -555,6 +560,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		this.#npcOtherItemsTable.activateListeners(this);
 		this.#activeBehaviorsTable.activateListeners(this);
 		this.#inactiveBehaviorsTable.activateListeners(this);
+		this.#itemTemporaryEffectsTable.activateListeners(this);
 		this.#temporaryEffectsTable.activateListeners(this);
 		this.#passiveEffectsTable.activateListeners(this);
 		this.#inactiveEffectsTable.activateListeners(this);
@@ -1007,13 +1013,23 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const crisisHP = this.actor.system.resources.hp.crisisScore;
+		const confirmed = await foundry.applications.api.Dialog.confirm({
+			window: {
+				title: game.i18n.localize('FU.DialogCrisisHPTitle'),
+			},
+			content: game.i18n.format('FU.DialogCrisisHPContent', { actor: this.actor.name }),
+			rejectClose: false,
+		});
 
-		const updateData = {
-			'system.resources.hp.value': crisisHP,
-		};
-		await this.actor.update(updateData);
-		this.actor.sheet.render(true);
+		if (confirmed) {
+			const crisisHP = this.actor.system.resources.hp.crisisScore;
+
+			const updateData = {
+				'system.resources.hp.value': crisisHP,
+			};
+			await this.actor.update(updateData);
+			this.actor.sheet.render(true);
+		}
 	}
 
 	/**

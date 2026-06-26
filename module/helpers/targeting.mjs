@@ -42,9 +42,10 @@ const STRICT_TARGETING = false;
  * @param {FUActor[] | Token[] | TargetData[]} targets
  * @returns {FUActor[]|FUItem}
  */
-async function filterTargetsByRule(actor, item, targets) {
+async function processTargetData(actor, item, targets) {
 	if (!item.system.targeting) {
-		throw Error(`"No targeting data model in the given item ${item.name}`);
+		ui.notifications.warn(`"No targeting data model in the given item ${item.name}`);
+		return targets;
 	}
 
 	/**
@@ -56,19 +57,13 @@ async function filterTargetsByRule(actor, item, targets) {
 		case 'self':
 			return [];
 		case 'single':
-			if (targets.length === 0) {
-				return [];
-			} else if (targets.length > 1) {
+			if (targets.length > 1) {
 				ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
-				return [];
 			}
-			return [targets[0]];
+			return targets;
 		case 'multiple':
-			if (targets.length === 0) {
-				return [];
-			} else if (targets.length > targeting.max.value) {
+			if (targets.length > targeting.max) {
 				ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
-				return [];
 			}
 			return targets;
 		case 'weapon': {
@@ -153,35 +148,44 @@ function onRenderChatMessage(document, html) {
 		link.addEventListener('click', function (event) {
 			console.debug(`Targeting ${this.dataset.id}`);
 			const actor = fromUuidSync(this.dataset.id);
-			const token = actor.token?.object;
-			if (!validateCombatant(token)) return;
-			return pingCombatant(token);
+			const token = findToken(actor);
+			if (token) {
+				return pingCombatant(token);
+			}
 		});
 	});
 }
 
 Hooks.on(`renderChatMessageHTML`, onRenderChatMessage);
 
-function validateCombatant(token) {
+function findToken(actor) {
 	const canvas = game.canvas;
-	if (!canvas.ready || token.scene.id !== canvas.scene.id) {
-		return false;
+	if (!canvas.ready) {
+		return null;
 	}
-	if (!token.visible) {
-		return ui.notifications.warn(game.i18n.localize('COMBAT.WarnNonVisibleToken'));
+
+	const tokens = actor.getDependentTokens({ scenes: [canvas.scene] });
+	if (tokens.length === 0) {
+		return null;
 	}
-	return true;
+
+	const token = tokens.find((token) => token.visible);
+	if (!token) {
+		ui.notifications.warn(game.i18n.localize('COMBAT.WarnNonVisibleToken'));
+		return null;
+	}
+	return token;
 }
 
 async function pingCombatant(token) {
 	const canvas = game.canvas;
-	await canvas.ping(token.center);
+	await canvas.ping(token.getCenterPoint());
 	await panToCombatant(token);
 }
 
 async function panToCombatant(token) {
 	const canvas = game.canvas;
-	const { x, y } = token.center;
+	const { x, y } = token.getCenterPoint();
 	await canvas.animatePan({ x, y, scale: Math.max(canvas.stage.scale.x, 0.5) });
 }
 
@@ -193,7 +197,7 @@ export const Targeting = Object.freeze({
 		weapon: 'weapon',
 		special: 'special',
 	},
-	filterTargetsByRule,
+	processTargetData,
 	getSerializedTargetData,
 	serializeTargetData,
 	deserializeTargetData,

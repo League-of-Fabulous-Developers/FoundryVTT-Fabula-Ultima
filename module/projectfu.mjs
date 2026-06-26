@@ -115,7 +115,7 @@ import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
-import { FUSidebar, FUSidebarApplication } from './ui/sidebar.mjs';
+import { FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 
@@ -310,9 +310,17 @@ Hooks.once('init', async () => {
 	Object.assign(CONFIG.ui, {
 		combat: FUCombatTracker,
 		chat: FUChatLog,
-		sidebar: FUSidebar,
 		pfuTools: FUSidebarApplication,
 	});
+
+	CONFIG.ui.sidebar.TABS.pfuTools = {
+		tooltip: 'FU.UiControlTitle',
+		icon: 'fu-control fu-star-2',
+	};
+	// Force the settings tab to the bottom of the list
+	const settingsTab = CONFIG.ui.sidebar.TABS.settings;
+	delete CONFIG.ui.sidebar.TABS.settings;
+	CONFIG.ui.sidebar.TABS.settings = settingsTab;
 
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;
@@ -452,7 +460,10 @@ Hooks.once('i18nInit', () => {
 	}
 });
 
-Hooks.once('setup', () => {});
+Hooks.once('setup', () => {
+	// Set the value here rather than system.json so it can be localized
+	game.system.grid.units = game.i18n.localize('FU.DefaultGridUnit');
+});
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
@@ -535,6 +546,30 @@ Hooks.once('ready', async function () {
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
+
+// Add grid toggle to scene config
+Hooks.on('renderSceneConfig', (app, element, context, options) => {
+	const container = element.querySelector(`.tab[data-group="sheet"][data-tab="grid"]`);
+	if (!(container instanceof HTMLElement)) return void console.warn('Grid tab not found in SceneConfig');
+
+	const rulerState = app.document.getFlag(Flags.Scope, Flags.Scene.DragRulerState) ?? 'default';
+
+	const field = foundry.applications.fields.createFormGroup({
+		label: game.i18n.localize('FU.DragRulerState'),
+		hint: game.i18n.localize('FU.DragRulerStateHint'),
+		input: foundry.applications.fields.createSelectInput({
+			name: `flags.${Flags.Scope}.${Flags.Scene.DragRulerState}`,
+			required: false,
+			options: [
+				{ value: 'default', label: game.i18n.localize('FU.DragRulerStateDefault'), selected: rulerState === 'default' },
+				{ value: 'enabled', label: game.i18n.localize('FU.DragRulerStateEnabled'), selected: rulerState === 'enabled' },
+				{ value: 'disabled', label: game.i18n.localize('FU.DragRulerStateDisabled'), selected: rulerState === 'disabled' },
+			],
+		}),
+	});
+
+	container.append(field);
+});
 
 // Register the "Doubles" SFX trigger for DiceSoNice
 Hooks.once('diceSoNiceReady', (dice3d) => {

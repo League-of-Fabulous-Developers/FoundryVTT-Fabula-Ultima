@@ -1,5 +1,5 @@
 {
-  "folder": "w3kDLFUJnb8HVdJf",
+  "folder": "lUTuYwx8TclTWDcT",
   "name": "Effect: Arcanum of the Tower (Fire)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771045332565,
-    "modifiedTime": 1771045478738,
+    "modifiedTime": 1781627886758,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "uW0OZk83vqZOw5uW",
-  "sort": 0,
+  "sort": 125000,
   "_key": "!items!uW0OZk83vqZOw5uW"
 }

@@ -362,15 +362,16 @@ export class CheckConfigurer extends CheckInspector {
 			};
 		}
 
-		const entries = this.check.additionalData[EFFECTS].entries;
+		const entries = new Set(this.check.additionalData[EFFECTS].entries);
 
 		for (const effect of effects) {
 			if (Array.isArray(effect)) {
-				entries.push(...effect);
+				effect.forEach((value) => entries.add(value));
 			} else {
-				entries.push(effect);
+				entries.add(effect);
 			}
 		}
+		this.check.additionalData[EFFECTS].entries = [...entries];
 
 		return this;
 	}
@@ -540,19 +541,21 @@ export class CheckConfigurer extends CheckInspector {
 				return;
 			}
 			const targetedDefense = this.getTargetedDefense();
-			for (let t = 0; t < targets.length; t++) {
-				const target = targets[t];
-				const difficulty = target.defenses[targetedDefense];
-				let targetResult;
-				if (this.check.critical) {
-					targetResult = 'hit';
-				} else if (this.check.fumble) {
-					targetResult = 'miss';
-				} else {
-					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
+			if (targetedDefense) {
+				for (let t = 0; t < targets.length; t++) {
+					const target = targets[t];
+					const difficulty = target.defenses[targetedDefense];
+					let targetResult;
+					if (this.check.critical) {
+						targetResult = 'hit';
+					} else if (this.check.fumble) {
+						targetResult = 'miss';
+					} else {
+						targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
+					}
+					// Update the original
+					this.check.additionalData[TARGETS][t].result = targetResult;
 				}
-				// Update the original
-				this.check.additionalData[TARGETS][t].result = targetResult;
 			}
 		}
 	}

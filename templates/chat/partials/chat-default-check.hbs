@@ -1,23 +1,23 @@
 <div class="flexrow gap-5">
     <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
         <div>
-			{{pfuIconAttribute check.attr1.attribute value=result.die1}}
+			{{pfuIconAttribute check.attr1.attribute value=result.die1 flexDir='row' gap='10px' fontSize='base' borderless=true}}
             <label class="detail">{{result.attr1}}</label>
         </div>
         <div>
-			{{pfuIconAttribute check.attr2.attribute value=result.die2}}
+			{{pfuIconAttribute check.attr2.attribute value=result.die2 flexDir='row' gap='10px' fontSize='base' borderless=true}}
             <label class="detail">{{result.attr2}}</label>
         </div>
         <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-			{{pfuBadge 'mod' label='FU.ModAbbr' }}
+			{{pfuBadge 'mod' label='FU.ModAbbr' flexDir='row' gap='4px' fontSize='base'}}
             <label class="detail">{{#unless (lt result.modifier 0)}}+{{/unless}}{{result.modifier}}</label>
         </div>
 
     </div>
     {{#if (gt difficulty 0)}}
-    <div class="flex-group-center">
+    <div class="detail-desc flex-group-center">
 		<div>
-			{{pfuBadge 'difficulty' label='FU.DifficultyLevelAbbr' size='l' tooltip='FU.ChatDifficulty' }}
+			{{pfuBadge 'difficulty' label='FU.DifficultyLevelAbbr' tooltip='FU.ChatDifficulty' flexDir='row' gap='4px' size='s' fontSize='base'}}
 			<label class="fu-check__difficulty detail">{{difficulty}}</label>
 		</div>
     </div>

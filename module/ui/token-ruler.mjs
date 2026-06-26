@@ -1,4 +1,5 @@
 import { SYSTEM } from '../helpers/config.mjs';
+import { Flags } from '../helpers/flags.mjs';
 import { FUKeybindings } from '../keybindings.mjs';
 import { SETTINGS } from '../settings.js';
 
@@ -6,6 +7,12 @@ export class FUTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
 	static instances = [];
 
 	static get shouldDraw() {
+		if (!canvas.scene) return false;
+
+		const sceneSetting = canvas.scene.getFlag(Flags.Scope, Flags.Scene.DragRulerState);
+		if (sceneSetting === 'enabled') return true;
+		else if (sceneSetting === 'disabled') return false;
+
 		if (canvas.scene.grid.type === 0 && game.settings.get(SYSTEM, SETTINGS.optionEnableDragRulerGridless)) return true;
 		else if (canvas.scene.grid.type !== 0 && game.settings.get(SYSTEM, SETTINGS.optionEnableDragRulerGridded)) return true;
 

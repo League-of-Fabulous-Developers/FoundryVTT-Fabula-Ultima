@@ -45,10 +45,6 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 		return source;
 	}
 
-	getTags() {
-		return super.getTags();
-	}
-
 	get attributePartials() {
 		return [...this.commonPartials, ItemPartialTemplates.opportunityField, ItemPartialTemplates.behaviorField, ItemPartialTemplates.progressClock];
 	}

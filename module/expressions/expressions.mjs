@@ -363,8 +363,9 @@ function evaluateVariables(expression, context) {
 			}
 			// Resource: Max
 			case 'mhp':
+				return context.resolveActorOrHighestLevelTarget().system.resources['hp'].max;
 			case 'mmp': {
-				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].max;
+				return context.resolveActorOrHighestLevelTarget().system.resources['mp'].max;
 			}
 			// Progress (From effect)
 			case 'pg': {
@@ -582,7 +583,13 @@ function countClasses(actor) {
  * @returns {Number}
  */
 function countMasteredClasses(actor) {
-	return actor.getItemsByType('class').filter((c) => c.system.mastered)?.length ?? 0;
+	return (
+		actor.getItemsByType('class').filter((c) => {
+			const skillTracker = actor.system.tlTracker;
+			const current = skillTracker.getClassLevel(c);
+			return current === c.system.level.max;
+		})?.length ?? 0
+	);
 }
 
 /**

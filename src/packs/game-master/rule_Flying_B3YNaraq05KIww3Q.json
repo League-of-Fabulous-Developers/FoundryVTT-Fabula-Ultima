@@ -1,0 +1,151 @@
+{
+  "folder": "EPexzx5pMkqZD8ai",
+  "name": "Flying",
+  "type": "rule",
+  "_id": "B3YNaraq05KIww3Q",
+  "img": "systems/projectfu/styles/static/statuses/Flying.webp",
+  "system": {
+    "fuid": "flying",
+    "description": "<p>For the rules of the <strong>Flying</strong> NPC Skill, see <strong>Core Rulebook</strong>, <strong>p307</strong>.</p>",
+    "summary": {
+      "value": "You can fly"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "source": "FUCR307"
+  },
+  "effects": [
+    {
+      "name": "Flying",
+      "img": "systems/projectfu/styles/static/statuses/Flying.webp",
+      "origin": "Compendium.projectfu.game-master.Item.B3YNaraq05KIww3Q",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "inactive"
+        },
+        "rules": {
+          "elements": {
+            "6BW6LVqjH8dDivYH": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "hIJn9e1tR8qpes5F",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "",
+                "affinity": "vulnerability",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "_id": "6BW6LVqjH8dDivYH",
+              "actions": {
+                "nxW7T7SI9XZHfH5m": {
+                  "type": "messageRuleAction",
+                  "_id": "nxW7T7SI9XZHfH5m",
+                  "message": "<p>You lose <strong>flying</strong> for the rest of the round.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "JvtouHM20473gNH4",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Use this effect to track if you are currently <strong>flying</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Flying",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.game-master.Item.B3YNaraq05KIww3Q",
+            "effectUuid": null,
+            "fuid": "flying"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1780529103045,
+        "modifiedTime": 1780529524438,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!B3YNaraq05KIww3Q.JvtouHM20473gNH4"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1780528980415,
+    "modifiedTime": 1780529161371,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!B3YNaraq05KIww3Q"
+}

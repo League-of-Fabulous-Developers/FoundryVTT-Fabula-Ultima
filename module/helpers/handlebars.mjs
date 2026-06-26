@@ -269,6 +269,32 @@ export const FUHandlebars = Object.freeze({
 			return options.hash;
 		});
 
+		Handlebars.registerHelper('pfuTimes', function (times, options) {
+			if (typeof times !== 'number') {
+				throw new Error('Must pass number of iterations to #pfuTimes');
+			}
+
+			const fn = options.fn;
+			const data = Handlebars.Utils.createFrame(options.data ?? {});
+			let result = '';
+
+			for (let i = 0; i < times; i++) {
+				if (data) {
+					data.index = i;
+					data.first = i === 0;
+					data.last = i === times - 1;
+				}
+
+				result =
+					result +
+					fn(this, {
+						data: data,
+					});
+			}
+
+			return result;
+		});
+
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
@@ -437,7 +463,12 @@ function badge(key, options) {
 	if (options.hash) {
 		options = options.hash;
 	}
-	const icon = FU.allIcon[key];
+
+	let icon = FU.allIcon[key];
+	if (options.borderless) {
+		icon += '-bl';
+	}
+
 	const size = options.size ?? 's';
 	const template = Handlebars.partials[systemTemplatePath('common/icons/badge')];
 	const html =
@@ -448,6 +479,9 @@ function badge(key, options) {
 					size: size,
 					value: options.value,
 					compact: options.compact,
+					flexDir: options.flexDir,
+					gap: options.gap,
+					fontSize: options.fontSize,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

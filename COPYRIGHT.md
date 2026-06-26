@@ -23,7 +23,7 @@ This document is the source-level inventory for attribution, and the explicit st
 | Need Games | license kit | [Fabula-Ultima-Third-Party-Tabletop-License-Kit](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-Kit.zip) | Fabula Ultima license kit assets and promotional art. |
 | Pixeltier | purchased packs | [itch.io bundle](https://pixeltier.itch.io/) / [Email](sascha.naderer@gmail.com) | Primary source for the compendium item art packs. |
 | Javier Aumente (Tarot) | explicit permission | [Email](mailto:jaauvel@gmail.com) | Primary source for most class and technosphere art. |
-| t3nshi | explicit permission | [@t3nshi.bsky.social](https://bsky.app/profile/t3nshi.bsky.social) | Status effect templates and default resources icons. |
+| t3nshi | explicit permission | [@t3nshi.bsky.social](https://bsky.app/profile/t3nshi.bsky.social) / [Instagram](https://www.instagram.com/_t3nshi) | Status effect templates and default resources icons. |
 | game-icons.net | CC BY 3.0 | [Official site](https://game-icons.net/) | Base SVG icon source for several system icons. |
 | Mildew | explicit permission | [Ko-fi](https://ko-fi.com/not_mildew) / [Linktree](https://linktr.ee/not_mildew) | Current iron-knuckle art, action icons and extra resources icons; `styles/static/affinities/icons/water.png`. |
 | RubenE | explicit permission | [X / @only_ruben_draw](https://x.com/Only_Ruben_Draw) | Previous iron-knuckle art. |

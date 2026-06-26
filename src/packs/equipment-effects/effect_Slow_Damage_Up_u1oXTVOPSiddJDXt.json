@@ -1,0 +1,143 @@
+{
+  "folder": "Eyh5P2Dt6MZzu84a",
+  "name": "Slow Damage Up",
+  "type": "effect",
+  "_id": "u1oXTVOPSiddJDXt",
+  "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+  "system": {
+    "fuid": "slow-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Slow Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.u1oXTVOPSiddJDXt",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "m0sSEoT6RGBkCsff": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "UHW0ScaVv0HLaHHr",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "m0sSEoT6RGBkCsff",
+              "predicates": {
+                "6Hljwmjl5X1nQkrx": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "6Hljwmjl5X1nQkrx"
+                }
+              },
+              "actions": {
+                "DIOqAUd9ajnDB2sM": {
+                  "type": "messageRuleAction",
+                  "_id": "DIOqAUd9ajnDB2sM",
+                  "message": "<p>You dealt 5 extra damage to a <strong>slow</strong> creature.</p>"
+                },
+                "2TAQ0LKVy6FGquag": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "2TAQ0LKVy6FGquag",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LcKHzimx4pvr5v6u",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You deal <strong>5 extra damage</strong> to <strong>slow</strong> creatures.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Slow Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.u1oXTVOPSiddJDXt",
+            "effectUuid": null,
+            "fuid": "slow-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781341462699,
+        "modifiedTime": 1781341504653,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!u1oXTVOPSiddJDXt.LcKHzimx4pvr5v6u"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781341279030,
+    "modifiedTime": 1781341461783,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!u1oXTVOPSiddJDXt"
+}

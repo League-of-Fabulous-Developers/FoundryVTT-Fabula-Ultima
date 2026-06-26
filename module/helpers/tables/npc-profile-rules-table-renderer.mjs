@@ -1,6 +1,6 @@
-import { RulesTableRenderer } from './rules-table-renderer.mjs';
+import { AbilitiesTableRenderer } from './abilities-table-renderer.mjs';
 
-export class NpcProfileRulesTableRenderer extends RulesTableRenderer {
+export class NpcProfileRulesTableRenderer extends AbilitiesTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'npc-profile-rules-table',
@@ -11,6 +11,10 @@ export class NpcProfileRulesTableRenderer extends RulesTableRenderer {
 		},
 		getItems: NpcProfileRulesTableRenderer.#getItems,
 	};
+
+	constructor() {
+		super('rule');
+	}
 
 	static #getItems(document, options) {
 		options.revealed ??= {};

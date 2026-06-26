@@ -6,7 +6,7 @@ import { TextEditor } from '../text-editor.mjs';
 import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
 
 /**
- * @typedef {"temporary", "passive", "inactive"} ActiveEffectState
+ * @typedef {"temporary", "passive", "inactive", "item"} ActiveEffectState
  */
 
 export class ActiveEffectsTableRenderer extends FUTableRenderer {
@@ -39,22 +39,30 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 	 * this is a terrible hack and might cause timing issues, but I couldn't think of anything else :<
 	 * @type {FUActor | FUItem}
 	 */
-	document;
+	#document;
+
+	/**
+	 * this is a terrible hack and might cause timing issues, but I couldn't think of anything else :<
+	 * @type {ActiveEffect[]}
+	 */
+	#applicableEffects = [];
 
 	/**
 	 * @param {ActiveEffectState} effectState
+	 * @param {Partial<TableConfig>} [overrides]
 	 */
-	constructor(effectState) {
-		super();
+	constructor(effectState, overrides) {
+		super(overrides);
 		this.#effectState = effectState;
 	}
 
 	static #getItems(document) {
-		this.document = document;
+		this.#document = document;
+		this.#applicableEffects = [...document.allApplicableEffects()];
 
 		let effects = [];
 		if (document instanceof Actor) {
-			if (this.#effectState === 'temporary') {
+			if (this.#effectState === 'item') {
 				effects = [...document.allEffects()];
 			} else {
 				effects = [...document.allApplicableEffects()];
@@ -71,6 +79,9 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 				return effects.filter((effect) => !effect.isTemporary && effect.active);
 			case 'inactive':
 				return effects.filter((effect) => !effect.isTemporary && !effect.active);
+			case 'item': {
+				return effects.filter((effect) => effect.isTemporary && (effect.target !== document || !this.#applicableEffects.includes(effect)));
+			}
 			default:
 				return [];
 		}
@@ -78,9 +89,9 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 
 	static #getDescription(effect) {
 		return TextEditor.enrichHTML(effect.description, {
-			secrets: this.document.isOwner,
-			rollData: this.document.getRollData && this.document.getRollData(),
-			relativeTo: this.document,
+			secrets: this.#document.isOwner,
+			rollData: this.#document.getRollData && this.#document.getRollData(),
+			relativeTo: this.#document,
 		});
 	}
 
@@ -92,13 +103,16 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 				return game.i18n.localize('FU.PassiveEffects');
 			case 'inactive':
 				return game.i18n.localize('FU.InactiveEffects');
+			case 'item':
+				return game.i18n.localize('FU.TemporaryEffectsItems');
 			default:
 				return game.i18n.localize('FU.ActiveEffects');
 		}
 	}
 
 	static #renderEffectName(effect) {
-		const suppressed = effect.suppressed && !effect.disabled;
+		const notAppliedToDocument = effect.target === this.#document && !this.#applicableEffects.includes(effect);
+		const suppressed = (effect.isSuppressed && !effect.disabled) || notAppliedToDocument;
 
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-effect-name.hbs', { name: effect.name, img: effect.img, suppressed: suppressed, progress: effect.system.rules.progress });
 	}
@@ -112,7 +126,7 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 	}
 
 	static #renderControlsHeader() {
-		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/header/header-effect-controls'), { type: this.#effectState });
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/header/header-effect-controls'), { type: this.#effectState, disabled: this.#effectState === 'item' });
 	}
 
 	static #renderControls(effect) {

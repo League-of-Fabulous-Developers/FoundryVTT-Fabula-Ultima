@@ -3,8 +3,8 @@
         <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name type=type}}</div>
     </div>
     <div class='detail-desc flex-group-center grid grid-2col desc'>
-		{{pfuIconAttribute attributes.attr1}}
-		{{pfuIconAttribute attributes.attr2}}
+		{{pfuIconAttribute attributes.attr1 flexDir='row' gap='4px' borderless=true}}
+		{{pfuIconAttribute attributes.attr2 flexDir='row' gap='4px' borderless=true}}
     </div>
     {{#if supporters}}
         <div class='detail-desc flexcol flex-group-center'>

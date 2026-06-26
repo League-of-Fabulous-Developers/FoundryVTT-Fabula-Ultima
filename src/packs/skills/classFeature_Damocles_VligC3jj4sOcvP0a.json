@@ -1,0 +1,124 @@
+{
+  "folder": "kUc2zsChQG6DOEAK",
+  "name": "Damocles",
+  "type": "classFeature",
+  "_id": "VligC3jj4sOcvP0a",
+  "img": "icons/skills/melee/sword-twirl-orange.webp",
+  "system": {
+    "fuid": "damocles",
+    "summary": {
+      "value": "The ghastly sword, looming over tyrants."
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<h3>Impending Judgment</h3><p>You gain Resistance to <strong>dark</strong> and <strong>light</strong> damage.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to choose one enemy you can see and choose one action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, and <strong>Spell</strong>. If you do, until the start of your next turn that enemy loses 10 Hit Points whenever they perform the chosen action (after the action has been resolved). This amount increases to 20 Hit Points if you are <strong>level 30 or higher</strong>.</p><hr><p><strong>Enemy Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.18LT7iykZxDQarui], @EFFECT[Compendium.projectfu.skills.Item.A9d11UtfPxZBwhoJ], @EFFECT[Compendium.projectfu.skills.Item.gfG6k4dbz2qwA5p0], or @EFFECT[Compendium.projectfu.skills.Item.FwIS7GamYtQgNmob]<br><strong>Enemy Loses:</strong> @LOSS[10+10*floor($cl/30) hp]{10/20 HP}</p>",
+      "pulse": "",
+      "dismiss": "<h3>Rain of Swords</h3><p>You deal 30 <strong>light</strong> damage to every enemy you can see. Each creature that loses Hit Points due to this damage suffers <strong>shaken</strong>.</p><hr><p><strong>Enemies Suffer:</strong> @DMG[&step(30,40,50) light]{Light Damage} @EFFECT[shaken]</p>",
+      "domains": "dread, hesitation, punishment"
+    },
+    "source": "FUBC33"
+  },
+  "effects": [
+    {
+      "name": "Merged: Damocles",
+      "img": "icons/skills/melee/sword-twirl-orange.webp",
+      "origin": "Compendium.projectfu.skills.Item.VligC3jj4sOcvP0a",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "aGkCUmeeN5hbAErz",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.light",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are merged with <strong>Damocles</strong>. You gain Resistance to <strong>dark</strong> and <strong>light</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Damocles",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.VligC3jj4sOcvP0a",
+            "effectUuid": null,
+            "fuid": "damocles"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1781638188774,
+        "modifiedTime": 1781638229435,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!VligC3jj4sOcvP0a.aGkCUmeeN5hbAErz"
+    }
+  ],
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1781637867992,
+    "modifiedTime": 1781650767589,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!VligC3jj4sOcvP0a"
+}

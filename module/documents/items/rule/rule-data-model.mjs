@@ -1,19 +1,9 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { ChatSectionOrder } from '../../../checks/default-section-order.mjs';
-
-Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
-	if (item?.system instanceof RuleDataModel) {
-		if (item.system.hasClock.value) {
-			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
-		}
-
-		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
-	}
-});
+import { StandardFields } from '../standard-fields.mjs';
+import { SkillLikeItemHelper } from '../skill-like-item-helper.mjs';
+import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @property {string} subtype.value
@@ -34,11 +24,59 @@ export class RuleDataModel extends FUStandardItemDataModel {
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
+			...StandardFields.traits(),
+			...StandardFields.cost(),
+			...StandardFields.hasRollAccuracyDefense(),
+			...StandardFields.damage(),
+			...StandardFields.effects(),
+			...StandardFields.resource(),
+			...StandardFields.resourcePoints(),
+			...StandardFields.targeting(),
 		});
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.progressField, ItemPartialTemplates.behaviorField];
+		return [
+			ItemPartialTemplates.standard,
+			ItemPartialTemplates.progressField,
+			ItemPartialTemplates.behaviorField,
+			StandardFields.traits,
+			StandardFields.cost,
+			StandardFields.hasRollAccuracyDefense,
+			StandardFields.damage,
+			StandardFields.effects,
+			StandardFields.resource,
+			StandardFields.resourcePoints,
+			StandardFields.targeting,
+		];
+	}
+
+	prepareBaseData() {
+		if (!this.hasRoll.value) {
+			this.useWeapon.accuracy = false;
+		}
+		if (!this.damage.hasDamage) {
+			this.useWeapon.damage = false;
+		}
+		// If not using weapon damage, and it's not set, reset to default
+		if (!this.useWeapon.damage && !this.damage.type) {
+			this.damage.type = 'physical';
+		}
+	}
+
+	get traitOptions() {
+		return TraitUtils.getOptions({
+			...DamageTraits,
+			...SkillTraits,
+		});
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		return SkillLikeItemHelper.roll(this.parent, modifiers);
 	}
 
 	/**
@@ -61,3 +99,5 @@ export class RuleDataModel extends FUStandardItemDataModel {
 		});
 	}
 }
+
+SkillLikeItemHelper.registerSkillLikeType(RuleDataModel);

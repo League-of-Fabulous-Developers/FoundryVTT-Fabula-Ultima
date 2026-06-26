@@ -73,6 +73,7 @@ export const SETTINGS = Object.freeze({
 	optionZeroPower: 'optionZeroPower',
 	optionArcanumPulse: 'optionArcanumPulse',
 	useRevisedStudyRule: 'useRevisedStudyRule',
+	npcEquipment: 'npcEquipment',
 	technospheres: 'useTechnospheres',
 	pressureSystem: 'pressureSystem',
 	optionPressureGaugeShow: 'optionPressureGaugeShow',
@@ -113,6 +114,9 @@ export const SETTINGS = Object.freeze({
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
 	// Compendium Browser
 	optionCompendiumBrowserPacks: 'optionCompendiumBrowserPacks',
+	// Checks
+	groupCheckAutomaticPrompt: 'groupCheckAutomaticPrompt',
+	initiativeCheckAutomaticPrompt: 'initiativeCheckAutomaticPrompt',
 });
 
 /**
@@ -354,18 +358,23 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [
-			SETTINGS.optionQuirks,
-			SETTINGS.optionZeroPower,
-			SETTINGS.optionArcanumPulse,
-			SETTINGS.optionCampingRules,
-			SETTINGS.useRevisedStudyRule,
-			SETTINGS.technospheres,
-			SETTINGS.pressureSystem,
-			SETTINGS.optionPressureGaugeShow,
-			SETTINGS.optionPressureGaugePosition,
-			SETTINGS.optionPressureGaugeTheme,
-		]),
+		type: createConfigurationApp(
+			'FU.OptionalRules',
+			[
+				SETTINGS.optionQuirks,
+				SETTINGS.optionZeroPower,
+				SETTINGS.optionArcanumPulse,
+				SETTINGS.optionCampingRules,
+				SETTINGS.useRevisedStudyRule,
+				SETTINGS.npcEquipment,
+				SETTINGS.technospheres,
+				SETTINGS.pressureSystem,
+				SETTINGS.optionPressureGaugeShow,
+				SETTINGS.optionPressureGaugePosition,
+				SETTINGS.optionPressureGaugeTheme,
+			],
+			'FU.OptionalRulesTPLNotice',
+		),
 		restricted: true,
 	});
 
@@ -406,6 +415,15 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.npcEquipment, {
+		name: game.i18n.localize('FU.NpcEquipmentSettings'),
+		hint: game.i18n.localize('FU.NpcEquipmentSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.technospheres, {
@@ -1140,6 +1158,26 @@ export const registerSystemSettings = async function () {
 		default: 'all',
 		choices: FU.compendiumBrowserPacks,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.groupCheckAutomaticPrompt, {
+		name: game.i18n.localize('FU.SettingGroupCheckAutomaticPrompt'),
+		hint: game.i18n.localize('FU.SettingGroupCheckAutomaticPromptHint'),
+		scope: 'user',
+		config: true,
+		type: Boolean,
+		requiresReload: false,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.initiativeCheckAutomaticPrompt, {
+		name: game.i18n.localize('FU.SettingInitiativeCheckAutomaticPrompt'),
+		hint: game.i18n.localize('FU.SettingInitiativeCheckAutomaticPromptHint'),
+		scope: 'user',
+		config: true,
+		type: Boolean,
+		requiresReload: false,
+		default: true,
+	});
 };
 
 /**
@@ -1148,11 +1186,17 @@ export const registerSystemSettings = async function () {
  * @return {typeof SettingsConfigurationApp}
  * @remarks Expects the settings to be various settings to be already registered, but hidden.
  */
-function createConfigurationApp(name, settings) {
+function createConfigurationApp(name, settings, headerText = '') {
 	return class ConfigApp extends SettingsConfigurationApp {
 		static DEFAULT_OPTIONS = {
 			window: { title: name },
 		};
+
+		async _prepareContext(options) {
+			const context = await super._prepareContext(options);
+			context.headerText = headerText;
+			return context;
+		}
 
 		constructor() {
 			super(settings);

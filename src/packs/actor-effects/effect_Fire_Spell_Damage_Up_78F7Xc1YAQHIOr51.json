@@ -50,7 +50,6 @@
                   "type": "modifyDamageRuleAction",
                   "_id": "wmAZbrVbYiwA99kH",
                   "amount": "5",
-                  "effect": "",
                   "cost": {
                     "amount": null
                   }

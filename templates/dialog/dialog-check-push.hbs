@@ -1,5 +1,5 @@
 <fieldset class="resource-content">
-    <legend>{{localize 'FU.GroupCheckBondDialogTitle'}}</legend>
+    <legend>{{localize 'FU.ChatContextPush'}}</legend>
     {{#each bonds}}
     <fieldset>
         <label>
@@ -16,4 +16,10 @@
         </label>
     </fieldset>
     {{/each}}
+</fieldset>
+<fieldset class="resource-content flexrow">
+	<label class="checkbox">
+		<input type="checkbox" name="ignore-fp">
+		<span>{{localize 'FU.DialogIgnoreFPCost'}}</span>
+	</label>
 </fieldset>

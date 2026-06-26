@@ -8,9 +8,12 @@ function onDropCanvasData(canvas, { x, y, ...data }) {
 	const dropTarget = [...canvas.tokens.placeables]
 		.sort((a, b) => b.document.sort - a.document.sort)
 		.find((token) => {
-			const maximumX = token.x + (token.hitArea?.right ?? 0);
-			const maximumY = token.y + (token.hitArea?.bottom ?? 0);
-			return x >= token.x && y >= token.y && x <= maximumX && y <= maximumY;
+			const tokenDocument = token.document;
+			const { x: tokenX, y: tokenY } = tokenDocument;
+			const { width, height } = tokenDocument.getSize();
+			const maximumX = tokenX + width;
+			const maximumY = tokenY + height;
+			return x >= tokenX && y >= tokenY && x <= maximumX && y <= maximumY;
 		});
 
 	const actor = dropTarget?.actor;

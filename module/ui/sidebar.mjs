@@ -1,5 +1,5 @@
 import { GameWellspringManager } from '../documents/items/classFeature/invoker/game-wellspring-manager.mjs';
-import { systemAssetPath, systemTemplatePath } from '../helpers/system-utils.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { CompendiumBrowser } from './compendium/compendium-browser.mjs';
@@ -28,42 +28,6 @@ const { api, sidebar } = foundry.applications;
  * @property {string[]} [classes]
  * @property {Record<string, SidebarTool>} tools
  */
-
-export class FUSidebar extends sidebar.Sidebar {
-	static TABS = {
-		...foundry.applications.sidebar.Sidebar.TABS,
-		pfuTools: {
-			tooltip: 'FU.UiControlTitle',
-			img: systemAssetPath('icons/fus-star2.svg'),
-		},
-	};
-
-	static PARTS = {
-		tabs: {
-			id: 'tabs',
-			template: systemTemplatePath('ui/sidebar-tabs'),
-		},
-	};
-
-	/**
-	 * @override
-	 * Overridden to allow for specifying an image
-	 */
-	async _prepareTabContext(context, options) {
-		context.tabs = Object.entries(FUSidebar.TABS).reduce((obj, [key, value]) => {
-			let { documentName, gmOnly, tooltip, icon, img } = value;
-			if (gmOnly && !game.user.isGM) return obj;
-			if (documentName) {
-				tooltip ??= getDocumentClass(documentName).metadata.labelPlural;
-				icon ??= CONFIG[documentName]?.sidebarIcon;
-			}
-
-			obj[key] = { tooltip, icon, img };
-			obj[key].active = this.tabGroups.primary === key;
-			return obj;
-		}, {});
-	}
-}
 
 export class FUSidebarApplication extends api.HandlebarsApplicationMixin(sidebar.AbstractSidebarTab) {
 	static DEFAULT_OPTIONS = {

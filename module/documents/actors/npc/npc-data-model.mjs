@@ -2,7 +2,7 @@ import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { Role } from './roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
-import { SETTINGS } from '../../../settings.js';
+import { getSystemSetting, SETTINGS } from '../../../settings.js';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
 import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
@@ -148,6 +148,7 @@ export class NpcDataModel extends BaseCharacterDataModel {
 	 * @override
 	 */
 	prepareDerivedData() {
+		this.useEquipment.value = getSystemSetting(SETTINGS.npcEquipment) && (this.species.value === 'humanoid' || this.useEquipment.value);
 		this.spTracker = new NpcSkillTracker(this);
 		this.actor.equipmentHandler ??= new EquipmentHandler(this.actor);
 	}

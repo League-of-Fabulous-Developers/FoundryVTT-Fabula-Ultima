@@ -64,13 +64,14 @@ function handleMetaCurrencyUsed(document, options, userId) {
 	}
 	let useMetaCurrency = document.getFlag(SYSTEM, Flags.ChatMessage.UseMetaCurrency);
 	if (useMetaCurrency && game.users.activeGM?.isSelf) {
+		const amount = typeof useMetaCurrency === 'number' ? useMetaCurrency : 1;
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
 			if (speakerActor.system instanceof CharacterDataModel) {
-				increment(SETTINGS.metaCurrencyFabula);
+				increment(SETTINGS.metaCurrencyFabula, amount);
 			}
 			if (speakerActor.system instanceof NpcDataModel) {
-				increment(SETTINGS.metaCurrencyUltima);
+				increment(SETTINGS.metaCurrencyUltima, amount);
 			}
 		}
 	}
@@ -79,9 +80,9 @@ function handleMetaCurrencyUsed(document, options, userId) {
 	}
 }
 
-function increment(setting) {
+function increment(setting, amount = 1) {
 	const oldValue = game.settings.get(SYSTEM, setting);
-	game.settings.set(SYSTEM, setting, oldValue + 1);
+	game.settings.set(SYSTEM, setting, oldValue + amount);
 }
 
 export class MetaCurrencyTrackerApplication extends FUApplication {

@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-long-gold.png",
   "system": {
     "fuid": "sanctified-blade",
-    "description": "<p>This weapon deals 5 extra damage to <strong>demon</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>This weapon deals 5 extra damage to <strong>demons</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -99,15 +99,16 @@
             "4WSI64ouUWepios6": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "SSFYs6CZTBoC3WHT",
-                "type": "renderCheckRuleTrigger",
+                "_id": "bPry1IerJATk4W0j",
+                "type": "damageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "accuracy"
-                ],
-                "itemGroups": [
-                  "attack"
-                ],
+                "damageType": "",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
                 "local": true,
                 "identifier": ""
               },
@@ -116,7 +117,15 @@
                 "724KQqyVujRYHLtq": {
                   "type": "messageRuleAction",
                   "_id": "724KQqyVujRYHLtq",
-                  "message": "<p>If <strong>demon</strong> target, deal 5 extra damage to them.</p>"
+                  "message": "<p>This dealt 5 extra damage to a <strong>demon</strong>.</p>"
+                },
+                "8ddeE8hTHm7fg9zg": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "8ddeE8hTHm7fg9zg",
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               },
               "predicates": {
@@ -177,7 +186,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774731573343,
-        "modifiedTime": 1775709133017,
+        "modifiedTime": 1781322584530,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!6XGp4nAtTYo1jbln.d7B9sBtN1IFBP0xi"
@@ -201,7 +210,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774731513931,
-    "modifiedTime": 1777530881417,
+    "modifiedTime": 1781322556078,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!6XGp4nAtTYo1jbln"
