@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target suffers <strong>@DATA[key.status]</strong>. Each target also loses Resistance to <strong>@DATA[key.typeLocal]</strong> damage until the start of your next turn, and cannot gain Resistance to that damage type.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[@DATA[key.status]]<br /><strong>If @DATA[key.typeLocal] Resistant:</strong> @TYPE[affinity @DATA[key.type] none e:sot i:1 t:source]{Haunting Tone}</p>"
+      "description": "<p>Each target suffers <strong>@DATA[key.status]</strong>. Each target also loses Resistance to <strong>@DATA[key.typeLocal]</strong> damage until the start of your next turn, and cannot gain Resistance to that damage type.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[@DATA[key.status]]<br /><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.e55RS2mwta54CqMp], @EFFECT[Compendium.projectfu.skills.Item.vyykMV9QXsiWrlc6], @EFFECT[Compendium.projectfu.skills.Item.Ntm4uco2lLUdRXT9], @EFFECT[Compendium.projectfu.skills.Item.YWn3z0Wq0lunAtWU], @EFFECT[Compendium.projectfu.skills.Item.gHzrl6kqjqLgoE5b], @EFFECT[Compendium.projectfu.skills.Item.gcgo90l4f6EVFf2O], @EFFECT[Compendium.projectfu.skills.Item.ZfWTfBKIH8iAxOwN], @EFFECT[Compendium.projectfu.skills.Item.BF3hqaBAqY6LnCWC], or @EFFECT[Compendium.projectfu.skills.Item.s4vj7Z41rWYs1JH2]</p>"
     },
     "source": "FUHF139",
     "fuid": "haunting-tone"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710040082627,
-    "modifiedTime": 1771827707900,
+    "modifiedTime": 1782597109241,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
