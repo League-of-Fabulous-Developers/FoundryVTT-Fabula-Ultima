@@ -929,6 +929,7 @@
 		"ChatApplyTargeted": "应用于目标",
 		"ChatApplySelected": "应用于选择",
 		"ChatDisableSelected": "[Ctrl + Click] to disable effect",
+		"ChatExamineSelectedEffect": "[Right Click] to examine effect",
 		"ChatApplySelectedTooltip": "点击以将效果应用于所选令牌。",
 		"ChatApplyNoTargetSelected": "No actor selected.",
 		"ChatApplyNoCharacterSelected": "No character selected. Unable to apply.",

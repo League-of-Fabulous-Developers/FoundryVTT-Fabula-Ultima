@@ -929,6 +929,7 @@
 		"ChatApplyTargeted": "Applica al Bersaglio",
 		"ChatApplySelected": "Applica a Selezionato",
 		"ChatDisableSelected": "[Ctrl + Click] per disabilitare l'effetto",
+		"ChatExamineSelectedEffect": "[Right Click] to examine effect",
 		"ChatApplySelectedTooltip": "Clicca per applicare danno ai token selezionati.",
 		"ChatApplyNoTargetSelected": "Nessun attore selezionato.",
 		"ChatApplyNoCharacterSelected": "Nessun personaggio selezionato. Impossibile applicare.",
