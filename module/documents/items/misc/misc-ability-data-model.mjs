@@ -2,6 +2,7 @@ import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { MiscAbilityMigrations } from './misc-ability-migrations.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
+import { SkillLikeItemHelper } from '../skill-like-item-helper.mjs';
 
 /**
  * @property {string} subtype.value
@@ -86,3 +87,5 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 		});
 	}
 }
+
+SkillLikeItemHelper.registerSkillLikeType(MiscAbilityDataModel);

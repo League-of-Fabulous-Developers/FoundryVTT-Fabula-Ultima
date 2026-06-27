@@ -1,6 +1,7 @@
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
 import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { SkillLikeItemHelper } from '../skill-like-item-helper.mjs';
 
 /**
  * @property {string} subtype.value
@@ -100,3 +101,5 @@ export class SkillDataModel extends BaseSkillDataModel {
 		});
 	}
 }
+
+SkillLikeItemHelper.registerSkillLikeType(SkillDataModel);
