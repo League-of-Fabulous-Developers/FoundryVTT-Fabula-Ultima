@@ -929,6 +929,7 @@
 		"ChatApplyTargeted": "Appliquer aux cibles",
 		"ChatApplySelected": "Appliquer à la sélection",
 		"ChatDisableSelected": "[Ctrl + Clique] pour désactiver l'effet",
+		"ChatExamineSelectedEffect": "[Right Click] to examine effect",
 		"ChatApplySelectedTooltip": "Cliquez pour appliquer des dégâts aux tokens sélectionnés.",
 		"ChatApplyNoTargetSelected": "Aucun acteur sélectionné",
 		"ChatApplyNoCharacterSelected": "Aucun personnage sélectionner. Impossible d'appliquer.",

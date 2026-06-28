@@ -40,7 +40,7 @@ function createEffectAnchor(effect, label) {
 	anchor.draggable = true;
 	anchor.dataset.effect = StringUtils.toBase64(effect);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatExamineSelectedEffect')}`);
 	const icon = document.createElement('i');
 	icon.classList.add('fue', 'fu-effect-placeholder');
 	anchor.append(icon);
@@ -62,7 +62,7 @@ function createCompendiumEffectAnchor(effect, config, label) {
 	}
 	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatExamineSelectedEffect')}`);
 	InlineHelper.appendImage(anchor, effect.img);
 	anchor.append(label ? label : effect.name);
 	return anchor;
@@ -178,11 +178,7 @@ async function onRender(element) {
 
 		targets.forEach((actor) => {
 			if (effectData) {
-				if (isCtrlClick) {
-					Effects.removeEffect(actor, renderContext.sourceInfo, effectData);
-				} else {
-					Effects.applyEffect(actor, effectData, renderContext.sourceInfo, config);
-				}
+				Effects.applyEffect(actor, effectData, renderContext.sourceInfo, config);
 			} else if (status) {
 				if (isCtrlClick) {
 					disableStatusEffect(actor, status);
@@ -217,7 +213,7 @@ async function onRender(element) {
 			const status = renderContext.dataset.status;
 			const statusEffect = CONFIG.statusEffects.find((value) => value.id === status);
 			if (statusEffect) {
-				effectData = { ...statusEffect, statuses: [status] };
+				effectData = { ...statusEffect, statuses: Set([status]) };
 			}
 		} else {
 			effectData = StringUtils.fromBase64(renderContext.dataset.effect);
