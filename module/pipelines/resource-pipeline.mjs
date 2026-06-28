@@ -330,10 +330,12 @@ async function processLoss(request) {
 		}
 		const incomingLossMultiplier = actor.system.multipliers.incomingLoss[request.resourceType] || 1;
 		const incomingLossBonus = actor.system.bonuses.incomingLoss[request.resourceType] || 0;
-		const amountLost = -Math.max(0, Math.floor((amount + incomingLossBonus) * incomingLossMultiplier));
+		const amountToLose = Math.max(0, Math.floor((amount + incomingLossBonus) * incomingLossMultiplier));
+		let amountLost;
 
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributeValuePath) || 0;
+			amountLost = -Math.min(currentValue, amountToLose);
 			const newValue = currentValue + amountLost;
 			const updateData = {};
 			updateData[`system.${request.attributeValuePath}`] = newValue;
@@ -352,6 +354,7 @@ async function processLoss(request) {
 				}),
 			);
 		} else {
+			amountLost = -Math.min(actor.system.resources[request.resourceType].value, amountToLose);
 			updates.push(
 				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then(async (result) => {
 					/** @type FURenderData **/
