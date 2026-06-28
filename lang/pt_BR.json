@@ -929,6 +929,7 @@
 		"ChatApplyTargeted": "Aplicar aos Alvos",
 		"ChatApplySelected": "Aplicar a seleção",
 		"ChatDisableSelected": "[Ctrl + Clique] para desligar o efeito",
+		"ChatExamineSelectedEffect": "[Right Click] to examine effect",
 		"ChatApplySelectedTooltip": "Clique para aplicar dano aos personagens selecionados.",
 		"ChatApplyNoTargetSelected": "Nenhum personagem selecionado.",
 		"ChatApplyNoCharacterSelected": "Nenhum personagem selecionado. Não é possível aplicar.",

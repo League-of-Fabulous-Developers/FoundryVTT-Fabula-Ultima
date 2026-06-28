@@ -381,7 +381,7 @@ export async function createStatusEffect(actor, statusEffectId, sourceInfo, conf
 		const instance = await ActiveEffect.create(
 			{
 				...statusEffect,
-				statuses: [statusEffectId],
+				statuses: new Set([statusEffectId]),
 				flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
 			},
 			{ parent: actor },
@@ -464,7 +464,7 @@ function removeEffect(document, source, effect) {
 	);
 
 	if (existingEffect) {
-		sendToChatEffectRemoved(effect, document);
+		sendToChatEffectRemoved(existingEffect, document);
 		existingEffect.delete();
 	} else {
 		console.log('No matching effect found to remove.');

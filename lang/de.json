@@ -929,6 +929,7 @@
 		"ChatApplyTargeted": "Auf anvisierte Ziele anwenden",
 		"ChatApplySelected": "Auf ausgewählte Tokens anwenden",
 		"ChatDisableSelected": "[STRG + Linksklick] um den Effekt zu deaktivieren.",
+		"ChatExamineSelectedEffect": "[Right Click] to examine effect",
 		"ChatApplySelectedTooltip": "Klicken um Schaden für ausgewählte Tokens zu verrechnen.",
 		"ChatApplyNoTargetSelected": "Kein Akteur ausgewählt.",
 		"ChatApplyNoCharacterSelected": "Kein Charakter ausgewählt.",

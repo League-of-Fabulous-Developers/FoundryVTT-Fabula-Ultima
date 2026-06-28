@@ -929,6 +929,7 @@
 		"ChatApplyTargeted": "Применить к нацеленным токенам",
 		"ChatApplySelected": "Применить к выбранным токенам",
 		"ChatDisableSelected": "[Ctrl + ЛКМ] для отключения эффекта",
+		"ChatExamineSelectedEffect": "[Right Click] to examine effect",
 		"ChatApplySelectedTooltip": "Нажмите, чтобы наложить эффект выбранным токенам.",
 		"ChatApplyNoTargetSelected": "Персонаж не выбран.",
 		"ChatApplyNoCharacterSelected": "Не выбран персонаж. Невозможно применить.",
