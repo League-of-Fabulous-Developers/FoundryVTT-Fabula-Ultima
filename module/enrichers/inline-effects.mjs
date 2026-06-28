@@ -1,5 +1,5 @@
 import { statusEffects } from '../documents/effects/statuses.mjs';
-import { Effects } from '../pipelines/effects.mjs';
+import { Effects, disableStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from '../helpers/target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from '../helpers/inline-helper.mjs';
@@ -85,7 +85,7 @@ function createStatusAnchor(effectValue, status, config) {
 	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	const localizedName = game.i18n.localize(status.name);
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 
 	InlineHelper.appendImage(anchor, status.img);
 	anchor.append(localizedName);
@@ -172,14 +172,19 @@ async function onRender(element) {
 
 	// Click handler
 	element.addEventListener('click', async function (event) {
+		const isCtrlClick = event.ctrlKey;
 		const targets = await targetHandler();
 		if (!targets.length) return;
 
 		targets.forEach((actor) => {
 			if (effectData) {
 				Effects.applyEffect(actor, effectData, renderContext.sourceInfo, config);
-			} else if (status && !actor.statuses.has(status)) {
-				Effects.toggleStatusEffect(actor, status, renderContext.sourceInfo, config);
+			} else if (status) {
+				if (isCtrlClick) {
+					disableStatusEffect(actor, status);
+				} else if (!actor.statuses.has(status)) {
+					Effects.toggleStatusEffect(actor, status, renderContext.sourceInfo, config);
+				}
 			}
 		});
 	});
