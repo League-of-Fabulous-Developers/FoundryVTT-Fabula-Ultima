@@ -607,7 +607,7 @@ app.projectfu .prosemirror menu {
 		& h6 {
 			font-family: var(--font-secondary);
 			font-weight: var(--font-weight-bold);
-			color: var(--color-border-primary);
+			color: var(--color-text-primary);
 		}
 
 		& h1 {
