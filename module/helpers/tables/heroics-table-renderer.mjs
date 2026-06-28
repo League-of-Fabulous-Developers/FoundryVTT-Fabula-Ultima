@@ -38,13 +38,7 @@ export class HeroicsTableRenderer extends FUTableRenderer {
 		const context = new ExpressionContext(item.actor, item, []);
 		const data = {
 			FU,
-			class: item.system.class.value,
 		};
-
-		const clazz = await SkillLikeTableHelper.findMatchingClass(item);
-		if (clazz) {
-			data.class = clazz.name;
-		}
 
 		let mainWeapon = SkillLikeTableHelper.resolveMainWeapon(item);
 		if (mainWeapon) {
