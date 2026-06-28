@@ -27,8 +27,15 @@
 					</legend>
 					{{#if basic}}
 						<div class="resource-label-l resource-content flexrow flex-group-center">
-							<div class="pfu-badge" data-tooltip="{{localize localizedSpecies}}">
-								<i class="fua fu-{{species}}"></i>
+							<div>
+								{{localize rank}}
+								{{~#if championLevel~}}
+									&nbsp;({{championLevel}})
+								{{~/if~}}
+							</div>
+							<span class="diamond-symbol">⬥</span>
+							<div data-tooltip="{{localize localizedSpecies}}">
+								<i class="fua fu-{{species}}" style="filter: drop-shadow(black 0 0 1px)"></i>
 							</div>
 							<span class="diamond-symbol">⬥</span>
 							<label class="flexcol" data-tooltip="{{localize 'FU.HealthPoints'}}">

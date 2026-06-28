@@ -149,6 +149,9 @@ export class NpcProfileWindow extends FUApplication {
 		context.actor = actor;
 		context.name = actor.name;
 		context.img = actor.img;
+		const [rank, championLevel] = data.rank.split(':');
+		context.rank = FU.rank[rank];
+		context.championLevel = championLevel;
 		context.system = system;
 		context.items = actor.items;
 		context.basic = basic;
@@ -335,21 +338,29 @@ export class NpcProfileWindow extends FUApplication {
 		// REFRESH
 		else {
 			console.debug(`Refreshing profile of ${JSON.stringify(existing)}`);
-			existing.revealed ??= {};
+			const adversaries = party.parent.toObject().system.adversaries;
+			const changedAdversary = adversaries.find((value) => value.uuid === existing.uuid);
+			changedAdversary.img = actor.img;
+			changedAdversary.name = actor.name;
+			changedAdversary.species = actor.system.species.value;
+			changedAdversary.rank = actor.system.rank.value !== 'champion' ? actor.system.rank.value : `${actor.system.rank.value}:${actor.system.rank.replacedSoldiers}`;
+			changedAdversary.revealed ??= {};
 
 			// Affinities — re-sync values for already-revealed keys
-			if (existing.revealed.affinities) {
-				for (const aff of Object.keys(existing.revealed.affinities)) {
-					existing.revealed.affinities[aff] = FU.affTypeAbbr[actor.system.affinities[aff]?.current];
+			if (changedAdversary.revealed.affinities) {
+				for (const aff of Object.keys(changedAdversary.revealed.affinities)) {
+					changedAdversary.revealed.affinities[aff] = FU.affTypeAbbr[actor.system.affinities[aff]?.current];
 				}
 			}
 			// Traits — retain only revealed traits that still exist on the actor
-			if (existing.revealed.traits) {
-				existing.revealed.traits = existing.revealed.traits.filter((t) => traitsArray.includes(t));
-				if (existing.revealed.traits.length === 0) {
-					delete existing.revealed.traits;
+			if (changedAdversary.revealed.traits) {
+				changedAdversary.revealed.traits = changedAdversary.revealed.traits.filter((t) => traitsArray.includes(t));
+				if (changedAdversary.revealed.traits.length === 0) {
+					delete changedAdversary.revealed.traits;
+					changedAdversary.revealed['-=traits'] = null;
 				}
 			}
+			await party.parent.update({ system: { adversaries: adversaries } });
 			ui.notifications.info(`Updated NPC profile of ${actor.name}.`);
 		}
 	}
