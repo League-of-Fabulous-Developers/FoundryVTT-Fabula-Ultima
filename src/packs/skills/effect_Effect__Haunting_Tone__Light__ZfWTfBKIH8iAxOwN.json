@@ -1,11 +1,11 @@
 {
-  "folder": "oOLB3l3wkwkyPB4j",
-  "name": "Effect: Prancing Dandelion (Air)",
+  "folder": "cPO9Jh7lRiyPpi4e",
+  "name": "Effect: Haunting Tone (Light)",
   "type": "effect",
-  "_id": "sgyOnXZVNT0UGuKu",
-  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/prancing-dandelion.png",
+  "_id": "ZfWTfBKIH8iAxOwN",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
   "system": {
-    "fuid": "effect-prancing-dandelion-air",
+    "fuid": "effect-haunting-tone-light",
     "cost": {
       "value": 0
     },
@@ -13,13 +13,13 @@
   },
   "effects": [
     {
-      "name": "Prancing Dandelion (Air)",
-      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/prancing-dandelion.png",
-      "origin": "Compendium.projectfu.skills.Item.sgyOnXZVNT0UGuKu",
+      "name": "Haunting Tone (Light)",
+      "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+      "origin": "Compendium.projectfu.skills.Item.ZfWTfBKIH8iAxOwN",
       "system": {
         "duration": {
-          "event": "endOfTurn",
-          "interval": 2,
+          "event": "startOfTurn",
+          "interval": 1,
           "tracking": "source",
           "remaining": 1
         },
@@ -29,26 +29,35 @@
         },
         "rules": {
           "elements": {
-            "J3TsiqKFbG0sKzcP": {
+            "4RP4Sify5SdULONF": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "rRYbh70l60vwVk0N",
-                "type": "calculateDamageRuleTrigger",
-                "eventRelation": "source",
+                "_id": "kUChFNxpmT76Bory",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "light",
+                "affinity": "resistance",
                 "itemGroups": [],
-                "damageTypes": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
                 "local": false,
                 "identifier": ""
               },
-              "_id": "J3TsiqKFbG0sKzcP",
+              "_id": "4RP4Sify5SdULONF",
               "actions": {
-                "UCIUaRyKX6bXnQ01": {
-                  "type": "changeTraitsRuleAction",
-                  "_id": "UCIUaRyKX6bXnQ01",
+                "aLwNEcikSMc3jCuu": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "aLwNEcikSMc3jCuu",
                   "traits": {
                     "entries": [
                       "ignore-resistances"
                     ]
+                  },
+                  "amount": "",
+                  "cost": {
+                    "amount": null
                   }
                 }
               }
@@ -75,17 +84,10 @@
         "combat": null
       },
       "disabled": false,
-      "_id": "ItWxXK5fw7F2ceQq",
+      "_id": "pLDXIK49V5iJaOUb",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.overrides.damageType.all.priority",
-          "mode": 5,
-          "value": "air",
-          "priority": null
-        }
-      ],
-      "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>air</strong>, its type cannot change, and it ignores Resistances.</p>",
+      "changes": [],
+      "description": "<p>All <strong>light</strong> damage dealt to you ignores your Resistances. This lasts until the start of the <strong>chanter's</strong> next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -93,11 +95,11 @@
       "flags": {
         "projectfu": {
           "Source": {
-            "name": "Effect: Prancing Dandelion (Air)",
+            "name": "Effect: Haunting Tone (Light)",
             "actorUuid": null,
-            "itemUuid": "Compendium.projectfu.skills.Item.sgyOnXZVNT0UGuKu",
+            "itemUuid": "Compendium.projectfu.skills.Item.ZfWTfBKIH8iAxOwN",
             "effectUuid": null,
-            "fuid": "effect-prancing-dandelion-air"
+            "fuid": "effect-haunting-tone-light"
           }
         }
       },
@@ -108,11 +110,11 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777439415556,
-        "modifiedTime": 1782596062283,
+        "createdTime": 1782596775123,
+        "modifiedTime": 1782596806513,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!sgyOnXZVNT0UGuKu.ItWxXK5fw7F2ceQq"
+      "_key": "!items.effects!ZfWTfBKIH8iAxOwN.pLDXIK49V5iJaOUb"
     }
   ],
   "sort": 0,
@@ -128,9 +130,9 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1777439404273,
-    "modifiedTime": 1777439414050,
+    "createdTime": 1782596214506,
+    "modifiedTime": 1782596285875,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "_key": "!items!sgyOnXZVNT0UGuKu"
+  "_key": "!items!ZfWTfBKIH8iAxOwN"
 }
