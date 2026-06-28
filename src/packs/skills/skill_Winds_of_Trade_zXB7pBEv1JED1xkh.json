@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you rest in an area where commerce is possible, you gain <strong>【SL + 1】Trade Points</strong>. You may never have more than <strong>【SL + 3】</strong>Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</p><p>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p><hr /><p><strong>Rest</strong>: @PROGRESS[winds-of-trade update $sl+1]{Gain SL + 1 Trade Points}<br /><strong>Non-Conflict:</strong> @PROGRESS[winds-of-trade update -2]{Spend 2 Trade Points}</p>",
+    "description": "<p>After you rest in an area where commerce is possible, you gain <strong>【SL + 1】 Trade Points</strong>. You may never have more than <strong>【SL + 3】</strong> Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</p><p>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p><hr /><p><strong>You Gain</strong>: @PROGRESS[winds-of-trade update $sl+1]{Gain SL + 1 Trade Points}<br /><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -2]{Spend 2 Trade Points}</p>",
     "isFavored": {
       "value": false
     },
@@ -69,7 +69,84 @@
       }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Winds of Trade",
+      "img": "systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png",
+      "origin": "Compendium.projectfu.skills.Item.zXB7pBEv1JED1xkh",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "jiGkBkZpdBtdlK6f",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.rp.max",
+          "mode": 5,
+          "value": "$sl+3",
+          "priority": null
+        }
+      ],
+      "description": "<p>You may never have more than <strong>【SL + 3】</strong> Trade Points.</p>",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Winds of Trade",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.zXB7pBEv1JED1xkh",
+            "effectUuid": null,
+            "fuid": "winds-of-trade"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1782599197054,
+        "modifiedTime": 1782599293807,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!zXB7pBEv1JED1xkh.jiGkBkZpdBtdlK6f"
+    }
+  ],
   "ownership": {
     "default": 0,
     "aylHtMTxbnWEKFH9": 3
@@ -87,7 +164,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1775594641795,
+    "modifiedTime": 1782599240967,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
