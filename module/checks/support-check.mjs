@@ -100,7 +100,11 @@ function attachSupportCheckListener(chatLog, html) {
 				if (groupCheck && groupCheck.status === 'open') {
 					event.target.disabled = true;
 					try {
-						const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+						const character =
+							canvas.tokens.controlled
+								.map((token) => token.document.actor)
+								.filter((actor) => !!actor && actor.type === 'character')
+								.at(0) ?? game.user.character;
 						await handleSupportCheck(groupCheck, character);
 					} finally {
 						event.target.disabled = false;
