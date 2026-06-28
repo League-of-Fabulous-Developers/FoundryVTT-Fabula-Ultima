@@ -28,6 +28,10 @@ const registerSkillLikeType = (model) => {
 	skillLikeTypes.add(model);
 };
 
+const isRegisteredType = (item) => {
+	return skillLikeTypes.some((type) => foundry.utils.isSubclass(item?.system?.constructor, type));
+};
+
 /**
  * @param {FUItem} item
  * @param {KeyboardModifiers} modifiers
@@ -280,7 +284,7 @@ const getWeapon = async (actor) => {
  * @type RenderCheckHook
  */
 const onRenderAccuracyCheck = async (data, check, actor, item) => {
-	if (check.type === 'accuracy' && skillLikeTypes.some((type) => foundry.utils.isSubclass(item?.system?.constructor, type))) {
+	if (check.type === 'accuracy' && isRegisteredType(item)) {
 		const inspector = CheckConfiguration.inspect(check);
 		const weapon = await fromUuid(inspector.getWeaponReference());
 
@@ -308,7 +312,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
  * @type RenderCheckHook
  */
 let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
-	if (check.type === 'attribute' && skillLikeTypes.has(item?.system?.constructor) && check.additionalData[skillForAttributeCheck]) {
+	if (check.type === 'attribute' && isRegisteredType(item) && check.additionalData[skillForAttributeCheck]) {
 		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
 		CommonSections.itemFlavor(data.sections, skill);
 		data.tags.push(...(skill.system.getTags?.() ?? []));
@@ -333,7 +337,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
  * @type RenderCheckHook
  */
 const onRenderDisplay = (data, check, actor, item, flags) => {
-	if (check.type === 'display' && skillLikeTypes.has(item?.system?.constructor)) {
+	if (check.type === 'display' && isRegisteredType(item)) {
 		data.tags.push(...(item.system.getTags?.() ?? []));
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const inspector = CheckConfiguration.inspect(check);
