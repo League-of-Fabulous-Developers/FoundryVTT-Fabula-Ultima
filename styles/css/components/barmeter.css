@@ -239,7 +239,7 @@
 		right: 0;
 		pointer-events: none;
 		color: var(--pfu-color-app-control-content);
-		margin: 0 1px;
+		margin: 1px 0;
 	}
 }
 
