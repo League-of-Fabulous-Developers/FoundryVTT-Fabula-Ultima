@@ -28,7 +28,32 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "1KUT58mxD0Zxp12Q": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "8OB5hweLpIbreGAL",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "1KUT58mxD0Zxp12Q",
+              "actions": {
+                "JMgj24FvOMlhqoyM": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "JMgj24FvOMlhqoyM",
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  }
+                }
+              }
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
@@ -84,7 +109,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777434219094,
-        "modifiedTime": 1777434372499,
+        "modifiedTime": 1782595880411,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YfWDHikTC47SE6es.bvJqklvMLfGgWeLa"

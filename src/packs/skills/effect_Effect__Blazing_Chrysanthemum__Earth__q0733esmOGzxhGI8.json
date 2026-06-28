@@ -28,7 +28,32 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "c9fKDmpJmdhwlC9x": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "rc3KJBtA8UfGglSF",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "c9fKDmpJmdhwlC9x",
+              "actions": {
+                "afNkV5BjIfTvQoCI": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "afNkV5BjIfTvQoCI",
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  }
+                }
+              }
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
@@ -84,7 +109,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777432921068,
-        "modifiedTime": 1777434342182,
+        "modifiedTime": 1782595812299,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!q0733esmOGzxhGI8.FxwbtICYFA8IN11R"
