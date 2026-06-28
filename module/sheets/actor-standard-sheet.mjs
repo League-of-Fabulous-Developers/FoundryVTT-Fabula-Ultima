@@ -765,6 +765,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	async _onDragStart(ev) {
 		const { fromUuid } = foundry.utils;
+		if ('link' in ev.target.dataset) return;
 		const target = ev.currentTarget;
 
 		// Owned Items
