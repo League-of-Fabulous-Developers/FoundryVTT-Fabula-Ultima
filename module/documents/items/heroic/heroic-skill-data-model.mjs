@@ -2,7 +2,6 @@ import { FU } from '../../../helpers/config.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
 import { DamageTraits, HeroicSkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
-import { SkillLikeItemHelper } from '../skill-like-item-helper.mjs';
 
 /**
  * @property {string} subtype.value
@@ -59,5 +58,3 @@ export class HeroicSkillDataModel extends BaseSkillDataModel {
 		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: FU.heroicType[this.subtype.value] }];
 	}
 }
-
-SkillLikeItemHelper.registerSkillLikeType(HeroicSkillDataModel);
