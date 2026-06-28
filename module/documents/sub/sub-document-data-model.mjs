@@ -161,7 +161,7 @@ export class SubDocumentDataModel extends foundry.abstract.DataModel {
 	async delete(operation = {}) {
 		if (!this.isSource) throw new Error('You cannot delete a non-source pseudo-document!');
 		Object.assign(operation, { pseudo: { operation: 'delete', type: this.constructor.documentName, uuid: this.guid } });
-		const update = { [`${this.fieldPath}.-=${this.id}`]: null };
+		const update = { [`${this.fieldPath}.${this.id}`]: new foundry.data.operators.ForcedDeletion() };
 		this.constructor._configureUpdates('delete', this.document, update, operation);
 		return this.document.update(update, operation);
 	}

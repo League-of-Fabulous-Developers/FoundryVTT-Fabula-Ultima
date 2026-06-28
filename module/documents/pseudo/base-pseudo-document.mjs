@@ -776,10 +776,8 @@ export class BasePseudoDocument extends foundry.abstract.DataModel {
 		if (!scopes.includes(scope)) {
 			throw new Error(`Flag scope "${scope}" is not valid or not currently active`);
 		}
-		const head = key.split('.');
-		const tail = `-=${head.pop()}`;
-		key = ['flags', scope, ...head, tail].join('.');
-		return this.update({ [key]: null });
+		key = ['flags', scope, key].join('.');
+		return this.update({ [key]: new foundry.data.operators.ForcedDeletion() });
 	}
 
 	/**

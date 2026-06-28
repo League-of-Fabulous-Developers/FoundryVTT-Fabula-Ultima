@@ -115,10 +115,10 @@ function initialize() {
 	Hooks.on('chatMessage', onChatMessage);
 
 	Hooks.on('updateScene', (document, changed) => {
-		const flagChanged = foundry.utils.getProperty(changed, `flags.${SYSTEM}.${FLAG_ACTIVE_WELLSPRINGS}`);
-		const flagRemoved = foundry.utils.getProperty(changed, `flags.${SYSTEM}.-=${FLAG_ACTIVE_WELLSPRINGS}`) === null;
-		if (flagChanged || flagRemoved) {
-			Hooks.callAll(FUHooks.HOOK_WELLSPRING_CHANGED, [new WellspringDataModel(flagChanged)]);
+		const changedFlag = foundry.utils.getProperty(changed, `flags.${SYSTEM}.${FLAG_ACTIVE_WELLSPRINGS}`);
+		const flagValue = foundry.data.operators.DataFieldOperator.get(changedFlag);
+		if (flagValue) {
+			Hooks.callAll(FUHooks.HOOK_WELLSPRING_CHANGED, [new WellspringDataModel(flagValue)]);
 		}
 	});
 }
