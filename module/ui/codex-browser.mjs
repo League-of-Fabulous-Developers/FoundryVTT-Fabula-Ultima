@@ -30,6 +30,7 @@ export class CodexBrowser {
 	constructor(sheet) {
 		this.sheet = sheet;
 		this.selected = [];
+		this.filter = '';
 		this.enrichedDescriptions = [];
 		this.refresh(sheet.actor);
 	}
@@ -41,7 +42,11 @@ export class CodexBrowser {
 		const toolbar = html.querySelector('.toolbar');
 		const searchInput = toolbar.querySelector('.search').querySelector('input');
 		if (searchInput) {
-			requestAnimationFrame(() => searchInput.removeAttribute('disabled'));
+			requestAnimationFrame(() => {
+				searchInput.removeAttribute('disabled');
+				searchInput.value = this.filter;
+				this.updateEntries();
+			});
 			searchInput.addEventListener(
 				'input',
 				HTMLUtils.debounce(() => {
@@ -50,6 +55,8 @@ export class CodexBrowser {
 					this.updateEntries();
 				}, 150),
 			);
+		} else {
+			requestAnimationFrame(() => this.updateEntries());
 		}
 
 		html.querySelectorAll('.pfu-tag-selector .tag').forEach((tag) => {
@@ -75,6 +82,7 @@ export class CodexBrowser {
 	 */
 	async prepareContext(context) {
 		this.refresh(this.sheet.actor);
+		this.sanitizeSelectedTags();
 		context.browser = this;
 		context.playingSounds = new Set(
 			game.playlists.contents
@@ -137,12 +145,18 @@ export class CodexBrowser {
 		}
 	}
 
+	sanitizeSelectedTags() {
+		const currentTags = new Set(this.party.codex.tags);
+		this.selected = this.selected.filter((tag) => currentTags.has(tag));
+	}
+
 	updateEntries() {
+		this.sanitizeSelectedTags();
 		const element = this.sheet.element;
 		const entries = element.querySelector('.tab.codex .entries');
 		if (entries) {
 			const set = new Set(this.selected);
-			const filter = this.filter ? this.filter.toLowerCase() : '';
+			const filter = this.filter.toLowerCase();
 
 			for (const li of entries.querySelectorAll('li.entry')) {
 				const index = li.dataset.index;
