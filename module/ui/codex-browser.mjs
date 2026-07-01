@@ -16,7 +16,9 @@ export class CodexBrowser {
 
 	/** @type RegExp **/
 	#linkPattern;
-	/** @type String[] **/
+	/** @type Set<String> **/
+	tags;
+	/** @type Set<String> **/
 	selected;
 	/** @type String **/
 	filter;
@@ -29,7 +31,8 @@ export class CodexBrowser {
 
 	constructor(sheet) {
 		this.sheet = sheet;
-		this.selected = [];
+		this.tags = new Set();
+		this.selected = new Set();
 		this.filter = '';
 		this.enrichedDescriptions = [];
 		this.refresh(sheet.actor);
@@ -39,35 +42,28 @@ export class CodexBrowser {
 	 * @param {HTMLElement} html
 	 */
 	attachListeners(html) {
-		const toolbar = html.querySelector('.toolbar');
-		const searchInput = toolbar.querySelector('.search').querySelector('input');
-		if (searchInput) {
-			requestAnimationFrame(() => {
-				searchInput.removeAttribute('disabled');
-				searchInput.value = this.filter;
+		const searchInput = html.querySelector('.toolbar .search input');
+		searchInput.value = this.filter;
+
+		searchInput.addEventListener(
+			'input',
+			HTMLUtils.debounce((ev) => {
+				ev.stopPropagation();
+				this.filter = searchInput.value.toLowerCase() || '';
 				this.updateEntries();
-			});
-			searchInput.addEventListener(
-				'input',
-				HTMLUtils.debounce(() => {
-					const text = searchInput.value.toLowerCase() || '';
-					this.filter = text;
-					this.updateEntries();
-				}, 150),
-			);
-		} else {
-			requestAnimationFrame(() => this.updateEntries());
-		}
+			}, 150),
+		);
 
 		html.querySelectorAll('.pfu-tag-selector .tag').forEach((tag) => {
-			tag.addEventListener('click', () => {
+			tag.addEventListener('click', (ev) => {
+				ev.stopPropagation();
 				const value = tag.dataset.tag;
 
-				if (this.selected.includes(value)) {
-					this.selected = this.selected.filter((t) => t !== value);
+				if (this.selected.has(value)) {
+					this.selected.delete(value);
 					tag.classList.remove('active');
 				} else {
-					this.selected.push(value);
+					this.selected.add(value);
 					tag.classList.add('active');
 				}
 
@@ -82,7 +78,6 @@ export class CodexBrowser {
 	 */
 	async prepareContext(context) {
 		this.refresh(this.sheet.actor);
-		this.sanitizeSelectedTags();
 		context.browser = this;
 		context.playingSounds = new Set(
 			game.playlists.contents
@@ -94,13 +89,15 @@ export class CodexBrowser {
 
 	/**
 	 * @param {FUActor} actor
-	 * @param {HTMLElement} element
+	 * @param {HTMLElement} [element]
 	 */
 	refresh(actor, element) {
 		this.actor = actor;
 		this.party = actor.system;
 		this.#linkPattern = undefined;
+		this.tags = this.party.codex.entries.flatMap((entry) => entry.tags).reduce((tags, tag) => tags.add(tag), new Set(this.party.codex.tags));
 		if (element) {
+			this.updateEntries();
 			this.sortEntries(element);
 		}
 	}
@@ -145,17 +142,13 @@ export class CodexBrowser {
 		}
 	}
 
-	sanitizeSelectedTags() {
-		const currentTags = new Set(this.party.codex.tags);
-		this.selected = this.selected.filter((tag) => currentTags.has(tag));
-	}
-
 	updateEntries() {
-		this.sanitizeSelectedTags();
+		const unknownTags = this.selected.difference(new Set(this.tags));
+		unknownTags.forEach((tag) => this.selected.delete(tag));
+
 		const element = this.sheet.element;
 		const entries = element.querySelector('.tab.codex .entries');
 		if (entries) {
-			const set = new Set(this.selected);
 			const filter = this.filter.toLowerCase();
 
 			for (const li of entries.querySelectorAll('li.entry')) {
@@ -170,8 +163,11 @@ export class CodexBrowser {
 					visible = false;
 				} else if (!entry.name.toLowerCase().includes(filter)) {
 					visible = false;
-				} else if (set.size > 0 && ![...set].every((tag) => entry.tags.includes(tag))) {
-					visible = false;
+				} else if (this.selected.size > 0) {
+					const entryTags = new Set(entry.tags);
+					if (this.selected.difference(entryTags).size > 0) {
+						visible = false;
+					}
 				}
 
 				li.classList.toggle('hidden', !visible);
@@ -432,7 +428,7 @@ export class CodexBrowser {
 	async editCodexEntry(entry) {
 		const context = {
 			entry,
-			tags: this.party.codex.tags,
+			tags: new Set([...this.party.codex.tags, ...entry.tags]),
 			audioChannels: Object.entries(CONST.AUDIO_CHANNELS).reduce((channels, [key, value]) => {
 				channels[key] = game.i18n.localize(value);
 				return channels;
