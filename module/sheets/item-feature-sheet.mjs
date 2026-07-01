@@ -220,8 +220,8 @@ export class FUFeatureSheet extends FUItemSheet {
 				if (selectedType !== currentType) {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 					const updates = {
-						'system.-=data': null,
-						'system.optionalType': selectedType,
+						'system.data': new foundry.data.operators.ForcedDeletion(),
+						'system.optionalType': foundry.data.operators.ForcedReplacement(selectedType),
 					};
 					await this.item.update(updates);
 				}
@@ -237,8 +237,8 @@ export class FUFeatureSheet extends FUItemSheet {
 				if (selectedType !== currentType) {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 					const updates = {
-						'system.-=data': null,
-						'system.featureType': selectedType,
+						'system.data': new foundry.data.operators.ForcedDeletion(),
+						'system.featureType': new foundry.data.operators.ForcedReplacement(selectedType),
 					};
 					await this.item.update(updates);
 				}

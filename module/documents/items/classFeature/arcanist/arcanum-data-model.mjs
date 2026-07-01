@@ -16,10 +16,10 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField } = foundry.data.fields;
 		return {
-			domains: new StringField(),
-			merge: new HTMLField(),
-			pulse: new HTMLField(),
-			dismiss: new HTMLField(),
+			domains: new StringField({ initial: '' }),
+			merge: new HTMLField({ initial: '' }),
+			pulse: new HTMLField({ initial: '' }),
+			dismiss: new HTMLField({ initial: '' }),
 		};
 	}
 

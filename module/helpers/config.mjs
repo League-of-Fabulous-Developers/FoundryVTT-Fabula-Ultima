@@ -1207,3 +1207,7 @@ FU.equipmentSlots = {
 	offHand: 'FU.OffHand',
 	phantom: 'FU.PhantomHand',
 };
+
+FU.changeTypes = {
+	apply: `${SYSTEM}.apply`,
+};

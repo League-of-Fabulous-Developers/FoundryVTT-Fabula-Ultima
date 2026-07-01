@@ -18,6 +18,8 @@ export class PseudoDocumentCollectionField extends foundry.data.fields.ArrayFiel
 		throw new Error('A PseudoDocumentCollectionField must specify a PseudoDocument subclass as its type');
 	}
 
+	static hierarchical = true;
+
 	/**
 	 * A reference to the DataModel subclass of the embedded document element
 	 * @type {typeof PseudoDocument}
@@ -51,14 +53,18 @@ export class PseudoDocumentCollectionField extends foundry.data.fields.ArrayFiel
 
 	/** @override */
 	_cleanType(value, options) {
-		return value.map((v) => this.schema.clean(v, { ...options, source: v }));
+		const result = [];
+		for (const v of value) {
+			result.push(this.schema.clean(v, { ...options, source: v }));
+		}
+		return result;
 	}
 
 	/** @override */
-	_validateElements(value, options) {
-		const collectionFailure = new foundry.data.validation.DataModelValidationFailure();
+	_validateRecursive(value, options) {
+		const collectionFailure = new foundry.data.validation.DataModelValidationFailure('PseudoDocumentCollectionField#_validateRecursive', { fieldPath: this.fieldPath, unresolved: false });
 		for (const v of value) {
-			const failure = this.schema.validate(v, { ...options, source: v });
+			const failure = this.schema.validate(v, { ...options, source: v, model: this.model });
 			if (failure && !options.dropInvalidEmbedded) {
 				collectionFailure.elements.push({ id: v._id, name: v.name, failure });
 				collectionFailure.unresolved ||= failure.unresolved;
@@ -96,13 +102,15 @@ export class PseudoDocumentCollectionField extends foundry.data.fields.ArrayFiel
 
 	/**
 	 * Migrate this field's candidate source data.
-	 * @param {object} sourceData   Candidate source data of the root model
-	 * @param {any} fieldData       The value of this field within the source data
+	 * @param {Array} value Candidate source data of the root model
+	 * @param {object} options migration options
+	 * @param _state foundry internal state
 	 */
-	migrateSource(sourceData, fieldData) {
-		if (fieldData instanceof Array) {
-			for (const entry of fieldData) this.model.migrateDataSafe(entry);
+	_migrate(value, options, _state) {
+		if (Array.isArray(value)) {
+			for (const entry of value) this.model.migrateDataSafe(entry);
 		}
+		return value;
 	}
 
 	/* -------------------------------------------- */

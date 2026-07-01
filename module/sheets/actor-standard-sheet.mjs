@@ -578,11 +578,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const config = ActorSheetUtils.findItemConfig(item.parent, item.type, subtype);
 		if (config) {
 			// Check if there is an active ProseMirror editor
-			const activeEditor = document.querySelector('.editor-content.ProseMirror');
+			const activeEditor = this.element.querySelector('.editor-content.ProseMirror');
 			if (item.type === 'effect') {
 				if (activeEditor) {
 					// Handle effect drop into ProseMirror editor
-					return await this._handleEditorEffectDrop(item, event);
+					return await this._handleEditorEffectDrop(item, event, activeEditor);
 				} else {
 					// Handle effect drop into actor sheet
 					return await this._importEffectData(item);
@@ -603,25 +603,25 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (folder?.type !== 'Item') return super._onDropFolder(event, folder);
 
 		const allFolders = [folder, ...folder.getSubfolders(true)];
-		const folderIds = new Set(allFolders.map((f) => f.id));
 
-		const worldItems = allFolders.flatMap((f) => f.contents ?? []);
-		const packItems = [];
-		for (const pack of game.packs.filter((p) => p.metadata.type === 'Item')) {
-			const docs = await pack.getDocuments();
-			packItems.push(...docs.filter((i) => folderIds.has(i.folder?.id ?? i.folder)));
+		const items = [];
+		const effectItems = [];
+		for (let folder of allFolders) {
+			let pack = folder.pack ? game.packs.get(folder.pack) : null;
+			for (let item of folder.contents) {
+				if (pack) {
+					item = await pack.getDocument(item._id);
+				}
+				if (item.type === 'effect') {
+					effectItems.push(item);
+				} else {
+					items.push(item);
+				}
+			}
 		}
 
-		const allItems = [...worldItems, ...packItems];
-		const itemDataArray = allItems
-			.filter((i) => i && typeof i.toObject === 'function')
-			.map((i) => {
-				const data = i.toObject();
-				delete data._id;
-				return data;
-			});
-
-		await this.actor.createEmbeddedDocuments('Item', itemDataArray);
+		await this.actor.createEmbeddedDocuments('Item', items);
+		await Promise.all(effectItems.map((effect) => this._importEffectData(effect)));
 		return folder;
 	}
 
@@ -636,24 +636,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	// Handle dropping effects into a text editor
-	async _handleEditorEffectDrop(itemData, ev) {
-		const activeEditor = document.querySelector('.editor-content.ProseMirror');
-		if (activeEditor) {
-			const effects = itemData.effects || [];
-			const formattedEffects = effects.map((effect) => Effects.formatEffect(effect)).join(' ');
+	async _handleEditorEffectDrop(itemData, ev, activeEditor) {
+		const effects = itemData.effects || [];
+		const formattedEffects = effects.map((effect) => Effects.formatEffect(effect)).join(' ');
 
-			ev.preventDefault();
-			ev.stopPropagation();
+		ev.preventDefault();
+		ev.stopPropagation();
 
-			const currentContent = activeEditor.innerHTML;
+		const currentContent = activeEditor.innerHTML;
 
-			// Append the formatted effects to the current content of the editor
-			activeEditor.innerHTML = currentContent + formattedEffects;
+		// Append the formatted effects to the current content of the editor
+		activeEditor.innerHTML = currentContent + formattedEffects;
 
-			console.log(`Appended formatted effects to the ProseMirror editor.`);
-		} else {
-			console.log('No active ProseMirror editor found.');
-		}
+		console.log(`Appended formatted effects to the ProseMirror editor.`);
 	}
 
 	/* -------------------------------------------- */

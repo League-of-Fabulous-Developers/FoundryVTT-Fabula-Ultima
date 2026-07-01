@@ -323,9 +323,25 @@ Hooks.once('init', async () => {
 	CONFIG.ui.sidebar.TABS.settings = settingsTab;
 
 	// Register status effects
-	CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
+	CONFIG.ActiveEffect.phases.default = {
+		label: 'FU.ActiveEffectPhaseDefault',
+		hint: 'FU.ActiveEffectPhaseDefaultHint',
+	};
+	CONFIG.ActiveEffect.changeTypes[FU.changeTypes.apply] = {
+		label: 'FU.ActiveEffectChangeTypeApply',
+		defaultPriority: 0,
+		handler: (model, change, options) => {
+			const value = foundry.utils.getProperty(model, change.key);
+			if (change.key.startsWith('system.') && value instanceof foundry.abstract.DataModel && Object.hasOwn(value, change.value) && value[change.value] instanceof Function) {
+				console.debug(`Applying change ${change.value} to ${change.key}`);
+				value[change.value]();
+				foundry.utils.setProperty(model.overrides, change.key, value.current);
+				return false;
+			}
+		},
+	};
 
 	// Register sheet application classes. The 'types' fields associates the data model for each document.
 	foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);

@@ -1,5 +1,5 @@
 import { Flags } from '../../helpers/flags.mjs';
-import { SYSTEM } from '../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { PseudoItem } from '../items/pseudo-item.mjs';
@@ -37,18 +37,43 @@ const HIGH_PRIORITY_CHANGES = new Set([
 const LOW_PRIORITY_CHANGES = new Set(['system.resources.hp.max', 'system.resources.mp.max', 'system.resources.ip.max']);
 
 const defaultImage = 'icons/svg/aura.svg';
-const DEFAULT_PRIORITY = 50;
 
 export function ActiveEffectBehaviourMixin(BaseDocument) {
 	return class FUActiveEffectBehaviourMixin extends BaseDocument {
 		// TODO: Remove once everyone's migrated
 		static migrateData(source) {
+			source = super.migrateData(source);
+
 			const crisisInteraction = 'CrisisInteraction';
 			const type = 'type';
 
 			this._addDataFieldMigration(source, `flags.${SYSTEM}.${type}`, 'system.type');
 			this._addDataFieldMigration(source, `flags.${SYSTEM}.${crisisInteraction}`, 'system.predicate.crisisInteraction');
-			return super.migrateData(source);
+
+			if (Array.isArray(source.system?.changes)) {
+				const customChangeKeys = new Set([
+					'system.attributes.dex',
+					'system.attributes.ins',
+					'system.attributes.mig',
+					'system.attributes.wlp',
+					'system.affinities.air',
+					'system.affinities.bolt',
+					'system.affinities.dark',
+					'system.affinities.earth',
+					'system.affinities.fire',
+					'system.affinities.ice',
+					'system.affinities.light',
+					'system.affinities.physical',
+					'system.affinities.poison',
+				]);
+				for (const change of source.system.changes) {
+					if (change.type.startsWith('custom') && customChangeKeys.has(change.key)) {
+						change.type = FU.changeTypes.apply;
+					}
+				}
+			}
+
+			return source;
 		}
 
 		/**
@@ -56,15 +81,13 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 */
 		prepareBaseData() {
 			super.prepareBaseData();
-			for (let change of this.changes) {
+			for (let change of this.system.changes) {
 				if (HIGH_PRIORITY_CHANGES.has(change.key)) {
-					change.priority = change.mode;
+					change.phase = 'initial';
 				} else if (LOW_PRIORITY_CHANGES.has(change.key)) {
-					change.priority = (change.mode + 1) * 10 + 100;
+					change.phase = 'final';
 				} else {
-					if (!change.priority) {
-						change.priority = DEFAULT_PRIORITY;
-					}
+					change.phase = 'default';
 				}
 			}
 		}
@@ -199,19 +222,20 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		/**
 		 * @param {FUActor|FUItem} target
 		 * @param {EffectChangeData} change
+		 * @param {{replacementData?: Object, modifyTarget?: boolean}} options
 		 * @returns {{}|*}
 		 */
-		apply(target, change) {
+		static applyChange(target, change, options) {
 			// Support expressions
-			if (change.value && typeof change.value === 'string') {
+			if (change.value && typeof change.value === 'string' && change.type in CONST.ACTIVE_EFFECT_CHANGE_TYPES) {
 				try {
 					// First, evaluate using built-in support
-					const expression = Roll.replaceFormulaData(change.value, this.parent);
+					const expression = Roll.replaceFormulaData(change.value, change.effect.parent);
 					// Second, evaluate with our custom expressions
-					const context = this.resolveExpressionContext(target);
+					const context = this.resolveExpressionContext(target, change);
 					const value = Expressions.evaluate(expression, context);
 					change.value = String(value ?? 0);
-					console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
+					console.debug(`Assigning ${change.key} (TYPE ${change.type}): ${change.value}`);
 				} catch (e) {
 					console.error(e);
 					ui.notifications?.error(
@@ -225,19 +249,16 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				}
 			}
 
-			const changes = super.apply(target, change);
-			if (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM && changes[change.key] == null) {
-				delete changes[change.key];
-			}
-			return changes;
+			return super.applyChange(target, change, options);
 		}
 
 		/**
 		 * @description Resolves the context based on the target type
 		 * @param {FUActor|FUItem} target
+		 * @param {EffectChangeData} change
 		 * @returns {ExpressionContext}
 		 */
-		resolveExpressionContext(target) {
+		static resolveExpressionContext(target, change) {
 			let actor;
 			let item;
 
@@ -254,9 +275,9 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			}
 
 			const context = new ExpressionContext(actor, item, [target]);
-			context.effect = this;
-			if (this.sourceInfo) {
-				context.setSourceItem(this.sourceInfo.itemUuid);
+			context.effect = change.effect;
+			if (change.effect.sourceInfo) {
+				context.setSourceItem(context.effect.sourceInfo.itemUuid);
 			}
 			return context;
 		}

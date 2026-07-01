@@ -5,7 +5,7 @@ export class NpcProfileSpellsTableRenderer extends SpellsTableRenderer {
 	static TABLE_CONFIG = {
 		cssClass: 'npc-profile-spells-table',
 		columns: {
-			'-=controls': null,
+			controls: new foundry.data.operators.ForcedDeletion(),
 		},
 	};
 }

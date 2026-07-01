@@ -6,8 +6,8 @@ export class NpcProfileAbilitiesTableRenderer extends AbilitiesTableRenderer {
 		cssClass: 'npc-profile-abilities-table',
 		hideIfEmpty: true,
 		columns: {
-			'-=combinedProgress': null,
-			'-=controls': null,
+			combinedProgress: new foundry.data.operators.ForcedDeletion(),
+			controls: new foundry.data.operators.ForcedDeletion(),
 		},
 		getItems: NpcProfileAbilitiesTableRenderer.#getItems,
 	};

@@ -23,7 +23,7 @@ import { EffectStackingDataModel } from '../items/common/effect-stacking-data-mo
  * @property {ProgressDataModel} rules.progress It can be used for tracking a clock, a resource, a counter, etc.
  * @remarks The remaining property is initialized, and must be updated.
  */
-export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
+export class FUActiveEffectModel extends foundry.data.ActiveEffectTypeDataModel {
 	/**
 	 * @type {SubDocumentMetadata}
 	 */
@@ -38,6 +38,7 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { NumberField, SchemaField, StringField, EmbeddedDataField } = foundry.data.fields;
 		return {
+			...super.defineSchema(),
 			type: new StringField({ initial: 'default', choices: Object.keys(FU.effectType) }),
 			predicate: new EmbeddedDataField(ActiveEffectPredicateModel, {}),
 			duration: new SchemaField({

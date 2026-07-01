@@ -5,8 +5,8 @@ export class NpcProfileWeaponsTableRenderer extends WeaponsTableRenderer {
 	static TABLE_CONFIG = {
 		cssClass: 'npc-profile-weapons-table',
 		columns: {
-			'-=controls': null,
-			'-=equipStatus': null,
+			controls: new foundry.data.operators.ForcedDeletion(),
+			equipStatus: new foundry.data.operators.ForcedDeletion(),
 		},
 	};
 }

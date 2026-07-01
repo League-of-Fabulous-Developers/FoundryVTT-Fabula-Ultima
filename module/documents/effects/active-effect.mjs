@@ -45,20 +45,6 @@ import { CommonEvents } from '../../checks/common-events.mjs';
  * */
 export class FUActiveEffect extends ActiveEffectBehaviourMixin(ActiveEffect) {}
 
-/**
- * @param {FUActor} actor
- * @param {EffectChangeData} change
- * @param current
- */
-function onApplyActiveEffect(actor, change, current) {
-	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
-		console.debug(`Applying change ${change.value} to ${change.key}`);
-		current[change.value]();
-		return false;
-	}
-}
-Hooks.on('applyActiveEffect', onApplyActiveEffect);
-
 Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
 	/** @type FUActor **/
 	const actor = effect.parent;
