@@ -3,7 +3,7 @@
 
 		<div class="controls">
 			<div class="pfu-tag-selector" style="margin: 8px;">
-				{{#each system.codex.tags as |tag|}}
+				{{#each browser.tags as |tag|}}
 					<div class="tag {{#if (pfuCollectionContains tag ../browser.selected)}}active{{/if}}"
 						 data-action="toggleCodexTagFilter"
 						 data-tag="{{tag}}">
@@ -15,7 +15,7 @@
 			<div class="toolbar">
 				<label class="search">
 					<input type="text"
-						   placeholder="..." />
+						   placeholder="..." data-no-disable />
 				</label>
 				<button data-action="addCodexEntry">
 					<span>{{localize 'FU.Add'}}</span>

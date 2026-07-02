@@ -817,6 +817,11 @@ export class FUPartySheet extends FUActorSheet {
 		return super._onDropActor(event, actor);
 	}
 
+	_toggleDisabled(disabled) {
+		super._toggleDisabled(disabled);
+		this.element.querySelectorAll('[data-no-disable]').forEach((element) => (element.disabled = false));
+	}
+
 	/**
 	 * @param {FUActor[]} actors
 	 * @returns {Promise<{imported: number, skipped: string[]}>}
