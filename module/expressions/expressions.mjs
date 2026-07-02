@@ -83,7 +83,7 @@ export class ExpressionContext {
 	 */
 	assertActor(match) {
 		if (this.actor == null) {
-			ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+			ui.notifications?.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
 			throw new Error(`No reference to an actor provided while evaluating expression "${match}"`);
 		}
 	}
@@ -93,10 +93,7 @@ export class ExpressionContext {
 	 */
 	assertSource(match) {
 		if (this.sourceItem == null) {
-			// Can be evaluated very early
-			if (ui.notifications) {
-				ui.notifications.warn('FU.ChatEvaluateAmountNoSource', { localize: true });
-			}
+			ui.notifications?.warn('FU.ChatEvaluateAmountNoSource', { localize: true });
 			throw new Error(`No reference to a source provided while evaluating expression "${match}"`);
 		}
 	}
@@ -106,7 +103,7 @@ export class ExpressionContext {
 	 */
 	assertSingleTarget(match) {
 		if (this.targets.length !== 1) {
-			ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
+			ui.notifications?.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
 			throw new Error(`Requires a single target for "${match}"`);
 		}
 	}
@@ -116,7 +113,7 @@ export class ExpressionContext {
 	 */
 	assertActorOrTargets(match) {
 		if (this.targets.length === 0 && this.actor == null) {
-			ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+			ui.notifications?.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
 			throw new Error(`No reference to an actor provided while evaluating expression "${match}"`);
 		}
 	}
@@ -126,7 +123,7 @@ export class ExpressionContext {
 	 */
 	assertItem(match) {
 		if (this.item == null) {
-			ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
+			ui.notifications?.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
 			throw new Error(`No reference to an item provided while evaluating expression "${match}"`);
 		}
 	}
@@ -136,7 +133,7 @@ export class ExpressionContext {
 	 */
 	assertEffect(match) {
 		if (this.effect == null) {
-			ui.notifications.warn('FU.ChatEvaluateNoEffect', { localize: true });
+			ui.notifications?.warn('FU.ChatEvaluateNoEffect', { localize: true });
 			throw new Error(`No reference to an effect provided while evaluating expression "${match}"`);
 		}
 	}
