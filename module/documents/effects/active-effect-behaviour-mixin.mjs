@@ -259,6 +259,8 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @returns {ExpressionContext}
 		 */
 		static resolveExpressionContext(target, change) {
+			const effect = change.effect;
+
 			let actor;
 			let item;
 
@@ -266,8 +268,8 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			// 2. The effect is being applied onto an item
 			if (target instanceof FUActor) {
 				actor = target;
-				if (this.parent instanceof FUItem) {
-					item = this.parent;
+				if (effect.parent instanceof FUItem) {
+					item = effect.parent;
 				}
 			} else if (target instanceof FUItem) {
 				item = target;
@@ -275,8 +277,8 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			}
 
 			const context = new ExpressionContext(actor, item, [target]);
-			context.effect = change.effect;
-			if (change.effect.sourceInfo) {
+			context.effect = effect;
+			if (effect.sourceInfo) {
 				context.setSourceItem(context.effect.sourceInfo.itemUuid);
 			}
 			return context;
