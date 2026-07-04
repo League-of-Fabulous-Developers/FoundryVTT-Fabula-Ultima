@@ -23,11 +23,11 @@ import { ItemUtils } from '../helpers/item-utils.mjs';
 /**
  * @param {CheckSectionRenderData} sections
  * @param {string | Promise<string>} description
- * @param {string} summary
+ * @param {string} [summary]
  * @param {number} [order]
  * @param {Boolean} open Defaults to true
  */
-const description = (sections, description, summary, order = CHECK_DETAILS, open = true) => {
+const description = (sections, description, summary = '', order = CHECK_DETAILS, open = true) => {
 	if (summary || description) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',

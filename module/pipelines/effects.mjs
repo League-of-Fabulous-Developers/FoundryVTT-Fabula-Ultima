@@ -350,8 +350,8 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
-			existing.map((e) => {
-				CommonEvents.status(actor, statusEffectId, false);
+			existing.map(async (e) => {
+				await CommonEvents.status(actor, statusEffectId, false);
 				sendToChatEffectRemoved(e, actor);
 				return e.delete();
 			}),
@@ -387,7 +387,7 @@ export async function createStatusEffect(actor, statusEffectId, sourceInfo, conf
 			{ parent: actor },
 		);
 		await applyConfiguration(instance, config);
-		CommonEvents.status(actor, statusEffectId, true);
+		await CommonEvents.status(actor, statusEffectId, true);
 	}
 	return true;
 }
@@ -406,8 +406,8 @@ export async function disableStatusEffect(actor, statusEffectId) {
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
-			existing.map((e) => {
-				CommonEvents.status(actor, statusEffectId, false);
+			existing.map(async (e) => {
+				await CommonEvents.status(actor, statusEffectId, false);
 				sendToChatEffectRemoved(e, actor);
 				return e.delete();
 			}),

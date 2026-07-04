@@ -17,7 +17,7 @@ import { DamageData } from '../../../checks/damage-data.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
+const onRenderCheck = (data, check, actor, item, flags) => {
 	if (item?.system instanceof ConsumableDataModel) {
 		/** @type ConsumableDataModel **/
 
@@ -27,7 +27,7 @@ const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
 		const config = CheckConfiguration.configure(check);
 		const targets = config.getTargetsOrDefault();
 		CommonSections.actions(data, actor, item, targets, flags, config);
-		CommonEvents.item(actor, item);
+		data.postRenderActions.push(() => CommonEvents.item(actor, item));
 	}
 };
 

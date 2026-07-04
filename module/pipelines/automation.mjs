@@ -1,4 +1,3 @@
-import { AsyncHooks } from '../helpers/async-hooks.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
@@ -9,14 +8,17 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { Flags } from '../helpers/flags.mjs';
 
 /**
- * @param {CalculateExpenseEvent} event
+ * @param {CalculateExpenseEvent} e
+ * @param {RegisterCallback} registerCallback
  * @returns {Promise<void>}
  */
-async function onExpenseEvent(event) {
+async function onExpenseEvent(e, registerCallback) {
 	if (game.settings.get(SYSTEM, SETTINGS.automationSpendResource)) {
-		const sourceInfo = InlineSourceInfo.fromInstance(event.source.actor, event.item);
-		const request = new ResourceRequest(sourceInfo, [event.source.actor], event.expense.resource, -event.expense.amount);
-		return ResourcePipeline.process(request);
+		registerCallback(async (event) => {
+			const sourceInfo = InlineSourceInfo.fromInstance(event.source.actor, event.item);
+			const request = new ResourceRequest(sourceInfo, [event.source.actor], event.expense.resource, -event.expense.amount);
+			return ResourcePipeline.process(request);
+		});
 	}
 }
 
@@ -212,7 +214,7 @@ async function onCombatEvent(event) {
 }
 
 function initialize() {
-	AsyncHooks.on(FUHooks.EXPENSE_EVENT, onExpenseEvent);
+	Hooks.on(FUHooks.EXPENSE_EVENT, onExpenseEvent);
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 }
 

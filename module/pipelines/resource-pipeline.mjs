@@ -233,7 +233,7 @@ async function processRecovery(request) {
 						sections: [],
 						postRenderActions: [],
 					};
-					CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+					await CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
 					await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, amountRecovered, request.origin, renderData);
 					TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 					await createChatMessage(request, actor, Math.abs(amountRecovered), flavor, template, message, renderData);
@@ -284,7 +284,7 @@ async function processRecovery(request) {
 							sections: [],
 							postRenderActions: [],
 						};
-						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+						await CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
 						await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, request.amount, request.origin, renderData);
 						await createChatMessage(request, actor, amountRecovered, flavor, template, message, renderData);
 						TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
@@ -346,7 +346,7 @@ async function processLoss(request) {
 						sections: [],
 						postRenderActions: [],
 					};
-					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
+					await CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
 					await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, amountLost, request.origin, renderData);
 					TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 					await createChatMessage(request, actor, Math.abs(amountLost), flavor, template, message, renderData);
@@ -362,7 +362,7 @@ async function processLoss(request) {
 						sections: [],
 						postRenderActions: [],
 					};
-					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
+					await CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
 					await CommonEvents.resource(request.sourceActor, request.targets, request.sourceInfo, request.resourceType, amountLost, request.origin, renderData);
 					TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 					await createChatMessage(request, actor, Math.abs(amountLost), flavor, template, message, renderData);

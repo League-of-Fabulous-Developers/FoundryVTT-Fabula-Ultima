@@ -3,13 +3,12 @@ import { SYSTEM } from '../helpers/config.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
-import { AsyncHooks } from '../helpers/async-hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 
 /**
  * @param {RenderCheckEvent} event
  */
-async function onRenderCheck(event) {
+function onRenderCheck(event) {
 	const actor = event.sourceInfo.resolveActor();
 	if (!event.check.fumble || actor?.type !== 'character') {
 		return;
@@ -51,7 +50,7 @@ function onRenderChatMessage(message, element) {
 
 export const FumbleFabulaHandler = Object.freeze({
 	initialize: () => {
-		AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheck);
+		Hooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheck);
 		Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 	},
 });

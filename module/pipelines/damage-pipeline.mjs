@@ -278,21 +278,6 @@ function resolveAffinity(context) {
 				}
 			}
 		}
-
-		// Reveal information about this adversary
-		/** @type NpcProfileRevealData **/
-		let revealData = {
-			affinities: {
-				[context.damageType]: true,
-			},
-		};
-		if (context.pressureTrigger) {
-			revealData.pressurePoints = {
-				[context.pressurePoint]: true,
-			};
-		}
-
-		CommonEvents.reveal(context.actor, revealData);
 	}
 
 	context.affinityMessage = affinityMessage;
@@ -562,6 +547,20 @@ async function process(request) {
 				chat.withFlavor(StringUtils.localize(FU.affType[context.affinity]));
 				await chat.create();
 
+				// Reveal information about this adversary
+				/** @type NpcProfileRevealData **/
+				let revealData = {
+					affinities: {
+						[context.damageType]: true,
+					},
+				};
+				if (context.pressureTrigger) {
+					revealData.pressurePoints = {
+						[context.pressurePoint]: true,
+					};
+				}
+				await CommonEvents.reveal(context.actor, revealData);
+
 				return result; // keep the result from modifyTokenAttribute if needed
 			}),
 		);
@@ -820,9 +819,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	registerCallback(async (check, actor, item) => {
 		const config = CheckConfiguration.configure(check);
 		if (config.hasDamage) {
-			CommonEvents.calculateDamage(actor, item, config);
-			// TODO: Better solution
-			await new Promise((resolve) => setTimeout(resolve, 10));
+			await CommonEvents.calculateDamage(actor, item, config);
 			const damage = config.getDamage();
 			if (damage.customizable) {
 				await DamageCustomizerV2.open(damage, item);

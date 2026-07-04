@@ -30,6 +30,6 @@ export class NotifyRuleAction extends RuleActionDataModel {
 		} else {
 			id = context.label;
 		}
-		CommonEvents.notify(context.source, id, context.origin);
+		await CommonEvents.notify(context.source, id, context.origin);
 	}
 }

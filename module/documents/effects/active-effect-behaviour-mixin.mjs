@@ -417,7 +417,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			if (delta.system?.rules?.progress && previous.rules?.progress) {
 				if (previous.rules.progress.current !== this.system.rules.progress.current) {
 					// Progress is changed
-					CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);
+					await CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);
 				}
 			}
 

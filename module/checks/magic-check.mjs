@@ -73,7 +73,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
 	const targets = inspector.getTargets();
 	CommonSections.actions(data, actor, item, targets, flags, inspector);
-	CommonEvents.attack(inspector, actor, item);
+	data.postRenderActions.push(() => CommonEvents.attack(inspector, actor, item));
 }
 
 /**

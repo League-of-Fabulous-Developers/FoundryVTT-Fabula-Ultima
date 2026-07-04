@@ -23,7 +23,7 @@ import { ExpressionContext } from '../../../expressions/expressions.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (data, result, actor, item, flags, postRenderActions) => {
+const onRenderCheck = (data, result, actor, item, flags) => {
 	if (item && item.system instanceof SpellDataModel) {
 		data.tags.push(...item.system.getTags());
 		CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
@@ -124,7 +124,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		CommonEvents.spell(this.parent.actor, this.parent);
+		await CommonEvents.spell(this.parent.actor, this.parent);
 		if (this.hasRoll.value) {
 			return Checks.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {

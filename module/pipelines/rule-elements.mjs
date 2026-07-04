@@ -1,6 +1,6 @@
 import { systemId } from '../helpers/system-utils.mjs';
 import { SETTINGS } from '../settings.js';
-import { FUHooks as FUhooks, FUHooks } from '../hooks.mjs';
+import { FUHooks } from '../hooks.mjs';
 
 import { CombatRuleTrigger } from '../documents/effects/triggers/combat-rule-trigger.mjs';
 import { AttackRuleTrigger } from '../documents/effects/triggers/attack-rule-trigger.mjs';
@@ -37,7 +37,6 @@ import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-exp
 import { TargetingRulePredicate } from '../documents/effects/predicates/targeting-rule-predicate.mjs';
 import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-trigger.mjs';
 import { UpdateTrackRuleAction } from '../documents/effects/actions/update-track-rule-action.mjs';
-import { AsyncHooks } from '../helpers/async-hooks.mjs';
 import { UpdateTokenRuleAction } from '../documents/effects/actions/update-token-rule-action.mjs';
 import { PlaySoundEffectRuleAction } from '../documents/effects/actions/play-sound-effect-rule-action.mjs';
 import { ExecuteMacroRuleAction } from '../documents/effects/actions/execute-macro-rule-action.mjs';
@@ -120,187 +119,230 @@ function register() {
 }
 
 /**
- * @param {CombatEvent} event
- * @returns {Promise<void>}
+ * @param {CombatEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onCombatEvent(event) {
-	const source = event.combatant ? CharacterInfo.fromCombatant(event.combatant) : null;
-	const combatants = event.combatant ? [event.combatant] : event.combatants;
-	await evaluate(FUHooks.COMBAT_EVENT, event, source, CharacterInfo.fromCombatants(combatants));
-}
-
-/**
- * @param {AttackEvent} event
- * @returns {Promise<void>}
- */
-async function onAttackEvent(event) {
-	await evaluate(FUHooks.ATTACK_EVENT, event, event.source, event.targets, event.check);
-}
-
-/**
- * @param {DamageEvent} event
- * @returns {Promise<void>}
- */
-async function onDamageEvent(event) {
-	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)], {
-		renderData: event.renderData,
+function onCombatEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		const source = event.combatant ? CharacterInfo.fromCombatant(event.combatant) : null;
+		const combatants = event.combatant ? [event.combatant] : event.combatants;
+		await evaluate(FUHooks.COMBAT_EVENT, event, source, CharacterInfo.fromCombatants(combatants));
 	});
 }
 
 /**
- * @param {ResourceUpdateEvent} event
- * @returns {Promise<void>}
+ * @param {AttackEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onResourceEvent(event) {
-	await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets, {
-		renderData: event.renderData,
+function onAttackEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.ATTACK_EVENT, event, event.source, event.targets, event.check);
 	});
 }
 
 /**
- * @param {SpellEvent} event
- * @returns {Promise<void>}
+ * @param {DamageEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onSpellEvent(event) {
-	await evaluate(FUHooks.SPELL_EVENT, event, event.source, event.targets);
+function onDamageEvent(e, registerCallback) {
+	registerCallback(async (event) =>
+		evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)], {
+			renderData: event.renderData,
+		}),
+	);
 }
 
 /**
- * @param {CalculateDamageEvent} event
- * @returns {Promise<void>}
+ * @param {ResourceUpdateEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onCalculateDamageEvent(event) {
-	await evaluate(FUHooks.CALCULATE_DAMAGE_EVENT, event, event.source, event.targets, {
-		config: event.config,
+function onResourceEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets, {
+			renderData: event.renderData,
+		});
 	});
 }
 
 /**
- * @param {CalculateResourceEvent} event
- * @returns {Promise<void>}
+ * @param {SpellEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onCalculateResourceEvent(event) {
-	await evaluate(FUHooks.CALCULATE_RESOURCE_EVENT, event, event.source, event.targets, {
-		config: event.config,
+function onSpellEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.SPELL_EVENT, event, event.source, event.targets);
 	});
 }
 
 /**
- * @param {CalculateExpenseEvent} event
- * @returns {Promise<void>}
+ * @param {CalculateDamageEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onCalculateExpenseEvent(event) {
-	await evaluate(FUHooks.CALCULATE_EXPENSE_EVENT, event, event.source, event.targets);
-}
-
-/**
- * @param {StatusEvent} event
- * @returns {Promise<void>}
- */
-async function onStatusEvent(event) {
-	await evaluate(FUHooks.STATUS_EVENT, event, event.source, [event.source]);
-}
-
-/**
- * @param {CreateConsumableEvent} event
- * @returns {Promise<void>}
- */
-async function onCreateConsumableEvent(event) {
-	await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets);
-}
-
-/**
- * @param {ItemRollEvent} event
- * @returns {Promise<void>}
- */
-async function onItemRoll(event) {
-	await evaluate(FUHooks.ITEM_ROLL_EVENT, event, event.source, []);
-}
-
-/**
- * @param {InitializeCheckEvent} event
- * @returns {Promise<void>}
- */
-async function onInitializeCheckEvent(event) {
-	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, event.targets, {
-		check: event.config.check,
-		config: event.config,
+function onCalculateDamageEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.CALCULATE_DAMAGE_EVENT, event, event.source, event.targets, {
+			config: event.config,
+		});
 	});
 }
 
 /**
- * @param {PerformCheckEvent} event
- * @returns {Promise<void>}
+ * @param {CalculateResourceEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onPerformCheckEvent(event) {
-	await evaluate(FUHooks.PERFORM_CHECK_EVENT, event, event.source, event.targets, {
-		check: event.check,
-		config: event.config,
+function onCalculateResourceEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.CALCULATE_RESOURCE_EVENT, event, event.source, event.targets, {
+			config: event.config,
+		});
 	});
 }
 
 /**
- * @param {ResolveCheckEvent} event
- * @returns {Promise<void>}
+ * @param {CalculateExpenseEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onResolveCheckEvent(event) {
-	await evaluate(FUHooks.RESOLVE_CHECK_EVENT, event, event.source, event.targets, {
-		check: event.check,
+function onCalculateExpenseEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.CALCULATE_EXPENSE_EVENT, event, event.source, event.targets);
 	});
 }
 
 /**
- * @param {RenderCheckEvent} event
- * @returns {Promise<void>}
+ * @param {StatusEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onRenderCheckEvent(event) {
-	await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, event.targets, {
-		check: event.check,
-		config: event.config,
-		renderData: event.renderData,
+function onStatusEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.STATUS_EVENT, event, event.source, [event.source]);
 	});
 }
 
 /**
- * @param {RenderMessageEvent} event
- * @returns {Promise<void>}
+ * @param {CreateConsumableEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onRenderMessageEvent(event) {
-	await evaluate(FUHooks.RENDER_MESSAGE_EVENT, event, event.source, [], {
-		renderData: event.renderData,
+function onCreateConsumableEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets);
 	});
 }
 
 /**
- * @param {NotificationEvent} event
- * @returns {Promise<void>}
+ * @param {ItemRollEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onNotificationEvent(event) {
-	await evaluate(FUHooks.NOTIFICATION_EVENT, event, event.source, [event.source]);
-}
-
-/**
- * @param {NotificationEvent} event
- * @returns {Promise<void>}
- */
-async function onEffectToggledEvent(event) {
-	await evaluate(FUHooks.EFFECT_TOGGLED_EVENT, event, event.source, []);
-}
-
-/**
- * @param {FeatureEvent} event
- * @returns {Promise<void>}
- */
-async function onFeatureEvent(event) {
-	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, event.targets, {
-		renderData: event.renderData,
+function onItemRoll(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.ITEM_ROLL_EVENT, event, event.source, []);
 	});
 }
 
-async function onProgressEvent(event) {
-	console.log('onProgressEvent:', event);
-	await evaluate(FUHooks.PROGRESS_EVENT, event, event.source, [], {
-		renderData: event.renderData,
+/**
+ * @param {InitializeCheckEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onInitializeCheckEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, event.targets, {
+			check: event.config.check,
+			config: event.config,
+		});
+	});
+}
+
+/**
+ * @param {PerformCheckEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onPerformCheckEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.PERFORM_CHECK_EVENT, event, event.source, event.targets, {
+			check: event.check,
+			config: event.config,
+		});
+	});
+}
+
+/**
+ * @param {ResolveCheckEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onResolveCheckEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.RESOLVE_CHECK_EVENT, event, event.source, event.targets, {
+			check: event.check,
+		});
+	});
+}
+
+/**
+ * @param {RenderCheckEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onRenderCheckEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, event.targets, {
+			check: event.check,
+			config: event.config,
+			renderData: event.renderData,
+		});
+	});
+}
+
+/**
+ * @param {RenderMessageEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onRenderMessageEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.RENDER_MESSAGE_EVENT, event, event.source, [], {
+			renderData: event.renderData,
+		});
+	});
+}
+
+/**
+ * @param {NotificationEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onNotificationEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.NOTIFICATION_EVENT, event, event.source, [event.source]);
+	});
+}
+
+/**
+ * @param {NotificationEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onEffectToggledEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.EFFECT_TOGGLED_EVENT, event, event.source, []);
+	});
+}
+
+/**
+ * @param {FeatureEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onFeatureEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.FEATURE_EVENT, event, event.source, event.targets, {
+			renderData: event.renderData,
+		});
+	});
+}
+
+/**
+ * @param {ProgressEvent} e
+ * @param {RegisterCallback} registerCallback
+ */
+function onProgressEvent(e, registerCallback) {
+	registerCallback(async (event) => {
+		await evaluate(FUHooks.PROGRESS_EVENT, event, event.source, [], {
+			renderData: event.renderData,
+		});
 	});
 }
 
@@ -407,23 +449,22 @@ function initialize() {
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 	Hooks.on(FUHooks.ATTACK_EVENT, onAttackEvent);
 	Hooks.on(FUHooks.STATUS_EVENT, onStatusEvent);
-	AsyncHooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
-	AsyncHooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
+	Hooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
+	Hooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
 	Hooks.on(FUHooks.SPELL_EVENT, onSpellEvent);
-	AsyncHooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
+	Hooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 	Hooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
-	AsyncHooks.on(FUHooks.CALCULATE_RESOURCE_EVENT, onCalculateResourceEvent);
-	AsyncHooks.on(FUHooks.CALCULATE_EXPENSE_EVENT, onCalculateExpenseEvent);
-	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
-	AsyncHooks.on(FUHooks.INITIALIZE_CHECK_EVENT, onInitializeCheckEvent);
-	AsyncHooks.on(FUhooks.CONSUMABLE_CREATE_EVENT, onCreateConsumableEvent);
-	AsyncHooks.on(FUhooks.ITEM_ROLL_EVENT, onItemRoll);
-	AsyncHooks.on(FUhooks.FEATURE_EVENT, onFeatureEvent);
-	AsyncHooks.on(FUHooks.RENDER_MESSAGE_EVENT, onRenderMessageEvent);
-
+	Hooks.on(FUHooks.CALCULATE_RESOURCE_EVENT, onCalculateResourceEvent);
+	Hooks.on(FUHooks.CALCULATE_EXPENSE_EVENT, onCalculateExpenseEvent);
+	Hooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
+	Hooks.on(FUHooks.INITIALIZE_CHECK_EVENT, onInitializeCheckEvent);
+	Hooks.on(FUHooks.CONSUMABLE_CREATE_EVENT, onCreateConsumableEvent);
+	Hooks.on(FUHooks.ITEM_ROLL_EVENT, onItemRoll);
+	Hooks.on(FUHooks.FEATURE_EVENT, onFeatureEvent);
+	Hooks.on(FUHooks.RENDER_MESSAGE_EVENT, onRenderMessageEvent);
 	Hooks.on(FUHooks.PROGRESS_EVENT, onProgressEvent);
 }
 

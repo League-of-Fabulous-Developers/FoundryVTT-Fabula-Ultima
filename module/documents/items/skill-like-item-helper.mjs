@@ -349,7 +349,7 @@ const onRenderDisplay = (data, check, actor, item, flags) => {
 		if (item.system.hasResource?.value) {
 			CommonSections.resource(data.sections, item.system.rp, ChatSectionOrder.tracker);
 		}
-		CommonEvents.skill(actor, item);
+		data.postRenderActions.push(() => CommonEvents.skill(actor, item));
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
