@@ -170,7 +170,8 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	}
 
 	clean(value, options, _state) {
-		if (!value) return this.getInitialValue({ type: this.#getTypeValue(options.model) });
+		const model = _state.model ?? { _source: _state.modelSource };
+		if (!value) return this.getInitialValue({ type: this.#getTypeValue(model) });
 		return super.clean(value, options, _state);
 	}
 
