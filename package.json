@@ -29,6 +29,7 @@
 		"@foundryvtt/foundryvtt-cli": "3.0.0",
 		"axios": "1.13.0",
 		"eslint": "9.38.0",
+		"eslint-plugin-promise": "7.3.0",
 		"eslint-config-prettier": "10.1.8",
 		"globals": "16.4.0",
 		"husky": "9.1.7",
