@@ -411,7 +411,7 @@ export class FUActor extends foundry.documents.Actor {
 	 * @description Deletes all temporary effects on the actor
 	 * @property {ClearEffectOptions} options
 	 */
-	clearTemporaryEffects(options = FUActor.defaultClearEffectOptions) {
+	async clearTemporaryEffects(options = FUActor.defaultClearEffectOptions) {
 		// Collect effects to delete
 		const effectsToDelete = this.temporaryEffects.filter((effect) => {
 			// If it has a status effect
@@ -479,7 +479,7 @@ export class FUActor extends foundry.documents.Actor {
 
 		// Delete all collected effects
 		if (effectsToDelete.length > 0) {
-			Promise.all(effectsToDelete.map((effect) => effect.delete()));
+			await Promise.all(effectsToDelete.map((effect) => effect.delete()));
 		}
 	}
 

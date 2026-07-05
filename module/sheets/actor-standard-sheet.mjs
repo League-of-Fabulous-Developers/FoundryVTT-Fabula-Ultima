@@ -705,33 +705,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return;
 		}
 
-		this.loadSortingMethod();
-
 		// Dropzone event listeners
 		const dropZone = html.querySelector('.desc.drop-zone');
 		if (dropZone) {
 			dropZone.addEventListener('dragenter', this._onDragEnter.bind(this));
 			dropZone.addEventListener('dragleave', this._onDragLeave.bind(this));
 			dropZone.addEventListener('drop', this._onDropReset.bind(this));
-		}
-	}
-
-	loadSortingMethod() {
-		if (this.actor) {
-			const flags = this.actor.getFlag('projectfu', 'sortMethod');
-
-			if (flags) {
-				flags
-					.then((sortMethod) => {
-						if (sortMethod) {
-							this.sortMethod = sortMethod;
-							this.render();
-						}
-					})
-					.catch((error) => {
-						console.error(`Error loading sortMethod: ${error}`);
-					});
-			}
 		}
 	}
 
@@ -1185,13 +1164,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static ClearTempEffects(event, target) {
+	static async ClearTempEffects(event, target) {
 		event.preventDefault();
 		const actor = this.actor;
 		if (!actor || !actor.system || !actor.system.immunities) {
 			return;
 		}
-		actor.clearTemporaryEffects();
+		return actor.clearTemporaryEffects();
 	}
 
 	/**

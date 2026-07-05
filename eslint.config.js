@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import pluginPromise from "eslint-plugin-promise"
+import pluginPromise from 'eslint-plugin-promise';
 import globals from 'globals';
 import { defineConfig } from 'eslint/config';
 

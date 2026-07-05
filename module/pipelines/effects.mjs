@@ -842,33 +842,33 @@ function onRenderChatMessage(message, element) {
 	Pipeline.handleClick(message, element, 'clearEffect', async (dataset) => {
 		const effectId = dataset.effectId;
 		const targets = await Pipeline.getTargetsFromAction(dataset);
-		targets.forEach((actor) => {
+		for (const actor of targets) {
 			if (!actor.isOwner) {
 				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-				return;
+				continue;
 			}
 			if (effectId) {
 				const effect = actor.resolveEffect(effectId);
 				if (effect) {
-					effect.delete();
+					await effect.delete();
 				}
 			} else {
-				actor.clearTemporaryEffects({
+				await actor.clearTemporaryEffects({
 					status: true,
 				});
 			}
-		});
+		}
 	});
 
-	Pipeline.handleClick(message, element, 'clearEffects', (dataset) => {
+	Pipeline.handleClick(message, element, 'clearEffects', async (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
-		actors.forEach((actor) => {
+		for (const actor of actors) {
 			if (!actor.isOwner) {
 				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-				return;
+				continue;
 			}
-			actor.clearTemporaryEffects();
-		});
+			await actor.clearTemporaryEffects();
+		}
 	});
 }
 
@@ -878,7 +878,7 @@ function onRenderChatMessage(message, element) {
  */
 async function onRestEvent(event) {
 	// Remove statuses and other effects that last until rest
-	event.actor.clearTemporaryEffects({
+	await event.actor.clearTemporaryEffects({
 		duration: true,
 	});
 }

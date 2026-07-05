@@ -182,8 +182,8 @@ async function onCombatEvent(event) {
 		case FU.combatEvent.endOfCombat:
 			{
 				if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
-					event.actors.forEach((actor) => {
-						actor.clearTemporaryEffects({
+					for (const actor of event.actors) {
+						await actor.clearTemporaryEffects({
 							status: false,
 							rest: false,
 							duration: true,
@@ -195,7 +195,7 @@ async function onCombatEvent(event) {
 								return true;
 							},
 						});
-					});
+					}
 					return;
 				}
 
