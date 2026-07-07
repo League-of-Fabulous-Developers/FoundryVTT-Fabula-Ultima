@@ -64,6 +64,7 @@ export default defineConfig([
 				loadTemplates: 'readonly',
 				ui: 'readonly',
 				fromUuidSync: 'readonly',
+				_loc: 'readonly',
 			},
 		},
 	},

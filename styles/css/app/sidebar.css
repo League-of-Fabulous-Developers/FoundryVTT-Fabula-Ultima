@@ -18,6 +18,16 @@
 	padding-bottom: 1.5rem;
 }
 
+.pfuTools-sidebar__subheader {
+	text-align: center;
+}
+
+.pfuTools-sidebar__link {
+	font-size: 0.8rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
 #sidebar .fu-control.fu-star-2::before {
 	display: inline-block;
 	content: '';
