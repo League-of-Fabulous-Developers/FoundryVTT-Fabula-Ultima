@@ -162,10 +162,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Used by the templates
 		 */
 		get sourceName() {
-			if (this.sourceInfo) {
-				return this.sourceInfo.name;
-			}
-			return this.parent.name;
+			return this.sourceInfo?.name ?? this.parent.name;
 		}
 
 		/**
@@ -399,11 +396,17 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			}
 			// If no source info is provided, it could have been created directly
 			if (!data.flags?.projectfu?.source && data.origin) {
-				/** @type FUItem **/
-				const compendiumItem = await fromUuid(data.origin);
-				const sourceInfo = new InlineSourceInfo(compendiumItem.name, null, compendiumItem.uuid, null, compendiumItem.system.fuid);
-				const flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
-				changes.flags = flags;
+				const origin = await fromUuid(data.origin);
+				let sourceInfo;
+				if (origin instanceof FUItem) {
+					sourceInfo = new InlineSourceInfo(origin.name, null, origin.uuid, null, origin.system.fuid);
+				} else if (origin instanceof FUActor) {
+					sourceInfo = new InlineSourceInfo(origin.name, origin.uuid, null, null, null);
+				}
+
+				if (sourceInfo) {
+					changes.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
+				}
 			}
 
 			this.updateSource(changes);
