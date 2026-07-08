@@ -177,14 +177,15 @@
                 "UY578Gh9ibkcAaWg": {
                   "type": "messageRuleAction",
                   "_id": "UY578Gh9ibkcAaWg",
-                  "message": "<p>If you cause one or more enemies to lose HP, you may recover<strong>【SL × 5】</strong>HP.</p>"
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "CqmfDSkexO622LiX": {
                   "type": "updateResourceRuleAction",
                   "_id": "CqmfDSkexO622LiX",
                   "amount": "$sl*5"
                 }
-              }
+              },
+              "selector": "self"
             },
             "vu6YuEN6vlerB62H": {
               "type": "ruleElement",
@@ -226,14 +227,15 @@
                 "G7KWjDzT9URVrjjq": {
                   "type": "messageRuleAction",
                   "_id": "G7KWjDzT9URVrjjq",
-                  "message": "<p>If you cause one or more enemies to lose HP, you may recover<strong>【SL × 5】</strong>HP.</p>"
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "2kfZKSRbaN70RlPi": {
                   "type": "updateResourceRuleAction",
                   "_id": "2kfZKSRbaN70RlPi",
                   "amount": "$sl*5"
                 }
-              }
+              },
+              "selector": "self"
             },
             "hhpK7dHww70Ln8a3": {
               "type": "ruleElement",
@@ -277,14 +279,15 @@
                 "RrimQoKy6AraLGPA": {
                   "type": "messageRuleAction",
                   "_id": "RrimQoKy6AraLGPA",
-                  "message": "<p>If you cause one or more enemies to lose HP, you may recover<strong>【SL × 5】</strong>HP.</p>"
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "cUp7Ytuedl5yNPpI": {
                   "type": "updateResourceRuleAction",
                   "_id": "cUp7Ytuedl5yNPpI",
                   "amount": "$sl*5"
                 }
-              }
+              },
+              "selector": "self"
             }
           },
           "progress": {
@@ -294,6 +297,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -320,7 +328,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767289793419,
-        "modifiedTime": 1771837693053,
+        "modifiedTime": 1783551316870,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!kpg23Fs85uniba2A.cHLNid8K4n73xxvO"
