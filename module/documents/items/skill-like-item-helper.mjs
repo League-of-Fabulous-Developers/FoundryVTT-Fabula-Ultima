@@ -257,6 +257,12 @@ const addSkillDamage = async (config, item, context, weaponData = undefined) => 
 			}
 		}
 
+		if (weaponData && item.system.useWeapon.traits) {
+			config.setDamageOverride(context.actor, 'attack');
+		} else {
+			config.setDamageOverride(context.actor, 'skill');
+		}
+
 		const onRoll = item.system.damage.onRoll;
 		if (onRoll) {
 			const extraDamage = await Expressions.evaluateAsync(onRoll, context);
