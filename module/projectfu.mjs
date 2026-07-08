@@ -661,22 +661,24 @@ function createItemMacro(data, slot) {
 		return false;
 	}
 	// If it is, retrieve it based on the uuid.
-	Item.fromDropData(data).then((item) => {
-		// Create the macro command using the uuid.
-		const command = `game.projectfu.rollItemMacro("${data.uuid}");`;
-		let macro = game.macros.find((m) => m.name === item.name && m.command === command);
-		if (!macro) {
-			Macro.create({
-				name: item.name,
-				type: 'script',
-				img: item.img,
-				command: command,
-				flags: { 'projectfu.itemMacro': true },
-			}).then((macro) => game.user.assignHotbarMacro(macro, slot));
-		} else {
-			game.user.assignHotbarMacro(macro, slot);
-		}
-	});
+	Item.fromDropData(data)
+		.then((item) => {
+			// Create the macro command using the uuid.
+			const command = `game.projectfu.rollItemMacro("${data.uuid}");`;
+			const macro = game.macros.find((m) => m.name === item.name && m.command === command);
+			return (
+				macro ??
+				Macro.create({
+					name: item.name,
+					type: 'script',
+					img: item.img,
+					command: command,
+					flags: { 'projectfu.itemMacro': true },
+				})
+			);
+		})
+		.then((macro) => game.user.assignHotbarMacro(macro, slot))
+		.catch((err) => ui.notifications.error(err));
 	return false;
 }
 
@@ -686,22 +688,12 @@ function createItemMacro(data, slot) {
  * @param {string} itemUuid
  */
 function rollItemMacro(itemUuid) {
-	// Reconstruct the drop data so that we can load the item.
-	const dropData = {
-		type: 'Item',
-		uuid: itemUuid,
-	};
-	// Load the item from the uuid.
-	Item.fromDropData(dropData).then((item) => {
-		// Determine if the item loaded and if it's an owned item.
-		if (!item || !item.parent) {
-			const itemName = item?.name ?? itemUuid;
-			return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
-		}
-
-		// Trigger the item roll
-		item.roll();
-	});
+	const item = fromUuidSync(itemUuid);
+	if (!item || !item.parent || !(item instanceof FUItem || item instanceof PseudoItem)) {
+		const itemName = item?.name ?? itemUuid;
+		return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
+	}
+	return item.roll();
 }
 
 /**

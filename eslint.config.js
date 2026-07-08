@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import pluginPromise from 'eslint-plugin-promise';
 import globals from 'globals';
 import { defineConfig } from 'eslint/config';
 
@@ -18,8 +19,8 @@ export default defineConfig([
 		name: 'projectfu/system',
 		files: ['**/*.{js,mjs,cjs}'],
 		ignores: ['tools/*.mjs'],
-		plugins: { js },
-		extends: ['js/recommended'],
+		plugins: { js, pluginPromise },
+		extends: ['js/recommended', pluginPromise.configs['flat/recommended']],
 		rules: {
 			'no-unused-vars': [
 				'error',

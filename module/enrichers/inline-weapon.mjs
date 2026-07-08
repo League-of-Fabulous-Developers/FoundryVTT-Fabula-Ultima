@@ -156,9 +156,8 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				config.name = effectData.name;
 				config.event = 'endOfScene';
 
-				Effects.applyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
-					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
-				});
+				const effect = await Effects.applyEffect(weapon, effectData, sourceInfo, config);
+				console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 			}
 			console.info(`Applied ${choice} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}' from source ${source?.uuid}`);
 		};
