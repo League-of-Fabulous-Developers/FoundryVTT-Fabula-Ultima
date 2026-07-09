@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>.</strong> If you do, choose one option:</span></p><ul><li><p><span>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</span></p></li><li><p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</span></p></li><li><p><span>You recover from either <strong>slow</strong> or <strong>weak</strong> (your choice).</span></p></li></ul>",
+    "description": "<p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>.</strong> If you do, choose one option:</p><ul><li><p>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</p></li><li><p>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</p></li><li><p>You recover from either <strong>slow</strong> or <strong>weak</strong> (your choice).</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -215,7 +215,7 @@
       "_id": "nPQt2DcRKMJqYXcX",
       "type": "base",
       "changes": [],
-      "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points to use this Skill.</span></p>",
+      "description": "<p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points to use this Skill.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

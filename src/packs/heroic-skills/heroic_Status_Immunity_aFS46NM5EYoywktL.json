@@ -9,7 +9,7 @@
     "summary": {
       "value": "Ignore a status effect."
     },
-    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class.</span></p><hr /><p><span>You become completely immune to a single status effect of your choice.</span></p><hr /><p><em>Enable the passive effect on this Skill that matches your chosen status effect and delete the others.</em></p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class.</p><hr /><p>You become completely immune to a single status effect of your choice.</p><hr /><p><em>Enable the passive effect on this Skill that matches your chosen status effect and delete the others.</em></p>",
     "isFavored": {
       "value": false
     },

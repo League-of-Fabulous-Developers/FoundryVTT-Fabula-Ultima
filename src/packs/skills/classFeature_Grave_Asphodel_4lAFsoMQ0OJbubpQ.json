@@ -27,7 +27,7 @@
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>At the end of your turn, you deal an amount of <strong>dark</strong> damage equal to<strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>shaken</strong>.</p><hr><p><strong>Targets Suffer:</strong> @DMG[15+&sl('chloromancy')+5*floor($cl/30) dark]{15 + (SL in Chloromancy)}</p>"
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>dark</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>shaken</strong>.</p><hr><p><strong>Targets Suffer:</strong> @DMG[15+&sl('chloromancy')+5*floor($cl/30) dark]{15 + (SL in Chloromancy)}</p>"
         }
       ]
     },

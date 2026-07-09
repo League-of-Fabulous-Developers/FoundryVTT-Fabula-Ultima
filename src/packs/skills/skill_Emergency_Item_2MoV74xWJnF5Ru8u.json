@@ -168,7 +168,7 @@
         }
       },
       "changes": [],
-      "description": "<p>Once per conflict scene, if you are in <strong>Crisis</strong>, you may perform an additional action on your turn. This action <strong>must</strong> be the <strong>Inventory</strong> action. </p>",
+      "description": "<p>Once per conflict scene, if you are in <strong>Crisis</strong>, you may perform an additional action on your turn. This action <strong>must</strong> be the <strong>Inventory</strong> action.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

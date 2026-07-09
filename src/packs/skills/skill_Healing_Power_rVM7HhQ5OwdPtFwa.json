@@ -177,7 +177,7 @@
                 "X47SaNqzFbRPyrEp": {
                   "type": "messageRuleAction",
                   "_id": "X47SaNqzFbRPyrEp",
-                  "message": "<p>Targeted allies recover<strong>【3 + (SL x Bonds)】</strong>HP.</p>"
+                  "message": "<p>Targeted allies recover <strong>【3 + (SL × Bonds)】</strong> HP.</p>"
                 },
                 "YaNI3PWxfkOSyAdw": {
                   "type": "updateResourceRuleAction",

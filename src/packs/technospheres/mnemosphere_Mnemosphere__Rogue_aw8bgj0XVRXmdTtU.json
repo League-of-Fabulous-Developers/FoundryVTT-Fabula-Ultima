@@ -211,7 +211,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p><span>As long as you have <strong>no</strong> <strong>shields</strong> and <strong>no</strong> <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</span></p>",
+          "description": "<p>As long as you have <strong>no</strong> <strong>shields</strong> and <strong>no</strong> <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -304,7 +304,7 @@
                 "priority": null
               }
             ],
-            "description": "<p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by<strong>【SL】</strong>.</p>",
+            "description": "<p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</p>",
             "transfer": true,
             "statuses": [],
             "flags": {
@@ -352,7 +352,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</span></p><ul><li><p><span>Perform a <strong>free attack</strong> with a weapon you have equipped.</span></p></li><li><p><span>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</span></p></li></ul><p><span>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
+          "description": "<p>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon you have equipped.</p></li><li><p>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</p></li></ul><p>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -454,7 +454,7 @@
                       "28zPkL7Xf4utBu0o": {
                         "type": "messageRuleAction",
                         "_id": "28zPkL7Xf4utBu0o",
-                        "message": "<p><span>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</span></p><hr><p><span><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</span></p>"
+                        "message": "<p>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>"
                       }
                     },
                     "selector": "self",
@@ -486,7 +486,7 @@
             "_id": "puwoCJqGrvIL3Tmq",
             "type": "base",
             "changes": [],
-            "description": "<p><span>At the start of a conflict, you may perform a <strong>free attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</span></p>",
+            "description": "<p>At the start of a conflict, you may perform a <strong>free attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
@@ -513,7 +513,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p><span>You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a <strong>different</strong> scene in which another Player Character is present. Describe how you escaped and miraculously got here!</span></p>",
+          "description": "<p>You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a <strong>different</strong> scene in which another Player Character is present. Describe how you escaped and miraculously got here!</p>",
           "showTitleCard": {
             "value": false
           },
@@ -603,7 +603,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>During a conflict, you may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of an enemy you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target’s <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】</strong> Checks for this Skill.</p>",
+          "description": "<p>During a conflict, you may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of an enemy you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target's <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】</strong> Checks for this Skill.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -813,7 +813,7 @@
             "_id": "i3kIT0IU5XlnYo9m",
             "type": "base",
             "changes": [],
-            "description": "<p>If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target’s <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>.</p>",
+            "description": "<p>If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target's <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,

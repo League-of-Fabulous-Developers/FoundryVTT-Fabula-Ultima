@@ -62,7 +62,7 @@
           "priority": null
         }
       ],
-      "description": "<p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional Mind Points until the start of the <strong>commander's</strong> next turn.</p>",
+      "description": "<p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional Mind Points until the start of the <strong>commander's</strong> next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

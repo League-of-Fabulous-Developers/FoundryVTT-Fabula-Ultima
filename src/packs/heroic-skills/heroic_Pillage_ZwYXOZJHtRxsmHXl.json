@@ -9,7 +9,7 @@
     "summary": {
       "value": "Steal from multiple creatures."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Rogue</strong> Class, and must have acquired the <strong>Soul Steal</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal} Skill, you may target any number of creatures at the same time (you perform a single Check and compare it to the Magic Defense of each creature you are attempting to steal from).  </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Rogue</strong> Class, and must have acquired the <strong>Soul Steal</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal} Skill, you may target any number of creatures at the same time (you perform a single Check and compare it to the Magic Defense of each creature you are attempting to steal from).</p>",
     "isFavored": {
       "value": false
     },

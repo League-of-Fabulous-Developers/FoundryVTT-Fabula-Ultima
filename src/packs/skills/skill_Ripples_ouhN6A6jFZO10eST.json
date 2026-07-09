@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After an enemy you can see loses Hit Points due to damage dealt by one of your allies, if that damage was increased by one or more of your <strong>\"hex\" invocations</strong>, you may perform a <strong>free attack</strong> with a weapon you have equipped. This attack may only target that enemy, and receives a bonus equal to <strong>【SL】</strong> to its Accuracy Check; if it is successful, all its damage becomes of the same type dealt by your ally, and <strong>all \"hex\" invocations</strong> present on its target end immediately after the attack has been resolved. If two or more enemies trigger this Skill at the same time, you can perform a <strong>free attack</strong> against <strong>each</strong> of them, in whatever order you prefer.</p>",
+    "description": "<p>After an enemy you can see loses Hit Points due to damage dealt by one of your allies, if that damage was increased by one or more of your <strong>\"hex\" invocations</strong>, you may perform a <strong>free attack</strong> with a weapon you have equipped. This attack may only target that enemy, and receives a bonus equal to <strong>【SL】</strong> to its Accuracy Check; if it is successful, all its damage becomes of the same type dealt by your ally, and <strong>all \"hex\" invocations</strong> present on its target end immediately after the attack has been resolved. If two or more enemies trigger this Skill at the same time, you can perform a <strong>free attack</strong> against <strong>each</strong> of them, in whatever order you prefer.</p>",
     "isFavored": {
       "value": false
     },

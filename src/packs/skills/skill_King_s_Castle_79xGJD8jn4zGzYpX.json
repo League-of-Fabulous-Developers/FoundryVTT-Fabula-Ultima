@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover HP or MP.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong>additional MP.</p></li></ul><p>The chosen effect lasts until the start of your next turn. </p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
+    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover HP or MP.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional MP.</p></li></ul><p>The chosen effect lasts until the start of your next turn.</p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
     "isFavored": {
       "value": false
     },

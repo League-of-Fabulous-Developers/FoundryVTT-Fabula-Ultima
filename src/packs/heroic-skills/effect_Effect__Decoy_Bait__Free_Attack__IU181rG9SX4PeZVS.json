@@ -84,7 +84,7 @@
           "priority": null
         }
       ],
-      "description": "<p>For your <strong>free attack</strong>, it gains a bonus equal to<strong>【Hawkeye SL】</strong>to your Accuracy Check, and its damage ignores Immunities and Resistances.</p>",
+      "description": "<p>For your <strong>free attack</strong>, it gains a bonus equal to <strong>【Hawkeye SL】</strong> to your Accuracy Check, and its damage ignores Immunities and Resistances.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

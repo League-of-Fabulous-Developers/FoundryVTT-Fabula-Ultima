@@ -47,7 +47,7 @@
       "_id": "rbbIlM6VQfSDxsCd",
       "type": "base",
       "changes": [],
-      "description": "<p>When a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of MP equal to<strong>【10 + the spell's total MP cost】</strong>in order to completely stop the casting of the spell and negate its effects.</p>",
+      "description": "<p>When a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of MP equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
