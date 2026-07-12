@@ -34,14 +34,14 @@
               "trigger": {
                 "_id": "0LKmbVkrYIckX3TJ",
                 "type": "combatRuleTrigger",
-                "eventRelation": "",
-                "eventType": "endOfTurn"
+                "eventRelation": "source",
+                "eventType": "startOfTurn"
               },
               "actions": {
                 "YKCrtbI2oicxczdt": {
                   "type": "messageRuleAction",
                   "_id": "YKCrtbI2oicxczdt",
-                  "message": "<p>You will perform one fewer action on this turn (to a minimum of 0 actions).</p>"
+                  "message": "<p>You will perform one fewer action on this turn.</p>"
                 }
               },
               "predicates": {},
@@ -57,6 +57,11 @@
             "max": 6,
             "style": "basic",
             "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -83,7 +88,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1783549988716
       },
       "_key": "!items.effects!3TCvFEruZDYy6BNx.UdGbGayAOCXrLjuh"
     }
