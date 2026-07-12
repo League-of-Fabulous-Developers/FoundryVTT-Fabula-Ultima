@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you use the @UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy} Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p><hr /><p><strong>You Recover:</strong> @GAIN[4+&amp;sl('theriomorphosis') mp]{4 + (SL in Theriomorphosis) MP}</p>"
+      "description": "<p>When you use the @UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy} Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p><hr /><p><strong>You Gain:</strong> @GAIN[4+&amp;sl('theriomorphosis') mp]{4 + (Theriomorphosis SL) MP}</p>"
     },
     "source": "FUTF156",
     "fuid": "neurophagoida"
@@ -21,6 +21,7 @@
     {
       "name": "Neurophagoida",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.f9NciszRYctYrAnb",
       "system": {
         "duration": {
           "event": "none",
@@ -34,21 +35,151 @@
         },
         "rules": {
           "elements": {
-            "PRMg2tLnpNNnqSf2": {
+            "m8SkHGwDWpQoap1W": {
               "type": "ruleElement",
-              "_id": "PRMg2tLnpNNnqSf2",
               "trigger": {
-                "_id": "IKV9rFgOrQJWuJ5Z",
-                "type": "notificationRuleTrigger",
+                "_id": "p3rI6gzQs15twxI9",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "eventId": "biophagy"
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "m8SkHGwDWpQoap1W",
+              "predicates": {
+                "WwBDYEKDt4zVV4Bh": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "WwBDYEKDt4zVV4Bh",
+                  "selector": "self",
+                  "effect": "crisis"
+                },
+                "pI7Ccm1DO9f2E1uw": {
+                  "type": "traitsRulePredicate",
+                  "_id": "pI7Ccm1DO9f2E1uw",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
               },
               "actions": {
-                "327gM1tCYeO4Q2zN": {
+                "8EgMFSxSsFVXlGB6": {
+                  "type": "messageRuleAction",
+                  "_id": "8EgMFSxSsFVXlGB6",
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【4 + Theriomorphosis SL】</strong> MP.</p>"
+                },
+                "q3IqQDPXLXwNte0j": {
                   "type": "updateResourceRuleAction",
-                  "_id": "327gM1tCYeO4Q2zN",
-                  "resource": "mp",
-                  "amount": "4+&sl('theriomorphosis')"
+                  "_id": "q3IqQDPXLXwNte0j",
+                  "amount": "4+&sl('theriomorphosis')",
+                  "resource": "mp"
+                }
+              },
+              "selector": "self"
+            },
+            "lE0FdbKpuRDIqf7E": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "D9ozzkTP9mYqNTRA",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "lE0FdbKpuRDIqf7E",
+              "predicates": {
+                "lQbKZzHcdmH9HjvW": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "lQbKZzHcdmH9HjvW",
+                  "selector": "self",
+                  "effect": "crisis"
+                },
+                "0Dd41f4pDpCEEhkH": {
+                  "type": "traitsRulePredicate",
+                  "_id": "0Dd41f4pDpCEEhkH",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                },
+                "6HmYz4FpmZsjelRv": {
+                  "type": "spellRulePredicate",
+                  "_id": "6HmYz4FpmZsjelRv",
+                  "offensive": "true"
+                }
+              },
+              "actions": {
+                "17cJeTaDn09eBX16": {
+                  "type": "messageRuleAction",
+                  "_id": "17cJeTaDn09eBX16",
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【4 + Theriomorphosis SL】</strong> MP.</p>"
+                },
+                "fkfz5pxJXqBuEO8A": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "fkfz5pxJXqBuEO8A",
+                  "amount": "4+&sl('theriomorphosis')",
+                  "resource": "mp"
+                }
+              },
+              "selector": "self"
+            },
+            "CO7OXzwjCDWOB0I2": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "EU6yCVGDb6w0nozn",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "CO7OXzwjCDWOB0I2",
+              "predicates": {
+                "vDjqxHyXFprcrzMY": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "vDjqxHyXFprcrzMY",
+                  "selector": "self",
+                  "effect": "crisis"
+                },
+                "AT05wTwTYCYZU8Y9": {
+                  "type": "spellRulePredicate",
+                  "_id": "AT05wTwTYCYZU8Y9",
+                  "offensive": "true"
+                },
+                "T7PYQkzIX6ae1hY8": {
+                  "type": "traitsRulePredicate",
+                  "_id": "T7PYQkzIX6ae1hY8",
+                  "traits": {
+                    "entries": [
+                      "loss",
+                      "hit-point"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "WUZ4ntXp6ewPqcDr": {
+                  "type": "messageRuleAction",
+                  "_id": "WUZ4ntXp6ewPqcDr",
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【4 + Theriomorphosis SL】</strong> MP.</p>"
+                },
+                "pxN72AP9oJejhyXl": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "pxN72AP9oJejhyXl",
+                  "amount": "4+&sl('theriomorphosis')",
+                  "resource": "mp"
                 }
               },
               "selector": "self"
@@ -60,37 +191,52 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "Yrv4pAdAggCnqFLk",
+      "disabled": false,
+      "_id": "TM3voI7NzQauIODl",
       "type": "base",
       "changes": [],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. When you use the <strong>Biophagy</strong> Skill, you also recover an amount of MP equal to <strong>【4 + Theriomorphosis SL】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Neurophagoida",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.f9NciszRYctYrAnb",
+            "effectUuid": null,
+            "fuid": "neurophagoida"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767291162773,
-        "modifiedTime": 1767291781085,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1783550610356,
+        "modifiedTime": 1783551177496,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!f9NciszRYctYrAnb.Yrv4pAdAggCnqFLk"
+      "_key": "!items.effects!f9NciszRYctYrAnb.TM3voI7NzQauIODl"
     }
   ],
   "ownership": {
@@ -106,7 +252,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1770430886772,
+    "modifiedTime": 1783551661761,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
