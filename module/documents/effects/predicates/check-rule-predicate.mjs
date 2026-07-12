@@ -184,7 +184,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		}
 
 		// Check result
-		if (this.result != null && check.result <= this.result) {
+		if (this.result != null && check.result < this.result) {
 			return false;
 		}
 
