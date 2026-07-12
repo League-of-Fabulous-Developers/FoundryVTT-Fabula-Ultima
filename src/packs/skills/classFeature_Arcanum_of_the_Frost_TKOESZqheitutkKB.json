@@ -91,7 +91,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal ignores Resistances. </p>",
+      "description": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal ignores Resistances.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

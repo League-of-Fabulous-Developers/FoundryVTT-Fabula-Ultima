@@ -58,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>The spell the necromancer casts deals extra damage to you equal to<strong>【SL + the number of status effects you are suffering from】</strong>.</p>",
+      "description": "<p>The spell the necromancer casts deals extra damage to you equal to <strong>【SL + the number of status effects you are suffering from】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

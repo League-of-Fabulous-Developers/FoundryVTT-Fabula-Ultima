@@ -86,7 +86,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When an enemy deals damage to you while you are affected by <strong>Aura</strong> and/or <strong>Barrier</strong> spell, the damage you suffer is reduced by an amount equal to<strong>【half the caster's level in Spiritist】or【the caster's level, divided by 10】</strong>(use whichever value is <strong>higher</strong>). Then, the caster may deal damage equal to<strong>【half the caster's level】</strong>to that enemy.</p>",
+      "description": "<p>When an enemy deals damage to you while you are affected by <strong>Aura</strong> and/or <strong>Barrier</strong> spell, the damage you suffer is reduced by an amount equal to <strong>【half the caster's level in Spiritist】 or 【the caster's level, divided by 10】</strong> (use whichever value is <strong>higher</strong>). Then, the caster may deal damage equal to <strong>【half the caster's level】</strong> to that enemy.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

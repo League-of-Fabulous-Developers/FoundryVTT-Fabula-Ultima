@@ -145,7 +145,7 @@
                       "X47SaNqzFbRPyrEp": {
                         "type": "messageRuleAction",
                         "_id": "X47SaNqzFbRPyrEp",
-                        "message": "<p>Targeted allies recover<strong>【3 + (SL x Bonds)】</strong>HP.</p>"
+                        "message": "<p>Targeted allies recover <strong>【3 + (SL × Bonds)】</strong> HP.</p>"
                       },
                       "YaNI3PWxfkOSyAdw": {
                         "type": "updateResourceRuleAction",
@@ -483,7 +483,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>When you cast a spell, if you don’t have enough Mind Points to pay for its total cost, you may choose to spend an amount of Hit Points equal to <strong>【10 + the spell’s total MP cost】</strong> instead. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
+          "description": "<p>When you cast a spell, if you don't have enough Mind Points to pay for its total cost, you may choose to spend an amount of Hit Points equal to <strong>【10 + the spell's total MP cost】</strong> instead. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
           "showTitleCard": {
             "value": false
           },

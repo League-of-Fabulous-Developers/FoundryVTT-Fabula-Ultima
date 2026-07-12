@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p><span>You are unable to see the rogue until the start of their next turn.</span></p>",
+      "description": "<p>You are unable to see the rogue until the start of their next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

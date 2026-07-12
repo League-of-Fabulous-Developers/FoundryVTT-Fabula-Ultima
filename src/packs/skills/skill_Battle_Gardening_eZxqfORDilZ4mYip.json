@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>After you </span><strong>plant a magiseed</strong><span> through the </span><strong>Chloromancy</strong><span> Skill (not when using <strong>Graft</strong>), you may choose one option:</span></p><ul><li><p><span>You perform a <strong>free attack</strong> with an equipped weapon.</span></p></li><li><p><span>You perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total Mind Point cost equal to or lower than【5 + (SL × 5)】</strong>(you must still pay its MP cost).</span></p></li></ul><p><span>Treat the <strong>High Roll (HR)</strong> of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.</span></p>",
+    "description": "<p>After you <strong>plant a magiseed</strong> through the <strong>Chloromancy</strong> Skill (not when using <strong>Graft</strong>), you may choose one option:</p><ul><li><p>You perform a <strong>free attack</strong> with an equipped weapon.</p></li><li><p>You perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total Mind Point cost equal to or lower than 【5 + (SL × 5)】</strong> (you must still pay its MP cost).</p></li></ul><p>Treat the <strong>High Roll (HR)</strong> of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.</p>",
     "isFavored": {
       "value": false
     },

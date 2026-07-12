@@ -60,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You treat your Defense and Magic Defense scores as being equal to<strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong>against that Check.</p>",
+      "description": "<p>You treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

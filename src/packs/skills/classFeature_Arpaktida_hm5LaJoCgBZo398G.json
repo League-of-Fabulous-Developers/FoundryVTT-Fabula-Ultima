@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p><span>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</span></p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>"
+      "description": "<p>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>"
     },
     "source": "FUTF156",
     "fuid": "arpaktida"
@@ -133,7 +133,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You are <strong>manifesting</strong> this therioform. <span>You treat your <strong>Insight</strong> as one die size higher (up to <strong>d12</strong>). </span>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>",
+      "description": "<p>You are <strong>manifesting</strong> this therioform. You treat your <strong>Insight</strong> as one die size higher (up to <strong>d12</strong>). When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

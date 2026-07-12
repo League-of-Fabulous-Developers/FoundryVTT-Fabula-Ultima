@@ -58,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Whenever you suffer damage before the start of the weaponmaster's next turn, that source deals<strong>【SL × 2】</strong>extra damage to you.</p>",
+      "description": "<p>Whenever you suffer damage before the start of the weaponmaster's next turn, that source deals <strong>【SL × 2】</strong> extra damage to you.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

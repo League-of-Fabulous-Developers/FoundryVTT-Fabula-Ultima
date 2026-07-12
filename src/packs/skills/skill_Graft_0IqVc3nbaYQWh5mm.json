@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>As long as there is a <strong>magiseed</strong> in your <strong>garden</strong> and <strong>1 or more sections</strong> of your <strong>Growth Clock</strong> are <strong>filled</strong>, you may use an action to <strong>remove</strong> that <strong>magiseed</strong> from your <strong>garden</strong>: if you do, you immediately <strong>plant a different magiseed</strong> among those you have discovered (keep the current filled sections of your Growth Clock unchanged).</span></p>",
+    "description": "<p>As long as there is a <strong>magiseed</strong> in your <strong>garden</strong> and <strong>1 or more sections</strong> of your <strong>Growth Clock</strong> are <strong>filled</strong>, you may use an action to <strong>remove</strong> that <strong>magiseed</strong> from your <strong>garden</strong>: if you do, you immediately <strong>plant a different magiseed</strong> among those you have discovered (keep the current filled sections of your Growth Clock unchanged).</p>",
     "isFavored": {
       "value": false
     },

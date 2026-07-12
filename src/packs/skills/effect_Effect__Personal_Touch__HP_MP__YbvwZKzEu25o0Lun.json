@@ -60,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you recover HP and/or MP while bearing a <strong>symbol</strong>, you recover<strong>【SL】</strong>additional HP and/or MP, respectively.</p>",
+      "description": "<p>When you recover HP and/or MP while bearing a <strong>symbol</strong>, you recover <strong>【SL】</strong> additional HP and/or MP, respectively.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

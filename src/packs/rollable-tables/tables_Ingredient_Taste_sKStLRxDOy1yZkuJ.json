@@ -2,7 +2,7 @@
   "folder": null,
   "name": "Ingredient Taste",
   "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
-  "description": "<p>Roll a <strong>d6</strong> to determine the <strong>ingredient’s taste</strong> using the table below, then describe its appearance and give it a name.</p>",
+  "description": "<p>Roll a <strong>d6</strong> to determine the <strong>ingredient's taste</strong> using the table below, then describe its appearance and give it a name.</p>",
   "results": [
     {
       "type": "document",

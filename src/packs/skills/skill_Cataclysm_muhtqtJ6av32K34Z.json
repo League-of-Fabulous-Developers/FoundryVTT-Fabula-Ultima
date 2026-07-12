@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast a spell with a <strong>duration</strong> of \"Instantaneous\", if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell’s total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
+    "description": "<p>When you cast a spell with a <strong>duration</strong> of \"Instantaneous\", if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell's total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
     "isFavored": {
       "value": false
     },
@@ -216,7 +216,7 @@
       "_id": "Dd03wzpbYRkqDcq9",
       "type": "base",
       "changes": [],
-      "description": "<p>When you cast a spell with a <strong>duration</strong> of “Instantaneous”, if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell’s total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
+      "description": "<p>When you cast a spell with a <strong>duration</strong> of “Instantaneous”, if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell's total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

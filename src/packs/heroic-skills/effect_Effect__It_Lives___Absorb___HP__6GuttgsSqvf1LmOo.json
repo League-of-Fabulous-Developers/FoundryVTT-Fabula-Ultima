@@ -59,7 +59,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your base Affinity towards <strong>bolt</strong> damage is replaced with <strong>Absorption</strong>, and your maximum Hit Point score is increased by an amount equal to<strong>【twice the wayfarer's SL in Visionary】</strong>.</p>",
+      "description": "<p>Your base Affinity towards <strong>bolt</strong> damage is replaced with <strong>Absorption</strong>, and your maximum Hit Point score is increased by an amount equal to <strong>【twice the wayfarer's SL in Visionary】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

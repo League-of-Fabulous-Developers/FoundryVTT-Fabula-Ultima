@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you suffer damage while bearing a <strong>symbol</strong>, you suffer<strong>【SL】</strong>extra damage.</p>",
+      "description": "<p>When you suffer damage while bearing a <strong>symbol</strong>, you suffer <strong>【SL】</strong> extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

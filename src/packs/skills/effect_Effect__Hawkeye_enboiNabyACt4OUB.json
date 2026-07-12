@@ -58,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal<strong>【SL × 3】</strong>extra damage.</p>",
+      "description": "<p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
