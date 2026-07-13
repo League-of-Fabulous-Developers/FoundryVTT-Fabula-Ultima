@@ -193,6 +193,11 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		}
 
 		context.expandedRuleElements = this.#expandedRuleElements;
+
+		if (context.fields?.origin instanceof foundry.data.fields.DocumentUUIDField && context.source?.origin) {
+			const originDoc = await fromUuid(context.source.origin);
+			context.originName = originDoc?.name ?? '';
+		}
 		return context;
 	}
 
