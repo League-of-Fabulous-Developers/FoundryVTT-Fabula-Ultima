@@ -29,7 +29,7 @@ function onGetSidebarTools(tools) {
 		group.tools.metaCurrency = {
 			icon: 'fa-solid fa-chart-line',
 			label: 'FU.AppMetaCurrencyTrackerTitle',
-			tooltip: _loc('FU.AppMetaCurrencyTrackerButtonTooltip'),
+			tooltip: 'FU.AppMetaCurrencyTrackerButtonTooltip',
 			click: () => renderApp(),
 		};
 	}

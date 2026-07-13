@@ -893,7 +893,7 @@ export class CompendiumBrowser extends FUApplication {
 				group.tools.compendium = {
 					icon: 'fa-solid fa-book',
 					label: 'FU.CompendiumBrowser',
-					tooltip: _loc('FU.CompendiumBrowserOpen'),
+					tooltip: 'FU.CompendiumBrowserOpen',
 					click: () => {
 						CompendiumBrowser.instance.render({ force: true });
 					},

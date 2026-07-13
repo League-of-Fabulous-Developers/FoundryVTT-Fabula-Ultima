@@ -100,7 +100,7 @@ function onGetSidebarTools(tools) {
 		group.tools.wellspring = {
 			icon: 'fa-solid fa-earth-asia',
 			label: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
-			tooltip: _loc('FU.ClassFeatureInvocationsWellspringManagerTooltip'),
+			tooltip: 'FU.ClassFeatureInvocationsWellspringManagerTooltip',
 			condition: () => game.user.isGM,
 			click: () => renderApp(),
 		};

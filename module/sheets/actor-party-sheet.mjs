@@ -1646,7 +1646,7 @@ function onGetSidebarTools(tools) {
 		group.tools.party = {
 			icon: 'fa-solid fa fa-users',
 			label: 'FU.ActivePartySheetOpen',
-			tooltip: _loc('FU.ActivePartySheetOpenTooltip'),
+			tooltip: 'FU.ActivePartySheetOpenTooltip',
 			click: () => {
 				FUPartySheet.toggleActive();
 			},
