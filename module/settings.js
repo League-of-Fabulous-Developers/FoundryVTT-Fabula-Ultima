@@ -1212,6 +1212,7 @@ export function createMenuTool(key) {
 		id: menuSetting.key,
 		label: menuSetting.label,
 		icon: menuSetting.icon,
+		tooltip: menuSetting.hint,
 		click: () => {
 			new menuSetting.type().render({ force: true });
 		},

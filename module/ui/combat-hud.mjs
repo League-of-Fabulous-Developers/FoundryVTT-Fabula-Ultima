@@ -74,6 +74,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 			toggleHud: {
 				label: 'FU.CombatHudControlButtonTitle',
 				icon: 'fa-solid fa-thumbtack',
+				tooltip: 'FU.CombatHudControlButtonTooltip',
 				click: () => {
 					if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 						CombatHUD.restore();
@@ -85,6 +86,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 			savePos: {
 				label: 'FU.CombatHudSaveButtonTitle',
 				icon: 'fa-solid fa-lock',
+				tooltip: 'FU.CombatHudSaveButtonTooltip',
 				click: () => {
 					const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
 					game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
@@ -93,6 +95,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 			resetHud: {
 				label: 'FU.CombatHudResetButtonTitle',
 				icon: 'fa-solid fa-undo',
+				tooltip: 'FU.CombatHudResetButtonTooltip',
 				click: () => {
 					CombatHUD.reset();
 				},
