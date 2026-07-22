@@ -128,7 +128,7 @@ const onRenderCheck = (data, checkResult, actor, item, flags) => {
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
 		CommonSections.actions(data, actor, item, targets, flags, inspector);
-		CommonEvents.attack(inspector, actor, item);
+		data.postRenderActions.push(() => CommonEvents.attack(inspector, actor, item));
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
 };

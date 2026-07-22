@@ -475,9 +475,9 @@ async function renderCheck(result, actor, item, flags = {}) {
 
 	if (result.generateOpportunity) {
 		if (result.critical) {
-			CommonEvents.opportunity(renderData, actor, result.type, item, false);
+			await CommonEvents.opportunity(renderData, actor, result.type, item, false);
 		} else if (result.fumble) {
-			CommonEvents.opportunity(renderData, actor, result.type, item, true);
+			await CommonEvents.opportunity(renderData, actor, result.type, item, true);
 		}
 	}
 
@@ -583,7 +583,7 @@ const performCheck = async (check, actor, item, prepareCheckCallback = undefined
 	if (renderCheckCallback) {
 		await renderCheckCallback(result);
 	}
-	CommonEvents.resolveCheck(result, actor, item);
+	await CommonEvents.resolveCheck(result, actor, item);
 };
 
 /**

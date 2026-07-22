@@ -4,7 +4,6 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CharacterInfo } from '../helpers/character-info.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { AsyncHooks } from '../helpers/async-hooks.mjs';
 import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
@@ -13,6 +12,36 @@ import { ItemUtils } from '../helpers/item-utils.mjs';
  * @property {String} fuid
  * @property {String} uuid
  */
+
+/**
+ * @callback RegisterCallback
+ * @param {Function} callback
+ */
+
+/**
+ * @param {string} hook
+ * @param {...unknown} args
+ *
+ */
+async function callHookWithCallbacks(hook, ...args) {
+	/** @type Function[] */
+	const callbacks = [];
+
+	const registerCallback = (callback) => {
+		callbacks.push(callback);
+	};
+
+	Hooks.callAll(hook, ...args, registerCallback);
+
+	for (let callback of callbacks) {
+		try {
+			await callback(...args);
+		} catch (err) {
+			const msg = `Error thrown in callback function '${callback?.name}' for hook '${hook}'`;
+			ui.notifications?.warn(msg, err);
+		}
+	}
+}
 
 /**
  * @param {FUItem} item
@@ -46,7 +75,7 @@ function toItemReference(item) {
  * @param {FUActor} actor
  * @param {FUItem} item
  */
-function attack(inspector, actor, item) {
+async function attack(inspector, actor, item) {
 	const traits = inspector.getTraits();
 	const targets = inspector.getTargets();
 	const source = CharacterInfo.fromActor(actor);
@@ -69,7 +98,7 @@ function attack(inspector, actor, item) {
 		traits: new Set(traits),
 		result: result,
 	};
-	Hooks.call(FUHooks.ATTACK_EVENT, event);
+	await callHookWithCallbacks(FUHooks.ATTACK_EVENT, event);
 }
 
 /**
@@ -115,7 +144,7 @@ async function damage(targetActor, damageContext, damageType, origin, renderData
 		origin: origin,
 		renderData: renderData,
 	};
-	return AsyncHooks.callSequential(FUHooks.DAMAGE_EVENT, damageEvent);
+	await callHookWithCallbacks(FUHooks.DAMAGE_EVENT, damageEvent);
 }
 
 /**
@@ -128,7 +157,7 @@ async function damage(targetActor, damageContext, damageType, origin, renderData
  * @property {CheckConfigurer} config
  */
 
-function calculateDamage(actor, item, config) {
+async function calculateDamage(actor, item, config) {
 	const itemGroup = ItemUtils.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
@@ -139,7 +168,7 @@ function calculateDamage(actor, item, config) {
 		config: config,
 		type: config.getDamage()?.type,
 	};
-	Hooks.call(FUHooks.CALCULATE_DAMAGE_EVENT, event);
+	await callHookWithCallbacks(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }
 
 /**
@@ -163,7 +192,8 @@ async function calculateResource(actor, item, config, data) {
 		data: data,
 		config: config,
 	};
-	await AsyncHooks.callSequential(FUHooks.CALCULATE_RESOURCE_EVENT, event);
+
+	await callHookWithCallbacks(FUHooks.CALCULATE_RESOURCE_EVENT, event);
 }
 
 /**
@@ -196,9 +226,9 @@ async function calculateResource(actor, item, config, data) {
  * @param {String} statusEffectId
  * @param {Boolean} enabled
  */
-function status(actor, statusEffectId, enabled) {
+async function status(actor, statusEffectId, enabled) {
 	const source = CharacterInfo.fromActor(actor);
-	Hooks.call(
+	await callHookWithCallbacks(
 		FUHooks.STATUS_EVENT,
 		/** @type StatusEvent **/
 		{
@@ -222,7 +252,7 @@ function status(actor, statusEffectId, enabled) {
  * @property {String} origin
  */
 
-function gain(actor, resource, amount, origin) {
+async function gain(actor, resource, amount, origin) {
 	/** @type GainEvent  **/
 	const gainEvent = {
 		amount: amount,
@@ -231,7 +261,7 @@ function gain(actor, resource, amount, origin) {
 		token: actor.resolveToken(),
 		origin: origin,
 	};
-	Hooks.call(FUHooks.GAIN_EVENT, gainEvent);
+	await callHookWithCallbacks(FUHooks.GAIN_EVENT, gainEvent);
 }
 
 /**
@@ -245,7 +275,7 @@ function gain(actor, resource, amount, origin) {
  * @property {String} origin
  */
 
-function loss(actor, resource, amount, origin) {
+async function loss(actor, resource, amount, origin) {
 	/** @type LossEvent  **/
 	const lossEvent = {
 		amount: amount,
@@ -254,7 +284,7 @@ function loss(actor, resource, amount, origin) {
 		token: actor.resolveToken(),
 		origin: origin,
 	};
-	Hooks.call(FUHooks.LOSS_EVENT, lossEvent);
+	await callHookWithCallbacks(FUHooks.LOSS_EVENT, lossEvent);
 }
 
 /**
@@ -287,7 +317,7 @@ async function resource(sourceActor, targetActors, sourceInfo, resource, amount,
 		itemGroup: itemGroup,
 		renderData: renderData,
 	};
-	return AsyncHooks.callSequential(FUHooks.RESOURCE_UPDATE, event);
+	await callHookWithCallbacks(FUHooks.RESOURCE_UPDATE, event);
 }
 
 /**
@@ -316,7 +346,7 @@ async function calculateExpense(actor, item, targetData, expense) {
 		source: source,
 		targets: targets,
 	};
-	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+	await callHookWithCallbacks(FUHooks.CALCULATE_EXPENSE_EVENT, event);
 }
 
 /**
@@ -336,7 +366,7 @@ async function expense(actor, item, targetActors, expense) {
 		source: source,
 		targets: targets,
 	};
-	return AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
+	await callHookWithCallbacks(FUHooks.EXPENSE_EVENT, event);
 }
 
 /**
@@ -356,7 +386,7 @@ async function expense(actor, item, targetActors, expense) {
  * @param {FUActor} actor
  * @param {FUItem} item
  */
-function spell(actor, item) {
+async function spell(actor, item) {
 	/** @type SpellDataModel **/
 	const spell = item.system;
 	const traits = new Set();
@@ -377,7 +407,7 @@ function spell(actor, item) {
 		targets: eventTargets,
 		traits: traits,
 	};
-	Hooks.call(FUHooks.SPELL_EVENT, event);
+	await callHookWithCallbacks(FUHooks.SPELL_EVENT, event);
 }
 
 /**
@@ -391,7 +421,7 @@ function spell(actor, item) {
  * @property {CharacterInfo[]} targets
  */
 
-function skill(actor, item, targets = undefined) {
+async function skill(actor, item, targets = undefined) {
 	/** @type SkillDataModel **/
 	const skill = item.system;
 	const traits = new Set();
@@ -413,7 +443,7 @@ function skill(actor, item, targets = undefined) {
 		targets: eventTargets,
 		traits: traits,
 	};
-	Hooks.call(FUHooks.SKILL_EVENT, event);
+	await callHookWithCallbacks(FUHooks.SKILL_EVENT, event);
 }
 
 /**
@@ -431,7 +461,7 @@ function skill(actor, item, targets = undefined) {
  * @param {FUActor} actor
  * @param {FUItem} item
  */
-function item(actor, item) {
+async function item(actor, item) {
 	/** @type ConsumableDataModel  **/
 	const consumable = item.system;
 	const targets = Targeting.getSerializedTargetData();
@@ -445,7 +475,7 @@ function item(actor, item) {
 		token: actor.resolveToken(),
 		targets: eventTargets,
 	};
-	Hooks.call(FUHooks.ITEM_EVENT, event);
+	await callHookWithCallbacks(FUHooks.ITEM_EVENT, event);
 }
 
 /**
@@ -462,7 +492,7 @@ function item(actor, item) {
  * @param {FUActor[]} targets
  * @param {Number} studyValue
  */
-function study(actor, targets, studyValue) {
+async function study(actor, targets, studyValue) {
 	const targetData = Targeting.serializeTargetData(targets);
 	const eventTargets = CharacterInfo.fromTargetData(targetData);
 
@@ -473,7 +503,7 @@ function study(actor, targets, studyValue) {
 		targets: eventTargets,
 		result: studyValue,
 	};
-	Hooks.call(FUHooks.STUDY_EVENT, event);
+	await callHookWithCallbacks(FUHooks.STUDY_EVENT, event);
 }
 
 /**
@@ -481,13 +511,12 @@ function study(actor, targets, studyValue) {
  * @description Dispatched when an actor rests
  * @property {FUActor} actor
  */
-
-function rest(actor) {
+async function rest(actor) {
 	/** @type RestEvent  **/
 	const event = {
 		actor: actor,
 	};
-	Hooks.call(FUHooks.REST_EVENT, event);
+	await callHookWithCallbacks(FUHooks.REST_EVENT, event);
 }
 
 /**
@@ -502,13 +531,13 @@ function rest(actor) {
  * @param {FUActor} actor
  * @param {NpcProfileRevealData} revealed
  */
-function reveal(actor, revealed) {
+async function reveal(actor, revealed) {
 	/** @type RevealEvent  **/
 	const event = {
 		actor: actor,
 		revealed: revealed,
 	};
-	Hooks.call(FUHooks.REVEAL_EVENT, event);
+	await callHookWithCallbacks(FUHooks.REVEAL_EVENT, event);
 }
 
 /**
@@ -520,8 +549,7 @@ function reveal(actor, revealed) {
  * @property {FUItem} item The item that prompted the check
  * @property {Boolean} fumble If the opportunity came from a fumble, which goes to the opposition of the actor.
  */
-
-function opportunity(renderData, actor, type, item, fumble) {
+async function opportunity(renderData, actor, type, item, fumble) {
 	/** @type OpportunityEvent  **/
 	const event = {
 		renderData: renderData,
@@ -530,7 +558,7 @@ function opportunity(renderData, actor, type, item, fumble) {
 		item: item,
 		fumble: fumble,
 	};
-	Hooks.call(FUHooks.OPPORTUNITY_EVENT, event);
+	await callHookWithCallbacks(FUHooks.OPPORTUNITY_EVENT, event);
 }
 
 /**
@@ -543,7 +571,7 @@ function opportunity(renderData, actor, type, item, fumble) {
  * @property {Document|undefined} source If an update was performed, the source behind the change.
  */
 
-function progress(document, progress, action, increment = undefined, source = undefined) {
+async function progress(document, progress, action, increment = undefined, source = undefined) {
 	/** @type ProgressEvent  **/
 	const event = {
 		document: document,
@@ -552,7 +580,7 @@ function progress(document, progress, action, increment = undefined, source = un
 		increment: increment,
 		source: source,
 	};
-	Hooks.call(FUHooks.PROGRESS_EVENT, event);
+	await callHookWithCallbacks(FUHooks.PROGRESS_EVENT, event);
 }
 
 /**
@@ -566,7 +594,6 @@ function progress(document, progress, action, increment = undefined, source = un
  * @property {CheckConfigurer} config
  * @remarks Emitted when a check is about to be performed
  */
-
 async function performCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
@@ -586,7 +613,7 @@ async function performCheck(check, actor, item) {
 		sourceInfo: sourceInfo,
 		targets: targets,
 	};
-	return AsyncHooks.callSequential(FUHooks.PERFORM_CHECK_EVENT, event);
+	await callHookWithCallbacks(FUHooks.PERFORM_CHECK_EVENT, event);
 }
 
 /**
@@ -600,7 +627,7 @@ async function performCheck(check, actor, item) {
  * @remarks Emitted when a check is about to be performed
  */
 
-function resolveCheck(check, actor, item) {
+async function resolveCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
 	const inspector = CheckConfiguration.inspect(check);
@@ -615,7 +642,7 @@ function resolveCheck(check, actor, item) {
 		sourceInfo: sourceInfo,
 		targets: CharacterInfo.fromTargetData(targets),
 	};
-	Hooks.call(FUHooks.RESOLVE_CHECK_EVENT, event);
+	await callHookWithCallbacks(FUHooks.RESOLVE_CHECK_EVENT, event);
 }
 
 /**
@@ -647,7 +674,7 @@ async function renderCheck(renderData, config, actor, item) {
 		item: item,
 		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
-	return AsyncHooks.callSequential(FUHooks.RENDER_CHECK_EVENT, event);
+	await callHookWithCallbacks(FUHooks.RENDER_CHECK_EVENT, event);
 }
 
 /**
@@ -672,7 +699,7 @@ async function initializeCheck(configuration, actor, item) {
 		sourceInfo: sourceInfo,
 		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
-	return AsyncHooks.callSequential(FUHooks.INITIALIZE_CHECK_EVENT, event);
+	await callHookWithCallbacks(FUHooks.INITIALIZE_CHECK_EVENT, event);
 }
 
 /**
@@ -682,14 +709,14 @@ async function initializeCheck(configuration, actor, item) {
  * @property {String} origin
  */
 
-function notify(source, id, origin) {
+async function notify(source, id, origin) {
 	/** @type NotificationEvent  **/
 	const event = {
 		source: source,
 		id: id,
 		origin: origin,
 	};
-	Hooks.call(FUHooks.NOTIFICATION_EVENT, event);
+	await callHookWithCallbacks(FUHooks.NOTIFICATION_EVENT, event);
 }
 
 /**
@@ -709,7 +736,7 @@ async function renderMessage(renderData, actor, document = undefined) {
 		document: document,
 		source: source,
 	};
-	return AsyncHooks.callSequential(FUHooks.RENDER_MESSAGE_EVENT, event);
+	await callHookWithCallbacks(FUHooks.RENDER_MESSAGE_EVENT, event);
 }
 
 /**
@@ -733,7 +760,7 @@ async function feature(actor, item, traits, targetData, renderData) {
 		targets: targets,
 		renderData: renderData,
 	};
-	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
+	await callHookWithCallbacks(FUHooks.FEATURE_EVENT, event);
 }
 
 /**
@@ -743,7 +770,7 @@ async function feature(actor, item, traits, targetData, renderData) {
  * @property {Boolean} enabled
  */
 
-function toggleEffect(actor, uuid, enabled) {
+async function toggleEffect(actor, uuid, enabled) {
 	const source = CharacterInfo.fromActor(actor);
 	/** @type EffectToggledEvent  **/
 	const event = {
@@ -751,7 +778,7 @@ function toggleEffect(actor, uuid, enabled) {
 		uuid: uuid,
 		enabled: enabled,
 	};
-	Hooks.call(FUHooks.EFFECT_TOGGLED_EVENT, event);
+	await callHookWithCallbacks(FUHooks.EFFECT_TOGGLED_EVENT, event);
 }
 
 /**
@@ -772,7 +799,7 @@ async function createConsumable(actor, item, targetData, builder) {
 		builder: builder,
 		targets: targets,
 	};
-	await AsyncHooks.callSequential(FUHooks.CONSUMABLE_CREATE_EVENT, event);
+	await callHookWithCallbacks(FUHooks.CONSUMABLE_CREATE_EVENT, event);
 }
 
 /**
@@ -808,7 +835,7 @@ async function itemRoll(config, actor) {
 		config: config,
 		source: source,
 	};
-	await AsyncHooks.callSequential(FUHooks.ITEM_ROLL_EVENT, event);
+	await callHookWithCallbacks(FUHooks.ITEM_ROLL_EVENT, event);
 }
 
 export const CommonEvents = Object.freeze({

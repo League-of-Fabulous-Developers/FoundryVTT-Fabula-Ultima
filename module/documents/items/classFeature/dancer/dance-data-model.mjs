@@ -92,6 +92,8 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 
 		await CommonEvents.feature(actor, item, [FeatureTraits.Dance], targets, renderData);
 
+		renderData.postRenderActions.push(() => CommonEvents.skill(item.actor, item));
+
 		const effectName = 'Previous Dance (' + item.name + ')';
 		const effectDescription = '<p>The last dance you performed was the <strong>' + item.name + '</strong>.</p>';
 		Effects.createTemporaryEffect(actor, 'temporary', effectName, {
@@ -110,7 +112,5 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		builder.withFlags(flags);
 		builder.withData(renderData);
 		await builder.create();
-
-		CommonEvents.skill(item.actor, item);
 	}
 }

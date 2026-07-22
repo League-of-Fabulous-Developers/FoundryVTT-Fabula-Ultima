@@ -38,121 +38,121 @@ export const FUHooks = {
 	COMBAT_EVENT: 'projectfu.events.combat',
 	/**
 	 * @description Invoked after an attack (involving an accuracy check) has been performed by an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link AttackEvent}
 	 */
 	ATTACK_EVENT: 'projectfu.events.attack',
 	/**
 	 * @description Invoked after a spell (without a magic check) has been performed by an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link SpellEvent}
 	 */
 	SPELL_EVENT: 'projectfu.events.spell',
 	/**
 	 * @description Invoked after a skill (without an accuracy check) has been performed by an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link SkillEvent}
 	 */
 	SKILL_EVENT: 'projectfu.events.skill',
 	/**
 	 * @description Invoked after damage has been applied to an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link DamageEvent}
 	 */
 	DAMAGE_EVENT: 'projectfu.events.damage',
 	/**
 	 * @description Invoked after resource gain has been applied to an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link GainEvent}
 	 */
 	GAIN_EVENT: 'projectfu.events.gain',
 	/**
 	 * @description Dispatched after resource loss has been applied to an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link LossEvent}.
 	 */
 	LOSS_EVENT: 'projectfu.events.loss',
 	/**
 	 * @description Dispatched after a resource update has been applied to an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link ResourceUpdateEvent}.
 	 */
 	RESOURCE_UPDATE: 'projectfu.events.resource',
 	/**
 	 * @description Dispatched when a resource is to be spent to perform an action.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link CalculateExpenseEvent}.
 	 */
 	CALCULATE_EXPENSE_EVENT: 'projectfu.events.calculateExpense',
 	/**
 	 * @description Dispatched after a resource expense has been calculated.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link CalculateExpenseEvent}.
 	 */
 	EXPENSE_EVENT: 'projectfu.events.expense',
 	/**
 	 * @description Dispatched after an actor enters crisis.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link CrisisEvent}. This can happen after a {@link DAMAGE_EVENT}.
 	 */
 	CRISIS_EVENT: 'projectfu.events.crisis',
 	/**
 	 * @description Invoked after an actor is reduced to 0 hit points
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link DefeatEvent}. This can happen after a {@link DAMAGE_EVENT}.
 	 */
 	DEFEAT_EVENT: 'projectfu.events.defeat',
 	/**
 	 * @description Dispatched after an actor has a status effect applied or removed on them.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link StatusEvent}. It happens AFTER the status effect has been applied.
 	 */
 	STATUS_EVENT: 'projectfu.events.status',
 	/**
 	 * @description Dispatched after an actor uses a consumable
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link ItemEvent}
 	 */
 	ITEM_EVENT: 'projectfu.events.item',
 	/**
 	 * @description Dispatched after an actor performs a study check
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link StudyEvent}
 	 */
 	STUDY_EVENT: 'projectfu.events.study',
 	/**
 	 * @description Dispatched after a character gains an opportunity
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link OpportunityEvent}
 	 */
 	OPPORTUNITY_EVENT: 'projectfu.events.opportunity',
 	/**
 	 * @description Dispatched when a check is being initialized.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link InitializeCheckEvent}
 	 */
 	INITIALIZE_CHECK_EVENT: 'projectfu.events.checks.initialize',
 	/**
 	 * @description Dispatched when a check is about to be performed.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link PerformCheckEvent}
 	 */
 	PERFORM_CHECK_EVENT: 'projectfu.events.checks.perform',
 	/**
 	 * @description Dispatched when a check has been resolved.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link ResolveCheckEvent}
 	 */
 	RESOLVE_CHECK_EVENT: 'projectfu.events.checks.resolve',
 	/**
 	 * @description Dispatched when a check is about to be rendered.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link RenderCheckEvent}
 	 */
 	RENDER_CHECK_EVENT: 'projectfu.events.checks.render',
 	/**
 	 * @description Dispatched when a chat message is about to be rendered.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link RenderMessageEvent}
 	 */
 	RENDER_MESSAGE_EVENT: 'projectfu.events.chat.render',
@@ -163,13 +163,13 @@ export const FUHooks = {
 	HOOK_WELLSPRING_CHANGED: 'projectfu.wellspringChanged',
 	/**
 	 * @description Dispatched after an actor rests
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link RestEvent}
 	 */
 	REST_EVENT: 'projectfu.events.rest',
 	/**
 	 * @description Dispatched after information is revealed about an actor
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link RevealEvent}
 	 */
 	REVEAL_EVENT: 'projectfu.events.reveal',
@@ -195,7 +195,7 @@ export const FUHooks = {
 	SOCKET_SEND_EVENT: 'projectfu.events.socket.sent',
 	/**
 	 * @description Dispatched after a progress tracker has been updated.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link ProgressEvent}
 	 */
 	PROGRESS_EVENT: 'projectfu.events.progress',
@@ -214,37 +214,37 @@ export const FUHooks = {
 	CALCULATE_DAMAGE_EVENT: 'projectfu.events.calculateDamage',
 	/**
 	 * @description Dispatched when a request to apply a resource change is being processed.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link CalculateResourceEvent}
 	 */
 	CALCULATE_RESOURCE_EVENT: 'projectfu.events.calculateResource',
 	/**
 	 * @description Dispatched when something happens, tagged by an identifier.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link NotificationEvent}
 	 */
 	NOTIFICATION_EVENT: 'projectfu.events.notification',
 	/**
 	 * @description Dispatched when an active effect is toggled.
-	 * @example callback(event)
-	 * @remarks Uses {@link NotificationEvent}
+	 * @example callback(event, registerCallback)
+	 * @remarks Uses {@link EffectToggledEvent}
 	 */
 	EFFECT_TOGGLED_EVENT: 'projectfu.events.effectToggled',
 	/**
 	 * @description Dispatched when a consumable is created.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link CreateConsumableEvent}
 	 */
 	CONSUMABLE_CREATE_EVENT: 'projectfu.events.consumables.create',
 	/**
 	 * @description Dispatched when an item 'roll' action is being performed.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link ItemRollEvent}
 	 */
 	ITEM_ROLL_EVENT: `projectfu.events.items.roll`,
 	/**
 	 * @description Dispatched when a class feature is being performed.
-	 * @example callback(event)
+	 * @example callback(event, registerCallback)
 	 * @remarks Uses {@link FeatureEvent}
 	 */
 	FEATURE_EVENT: `projectfu.events.feature`,

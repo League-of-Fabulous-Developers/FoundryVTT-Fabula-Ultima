@@ -39,7 +39,7 @@ export class FUItem extends EnablePseudoDocumentsMixin(ItemBehaviourMixin(Item))
 		if (delta.system?.progress && postUpdate) {
 			if (previous.progress.current !== postUpdate.system.progress.current) {
 				// Progress is changed
-				CommonEvents.progress(this, this.system.progress, 'update', delta.system.progress.current ? delta.system.progress.current - previous.progress.current : 0, this);
+				await CommonEvents.progress(this, this.system.progress, 'update', delta.system.progress.current ? delta.system.progress.current - previous.progress.current : 0, this);
 			}
 		}
 		return postUpdate;

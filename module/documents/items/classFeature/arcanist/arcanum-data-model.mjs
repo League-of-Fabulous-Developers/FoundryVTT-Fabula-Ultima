@@ -77,8 +77,8 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } },
 		};
 
-		CommonEvents.skill(item.actor, item);
-		ChatMessage.create(chatMessage);
+		await ChatMessage.create(chatMessage);
+		await CommonEvents.skill(item.actor, item);
 	}
 
 	transferEffects() {

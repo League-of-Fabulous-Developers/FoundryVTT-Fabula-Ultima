@@ -528,7 +528,7 @@ export class FUActor extends foundry.documents.Actor {
 		await this.update(updateData);
 
 		// Dispatch the event
-		CommonEvents.rest(this);
+		await CommonEvents.rest(this);
 	}
 
 	// TODO: Move out
