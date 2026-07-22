@@ -15,15 +15,15 @@
 	<fieldset class="desc grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not system.hasRoll.value)}}>
 		<label>
 			{{localize 'FU.Primary'}}
-			<select name="system.attributes.primary.value">
-				{{selectOptions FU.attributeAbbreviations selected=system.attributes.primary.value localize=true}}
+			<select name="system.rollInfo.attributes.primary.value">
+				{{selectOptions FU.attributeAbbreviations selected=system.rollInfo.attributes.primary.value localize=true}}
 			</select>
 		</label>
 
 		<label>
 			{{localize 'FU.Secondary'}}
-			<select name="system.attributes.secondary.value">
-				{{selectOptions FU.attributeAbbreviations selected=system.attributes.secondary.value localize=true}}
+			<select name="system.rollInfo.attributes.secondary.value">
+				{{selectOptions FU.attributeAbbreviations selected=system.rollInfo.attributes.secondary.value localize=true}}
 			</select>
 		</label>
 
