@@ -1138,6 +1138,7 @@
 
 .projectfu.active-effect-sheet .top-tabs {
 	margin-top: 0;
+	margin-inline: 0;
 }
 
 .projectfu prose-mirror {
