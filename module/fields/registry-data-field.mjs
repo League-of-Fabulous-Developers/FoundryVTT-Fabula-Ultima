@@ -99,7 +99,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 */
 	_getField(parts, { source } = {}) {
 		if (!parts.length) return this;
-		const model = this.#getRegistryModel(this.#getTypeValue(source));
+		const model = this.#getRegistryModel(this.#getTypeValue({ _source: source }));
 		return model?.schema?._getField(parts, { source });
 	}
 
@@ -171,7 +171,9 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 
 	clean(value, options, _state) {
 		const model = _state.model ?? { _source: _state.modelSource };
-		if (!value) return this.getInitialValue({ type: this.#getTypeValue(model) });
+		if (!value) {
+			value = this.getInitialValue({ type: this.#getTypeValue(model) });
+		}
 		return super.clean(value, options, _state);
 	}
 
@@ -183,7 +185,15 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	}
 
 	_validateModel(changes, options = {}) {
-		const cls = this.#getRegistryModel(this.#getTypeValue(options.model));
+		let model;
+
+		if (options.model) {
+			model = options.model;
+		} else if (options.source) {
+			model = { _source: options.source };
+		}
+
+		const cls = this.#getRegistryModel(this.#getTypeValue(model));
 		return cls?.validateJoint(changes);
 	}
 
