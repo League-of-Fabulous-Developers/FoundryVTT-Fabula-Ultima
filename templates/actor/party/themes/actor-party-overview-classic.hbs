@@ -1,12 +1,12 @@
 {{#each characters}}
 {{!-- Character Card  --}}
 	<div class="section-container plate character character-option {{this.statusClass}}"
-		 data-uuid="{{this.actor.uuid}}" data-type="character">
+	     data-uuid="{{this.actor.uuid}}" data-type="character">
 
 		<div class="image-container">
 			<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="character">
 				<img class="portrait {{role}}" src="{{ this.actor.img }}"
-					 data-tooltip="{{ this.name }}" />
+				     data-tooltip="{{ this.name }}" />
 			</a>
 			<div class="classes">
 				{{#each this.classes}}
@@ -21,7 +21,8 @@
 		<div class="bars">
 			{{#each this.resources}}
 				<div class="bar {{this.name}}">
-					<i class="fu-icon--s {{pfuIconClass this.name}}" data-tooltip="{{this.label}}" style="width: 18px;"></i>
+					<i class="fu-icon--s {{pfuIconClass this.name}}" data-tooltip="{{this.label}}"
+					   style="width: 18px;"></i>
 					<div class="track">
 						<div class="fill" style="width: {{this.percentage}}%;"></div>
 					</div>
@@ -45,7 +46,7 @@
 {{#each companions}}
 {{!-- Companion Card --}}
 	<div class="section-container plate companion character-option" data-uuid="{{this.actor.uuid}}"
-		 data-type="companion">
+	     data-type="companion">
 
 		<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="companion">
 			<img class="portrait damage" src="{{ this.actor.img }}" data-tooltip="{{ this.name }}" />
@@ -54,14 +55,17 @@
 		<div class="name">{{ this.name }}</div>
 		<div class="identity"><span>{{{this.identity }}}</span></div>
 
-		{{#each this.resources}}
-			<div class="bar {{this.name}}">
-				<i class="icon {{this.icon}}" data-tooltip="{{this.label}}" style="width: 18px;"></i>
-				<div class="track">
-					<div class="fill" style="width: {{this.percentage}}%;"></div>
+		<div class="bars">
+			{{#each this.resources}}
+				<div class="bar {{this.name}}">
+					<i class="fu-icon--s {{pfuIconClass this.name}}" data-tooltip="{{this.label}}"
+					   style="width: 18px;"></i>
+					<div class="track">
+						<div class="fill" style="width: {{this.percentage}}%;"></div>
+					</div>
+					<span class="label">{{this.current}}/{{this.max}}</span>
 				</div>
-				<span class="label">{{this.current}}/{{this.max}}</span>
-			</div>
-		{{/each}}
+			{{/each}}
+		</div>
 	</div>
 {{/each}}
