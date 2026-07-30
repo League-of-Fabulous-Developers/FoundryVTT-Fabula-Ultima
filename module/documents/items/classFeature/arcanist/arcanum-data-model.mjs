@@ -14,8 +14,9 @@ import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
  */
 export class ArcanumDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
-		const { StringField, HTMLField } = foundry.data.fields;
+		const { StringField, HTMLField, BooleanField } = foundry.data.fields;
 		return {
+			enablePulse: new BooleanField({ initial: false }),
 			domains: new StringField({ initial: '' }),
 			merge: new HTMLField({ initial: '' }),
 			pulse: new HTMLField({ initial: '' }),
@@ -62,6 +63,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		}
 		const data = {
 			domains: model.domains,
+			enablePulse: model.enablePulse,
 			merge: await TextEditor.enrichHTML(model.merge),
 			pulse: await TextEditor.enrichHTML(model.pulse),
 			dismiss: await TextEditor.enrichHTML(model.dismiss),

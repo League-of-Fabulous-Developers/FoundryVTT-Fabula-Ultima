@@ -4,7 +4,14 @@
 		<input type='text' name='system.data.domains' value='{{system.data.domains}}'
 			   class="resource-inputs select-dropdown-full resource-text-m" />
 	</fieldset>
-	<div class="grid {{#if (pfuGetSetting 'optionArcanumPulse')}}grid-3col{{else}}grid-2col{{/if}} gap-5 border-rc flexgrow-1">
+	<fieldset class="title-fieldset section-container desc resource-content">
+		<legend class="resource-label-m">{{localize "DOCUMENT.Settings"}}</legend>
+		<div class="grid grid-2col gap-5">
+			<label for="{{@root.partId}}-enablePulse">{{localize "FU.ClassFeatureArcanumEnablePulse"}}</label>
+			<input type="checkbox" name="system.data.enablePulse" id="{{@root.partId}}-enablePulse" {{checked system.data.enablePulse}}>
+		</div>
+	</fieldset>
+	<div class="grid {{#if system.data.enablePulse}}grid-3col{{else}}grid-2col{{/if}} gap-5 border-rc flexgrow-1">
 		<fieldset class="title-fieldset section-container desc resource-content">
 			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</legend>
 			<prose-mirror name="system.data.merge" value="{{system.data.merge}}" toggled>
@@ -12,7 +19,7 @@
 			</prose-mirror>
 		</fieldset>
 
-		{{#if (pfuGetSetting 'optionArcanumPulse')}}
+		{{#if system.data.enablePulse}}
 			<fieldset class="title-fieldset section-container desc resource-content">
 				<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumPulse'}}</legend>
 				<prose-mirror name="system.data.pulse" value="{{system.data.pulse}}" toggled>
