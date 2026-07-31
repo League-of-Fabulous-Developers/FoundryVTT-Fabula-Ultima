@@ -1,0 +1,178 @@
+{
+  "name": "Pulverizing Strike (Variant)",
+  "type": "heroic",
+  "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Breach deals more damage with heavy weapons."
+    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Fury</strong>, and <strong>Weaponmaster</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.V7AE78fIu92xkT3a]{Breach (Variant)} Skill, if you attack with a <strong>melee weapon </strong>belonging to the <strong>heavy</strong> Category, you may treat your Skill Level in the @UUID[Compendium.projectfu.skills.Item.V7AE78fIu92xkT3a]{Breach (Variant)} Skill as being 2 points higher (to a maximum Skill Level of 5).</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "darkblade, fury, weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "mig",
+      "secondary": "mig"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHF158",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "pulverizing-strike",
+    "effects": {
+      "duration": {
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
+    }
+  },
+  "effects": [
+    {
+      "name": "Pulverizing Strike (Variant)",
+      "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
+      "origin": "Item.DppL1AyvffBGbjDM",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "changes": [],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "disabled": false,
+      "_id": "GEVdc8FlZg3UeyD2",
+      "type": "base",
+      "start": null,
+      "description": "<p>You may treat your Skill Level in the <strong>Breach</strong> Skill as being 2 points higher (to a maximum Skill Level of 5)</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {}
+        }
+      },
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1785484586477,
+        "modifiedTime": 1785484586477,
+        "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!xMqoC5ujizMnyG3B.GEVdc8FlZg3UeyD2"
+    }
+  ],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "KBlCCPnVZr8JzjOr": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.365",
+    "createdTime": 1785484586477,
+    "modifiedTime": 1785484591115,
+    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "xMqoC5ujizMnyG3B",
+  "sort": 200000,
+  "_key": "!items!xMqoC5ujizMnyG3B"
+}

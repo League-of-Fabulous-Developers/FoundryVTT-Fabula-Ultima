@@ -1,0 +1,239 @@
+{
+  "folder": "t0can7tJoRis1H3f",
+  "name": "Breach (Variant)",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You may use an action and spend 10 Mind Points to perform a <strong>free attack</strong> with a <strong>melee weapon</strong> you have equipped; this attack <strong>must</strong> target only one creature.  If the attack is successful, choose one option:</p><ul><li><p>The attack deals <strong>【SL × 5】</strong> extra damage and its damage ignores Resistances, but it also ignores Vulnerabilities to any damage types other than <strong>physical</strong></p></li><li><p>The attack deals no damage and, until the start of your next turn, your allies deal <strong>【SL × 2】</strong> extra damage to its target.</p></li></ul>",
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": true,
+      "damage": true,
+      "traits": true
+    },
+    "accuracy": "",
+    "damage": {
+      "hasDamage": true,
+      "value": 0,
+      "type": "",
+      "onRoll": "$sl*5",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUBA345",
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "breach",
+    "cost": {
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.Cc1391vhlS1yIMrI.ActiveEffect.zoOqCdNwgemMCpvA"
+      ],
+      "duration": {
+        "interval": 1,
+        "event": "startOfTurn",
+        "tracking": "self"
+      },
+      "prompt": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "traits": [
+      "ignore-resistances"
+    ],
+    "resource": {
+      "enabled": false,
+      "amount": "10",
+      "type": "mp"
+    }
+  },
+  "effects": [
+    {
+      "name": "Breach (Variant)",
+      "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
+      "origin": "Item.uZrimo9C2KCAjm2N",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Z9Euvv5YVmTIBRAd": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "yvfOwuE4qSGP5lhp",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [],
+                "damageTypes": [
+                  "air",
+                  "bolt",
+                  "dark",
+                  "earth",
+                  "fire",
+                  "ice",
+                  "light",
+                  "poison"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "Z9Euvv5YVmTIBRAd",
+              "actions": {
+                "XfWuNZIx7STTWEQS": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "XfWuNZIx7STTWEQS",
+                  "amount": "",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": [
+                      "ignore-vulnerable"
+                    ]
+                  },
+                  "cost": {
+                    "resource": "mp",
+                    "amount": null,
+                    "perTarget": false
+                  },
+                  "variant": ""
+                }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        },
+        "changes": []
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "disabled": false,
+      "_id": "OSF1r3WPkP6JSAYY",
+      "type": "base",
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Breach (Variant)",
+            "actorUuid": null,
+            "itemUuid": "Item.uZrimo9C2KCAjm2N",
+            "effectUuid": null,
+            "fuid": "breach-variant"
+          }
+        }
+      },
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+        "createdTime": 1785483500120,
+        "modifiedTime": 1785483500120,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "start": {
+        "combat": null,
+        "round": 1,
+        "time": 0,
+        "turn": 0,
+        "combatant": null,
+        "initiative": null
+      },
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!V7AE78fIu92xkT3a.OSF1r3WPkP6JSAYY"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "KBlCCPnVZr8JzjOr": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.365",
+    "createdTime": 1785483500120,
+    "modifiedTime": 1785483500120,
+    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "V7AE78fIu92xkT3a",
+  "sort": 0,
+  "_key": "!items!V7AE78fIu92xkT3a"
+}
