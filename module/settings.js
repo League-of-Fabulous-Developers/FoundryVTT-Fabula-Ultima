@@ -71,7 +71,6 @@ export const SETTINGS = Object.freeze({
 	optionCampingRules: 'optionCampingRules',
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
-	optionArcanumPulse: 'optionArcanumPulse',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	npcEquipment: 'npcEquipment',
 	technospheres: 'useTechnospheres',
@@ -363,7 +362,6 @@ export const registerSystemSettings = async function () {
 			[
 				SETTINGS.optionQuirks,
 				SETTINGS.optionZeroPower,
-				SETTINGS.optionArcanumPulse,
 				SETTINGS.optionCampingRules,
 				SETTINGS.useRevisedStudyRule,
 				SETTINGS.npcEquipment,
@@ -439,16 +437,6 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.pressureSystem, {
 		name: game.i18n.localize('FU.OptionPressureSystem'),
 		hint: game.i18n.localize('FU.OptionPressureSystemHint'),
-		scope: 'world',
-		config: false,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionArcanumPulse, {
-		name: game.i18n.localize('FU.OptionArcanumPulse'),
-		hint: game.i18n.localize('FU.OptionArcanumPulseHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,

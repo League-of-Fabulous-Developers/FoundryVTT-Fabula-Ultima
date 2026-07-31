@@ -11,6 +11,7 @@ import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
  * @property {string} merge
  * @property {string} pulse
  * @property {string} dismiss
+ * @property {boolean} enablePulse
  */
 export class ArcanumDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
@@ -38,6 +39,17 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 
 	static get translation() {
 		return 'FU.ClassFeatureArcanum';
+	}
+
+	static getTabConfigurations() {
+		return [
+			{
+				group: 'arcanumTabs',
+				navSelector: '.arcanum-tabs',
+				contentSelector: '.arcanum-content',
+				initial: 'mergeTab',
+			},
+		];
 	}
 
 	static async getAdditionalData(model) {

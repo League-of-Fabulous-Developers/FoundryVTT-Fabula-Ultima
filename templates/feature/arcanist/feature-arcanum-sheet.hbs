@@ -1,4 +1,4 @@
-<div class="flexcol flexgrow-1">
+<div class="flexcol flexgrow-1 gap-5">
 	<fieldset class="title-fieldset section-container desc resource-content">
 		<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDomains'}}</legend>
 		<input type='text' name='system.data.domains' value='{{system.data.domains}}'
@@ -11,28 +11,38 @@
 			<input type="checkbox" name="system.data.enablePulse" id="{{@root.partId}}-enablePulse" {{checked system.data.enablePulse}}>
 		</div>
 	</fieldset>
-	<div class="grid {{#if system.data.enablePulse}}grid-3col{{else}}grid-2col{{/if}} gap-5 border-rc flexgrow-1">
-		<fieldset class="title-fieldset section-container desc resource-content">
-			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</legend>
-			<prose-mirror name="system.data.merge" value="{{system.data.merge}}" toggled>
-				{{{enrichedHtml.merge}}}
-			</prose-mirror>
-		</fieldset>
 
-		{{#if system.data.enablePulse}}
-			<fieldset class="title-fieldset section-container desc resource-content">
-				<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumPulse'}}</legend>
-				<prose-mirror name="system.data.pulse" value="{{system.data.pulse}}" toggled>
-					{{{enrichedHtml.pulse}}}
+	<div class="desc flexcol flexgrow-1">
+		<nav class="arcanum-tabs tabs flexrow gap-5" data-group="arcanumTabs">
+			<a class="item tab button-style" data-tab="mergeTab">{{localize 'FU.ClassFeatureArcanumMerge'}}</a>
+			{{#if system.data.enablePulse}}
+				<a class="item tab button-style" data-tab="pulseTab">{{localize 'FU.ClassFeatureArcanumPulse'}}</a>
+			{{/if}}
+			<a class="item tab button-style" data-tab="dismissTab">{{localize 'FU.ClassFeatureArcanumDismiss'}}</a>
+		</nav>
+
+		<hr>
+
+		<div class="arcanum-content flexcol flexgrow-1">
+			<div class="tab flexgrow-1" data-group="arcanumTabs" data-tab="mergeTab">
+				<prose-mirror name="system.data.merge" value="{{system.data.merge}}" toggled>
+					{{{enrichedHtml.merge}}}
 				</prose-mirror>
-			</fieldset>
-		{{/if}}
+			</div>
 
-		<fieldset class="title-fieldset section-container desc resource-content">
-			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</legend>
-			<prose-mirror name="system.data.dismiss" value="{{system.data.dismiss}}" toggled>
-				{{{enrichedHtml.dismiss}}}
-			</prose-mirror>
-		</fieldset>
+			{{#if system.data.enablePulse}}
+				<div class="tab flexgrow-1" data-group="arcanumTabs" data-tab="pulseTab">
+					<prose-mirror name="system.data.pulse" value="{{system.data.pulse}}" toggled>
+						{{{enrichedHtml.pulse}}}
+					</prose-mirror>
+				</div>
+			{{/if}}
+
+			<div class="tab flexgrow-1" data-group="arcanumTabs" data-tab="dismissTab">
+				<prose-mirror name="system.data.dismiss" value="{{system.data.dismiss}}" toggled>
+					{{{enrichedHtml.dismiss}}}
+				</prose-mirror>
+			</div>
+		</div>
 	</div>
 </div>
