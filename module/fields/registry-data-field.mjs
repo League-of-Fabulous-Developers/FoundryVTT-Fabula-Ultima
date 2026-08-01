@@ -79,9 +79,9 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	_migrate(value, options, _state) {
 		value = super._migrate(value, options, _state);
 		const sourceData = _state.modelSource;
-		if (sourceData?.[this.#typeField] && value) {
-			const type = sourceData[this.#typeField];
-			const model = this.#registry.byKey(type);
+		if (sourceData?.system?.[this.#typeField] && value) {
+			const type = sourceData.system[this.#typeField];
+			const model = this.#getRegistryModel(type);
 			value = model.migrateDataSafe(value);
 		}
 		return value;
