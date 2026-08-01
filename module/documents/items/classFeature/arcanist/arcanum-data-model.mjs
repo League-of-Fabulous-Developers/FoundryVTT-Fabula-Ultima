@@ -4,6 +4,7 @@ import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
+import { ArcanumMigrations } from './arcanum-migrations.mjs';
 
 /**
  * @extends ClassFeatureDataModel
@@ -111,5 +112,10 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		this.actor.update({
 			'system.equipped.arcanum': newArcanumId,
 		});
+	}
+
+	static migrateData(source, options) {
+		ArcanumMigrations.run(source);
+		return super.migrateData(source, options);
 	}
 }

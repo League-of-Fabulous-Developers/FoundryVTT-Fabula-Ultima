@@ -65,6 +65,7 @@ export const Flags = Object.freeze({
 		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
 	ClassConverted: 'classConverted',
+	migratedEnablePulse: 'migratedEnablePulse',
 	Scene: {
 		DragRulerState: 'dragRulerState',
 	},
