@@ -92,17 +92,19 @@ export class SettingsConfigurationApp extends FUApplication {
 		let requiresWorldReload = false;
 
 		for (const setting of this.#settingData) {
-			const priorValue = game.settings.get(setting.namespace, setting.key, { document: true })._source.value;
+			const priorValue = game.settings.get(setting.namespace, setting.key, { document: true }).value;
 			let newValue;
 			try {
 				const formValue = formData.object[setting.completeKey];
-				newValue = await game.settings.set(setting.namespace, setting.key, formValue, { document: true });
+				const updatedSetting = await game.settings.set(setting.namespace, setting.key, formValue, { document: true });
+				newValue = updatedSetting.value;
 			} catch (error) {
 				ui.notifications.error(error);
+				continue;
 			}
 			if (priorValue === newValue) {
 				continue;
-			} // Compare JSON strings
+			}
 			requiresClientReload ||= setting.scope !== CONST.SETTING_SCOPES.WORLD && setting.requiresReload;
 			requiresWorldReload ||= setting.scope === CONST.SETTING_SCOPES.WORLD && setting.requiresReload;
 		}
