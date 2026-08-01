@@ -1130,6 +1130,17 @@
 	}
 }
 
+.projectfu document-tags button {
+	box-shadow: none !important;
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+.projectfu.active-effect-sheet .top-tabs {
+	margin-top: 0;
+	margin-inline: 0;
+}
+
 .projectfu prose-mirror {
 	max-height: 350px;
 
