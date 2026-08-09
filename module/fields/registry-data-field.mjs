@@ -112,21 +112,17 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 * @protected
 	 */
 	_cleanType(value, options, _state) {
-		const type = _state.documentType;
-
-		// Use a defined DataModel
+		const type = _state?.modelSource?.system?.[this.#typeField];
 		const cls = this.#getRegistryModel(type);
-		if (cls) return cls.cleanData(value, { ...options, copy: false }, _state);
-		else super._cleanType(value, options, _state); // Clean as an object field
-		if (options.partial) return value;
 
-		// Use a defined template.json
-		/** @deprecated since v14 until v16 */
-		const template = game?.model[this.documentName]?.[type];
-		if (template) {
-			const insertKeys = type === CONST.BASE_DOCUMENT_TYPE || !game?.system?.strictDataCleaning;
-			return foundry.utils.mergeObject(template, value, { insertKeys, inplace: false });
+		if (cls) {
+			// Use a defined DataModel
+			value = cls.cleanData(value, { ...options, copy: false }, _state);
+		} else {
+			// Clean as an object field
+			value = super._cleanType(value, options, _state);
 		}
+
 		return value;
 	}
 
