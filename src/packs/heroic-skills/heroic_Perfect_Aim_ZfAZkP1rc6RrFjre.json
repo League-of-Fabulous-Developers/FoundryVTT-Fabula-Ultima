@@ -9,7 +9,7 @@
     "summary": {
       "value": "Choose two options when using Warning Shot."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter</strong> Class, and must have acquired the <strong>Warning Shot</strong> Skill.</p><hr /><p>When you hit one or more creatures with a <strong>ranged</strong> attack and choose to deal no damage in order to gain the benefits of the @UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot} Skill, you may choose <strong>two</strong> options instead of one (for instance, you could inflict both <strong>shaken</strong> and <strong>slow</strong> on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong> and acquired <strong>Warning Shot</strong>.</p><hr /><p>When you use the <strong>Warning Shot</strong> Skill, you may choose <strong>two</strong> different options instead of one (for instance, you could inflict both <strong>shaken</strong> and <strong>slow</strong> on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -226,7 +226,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706585143889,
-    "modifiedTime": 1771888241963,
+    "modifiedTime": 1787127829367,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

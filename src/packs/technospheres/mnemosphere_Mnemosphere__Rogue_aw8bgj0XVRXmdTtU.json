@@ -14,7 +14,7 @@
       {
         "name": "Cheap Shot",
         "type": "skill",
-        "_id": "yEGhh1NuUNYQxYZY",
+        "_id": "aiwEru69xFBUkyH7",
         "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_cheap_shot.png",
         "system": {
           "summary": {
@@ -38,8 +38,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -115,12 +115,12 @@
                       "_id": "OHQTsrY8tqFSIFGH",
                       "type": "calculateDamageRuleTrigger",
                       "eventRelation": "source",
-                      "damageSources": [
-                        "attack"
-                      ],
                       "damageTypes": [],
                       "local": false,
-                      "identifier": ""
+                      "identifier": "",
+                      "itemGroups": [
+                        "attack"
+                      ]
                     },
                     "_id": "iMeiSArQrJM5MAh7",
                     "predicates": {
@@ -128,6 +128,16 @@
                         "type": "targetingRulePredicate",
                         "_id": "ilm0KpbJ3hHp907Z",
                         "rule": "single"
+                      },
+                      "Av5MT6g88DEgoDBq": {
+                        "type": "traitsRulePredicate",
+                        "_id": "Av5MT6g88DEgoDBq",
+                        "traits": {
+                          "entries": [
+                            "attack"
+                          ],
+                          "quantifier": "any"
+                        }
                       }
                     },
                     "actions": {
@@ -205,7 +215,7 @@
       {
         "name": "Dodge",
         "type": "skill",
-        "_id": "CHUv0XWfkxCTj1v0",
+        "_id": "WhDdGdc8HMJfxjiO",
         "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_dodge.png",
         "system": {
           "summary": {
@@ -229,8 +239,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -304,7 +314,7 @@
                 "priority": null
               }
             ],
-            "description": "<p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</p>",
+            "description": "<p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by<strong>【SL】</strong>.</p>",
             "transfer": true,
             "statuses": [],
             "flags": {
@@ -346,13 +356,13 @@
       {
         "name": "High Speed",
         "type": "skill",
-        "_id": "t9n2I3mY2ukgVIpG",
+        "_id": "xzD2PqvMOn7gwfEv",
         "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon you have equipped.</p></li><li><p>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</p></li></ul><p>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
+          "description": "<p>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon you have equipped.</p></li><li><p>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</p></li></ul><p>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -370,8 +380,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -454,7 +464,7 @@
                       "28zPkL7Xf4utBu0o": {
                         "type": "messageRuleAction",
                         "_id": "28zPkL7Xf4utBu0o",
-                        "message": "<p>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>"
+                        "message": "<p>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>"
                       }
                     },
                     "selector": "self",
@@ -507,13 +517,13 @@
       {
         "name": "See You Later",
         "type": "skill",
-        "_id": "T8aP0uHM5yhe3V6Z",
+        "_id": "ExbMeu6gxeO9CuW5",
         "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_see_you_later.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a <strong>different</strong> scene in which another Player Character is present. Describe how you escaped and miraculously got here!</p>",
+          "description": "<p>You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a <strong>different</strong> scene in which another Player Character is present. Describe how you escaped and miraculously got there!</p>",
           "showTitleCard": {
             "value": false
           },
@@ -531,8 +541,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -568,16 +578,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "resource": {
             "enabled": false,
             "amount": "",
@@ -597,13 +607,13 @@
       {
         "name": "Soul Steal",
         "type": "skill",
-        "_id": "ydctYuVmi3BUAex3",
+        "_id": "7owXxoz4pjZBh9cW",
         "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_soul_steal.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>During a conflict, you may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of an enemy you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target's <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】</strong> Checks for this Skill.</p>",
+          "description": "<p>During a conflict, you may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of an enemy you can see. If you succeed and that enemy is a <strong>soldier</strong>, you regain <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you their <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than 【the enemy's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> appears in your <strong>backpack</strong>. The same character can be successfully stolen from only once, but if they appear again with a different game profile, they can be stolen from again.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】</strong> Checks for this Skill.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -850,7 +860,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776192093128,
+    "modifiedTime": 1791524886971,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

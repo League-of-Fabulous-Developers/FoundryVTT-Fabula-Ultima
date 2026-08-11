@@ -9,7 +9,7 @@
     "summary": {
       "value": "Add High Roll when you Counterattack with a sword."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Weaponmaster</strong> Class, and must have acquired the <strong>Counterattack</strong> Skill.</p><hr /><p>When you perform a @UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack} using a <strong>melee</strong> weapon that belongs to the <strong>sword</strong> Category, you may add your High Roll to the damage dealt by the attack (you do not have to treat it as being 0).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Weaponmaster</strong> and acquired <strong>Counterattack</strong>.</p><hr /><p>When you perform a @UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack} using a <strong>melee weapon</strong> that belongs to the <strong>sword</strong> Category, you may add your <strong>High Roll</strong> to the damage dealt by the attack (you do not have to treat it as being 0).</p>",
     "isFavored": {
       "value": false
     },
@@ -123,7 +123,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684612525,
-    "modifiedTime": 1771892325403,
+    "modifiedTime": 1791492197367,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

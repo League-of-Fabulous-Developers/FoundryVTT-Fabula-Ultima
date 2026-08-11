@@ -121,6 +121,11 @@
     "fuid": "magic-symbols",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -141,7 +146,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706562979546,
-    "modifiedTime": 1770610523320,
+    "modifiedTime": 1791488034484,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -152,13 +152,14 @@
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "identifier": ""
               },
               "actions": {
                 "C0sv955OJ6ddpW9g": {
                   "type": "messageRuleAction",
                   "_id": "C0sv955OJ6ddpW9g",
-                  "message": "<p>You may perform @ACTION[study bonus:$sl] against the enemy.</p>"
+                  "message": "<p>You may perform the <strong>Study</strong> action on that enemy.</p>"
                 }
               }
             }
@@ -170,6 +171,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -196,7 +202,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767730525954,
-        "modifiedTime": 1771832237978,
+        "modifiedTime": 1786403038727,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YkMaFGnNoWMo6k1U.UFwFf5qcdGZ0EtWc"

@@ -14,13 +14,13 @@
       {
         "name": "Bodyguard",
         "type": "skill",
-        "_id": "Ua4hCn1MPqwlO6Qp",
+        "_id": "LDF1j7YVFj9jpUpX",
         "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_bodyguard.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.</p><hr /><p><strong>Target Receives:</strong> @TYPE[affinity all resistance e:sot i:1 t:source]</p>",
+          "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to an ally, that creature gains Resistance to all damage types until the start of your next turn.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -38,8 +38,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -76,7 +76,9 @@
               "event": "",
               "tracking": ""
             },
-            "entries": [],
+            "entries": [
+              "Compendium.projectfu.skills.Item.21y8FN9MymAxo1RY"
+            ],
             "prompt": false
           },
           "traits": [],
@@ -104,13 +106,13 @@
       {
         "name": "Defensive Mastery",
         "type": "skill",
-        "_id": "4q6wMonjsvj0wDx4",
+        "_id": "80wge1J0SqWFSiIw",
         "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_defensive_mastery.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
+          "description": "<p>As long as you have a <strong>shield</strong> or a <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
           "showTitleCard": {
             "value": false
           },
@@ -128,8 +130,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -160,16 +162,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -209,6 +211,11 @@
                   "style": "basic",
                   "step": 1
                 },
+                "stacking": {
+                  "progress": false,
+                  "duration": false,
+                  "increment": 1
+                },
                 "elements": {}
               },
               "type": "default",
@@ -230,7 +237,7 @@
                 "priority": null
               }
             ],
-            "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong>.</p>",
+            "description": "<p>All damage you suffer is reduced by <strong>【SL】</strong>.</p>",
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
@@ -254,13 +261,13 @@
       {
         "name": "Dual Shieldbearer",
         "type": "skill",
-        "_id": "Da2IGLdbve78KoPI",
+        "_id": "Fc8uEmidGS5k5ab4",
         "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_dual_shieldbearer.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee <strong>brawling</strong> weapon:</p><table border=\"1\"><tbody><tr><td><p style=\"width:80px\"><strong>WEAPON</strong></p></td><td><p style=\"text-align:center\"><strong>ACCURACY</strong></p></td><td><p style=\"text-align:center\"><strong>DAMAGE</strong></p></td></tr><tr><td><p style=\"width:80px\">@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</p></td><td><p style=\"text-align:center\"><strong>【MIG + MIG】</strong></p></td><td><p style=\"text-align:center\"><strong>【HR + 5】</strong> <strong>physical</strong></p></td></tr><tr><td colspan=\"3\"><p>Brawling • Melee • Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p></td></tr></tbody></table><hr /><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> the icon in <strong>Equip?</strong> column. The item will be added to the <strong>Phantom Slot</strong>. Make sure this skill is added to your character sheet. Now you can equip shields on both your main and off hand slot.</p>",
+          "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two <strong>shields</strong> equipped, you gain the benefits of both items and may treat them as the following two-handed <strong>melee brawling weapon</strong>:</p><table><tbody><tr><td colspan=\"2\"><p><strong>WEAPON</strong></p></td><td><p style=\"text-align:center\"><strong>ACCURACY</strong></p></td><td><p style=\"text-align:center\"><strong>DAMAGE</strong></p></td></tr><tr><td rowspan=\"2\" style=\"width:80px\"><img src=\"systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png\" width=\"48\" height=\"48\" /></td><td><p><strong>Twin Shields</strong></p></td><td><p style=\"text-align:center\"><strong>【MIG + MIG】</strong></p></td><td><p style=\"text-align:center\"><strong>【HR + 5】</strong> <strong>physical</strong></p></td></tr><tr><td colspan=\"3\"><p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p></td></tr></tbody></table><hr /><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> on the icon in the <strong>Equip?</strong> column. This will equip the item to the <strong>Phantom Slot</strong>. Now you can equip shields on both your main and off hand slot.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -278,8 +285,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -367,8 +374,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -405,8 +412,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "cost": {
@@ -486,19 +492,19 @@
             "classConverted": true
           }
         },
-        "_id": "PcZ128mqed6ahFlc",
+        "_id": "jzFY925YVfnzD3vj",
         "sort": 400000
       },
       {
         "name": "Protect",
         "type": "skill",
-        "_id": "kBWZ7VKlGaSQwO23",
+        "_id": "2eNlRBrwvGT97Uor",
         "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_protect.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong>, or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before</strong> or <strong>after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p><hr /><p><em>You can use this effect to track if you have this Skill available to use during a conflict.<br /></em><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.biHrtuJc1M3Xo7S4]</p>",
+          "description": "<p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong> or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before or after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately). You cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p><hr /><p><em>You can use this effect to track if you have this Skill available to use during a conflict.<br /></em><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.biHrtuJc1M3Xo7S4]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -516,8 +522,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -598,7 +604,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191942754,
+    "modifiedTime": 1791524814024,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

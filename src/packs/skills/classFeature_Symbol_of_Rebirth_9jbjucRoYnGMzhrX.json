@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>If the creature bearing this symbol is about to be reduced to 0 Hit Points, they may destroy this <strong>symbol</strong>: if they do, they are instead reduced to exactly 1 Hit Point.</p><hr /><p><strong>You Spend:</strong> @LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.PKduzohKSvwQRaa1]</p>"
+      "description": "<p>If the creature bearing this symbol is about to be reduced to 0 Hit Points, they may destroy this <strong>symbol</strong>: if they do, they are instead reduced to exactly 1 Hit Point.</p><hr /><p><strong>You Spend:</strong> @LOSS[2 ip]<br /><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.PKduzohKSvwQRaa1]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-rebirth"

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Quicken or delay the growth of your magiseeds"
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Floralist</strong> Class.</p><hr /><p>When <strong>you fill 1 or more sections of your Growth Clock</strong>, you may choose one option:</p><ul><li><p>You fill <strong>1 additional section</strong> of your Growth Clock.</p></li><li><p>You fill <strong>1 fewer section</strong> of your Growth Clock (to a minimum of 0 sections filled).</p></li></ul><p>If you do, you cannot use this effect again until after your <strong>Growth Clock</strong> has become completely empty.</p><p>Additionally, damage dealt by your <strong>magiseeds</strong> ignores Resistances.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Floralist</strong>.</p><hr /><p>When <strong>you fill 1 or more sections of your Growth Clock</strong>, you may choose one option:</p><ul><li><p>You fill <strong>1 additional section</strong> of your <strong>Growth Clock</strong>.</p></li><li><p>You fill <strong>1 fewer section</strong> of your <strong>Growth Clock</strong> (to a minimum of 0 sections filled).</p></li></ul><p>If you do, you cannot use this effect again until after your <strong>Growth Clock</strong> has become completely empty.</p><p>Additionally, damage dealt by your <strong>magiseeds</strong> ignores Resistances.</p>",
     "isFavored": {
       "value": false
     },
@@ -75,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894352605,
+    "modifiedTime": 1791519081652,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

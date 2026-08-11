@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.e85QX4FWBQxwTt8V]</p>",
+    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.e85QX4FWBQxwTt8V]</p>",
     "isFavored": {
       "value": false
     },

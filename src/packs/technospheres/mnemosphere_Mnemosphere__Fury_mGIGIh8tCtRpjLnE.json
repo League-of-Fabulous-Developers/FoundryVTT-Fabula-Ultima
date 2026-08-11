@@ -37,8 +37,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -75,8 +75,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "cost": {
@@ -158,13 +157,13 @@
             "classConverted": true
           }
         },
-        "_id": "8Xd9KbHtSG3PT5YA",
+        "_id": "Nt8H87BzKL78FAgk",
         "sort": 100000
       },
       {
         "name": "Frenzy",
         "type": "skill",
-        "_id": "kqUr6EHX1lClVgo4",
+        "_id": "8n4FX51MrESM6z7h",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_frenzy.png",
         "system": {
           "summary": {
@@ -188,8 +187,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -226,8 +225,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "cost": {
@@ -323,13 +321,13 @@
       {
         "name": "Indomitable Spirit",
         "type": "skill",
-        "_id": "rfJF1gM5wKGVc5Ra",
+        "_id": "16aJOwa1wIJaQuE2",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option:</p><ul><li><p>You recover <strong>【SL × 5】</strong> Hit Points.</p></li><li><p>You recover <strong>【SL × 5】</strong> Mind Points.</p></li><li><p>You recover from a single status effect of your choice.</p></li></ul><hr /><p><strong>You Recover:</strong> @GAIN[5*$sl hp]{SL × 5 HP} or @GAIN[5*$sl mp]{SL × 5 MP}</p>",
+          "description": "<p>When you spend a Fabula Point to <strong>invoke a Bond or Trait</strong>, choose one option:</p><ul><li><p>You recover <strong>【SL × 5】</strong> Hit Points.</p></li><li><p>You recover <strong>【SL × 5】</strong> Mind Points.</p></li><li><p>You recover from a single status effect of your choice.</p></li></ul><hr /><p><strong>You Recover:</strong> @GAIN[5*$sl hp]{SL × 5 HP} or @GAIN[5*$sl mp]{SL × 5 MP}</p>",
           "showTitleCard": {
             "value": false
           },
@@ -347,8 +345,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -413,13 +411,13 @@
       {
         "name": "Provoke",
         "type": "skill",
-        "_id": "AnyFjCKFfDmletGQ",
+        "_id": "LALZwZIUfArD4V7P",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against an enemy you can see — describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p>",
+          "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against an enemy you can see; describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong>, is compelled to focus their attention on you, and must include you among the targets of their attacks and offensive spells (@ICON[offensive]) if able. This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -438,7 +436,7 @@
           },
           "attributes": {
             "primary": "mig",
-            "secondary": "wlp"
+            "secondary": "mig"
           },
           "accuracy": "1",
           "damage": {
@@ -585,13 +583,13 @@
       {
         "name": "Withstand",
         "type": "skill",
-        "_id": "ToeRkGRMUrOTGGJM",
+        "_id": "xn21f0SBcqrjoljK",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover:</strong> @GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.jSII3l7tDl8xF5O6] or @EFFECT[Compendium.projectfu.skills.Item.YI4Y5gg5ivvqmO5f]</p>",
+          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover:</strong> @GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.jSII3l7tDl8xF5O6] or @EFFECT[Compendium.projectfu.skills.Item.YI4Y5gg5ivvqmO5f]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -609,8 +607,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -691,7 +689,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191903848,
+    "modifiedTime": 1791524791742,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

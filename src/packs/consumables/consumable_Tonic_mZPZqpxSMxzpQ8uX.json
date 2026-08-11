@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature recovers from all status effects."
     },
-    "description": "<p>One creature recovers from all status effects.</p>",
+    "description": "<p>One creature recovers from <strong>all</strong> status effects.</p>",
     "isFavored": {
       "value": false
     },
@@ -48,7 +48,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706516094485,
-    "modifiedTime": 1771880452612,
+    "modifiedTime": 1786401106210,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

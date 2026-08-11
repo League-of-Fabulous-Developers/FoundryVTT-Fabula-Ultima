@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Therioforms are mutations that grant powerful abilities; the way they manifest on your character is completely up to you - <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you feathered wings.</p><ul><li><p>Once you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the Guard action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, <strong>before or after</strong> an action.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend @LOSS[10 mp] to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul>",
+    "description": "<p>Therioforms are mutations that grant powerful abilities. The way that they manifest is completely up to you: <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you large feathered wings.</p><ul><li><p>Once you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the <strong>Guard</strong> action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, and only while no other effect is being resolved.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend 10 Mind Points to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -125,7 +125,12 @@
     },
     "opportunity": "",
     "defense": "def",
-    "fuid": "handout-therioform-rules"
+    "fuid": "handout-therioform-rules",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [],
   "ownership": {
@@ -137,15 +142,18 @@
     "projectfu-playtest": {
       "growthClock": false
     },
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711422481438,
-    "modifiedTime": 1743175170436,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1791521416990,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

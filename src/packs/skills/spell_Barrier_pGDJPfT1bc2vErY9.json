@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
+    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense score as being equal to 12 (they may still use their normal Defense score if it is higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -144,7 +144,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771475560048,
-    "modifiedTime": 1771476510771,
+    "modifiedTime": 1786687414334,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "sort": 1000000,

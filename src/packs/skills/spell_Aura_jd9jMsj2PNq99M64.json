@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
+    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense score as being equal to 12 (they may still use their normal Magic Defense score if it is higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -144,7 +144,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771475560048,
-    "modifiedTime": 1771476469397,
+    "modifiedTime": 1786687288790,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "sort": 500000,

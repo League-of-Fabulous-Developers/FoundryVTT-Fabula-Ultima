@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>As long as there is a <strong>magiseed</strong> in your <strong>garden</strong> and <strong>1 or more sections</strong> of your <strong>Growth Clock</strong> are <strong>filled</strong>, you may use an action to <strong>remove</strong> that <strong>magiseed</strong> from your <strong>garden</strong>: if you do, you immediately <strong>plant a different magiseed</strong> among those you have discovered (keep the current filled sections of your Growth Clock unchanged).</p>",
+    "description": "<p>As long as there is a <strong>magiseed</strong> in your <strong>garden</strong> and <strong>1 or more sections</strong> of your <strong>Growth Clock</strong> are <strong>filled</strong>, you may use an action to <strong>remove</strong> that <strong>magiseed</strong> from your <strong>garden</strong>: if you do, <strong>plant a different magiseed</strong> among those you have discovered (keep the current filled sections of your <strong>Growth Clock</strong> unchanged).</p>",
     "isFavored": {
       "value": false
     },
@@ -62,6 +62,11 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -83,7 +88,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770369722456,
+    "modifiedTime": 1791493727896,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

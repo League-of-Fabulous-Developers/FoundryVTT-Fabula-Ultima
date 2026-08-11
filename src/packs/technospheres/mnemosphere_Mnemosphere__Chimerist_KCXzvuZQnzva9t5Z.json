@@ -14,18 +14,18 @@
       {
         "name": "Consume",
         "type": "skill",
-        "_id": "LuYIgeqPJ5iGHEEe",
+        "_id": "1B0vv2a8em2HKWeZ",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
+          "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail weapon</strong> equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
-            "value": 0,
+            "value": 1,
             "max": 5,
             "min": 0
           },
@@ -38,8 +38,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -151,7 +151,7 @@
                       "38M0seyIClMNOZsr": {
                         "type": "messageRuleAction",
                         "_id": "38M0seyIClMNOZsr",
-                        "message": "<p>If you damage one or more, recover <strong>【SL × 2】</strong> MP.</p>"
+                        "message": "<p>If you damage one or more, recover<strong>【SL × 2】</strong>MP.</p>"
                       },
                       "C4sr0SUqEHuh5PXh": {
                         "type": "updateResourceRuleAction",
@@ -204,7 +204,7 @@
       {
         "name": "Feral Speech",
         "type": "skill",
-        "_id": "KVrZZRAyXx1E69BW",
+        "_id": "ISI4wQ0axmDuytzg",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_feral_speech.png",
         "system": {
           "summary": {
@@ -215,7 +215,7 @@
             "value": false
           },
           "level": {
-            "value": 0,
+            "value": 1,
             "max": 1,
             "min": 0
           },
@@ -228,8 +228,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -266,8 +266,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "cost": {
@@ -294,7 +293,7 @@
       {
         "name": "Pathogenesis",
         "type": "skill",
-        "_id": "24yQaaqGIB4ywgN0",
+        "_id": "21nPIOeidAoqxMHQ",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
         "system": {
           "summary": {
@@ -305,7 +304,7 @@
             "value": false
           },
           "level": {
-            "value": 0,
+            "value": 1,
             "max": 1,
             "min": 0
           },
@@ -318,8 +317,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -482,7 +481,7 @@
       {
         "name": "Spell Mimic",
         "type": "skill",
-        "_id": "ejSODFuqhad6oZH5",
+        "_id": "uC05JfDEVMB91A0P",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
         "system": {
           "summary": {
@@ -493,7 +492,7 @@
             "value": false
           },
           "level": {
-            "value": 0,
+            "value": 1,
             "max": 10,
             "min": 0
           },
@@ -506,8 +505,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -669,7 +668,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191661906,
+    "modifiedTime": 1791524619145,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

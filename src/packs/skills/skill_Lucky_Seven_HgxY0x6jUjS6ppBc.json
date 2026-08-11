@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You have a <strong>lucky number</strong>; at the beginning of each session, that number is <strong>7</strong>. Once per scene after you perform a Check, you may replace the value shown on one of the dice you rolled with your lucky number (even if this would give an impossible Result, such as a value of 7 on a d6). If you do, the replaced value becomes your <strong>new</strong> lucky number.</p>",
+    "description": "<p>You have a <strong>lucky number</strong>; at the start of each session, that number is <strong>7</strong>. Once per scene after you roll dice for a Check, you may replace the value shown on one of those dice with your lucky number (even if this would give an impossible value, such as a value of 7 on a d6). If you do, the replaced value becomes your <strong>new</strong> lucky number.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "lucky-seven",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -141,7 +146,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706486624955,
-    "modifiedTime": 1770253473210,
+    "modifiedTime": 1786408159089,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

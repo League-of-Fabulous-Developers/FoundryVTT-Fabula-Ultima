@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve your synergy with your Faithful Companion."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p><hr /><p>When your companion deals damage, they deal 5 extra damage.</p><p>When your companion performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your companion's <strong>Traits</strong> in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the @UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion} Skill to have your companion perform an action during your turn, you may choose one option (after the companion's action has been resolved):</p><ul><li><p>You and your companion each recover 10 Mind Points.</p></li><li><p>The first time you or your companion perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p></li></ul><hr /><p><strong>Companion Receives:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.tfiHN8sIoo9lMl0C]<br /><strong>You Spend:</strong> @LOSS[1 fp]<br /><strong>Targets Recovers:</strong> @GAIN[10 mp] or @EFFECT[Compendium.projectfu.heroic-skills.Item.m8syR9MuczFEI1l8]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Wayfarer</strong>, and acquired <strong>Faithful Companion</strong>.</p><hr /><p>When your <strong>companion</strong> deals damage, they deal 5 extra damage.</p><p>When your <strong>companion</strong> performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your <strong>companion's</strong> Traits in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the @UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion} Skill to have your <strong>companion</strong> perform an action during your turn, you may choose one option (after the <strong>companion's</strong> action has been resolved):</p><ul><li><p>You and your <strong>companion</strong> each recover 10 Mind Points.</p></li><li><p>The first time you or your <strong>companion</strong> perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p></li></ul><hr /><p><strong>Companion Gains:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.tfiHN8sIoo9lMl0C]<br /><strong>You Spend:</strong> @LOSS[1 fp]<br /><strong>Targets Recovers:</strong> @GAIN[10 mp] or @EFFECT[Compendium.projectfu.heroic-skills.Item.m8syR9MuczFEI1l8]</p>",
     "isFavored": {
       "value": false
     },
@@ -75,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894385430,
+    "modifiedTime": 1791519788632,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

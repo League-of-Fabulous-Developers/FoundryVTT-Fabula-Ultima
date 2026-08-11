@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><strong>Required Heroic Skill:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.zggGDIOSuvO8uzHg]{Comet}</p><hr /><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option:</p><ul><li><p>You deal 60 damage to one creature you can see.</p></li><li><p>You deal 40 damage to every enemy you can see.</p></li></ul><p>These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
+    "description": "<p><strong>Required Heroic Skill:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.zggGDIOSuvO8uzHg]{Comet}</p><hr /><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose <strong>one</strong> option:</p><ul><li><p>You deal 60 damage to one creature you can see.</p></li><li><p>You deal 40 damage to every enemy you can see.</p></li></ul><p>These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
     "showTitleCard": {
       "value": false
     },
@@ -273,7 +273,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771476715573,
-    "modifiedTime": 1771478847734,
+    "modifiedTime": 1787128855305,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "couQDFDzbxx7tKnx",

@@ -18,7 +18,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>After you suffer damage, you may immediately recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
+          "description": "<p>After you suffer damage, you may recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
           "showTitleCard": {
             "value": false
           },
@@ -36,8 +36,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -115,12 +115,13 @@
                       "type": "damageRuleTrigger",
                       "eventRelation": "target",
                       "damageType": "",
-                      "damageSources": [],
                       "damageThreshold": {
                         "operator": "",
                         "amount": 0
                       },
-                      "affinity": ""
+                      "itemGroups": [],
+                      "affinity": "",
+                      "local": false
                     },
                     "actions": {
                       "ZtVOzqMFygNk6R4m": {
@@ -170,7 +171,7 @@
             "classConverted": true
           }
         },
-        "_id": "iRCiVzzmTfukf5bf",
+        "_id": "mxtkfsKBv9sTGFIB",
         "sort": 500000
       },
       {
@@ -198,8 +199,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -262,19 +263,19 @@
             "classConverted": true
           }
         },
-        "_id": "HxJCfEZhjcRdebb2",
+        "_id": "dxa81qpIgCtzItVM",
         "sort": 600000
       },
       {
         "name": "Lucky Seven",
         "type": "skill",
-        "_id": "oeDxXTAWyQggrBNt",
+        "_id": "dfdlDuWnsyoVKz5o",
         "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_lucky_seven.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You have a <strong>lucky number</strong>; at the beginning of each session, that number is <strong>7</strong>. Once per scene after you perform a Check, you may replace the value shown on one of the dice you rolled with your lucky number (even if this would give an impossible Result, such as a value of 7 on a d6). If you do, the replaced value becomes your <strong>new</strong> lucky number.</p>",
+          "description": "<p>You have a <strong>lucky number</strong>; at the start of each session, that number is <strong>7</strong>. Once per scene after you roll dice for a Check, you may replace the value shown on one of those dice with your lucky number (even if this would give an impossible value, such as a value of 7 on a d6). If you do, the replaced value becomes your <strong>new</strong> lucky number.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -292,8 +293,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -324,16 +325,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -353,12 +354,12 @@
             "classConverted": true
           }
         },
-        "sort": 700000
+        "sort": 650000
       },
       {
         "name": "Stolen Time",
         "type": "skill",
-        "_id": "k3y2MdKu0Y5m1mDY",
+        "_id": "A4cwdxQ1waBsvhJ7",
         "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_stolen_time.png",
         "system": {
           "summary": {
@@ -382,8 +383,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -422,8 +423,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "resource": {
@@ -515,7 +515,7 @@
             "classConverted": true
           }
         },
-        "sort": 800000
+        "sort": 700000
       }
     ],
     "source": "",
@@ -536,7 +536,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191820324,
+    "modifiedTime": 1791524745737,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

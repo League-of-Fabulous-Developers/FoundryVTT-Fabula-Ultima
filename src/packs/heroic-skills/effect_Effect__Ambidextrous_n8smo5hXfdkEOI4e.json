@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Ambidextrous",
+      "name": "Ambidextrous (Damage)",
       "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
       "system": {
         "duration": {
@@ -35,6 +35,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -75,7 +80,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770708045295,
-        "modifiedTime": 1770710816135,
+        "modifiedTime": 1787126762585,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!n8smo5hXfdkEOI4e.d4sT9gili2soRXKa"

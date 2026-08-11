@@ -14,7 +14,7 @@
       {
         "name": "Barrage",
         "type": "skill",
-        "_id": "B5wab1o5e8pULMcn",
+        "_id": "fROBoqWn9l1nVdK8",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_barrage.png",
         "system": {
           "summary": {
@@ -81,8 +81,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "resource": {
@@ -104,13 +103,13 @@
       {
         "name": "Crossfire",
         "type": "skill",
-        "_id": "iK5CzVs0JBnyk9cW",
+        "_id": "GFOJtTpiNRk7qdv3",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
+          "description": "<p>After a creature you can see performs an Accuracy Check for a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of that Accuracy Check】</strong> to have the attack automatically miss all of its targets. You can only use this Skill if you have a <strong>ranged weapon</strong> equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -128,8 +127,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -160,16 +159,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -291,13 +290,13 @@
       {
         "name": "Hawkeye",
         "type": "skill",
-        "_id": "qrZoUpAsgfT3P8ju",
+        "_id": "X3RwQ0Pxjqh7vx41",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_hawkeye.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option:</p><ul><li><p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p></li><li><p>You may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]</p>",
+          "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option:</p><ul><li><p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p></li><li><p>You may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p></li></ul><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -315,8 +314,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -343,20 +342,20 @@
           },
           "defense": "",
           "fuid": "hawkeye",
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
           "targeting": {
             "rule": "special",
             "max": 0
           },
           "traits": [],
-          "effects": {
-            "entries": [],
-            "prompt": false,
-            "duration": {
-              "event": "",
-              "tracking": "",
-              "interval": null
-            }
-          },
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -381,13 +380,13 @@
       {
         "name": "Ranged Weapon Mastery",
         "type": "skill",
-        "_id": "zC55PPHV40CAySwZ",
+        "_id": "DQ9LM5sPbicSwLgI",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons.</p>",
+          "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged weapons</strong>.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -405,8 +404,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -437,16 +436,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -531,13 +530,13 @@
       {
         "name": "Warning Shot",
         "type": "skill",
-        "_id": "sCxQvX2kGhBsmNc0",
+        "_id": "4Od30x05PtBV2n2J",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>shaken</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>slow</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
+          "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that deals damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>shaken</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>slow</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
           "showTitleCard": {
             "value": false
           },
@@ -593,12 +592,12 @@
               "shaken",
               "slow"
             ],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "prompt": false
           },
           "cost": {
             "resource": "mp",
@@ -738,7 +737,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776192132500,
+    "modifiedTime": 1791524907191,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

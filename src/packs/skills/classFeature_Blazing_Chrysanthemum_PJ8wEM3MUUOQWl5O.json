@@ -17,7 +17,7 @@
         {
           "start": 1,
           "end": 3,
-          "effect": "<p>At the end of your turn, choose <strong>earth</strong> or <strong>fire</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.q0733esmOGzxhGI8] or @EFFECT[Compendium.projectfu.skills.Item.aFBbugzUVcnYQE3H]</p>"
+          "effect": "<p>At the end of your turn, choose <strong>earth</strong> or <strong>fire</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.q0733esmOGzxhGI8] or @EFFECT[Compendium.projectfu.skills.Item.aFBbugzUVcnYQE3H]</p>"
         }
       ]
     },

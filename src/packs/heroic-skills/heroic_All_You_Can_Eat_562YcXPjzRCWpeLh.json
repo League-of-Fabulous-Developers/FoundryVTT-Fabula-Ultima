@@ -10,7 +10,7 @@
     "summary": {
       "value": "Combine four ingredients into a delicacy."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Gourmet</strong> Class.</p><hr /><p>Once per scene when you use the <strong>Cooking</strong> Skill, you may combine <strong>four ingredients into a delicacy</strong> (thus ignoring the normal limit of three ingredients). Other than that, the delicacy follows the normal rules.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Gourmet</strong>.</p><hr /><p>Once per scene when you use the <strong>Cooking</strong> Skill, you may combine <strong>four ingredients into a delicacy</strong> (thus ignoring the normal limit of three <strong>ingredients</strong>). Other than that, the <strong>delicacy</strong> follows the normal rules.</p>",
     "isFavored": {
       "value": false
     },
@@ -137,7 +137,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771893473614,
+    "modifiedTime": 1791511751599,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
