@@ -79,9 +79,9 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	_migrate(value, options, _state) {
 		value = super._migrate(value, options, _state);
 		const sourceData = _state.modelSource;
-		if (sourceData?.[this.#typeField] && value) {
-			const type = sourceData[this.#typeField];
-			const model = this.#registry.byKey(type);
+		if (sourceData?.system?.[this.#typeField] && value) {
+			const type = sourceData.system[this.#typeField];
+			const model = this.#getRegistryModel(type);
 			value = model.migrateDataSafe(value);
 		}
 		return value;
@@ -99,7 +99,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 */
 	_getField(parts, { source } = {}) {
 		if (!parts.length) return this;
-		const model = this.#getRegistryModel(this.#getTypeValue(source));
+		const model = this.#getRegistryModel(this.#getTypeValue({ _source: source }));
 		return model?.schema?._getField(parts, { source });
 	}
 
@@ -112,21 +112,17 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 * @protected
 	 */
 	_cleanType(value, options, _state) {
-		const type = _state.documentType;
-
-		// Use a defined DataModel
+		const type = _state?.modelSource?.system?.[this.#typeField];
 		const cls = this.#getRegistryModel(type);
-		if (cls) return cls.cleanData(value, { ...options, copy: false }, _state);
-		else super._cleanType(value, options, _state); // Clean as an object field
-		if (options.partial) return value;
 
-		// Use a defined template.json
-		/** @deprecated since v14 until v16 */
-		const template = game?.model[this.documentName]?.[type];
-		if (template) {
-			const insertKeys = type === CONST.BASE_DOCUMENT_TYPE || !game?.system?.strictDataCleaning;
-			return foundry.utils.mergeObject(template, value, { insertKeys, inplace: false });
+		if (cls) {
+			// Use a defined DataModel
+			value = cls.cleanData(value, { ...options, copy: false }, _state);
+		} else {
+			// Clean as an object field
+			value = super._cleanType(value, options, _state);
 		}
+
 		return value;
 	}
 
@@ -171,7 +167,9 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 
 	clean(value, options, _state) {
 		const model = _state.model ?? { _source: _state.modelSource };
-		if (!value) return this.getInitialValue({ type: this.#getTypeValue(model) });
+		if (!value) {
+			value = this.getInitialValue({ type: this.#getTypeValue(model) });
+		}
 		return super.clean(value, options, _state);
 	}
 
@@ -183,7 +181,15 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	}
 
 	_validateModel(changes, options = {}) {
-		const cls = this.#getRegistryModel(this.#getTypeValue(options.model));
+		let model;
+
+		if (options.model) {
+			model = options.model;
+		} else if (options.source) {
+			model = { _source: options.source };
+		}
+
+		const cls = this.#getRegistryModel(this.#getTypeValue(model));
 		return cls?.validateJoint(changes);
 	}
 
