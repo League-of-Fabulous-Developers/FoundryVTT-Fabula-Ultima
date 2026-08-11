@@ -9,7 +9,7 @@
     "summary": {
       "value": "Bind a previously unknown Arcanum, and improve dismiss effects."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Arcanist</strong> Class.</p><hr /><p>You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</p><p>Once per scene while you are <strong>merged</strong> with an Arcanum, you may use an action and spend 2 Fabula Points to <strong>trigger</strong> that Arcanum's <strong>dismiss</strong> effect (if any) without dismissing them. Doing so does not trigger the @UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle} Skill.</p><hr /><p><strong>You Spend:</strong> @LOSS[2 fp]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Arcanist</strong>.</p><hr /><p>You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</p><p>Once per scene while you are <strong>merged</strong> with an Arcanum, you may use an action and spend 2 Fabula Points to <strong>trigger</strong> that Arcanum's <strong>dismiss</strong> effect (if any) without dismissing them. Doing so <strong>does not</strong> trigger the <strong>Arcane Circle</strong> Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -103,6 +103,10 @@
     },
     "targeting": {
       "rule": "self"
+    },
+    "cost": {
+      "resource": "fp",
+      "amount": "2"
     }
   },
   "effects": [],
@@ -123,7 +127,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706586656617,
-    "modifiedTime": 1771889883324,
+    "modifiedTime": 1787128507709,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

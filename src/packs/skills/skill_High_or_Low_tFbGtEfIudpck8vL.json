@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】</strong> Hit Points.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.do8NdI13icFfJflO] and/or @EFFECT[Compendium.projectfu.skills.Item.pM2eTYvKrmR3wATD] or @GAIN[&amp;sl(\"high-or-low\")*2 hp]{SL × 2 HP}</p>",
+    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】</strong> Hit Points.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.do8NdI13icFfJflO] and/or @EFFECT[Compendium.projectfu.skills.Item.pM2eTYvKrmR3wATD] or @GAIN[&amp;sl(\"high-or-low\")*2 hp]{SL × 2 HP}</p>",
     "isFavored": {
       "value": false
     },

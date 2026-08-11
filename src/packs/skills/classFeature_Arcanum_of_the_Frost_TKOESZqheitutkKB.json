@@ -10,8 +10,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal <strong>ignores Resistances</strong>.</p>",
-      "dismiss": "<p><strong>Ice Age</strong>. Choose any number of creatures you can see: you deal 30 ice damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) ice|ignore-resistances|]{Ice Age Damage}</p>",
+      "merge": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal ignores Resistances.</p>",
+      "dismiss": "<p><strong>Ice Age</strong>. Choose any number of creatures you can see: you deal 30 <strong>ice</strong> damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) ice|ignore-resistances|]{Ice Age Damage}</p>",
       "domains": "cold, ice, silence"
     },
     "source": "FUCR179",
@@ -125,7 +125,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710463982993,
-    "modifiedTime": 1771044718933,
+    "modifiedTime": 1786402349805,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

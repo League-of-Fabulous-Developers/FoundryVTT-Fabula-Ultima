@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>As long as you are in <strong>Crisis</strong>, the cost for summoning your Arcana is reduced by <strong>【SL × 5】</strong> Mind Points.</p>",
+    "description": "<p>As long as you are in <strong>Crisis</strong>, the cost for <strong>summoning</strong> your Arcana is reduced by <strong>【SL × 5】</strong> Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "emergency-arcanum",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -230,7 +235,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706494667215,
-    "modifiedTime": 1771044365168,
+    "modifiedTime": 1786401369496,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

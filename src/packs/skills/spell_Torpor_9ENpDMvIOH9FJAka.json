@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p>",
+    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: each target hit by this spell suffers the chosen status effect.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -145,7 +145,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771475560048,
-    "modifiedTime": 1771475560048,
+    "modifiedTime": 1786687876883,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "sort": 200000,

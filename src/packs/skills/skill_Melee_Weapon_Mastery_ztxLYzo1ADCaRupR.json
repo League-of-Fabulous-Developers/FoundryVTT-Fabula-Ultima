@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons.</p>",
+    "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee weapons</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -120,6 +120,11 @@
     "fuid": "melee-weapon-mastery",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -203,7 +208,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706514138632,
-    "modifiedTime": 1770619200194,
+    "modifiedTime": 1786689983657,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Bone Crusher to challenge foes with a shield, then deal additional damage."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong>, <strong>Guardian</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher} Skill, if your attack targets <strong>only one creature</strong> and you have a <strong>shield</strong> equipped, you may <strong>challenge</strong> that creature until the end of your next turn. The <strong>challenge</strong> also ends if that creature is <strong>challenged</strong> by someone else, or if you <strong>challenge</strong> another creature.</p><p>The creature you are <strong>challenging</strong> must include you among the targets of their attacks and offensive spells (@ICON[offensive]), if able; additionally, once per turn (including other creatures' turns), when you deal damage to the creature you are <strong>challenging</strong> with a <strong>free attack</strong> using a <strong>one-handed melee</strong> weapon or a <strong>custom weapon</strong> belonging to the <strong>dagger</strong> or <strong>sword</strong> Category, you may deal 5 extra damage to that creature.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Commander</strong>, <strong>Guardian</strong>, or <strong>Weaponmaster</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher} Skill, if your attack targets <strong>only one creature</strong> and you have a <strong>shield</strong> equipped, you may <strong>challenge</strong> that creature until the end of your next turn. The <strong>challenge</strong> also ends if that creature is <strong>challenged</strong> by someone else, or if you <strong>challenge</strong> another creature.</p><p>The creature you are <strong>challenging</strong> must include you among the targets of their attacks and offensive spells (@ICON[offensive]), if able. additionally, once per turn (including other creatures' turns), when you deal damage to the creature you are <strong>challenging</strong> with a <strong>free attack</strong> using a <strong>one-handed melee weapon</strong> or a <strong>custom weapon</strong> belonging to the <strong>dagger</strong> or <strong>sword</strong> Category, you may deal 5 extra damage to that creature.</p>",
     "isFavored": {
       "value": false
     },
@@ -186,7 +186,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1775521821482,
+    "modifiedTime": 1791518605135,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

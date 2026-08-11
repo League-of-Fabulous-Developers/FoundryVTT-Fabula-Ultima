@@ -15,18 +15,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1786688855287,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... you or one ally you can see that is present on the scene.",
+      "description": "<p>... you <strong>or</strong> one ally you can see.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.XgGLKpsOv9luRBck"
     },
     {
@@ -41,18 +42,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1786688861022,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... one enemy you can see that is present on the scene.",
+      "description": "<p>... one enemy you can see.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.mRhNxnilSDSIMH8w"
     },
     {
@@ -67,18 +69,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1786688866034,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... you and every ally present on the scene.",
+      "description": "<p>... you <strong>and</strong> every ally present on the scene.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.BnBOQIJYo4CO2pNh"
     },
     {

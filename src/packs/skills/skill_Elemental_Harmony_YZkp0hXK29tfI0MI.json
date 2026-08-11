@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><p><em>Automatically applied to invocations while an elemental is in the encounter.</em></p>",
+    "description": "<p>You may always communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><p><em>Automatically applied to invocations while an elemental is in the encounter.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -97,7 +97,8 @@
                 "type": "calculateResourceRuleTrigger",
                 "eventRelation": "source",
                 "resource": "hp",
-                "change": "increment"
+                "change": "increment",
+                "identifier": ""
               },
               "_id": "3af5EdiLcqMppdTi",
               "predicates": {
@@ -123,6 +124,39 @@
                 "UkaKvruXJqxt6lMh": {
                   "type": "modifyResourceRuleAction",
                   "_id": "UkaKvruXJqxt6lMh",
+                  "amount": "$sl*5"
+                }
+              }
+            },
+            "HA5bUNVTCrRdIr0J": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "ECsH5U0GJ9m5O3I8",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "increment",
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "HA5bUNVTCrRdIr0J",
+              "predicates": {
+                "zg3dqK8Ink5hu6ub": {
+                  "type": "speciesRulePredicate",
+                  "_id": "zg3dqK8Ink5hu6ub",
+                  "selector": "scene",
+                  "species": [
+                    "elemental"
+                  ]
+                }
+              },
+              "actions": {
+                "l3XD6rLUp3BhnGHA": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "l3XD6rLUp3BhnGHA",
                   "amount": "$sl*5"
                 }
               }
@@ -175,7 +209,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774599955799,
-        "modifiedTime": 1774632394950,
+        "modifiedTime": 1791496763465,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YZkp0hXK29tfI0MI.oiSxoi3ydH5Pqfsf"
@@ -200,7 +234,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1775592983414,
+    "modifiedTime": 1791496818612,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C]</p>"
+          "effect": "<p>You gain Resistance to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C]</p>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C]</p>"
+          "effect": "<p>You and your allies present on the scene gain Resistance to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C]</p>"
         }
       ]
     },
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1777433581973,
+    "modifiedTime": 1791494080760,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

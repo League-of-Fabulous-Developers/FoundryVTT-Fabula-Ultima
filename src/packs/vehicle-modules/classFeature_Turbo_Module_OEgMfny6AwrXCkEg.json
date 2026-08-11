@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.3aaAgDlqa4xgeygv]</p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.3aaAgDlqa4xgeygv]</p>",
       "complex": false
     },
     "source": "FUTF169",

@@ -10,7 +10,7 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p><hr><p><strong>Allies Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.sh7pcJRup2dGA6vN], @EFFECT[Compendium.projectfu.skills.Item.Btu1RHeizzXGmuWj], @EFFECT[Compendium.projectfu.skills.Item.lMyJnByJO4A2SU9h], @EFFECT[Compendium.projectfu.skills.Item.V9DDBpBK02qIxkEV], @EFFECT[Compendium.projectfu.skills.Item.uW0OZk83vqZOw5uW], or @EFFECT[Compendium.projectfu.skills.Item.SBWScyP5dLPEmv5r]</p>",
+      "merge": "<p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is <strong>dismissed</strong>, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p><hr><p><strong>Allies Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.sh7pcJRup2dGA6vN], @EFFECT[Compendium.projectfu.skills.Item.Btu1RHeizzXGmuWj], @EFFECT[Compendium.projectfu.skills.Item.lMyJnByJO4A2SU9h], @EFFECT[Compendium.projectfu.skills.Item.V9DDBpBK02qIxkEV], @EFFECT[Compendium.projectfu.skills.Item.uW0OZk83vqZOw5uW], or @EFFECT[Compendium.projectfu.skills.Item.SBWScyP5dLPEmv5r]</p>",
       "dismiss": "<p><strong>Judgment</strong>. Choose any number of creatures you can see: you deal 30 <strong>light</strong> damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[30 light|ignore-resistances|]{Judgment Damage}</p>",
       "domains": "judgment, protection, sacrifice"
     },
@@ -81,7 +81,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710464096011,
-    "modifiedTime": 1771045826430,
+    "modifiedTime": 1786402532417,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

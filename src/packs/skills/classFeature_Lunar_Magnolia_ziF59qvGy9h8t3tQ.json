@@ -17,7 +17,7 @@
         {
           "start": 1,
           "end": 3,
-          "effect": "<p>At the end of your turn, choose <strong>ice</strong> or <strong>light</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.YfWDHikTC47SE6es] or @EFFECT[Compendium.projectfu.skills.Item.eTyaM3Nb0U3G5Eek]</p>"
+          "effect": "<p>At the end of your turn, choose <strong>ice</strong> or <strong>light</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.YfWDHikTC47SE6es] or @EFFECT[Compendium.projectfu.skills.Item.eTyaM3Nb0U3G5Eek]</p>"
         }
       ]
     },

@@ -72,8 +72,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "targeting": {
@@ -119,7 +118,8 @@
                       "checkTypes": [
                         "accuracy",
                         "magic"
-                      ]
+                      ],
+                      "local": false
                     },
                     "predicates": {
                       "Lw3YvRTsOnUBPy1h": {
@@ -281,7 +281,7 @@
             "classConverted": true
           }
         },
-        "_id": "EjarmObI7ZhvRqhz",
+        "_id": "rKEV73L9KIbDKF3O",
         "sort": 200000
       },
       {
@@ -292,7 +292,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
+          "description": "<p>The total Mind Point cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the only target (up to a minimum cost of 0 Mind Points).</p>",
           "showTitleCard": {
             "value": false
           },
@@ -467,6 +467,160 @@
                     },
                     "selector": "initial",
                     "enabled": true
+                  },
+                  "mXw9rjwnzlnCKaUG": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "XVqdSl8dLPxEFTct",
+                      "type": "calculateExpenseRuleTrigger",
+                      "eventRelation": "source",
+                      "resource": "mp",
+                      "expenseSource": "skill",
+                      "threshold": {
+                        "operator": "",
+                        "amount": 0
+                      },
+                      "traits": {
+                        "entries": [],
+                        "quantifier": "any"
+                      },
+                      "identifier": "verse"
+                    },
+                    "_id": "mXw9rjwnzlnCKaUG",
+                    "predicates": {
+                      "iDgzj12MiIb1rhbB": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "iDgzj12MiIb1rhbB",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      },
+                      "QE9dWopG2165TFwb": {
+                        "type": "targetingRulePredicate",
+                        "_id": "QE9dWopG2165TFwb",
+                        "rule": "single"
+                      }
+                    },
+                    "actions": {
+                      "RhMesE1Xyp0IWniC": {
+                        "type": "modifyExpenseRuleAction",
+                        "_id": "RhMesE1Xyp0IWniC",
+                        "amount": "-$sl*2",
+                        "operation": "add"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "b5tf92xGllF7K1w4": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "091qN0WTDCQf526R",
+                      "type": "calculateExpenseRuleTrigger",
+                      "eventRelation": "source",
+                      "resource": "mp",
+                      "expenseSource": "skill",
+                      "threshold": {
+                        "operator": "",
+                        "amount": 0
+                      },
+                      "traits": {
+                        "entries": [],
+                        "quantifier": "any"
+                      },
+                      "identifier": "verse"
+                    },
+                    "_id": "b5tf92xGllF7K1w4",
+                    "predicates": {
+                      "AGtoIgnDgapJqnox": {
+                        "type": "targetingRulePredicate",
+                        "_id": "AGtoIgnDgapJqnox",
+                        "rule": "multiple"
+                      },
+                      "EPus8Nnghx38cuxJ": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "EPus8Nnghx38cuxJ",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "roKAnIwFzkK9gSmj": {
+                        "type": "modifyExpenseRuleAction",
+                        "_id": "roKAnIwFzkK9gSmj",
+                        "amount": "-$sl",
+                        "operation": "add"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "DfzsyLhzTpnrktKy": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "kCAxEMXfgzMvVnnZ",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "spell"
+                      ],
+                      "local": false,
+                      "identifier": ""
+                    },
+                    "_id": "DfzsyLhzTpnrktKy",
+                    "predicates": {
+                      "nAJc81EHNkJB1q9P": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "nAJc81EHNkJB1q9P",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "Mc6mhxIA6N9kf0mf": {
+                        "type": "messageRuleAction",
+                        "_id": "Mc6mhxIA6N9kf0mf",
+                        "message": "<p>The cost of this spell has been reduced.</p>"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  },
+                  "JOM6TOxESvvtwjpG": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "xcNSHTNOD9kc4VCH",
+                      "type": "featureRuleTrigger",
+                      "eventRelation": "source",
+                      "traits": {
+                        "entries": [
+                          "verse"
+                        ],
+                        "quantifier": "any"
+                      }
+                    },
+                    "_id": "JOM6TOxESvvtwjpG",
+                    "predicates": {
+                      "xneWC23XF7bd4UoX": {
+                        "type": "targetEffectRulePredicate",
+                        "_id": "xneWC23XF7bd4UoX",
+                        "effect": "focus",
+                        "selector": "initial",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "2EJg2UDoRG2uAKvs": {
+                        "type": "messageRuleAction",
+                        "_id": "2EJg2UDoRG2uAKvs",
+                        "message": "<p>The cost of this verse has been reduced.</p>"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
                   }
                 },
                 "progress": {
@@ -477,6 +631,11 @@
                   "max": 6,
                   "style": "basic",
                   "step": 1
+                },
+                "stacking": {
+                  "progress": false,
+                  "duration": false,
+                  "increment": 1
                 }
               }
             },
@@ -504,7 +663,7 @@
             "classConverted": true
           }
         },
-        "_id": "XFP606KAwDeeQ7gC",
+        "_id": "xsjiiBo3cOIco8TU",
         "sort": 300000
       },
       {
@@ -686,8 +845,8 @@
             "classConverted": true
           }
         },
-        "_id": "yJDa3pqtwkeYYXtZ",
-        "sort": 350000
+        "_id": "ejW5FlD2VOqOm0fB",
+        "sort": 400000
       },
       {
         "name": "Psychokinesis",
@@ -697,7 +856,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Willpower</strong> (such as <strong>【DEX + WLP】</strong> for a <strong>shortbow</strong>). Additionally, your <strong>melee attacks</strong> with weapons belonging to the <strong>arcane</strong> or <strong>sword</strong> Categories may target <strong>ﬂying</strong> creatures.</p>",
+          "description": "<p>When you perform an Accuracy Check, you may replace one of the Attribute dice with <strong>Willpower</strong> (such as <strong>【DEX + WLP】</strong> for a <strong>shortbow</strong>). Additionally, your <strong>melee</strong> attacks with <strong>arcane weapons</strong> and <strong>swords</strong> may target <strong>ﬂying</strong> creatures.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -747,16 +906,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -776,8 +935,8 @@
             "classConverted": true
           }
         },
-        "_id": "P7U5SAmR6rKSOON3",
-        "sort": 400000
+        "_id": "LZKAmFHOFuqTerGv",
+        "sort": 500000
       }
     ],
     "source": "",
@@ -798,7 +957,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191863076,
+    "modifiedTime": 1791524769862,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
