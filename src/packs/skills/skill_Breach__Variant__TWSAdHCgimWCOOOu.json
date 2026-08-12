@@ -117,7 +117,7 @@
                   "light",
                   "poison"
                 ],
-                "local": false,
+                "local": true,
                 "identifier": ""
               },
               "_id": "Z9Euvv5YVmTIBRAd",

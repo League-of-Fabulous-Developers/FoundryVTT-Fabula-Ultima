@@ -5,7 +5,7 @@
   "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
   "system": {
     "fuid": "pulverizing-strike",
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Fury</strong>, and <strong>Weaponmaster</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.V7AE78fIu92xkT3a]{Breach (Variant)} Skill, if you attack with a <strong>melee weapon </strong>belonging to the <strong>heavy</strong> Category, you may treat your Skill Level in the @UUID[Compendium.projectfu.skills.Item.V7AE78fIu92xkT3a]{Breach (Variant)} Skill as being 2 points higher (to a maximum Skill Level of 5).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Fury</strong>, and <strong>Weaponmaster</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.TWSAdHCgimWCOOOu]{Breach (Variant)} Skill, if you attack with a <strong>melee weapon </strong>belonging to the <strong>heavy</strong> Category, you may treat your Skill Level in the @UUID[Compendium.projectfu.skills.Item.TWSAdHCgimWCOOOu]{Breach (Variant)} Skill as being 2 points higher (to a maximum Skill Level of 5).</p>",
     "summary": {
       "value": "Breach deals more damage with heavy weapons."
     },
