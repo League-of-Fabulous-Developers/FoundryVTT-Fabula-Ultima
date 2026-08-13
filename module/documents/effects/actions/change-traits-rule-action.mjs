@@ -12,10 +12,6 @@ const fields = foundry.data.fields;
  * @property {FUChangeSetMode} mode
  */
 export class ChangeTraitsRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'changeTraitsRuleAction' });
-	}
-
 	/** @inheritdoc */
 	static get metadata() {
 		return {
@@ -25,7 +21,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			traits: new fields.EmbeddedDataField(TraitsDataModel, {
 				options: TraitUtils.getOptions(Traits),
 			}),
@@ -34,7 +30,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 				choices: Object.keys(FU.changeSetMode),
 				required: true,
 			}),
-		});
+		};
 	}
 
 	static get localization() {

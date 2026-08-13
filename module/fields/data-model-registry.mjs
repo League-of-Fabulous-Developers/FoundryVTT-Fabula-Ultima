@@ -122,9 +122,29 @@ export class DataModelRegistry {
 			throw new Error(`${this.kind} ${qualifiedType} is already registered`);
 		}
 
+		model = this.#patchModel(model, qualifiedType);
+
 		this.#types.set(type, model);
 		this.#qualifiedTypes.set(qualifiedType, model);
 		this.#typeQualification.set(type, qualifiedType);
 		return qualifiedType;
+	}
+
+	#patchModel(model, qualifiedType) {
+		const patchedClassName = `Patched${model.name}`;
+		const namingHelper = {};
+		namingHelper[patchedClassName] = class extends model {
+			static get TYPE() {
+				return qualifiedType;
+			}
+
+			static defineSchema() {
+				return {
+					...super.defineSchema(),
+					type: new foundry.data.fields.StringField({ required: true, nullable: false, blank: false, initial: qualifiedType, validate: (value) => value === qualifiedType }),
+				};
+			}
+		};
+		return namingHelper[patchedClassName];
 	}
 }

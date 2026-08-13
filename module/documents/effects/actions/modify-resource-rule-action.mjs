@@ -9,10 +9,6 @@ const fields = foundry.data.fields;
  * @property {String} amount
  */
 export class ModifyResourceRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'modifyResourceRuleAction' });
-	}
-
 	static get metadata() {
 		return {
 			...super.metadata,
@@ -21,9 +17,9 @@ export class ModifyResourceRuleAction extends RuleActionDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			amount: new fields.StringField({ blank: true }),
-		});
+		};
 	}
 
 	static get localization() {

@@ -17,10 +17,6 @@ const fields = foundry.data.fields;
  * @property
  */
 export class PerformCheckRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'performCheckRuleAction' });
-	}
-
 	/** @inheritdoc */
 	static get metadata() {
 		return {
@@ -30,7 +26,7 @@ export class PerformCheckRuleAction extends RuleActionDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			check: new fields.StringField({
 				initial: '',
 				blank: true,
@@ -38,7 +34,7 @@ export class PerformCheckRuleAction extends RuleActionDataModel {
 			}),
 			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 			bonus: new fields.StringField(),
-		});
+		};
 	}
 
 	static get localization() {

@@ -1,4 +1,3 @@
-import { SubDocumentDataModel } from '../../sub/sub-document-data-model.mjs';
 import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 
 /**
@@ -11,7 +10,7 @@ import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
  * @description Executes an action given context information and selected targets.
  * @static metadata
  */
-export class RuleActionDataModel extends SubDocumentDataModel {
+export class RuleActionDataModel extends foundry.abstract.DataModel {
 	/**
 	 * @inheritdoc
 	 * @returns RuleActionMetaData

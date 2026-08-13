@@ -12,10 +12,6 @@ const fields = foundry.data.fields;
  * @property {FUScalarOperation} operation
  */
 export class ModifyExpenseRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'modifyExpenseRuleAction' });
-	}
-
 	static get metadata() {
 		return {
 			...super.metadata,
@@ -24,10 +20,10 @@ export class ModifyExpenseRuleAction extends RuleActionDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			amount: new fields.StringField({ blank: true }),
 			operation: new fields.StringField({ initial: 'add', choices: Object.keys(FU.scalarOperation) }),
-		});
+		};
 	}
 
 	static get localization() {

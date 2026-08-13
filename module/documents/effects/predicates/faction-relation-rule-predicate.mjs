@@ -9,18 +9,14 @@ const fields = foundry.data.fields;
  * @property {Boolean} inclusive
  */
 export class FactionRelationRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'factionRelationRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			relation: new fields.StringField({
 				initial: 'enemy',
 				choices: Object.keys(FU.factionRelation),
 			}),
 			inclusive: new fields.BooleanField(),
-		});
+		};
 	}
 
 	static get localization() {

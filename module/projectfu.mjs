@@ -100,7 +100,6 @@ import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs
 import { PdfPagerIntegration } from './integration/pdf-pager-integration.mjs';
 import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
 import { OptionalFeatureRegistry } from './documents/items/optionalFeature/optional-feature-registry.mjs';
-import { RuleElementRegistry } from './documents/effects/rule-element-data-model.mjs';
 import { RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
 import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
@@ -111,7 +110,7 @@ import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
 import { FUToken } from './ui/token.mjs';
-import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
+import { FUModernPressureGauge, FUPixelPressureGauge, FUPressureGauge } from './ui/pressureGauges/index.mjs';
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
@@ -184,7 +183,6 @@ Hooks.once('init', async () => {
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
 	FU.classFeatureRegistry = ClassFeatureRegistry.instance;
 	FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
-	FU.ruleElementRegistry = RuleElementRegistry.instance;
 	FU.ruleActionRegistry = RuleActionRegistry.instance;
 	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
 	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
@@ -214,7 +212,6 @@ Hooks.once('init', async () => {
 	FU.dataModelRegistries = {
 		optionalFeature: FU.optionalFeatureRegistry,
 		classFeature: FU.classFeatureRegistry,
-		ruleElement: FU.ruleElementRegistry,
 		ruleAction: FU.ruleActionRegistry,
 		ruleTrigger: FU.ruleTriggerRegistry,
 		rulePredicate: FU.rulePredicateRegistry,

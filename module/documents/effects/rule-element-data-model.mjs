@@ -1,34 +1,24 @@
-import { SubDocumentDataModel } from '../sub/sub-document-data-model.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
-import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
-import { DataModelRegistry } from '../../fields/data-model-registry.mjs';
-import { systemId, systemTemplatePath } from '../../helpers/system-utils.mjs';
-import { RuleActionDataModel, RuleActionRegistry } from './actions/rule-action-data-model.mjs';
+import { systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
-import { RulePredicateDataModel, RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
+import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
 import { FU } from '../../helpers/config.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
 import { EmptyRuleTrigger } from './triggers/empty-rule-trigger.mjs';
 
-const fields = foundry.data.fields;
-
 /**
  * @description A modular automation component for use in active effects
  * @property {RuleTriggerDataModel} trigger
- * @property {SubDocumentCollectionField, RuleActionDataModel[]} actions
+ * @property {RuleActionDataModel[]} actions
  * @property {RulePredicateDataModel[]} predicates
  * @property {FUTargetSelectorKey} selector
  * @property {Boolean} enabled
  */
-export class RuleElementDataModel extends SubDocumentDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'ruleElement' });
-	}
-
+export class RuleElementDataModel extends foundry.abstract.DataModel {
 	/** @inheritdoc */
 	static get metadata() {
 		return {
-			...super.metadata,
 			documentName: 'ruleElement',
 			icon: 'fa-solid fa-circle-nodes',
 			embedded: {
@@ -44,15 +34,16 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
-			trigger: new fields.TypedSchemaField(RuleTriggerRegistry.instance.types, {
+		const { TypedSchemaField, TypedObjectField, StringField, BooleanField } = foundry.data.fields;
+		return {
+			trigger: new TypedSchemaField(RuleTriggerRegistry.instance.qualifiedTypes, {
 				initial: new EmptyRuleTrigger(),
 			}),
-			actions: new SubDocumentCollectionField(RuleActionDataModel),
-			predicates: new SubDocumentCollectionField(RulePredicateDataModel),
-			selector: new fields.StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
-			enabled: new fields.BooleanField({ initial: true }),
-		});
+			actions: new TypedObjectField(new TypedSchemaField(RuleActionRegistry.instance.qualifiedTypes)),
+			predicates: new TypedObjectField(new TypedSchemaField(RulePredicateRegistry.instance.qualifiedTypes)),
+			selector: new StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
+			enabled: new BooleanField({ initial: true }),
+		};
 	}
 
 	/**
@@ -80,7 +71,8 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 			options,
 		);
 		if (type) {
-			await SubDocumentCollectionField.addModel(this.actions, type, this);
+			throw new Error('fixme');
+			// await SubDocumentCollectionField.addModel(this.actions, type, this);
 		}
 	}
 
@@ -124,7 +116,8 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 			options,
 		);
 		if (type) {
-			await SubDocumentCollectionField.addModel(this.predicates, type, this);
+			throw new Error('fixme');
+			// await SubDocumentCollectionField.addModel(this.predicates, type, this);
 		}
 	}
 
@@ -211,19 +204,28 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	get templateHeader() {
 		return StringUtils.localize(this.trigger.schema.model.localization);
 	}
-}
 
-/**
- * @description Registry of all {@linkcode RuleElementDataModel}
- */
-export class RuleElementRegistry extends DataModelRegistry {
-	constructor() {
-		super({
-			kind: 'Rule Element',
-			baseClass: RuleElementDataModel,
-		});
-		this.register(systemId, RuleElementDataModel.TYPE, RuleElementDataModel);
+	static migrateData(source) {
+		if (source.trigger) {
+			const trigger = source.trigger;
+			if (trigger.type && trigger.type.indexOf('.') < 0) {
+				trigger.type = RuleTriggerRegistry.instance.qualify(trigger.type);
+			}
+		}
+		if (source.predicates) {
+			for (let [, predicate] of Object.entries(source.predicates)) {
+				if (predicate.type && predicate.type.indexOf('.') < 0) {
+					predicate.type = RulePredicateRegistry.instance.qualify(predicate.type);
+				}
+			}
+		}
+		if (source.actions) {
+			for (let [, action] of Object.entries(source.actions)) {
+				if (action.type && action.type.indexOf('.') < 0) {
+					action.type = RuleActionRegistry.instance.qualify(action.type);
+				}
+			}
+		}
+		return source;
 	}
-
-	static instance = new RuleElementRegistry();
 }

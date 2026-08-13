@@ -63,59 +63,64 @@ import { ProgressTrackRulePredicate } from '../documents/effects/predicates/prog
 import { FUItem } from '../documents/items/item.mjs';
 
 function register() {
-	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, CombatRuleTrigger.TYPE, CombatRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, AttackRuleTrigger.TYPE, AttackRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, StatusRuleTrigger.TYPE, StatusRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, DamageRuleTrigger.TYPE, DamageRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, CalculateDamageRuleTrigger.TYPE, CalculateDamageRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, CalculateResourceRuleTrigger.TYPE, CalculateResourceRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, ResourceUpdateRuleTrigger.TYPE, ResourceUpdateRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, CalculateExpenseRuleTrigger.TYPE, CalculateExpenseRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, InitializeCheckRuleTrigger.TYPE, InitializeCheckRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, PerformCheckRuleTrigger.TYPE, PerformCheckRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, ResolveCheckRuleTrigger.TYPE, ResolveCheckRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, RenderCheckRuleTrigger.TYPE, RenderCheckRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, NotificationRuleTrigger.TYPE, NotificationRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, ToggleRuleTrigger.TYPE, ToggleRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, CreateConsumableRuleTrigger.TYPE, CreateConsumableRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, FeatureRuleTrigger.TYPE, FeatureRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, RenderMessageRuleTrigger.TYPE, RenderMessageRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, ProgressTrackRuleTrigger.TYPE, ProgressTrackRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(EmptyRuleTrigger), EmptyRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(CombatRuleTrigger), CombatRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(AttackRuleTrigger), AttackRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(StatusRuleTrigger), StatusRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(DamageRuleTrigger), DamageRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(CalculateDamageRuleTrigger), CalculateDamageRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(CalculateResourceRuleTrigger), CalculateResourceRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(ResourceUpdateRuleTrigger), ResourceUpdateRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(CalculateExpenseRuleTrigger), CalculateExpenseRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(InitializeCheckRuleTrigger), InitializeCheckRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(PerformCheckRuleTrigger), PerformCheckRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(ResolveCheckRuleTrigger), ResolveCheckRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(RenderCheckRuleTrigger), RenderCheckRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(NotificationRuleTrigger), NotificationRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(ToggleRuleTrigger), ToggleRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(CreateConsumableRuleTrigger), CreateConsumableRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(ItemRollRuleTrigger), ItemRollRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(FeatureRuleTrigger), FeatureRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(RenderMessageRuleTrigger), RenderMessageRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, registryName(ProgressTrackRuleTrigger), ProgressTrackRuleTrigger);
 
-	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
-	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
-	RuleActionRegistry.instance.register(systemId, UpdateResourceRuleAction.TYPE, UpdateResourceRuleAction);
-	RuleActionRegistry.instance.register(systemId, ApplyEffectRuleAction.TYPE, ApplyEffectRuleAction);
-	RuleActionRegistry.instance.register(systemId, ClearEffectRuleAction.TYPE, ClearEffectRuleAction);
-	RuleActionRegistry.instance.register(systemId, ChangeTraitsRuleAction.TYPE, ChangeTraitsRuleAction);
-	RuleActionRegistry.instance.register(systemId, ModifyCheckRuleAction.TYPE, ModifyCheckRuleAction);
-	RuleActionRegistry.instance.register(systemId, ModifyDamageRuleAction.TYPE, ModifyDamageRuleAction);
-	RuleActionRegistry.instance.register(systemId, ModifyExpenseRuleAction.TYPE, ModifyExpenseRuleAction);
-	RuleActionRegistry.instance.register(systemId, NotifyRuleAction.TYPE, NotifyRuleAction);
-	RuleActionRegistry.instance.register(systemId, UpdateTrackRuleAction.TYPE, UpdateTrackRuleAction);
-	RuleActionRegistry.instance.register(systemId, UpdateTokenRuleAction.TYPE, UpdateTokenRuleAction);
-	RuleActionRegistry.instance.register(systemId, PlaySoundEffectRuleAction.TYPE, PlaySoundEffectRuleAction);
-	RuleActionRegistry.instance.register(systemId, ExecuteMacroRuleAction.TYPE, ExecuteMacroRuleAction);
-	RuleActionRegistry.instance.register(systemId, ModifyConsumableRuleAction.TYPE, ModifyConsumableRuleAction);
-	RuleActionRegistry.instance.register(systemId, PerformCheckRuleAction.TYPE, PerformCheckRuleAction);
-	RuleActionRegistry.instance.register(systemId, ModifyResourceRuleAction.TYPE, ModifyResourceRuleAction);
-	RuleActionRegistry.instance.register(systemId, OpenApplicationRuleAction.TYPE, OpenApplicationRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(MessageRuleAction), MessageRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ApplyDamageRuleAction), ApplyDamageRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(UpdateResourceRuleAction), UpdateResourceRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ApplyEffectRuleAction), ApplyEffectRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ClearEffectRuleAction), ClearEffectRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ChangeTraitsRuleAction), ChangeTraitsRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ModifyCheckRuleAction), ModifyCheckRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ModifyDamageRuleAction), ModifyDamageRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ModifyExpenseRuleAction), ModifyExpenseRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(NotifyRuleAction), NotifyRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(UpdateTrackRuleAction), UpdateTrackRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(UpdateTokenRuleAction), UpdateTokenRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(PlaySoundEffectRuleAction), PlaySoundEffectRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ExecuteMacroRuleAction), ExecuteMacroRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ModifyConsumableRuleAction), ModifyConsumableRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(PerformCheckRuleAction), PerformCheckRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(ModifyResourceRuleAction), ModifyResourceRuleAction);
+	RuleActionRegistry.instance.register(systemId, registryName(OpenApplicationRuleAction), OpenApplicationRuleAction);
 
-	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, EffectRulePredicate.TYPE, EffectRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, SpeciesRulePredicate.TYPE, SpeciesRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, RankRulePredicate.TYPE, RankRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, WeaponRulePredicate.TYPE, WeaponRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, ResourceRulePredicate.TYPE, ResourceRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, TargetingRulePredicate.TYPE, TargetingRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, TraitsRulePredicate.TYPE, TraitsRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, SpellRulePredicate.TYPE, SpellRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, CheckRulePredicate.TYPE, CheckRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, FlagRulePredicate.TYPE, FlagRulePredicate);
-	RulePredicateRegistry.instance.register(systemId, ProgressTrackRulePredicate.TYPE, ProgressTrackRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(BondRulePredicate), BondRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(FactionRelationRulePredicate), FactionRelationRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(EffectRulePredicate), EffectRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(SpeciesRulePredicate), SpeciesRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(RankRulePredicate), RankRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(WeaponRulePredicate), WeaponRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(ResourceRulePredicate), ResourceRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(TargetingRulePredicate), TargetingRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(TraitsRulePredicate), TraitsRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(SpellRulePredicate), SpellRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(CheckRulePredicate), CheckRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(FlagRulePredicate), FlagRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, registryName(ProgressTrackRulePredicate), ProgressTrackRulePredicate);
+}
+
+function registryName(model) {
+	let name = model.name;
+	return `${name.substring(0, 1).toLowerCase()}${name.substring(1)}`;
 }
 
 /**

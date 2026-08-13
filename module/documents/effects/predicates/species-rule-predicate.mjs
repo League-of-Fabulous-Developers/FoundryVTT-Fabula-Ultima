@@ -8,19 +8,15 @@ const fields = foundry.data.fields;
  * @property {Set<DamageType>} species
  */
 export class SpeciesRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'speciesRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			selector: new fields.StringField({
 				initial: 'initial',
 				blank: true,
 				choices: Object.keys(FU.targetSelector),
 			}),
 			species: new fields.SetField(new fields.StringField()),
-		});
+		};
 	}
 
 	static migrateData(source) {

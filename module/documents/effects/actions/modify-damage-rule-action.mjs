@@ -19,10 +19,6 @@ const fields = foundry.data.fields;
  * @property {String} variant
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'modifyDamageRuleAction' });
-	}
-
 	static get metadata() {
 		return {
 			...super.metadata,
@@ -31,7 +27,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			amount: new fields.StringField({ blank: true }),
 			damageTypes: new fields.SetField(new fields.StringField()),
 			traits: new fields.EmbeddedDataField(TraitsDataModel, {
@@ -45,7 +41,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				blank: true,
 				choices: Object.keys(FU.modifyDamageVariant),
 			}),
-		});
+		};
 	}
 
 	static get localization() {

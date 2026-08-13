@@ -15,14 +15,10 @@ export class ModifyCheckRuleAction extends RuleActionDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'modifyCheckRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			bonus: new fields.StringField({ blank: true, nullable: false }),
-		});
+		};
 	}
 
 	static get localization() {

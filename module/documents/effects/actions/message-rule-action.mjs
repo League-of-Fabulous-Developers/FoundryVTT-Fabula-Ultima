@@ -15,14 +15,10 @@ const { StringField } = foundry.data.fields;
  * @property {String} message
  */
 export class MessageRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'messageRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			message: new StringField({ required: true }),
-		});
+		};
 	}
 
 	static get localization() {

@@ -18,15 +18,11 @@ export class ModifyConsumableRuleAction extends RuleActionDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'modifyConsumableRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			bonus: new fields.StringField({ blank: true, nullable: false }),
 			multiplier: new fields.StringField({ blank: true, nullable: false }),
-		});
+		};
 	}
 
 	static get localization() {

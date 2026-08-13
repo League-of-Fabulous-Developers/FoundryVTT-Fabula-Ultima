@@ -9,7 +9,6 @@ import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mj
 import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
-import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 
 RuleElements.register();
 
@@ -274,8 +273,9 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const data = {
 			trigger: trigger,
 		};
-		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, RuleElementDataModel.TYPE, this.document, data);
-		console.debug(`Added rule element with trigger ${type}`);
+		if (data) throw new Error('fixme');
+		// await SubDocumentCollectionField.addModel(this.document.system.rules.elements, RuleElementDataModel.TYPE, this.document, data);
+		// console.debug(`Added rule element with trigger ${type}`);
 	}
 
 	/**

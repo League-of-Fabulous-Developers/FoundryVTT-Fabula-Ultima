@@ -6,9 +6,6 @@ import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs
 const fields = foundry.data.fields;
 
 export class ProgressTrackRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'progressTrackRulePredicate' });
-	}
 	static get localization() {
 		return 'FU.RulePredicateProgressTrack';
 	}
@@ -18,7 +15,7 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 	}
 
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			value: new fields.NumberField(),
 			identifier: new fields.StringField({ initial: '' }),
 			comparisonOperator: new fields.StringField({
@@ -29,7 +26,7 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 					...FU.comparisonOperator,
 				},
 			}),
-		});
+		};
 	}
 
 	/**
