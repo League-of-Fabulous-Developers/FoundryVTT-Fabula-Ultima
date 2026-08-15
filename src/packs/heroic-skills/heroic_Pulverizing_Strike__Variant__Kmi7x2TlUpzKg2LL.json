@@ -1,0 +1,107 @@
+{
+  "name": "Pulverizing Strike (Variant)",
+  "type": "heroic",
+  "_id": "Kmi7x2TlUpzKg2LL",
+  "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
+  "system": {
+    "fuid": "pulverizing-strike",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Fury</strong>, and <strong>Weaponmaster</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.TWSAdHCgimWCOOOu]{Breach (Variant)} Skill, if you attack with a <strong>melee weapon </strong>belonging to the <strong>heavy</strong> Category, you may treat your Skill Level in the @UUID[Compendium.projectfu.skills.Item.TWSAdHCgimWCOOOu]{Breach (Variant)} Skill as being 2 points higher (to a maximum Skill Level of 5).</p>",
+    "summary": {
+      "value": "Breach deals more damage with heavy weapons."
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "attributes": {
+      "primary": "mig",
+      "secondary": "mig"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": ""
+    },
+    "targeting": {
+      "rule": "self",
+      "max": 0
+    },
+    "traits": [],
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": "",
+        "interval": null
+      }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false,
+      "name": "Name"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "class": {
+      "value": "darkblade, fury, weaponmaster"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUBA345",
+    "accuracy": "0"
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "KBlCCPnVZr8JzjOr": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1785627960292,
+    "modifiedTime": 1785627960350,
+    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 200000,
+  "_key": "!items!Kmi7x2TlUpzKg2LL"
+}
