@@ -3,8 +3,6 @@
  */
 export class DataModelRegistry {
 	/** @type {Map<String, DataModel>} */
-	#types = new Map();
-	/** @type {Map<String, DataModel>} */
 	#qualifiedTypes = new Map();
 	/** @type {Map<String, String>} */
 	#typeQualification = new Map();
@@ -20,24 +18,10 @@ export class DataModelRegistry {
 	}
 
 	/**
-	 * @returns {Object<String, DataModel>}
-	 */
-	get types() {
-		return Object.fromEntries(this.#types);
-	}
-
-	/**
 	 * @returns {Object<string, DataModel>}
 	 */
 	get qualifiedTypes() {
 		return Object.fromEntries(this.#qualifiedTypes);
-	}
-
-	/**
-	 * @returns {String[]}
-	 */
-	get choices() {
-		return this.#types.keys().toArray();
 	}
 
 	/**
@@ -84,7 +68,7 @@ export class DataModelRegistry {
 	 * @returns {Record<string, string>} The type to its localization.
 	 */
 	get localizedEntries() {
-		return Object.entries(this.types).reduce((agg, [key, value]) => (agg[key] = value.translation ?? value.localization) && agg, {});
+		return Object.entries(this.qualifiedTypes).reduce((agg, [key, value]) => (agg[key] = value.translation ?? value.localization) && agg, {});
 	}
 
 	/**
@@ -124,7 +108,6 @@ export class DataModelRegistry {
 
 		model = this.#patchModel(model, qualifiedType);
 
-		this.#types.set(type, model);
 		this.#qualifiedTypes.set(qualifiedType, model);
 		this.#typeQualification.set(type, qualifiedType);
 		return qualifiedType;
@@ -132,18 +115,19 @@ export class DataModelRegistry {
 
 	#patchModel(model, qualifiedType) {
 		const patchedClassName = `Patched${model.name}`;
-		const namingHelper = {};
-		namingHelper[patchedClassName] = class extends model {
-			static get TYPE() {
-				return qualifiedType;
-			}
+		const namingHelper = {
+			[patchedClassName]: class extends model {
+				static get TYPE() {
+					return qualifiedType;
+				}
 
-			static defineSchema() {
-				return {
-					...super.defineSchema(),
-					type: new foundry.data.fields.StringField({ required: true, nullable: false, blank: false, initial: qualifiedType, validate: (value) => value === qualifiedType }),
-				};
-			}
+				static defineSchema() {
+					return {
+						...super.defineSchema(),
+						type: new foundry.data.fields.StringField({ required: true, nullable: false, blank: false, initial: qualifiedType, validate: (value) => value === qualifiedType }),
+					};
+				}
+			},
 		};
 		return namingHelper[patchedClassName];
 	}

@@ -17,10 +17,6 @@ export class NotificationRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'notificationRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			eventId: new StringField(),

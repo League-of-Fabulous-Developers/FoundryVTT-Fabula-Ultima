@@ -79,7 +79,7 @@ export class FUActiveEffectModel extends foundry.data.ActiveEffectTypeDataModel 
 	 * @returns {RuleElementDataModel}
 	 */
 	getRuleElement(id) {
-		return this.rules.elements.get(id);
+		return this.rules.elements[id];
 	}
 }
 

@@ -24,10 +24,6 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'calculateResourceRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({

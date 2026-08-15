@@ -27,10 +27,6 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'calculateExpenseRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({

@@ -19,10 +19,6 @@ export class StatusRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'statusRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			status: new fields.StringField({

@@ -22,10 +22,6 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'calculateDamageRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			itemGroups: new fields.SetField(new fields.StringField()),

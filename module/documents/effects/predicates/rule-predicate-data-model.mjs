@@ -7,7 +7,6 @@ export class RulePredicateDataModel extends foundry.abstract.DataModel {
 	/** @inheritdoc */
 	static get metadata() {
 		return {
-			...super.metadata,
 			documentName: 'rulePredicate',
 			icon: 'fa-solid fa-check',
 		};

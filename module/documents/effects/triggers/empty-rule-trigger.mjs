@@ -5,10 +5,6 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
  * @desc Initial rule trigger.
  */
 export class EmptyRuleTrigger extends RuleTriggerDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'emptyRuleTrigger' });
-	}
-
 	/**
 	 * @return {String}
 	 */

@@ -5,15 +5,12 @@ const fields = foundry.data.fields;
 
 /**
  * @description Defines the trigger for a rule element.
- * @property {FUTargetSelectorKey} selector
  * @property {FUEventRelationKey} eventRelation
- * @property {RulePredicateDataModel[] | TypedCollectionField} predicates
  */
 export class RuleTriggerDataModel extends foundry.abstract.DataModel {
 	/** @inheritdoc */
 	static get metadata() {
 		return {
-			...super.metadata,
 			documentName: 'ruleTrigger',
 			icon: 'fa-solid fa-check',
 			eventType: '',
@@ -57,7 +54,7 @@ export class RuleTriggerDataModel extends foundry.abstract.DataModel {
 	 * @returns {Boolean}
 	 */
 	validateContext(context) {
-		return false;
+		throw new Error('Not implemented');
 	}
 
 	/**
@@ -78,10 +75,7 @@ export class RuleTriggerDataModel extends foundry.abstract.DataModel {
 				}
 				break;
 		}
-		if (this.constructor.metadata.eventType !== context.type) {
-			return false;
-		}
-		return true;
+		return this.constructor.metadata.eventType === context.type;
 	}
 
 	/**

@@ -21,10 +21,6 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'renderCheckRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),

@@ -21,10 +21,6 @@ export class FeatureRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'featureRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {

@@ -19,10 +19,6 @@ export class CombatRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'combatRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			eventType: new StringField({ initial: 'endOfTurn', choices: Object.keys(FU.combatEvent) }),

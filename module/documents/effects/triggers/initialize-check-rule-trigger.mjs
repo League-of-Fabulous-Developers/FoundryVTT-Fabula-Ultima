@@ -20,10 +20,6 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'initializeCheckRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),

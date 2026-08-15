@@ -340,7 +340,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @param {function(RuleElementDataModel): boolean} predicate
 		 */
 		findRuleElement(predicate) {
-			for (const rule of this.system.rules.elements) {
+			for (const rule of Object.values(this.system.rules.elements)) {
 				if (predicate(rule)) {
 					return rule;
 				}

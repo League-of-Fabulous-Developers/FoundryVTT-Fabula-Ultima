@@ -1,23 +1,12 @@
 import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 
 /**
- * @typedef RuleActionMetaData
- * @extends SubDocumentMetadata
- * @property {string[]} eventTypes
- */
-
-/**
  * @description Executes an action given context information and selected targets.
  * @static metadata
  */
 export class RuleActionDataModel extends foundry.abstract.DataModel {
-	/**
-	 * @inheritdoc
-	 * @returns RuleActionMetaData
-	 * */
 	static get metadata() {
 		return {
-			...super.metadata,
 			documentName: 'ruleAction',
 			icon: 'fa-wrench',
 		};
@@ -53,6 +42,8 @@ export class RuleActionDataModel extends foundry.abstract.DataModel {
 	async execute(context, selected) {
 		throw new Error('Not implemented');
 	}
+
+	async prepareRenderContext(context) {}
 }
 
 /**

@@ -20,10 +20,6 @@ export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'createConsumableRuleTrigger' });
-	}
-
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {

@@ -21,10 +21,6 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'resourceUpdateRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.resources) }),
