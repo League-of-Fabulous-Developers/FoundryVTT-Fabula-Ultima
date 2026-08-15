@@ -9,17 +9,11 @@ import { FUHooks } from '../../../hooks.mjs';
  * @property {Boolean} enabled
  */
 export class ItemRollRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.ITEM_ROLL_EVENT,
-		};
-	}
-
-	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {});
-		return schema;
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.ITEM_ROLL_EVENT;
 	}
 
 	static get localization() {
@@ -35,12 +29,8 @@ export class ItemRollRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (context.event.source.actor !== context.character.actor) {
-			return false;
-		}
-		if (context.event.config.item !== context.item) {
-			return false;
-		}
-		return true;
+		const sameActor = context.event.source.actor === context.character.actor;
+		const sameItem = context.event.config.item === context.item;
+		return sameActor && sameItem;
 	}
 }

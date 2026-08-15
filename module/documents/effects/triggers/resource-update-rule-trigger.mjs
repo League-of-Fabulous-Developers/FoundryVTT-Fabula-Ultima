@@ -13,14 +13,6 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.RESOURCE_UPDATE,
-		};
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.resources) }),
@@ -37,6 +29,13 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: false }),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.RESOURCE_UPDATE;
 	}
 
 	static get localization() {

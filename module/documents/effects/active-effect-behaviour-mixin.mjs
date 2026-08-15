@@ -306,8 +306,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 							label: this.system.rules.progress.name ?? this.name,
 						});
 					} else {
-						const updatedValue = this.system.rules.progress.calculateUpdatedValue(increment);
-						changes['system.rules.progress.current'] = updatedValue;
+						changes['system.rules.progress.current'] = this.system.rules.progress.calculateUpdatedValue(increment);
 						progressUpdated = true;
 					}
 				}

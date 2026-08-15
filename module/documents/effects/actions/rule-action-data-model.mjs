@@ -2,14 +2,10 @@ import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 
 /**
  * @description Executes an action given context information and selected targets.
- * @static metadata
  */
 export class RuleActionDataModel extends foundry.abstract.DataModel {
-	static get metadata() {
-		return {
-			documentName: 'ruleAction',
-			icon: 'fa-wrench',
-		};
+	static defineSchema() {
+		return {};
 	}
 
 	// TODO: Remove once design is done
@@ -18,6 +14,13 @@ export class RuleActionDataModel extends foundry.abstract.DataModel {
 			source.type = 'updateResourceRuleAction';
 		}
 		return super.migrateData(source);
+	}
+
+	/**
+	 * @return {string[]}
+	 */
+	static get eventTypes() {
+		return [];
 	}
 
 	/**

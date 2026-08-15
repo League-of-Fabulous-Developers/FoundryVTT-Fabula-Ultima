@@ -13,21 +13,19 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class FeatureRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.FEATURE_EVENT,
-		};
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
 				options: TraitUtils.getOptions(FeatureTraits),
 			}),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.FEATURE_EVENT;
 	}
 
 	// TODO: Remove once design is finished
@@ -48,9 +46,6 @@ export class FeatureRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (!this.traits.evaluate(context.event.traits)) {
-			return false;
-		}
-		return true;
+		return this.traits.evaluate(context.event.traits);
 	}
 }

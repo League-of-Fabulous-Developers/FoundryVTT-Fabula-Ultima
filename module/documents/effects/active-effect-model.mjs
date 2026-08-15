@@ -23,17 +23,6 @@ import { EffectStackingDataModel } from '../items/common/effect-stacking-data-mo
  * @remarks The remaining property is initialized, and must be updated.
  */
 export class FUActiveEffectModel extends foundry.data.ActiveEffectTypeDataModel {
-	/**
-	 * @type {SubDocumentMetadata}
-	 */
-	static get metadata() {
-		return {
-			embedded: {
-				ruleElement: 'system.rules.elements',
-			},
-		};
-	}
-
 	static defineSchema() {
 		const { NumberField, SchemaField, StringField, EmbeddedDataField, TypedObjectField } = foundry.data.fields;
 		return {

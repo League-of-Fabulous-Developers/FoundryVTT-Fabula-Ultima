@@ -6,6 +6,13 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
  */
 export class EmptyRuleTrigger extends RuleTriggerDataModel {
 	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return null;
+	}
+
+	/**
 	 * @return {String}
 	 */
 	static get localization() {

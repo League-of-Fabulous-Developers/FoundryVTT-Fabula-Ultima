@@ -6,14 +6,6 @@ import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs
 const fields = foundry.data.fields;
 
 export class ProgressTrackRulePredicate extends RulePredicateDataModel {
-	static get localization() {
-		return 'FU.RulePredicateProgressTrack';
-	}
-
-	static get template() {
-		return systemTemplatePath('effects/predicates/progress-track-rule-predicate');
-	}
-
 	static defineSchema() {
 		return {
 			value: new fields.NumberField(),
@@ -27,6 +19,14 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 				},
 			}),
 		};
+	}
+
+	static get localization() {
+		return 'FU.RulePredicateProgressTrack';
+	}
+
+	static get template() {
+		return systemTemplatePath('effects/predicates/progress-track-rule-predicate');
 	}
 
 	/**

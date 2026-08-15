@@ -11,16 +11,8 @@ const fields = foundry.data.fields;
  * @property {String} change
  */
 export class StatusRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.STATUS_EVENT,
-		};
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			status: new fields.StringField({
 				initial: 'crisis',
 				choices: Object.keys(FU.statusEffects),
@@ -30,7 +22,13 @@ export class StatusRuleTrigger extends RuleTriggerDataModel {
 				choices: Object.keys(FU.collectionChange),
 			}),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.STATUS_EVENT;
 	}
 
 	static get localization() {

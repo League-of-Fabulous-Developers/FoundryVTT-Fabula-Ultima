@@ -17,14 +17,6 @@ const fields = foundry.data.fields;
  * @property
  */
 export class PerformCheckRuleAction extends RuleActionDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT],
-		};
-	}
-
 	static defineSchema() {
 		return {
 			check: new fields.StringField({
@@ -35,6 +27,12 @@ export class PerformCheckRuleAction extends RuleActionDataModel {
 			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 			bonus: new fields.StringField(),
 		};
+	}
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.RENDER_CHECK_EVENT];
 	}
 
 	static get localization() {

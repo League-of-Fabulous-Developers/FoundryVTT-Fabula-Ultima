@@ -7,18 +7,17 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 const fields = foundry.data.fields;
 
 export class ModifyCheckRuleAction extends RuleActionDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.PERFORM_CHECK_EVENT],
-		};
-	}
-
 	static defineSchema() {
 		return {
 			bonus: new fields.StringField({ blank: true, nullable: false }),
 		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.PERFORM_CHECK_EVENT];
 	}
 
 	static get localization() {

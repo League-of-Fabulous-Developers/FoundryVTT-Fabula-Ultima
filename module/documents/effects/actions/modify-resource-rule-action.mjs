@@ -9,17 +9,17 @@ const fields = foundry.data.fields;
  * @property {String} amount
  */
 export class ModifyResourceRuleAction extends RuleActionDataModel {
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.CALCULATE_RESOURCE_EVENT, FUHooks.CALCULATE_EXPENSE_EVENT],
-		};
-	}
-
 	static defineSchema() {
 		return {
 			amount: new fields.StringField({ blank: true }),
 		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.CALCULATE_RESOURCE_EVENT, FUHooks.CALCULATE_EXPENSE_EVENT];
 	}
 
 	static get localization() {

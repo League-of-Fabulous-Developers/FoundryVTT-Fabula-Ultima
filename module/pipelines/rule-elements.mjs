@@ -370,11 +370,9 @@ function getSceneCharacters(targets) {
  * @returns {boolean}
  */
 function canProcessEffect(effect) {
-	const disabled = effect.isSuppressed || effect.disabled;
-	if (disabled || effect.system.rules.elements.size === 0) {
-		return false;
-	}
-	return true;
+	const enabled = !(effect.isSuppressed || effect.disabled);
+	const hasRuleElements = !foundry.utils.isEmpty(effect.system.rules.elements);
+	return enabled && hasRuleElements;
 }
 
 /**

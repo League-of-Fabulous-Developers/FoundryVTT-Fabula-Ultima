@@ -7,10 +7,6 @@ import { CommonEvents } from '../../../checks/common-events.mjs';
  * @property {String} message
  */
 export class NotifyRuleAction extends RuleActionDataModel {
-	static defineSchema() {
-		return {};
-	}
-
 	static get localization() {
 		return 'FU.RuleActionNotify';
 	}

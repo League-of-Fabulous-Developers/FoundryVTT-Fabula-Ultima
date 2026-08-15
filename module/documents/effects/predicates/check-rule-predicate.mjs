@@ -14,14 +14,7 @@ const fields = foundry.data.fields;
  * @property {FUPredicateQuantifier} quantifier
  */
 export class CheckRulePredicate extends RulePredicateDataModel {
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.PERFORM_CHECK_EVENT],
-		};
-	}
-
-	// TODO: Finish porting..
+	// TODO: Finish porting..???
 	static defineSchema() {
 		return {
 			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.parity) }),
@@ -37,6 +30,13 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 				choices: Object.keys(FU.predicateQuantifier),
 			}),
 		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.PERFORM_CHECK_EVENT];
 	}
 
 	static get localization() {

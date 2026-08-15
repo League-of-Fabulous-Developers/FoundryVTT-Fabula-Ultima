@@ -15,23 +15,6 @@ import { EmptyRuleTrigger } from './triggers/empty-rule-trigger.mjs';
  * @property {Boolean} enabled
  */
 export class RuleElementDataModel extends foundry.abstract.DataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			documentName: 'ruleElement',
-			icon: 'fa-solid fa-circle-nodes',
-			embedded: {
-				ruleTrigger: 'trigger',
-				ruleAction: 'actions',
-				rulePredicate: 'predicates',
-			},
-		};
-	}
-
-	static get template() {
-		return systemTemplatePath('effects/rule-element');
-	}
-
 	static defineSchema() {
 		const { TypedSchemaField, TypedObjectField, StringField, BooleanField } = foundry.data.fields;
 		return {
@@ -43,6 +26,10 @@ export class RuleElementDataModel extends foundry.abstract.DataModel {
 			selector: new StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
 			enabled: new BooleanField({ initial: true }),
 		};
+	}
+
+	static get template() {
+		return systemTemplatePath('effects/rule-element');
 	}
 
 	/**
@@ -67,17 +54,13 @@ export class RuleElementDataModel extends foundry.abstract.DataModel {
 	 */
 	getMatchingSubTypes(registry) {
 		let subTypes = registry.localizedEntries;
-		const triggerEventType = this.trigger.schema.model.metadata.eventType;
+		const triggerEventType = this.trigger.constructor.eventType;
 		if (triggerEventType) {
 			subTypes = Object.fromEntries(
-				Object.entries(subTypes).filter(([key, value]) => {
+				Object.entries(subTypes).filter(([key]) => {
 					const model = registry.qualifiedTypes[key];
-					/** @type RuleActionMetaData **/
-					const modelMetaData = model.metadata;
-					if (modelMetaData.eventTypes) {
-						if (modelMetaData.eventTypes.find((t) => t === triggerEventType) === undefined) {
-							return false;
-						}
+					if (model.eventTypes) {
+						return model.eventTypes.has(triggerEventType);
 					}
 					return true;
 				}),

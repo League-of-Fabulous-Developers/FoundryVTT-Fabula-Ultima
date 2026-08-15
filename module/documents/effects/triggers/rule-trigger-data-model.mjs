@@ -8,15 +8,6 @@ const fields = foundry.data.fields;
  * @property {FUEventRelationKey} eventRelation
  */
 export class RuleTriggerDataModel extends foundry.abstract.DataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			documentName: 'ruleTrigger',
-			icon: 'fa-solid fa-check',
-			eventType: '',
-		};
-	}
-
 	static defineSchema() {
 		return {
 			eventRelation: new fields.StringField({
@@ -33,6 +24,13 @@ export class RuleTriggerDataModel extends foundry.abstract.DataModel {
 			delete source.eventRelation;
 		}
 		return super.migrateData(source);
+	}
+
+	/**
+	 * @return {string}
+	 */
+	static get eventType() {
+		throw new Error('Not implemented');
 	}
 
 	/**
@@ -75,7 +73,7 @@ export class RuleTriggerDataModel extends foundry.abstract.DataModel {
 				}
 				break;
 		}
-		return this.constructor.metadata.eventType === context.type;
+		return this.constructor.eventType === context.type;
 	}
 
 	/**

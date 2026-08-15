@@ -1,6 +1,7 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 const fields = foundry.data.fields;
 
@@ -12,21 +13,19 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.INITIALIZE_CHECK_EVENT,
-		};
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
-			checkTypes: new fields.SetField(new fields.StringField()),
-			itemGroups: new fields.SetField(new fields.StringField()),
+		return Object.assign(super.defineSchema(), {
+			checkTypes: new fields.SetField(new fields.StringField({ choices: Object.keys(FU.checkTypes) })),
+			itemGroups: new fields.SetField(new fields.StringField({ choices: Object.keys(FU.itemGroup) })),
 			local: new fields.BooleanField({ initial: false }),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.INITIALIZE_CHECK_EVENT;
 	}
 
 	static get localization() {

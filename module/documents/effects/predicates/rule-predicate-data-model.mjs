@@ -4,12 +4,8 @@ import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
  * @description Defines the trigger for a rule element.
  */
 export class RulePredicateDataModel extends foundry.abstract.DataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			documentName: 'rulePredicate',
-			icon: 'fa-solid fa-check',
-		};
+	static defineSchema() {
+		return {};
 	}
 
 	static migrateData(source) {
@@ -17,6 +13,13 @@ export class RulePredicateDataModel extends foundry.abstract.DataModel {
 			source.type = 'factionRelationRulePredicate';
 		}
 		return super.migrateData(source);
+	}
+
+	/**
+	 * @return {string[]}
+	 */
+	static get eventTypes() {
+		return [];
 	}
 
 	/**

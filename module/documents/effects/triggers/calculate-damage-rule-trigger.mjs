@@ -1,6 +1,7 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 const fields = foundry.data.fields;
 
@@ -14,22 +15,20 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.CALCULATE_DAMAGE_EVENT,
-		};
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
-			itemGroups: new fields.SetField(new fields.StringField()),
-			damageTypes: new fields.SetField(new fields.StringField()),
+		return Object.assign(super.defineSchema(), {
+			itemGroups: new fields.SetField(new fields.StringField({ choices: Object.keys(FU.itemGroup) })),
+			damageTypes: new fields.SetField(new fields.StringField({ choices: Object.keys(FU.damageTypes) })),
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: false }),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.CALCULATE_DAMAGE_EVENT;
 	}
 
 	static migrateData(source) {

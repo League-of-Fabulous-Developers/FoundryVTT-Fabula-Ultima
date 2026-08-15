@@ -9,21 +9,17 @@ const fields = foundry.data.fields;
  * @property {Boolean} enabled
  */
 export class ToggleRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.EFFECT_TOGGLED_EVENT,
-		};
+	static defineSchema() {
+		return Object.assign(super.defineSchema(), {
+			enabled: new fields.BooleanField({ initial: true }),
+		});
 	}
 
-	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
-			enabled: new fields.BooleanField({
-				initial: true,
-			}),
-		});
-		return schema;
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.EFFECT_TOGGLED_EVENT;
 	}
 
 	static get localization() {
@@ -39,12 +35,8 @@ export class ToggleRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (context.event.enabled !== this.enabled) {
-			return false;
-		}
-		if (context.event.uuid !== context.effect.uuid) {
-			return false;
-		}
-		return true;
+		let enabled = context.event.enabled === this.enabled;
+		let sameOrigin = context.event.uuid === context.effect.uuid;
+		return enabled && sameOrigin;
 	}
 }

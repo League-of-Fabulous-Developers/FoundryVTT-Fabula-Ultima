@@ -19,13 +19,6 @@ const fields = foundry.data.fields;
  * @property {String} variant
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.DAMAGE_EVENT],
-		};
-	}
-
 	static defineSchema() {
 		return {
 			amount: new fields.StringField({ blank: true }),
@@ -42,6 +35,13 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				choices: Object.keys(FU.modifyDamageVariant),
 			}),
 		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.DAMAGE_EVENT];
 	}
 
 	static get localization() {

@@ -12,18 +12,18 @@ const fields = foundry.data.fields;
  * @property {FUScalarOperation} operation
  */
 export class ModifyExpenseRuleAction extends RuleActionDataModel {
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.CALCULATE_EXPENSE_EVENT],
-		};
-	}
-
 	static defineSchema() {
 		return {
 			amount: new fields.StringField({ blank: true }),
 			operation: new fields.StringField({ initial: 'add', choices: Object.keys(FU.scalarOperation) }),
 		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.CALCULATE_EXPENSE_EVENT];
 	}
 
 	static get localization() {

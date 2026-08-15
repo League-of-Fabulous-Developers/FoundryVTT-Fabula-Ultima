@@ -153,7 +153,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
 						rankOptions: FoundryUtils.getFormOptions(FU.rank),
 						weaponCategoryOptions: FoundryUtils.getFormOptions(FU.weaponCategories),
-						consumableTraitOptions: FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k),
+						consumableTraitOptions: FoundryUtils.getFormOptions(ConsumableTraits, (k) => k),
 						traits: TraitUtils.getOptions(Traits),
 					};
 				}

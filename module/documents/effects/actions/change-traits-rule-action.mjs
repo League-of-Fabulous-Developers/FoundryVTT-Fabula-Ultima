@@ -12,14 +12,6 @@ const fields = foundry.data.fields;
  * @property {FUChangeSetMode} mode
  */
 export class ChangeTraitsRuleAction extends RuleActionDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.PERFORM_CHECK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.CALCULATE_RESOURCE_EVENT],
-		};
-	}
-
 	static defineSchema() {
 		return {
 			traits: new fields.EmbeddedDataField(TraitsDataModel, {
@@ -31,6 +23,13 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 				required: true,
 			}),
 		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.PERFORM_CHECK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.CALCULATE_RESOURCE_EVENT];
 	}
 
 	static get localization() {
