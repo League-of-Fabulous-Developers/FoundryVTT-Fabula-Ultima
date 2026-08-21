@@ -7,14 +7,10 @@ const fields = foundry.data.fields;
  * @property {Set<FUAdversaryRank>} ranks
  */
 export class RankRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'rankRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			ranks: new fields.SetField(new fields.StringField()),
-		});
+		};
 	}
 
 	static get localization() {

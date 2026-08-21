@@ -12,16 +12,11 @@ const fields = foundry.data.fields;
  * @property {FUDurationType} duration
  */
 export class SpellRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'spellRulePredicate' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return {
 			offensive: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.booleanOption) }),
 			duration: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.duration) }),
-		});
-		return schema;
+		};
 	}
 
 	// TODO: Remove once design is finished

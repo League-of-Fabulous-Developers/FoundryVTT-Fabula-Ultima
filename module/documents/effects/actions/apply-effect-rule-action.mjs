@@ -13,14 +13,10 @@ const fields = foundry.data.fields;
  * @property {String} effect The uuid of the effect
  */
 export class ApplyEffectRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'applyEffectRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			effect: new fields.StringField({ nullable: true }),
-		});
+		};
 	}
 
 	static get localization() {

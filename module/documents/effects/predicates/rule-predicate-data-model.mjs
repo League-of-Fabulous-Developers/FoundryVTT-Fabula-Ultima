@@ -1,23 +1,11 @@
 import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
-import { SubDocumentDataModel } from '../../sub/sub-document-data-model.mjs';
-
-// const fields = foundry.data.fields;
 
 /**
  * @description Defines the trigger for a rule element.
  */
-export class RulePredicateDataModel extends SubDocumentDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			documentName: 'rulePredicate',
-			icon: 'fa-solid fa-check',
-		};
-	}
-
+export class RulePredicateDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {});
+		return {};
 	}
 
 	static migrateData(source) {
@@ -25,6 +13,13 @@ export class RulePredicateDataModel extends SubDocumentDataModel {
 			source.type = 'factionRelationRulePredicate';
 		}
 		return super.migrateData(source);
+	}
+
+	/**
+	 * @return {string[]}
+	 */
+	static get eventTypes() {
+		return [];
 	}
 
 	/**

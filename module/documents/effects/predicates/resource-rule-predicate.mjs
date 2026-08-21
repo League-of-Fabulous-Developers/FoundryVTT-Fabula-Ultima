@@ -8,19 +8,15 @@ const fields = foundry.data.fields;
  * @property {FUResourceType} resource
  */
 export class ResourceRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'resourceRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			// TODO: Add other parameters
 			resource: new fields.StringField({
 				initial: 'hp',
 				choices: Object.keys(FU.resources),
 				required: true,
 			}),
-		});
+		};
 	}
 
 	static get localization() {

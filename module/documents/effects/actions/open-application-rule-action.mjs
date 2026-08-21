@@ -9,22 +9,16 @@ const fields = foundry.data.fields;
  * @property {String} application The internal identifier for the application.
  */
 export class OpenApplicationRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'openApplicationRuleAction' });
-	}
-
-	/** @inheritdoc */
-	static get metadata() {
+	static defineSchema() {
 		return {
-			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.ITEM_ROLL_EVENT],
+			application: new fields.StringField(),
 		};
 	}
-
-	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
-			application: new fields.StringField(),
-		});
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.RENDER_CHECK_EVENT, FUHooks.ITEM_ROLL_EVENT];
 	}
 
 	static get localization() {

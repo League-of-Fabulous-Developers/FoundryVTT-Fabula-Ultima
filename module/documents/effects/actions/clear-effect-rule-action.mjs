@@ -11,14 +11,10 @@ const fields = foundry.data.fields;
  * @property {String} identifier The id of the effect to remove. If empty, it will clear all temporary effects.
  */
 export class ClearEffectRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'clearEffectRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			identifier: new fields.StringField(),
-		});
+		};
 	}
 
 	static get localization() {

@@ -192,11 +192,10 @@ export class FUFeatureSheet extends FUItemSheet {
 	 * @returns {String}
 	 */
 	get subtypeLocalizationKey() {
+		const type = this.item.system.data.type;
 		if (this.item.type === 'optionalFeature') {
-			const type = this.item.system.optionalType;
 			return OptionalFeatureRegistry.instance.localize(type);
 		} else if (this.item.type === 'classFeature') {
-			const type = this.item.system.featureType;
 			return ClassFeatureRegistry.instance.localize(type);
 		}
 		return null;
@@ -220,8 +219,9 @@ export class FUFeatureSheet extends FUItemSheet {
 				if (selectedType !== currentType) {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 					const updates = {
-						'system.data': new foundry.data.operators.ForcedDeletion(),
-						'system.optionalType': foundry.data.operators.ForcedReplacement(selectedType),
+						system: {
+							data: new foundry.data.operators.ForcedReplacement({ type: selectedType }),
+						},
 					};
 					await this.item.update(updates);
 				}
@@ -237,8 +237,9 @@ export class FUFeatureSheet extends FUItemSheet {
 				if (selectedType !== currentType) {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 					const updates = {
-						'system.data': new foundry.data.operators.ForcedDeletion(),
-						'system.featureType': new foundry.data.operators.ForcedReplacement(selectedType),
+						system: {
+							data: new foundry.data.operators.ForcedReplacement({ type: selectedType }),
+						},
 					};
 					await this.item.update(updates);
 				}

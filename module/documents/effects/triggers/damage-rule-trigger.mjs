@@ -18,18 +18,6 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class DamageRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.DAMAGE_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'damageRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			damageType: new fields.StringField({
@@ -54,6 +42,13 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: false }),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.DAMAGE_EVENT;
 	}
 
 	static migrateData(source) {

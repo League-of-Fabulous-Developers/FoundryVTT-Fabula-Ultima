@@ -16,19 +16,15 @@ const fields = foundry.data.fields;
  * @property {String} amount
  */
 export class UpdateResourceRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'updateResourceRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			amount: new fields.StringField({ blank: true }),
 			resource: new fields.StringField({
 				initial: 'hp',
 				choices: Object.keys(FU.resources),
 				required: true,
 			}),
-		});
+		};
 	}
 
 	static get localization() {

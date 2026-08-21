@@ -10,12 +10,8 @@ const fields = foundry.data.fields;
  * @property {FUCommand} command
  */
 export class UpdateTokenRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'updateTokenRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			command: new fields.StringField({
 				initial: 'update',
 				choices: Object.keys(FU.commandAction),
@@ -23,7 +19,7 @@ export class UpdateTokenRuleAction extends RuleActionDataModel {
 			}),
 			tokenScale: new fields.NumberField({ blank: true }),
 			tokenImage: new fields.FilePathField({ categories: ['IMAGE'] }),
-		});
+		};
 	}
 
 	static get localization() {

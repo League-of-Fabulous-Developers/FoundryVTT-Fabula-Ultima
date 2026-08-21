@@ -2,7 +2,6 @@ import { RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
 import { ClassFeatureRegistry } from './class-feature-registry.mjs';
 import { EmbeddedFeatureDataModel } from '../embedded-feature-data-model.mjs';
 
@@ -14,14 +13,16 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 
 export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
+		const { TypedSchemaField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
-			featureType: new StringField({
-				nullable: false,
-				initial: () => CONFIG.FU.classFeatureRegistry.qualifiedChoices[0],
-				choices: () => CONFIG.FU.classFeatureRegistry.qualifiedChoices,
+			data: new TypedSchemaField(ClassFeatureRegistry.instance.qualifiedTypes, {
+				initial: () => {
+					const registry = ClassFeatureRegistry.instance;
+					const typeId = registry.qualifiedChoices.at(0);
+					const typeModel = registry.qualifiedTypes[typeId];
+					return new typeModel({});
+				},
 			}),
-			data: new RegistryDataField(ClassFeatureRegistry.instance, 'featureType'), //  new FeatureDataField('featureType'),
 		});
 	}
 
@@ -51,5 +52,12 @@ export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 
 	get cost() {
 		return this.data.cost;
+	}
+
+	static migrateData(source) {
+		if (source.featureType && source.data && !('type' in source.data)) {
+			source.data.type = source.featureType;
+		}
+		return source;
 	}
 }

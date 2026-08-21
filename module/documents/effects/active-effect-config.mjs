@@ -9,7 +9,6 @@ import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mj
 import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
-import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 
 RuleElements.register();
 
@@ -154,7 +153,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
 						rankOptions: FoundryUtils.getFormOptions(FU.rank),
 						weaponCategoryOptions: FoundryUtils.getFormOptions(FU.weaponCategories),
-						consumableTraitOptions: FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k),
+						consumableTraitOptions: FoundryUtils.getFormOptions(ConsumableTraits, (k) => k),
 						traits: TraitUtils.getOptions(Traits),
 					};
 				}
@@ -188,7 +187,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			}
 			parent = parent.parent;
 		}
-		for (const re of this.system.rules.elements) {
+		for (const re of Object.values(this.system.rules.elements)) {
 			await re.prepareRenderContext(context);
 		}
 
@@ -268,14 +267,21 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			}),
 			options,
 		);
-
-		const triggerModel = RuleTriggerRegistry.instance.types[type];
-		const trigger = new triggerModel();
-		const data = {
-			trigger: trigger,
-		};
-		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, RuleElementDataModel.TYPE, this.document, data);
-		console.debug(`Added rule element with trigger ${type}`);
+		if (type) {
+			return this.document.update({
+				system: {
+					rules: {
+						elements: {
+							[foundry.utils.randomID()]: {
+								trigger: {
+									type: type,
+								},
+							},
+						},
+					},
+				},
+			});
+		}
 	}
 
 	/**
@@ -287,11 +293,19 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const { id } = target.dataset;
 		console.debug(`Deleting rule element ${id}`);
 		/** @type RuleElementDataModel **/
-		const re = this.document.system.rules.elements.get(id);
+		const re = this.document.system.getRuleElement(id);
 		if (re) {
 			const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: re.localization }));
 			if (confirm) {
-				await re.delete();
+				return this.document.update({
+					system: {
+						rules: {
+							elements: {
+								[id]: new foundry.data.operators.ForcedDeletion(),
+							},
+						},
+					},
+				});
 			}
 		}
 	}
@@ -304,8 +318,12 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	static async #clearRuleElements(event, target) {
 		const confirm = await FoundryUtils.confirmDialog('FU.Clear', `FU.DialogClearMessage`);
 		if (confirm) {
-			await this.document.update({
-				'system.rules.==elements': {},
+			return this.document.update({
+				system: {
+					rules: {
+						elements: new foundry.data.operators.ForcedReplacement({}),
+					},
+				},
 			});
 		}
 	}
@@ -320,7 +338,19 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const type = target.value;
 		console.debug(`Updating rule trigger of ${id} to: ${type} (${event.type})`);
 		const re = this.document.system.getRuleElement(id);
-		await re.changeRuleTrigger(type);
+		if (re) {
+			return this.document.update({
+				system: {
+					rules: {
+						elements: {
+							[id]: {
+								trigger: new foundry.data.operators.ForcedReplacement({ type: type }),
+							},
+						},
+					},
+				},
+			});
+		}
 	}
 
 	/**
@@ -332,7 +362,31 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const { id } = target.dataset;
 		console.debug(`Adding rule action to ${id}`);
 		const re = this.document.system.getRuleElement(id);
-		await re.addRuleAction();
+		if (re) {
+			const subTypes = re.getMatchingSubTypes(RuleActionRegistry.instance);
+			const options = FoundryUtils.generateConfigOptions(subTypes);
+			const type = await FoundryUtils.selectOptionDialog(
+				StringUtils.localize('FU.AddElement', {
+					element: StringUtils.localize('FU.RuleActions'),
+				}),
+				options,
+			);
+			if (type) {
+				return this.document.update({
+					system: {
+						rules: {
+							elements: {
+								[id]: {
+									actions: {
+										[foundry.utils.randomID()]: { type: type },
+									},
+								},
+							},
+						},
+					},
+				});
+			}
+		}
 	}
 
 	/**
@@ -347,7 +401,19 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const action = re.getAction(actionId);
 		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: action.localization }));
 		if (confirm) {
-			await re.removeRuleAction(actionId);
+			return this.document.update({
+				system: {
+					rules: {
+						elements: {
+							[id]: {
+								actions: {
+									[actionId]: new foundry.data.operators.ForcedDeletion(),
+								},
+							},
+						},
+					},
+				},
+			});
 		}
 	}
 
@@ -360,7 +426,29 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const { id } = target.dataset;
 		console.debug(`Adding rule predicate to ${id}`);
 		const re = this.document.system.getRuleElement(id);
-		await re.addRulePredicate();
+		const subTypes = re.getMatchingSubTypes(RulePredicateRegistry.instance);
+		const options = FoundryUtils.generateConfigOptions(subTypes);
+		const type = await FoundryUtils.selectOptionDialog(
+			StringUtils.localize('FU.AddElement', {
+				element: StringUtils.localize('FU.RulePredicates'),
+			}),
+			options,
+		);
+		if (type) {
+			return this.document.update({
+				system: {
+					rules: {
+						elements: {
+							[id]: {
+								predicates: {
+									[foundry.utils.randomID()]: { type: type },
+								},
+							},
+						},
+					},
+				},
+			});
+		}
 	}
 
 	/**
@@ -375,7 +463,19 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const predicate = re.getPredicate(predicateId);
 		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: predicate.localization }));
 		if (confirm) {
-			await re.removeRulePredicate(predicateId);
+			return this.document.update({
+				system: {
+					rules: {
+						elements: {
+							[id]: {
+								predicates: {
+									[predicateId]: new foundry.data.operators.ForcedDeletion(),
+								},
+							},
+						},
+					},
+				},
+			});
 		}
 	}
 

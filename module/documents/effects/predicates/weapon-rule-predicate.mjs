@@ -16,12 +16,8 @@ const fields = foundry.data.fields;
  * @property {Handedness} handedness
  */
 export class WeaponRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'weaponRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			selector: new fields.StringField({
 				initial: 'initial',
 				blank: true,
@@ -31,7 +27,7 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 			handedness: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.handedness) }),
 			weaponType: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.weaponTypes) }),
 			categories: new fields.SetField(new fields.StringField()),
-		});
+		};
 	}
 
 	static get localization() {

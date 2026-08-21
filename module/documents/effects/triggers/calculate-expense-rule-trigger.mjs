@@ -19,18 +19,6 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.CALCULATE_EXPENSE_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'calculateExpenseRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({
@@ -56,6 +44,13 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 				options: TraitUtils.getOptions(FeatureTraits),
 			}),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.CALCULATE_EXPENSE_EVENT;
 	}
 
 	static get localization() {

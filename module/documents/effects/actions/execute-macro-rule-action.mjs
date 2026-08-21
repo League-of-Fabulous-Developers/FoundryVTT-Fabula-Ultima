@@ -8,14 +8,10 @@ const documents = foundry.documents;
  * @property {documents.Macro} macro
  */
 export class ExecuteMacroRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'executeMacroRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			macro: new fields.ForeignDocumentField(documents.Macro),
-		});
+		};
 	}
 
 	static get localization() {

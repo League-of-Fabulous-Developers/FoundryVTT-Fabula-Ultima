@@ -12,25 +12,19 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.CONSUMABLE_CREATE_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'createConsumableRuleTrigger' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
 				options: TraitUtils.getOptions(ConsumableTraits),
 			}),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.CONSUMABLE_CREATE_EVENT;
 	}
 
 	static get localization() {

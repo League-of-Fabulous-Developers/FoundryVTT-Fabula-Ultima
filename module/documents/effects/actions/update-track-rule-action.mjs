@@ -14,12 +14,8 @@ const fields = foundry.data.fields;
  * @property {Boolean} notify
  */
 export class UpdateTrackRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'updateTrackRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			action: new fields.StringField({
 				initial: 'update',
 				choices: Object.keys(FU.commandAction),
@@ -28,7 +24,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 			identifier: new fields.StringField(),
 			notify: new fields.BooleanField(),
 			amount: new fields.StringField({ blank: true }),
-		});
+		};
 	}
 
 	static get localization() {

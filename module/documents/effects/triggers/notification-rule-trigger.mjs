@@ -9,22 +9,17 @@ const { StringField } = foundry.data.fields;
  * @property {String} eventId
  */
 export class NotificationRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.NOTIFICATION_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'notificationRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			eventId: new StringField(),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.NOTIFICATION_EVENT;
 	}
 
 	static get localization() {

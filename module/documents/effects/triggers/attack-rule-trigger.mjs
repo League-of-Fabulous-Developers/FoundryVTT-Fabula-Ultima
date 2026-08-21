@@ -8,26 +8,11 @@ import { FUHooks } from '../../../hooks.mjs';
  * @inheritDoc
  */
 export class AttackRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.ATTACK_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'attackRuleTrigger' });
-	}
-
-	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {});
-		return schema;
-	}
-
-	// TODO: Remove once design is finished
-	static migrateData(source) {
-		return super.migrateData(source);
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.ATTACK_EVENT;
 	}
 
 	static get localization() {

@@ -8,18 +8,14 @@ const fields = foundry.data.fields;
  * @property {FUTargetingPredicate} rule
  */
 export class TargetingRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'targetingRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			rule: new fields.StringField({
 				initial: 'single',
 				choices: Object.keys(FU.targetingPredicate),
 				required: true,
 			}),
-		});
+		};
 	}
 
 	static migrateData(source) {

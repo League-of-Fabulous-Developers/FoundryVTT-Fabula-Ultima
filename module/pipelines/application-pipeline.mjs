@@ -6,7 +6,6 @@ import { Flags } from '../helpers/flags.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
-import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
@@ -15,7 +14,8 @@ import { CommonSections } from '../checks/common-sections.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
-import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
+import { ResourcePipeline } from './resource-pipeline.mjs';
+import { FU } from '../helpers/config.mjs';
 
 /**
  * @desc An application used for specific class features.
@@ -32,7 +32,7 @@ import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
 async function handleArcanum(actor, item) {
 	// TODO: Implement...
 	const items = actor.itemTypes;
-	const subtype = ClassFeatureRegistry.instance.qualify('arcanum');
+	const subtype = FU.classFeatures.arcanum;
 	/** @type {FUItem[]} **/
 	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
 	/** @type {FUActiveEffect[]} **/
@@ -213,7 +213,7 @@ async function handleArcanum(actor, item) {
  */
 async function handleTheriomorphosis(actor, item) {
 	const items = actor.itemTypes;
-	const subtype = ClassFeatureRegistry.instance.qualify('therioform');
+	const subtype = FU.classFeatures.therioform;
 	/** @type {FUItem[]} **/
 	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
 	/** @type ItemSelectionData **/
