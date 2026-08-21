@@ -11,16 +11,12 @@ const fields = foundry.data.fields;
  * @property {TraitsPredicateDataModel} traits
  */
 export class TraitsRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'traitsRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
 				options: TraitUtils.getOptions(Traits),
 			}),
-		});
+		};
 	}
 
 	static get localization() {

@@ -12,12 +12,8 @@ const fields = foundry.data.fields;
  * @property {FUPredicateQuantifier} quantifier
  */
 export class FlagRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'flagRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			selector: new fields.StringField({
 				initial: 'initial',
 				blank: true,
@@ -37,7 +33,7 @@ export class FlagRulePredicate extends RulePredicateDataModel {
 			value: new fields.StringField({
 				initial: '',
 			}),
-		});
+		};
 	}
 
 	static get localization() {

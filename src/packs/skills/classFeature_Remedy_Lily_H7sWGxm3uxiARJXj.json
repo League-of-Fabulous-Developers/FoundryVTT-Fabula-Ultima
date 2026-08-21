@@ -22,7 +22,7 @@
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Hit Points equal to<strong>【15 + your Skill Level in Chloromancy】</strong>.</p><hr><p><strong>Targets Recover:</strong> @GAIN[15+&sl('chloromancy')+10*floor($cl/30) hp]{15 + (SL in Chloromancy)}</p>"
+          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Hit Points equal to <strong>【15 + your Skill Level in Chloromancy】</strong>.</p><hr><p><strong>Targets Recover:</strong> @GAIN[15+&sl('chloromancy')+10*floor($cl/30) hp]{15 + (SL in Chloromancy)}</p>"
         }
       ]
     },

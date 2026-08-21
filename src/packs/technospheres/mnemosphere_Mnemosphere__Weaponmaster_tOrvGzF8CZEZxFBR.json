@@ -301,7 +301,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one <strong>shield</strong> equipped by the target.</p></li><li><p>You destroy the target’s equipped <strong>armor</strong>.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
+          "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one <strong>shield</strong> equipped by the target.</p></li><li><p>You destroy the target's equipped <strong>armor</strong>.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
           "showTitleCard": {
             "value": false
           },
@@ -585,7 +585,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p><span>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons.</span></p>",
+          "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -678,7 +678,7 @@
                 "priority": null
               }
             ],
-            "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons. </p>",
+            "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons.</p>",
             "transfer": true,
             "statuses": [],
             "flags": {

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 Hit Points<span>. This amount increases to </span>50 Hit Points <span>if you are <strong>level 20 or higher</strong>, or to </span>60 Hit Points <span>if you are <strong>level 40 or higher</strong>.</span></p>",
+    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 Hit Points. This amount increases to 50 Hit Points if you are <strong>level 20 or higher</strong>, or to 60 Hit Points if you are <strong>level 40 or higher</strong>.</p>",
     "showTitleCard": {
       "value": false
     },

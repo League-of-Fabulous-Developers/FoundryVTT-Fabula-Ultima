@@ -10,18 +10,6 @@ const fields = foundry.data.fields;
  *
  */
 export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.PROGRESS_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'progressTrackRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			value: new fields.NumberField(),
@@ -36,6 +24,13 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 				},
 			}),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.PROGRESS_EVENT;
 	}
 
 	static get localization() {

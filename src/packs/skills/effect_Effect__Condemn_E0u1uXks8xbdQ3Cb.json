@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>All sources deal<strong>【SL】</strong>extra damage to you until the start of the orator's next turn.</p>",
+      "description": "<p>All sources deal <strong>【SL】</strong> extra damage to you until the start of the orator's next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

@@ -16,12 +16,8 @@ const fields = foundry.data.fields;
  * @property {TraitsDataModel} traits
  */
 export class ApplyDamageRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'applyDamageRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			amount: new fields.StringField({ blank: true }),
 			damageType: new fields.StringField({
 				initial: 'physical',
@@ -32,7 +28,7 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 			traits: new fields.EmbeddedDataField(TraitsDataModel, {
 				options: TraitUtils.getOptions(DamageTraits),
 			}),
-		});
+		};
 	}
 
 	static get localization() {

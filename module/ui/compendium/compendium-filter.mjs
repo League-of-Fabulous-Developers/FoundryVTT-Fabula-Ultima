@@ -1,5 +1,6 @@
 /**
  * @typedef CompendiumFilterCategory
+ * @property {String} category
  * @property {String} label
  * @property {String|String[]} propertyPath
  * @property {FormSelectOption[]} options
@@ -47,10 +48,10 @@ export class CompendiumFilter {
 		const textMatch = Object.values(entry).some((value) => {
 			if (typeof value !== 'string') return false;
 			if (this.categories) {
-				for (const category of Object.values(this.categories)) {
+				for (const [categoryType, category] of Object.entries(this.categories)) {
 					if (category.selected?.size > 0) {
 						// Make sure we show Heroic Skills that are universal.
-						if (entry.type === 'heroic' && entry.metadata.class === undefined) return true;
+						if (categoryType === 'class' && entry.type === 'heroic' && entry.metadata.class === undefined) return true;
 
 						const paths = Array.isArray(category.propertyPath) ? category.propertyPath : [category.propertyPath];
 						const matchesAnyPath = paths.some((path) => {

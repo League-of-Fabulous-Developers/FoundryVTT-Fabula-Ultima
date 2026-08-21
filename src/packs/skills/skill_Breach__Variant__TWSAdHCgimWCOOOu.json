@@ -1,0 +1,224 @@
+{
+  "name": "Breach (Variant)",
+  "type": "skill",
+  "_id": "TWSAdHCgimWCOOOu",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
+  "system": {
+    "fuid": "breach",
+    "description": "<p>You may use an action and spend 10 Mind Points to perform a <strong>free attack</strong> with a <strong>melee weapon</strong> you have equipped; this attack <strong>must</strong> target only one creature.  If the attack is successful, choose one option:</p><ul><li><p>The attack deals <strong>【SL × 5】</strong> extra damage and its damage ignores Resistances, but it also ignores Vulnerabilities to any damage types other than <strong>physical</strong></p></li><li><p>The attack deals no damage and, until the start of your next turn, your allies deal <strong>【SL × 2】</strong> extra damage to its target.</p></li></ul>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": true,
+      "damage": true,
+      "traits": true
+    },
+    "defense": "",
+    "damage": {
+      "hasDamage": true,
+      "hrZero": false,
+      "value": 0,
+      "type": "",
+      "onRoll": "$sl*5",
+      "onApply": ""
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [
+      "ignore-resistances"
+    ],
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.Cc1391vhlS1yIMrI.ActiveEffect.zoOqCdNwgemMCpvA"
+      ],
+      "prompt": false,
+      "duration": {
+        "event": "startOfTurn",
+        "tracking": "self",
+        "interval": 1
+      }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "10",
+      "type": "mp"
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false,
+      "name": "Name"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "weaponmaster"
+    },
+    "source": "FUBA345",
+    "accuracy": ""
+  },
+  "effects": [
+    {
+      "name": "Breach (Variant)",
+      "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
+      "origin": "Item.uZrimo9C2KCAjm2N",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Z9Euvv5YVmTIBRAd": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "yvfOwuE4qSGP5lhp",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "itemGroups": [],
+                "damageTypes": [
+                  "air",
+                  "bolt",
+                  "dark",
+                  "earth",
+                  "fire",
+                  "ice",
+                  "light",
+                  "poison"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "Z9Euvv5YVmTIBRAd",
+              "actions": {
+                "XPn2xUE40oTwtqKT": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "XPn2xUE40oTwtqKT",
+                  "traits": {
+                    "entries": [
+                      "ignore-vulnerable"
+                    ]
+                  },
+                  "mode": "add"
+                }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar",
+            "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        },
+        "changes": []
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "disabled": false,
+      "_id": "OSF1r3WPkP6JSAYY",
+      "type": "base",
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Breach (Variant)",
+            "actorUuid": null,
+            "itemUuid": "Item.uZrimo9C2KCAjm2N",
+            "effectUuid": null,
+            "fuid": "breach-variant"
+          }
+        }
+      },
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+        "createdTime": 1785627987938,
+        "modifiedTime": 1785627987938,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!TWSAdHCgimWCOOOu.OSF1r3WPkP6JSAYY"
+    }
+  ],
+  "folder": "t0can7tJoRis1H3f",
+  "ownership": {
+    "default": 0,
+    "KBlCCPnVZr8JzjOr": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false,
+      "classConverted": true
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1785627987938,
+    "modifiedTime": 1785627987938,
+    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "_key": "!items!TWSAdHCgimWCOOOu"
+}

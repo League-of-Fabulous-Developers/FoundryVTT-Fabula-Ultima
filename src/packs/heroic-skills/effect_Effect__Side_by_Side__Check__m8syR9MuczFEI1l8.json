@@ -106,7 +106,7 @@
           "priority": null
         }
       ],
-      "description": "<p>The first time you perform a Check before the end of the wayfarer's next turn, that Check gains a bonus equal to<strong>【Wafarer's SL in Faithful Companion】</strong>.</p>",
+      "description": "<p>The first time you perform a Check before the end of the wayfarer's next turn, that Check gains a bonus equal to <strong>【Wafarer's SL in Faithful Companion】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

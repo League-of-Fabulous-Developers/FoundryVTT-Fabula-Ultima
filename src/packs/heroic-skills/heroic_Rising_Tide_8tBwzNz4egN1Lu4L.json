@@ -192,7 +192,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your <strong>melee</strong> attacks using weapons that belong to the <strong>brawling</strong> Category deal extra damage equal to your current <strong>Bravery Points</strong>.</p><p>At the end of each scene, you lose all accumulated <strong>Bravery Points</strong>.</p>",
+      "description": "<p>Your <strong>melee</strong> attacks using weapons that belong to the <strong>brawling</strong> Category deal extra damage equal to your current <strong>Bravery Points</strong>.</p><p>At the end of each scene, you lose all accumulated <strong>Bravery Points</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

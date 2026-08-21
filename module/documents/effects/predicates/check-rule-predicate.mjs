@@ -14,20 +14,9 @@ const fields = foundry.data.fields;
  * @property {FUPredicateQuantifier} quantifier
  */
 export class CheckRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'checkRulePredicate' });
-	}
-
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.PERFORM_CHECK_EVENT],
-		};
-	}
-
-	// TODO: Finish porting..
+	// TODO: Finish porting..???
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.parity) }),
 			outcome: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkOutcome) }),
 			attributes: new fields.SchemaField({
@@ -40,7 +29,14 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 				blank: true,
 				choices: Object.keys(FU.predicateQuantifier),
 			}),
-		});
+		};
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.PERFORM_CHECK_EVENT];
 	}
 
 	static get localization() {
@@ -184,7 +180,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		}
 
 		// Check result
-		if (this.result != null && check.result <= this.result) {
+		if (this.result != null && check.result < this.result) {
 			return false;
 		}
 

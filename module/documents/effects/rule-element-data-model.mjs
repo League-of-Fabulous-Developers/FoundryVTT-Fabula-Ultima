@@ -1,98 +1,35 @@
-import { SubDocumentDataModel } from '../sub/sub-document-data-model.mjs';
-import FoundryUtils from '../../helpers/foundry-utils.mjs';
-import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
-import { DataModelRegistry } from '../../fields/data-model-registry.mjs';
-import { systemId, systemTemplatePath } from '../../helpers/system-utils.mjs';
-import { RuleActionDataModel, RuleActionRegistry } from './actions/rule-action-data-model.mjs';
+import { systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
-import { RulePredicateDataModel, RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
+import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
 import { FU } from '../../helpers/config.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
 import { EmptyRuleTrigger } from './triggers/empty-rule-trigger.mjs';
 
-const fields = foundry.data.fields;
-
 /**
  * @description A modular automation component for use in active effects
  * @property {RuleTriggerDataModel} trigger
- * @property {SubDocumentCollectionField, RuleActionDataModel[]} actions
+ * @property {RuleActionDataModel[]} actions
  * @property {RulePredicateDataModel[]} predicates
  * @property {FUTargetSelectorKey} selector
  * @property {Boolean} enabled
  */
-export class RuleElementDataModel extends SubDocumentDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'ruleElement' });
-	}
-
-	/** @inheritdoc */
-	static get metadata() {
+export class RuleElementDataModel extends foundry.abstract.DataModel {
+	static defineSchema() {
+		const { TypedSchemaField, TypedObjectField, StringField, BooleanField } = foundry.data.fields;
 		return {
-			...super.metadata,
-			documentName: 'ruleElement',
-			icon: 'fa-solid fa-circle-nodes',
-			embedded: {
-				ruleTrigger: 'trigger',
-				ruleAction: 'actions',
-				rulePredicate: 'predicates',
-			},
+			trigger: new TypedSchemaField(RuleTriggerRegistry.instance.qualifiedTypes, {
+				initial: new EmptyRuleTrigger(),
+			}),
+			actions: new TypedObjectField(new TypedSchemaField(RuleActionRegistry.instance.qualifiedTypes)),
+			predicates: new TypedObjectField(new TypedSchemaField(RulePredicateRegistry.instance.qualifiedTypes)),
+			selector: new StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
+			enabled: new BooleanField({ initial: true }),
 		};
 	}
 
 	static get template() {
 		return systemTemplatePath('effects/rule-element');
-	}
-
-	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
-			trigger: new fields.TypedSchemaField(RuleTriggerRegistry.instance.types, {
-				initial: new EmptyRuleTrigger(),
-			}),
-			actions: new SubDocumentCollectionField(RuleActionDataModel),
-			predicates: new SubDocumentCollectionField(RulePredicateDataModel),
-			selector: new fields.StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
-			enabled: new fields.BooleanField({ initial: true }),
-		});
-	}
-
-	/**
-	 * @param {String} type
-	 */
-	async changeRuleTrigger(type) {
-		if (type === this.trigger.type) {
-			return;
-		}
-		const model = RuleTriggerRegistry.instance.types[type];
-		const newTrigger = new model();
-		await this.update({ '==trigger': newTrigger });
-	}
-
-	/**
-	 * @returns {Promise<void>}
-	 */
-	async addRuleAction() {
-		let subTypes = this.getMatchingSubTypes(RuleActionRegistry.instance);
-		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog(
-			StringUtils.localize('FU.AddElement', {
-				element: StringUtils.localize('FU.RuleActions'),
-			}),
-			options,
-		);
-		if (type) {
-			await SubDocumentCollectionField.addModel(this.actions, type, this);
-		}
-	}
-
-	/**
-	 * @param {String} id The id of the action
-	 * @returns {Promise<void>}
-	 */
-	async removeRuleAction(id) {
-		const action = this.getAction(id);
-		if (action) {
-			await action.delete();
-		}
 	}
 
 	/**
@@ -112,50 +49,18 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	}
 
 	/**
-	 * @returns {Promise<void>}
-	 */
-	async addRulePredicate() {
-		let subTypes = this.getMatchingSubTypes(RulePredicateRegistry.instance);
-		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog(
-			StringUtils.localize('FU.AddElement', {
-				element: StringUtils.localize('FU.RulePredicates'),
-			}),
-			options,
-		);
-		if (type) {
-			await SubDocumentCollectionField.addModel(this.predicates, type, this);
-		}
-	}
-
-	/**
-	 * @param {String} id The id of the action
-	 * @returns {Promise<void>}
-	 */
-	async removeRulePredicate(id) {
-		const predicate = this.predicates.get(id);
-		if (predicate) {
-			await predicate.delete();
-		}
-	}
-
-	/**
 	 * @param {DataModelRegistry} registry
 	 * @returns {Record<string, string>}
 	 */
 	getMatchingSubTypes(registry) {
 		let subTypes = registry.localizedEntries;
-		const triggerEventType = this.trigger.schema.model.metadata.eventType;
+		const triggerEventType = this.trigger.constructor.eventType;
 		if (triggerEventType) {
 			subTypes = Object.fromEntries(
-				Object.entries(subTypes).filter(([key, value]) => {
-					const model = registry.types[key];
-					/** @type RuleActionMetaData **/
-					const modelMetaData = model.metadata;
-					if (modelMetaData.eventTypes) {
-						if (modelMetaData.eventTypes.find((t) => t === triggerEventType) === undefined) {
-							return false;
-						}
+				Object.entries(subTypes).filter(([key]) => {
+					const model = registry.qualifiedTypes[key];
+					if (model.eventTypes) {
+						return model.eventTypes.has(triggerEventType);
 					}
 					return true;
 				}),
@@ -179,7 +84,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 			return false;
 		}
 		// 2. Optional filtering based on variable predicates
-		for (const predicate of this.predicates) {
+		for (const predicate of Object.values(this.predicates)) {
 			if (!predicate.validateContext(context)) {
 				return false;
 			}
@@ -187,7 +92,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		// 3. Select what characters to execute the actions on
 		const selected = context.selectTargets(this.selector);
 		// 4. Execute the actions on all selected characters
-		for (const action of this.actions) {
+		for (const action of Object.values(this.actions)) {
 			await action.execute(context, selected);
 		}
 		return true;
@@ -199,7 +104,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async prepareRenderContext(context) {
-		for (const action of this.actions) {
+		for (const action of Object.values(this.actions)) {
 			await action.prepareRenderContext(context);
 		}
 	}
@@ -211,19 +116,28 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	get templateHeader() {
 		return StringUtils.localize(this.trigger.schema.model.localization);
 	}
-}
 
-/**
- * @description Registry of all {@linkcode RuleElementDataModel}
- */
-export class RuleElementRegistry extends DataModelRegistry {
-	constructor() {
-		super({
-			kind: 'Rule Element',
-			baseClass: RuleElementDataModel,
-		});
-		this.register(systemId, RuleElementDataModel.TYPE, RuleElementDataModel);
+	static migrateData(source) {
+		if (source.trigger) {
+			const trigger = source.trigger;
+			if (trigger.type && trigger.type.indexOf('.') < 0) {
+				trigger.type = RuleTriggerRegistry.instance.qualifiedChoices.find((el) => el.endsWith(trigger.type));
+			}
+		}
+		if (source.predicates) {
+			for (let [, predicate] of Object.entries(source.predicates)) {
+				if (predicate.type && predicate.type.indexOf('.') < 0) {
+					predicate.type = RulePredicateRegistry.instance.qualifiedChoices.find((el) => el.endsWith(predicate.type));
+				}
+			}
+		}
+		if (source.actions) {
+			for (let [, action] of Object.entries(source.actions)) {
+				if (action.type && action.type.indexOf('.') < 0) {
+					action.type = RuleActionRegistry.instance.qualifiedChoices.find((el) => el.endsWith(action.type));
+				}
+			}
+		}
+		return source;
 	}
-
-	static instance = new RuleElementRegistry();
 }

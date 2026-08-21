@@ -1,6 +1,7 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 const fields = foundry.data.fields;
 
@@ -11,23 +12,17 @@ const fields = foundry.data.fields;
  * @property {Number} result
  */
 export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.RESOLVE_CHECK_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'resolveCheckRuleTrigger' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
-			checkTypes: new fields.SetField(new fields.StringField()),
+		return Object.assign(super.defineSchema(), {
+			checkTypes: new fields.SetField(new fields.StringField({ choices: Object.keys(FU.checkTypes) })),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.RESOLVE_CHECK_EVENT;
 	}
 
 	// TODO: Remove once design is finished
@@ -48,9 +43,6 @@ export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (!this.checkTypes.has(context.event.check.type)) {
-			return false;
-		}
-		return true;
+		return this.checkTypes.has(context.event.check.type);
 	}
 }

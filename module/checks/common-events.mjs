@@ -38,7 +38,8 @@ async function callHookWithCallbacks(hook, ...args) {
 			await callback(...args);
 		} catch (err) {
 			const msg = `Error thrown in callback function '${callback?.name}' for hook '${hook}'`;
-			ui.notifications?.warn(msg, err);
+			ui.notifications?.warn(msg, { console: false });
+			console.error(msg, err);
 		}
 	}
 }

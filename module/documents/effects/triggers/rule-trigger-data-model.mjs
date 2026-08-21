@@ -1,4 +1,3 @@
-import { SubDocumentDataModel } from '../../sub/sub-document-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 
@@ -6,29 +5,17 @@ const fields = foundry.data.fields;
 
 /**
  * @description Defines the trigger for a rule element.
- * @property {FUTargetSelectorKey} selector
  * @property {FUEventRelationKey} eventRelation
- * @property {RulePredicateDataModel[] | TypedCollectionField} predicates
  */
-export class RuleTriggerDataModel extends SubDocumentDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			documentName: 'ruleTrigger',
-			icon: 'fa-solid fa-check',
-			eventType: '',
-		};
-	}
-
+export class RuleTriggerDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			eventRelation: new fields.StringField({
 				initial: '',
 				blank: true,
 				choices: Object.keys(FU.eventRelation),
 			}),
-		});
+		};
 	}
 
 	// TODO: Remove once design is done
@@ -37,6 +24,13 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 			delete source.eventRelation;
 		}
 		return super.migrateData(source);
+	}
+
+	/**
+	 * @return {string}
+	 */
+	static get eventType() {
+		throw new Error('Not implemented');
 	}
 
 	/**
@@ -58,7 +52,7 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 	 * @returns {Boolean}
 	 */
 	validateContext(context) {
-		return false;
+		throw new Error('Not implemented');
 	}
 
 	/**
@@ -79,10 +73,7 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 				}
 				break;
 		}
-		if (this.constructor.metadata.eventType !== context.type) {
-			return false;
-		}
-		return true;
+		return this.constructor.eventType === context.type;
 	}
 
 	/**

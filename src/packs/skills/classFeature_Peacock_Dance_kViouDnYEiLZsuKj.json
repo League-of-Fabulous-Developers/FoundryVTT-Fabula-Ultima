@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (<span>@ICON[offensive]</span>) during this scene, that attack or spell must include you among its targets if possible.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.9b6mngsWCfB7TLa7]{Peacock Dance}</p>",
+      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (@ICON[offensive]) during this scene, that attack or spell must include you among its targets if possible.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.9b6mngsWCfB7TLa7]{Peacock Dance}</p>",
       "duration": "instant"
     },
     "source": "FUHF145",

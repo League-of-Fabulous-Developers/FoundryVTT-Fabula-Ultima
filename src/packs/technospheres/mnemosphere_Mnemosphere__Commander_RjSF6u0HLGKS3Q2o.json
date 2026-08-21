@@ -113,7 +113,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
+          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -415,7 +415,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover HP or MP.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong>additional MP.</p></li></ul><p>The chosen effect lasts until the start of your next turn. </p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
+          "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover HP or MP.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional MP.</p></li></ul><p>The chosen effect lasts until the start of your next turn.</p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
           "showTitleCard": {
             "value": false
           },
@@ -508,7 +508,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop’s Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p></li></ul>",
+          "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King's Castle</strong> for free (spending the appropriate MP).</p></li></ul>",
           "showTitleCard": {
             "value": false
           },

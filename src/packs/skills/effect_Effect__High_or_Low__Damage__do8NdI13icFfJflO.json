@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You deal<strong>【SL】</strong>extra damage until the start of your next turn.</p>",
+      "description": "<p>You deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

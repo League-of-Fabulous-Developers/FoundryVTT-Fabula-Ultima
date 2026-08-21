@@ -8,18 +8,14 @@ const fields = foundry.data.fields;
  * @property {FUBondEmotion} bond
  */
 export class BondRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'bondRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			bond: new fields.StringField({
 				initial: '',
 				blank: true,
 				choices: Object.keys(FU.bondPredicate),
 			}),
-		});
+		};
 	}
 
 	static migrateData(source) {

@@ -2041,6 +2041,14 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"DialogTradeApprovalTitle": "Approve Trade",
+		"DialogTradeApprovalContent": "<strong>{targetName}</strong> ({targetType}) wants to acquire <strong>{itemName}</strong> ({itemType}) from <strong>{sourceName}</strong> ({sourceType}).",
+		"DialogTradeApprovalButtonTrade": "Trade",
+		"DialogTradeApprovalButtonTradeTooltip": "{itemName} gets moved from {sourceName} to {targetName}.",
+		"DialogTradeApprovalButtonCopy": "Copy",
+		"DialogTradeApprovalButtonCopyTooltip": "{sourceName} keeps {itemName}, {targetName} gets a copy.",
+		"DialogTradeApprovalButtonCancel": "Cancel",
+		"DialogTradeApprovalButtonCancelTooltip": "Abort the trade."
 	}
 }

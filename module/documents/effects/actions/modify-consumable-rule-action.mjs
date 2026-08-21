@@ -10,23 +10,18 @@ const fields = foundry.data.fields;
  * @property {String} multiplier
  */
 export class ModifyConsumableRuleAction extends RuleActionDataModel {
-	/** @inheritdoc */
-	static get metadata() {
+	static defineSchema() {
 		return {
-			...super.metadata,
-			eventTypes: [FUHooks.CONSUMABLE_CREATE_EVENT],
+			bonus: new fields.StringField({ blank: true, nullable: false }),
+			multiplier: new fields.StringField({ blank: true, nullable: false }),
 		};
 	}
 
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'modifyConsumableRuleAction' });
-	}
-
-	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
-			bonus: new fields.StringField({ blank: true, nullable: false }),
-			multiplier: new fields.StringField({ blank: true, nullable: false }),
-		});
+	/**
+	 * @inheritDoc
+	 */
+	static get eventTypes() {
+		return [FUHooks.CONSUMABLE_CREATE_EVENT];
 	}
 
 	static get localization() {
