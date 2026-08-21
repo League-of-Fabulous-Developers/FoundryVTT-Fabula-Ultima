@@ -193,7 +193,14 @@ const checkFromCheckResult = (check) => {
  * @return {Promise<void>}
  */
 const modifyCheck = async (checkId, callback) => {
-	const message = game.messages.search({ filters: [{ field: `flags.projectfu.${Flags.ChatMessage.Check}.id`, value: checkId }] }).at(0);
+	const message = game.messages
+		.search({
+			filters: [
+				{ field: `flags.projectfu.${Flags.ChatMessage.Check}.id`, value: checkId },
+				{ field: 'isRoll', value: true },
+			],
+		})
+		.at(-1);
 	if (message) {
 		/** @type CheckResultV2 */
 		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.Check));

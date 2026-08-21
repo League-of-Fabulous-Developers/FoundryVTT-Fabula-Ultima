@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per scene, when you enter <strong>Crisis</strong>, you may choose a specific creature you can see that you don’t have a <strong>Bond</strong> towards. If you do, create a <strong>Bond</strong> of <strong>hatred</strong> towards that creature.</p>",
+    "description": "<p>Once per scene, when you enter <strong>Crisis</strong>, you may choose a specific creature you can see that you don't have a <strong>Bond</strong> towards. If you do, create a <strong>Bond</strong> of <strong>hatred</strong> towards that creature.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
       "name": "Heart of Darkness",
       "_id": "5i8vg0mr8lTsYgdU",
       "changes": [],
-      "description": "<p>Once per scene, when you enter <strong>Crisis</strong>, you may choose a specific creature you can see that you don’t have a <strong>Bond</strong> towards. If you do, create a <strong>Bond</strong> of <strong>hatred</strong> towards that creature.</p>",
+      "description": "<p>Once per scene, when you enter <strong>Crisis</strong>, you may choose a specific creature you can see that you don't have a <strong>Bond</strong> towards. If you do, create a <strong>Bond</strong> of <strong>hatred</strong> towards that creature.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {

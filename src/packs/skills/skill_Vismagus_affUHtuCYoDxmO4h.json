@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast a spell, if you don’t have enough Mind Points to pay for its total cost, you may choose to spend an amount of Hit Points equal to <strong>【10 + the spell’s total MP cost】</strong> instead. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
+    "description": "<p>When you cast a spell, if you don't have enough Mind Points to pay for its total cost, you may choose to spend an amount of Hit Points equal to <strong>【10 + the spell's total MP cost】</strong> instead. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
     "isFavored": {
       "value": false
     },

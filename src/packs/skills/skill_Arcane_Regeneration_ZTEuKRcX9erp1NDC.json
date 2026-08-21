@@ -163,7 +163,7 @@
                 "qCg97rBP9FP1HKun": {
                   "type": "messageRuleAction",
                   "_id": "qCg97rBP9FP1HKun",
-                  "message": "<p>You recover<strong>【SL × 5】</strong>HP.</p>"
+                  "message": "<p>You recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "JQ5QM9OFG5fIDQ0r": {
                   "type": "updateResourceRuleAction",

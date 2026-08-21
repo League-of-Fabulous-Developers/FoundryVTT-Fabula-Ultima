@@ -25,7 +25,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>... treats their <strong>Dexterity</strong> (@EFFECT[dex-up e:eot i:2 t:source]) and <strong>Might</strong> (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p>",
+      "description": "<p>... treats their <strong>Dexterity</strong> (@EFFECT[dex-up e:eot i:2 t:source]) and <strong>Might</strong> (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.betocD9ydMQ6SjKW"
@@ -52,7 +52,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>... treats their <strong>Insight</strong> (@EFFECT[ins-up e:eot i:2 t:source]) and <strong>Willpower</strong> (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p>",
+      "description": "<p>... treats their <strong>Insight</strong> (@EFFECT[ins-up e:eot i:2 t:source]) and <strong>Willpower</strong> (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.QbqUG0cgZPwbwLe1"

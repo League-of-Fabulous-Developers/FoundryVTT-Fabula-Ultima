@@ -23,7 +23,7 @@
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": null
       },
-      "description": "... treats their Dexterity (@EFFECT[dex-up e:eot i:2 t:source]) and Might (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
+      "description": "... treats their Dexterity (@EFFECT[dex-up e:eot i:2 t:source]) and Might (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
       "name": "",
       "_key": "!tables.results!DYF6YNH3S0U3mrT1.betocD9ydMQ6SjKW"
     },
@@ -47,7 +47,7 @@
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": null
       },
-      "description": "... treats their Insight (@EFFECT[ins-up e:eot i:2 t:source]) and Willpower (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
+      "description": "... treats their Insight (@EFFECT[ins-up e:eot i:2 t:source]) and Willpower (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
       "name": "",
       "_key": "!tables.results!DYF6YNH3S0U3mrT1.QbqUG0cgZPwbwLe1"
     },

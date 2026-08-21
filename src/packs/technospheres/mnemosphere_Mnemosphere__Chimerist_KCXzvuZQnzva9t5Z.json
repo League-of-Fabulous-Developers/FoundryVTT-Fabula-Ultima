@@ -20,7 +20,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
+          "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
           "showTitleCard": {
             "value": false
           },
@@ -151,7 +151,7 @@
                       "38M0seyIClMNOZsr": {
                         "type": "messageRuleAction",
                         "_id": "38M0seyIClMNOZsr",
-                        "message": "<p>If you damage one or more, recover<strong>【SL × 2】</strong>MP.</p>"
+                        "message": "<p>If you damage one or more, recover <strong>【SL × 2】</strong> MP.</p>"
                       },
                       "C4sr0SUqEHuh5PXh": {
                         "type": "updateResourceRuleAction",

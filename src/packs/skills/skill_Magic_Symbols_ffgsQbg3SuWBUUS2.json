@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>If an ally bears one of your <strong>symbols</strong>, that ally may perform the <strong>Spell</strong> action and destroy that symbol to cast a single spell among those <strong>you</strong> know, as long as it has a <strong>total Mind Point cost equal to or lower than 【SL × 10】</strong>(that ally must still pay the MP cost).</p>",
+    "description": "<p>If an ally bears one of your <strong>symbols</strong>, that ally may perform the <strong>Spell</strong> action and destroy that symbol to cast a single spell among those <strong>you</strong> know, as long as it has a <strong>total Mind Point cost equal to or lower than 【SL × 10】</strong> (that ally must still pay the MP cost).</p>",
     "isFavored": {
       "value": false
     },

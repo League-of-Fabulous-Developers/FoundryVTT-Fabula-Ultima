@@ -396,7 +396,7 @@ export class FUPartySheet extends FUActorSheet {
 				for (const misc of this.#adversaryFilters.misc) {
 					switch (misc) {
 						case 'inCombat':
-							if (!game.combat.hasInstancedActor(adversary.uuid)) display = false;
+							if (game.combat && !game.combat.hasInstancedActor(adversary.uuid)) display = false;
 					}
 				}
 			}

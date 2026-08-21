@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>You gain the ability to perform Rituals of the </span><strong>Ritualism</strong><span> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to <strong>create, animate, and/or control vegetation, pollen, spores, and toxins</strong> (but you cannot create nor control <strong>plant</strong>-Species NPCs this way).</span></p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
+    "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to <strong>create, animate, and/or control vegetation, pollen, spores, and toxins</strong> (but you cannot create nor control <strong>plant</strong>-Species NPCs this way).</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },

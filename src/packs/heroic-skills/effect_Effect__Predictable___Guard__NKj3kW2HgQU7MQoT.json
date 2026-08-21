@@ -47,11 +47,16 @@
             "style": "basic",
             "step": 1
           },
-          "elements": {}
+          "elements": {},
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
         }
       },
       "changes": [],
-      "description": "<p><span>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Guard</strong> action. If you can't, you must perform a different action.</span></p>",
+      "description": "<p>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Guard</strong> action. If you can't, you must perform a different action.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -66,7 +71,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771013533421
+        "modifiedTime": 1783630553398
       },
       "_key": "!items.effects!NKj3kW2HgQU7MQoT.6Nk8ZZvyW3wreVGc"
     }

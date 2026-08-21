@@ -145,7 +145,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons. </p>",
+      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {

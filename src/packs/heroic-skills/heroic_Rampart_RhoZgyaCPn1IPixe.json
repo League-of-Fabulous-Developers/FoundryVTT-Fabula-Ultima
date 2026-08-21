@@ -9,7 +9,7 @@
     "summary": {
       "value": "Resist damage and status effects during the first round."
     },
-    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Guardian</strong> Class.</span></p><hr /><p><span>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you do not recover from preexisting status effects, however). These benefits only last until the end of the first round.</span></p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Guardian</strong> Class.</p><hr /><p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you do not recover from preexisting status effects, however). These benefits only last until the end of the first round.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
     "isFavored": {
       "value": false
     },
@@ -160,7 +160,7 @@
       "_id": "KPlk3yT9lqzYUk8k",
       "type": "base",
       "changes": [],
-      "description": "<p><span>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects.</span></p>",
+      "description": "<p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

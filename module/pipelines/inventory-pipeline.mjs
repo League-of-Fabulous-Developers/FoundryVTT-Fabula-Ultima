@@ -340,9 +340,11 @@ async function promptPartyZenitTransfer(actor, mode) {
  * @param {String} itemId
  * @param {Boolean} sale
  * @param {String} targetId
+ * @param {KeyboardModifiers} modifiers
+ * @param {SocketMessage} [socketMessage]
  * @returns {Promise<boolean|undefined>}
  */
-async function requestTrade(actorId, itemId, sale, targetId = undefined, modifiers = {}) {
+async function requestTrade(actorId, itemId, sale, targetId = undefined, modifiers = {}, socketMessage) {
 	// Verify the item is still there
 	const item = fromUuidSync(itemId);
 	if (!item) {
@@ -362,19 +364,19 @@ async function requestTrade(actorId, itemId, sale, targetId = undefined, modifie
 
 	// Now execute directly on GM or request as user
 	if (game.user?.isGM) {
-		return handleTrade(actorId, itemId, sale, targetId, modifiers);
+		return handleTrade(actorId, itemId, sale, targetId, modifiers, socketMessage);
 	} else {
 		await game.projectfu.socket.requestTrade(actorId, itemId, sale, targetId, modifiers);
 		return false;
 	}
 }
 
-async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
+async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}, socketMessage) {
 	console.log('Handling trade from:', actorId, itemId, targetId);
 	const actor = fromUuidSync(actorId);
 	const item = fromUuidSync(itemId);
 	const target = fromUuidSync(targetId);
-	return onHandleTrade(actor, item, sale, target, modifiers);
+	return onHandleTrade(actor, item, sale, target, modifiers, socketMessage);
 }
 
 /**
@@ -395,12 +397,41 @@ function getItemCost(item) {
 }
 
 /**
+ * @param {FUActor} source
+ * @param {FUActor} target
+ * @param {User} initiatingUser
+ * @return {boolean}
+ */
+function tradeRequiresGmApproval(source, target, initiatingUser) {
+	const sourceIsParty = source.type === 'party';
+	const canEditSource = source.testUserPermission(initiatingUser, 'OWNER');
+	const targetIsParty = target.type === 'party';
+	const canEditTarget = target.testUserPermission(initiatingUser, 'OWNER');
+	return !((sourceIsParty || canEditSource) && (targetIsParty || canEditTarget));
+}
+
+/**
+ * @param {ClientDocument} document
+ * @return {string}
+ */
+function getLocalizedType(document) {
+	let documentLabel = document.constructor.metadata.label;
+	if (document.type && document.constructor.hasTypeData) {
+		const typeLabel = CONFIG[document.constructor.metadata.name].typeLabels?.[document.type];
+		if (typeLabel && game.i18n.has(typeLabel)) documentLabel = typeLabel;
+	}
+	return game.i18n.localize(documentLabel);
+}
+
+/**
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {Boolean} sale
  * @param {FUActor} target
+ * @param {KeyboardModifiers} modifiers
+ * @param {SocketMessage} socketMessage
  */
-async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
+async function onHandleTrade(actor, item, sale, target, modifiers = {}, socketMessage) {
 	// Don't execute on self
 	if (actor.uuid === target.uuid) {
 		return false;
@@ -411,6 +442,7 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 		return false;
 	}
 
+	let action = 'trade';
 	let cost = 0;
 	if (sale) {
 		cost = getItemCost(item);
@@ -427,6 +459,55 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 		// Add zenit to seller
 		await updateResources(actor, cost);
 	} else {
+		const initiatingUser = game.users.get(socketMessage?.sender ?? game.userId);
+		if (tradeRequiresGmApproval(actor, target, initiatingUser)) {
+			const context = {
+				sourceName: actor.name,
+				sourceType: getLocalizedType(actor),
+				targetName: target.name,
+				targetType: getLocalizedType(target),
+				itemName: item.name,
+				itemType: getLocalizedType(item),
+			};
+			const result = await foundry.applications.api.DialogV2.wait({
+				window: { title: game.i18n.localize('FU.DialogTradeApprovalTitle') },
+				content: `<p>${game.i18n.format('FU.DialogTradeApprovalContent', context)}</p>`,
+				buttons: [
+					{
+						action: 'trade',
+						label: 'FU.DialogTradeApprovalButtonTrade',
+						icon: 'fas fa-check',
+					},
+					{
+						action: 'copy',
+						label: 'FU.DialogTradeApprovalButtonCopy',
+						icon: 'fas fa-copy',
+					},
+					{
+						action: 'cancel',
+						label: 'FU.DialogTradeApprovalButtonCancel',
+						icon: 'fas fa-xmark',
+					},
+				],
+				render: (event, dialog) => {
+					dialog.element
+						.querySelector('.window-content')
+						.querySelectorAll('button[data-action]')
+						.forEach((button) => {
+							button.dataset.tooltip = game.i18n.format(`FU.DialogTradeApprovalButton${button.dataset.action.capitalize()}Tooltip`, context);
+						});
+				},
+				default: 'cancel',
+				rejectClose: false,
+			});
+
+			if (!result || result === 'cancel') {
+				return false;
+			} else {
+				action = result;
+			}
+		}
+
 		console.debug(`${target.name} is looting ${item.name} from ${actor.name}`);
 	}
 
@@ -434,7 +515,9 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 	await target.createEmbeddedDocuments('Item', [item.toObject()]);
 
 	// Don't delete consumables from the source unless shift click
-	if (item.type !== 'consumable' || (item.type === 'consumable' && modifiers?.shift)) {
+	if ((item.type === 'consumable' && !modifiers?.shift) || action === 'copy') {
+		// don't delete
+	} else {
 		await item.delete();
 	}
 	let message = sale ? 'FU.ChatItemPurchased' : 'FU.ChatItemLooted';

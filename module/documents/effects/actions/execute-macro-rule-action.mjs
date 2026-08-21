@@ -25,8 +25,8 @@ export class ExecuteMacroRuleAction extends RuleActionDataModel {
 	async execute(context, selected) {
 		if (this.macro) {
 			this.macro.execute({
-				actor: context.source.actor,
-				token: context.source.token,
+				actor: context?.source?.actor ?? null,
+				token: context?.source?.token ?? null,
 				context: context,
 				selected: selected,
 			});

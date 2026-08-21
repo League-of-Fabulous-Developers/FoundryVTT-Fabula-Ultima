@@ -106,7 +106,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span>You have Resistance to all damage types and cannot suffer status effects. These benefits only last until the end of the first round.</span></p>",
+      "description": "<p>You have Resistance to all damage types and cannot suffer status effects. These benefits only last until the end of the first round.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

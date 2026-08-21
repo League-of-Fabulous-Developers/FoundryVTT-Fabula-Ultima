@@ -155,16 +155,23 @@
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "identifier": ""
               },
               "actions": {
-                "ZtVOzqMFygNk6R4m": {
+                "9qZlJnRWhNntEkfe": {
+                  "type": "messageRuleAction",
+                  "_id": "9qZlJnRWhNntEkfe",
+                  "message": "<p>You recover <strong>【SL × 2】</strong> Mind Points.</p>"
+                },
+                "B4GECG8iCZhy8Yt1": {
                   "type": "updateResourceRuleAction",
-                  "_id": "ZtVOzqMFygNk6R4m",
+                  "_id": "B4GECG8iCZhy8Yt1",
                   "amount": "$sl*2",
                   "resource": "mp"
                 }
-              }
+              },
+              "selector": "self"
             }
           },
           "progress": {
@@ -174,6 +181,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -200,7 +212,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925670202,
-        "modifiedTime": 1771832471492,
+        "modifiedTime": 1783559900959,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!jgGLuOvN8xCSQWLK.5VkoqLalYTeuaJX1"
