@@ -149,9 +149,10 @@ export class NpcProfileWindow extends FUApplication {
 		context.actor = actor;
 		context.name = actor.name;
 		context.img = actor.img;
-		const [rank, championLevel] = data.rank.split(':');
-		context.rank = FU.rank[rank];
-		context.championLevel = championLevel;
+		context.rank = FU.rank[actor.system.rank.value];
+		if (actor.system.rank.value === 'champion') {
+			context.championLevel = actor.system.rank.replacedSoldiers;
+		}
 		context.system = system;
 		context.items = actor.items;
 		context.basic = basic;

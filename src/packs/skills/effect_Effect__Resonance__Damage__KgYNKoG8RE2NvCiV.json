@@ -59,7 +59,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You suffer<strong>【SL】</strong>extra from the chanter's allies until the start of their next turn.</p>",
+      "description": "<p>You suffer <strong>【SL】</strong> extra from the chanter's allies until the start of their next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

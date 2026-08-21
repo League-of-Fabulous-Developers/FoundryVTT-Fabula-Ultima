@@ -75,15 +75,13 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 			const initialActor = fromUuidSync(initialCheck.actorUuid);
 			// Resolve winner
 			let winner;
-			let margin = 0;
+			let margin = Math.abs(check.result - initialCheck.result);
 			if ((initialCheck.fumble && check.fumble) || (initialCheck.critical && check.critical) || initialCheck.result === check.result) {
 				winner = null;
 			} else if (initialCheck.fumble || check.critical || initialCheck.result < check.result) {
 				winner = actor.name;
-				margin = check.result - initialCheck.result;
 			} else {
 				winner = initialActor.name;
-				margin = initialCheck.result - check.result;
 			}
 			CommonSections.template(
 				data.sections,
@@ -92,7 +90,6 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 					actor,
 					initialActor,
 					winner,
-					margin,
 				},
 				CHECK_DETAILS,
 			);
@@ -101,6 +98,7 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 				'chat/partials/chat-opposed-check-result',
 				{
 					winner,
+					margin,
 				},
 				ChatSectionOrder.addendum,
 			);

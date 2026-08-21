@@ -59,7 +59,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span>You gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the <strong>Hinder</strong> Skill.</span></p>",
+      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the <strong>Hinder</strong> Skill.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

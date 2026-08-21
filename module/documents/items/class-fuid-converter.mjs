@@ -95,9 +95,11 @@ async function convertGameItemsClassAttributes() {
 
 export class ClassFuidConverter {
 	static run() {
-		for (const actor of game.actors) {
-			convertActorItemsClassAttributes(actor);
+		if (game.user === game.users.activeGM) {
+			for (const actor of game.actors) {
+				convertActorItemsClassAttributes(actor);
+			}
+			convertGameItemsClassAttributes();
 		}
-		convertGameItemsClassAttributes();
 	}
 }

@@ -82,7 +82,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by<strong>【SL × 2】</strong>(applied before damage Affinities).</span></p>",
+      "description": "<p>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you deal damage, if the wayfarer has no weapons equipped, you deal extra damage equal to<strong>【their SL in Visionary】</strong>.</p>",
+      "description": "<p>When you deal damage, if the wayfarer has no weapons equipped, you deal extra damage equal to <strong>【their SL in Visionary】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

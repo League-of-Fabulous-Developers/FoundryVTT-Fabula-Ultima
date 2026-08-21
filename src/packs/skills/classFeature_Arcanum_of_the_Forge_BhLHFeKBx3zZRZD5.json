@@ -83,7 +83,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p>You have Resistance to <strong>fire</strong> damage.</p></li><li><p>Any <strong>fire</strong> damage you deal ignores Resistances. </p></li></ul>",
+      "description": "<ul><li><p>You have Resistance to <strong>fire</strong> damage.</p></li><li><p>Any <strong>fire</strong> damage you deal ignores Resistances.</p></li></ul>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

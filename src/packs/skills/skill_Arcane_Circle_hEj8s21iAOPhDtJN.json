@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
+    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
     "isFavored": {
       "value": false
     },
@@ -158,7 +158,7 @@
                 "w8BWzeteOxxe2dlU": {
                   "type": "messageRuleAction",
                   "_id": "w8BWzeteOxxe2dlU",
-                  "message": "<p>If the Arcanum had not been <strong>summoned</strong> this turn, you may perform the <strong>Spell</strong> action.</p>"
+                  "message": "<p>If the Arcanum had not been <strong>summoned</strong> this turn, you may perform the <strong>Spell</strong> action.</p>"
                 }
               },
               "predicates": {
@@ -191,7 +191,7 @@
       "_id": "UFyEiFjoYZc4p9e2",
       "type": "base",
       "changes": [],
-      "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free.</p>",
+      "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

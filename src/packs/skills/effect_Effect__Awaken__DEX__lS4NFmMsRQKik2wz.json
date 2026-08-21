@@ -55,7 +55,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until this spell ends, you treat your <strong>Dexterity</strong> as one die size higher.</p>",
+      "description": "<p>Until this spell ends, you treat your <strong>Dexterity</strong> as one die size higher.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

@@ -62,7 +62,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You are able to read, write, speak and understand all languages.</p><p>You treat your <strong>Insight</strong> as if it were one die size higher. </p>",
+      "description": "<p>You are able to read, write, speak and understand all languages.</p><p>You treat your <strong>Insight</strong> as if it were one die size higher.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
