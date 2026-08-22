@@ -98,7 +98,7 @@ export class PseudoDocumentCollectionField extends foundry.data.fields.ArrayFiel
 
 	/** @override */
 	_validateRecursive(value, options) {
-		const collectionFailure = new foundry.data.validation.DataModelValidationFailure('EmbeddedCollectionField#_validateRecursive', { fieldPath: this.fieldPath, unresolved: false });
+		const collectionFailure = new foundry.data.validation.DataModelValidationFailure('PseudoDocumentCollectionField#_validateRecursive', { fieldPath: this.fieldPath, unresolved: false });
 		const collection = options.model?.[this.fieldPath];
 		for (let i = value.length - 1; i >= 0; i--) {
 			// Iterate backwards so we can splice as we go

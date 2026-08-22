@@ -39,13 +39,6 @@ export class PseudoDocumentEnabledTypeDataModel extends foundry.abstract.TypeDat
 		Object.defineProperty(this, 'collections', { value: Object.seal(collections), writable: false });
 	}
 
-	_initialize(options = {}) {
-		super._initialize(options);
-		Object.entries(this.collections).forEach(([fieldName, collection]) => {
-			collection.updateSource(this._source[fieldName]);
-		});
-	}
-
 	/**
 	 * A compatibility method that returns the appropriate name of a pseudo collection within this Document.
 	 * @param {string} name    An existing collection name or a document name.

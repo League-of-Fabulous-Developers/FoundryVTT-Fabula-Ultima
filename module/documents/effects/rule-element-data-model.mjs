@@ -1,4 +1,3 @@
-import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
 import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
@@ -26,10 +25,6 @@ export class RuleElementDataModel extends foundry.abstract.DataModel {
 			selector: new StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
 			enabled: new BooleanField({ initial: true }),
 		};
-	}
-
-	static get template() {
-		return systemTemplatePath('effects/rule-element');
 	}
 
 	/**

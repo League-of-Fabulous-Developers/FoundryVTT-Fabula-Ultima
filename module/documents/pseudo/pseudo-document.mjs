@@ -31,20 +31,6 @@ export class PseudoDocument extends BasePseudoDocument {
 
 	static name = 'PseudoDocument';
 
-	_initialize(options) {
-		super._initialize(options);
-		if (!game._documentsReady) return;
-		if (this.parent?.collections[this.parentCollection]?._initialized === false) {
-			return; // Skip documents in uninitialized embedded collections
-		}
-		Object.entries(this.collections).forEach(([fieldName, collection]) => {
-			collection.updateSource(this._source[fieldName]);
-		});
-		// TODO: still needed?
-		// setTimeout(() => this.render());
-		this._safePrepareData();
-	}
-
 	/**
 	 * Return a reference to the parent Collection instance that contains this Document.
 	 * @this {PseudoDocument}
@@ -182,8 +168,7 @@ export class PseudoDocument extends BasePseudoDocument {
 		// Default sheet selection for the type
 		const classes = Object.values(sheets);
 		// it's a foundry global
-		// eslint-disable-next-line no-undef
-		if (!classes.length) return BaseSheet;
+		if (!classes.length) return foundry.applications.sheets.BaseSheet;
 		return (classes.find((s) => s.default) ?? classes.pop()).cls;
 	}
 
@@ -236,11 +221,13 @@ export class PseudoDocument extends BasePseudoDocument {
 	prepareEmbeddedDocuments() {
 		for (const collectionName of Object.keys(this.collections || {})) {
 			for (let e of this.collections[collectionName]) {
+				e._initialize();
 				e._safePrepareData();
 			}
 		}
 		for (const collectionName of Object.keys(this.nestedCollections || {})) {
 			for (let e of this.nestedCollections[collectionName]) {
+				e._initialize();
 				e._safePrepareData();
 			}
 		}

@@ -25,6 +25,18 @@ export function ItemBehaviourMixin(BaseClass) {
 
 		overrides = this.overrides ?? {};
 
+		_configure(options) {
+			super._configure(options);
+
+			/**
+			 * Track completed core ActiveEffect application phases as a backward compatibility measure for packages calling
+			 * Actor#applyActiveEffects without a phase argument.
+			 * @type {Set<string>}
+			 * @private
+			 */
+			Object.defineProperty(this, '_completedActiveEffectPhases', { value: new Set() });
+		}
+
 		/**
 		 * Augment the basic Item data model with additional dynamic data.
 		 * This method is automatically called when an item is created or updated.
@@ -32,6 +44,22 @@ export function ItemBehaviourMixin(BaseClass) {
 		prepareData() {
 			super.prepareData();
 			Hooks.callAll(FUHooks.DATA_PREPARED_ITEM, this);
+		}
+
+		/** @inheritDoc */
+		prepareBaseData() {
+			this._clearData();
+		}
+
+		/* -------------------------------------------- */
+
+		/**
+		 * Clear or replace properties not automatically reset by upstream initialization.
+		 * @protected
+		 */
+		_clearData() {
+			this.overrides = {};
+			this._completedActiveEffectPhases.clear();
 		}
 
 		/**
@@ -83,49 +111,58 @@ export function ItemBehaviourMixin(BaseClass) {
 			}
 		}
 
-		applyActiveEffects() {
-			const overrides = {};
+		applyActiveEffects(phase) {
+			/** @type {typeof foundry.documents.ActiveEffect} */
+			const ActiveEffect = foundry.documents.ActiveEffect.implementation;
+			if (typeof phase !== 'string') {
+				phase = this._completedActiveEffectPhases.has('initial') ? 'final' : 'initial';
+				const message = 'Actor#applyActiveEffects must be called with a string phase identifier, with "initial"' + ' as the first phase.';
+				foundry.utils.logCompatibilityWarning(message, { since: 14, until: 16, once: true });
+			} else if (!(phase in ActiveEffect.CHANGE_PHASES)) {
+				const error = new Error(`"${phase}" is not a registered ActiveEffect application phase.`);
+				Hooks.onError('Actor#applyActiveEffects', error, { log: 'error' });
+			}
+			if (this._completedActiveEffectPhases.has(phase)) {
+				const error = new Error(`ActiveEffect application phase "${phase}" has already completed and cannot be run again` + " in this Actor's data-preparation cycle.");
+				Hooks.onError('Actor#applyActiveEffects', error, { log: 'error' });
+				return;
+			}
+			this._completedActiveEffectPhases.add(phase);
 
 			// Organize non-disabled effects by their application priority
+			/** @type {ActiveEffectChangeData[]} */
 			const changes = [];
+			/** @type {ActiveEffectChangeData[]} */
+			const rollData = this.getRollData();
+			const dataByEffect = new Map();
 			for (const effect of this.allApplicableEffects()) {
-				if (!effect.active) {
-					continue;
+				if (!effect.active) continue;
+				const replacementData = effect.getReplacementData(rollData);
+				dataByEffect.set(effect, replacementData);
+				for (const change of effect.system.changes) {
+					if (change.key === '' || !effect.shouldApplyChange(change, { phase, replacementData })) continue;
+					const copy = foundry.utils.deepClone(change);
+					copy.effect = effect;
+					changes.push(copy);
 				}
-				changes.push(
-					...effect.changes.map((change) => {
-						const c = foundry.utils.deepClone(change);
-						c.effect = effect;
-						c.order = c.priority ?? c.mode * 10;
-						return c;
-					}),
-				);
 			}
-			changes.sort((a, b) => a.order - b.order);
+			changes.sort((a, b) => a.priority - b.priority);
+			ActiveEffect._shimChanges(changes);
 
 			// Apply all changes
-			for (let change of changes) {
-				if (!change.key) {
-					continue;
-				}
-				const changes = change.effect.apply(this, change);
-				Object.assign(overrides, changes);
+			const overrides = {};
+			for (const change of changes) {
+				const replacementData = dataByEffect.get(change.effect) ?? rollData;
+				const result = ActiveEffect.applyChange(this, change, { replacementData });
+				if (foundry.utils.isPlainObject(result)) Object.assign(overrides, result);
 			}
 
 			// Expand the set of final overrides
-			this.overrides = foundry.utils.expandObject(overrides);
+			foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
 
-			if (this.system.afterApplyActiveEffects) {
-				this.system.afterApplyActiveEffects();
+			if (phase === 'final') {
+				this.render();
 			}
-
-			for (const item of this.allItems()) {
-				if (item.applyActiveEffects) {
-					item.applyActiveEffects();
-				}
-			}
-
-			this.render();
 		}
 
 		*allItems() {
