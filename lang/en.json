@@ -863,6 +863,7 @@
 		"ClassFeatureArcanumMerge": "Merge Benefits",
 		"ClassFeatureArcanumPulse": "Pulse Effect",
 		"ClassFeatureArcanumDismiss": "Dismiss Effect",
+		"ClassFeatureArcanumEnablePulse": "Enable Pulse",
 		"ClassFeatureArcanumSummonMessage": "The arcanum has been <strong>merged with.</strong>",
 		"ClassFeatureArcanumDismissMessage": "The arcanum has been <strong>dismissed.</strong>",
 		"ClassFeatureArcanumPulseMessage": "The arcanum's <strong>pulse effect</strong> has been unleashed.",

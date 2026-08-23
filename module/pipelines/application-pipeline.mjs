@@ -13,7 +13,6 @@ import { FeatureTraits } from './traits.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
-import { getSystemSetting, SETTINGS } from '../settings.js';
 import { ResourcePipeline } from './resource-pipeline.mjs';
 import { FU } from '../helpers/config.mjs';
 
@@ -66,7 +65,8 @@ async function handleArcanum(actor, item) {
 		});
 
 		// OPTIONAL: Pulse
-		if (getSystemSetting(SETTINGS.optionArcanumPulse) && currentArcanumData.pulse) {
+
+		if (currentArcanumData.enablePulse && currentArcanumData.pulse) {
 			sections.push({
 				title: `FU.ClassFeatureArcanumPulse`,
 				text: await FoundryUtils.enrichText(currentArcanumData.pulse, {
@@ -88,6 +88,7 @@ async function handleArcanum(actor, item) {
 			icon: 'fas fa-bolt',
 			primary: true,
 		});
+
 		sections.push({
 			title: `FU.ClassFeatureArcanumDismiss`,
 			text: await FoundryUtils.enrichText(currentArcanumData.dismiss, {

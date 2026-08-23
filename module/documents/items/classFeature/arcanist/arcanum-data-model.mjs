@@ -4,6 +4,7 @@ import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
+import { ArcanumMigrations } from './arcanum-migrations.mjs';
 
 /**
  * @extends ClassFeatureDataModel
@@ -11,11 +12,13 @@ import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
  * @property {string} merge
  * @property {string} pulse
  * @property {string} dismiss
+ * @property {boolean} enablePulse
  */
 export class ArcanumDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
-		const { StringField, HTMLField } = foundry.data.fields;
+		const { StringField, HTMLField, BooleanField } = foundry.data.fields;
 		return {
+			enablePulse: new BooleanField({ initial: false }),
 			domains: new StringField({ initial: '' }),
 			merge: new HTMLField({ initial: '' }),
 			pulse: new HTMLField({ initial: '' }),
@@ -37,6 +40,17 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 
 	static get translation() {
 		return 'FU.ClassFeatureArcanum';
+	}
+
+	static getTabConfigurations() {
+		return [
+			{
+				group: 'arcanumTabs',
+				navSelector: '.arcanum-tabs',
+				contentSelector: '.arcanum-content',
+				initial: 'mergeTab',
+			},
+		];
 	}
 
 	static async getAdditionalData(model) {
@@ -62,6 +76,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		}
 		const data = {
 			domains: model.domains,
+			enablePulse: model.enablePulse,
 			merge: await TextEditor.enrichHTML(model.merge),
 			pulse: await TextEditor.enrichHTML(model.pulse),
 			dismiss: await TextEditor.enrichHTML(model.dismiss),
@@ -97,5 +112,10 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		this.actor.update({
 			'system.equipped.arcanum': newArcanumId,
 		});
+	}
+
+	static migrateData(source, options) {
+		ArcanumMigrations.run(source);
+		return super.migrateData(source, options);
 	}
 }
