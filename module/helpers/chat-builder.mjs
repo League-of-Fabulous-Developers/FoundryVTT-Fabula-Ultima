@@ -218,16 +218,18 @@ export class FUChatBuilder {
 			speaker: speaker,
 			flags: flags,
 		};
-		const options = {};
+		const options = {
+			chatBubble: false,
+		};
 
 		// OPTION: Roll data
 		if (this.#rolls) {
 			chatMessage.rolls = this.#rolls;
-			options.rollMode = 'roll';
+			options.messageMode = true;
 		}
 
 		// Render to chat
-		await ChatMessage.create(chatMessage, options);
+		await ChatMessage.create(foundry.utils.duplicate(chatMessage), options);
 
 		// Execute post-render actions
 		for (let postRenderAction of this.#renderData.postRenderActions) {
