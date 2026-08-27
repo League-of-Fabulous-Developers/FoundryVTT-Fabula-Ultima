@@ -61,7 +61,7 @@ export class BasePseudoDocument extends foundry.abstract.DataModel {
 		const base = this.baseDocument;
 		// eslint-disable-next-line no-prototype-builtins
 		if (!base.hasOwnProperty('_schema')) {
-			const schema = new foundry.data.fields.SchemaField(Object.freeze(base.defineSchema()));
+			const schema = new foundry.data.fields.DataModelSchemaField(base);
 			Object.defineProperty(base, '_schema', { value: schema, writable: false });
 		}
 		Object.defineProperty(this, '_schema', { value: base._schema, writable: false });
@@ -468,11 +468,18 @@ export class BasePseudoDocument extends foundry.abstract.DataModel {
 		const preArgs = [changes, options, game.userId];
 		parentDocument._dispatchDescendantDocumentEvents?.('preUpdate', collection.name, preArgs);
 
+		const oldSourceStates = documents.reduce((acc, doc) => {
+			acc[doc.id] = doc.toObject(true);
+			return acc;
+		}, {});
+
 		await parentFoundryDocument.update(changeObject);
 		const updated = updates.map((value) => collection.get(value._id));
 		setTimeout(() => {
 			updated.forEach((document) => {
-				document._onUpdate(updates.find((value) => value._id === document.id) ?? {}, options, game.userId);
+				const oldSourceState = oldSourceStates[document.id] ?? {};
+				const diff = foundry.utils.diffObject(oldSourceState, document.toObject(true));
+				document._onUpdate(diff, options, game.userId);
 			});
 			const postArgs = [updated, changes, options, game.userId];
 			parentDocument._dispatchDescendantDocumentEvents?.('onUpdate', collection.name, postArgs);
@@ -1185,7 +1192,7 @@ export class BasePseudoDocument extends foundry.abstract.DataModel {
 			.join('.');
 		const nestedCollection = traversalLog.findLast((value) => Array.isArray(value.value));
 		return {
-			changeObject: { [baseKey]: traversalLog[firstArray].value },
+			changeObject: { [baseKey]: new foundry.data.operators.ForcedReplacement(traversalLog[firstArray].value) },
 			nestedCollection: nestedCollection.value,
 		};
 	}

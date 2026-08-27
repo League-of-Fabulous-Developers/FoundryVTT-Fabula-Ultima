@@ -2,7 +2,6 @@ import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
 import { RuleElements } from '../../pipelines/rule-elements.mjs';
-import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
 import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
@@ -73,8 +72,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 					Object.values(RulePredicateRegistry.instance.qualifiedTypes).map((pt) => {
 						return pt.template;
 					}),
-				)
-				.concat([RuleElementDataModel.template]),
+				),
 		},
 
 		footer: {

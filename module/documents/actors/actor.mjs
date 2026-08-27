@@ -91,7 +91,11 @@ export class FUActor extends foundry.documents.Actor {
 	prepareDerivedData() {
 		super.prepareDerivedData();
 		this.applyActiveEffects('default');
-		this.items.forEach((item) => item.applyActiveEffects());
+	}
+
+	applyActiveEffects(phase) {
+		super.applyActiveEffects(phase);
+		this.items.forEach((item) => item.applyActiveEffects(phase));
 	}
 
 	get tlTracker() {
