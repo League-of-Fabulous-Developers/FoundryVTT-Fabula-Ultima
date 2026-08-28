@@ -153,7 +153,7 @@
 									 'FU.Selector'}}
 										<select name="{{pfuConcat ../path ".predicates." predicate.id ".selector"}}"
 												class="resource-inputs select-dropdown-m">
-											{{selectOptions ../options.targetSelector selected=predicate.selector
+											{{selectOptions @root.options.targetSelector selected=predicate.selector
 															localize=true}}
 										</select>
 									</label>
