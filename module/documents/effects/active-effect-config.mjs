@@ -288,12 +288,12 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #deleteRuleElement(event, target) {
-		const { id } = target.dataset;
+		const id = target.closest('[data-rule-element]')?.dataset.ruleElement;
 		console.debug(`Deleting rule element ${id}`);
 		/** @type RuleElementDataModel **/
 		const re = this.document.system.getRuleElement(id);
 		if (re) {
-			const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: re.localization }));
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(re.trigger.constructor.localization) }));
 			if (confirm) {
 				return this.document.update({
 					system: {
@@ -332,7 +332,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	async #updateRuleTrigger(event, target) {
-		const { id } = target.dataset;
+		const id = target.closest('[data-rule-element]')?.dataset.ruleElement;
 		const type = target.value;
 		console.debug(`Updating rule trigger of ${id} to: ${type} (${event.type})`);
 		const re = this.document.system.getRuleElement(id);
@@ -357,7 +357,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #addRuleAction(event, target) {
-		const { id } = target.dataset;
+		const id = target.closest('[data-rule-element]')?.dataset.ruleElement;
 		console.debug(`Adding rule action to ${id}`);
 		const re = this.document.system.getRuleElement(id);
 		if (re) {
@@ -393,25 +393,28 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #removeRuleAction(event, target) {
-		const { id, actionId } = target.dataset;
-		console.debug(`Removing rule action ${actionId} from ${id}`);
+		const actionId = target.dataset.actionId;
+		const id = target.closest('[data-rule-element]')?.dataset.ruleElement;
 		const re = this.document.system.getRuleElement(id);
-		const action = re.getAction(actionId);
-		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: action.localization }));
-		if (confirm) {
-			return this.document.update({
-				system: {
-					rules: {
-						elements: {
-							[id]: {
-								actions: {
-									[actionId]: new foundry.data.operators.ForcedDeletion(),
+		const action = re?.getAction(actionId);
+		if (action) {
+			console.debug(`Removing rule action ${actionId} from ${id}`);
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(action.constructor.localization) }));
+			if (confirm) {
+				return this.document.update({
+					system: {
+						rules: {
+							elements: {
+								[id]: {
+									actions: {
+										[actionId]: new foundry.data.operators.ForcedDeletion(),
+									},
 								},
 							},
 						},
 					},
-				},
-			});
+				});
+			}
 		}
 	}
 
@@ -421,31 +424,33 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #addRulePredicate(event, target) {
-		const { id } = target.dataset;
+		const id = target.closest('[data-rule-element]')?.dataset.ruleElement;
 		console.debug(`Adding rule predicate to ${id}`);
 		const re = this.document.system.getRuleElement(id);
-		const subTypes = re.getMatchingSubTypes(RulePredicateRegistry.instance);
-		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog(
-			StringUtils.localize('FU.AddElement', {
-				element: StringUtils.localize('FU.RulePredicates'),
-			}),
-			options,
-		);
-		if (type) {
-			return this.document.update({
-				system: {
-					rules: {
-						elements: {
-							[id]: {
-								predicates: {
-									[foundry.utils.randomID()]: { type: type },
+		if (re) {
+			const subTypes = re.getMatchingSubTypes(RulePredicateRegistry.instance);
+			const options = FoundryUtils.generateConfigOptions(subTypes);
+			const type = await FoundryUtils.selectOptionDialog(
+				StringUtils.localize('FU.AddElement', {
+					element: StringUtils.localize('FU.RulePredicates'),
+				}),
+				options,
+			);
+			if (type) {
+				return this.document.update({
+					system: {
+						rules: {
+							elements: {
+								[id]: {
+									predicates: {
+										[foundry.utils.randomID()]: { type: type },
+									},
 								},
 							},
 						},
 					},
-				},
-			});
+				});
+			}
 		}
 	}
 
@@ -455,25 +460,28 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #removeRulePredicate(event, target) {
-		const { id, predicateId } = target.dataset;
+		const predicateId = target.dataset.predicateId;
+		const id = target.closest('[data-rule-element]')?.dataset.ruleElement;
 		console.debug(`Removing rule predicate ${predicateId} from ${id}`);
 		const re = this.document.system.getRuleElement(id);
-		const predicate = re.getPredicate(predicateId);
-		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: predicate.localization }));
-		if (confirm) {
-			return this.document.update({
-				system: {
-					rules: {
-						elements: {
-							[id]: {
-								predicates: {
-									[predicateId]: new foundry.data.operators.ForcedDeletion(),
+		const predicate = re?.getPredicate(predicateId);
+		if (predicate) {
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(predicate.constructor.localization) }));
+			if (confirm) {
+				return this.document.update({
+					system: {
+						rules: {
+							elements: {
+								[id]: {
+									predicates: {
+										[predicateId]: new foundry.data.operators.ForcedDeletion(),
+									},
 								},
 							},
 						},
 					},
-				},
-			});
+				});
+			}
 		}
 	}
 

@@ -87,7 +87,7 @@
 							{{formGroup element.schema.fields.enabled value=element.enabled
 										name=(concat "system.rules.elements." elementId ".enabled")}}
 							<!-- Delete Action -->
-							<a class="" data-id="{{elementId}}" data-action="deleteRuleElement">
+							<a data-action="deleteRuleElement">
 								<i class="icon fas fa-circle-trash"></i>
 							</a>
 						</span>
@@ -106,7 +106,7 @@
 								<label>
 									{{~localize 'FU.Type'}}
 									<select data-action="updateRuleTrigger" data-type="{{element.trigger.type}}"
-											data-id="{{elementId}}" class="resource-inputs select-dropdown-l">
+											 class="resource-inputs select-dropdown-l">
 										{{selectOptions @root.options.ruleTriggers selected=element.trigger.type
 														localize=true}}
 									</select>
@@ -133,7 +133,7 @@
 								<div>
 									<span data-tooltip="{{localize 'FU.RulePredicatesHint'}}">{{localize
 									 'FU.RulePredicates'}}</span>
-									<a data-action="addRulePredicate" data-id="{{elementId}}">
+									<a data-action="addRulePredicate" >
 										<i class="fas fa-plus icon"></i>
 									</a>
 								</div>
@@ -158,8 +158,7 @@
 										</select>
 									</label>
 								{{/if}}
-												<a class="" data-action="removeRulePredicate"
-												   data-id="{{elementId}}" data-predicate-id="{{predicateId}}">
+												<a data-action="removeRulePredicate" data-predicate-id="{{predicateId}}">
 									<i class="icon fas fa-circle-minus"></i>
 								</a>
 							</span>
@@ -177,7 +176,7 @@
 								<div>
 									<span data-tooltip="{{localize 'FU.RuleActionsHint'}}">{{localize
 									 'FU.RuleActions'}}</span>
-									<a data-action="addRuleAction" data-id="{{element.id}}">
+									<a data-action="addRuleAction" >
 										<i class="fas fa-plus icon"></i>
 									</a>
 								</div>
@@ -200,8 +199,7 @@
 												{{localize
 												 (lookup (lookup (lookup action "schema") "model") "localization")}}
 											</label>
-											<a class="" data-action="removeRuleAction" data-id="{{elementId}}"
-											   data-action-id="{{actionId}}">
+											<a data-action="removeRuleAction" data-action-id="{{actionId}}">
 												<i class="icon fas fa-circle-minus"></i>
 											</a>
 										</div>
