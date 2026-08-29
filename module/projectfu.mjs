@@ -6,7 +6,7 @@ import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { FU, SYSTEM } from './helpers/config.mjs';
+import { FU, SYSTEM, systemPath } from './helpers/config.mjs';
 import { registerSystemSettings, SETTINGS } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
@@ -462,6 +462,31 @@ Hooks.once('init', async () => {
 	// Fetch any extensions from modules
 	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);
 
+	// Register common fonts
+	Object.assign(CONFIG.fontDefinitions, {
+		'Credit Valley': {
+			editor: true,
+			fonts: [
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValley.ttf')] },
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValleybold.ttf')], weight: 700 },
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValleyItalic.ttf')], style: 'italic' },
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValleyBoldItalic.ttf')], weight: 700, style: 'italic' },
+			],
+		},
+		Antonio: {
+			editor: true,
+			fonts: [{ urls: [systemPath('styles/fonts/antonio/Antonio-VariableFont_wght.ttf')] }],
+		},
+		'PFU Sans Narrow': {
+			editor: true,
+			fonts: [{ urls: [systemPath('styles/fonts/PFUSans-Narrow.ttf')] }],
+		},
+		'Fabula Ultima Icons': {
+			editor: true,
+			fonts: [{ urls: [systemPath('styles/fonts/fabula-ultima/FabulaUltimaIcons-Regular.otf')] }],
+		},
+	});
+
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
@@ -562,6 +587,19 @@ Hooks.once('ready', async function () {
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
+
+Hooks.on('getProseMirrorMenuDropDowns', (menu, options) => {
+	// Trim the styling from the FU Icons font drop-down, so it's actually legible.
+	const entry = options.fonts?.entries?.find((entry) => entry.action === 'font-family-fabula-ultima-icons');
+	if (entry) {
+		// Take advantage of the browser's CSS parsing to remove *only* the font-family declaration
+		// I don't think any others are added for this menu, but better safe than sorry.
+		const elem = document.createElement('section');
+		elem.style.cssText = entry.style;
+		elem.style.fontFamily = '';
+		entry.style = elem.style.cssText;
+	}
+});
 
 // Add grid toggle to scene config
 Hooks.on('renderSceneConfig', (app, element, context, options) => {

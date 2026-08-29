@@ -57,3 +57,4 @@ This document is the source-level inventory for attribution, and the explicit st
 - [Evilz Font](https://www.fontspace.com/evilz-font-f4530) by N+ under Freeware - Personal & Commercial Use
 - [FnT Basic Shapes 1](https://www.fonts4free.net/fnt-basic-shapes-1-font.html) by Fonts & Things under Freeware - Personal & Commercial Use
 - [Old Retro Labels TFB](https://www.dafont.com/old-retro-labels-tfb.font) by zanatlija under Freeware - Personal & Commercial Use
+- [Antonio](https://fonts.google.com/specimen/Antonio) under the [Open Font License](https://openfontlicense.org/)
