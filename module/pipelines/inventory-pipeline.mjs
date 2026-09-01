@@ -98,7 +98,7 @@ async function distributeZenit(actor, targets) {
 			targets = await actor.system.getCharacterActors();
 		} else {
 			// Resolve using the party characters
-			const party = await FUPartySheet.getActiveModel();
+			const party = FUPartySheet.getActiveModel();
 			if (party) {
 				targets = await party.getCharacterActors();
 			}

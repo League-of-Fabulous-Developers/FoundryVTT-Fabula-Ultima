@@ -40,7 +40,7 @@ const invocationKey = 'invocation';
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = async (data, check, actor, item, flags) => {
+const onRenderCheck = (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
 		const { element, invocation } = check.additionalData[invocationKey];
 		data.tags.push({
@@ -83,11 +83,16 @@ const onRenderCheck = async (data, check, actor, item, flags) => {
 			amount: 5,
 			perTarget: false,
 		});
-		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
-		await CommonEvents.calculateExpense(actor, item, targets, expense);
-		CommonSections.expense(data, actor, item, targets, flags, expense);
 
-		await CommonEvents.feature(actor, item, [FeatureTraits.Invocation], targets, data);
+		CommonSections.expense(data, actor, item, targets, flags, async () => {
+			const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+			await CommonEvents.calculateExpense(actor, item, targets, expense);
+			return expense;
+		});
+
+		data.sections.push(async () => {
+			CommonEvents.feature(actor, item, [FeatureTraits.Invocation], targets, data);
+		});
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);

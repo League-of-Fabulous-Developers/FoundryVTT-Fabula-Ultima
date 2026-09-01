@@ -88,27 +88,29 @@ async function createStaggerChatMessage(context) {
 
 /**
  * @param {CombatEvent} event
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onCombatEvent(event) {
-	switch (event.type) {
-		case FU.combatEvent.endOfRound:
-			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
-				const stagger = actor.resolveEffect('stagger');
-				if (stagger) {
-					stagger.delete();
-					const pressure = actor.resolveProgress('pressure');
-					await actor.updateProgress('pressure', -pressure.current);
+function onCombatEvent(event, registerCallback) {
+	registerCallback(async (event) => {
+		switch (event.type) {
+			case FU.combatEvent.endOfRound:
+				for (const actor of event.actors.filter((a) => a.type === 'npc')) {
+					const stagger = actor.resolveEffect('stagger');
+					if (stagger) {
+						stagger.delete();
+						const pressure = actor.resolveProgress('pressure');
+						await actor.updateProgress('pressure', -pressure.current);
+					}
 				}
-			}
-			break;
+				break;
 
-		case FU.combatEvent.endOfCombat:
-			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
-				await removePressureEffect(actor);
-			}
-			break;
-	}
+			case FU.combatEvent.endOfCombat:
+				for (const actor of event.actors.filter((a) => a.type === 'npc')) {
+					await removePressureEffect(actor);
+				}
+				break;
+		}
+	});
 }
 
 async function applyPressureEffect(actor) {

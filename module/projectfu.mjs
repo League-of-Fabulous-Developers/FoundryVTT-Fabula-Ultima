@@ -146,12 +146,7 @@ CONFIG.Token.objectClass = FUToken;
 /*  Init Hook                                   */
 /* -------------------------------------------- */
 
-// System Data Model
-// Hooks.on("init", () => {
-//   CONFIG.Actor.systemDataModels.character = CharacterData;
-// });
-
-Hooks.once('init', async () => {
+Hooks.once('init', () => {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
 	game.projectfu = {
@@ -273,8 +268,8 @@ Hooks.once('init', async () => {
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
 
 	// Register system settings
-	await registerSystemSettings();
-	await registerKeyBindings();
+	registerSystemSettings();
+	registerKeyBindings();
 
 	CONFIG.Actor.trackableAttributes = {
 		character: {
@@ -488,7 +483,7 @@ Hooks.once('init', async () => {
 	});
 
 	// Preload Handlebars templates.
-	return preloadHandlebarsTemplates();
+	preloadHandlebarsTemplates();
 });
 
 const pseudoDocuments = [PseudoItem, PseudoActiveEffect];
@@ -516,7 +511,7 @@ FUHandlebars.registerHelpers();
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
-Hooks.once('ready', async function () {
+Hooks.once('ready', function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 

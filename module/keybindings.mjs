@@ -9,7 +9,7 @@ export const FUKeybindings = Object.freeze({
 	showTokenDragRuler: 'showTokenDragRuler',
 });
 
-export const registerKeyBindings = async function () {
+export const registerKeyBindings = function () {
 	game.keybindings.register(Flags.Scope, FUKeybindings.openPartySheet, {
 		name: game.i18n.localize('FU.ActivePartySheetOpen'),
 		editable: [
