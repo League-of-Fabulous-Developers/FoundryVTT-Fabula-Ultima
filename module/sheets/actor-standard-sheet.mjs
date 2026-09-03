@@ -363,6 +363,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'header':
 				{
 					context.showMetaCurrency = this.isCharacter || (this.actor.system.villain.value && this.actor.system.rank.value !== 'companion');
+					context.canSpendMetaCurrency = this.actor.isOwner;
 					// Setup status effect toggle data
 					context.statusEffectToggles = ActorSheetUtils.prepareStatusEffectToggles(this.actor);
 
@@ -376,6 +377,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'limited': {
 				context.isLimited = this.isLimited;
 				context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
+				context.canSpendMetaCurrency = this.actor.isOwner;
 				// Setup status effect toggle data
 				context.statusEffectToggles = ActorSheetUtils.prepareStatusEffectToggles(this.actor);
 				if (this.isNPC) {
