@@ -57,7 +57,7 @@
 				<div class="resource-content flex-group-center">
 					{{#if showMetaCurrency}}
 						<label class="fu-icon__container resource-label-l">
-							<a class="{{#if canSpendMetaCurrency}}rollable{{/if}}" {{#if canSpendMetaCurrency}}data-action="spendMetaCurrency"{{/if}}>
+							<a class="rollable" data-action="spendMetaCurrency">
 								{{#if (eq actor.type "npc")}}
 									<i class="fu-icon--s {{pfuIconClass 'up'}}"></i>
 									{{localize 'FU.UltimaAbbr'}}

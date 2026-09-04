@@ -712,7 +712,7 @@ const registerMetaCurrencyExpenditure = (check) => {
 			data.sections.push(async () => {
 				const success = await PlayerListEnhancements.spendMetaCurrency(actor, true);
 				if (!success) {
-					throw new Error('unable to spend meta currency: user does not own the actor or the actor has no points remaining');
+					throw new Error('not enough meta currency');
 				}
 			});
 		}

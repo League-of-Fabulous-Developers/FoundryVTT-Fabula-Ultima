@@ -124,6 +124,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			rollEffect: FUStandardActorSheet.RollEffect,
 			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
 		},
+		nonOwnerAllowedActions: ['editItem', 'editEffect'],
 	};
 
 	// These will be filtered in _configureRenderOptions
@@ -363,7 +364,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'header':
 				{
 					context.showMetaCurrency = this.isCharacter || (this.actor.system.villain.value && this.actor.system.rank.value !== 'companion');
-					context.canSpendMetaCurrency = this.actor.isOwner;
 					// Setup status effect toggle data
 					context.statusEffectToggles = ActorSheetUtils.prepareStatusEffectToggles(this.actor);
 
