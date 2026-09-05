@@ -16,7 +16,7 @@ class BasePseudoActiveEffect extends PseudoDocument {
 				new fields.SchemaField({
 					key: new fields.StringField({ required: true }),
 					value: new fields.StringField({ required: true }),
-					mode: new fields.NumberField({ required: true, nullable: false, integer: true, initial: CONST.ACTIVE_EFFECT_MODES.ADD }),
+					type: new fields.StringField({ required: true, initial: 'add' }),
 					priority: new fields.NumberField(),
 				}),
 			),

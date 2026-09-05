@@ -460,7 +460,7 @@ function removeEffect(document, source, effect) {
 			e.getFlag(SYSTEM, Flags.ActiveEffect.Temporary) &&
 			e.sourceItem === source &&
 			e.changes.length === effect.changes.length &&
-			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
+			e.changes.every((change, index) => change.key === effect.changes[index].key && change.type === effect.changes[index].type && change.value === effect.changes[index].value),
 	);
 
 	if (existingEffect) {

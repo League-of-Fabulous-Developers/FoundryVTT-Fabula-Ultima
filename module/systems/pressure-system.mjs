@@ -53,7 +53,7 @@ async function processVulnerability(context) {
 				if (affinity.current !== FU.affValue.immunity) {
 					changes.push({
 						key: `system.affinities.${type}.current`,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						type: 'override',
 						value: '-1',
 						priority: 100,
 					});
