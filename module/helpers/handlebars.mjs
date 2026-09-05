@@ -426,10 +426,17 @@ function traits(model, path, options) {
 	const html =
 		typeof template === 'function'
 			? template({
-					model: model,
-					path: path,
-					traitOptions: model.schema.options?.options ?? {},
-					quantifierOptions: FU.predicateQuantifier,
+					traitField: model.schema.getField('entries'),
+					traitFieldPath: path + '.entries',
+					traitFieldValue: model.entries,
+					traitOptions: model.schema.options?.options ?? [],
+					quantifier: model.schema.getField('quantifier')
+						? {
+								path: path + '.quantifier',
+								value: model.quantifier,
+								options: FU.predicateQuantifier,
+							}
+						: undefined,
 					showLabel: options.showLabel ?? false,
 				})
 			: '';

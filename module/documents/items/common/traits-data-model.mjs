@@ -3,13 +3,6 @@
  * @property {Set<String>} entries
  */
 export class TraitsDataModel extends foundry.abstract.DataModel {
-	/**
-	 * @param {Object} data
-	 */
-	constructor(data = {}) {
-		super(data);
-	}
-
 	static defineSchema() {
 		const { SetField, StringField } = foundry.data.fields;
 		return {

@@ -1,4 +1,4 @@
-{{#if model.quantifier}}
+{{#if quantifier}}
 	<div class="fu-form__group">
 		{{#if showLabel}}
 			<label class="fu-form__group__header flex-group-center">
@@ -9,13 +9,13 @@
 			{{#if showLabel}}
 				<span>{{localize 'FU.Traits'}}</span>
 			{{/if}}
-			{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-form__set stacked"}}
+			{{formGroup traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
 		</div>
 
 		<label class="fu-form__property">
 			<span>{{localize 'FU.Quantifier'}}</span>
-			<select name="{{pfuConcat path ".quantifier"}}">
-				{{selectOptions quantifierOptions selected=model.quantifier localize=true}}
+			<select name="{{quantifier.path}}">
+				{{selectOptions quantifier.options selected=quantifier.value localize=true}}
 			</select>
 		</label>
 	</div>
@@ -24,6 +24,6 @@
 		{{#if showLabel}}
 			<span>{{localize 'FU.Traits'}}</span>
 		{{/if}}
-		{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-form__set stacked"}}
+		{{formGroup traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
 	</div>
 {{/if}}

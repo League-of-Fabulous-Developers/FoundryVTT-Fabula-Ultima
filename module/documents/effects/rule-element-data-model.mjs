@@ -32,7 +32,7 @@ export class RuleElementDataModel extends foundry.abstract.DataModel {
 	 * @returns {RuleActionDataModel}
 	 */
 	getAction(id) {
-		return this.actions.get(id);
+		return this.actions[id];
 	}
 
 	/**
@@ -40,7 +40,7 @@ export class RuleElementDataModel extends foundry.abstract.DataModel {
 	 * @returns {RulePredicateDataModel}
 	 */
 	getPredicate(id) {
-		return this.predicates.get(id);
+		return this.predicates[id];
 	}
 
 	/**
@@ -54,8 +54,8 @@ export class RuleElementDataModel extends foundry.abstract.DataModel {
 			subTypes = Object.fromEntries(
 				Object.entries(subTypes).filter(([key]) => {
 					const model = registry.qualifiedTypes[key];
-					if (model.eventTypes) {
-						return model.eventTypes.has(triggerEventType);
+					if (model.eventTypes && model.eventTypes.length > 0) {
+						return model.eventTypes.includes(triggerEventType);
 					}
 					return true;
 				}),
