@@ -162,9 +162,8 @@ export function setSystemSetting(key, value) {
 
 /**
  * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
- * @returns {Promise<void>}
  */
-export const registerSystemSettings = async function () {
+export const registerSystemSettings = function () {
 	const fields = foundry.data.fields;
 
 	// DOCUMENT SHEETS

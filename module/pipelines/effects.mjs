@@ -879,12 +879,14 @@ function onRenderChatMessage(message, element) {
 
 /**
  * @param {RestEvent} event
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onRestEvent(event) {
-	// Remove statuses and other effects that last until rest
-	await event.actor.clearTemporaryEffects({
-		duration: true,
+function onRestEvent(event, registerCallback) {
+	registerCallback(async () => {
+		// Remove statuses and other effects that last until rest
+		await event.actor.clearTemporaryEffects({
+			duration: true,
+		});
 	});
 }
 

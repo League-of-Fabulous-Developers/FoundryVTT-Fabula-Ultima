@@ -70,7 +70,7 @@ function addRerollEntry(application, menuItems) {
 }
 
 /** @type RenderCheckHook */
-const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
+const onRenderCheck = (data, checkResult, actor, item, additionalFlags) => {
 	const rerollData = checkResult.additionalData.reroll;
 	if (rerollData) {
 		data.sections.push({

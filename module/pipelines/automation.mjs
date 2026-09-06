@@ -10,9 +10,8 @@ import { Flags } from '../helpers/flags.mjs';
 /**
  * @param {CalculateExpenseEvent} e
  * @param {RegisterCallback} registerCallback
- * @returns {Promise<void>}
  */
-async function onExpenseEvent(e, registerCallback) {
+function onExpenseEvent(e, registerCallback) {
 	if (game.settings.get(SYSTEM, SETTINGS.automationSpendResource)) {
 		registerCallback(async (event) => {
 			const sourceInfo = InlineSourceInfo.fromInstance(event.source.actor, event.item);
@@ -172,44 +171,46 @@ async function manageEffectDuration(event) {
 
 /**
  * @param {CombatEvent} event
- * @returns {Promise<void>}
+ @param {RegisterCallback} registerCallback
  */
-async function onCombatEvent(event) {
+function onCombatEvent(event, registerCallback) {
 	if (!game.settings.get(SYSTEM, SETTINGS.optionAutomationManageEffects)) {
 		return;
-	}
+	} else {
+		registerCallback(async (event) => {
+			switch (event.type) {
+				case FU.combatEvent.startOfCombat:
+				case FU.combatEvent.endOfCombat:
+					{
+						if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
+							for (const actor of event.actors) {
+								await actor.clearTemporaryEffects({
+									status: false,
+									rest: false,
+									duration: true,
+									predicate: (effect) => {
+										// It's handled by the pressure system
+										if (effect.statuses.has('pressure')) {
+											return false;
+										}
+										return true;
+									},
+								});
+							}
+							return;
+						}
 
-	switch (event.type) {
-		case FU.combatEvent.startOfCombat:
-		case FU.combatEvent.endOfCombat:
-			{
-				if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
-					for (const actor of event.actors) {
-						await actor.clearTemporaryEffects({
-							status: false,
-							rest: false,
-							duration: true,
-							predicate: (effect) => {
-								// It's handled by the pressure system
-								if (effect.statuses.has('pressure')) {
-									return false;
-								}
-								return true;
-							},
-						});
+						await promptExpiredEffectRemoval(event);
 					}
-					return;
-				}
+					break;
 
-				await promptExpiredEffectRemoval(event);
+				case FU.combatEvent.startOfTurn:
+				case FU.combatEvent.endOfTurn:
+				case FU.combatEvent.endOfRound:
+					await manageEffectDuration(event);
+					break;
 			}
-			break;
-
-		case FU.combatEvent.startOfTurn:
-		case FU.combatEvent.endOfTurn:
-		case FU.combatEvent.endOfRound:
-			await manageEffectDuration(event);
-			break;
+		});
 	}
 }
 
