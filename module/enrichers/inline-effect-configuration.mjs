@@ -40,7 +40,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ attribute }) => ({
 			key: `system.attributes.${attribute}`,
-			type: 'custom',
+			type: FU.changeTypes.apply,
 			value: 'upgrade',
 		}),
 	},
@@ -123,7 +123,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}`,
-			type: 'custom',
+			type: FU.changeTypes.apply,
 			value: 'downgrade',
 		}),
 	},
@@ -135,7 +135,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}`,
-			type: 'custom',
+			type: FU.changeTypes.apply,
 			value: 'upgrade',
 		}),
 	},
@@ -320,7 +320,10 @@ export class InlineEffectConfiguration extends FUApplication {
 			}
 			if (this.#object.type === 'guided') {
 				const effectData = { ...this.#object.guided };
-				effectData.changes = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
+				const preparedChanges = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
+				delete effectData.changes;
+				effectData.system ??= {};
+				effectData.system.changes = preparedChanges;
 				const encodedEffect = StringUtils.toBase64(effectData);
 				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${encodedEffect}] `));
 			}

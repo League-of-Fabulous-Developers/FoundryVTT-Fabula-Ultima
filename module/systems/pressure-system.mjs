@@ -48,20 +48,22 @@ async function processVulnerability(context) {
 		if (stagger) {
 			/** @type NpcDataModel **/
 			const npcData = context.actor.system;
-			const changes = [];
+			const changes = [...stagger.system.changes];
 			for (const [type, affinity] of Object.entries(npcData.affinities.all)) {
-				if (affinity.current !== FU.affValue.immunity) {
+				if (affinity.current < FU.affValue.immunity) {
 					changes.push({
 						key: `system.affinities.${type}.current`,
 						type: 'override',
-						value: '-1',
+						value: `${FU.affValue.vulnerability}`,
 						priority: 100,
 					});
 				}
 			}
 			staggered = true;
 			await stagger.update({
-				changes: changes,
+				system: {
+					changes: foundry.data.operators.ForcedReplacement(changes),
+				},
 			});
 		}
 	}

@@ -12,29 +12,35 @@ class BasePseudoActiveEffect extends PseudoDocument {
 			img: new fields.FilePathField({ categories: ['IMAGE'] }),
 			type: new fields.DocumentTypeField(this, { initial: CONST.BASE_DOCUMENT_TYPE }),
 			system: new fields.TypeDataField(this),
-			changes: new fields.ArrayField(
-				new fields.SchemaField({
-					key: new fields.StringField({ required: true }),
-					value: new fields.StringField({ required: true }),
-					type: new fields.StringField({ required: true, initial: 'add' }),
-					priority: new fields.NumberField(),
-				}),
-			),
 			disabled: new fields.BooleanField(),
+			start: new fields.SchemaField(
+				{
+					combat: new fields.ForeignDocumentField(foundry.documents.BaseCombat),
+					combatant: new fields.ForeignDocumentField(foundry.documents.BaseCombatant, { idOnly: true }),
+					initiative: new fields.NumberField({ required: true }),
+					round: new fields.NumberField({ required: true, integer: true, min: 0 }),
+					turn: new fields.NumberField({ required: true, integer: true, min: 0 }),
+					time: new fields.NumberField({ required: true, nullable: false, integer: true }),
+				},
+				{ nullable: true },
+			),
 			duration: new fields.SchemaField({
-				startTime: new fields.NumberField({ initial: null }),
-				seconds: new fields.NumberField({ integer: true, min: 0 }),
-				combat: new fields.ForeignDocumentField(foundry.documents.BaseCombat),
-				rounds: new fields.NumberField({ integer: true, min: 0 }),
-				turns: new fields.NumberField({ integer: true, min: 0 }),
-				startRound: new fields.NumberField({ integer: true, min: 0 }),
-				startTurn: new fields.NumberField({ integer: true, min: 0 }),
+				value: new fields.NumberField({ required: true, nullable: true, integer: true, min: 0 }),
+				units: new fields.StringField({ required: true, choices: CONST.ACTIVE_EFFECT_DURATION_UNITS, initial: 'seconds' }),
+				expiry: new fields.StringField({ required: true, blank: false, nullable: true, initial: (d) => (typeof d?.duration?.value === 'number' ? 'turnStart' : null) }),
+				expired: new fields.BooleanField(),
 			}),
 			description: new fields.HTMLField({ textSearch: true }),
 			origin: new fields.StringField({ nullable: true, blank: false, initial: null }),
 			tint: new fields.ColorField({ nullable: false, initial: '#ffffff' }),
 			transfer: new fields.BooleanField({ initial: true }),
 			statuses: new fields.SetField(new fields.StringField({ required: true, blank: false })),
+			showIcon: new fields.NumberField({
+				required: true,
+				nullable: false,
+				choices: Object.values(CONST.ACTIVE_EFFECT_SHOW_ICON),
+				initial: CONST.ACTIVE_EFFECT_SHOW_ICON.CONDITIONAL,
+			}),
 			sort: new fields.IntegerSortField(),
 			flags: new fields.DocumentFlagsField(),
 		};
@@ -52,6 +58,183 @@ class BasePseudoActiveEffect extends PseudoDocument {
 	);
 
 	static LOCALIZATION_PREFIXES = foundry.documents.ActiveEffect.LOCALIZATION_PREFIXES;
+
+	static DEFAULT_ICON = foundry.documents.ActiveEffect.DEFAULT_ICON;
+
+	async _preCreate(data, options, user) {
+		const allowed = await super._preCreate(data, options, user);
+		if (allowed === false) return false;
+		const updates = {};
+		if (!this.parent || this.parent instanceof foundry.documents.BaseActor) {
+			updates.transfer = false;
+			if (!this.parent) updates.start = null;
+		}
+		this.updateSource(updates);
+	}
+
+	static #MODES_TO_TYPES = {
+		0: 'custom',
+		1: 'multiply',
+		2: 'add',
+		3: 'downgrade',
+		4: 'upgrade',
+		5: 'override',
+	};
+
+	static #TYPES_TO_MODES = Object.entries(BasePseudoActiveEffect.#MODES_TO_TYPES).reduce((types, [mode, type]) => {
+		types[type] = Number(mode);
+		return types;
+	}, {});
+
+	static migrateData(source, options) {
+		/**
+		 * Migrate origin
+		 * @deprecated since v14
+		 */
+		if (typeof source.origin === 'string') {
+			const parseOptions = source.origin.startsWith('.') ? { relative: new foundry.documents.ActiveEffect({ name: 'ABC' }) } : {};
+			const parsed = foundry.utils.parseUuid(source.origin, parseOptions);
+			if (!parsed || (parsed.type && !CONST.ALL_DOCUMENT_TYPES.includes(parsed.type))) {
+				foundry.utils.mergeObject((source.flags ??= {}), { core: { originText: source.origin } });
+				source.origin = null;
+			}
+		}
+
+		/**
+		 * Migrate changes
+		 * @deprecated since v14
+		 */
+		if (Array.isArray(source.changes)) {
+			source.system ??= {};
+			this._addDataFieldMigration(source, 'changes', 'system.changes');
+			if (Array.isArray(source.system.changes)) {
+				for (const change of source.system.changes) {
+					if (!Object.hasOwn(change, 'type') && typeof change.mode === 'number') {
+						change.type = BasePseudoActiveEffect.#MODES_TO_TYPES[change.mode] ?? `custom.${change.mode}`;
+						delete change.mode;
+					}
+					if (foundry.utils.isPlainObject(change) && typeof change.value === 'string') {
+						change.value = BasePseudoActiveEffect.#migrateChangeValue(change.value);
+					}
+				}
+			}
+		}
+
+		/**
+		 * Migrate start data
+		 * @deprecated since v14
+		 */
+		const duration = source.duration;
+		if (foundry.utils.isPlainObject(duration) && Object.hasOwn(duration, 'startTime') && !Object.hasOwn(source, 'start')) {
+			source.start = typeof duration.startTime === 'number' ? {} : null;
+			if (source.start) {
+				this._addDataFieldMigration(source, 'duration.combat', 'start.combat');
+				this._addDataFieldMigration(source, 'duration.startRound', 'start.round');
+				this._addDataFieldMigration(source, 'duration.startTime', 'start.time');
+				this._addDataFieldMigration(source, 'duration.startTurn', 'start.turn');
+			}
+		}
+		BasePseudoActiveEffect.#migrateDuration(source);
+
+		return super.migrateData(source, options);
+	}
+
+	static #migrateChangeValue(value) {
+		if (typeof value !== 'string' || value === '') return value;
+		try {
+			return BasePseudoActiveEffect.#migrateChangeValue(JSON.parse(value));
+		} catch {
+			return value;
+		}
+	}
+
+	static #migrateDuration(source) {
+		const duration = source.duration;
+		if (!foundry.utils.isPlainObject(duration)) return;
+		for (const unit of ['seconds', 'turns', 'rounds']) {
+			const hasRealProperty = Object.hasOwn(duration, unit) && !Object.getOwnPropertyDescriptor(duration, unit)?.get;
+			if (hasRealProperty && typeof duration[unit] === 'number') {
+				if (!Object.hasOwn(duration, 'value')) duration.value = duration[unit];
+				if (!Object.hasOwn(duration, 'units')) duration.units = unit;
+				break;
+			}
+		}
+	}
+
+	static shimData(data, options) {
+		if (Object.isSealed(data)) return super.shimData(data, options);
+		if (!Object.hasOwn(data, 'changes') && Object.hasOwn(data.system ?? {}, 'changes')) {
+			Object.defineProperty(data, 'changes', {
+				get: () => data.system.changes,
+				set: (changes) => {
+					data.system.changes = changes;
+				},
+				configurable: true,
+				enumerable: false,
+			});
+		}
+		const changes = Array.isArray(data.system?.changes) ? data.system.changes : [];
+		this._shimChanges(changes);
+
+		if (!foundry.utils.isPlainObject(data.duration)) return super.shimData(data, options);
+		if (foundry.utils.isPlainObject(data.start)) {
+			this._addDataFieldShim(data, 'duration.combat', 'start.combat', { since: 14, until: 16, once: true });
+		}
+		for (const key of ['startTime', 'startRound', 'startTurn']) {
+			const newKey = key
+				.split(/(?=[A-Z])/)
+				.map((k) => k.toLocaleLowerCase('en'))
+				.join('.');
+			this._addDataFieldShim(data, `duration.${key}`, newKey, { since: 14, until: 16, once: true });
+		}
+		const getSeconds = () => {
+			if (typeof data.duration.value !== 'number') return null;
+			if (data.duration.units === 'seconds') return data.duration.value;
+			if (game.view === 'game' && CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(data.duration.units)) {
+				const componentUnit = data.duration.units.replace(/s$/, '');
+				return game.time.calendar.componentsToTime({ [componentUnit]: data.duration.value });
+			}
+			return null;
+		};
+		BasePseudoActiveEffect.#shimDurationField(data.duration, 'seconds', getSeconds);
+		BasePseudoActiveEffect.#shimDurationField(data.duration, 'rounds');
+		BasePseudoActiveEffect.#shimDurationField(data.duration, 'turns');
+		return super.shimData(data, options);
+	}
+
+	static _shimChanges(changes) {
+		for (const change of changes) {
+			if (Object.getOwnPropertyDescriptor(change, 'mode')?.get) continue;
+			Object.defineProperty(change, 'mode', {
+				get: () => {
+					const message = 'You are accessing the numeric #mode of an ActiveEffect change. Use the string #type instead.';
+					foundry.utils.logCompatibilityWarning(message, { since: 14, until: 16, once: true });
+					return BasePseudoActiveEffect.#TYPES_TO_MODES[change.type] ?? (Number(/^custom\.(-?\d+)$/.exec(change.type)?.[1]) || 0);
+				},
+				set: (mode) => {
+					mode = Number(mode);
+					if (Number.isInteger(mode)) change.type = BasePseudoActiveEffect.#MODES_TO_TYPES[mode] ?? `custom.${mode}`;
+				},
+				configurable: true,
+				enumerable: false,
+			});
+		}
+	}
+
+	static #shimDurationField(duration, oldKey, get) {
+		if (Object.hasOwn(duration, oldKey)) return;
+		get ??= () => (duration.units === oldKey ? duration.value : null);
+		const propertyPath = oldKey.replaceAll('.', '#');
+		const message = `You are accessing ${this.name}#${propertyPath}. Duration data now has value and units fields.`;
+		Object.defineProperty(duration, oldKey, {
+			get: () => {
+				foundry.utils.logCompatibilityWarning(message, { since: 14, until: 16, once: true });
+				return get();
+			},
+			configurable: true,
+			enumerable: false,
+		});
+	}
 
 	/**
 	 * A cached compilation of core and registered application phases, along with their labels
