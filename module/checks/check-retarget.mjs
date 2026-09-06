@@ -19,7 +19,7 @@ function addRetargetEntry(application, menuItems) {
 			const isCheck = Checks.isCheck(message);
 			if (isCheck) {
 				const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-				return ['character', 'npc'].includes(speakerActor?.type) && !CheckConfiguration.inspect(message).getCheck().fumble;
+				return message?.isOwner && speakerActor?.isOwner && ['character', 'npc'].includes(speakerActor?.type) && !CheckConfiguration.inspect(message).getCheck().fumble;
 			}
 			return false;
 		},

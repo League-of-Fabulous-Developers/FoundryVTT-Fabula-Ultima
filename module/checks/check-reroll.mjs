@@ -27,7 +27,7 @@ function addRerollEntry(application, menuItems) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble;
+			return message && message.isOwner && message.isRoll && flag && speakerActor?.isOwner && speakerActor?.type === 'character' && !flag.fumble;
 		},
 		callback: async (li) => {
 			const messageId = li.dataset.messageId;
@@ -53,7 +53,7 @@ function addRerollEntry(application, menuItems) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble && speakerActor.system.resources.fp.value;
+			return message && message.isOwner && message.isRoll && flag && speakerActor?.isOwner && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
 			const messageId = li.dataset.messageId;

@@ -19,7 +19,7 @@ function addRollContextMenuEntries(application, menuItems) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
+			return message && message.isOwner && message.isRoll && flag && speakerActor?.isOwner && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
 			const messageId = li.dataset.messageId;

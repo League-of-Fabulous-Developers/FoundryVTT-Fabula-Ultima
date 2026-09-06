@@ -26,7 +26,7 @@ function onGetChatLogEntryContext(application, menuItems) {
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
 			const checkInspector = CheckConfiguration.inspect(message);
-			if (Checks.isCheck(message, 'accuracy') && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
+			if (Checks.isCheck(message, 'accuracy') && message.isOwner && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
 				return actor.itemTypes.classFeature.some((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel && actor.system.resources.ip.value >= value.system.data.ipCost);
 			}
 		},

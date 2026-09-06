@@ -103,19 +103,19 @@ function activateDefaultListeners(html, sheet) {
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
 			callback: (html) => _onItemDuplicate(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			condition: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 		{
 			name: game.i18n.localize('FU.ChatMessageSendHint'),
 			icon: '<i class="fas fa-comment"></i>',
 			callback: (html) => _onItemSendToChat(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			condition: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 		{
 			name: game.i18n.localize('FU.Delete'),
 			icon: '<i class="fas fa-trash"></i>',
 			callback: (html) => _onItemDelete(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			condition: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 	];
 
@@ -126,7 +126,7 @@ function activateDefaultListeners(html, sheet) {
 			callback: (html) => onSendItemToPartyStash(html, sheet),
 			condition: (html) => {
 				const item = getItemFromHtml(html, sheet.actor);
-				return item?.canStash;
+				return sheet.actor.isOwner && item?.canStash;
 			},
 		});
 
@@ -135,7 +135,7 @@ function activateDefaultListeners(html, sheet) {
 			icon: `<i class="fas fa-address-book"></i>`,
 			callback: (html) => _onItemBehavior(html, sheet),
 			condition: (html) => {
-				if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
+				if (sheet.actor.isOwner && sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
 					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && item.system.isBehavior.value;
 				} else {
@@ -149,7 +149,7 @@ function activateDefaultListeners(html, sheet) {
 			icon: `<i class="far fa-address-book"></i>`,
 			callback: (html) => _onItemBehavior(html, sheet),
 			condition: (html) => {
-				if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
+				if (sheet.actor.isOwner && sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
 					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && !item.system.isBehavior.value;
 				} else {
@@ -167,7 +167,6 @@ function activateDefaultListeners(html, sheet) {
 		onOpen: (menu) => {
 			setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
 		},
-		onClose: () => console.log('Context menu closed'),
 		fixed: true,
 	});
 

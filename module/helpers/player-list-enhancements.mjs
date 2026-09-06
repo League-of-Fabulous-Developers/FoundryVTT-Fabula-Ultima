@@ -107,6 +107,10 @@ async function spendMetaCurrency(actor, force = false) {
 	if (!actor) {
 		return false;
 	}
+	if (!actor.isOwner) {
+		ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+		return false;
+	}
 	let metaCurrency;
 	if (actor.type === 'character') {
 		metaCurrency = game.i18n.localize('FU.Fabula');

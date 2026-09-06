@@ -124,6 +124,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			rollEffect: FUStandardActorSheet.RollEffect,
 			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
 		},
+		nonOwnerAllowedActions: ['editItem', 'editEffect'],
 	};
 
 	// These will be filtered in _configureRenderOptions
