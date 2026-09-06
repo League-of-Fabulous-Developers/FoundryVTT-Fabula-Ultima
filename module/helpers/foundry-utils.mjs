@@ -828,7 +828,6 @@ export default class FoundryUtils {
 		const targetEffectsByLabel = new Map(targetItem.effects.map((e) => [e.label, e]));
 		for (const sourceEffect of sourceItem.effects) {
 			const data = foundry.utils.deepClone(sourceEffect.toObject());
-
 			// Never reuse IDs or origins
 			delete data._id;
 			delete data.origin;
@@ -837,7 +836,6 @@ export default class FoundryUtils {
 			if (targetEffect) {
 				updates.push({
 					_id: targetEffect.id,
-					changes: data.changes,
 					duration: data.duration,
 					flags: data.flags,
 					disabled: data.disabled,

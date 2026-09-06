@@ -431,6 +431,11 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			return;
 		}
 		const flags = createEffectFlags(effect, sourceInfo, sourceInfo?.fuid);
+		if (effect.changes) {
+			effect.system ??= {};
+			effect.system.changes = effect.changes;
+			delete effect.changes;
+		}
 		const instance = await ActiveEffect.create(
 			{
 				...effect,
@@ -459,8 +464,8 @@ function removeEffect(document, source, effect) {
 		(e) =>
 			e.getFlag(SYSTEM, Flags.ActiveEffect.Temporary) &&
 			e.sourceItem === source &&
-			e.changes.length === effect.changes.length &&
-			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
+			e.system.changes.length === effect.system.changes.length &&
+			e.system.changes.every((change, index) => change.key === effect.system.changes[index].key && change.type === effect.system.changes[index].type && change.value === effect.system.changes[index].value),
 	);
 
 	if (existingEffect) {

@@ -103,8 +103,8 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 					event: 'endOfTurn',
 					interval: 2,
 				},
+				changes: [FlagUtility.getEffectChange(Flags.State.PreviousDance, currentDance)],
 			},
-			changes: [FlagUtility.getEffectChange(Flags.State.PreviousDance, currentDance)],
 			description: effectDescription,
 		});
 

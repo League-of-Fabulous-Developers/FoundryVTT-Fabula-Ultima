@@ -151,7 +151,7 @@ async function inlineEffectEnricher(match, options) {
 
 		// TODO: Deprecate someday
 		const decodedEffect = StringUtils.fromBase64(id);
-		if (decodedEffect && decodedEffect.name && decodedEffect.changes) {
+		if (decodedEffect && decodedEffect.name && (decodedEffect.system?.changes || decodedEffect.changes)) {
 			return createEffectAnchor(decodedEffect, label);
 		}
 	}

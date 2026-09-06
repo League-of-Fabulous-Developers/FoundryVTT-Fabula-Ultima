@@ -117,7 +117,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	if (key) {
 		changes.push({
 			key: key,
-			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			type: 'override',
 			value: type,
 		});
 	}
