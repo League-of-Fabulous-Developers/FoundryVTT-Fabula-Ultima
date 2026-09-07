@@ -5,6 +5,7 @@ import { CharacterInfo } from '../helpers/character-info.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { ItemUtils } from '../helpers/item-utils.mjs';
+import { callHookWithCallbacks } from '../helpers/hook-utils.mjs';
 
 /**
  * @typedef ItemReference
@@ -17,32 +18,6 @@ import { ItemUtils } from '../helpers/item-utils.mjs';
  * @callback RegisterCallback
  * @param {Function} callback
  */
-
-/**
- * @param {string} hook
- * @param {...unknown} args
- *
- */
-async function callHookWithCallbacks(hook, ...args) {
-	/** @type Function[] */
-	const callbacks = [];
-
-	const registerCallback = (callback) => {
-		callbacks.push(callback);
-	};
-
-	Hooks.callAll(hook, ...args, registerCallback);
-
-	for (let callback of callbacks) {
-		try {
-			await callback(...args);
-		} catch (err) {
-			const msg = `Error thrown in callback function '${callback?.name}' for hook '${hook}'`;
-			ui.notifications?.warn(msg, { console: false });
-			console.error(msg, err);
-		}
-	}
-}
 
 /**
  * @param {FUItem} item

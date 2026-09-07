@@ -602,7 +602,7 @@ export class CompendiumIndex {
 	 * @desc Subscribes to various callbacks for indexing.
 	 */
 	static initialize() {
-		Hooks.on('updateCompendium', async (pack, changes) => {
+		Hooks.on('updateCompendium', (pack, changes) => {
 			// TODO: More granular update?
 			CompendiumIndex.reinitialize();
 		});

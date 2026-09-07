@@ -225,7 +225,7 @@ export class FUChatBuilder {
 		// OPTION: Roll data
 		if (this.#rolls) {
 			chatMessage.rolls = this.#rolls;
-			options.messageMode = true;
+			options.messageMode = game.settings.get('core', 'messageMode');
 		}
 
 		// Render to chat

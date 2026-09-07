@@ -1474,8 +1474,8 @@ export class FUPartySheet extends FUActorSheet {
 		return hooks;
 	}
 
-	static async toggleActive() {
-		const party = await FUPartySheet.getActiveModel();
+	static toggleActive() {
+		const party = FUPartySheet.getActiveModel();
 		if (party) {
 			const sheet = party.parent.sheet;
 			if (sheet.rendered) {
@@ -1489,12 +1489,12 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @returns {Promise<PartyDataModel>}
+	 * @returns {PartyDataModel}
 	 */
-	static async getActiveModel() {
-		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
-		if (activePartyUuid) {
-			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+	static getActiveModel() {
+		const activePartyId = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyId) {
+			const party = game.actors.get(activePartyId);
 			if (party && party.type === 'party') {
 				return party.system;
 			}
@@ -1503,12 +1503,12 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @returns {Promise<FUActor>}
+	 * @returns {FUActor|null}
 	 */
-	static async getActive() {
-		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
-		if (activePartyUuid) {
-			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+	static getActive() {
+		const activePartyId = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyId) {
+			const party = game.actors.get(activePartyId);
 			if (party && party.type === 'party') {
 				return party;
 			}
@@ -1521,7 +1521,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async inspectAdversary(uuid) {
-		const party = await FUPartySheet.getActive();
+		const party = FUPartySheet.getActive();
 		if (party) {
 			await party.sheet.revealNpc(uuid);
 		}
@@ -1532,7 +1532,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async viewCodexEntry(name) {
-		const party = await FUPartySheet.getActiveModel();
+		const party = FUPartySheet.getActiveModel();
 		if (party) {
 			await party.parent.sheet.codexBrowser.revealCodexEntry(name);
 		}
@@ -1542,7 +1542,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<string[]>}
 	 */
 	static async getBondOptions() {
-		const party = await FUPartySheet.getActive();
+		const party = FUPartySheet.getActive();
 		if (party) {
 			/** @type PartyDataModel **/
 			const data = party.system;
@@ -1656,30 +1656,32 @@ function onGetSidebarTools(tools) {
 
 /**
  * @param {StudyEvent} ev
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onStudyEvent(ev) {
-	const activeParty = await FUPartySheet.getActiveModel();
+function onStudyEvent(ev, registerCallback) {
+	const activeParty = FUPartySheet.getActiveModel();
 	if (activeParty && ev.targets.length === 1) {
-		const target = ev.targets[0].actor;
-		console.debug(`Registering ${target.name} as an adversary`);
-		const entry = await activeParty.addOrUpdateAdversary(target, ev.result);
-		Hooks.call(FUHooks.PARTY_ADVERSARY_EVENT, entry);
+		registerCallback(async (ev) => {
+			const target = ev.targets[0].actor;
+			console.debug(`Registering ${target.name} as an adversary`);
+			const entry = await activeParty.addOrUpdateAdversary(target, ev.result);
+			Hooks.call(FUHooks.PARTY_ADVERSARY_EVENT, entry);
 
-		// Render a chat message
-		const flags = Pipeline.initializedFlags(Flags.ChatMessage.Party, true);
-		const studyResult = StudyRollHandler.resolveStudyResult(entry.study);
-		// If the GM studied the NPC themselves, this will be equal
-		const actorName = ev.actor.name === entry.name ? StringUtils.localize('USER.RoleGamemaster') : ev.actor.name;
-		ChatMessage.create({
-			speaker: ChatMessage.getSpeakerActor(ev.actor),
-			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
-				actor: actorName,
-				target: entry.name,
-				result: game.i18n.localize(FU.studyResult[studyResult]),
-				uuid: entry.uuid,
-			}),
-			flags: flags,
+			// Render a chat message
+			const flags = Pipeline.initializedFlags(Flags.ChatMessage.Party, true);
+			const studyResult = StudyRollHandler.resolveStudyResult(entry.study);
+			// If the GM studied the NPC themselves, this will be equal
+			const actorName = ev.actor.name === entry.name ? StringUtils.localize('USER.RoleGamemaster') : ev.actor.name;
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeakerActor(ev.actor),
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
+					actor: actorName,
+					target: entry.name,
+					result: game.i18n.localize(FU.studyResult[studyResult]),
+					uuid: entry.uuid,
+				}),
+				flags: flags,
+			});
 		});
 	}
 }
@@ -1709,32 +1711,34 @@ Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 
 /**
  * @param {RevealEvent} event
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onRevealEvent(event) {
-	const party = await FUPartySheet.getActiveModel();
+function onRevealEvent(event, registerCallback) {
+	const party = FUPartySheet.getActiveModel();
 	if (party) {
-		console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
-		const adversary = party.getAdversary(event.actor.resolveUuid());
-		// Not added if it was outside of combat, for example
-		if (!adversary) {
-			return;
-		}
-		if (!adversary.revealed) {
-			adversary.revealed = {};
-		}
-		const [merged, changed] = ObjectUtils.mergeRecursive(adversary.revealed, event.revealed);
-		if (changed) {
-			adversary.revealed = merged;
-			await party.updateAdversary(adversary);
-		}
+		registerCallback(async (event) => {
+			console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
+			const adversary = party.getAdversary(event.actor.resolveUuid());
+			// Not added if it was outside of combat, for example
+			if (!adversary) {
+				return;
+			}
+			if (!adversary.revealed) {
+				adversary.revealed = {};
+			}
+			const [merged, changed] = ObjectUtils.mergeRecursive(adversary.revealed, event.revealed);
+			if (changed) {
+				adversary.revealed = merged;
+				await party.updateAdversary(adversary);
+			}
+		});
 	}
 }
 Hooks.on(FUHooks.REVEAL_EVENT, onRevealEvent);
 
-async function onResourceChangeEvent(event) {
+function onResourceChangeEvent(event) {
 	if (event.actor) {
-		const party = await FUPartySheet.getActive();
+		const party = FUPartySheet.getActive();
 		if (party && party.system.characters.has(event.actor.uuid)) {
 			party.sheet.render({
 				parts: ['overview'],

@@ -48,7 +48,7 @@ export class FUCombatant extends foundry.documents.Combatant {
 		if (userId !== game.user.id) return;
 		if (this.actor.type === 'npc') {
 			if (game.settings.get(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration)) {
-				const party = await FUPartySheet.getActiveModel();
+				const party = FUPartySheet.getActiveModel();
 				if (party) {
 					await party.addOrUpdateAdversary(this.actor, 0);
 				}

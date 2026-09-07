@@ -48,20 +48,22 @@ async function processVulnerability(context) {
 		if (stagger) {
 			/** @type NpcDataModel **/
 			const npcData = context.actor.system;
-			const changes = [];
+			const changes = [...stagger.system.changes];
 			for (const [type, affinity] of Object.entries(npcData.affinities.all)) {
-				if (affinity.current !== FU.affValue.immunity) {
+				if (affinity.current < FU.affValue.immunity) {
 					changes.push({
 						key: `system.affinities.${type}.current`,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-						value: '-1',
+						type: 'override',
+						value: `${FU.affValue.vulnerability}`,
 						priority: 100,
 					});
 				}
 			}
 			staggered = true;
 			await stagger.update({
-				changes: changes,
+				system: {
+					changes: foundry.data.operators.ForcedReplacement(changes),
+				},
 			});
 		}
 	}
@@ -88,27 +90,29 @@ async function createStaggerChatMessage(context) {
 
 /**
  * @param {CombatEvent} event
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onCombatEvent(event) {
-	switch (event.type) {
-		case FU.combatEvent.endOfRound:
-			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
-				const stagger = actor.resolveEffect('stagger');
-				if (stagger) {
-					stagger.delete();
-					const pressure = actor.resolveProgress('pressure');
-					await actor.updateProgress('pressure', -pressure.current);
+function onCombatEvent(event, registerCallback) {
+	registerCallback(async (event) => {
+		switch (event.type) {
+			case FU.combatEvent.endOfRound:
+				for (const actor of event.actors.filter((a) => a.type === 'npc')) {
+					const stagger = actor.resolveEffect('stagger');
+					if (stagger) {
+						stagger.delete();
+						const pressure = actor.resolveProgress('pressure');
+						await actor.updateProgress('pressure', -pressure.current);
+					}
 				}
-			}
-			break;
+				break;
 
-		case FU.combatEvent.endOfCombat:
-			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
-				await removePressureEffect(actor);
-			}
-			break;
-	}
+			case FU.combatEvent.endOfCombat:
+				for (const actor of event.actors.filter((a) => a.type === 'npc')) {
+					await removePressureEffect(actor);
+				}
+				break;
+		}
+	});
 }
 
 async function applyPressureEffect(actor) {
