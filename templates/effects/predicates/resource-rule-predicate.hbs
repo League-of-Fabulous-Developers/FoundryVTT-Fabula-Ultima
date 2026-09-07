@@ -1,6 +1,34 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.Resource'}}</span>
-	<select name="{{pfuConcat path ".resource"}}">
-		{{selectOptions options.resources selected=predicate.resource sort=true localize=true}}
-	</select>
+  <span>{{localize 'FU.Resource'}}</span>
+  <select name="{{pfuConcat path ".resource"}}">
+    <option value="">-</option>
+    {{selectOptions options.resources selected=predicate.resource sort=true localize=true}}
+  </select>
 </label>
+<div class="fu-form__property-row">
+  <label class="fu-form__property">
+    <span>{{localize 'FU.ComparisonOperator'}}</span>
+    <select name="{{pfuConcat path ".changeThreshold.operator"}}">
+      <option value="">-</option>
+      {{selectOptions predicate.schema.fields.changeThreshold.fields.operator.choices selected=predicate.changeThreshold.operator sort=true localize=true}}
+    </select>
+  </label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Amount'}}</span>
+    <input type="number"
+           name="{{pfuConcat path ".changeThreshold.amount"}}"
+           value="{{ predicate.changeThreshold.amount }}" />
+  </label>
+</div>
+<div class="fu-form__property-row">
+  <div class="fu-form__property">
+    <span>{{localize 'FU.Local'}}</span>
+    {{formGroup predicate.schema.fields.local value=predicate.local name=(pfuConcat path ".local") }}
+  </div>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Identifier'}}</span>
+    <input type="text"
+           name="{{pfuConcat path ".identifier"}}"
+           value="{{ predicate.identifier }}" />
+  </label>
+</div>
