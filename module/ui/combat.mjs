@@ -8,6 +8,7 @@ import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { CombatEvent } from './combatEvent.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
+import { callHookWithCallbacks } from '../helpers/hook-utils.mjs';
 
 export const FRIENDLY = 'friendly';
 export const HOSTILE = 'hostile';
@@ -178,7 +179,7 @@ export class FUCombat extends foundry.documents.Combat {
 		await this.setFirstTurn(firstTurnFaction);
 		await this.setCurrentTurn(firstTurnFaction);
 		console.debug(`Combat started for ${this.combatants.length} combatants`);
-		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round, this.combatants));
+		await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round, this.combatants));
 		return super.startCombat();
 	}
 
@@ -189,7 +190,7 @@ export class FUCombat extends foundry.documents.Combat {
 		const end = await super.endCombat();
 		if (end) {
 			console.debug(`Combat ended for ${this.combatants.length} combatants`);
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfCombat, this.round, this.combatants));
+			await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfCombat, this.round, this.combatants));
 		}
 		return end;
 	}
@@ -246,7 +247,7 @@ export class FUCombat extends foundry.documents.Combat {
 		if (advanceRound) {
 			console.debug(`_manageTurnEvents: Starting combat round ${this.round}`);
 			await this._onStartRound();
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfRound, this.round, this.combatants));
+			await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfRound, this.round, this.combatants));
 		}
 	}
 
@@ -271,7 +272,7 @@ export class FUCombat extends foundry.documents.Combat {
 			this.current.tokenId = combatant?.tokenId || null;
 
 			console.debug(`Combat turn started for ${combatant.actor.uuid}`);
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfTurn, this.round, this.combatants).forCombatant(combatant));
+			await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfTurn, this.round, this.combatants).forCombatant(combatant));
 
 			// FROM BASE
 			// Determine the turn order and the current turn
@@ -315,7 +316,7 @@ export class FUCombat extends foundry.documents.Combat {
 			await this.setTurnsTaken(flag);
 
 			// Invoke event
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round, this.combatants).forCombatant(combatant));
+			await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round, this.combatants).forCombatant(combatant));
 			await this.setCombatant(null);
 
 			// Setup
@@ -567,7 +568,7 @@ export class FUCombat extends foundry.documents.Combat {
 		Hooks.callAll(`combatRound`, this, updateData, updateOptions);
 		// Invoke our custom event
 		console.debug(`Round ended for ${this.combatants.length} combatants`);
-		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round, this.combatants));
+		await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round, this.combatants));
 		// Update the internals
 		return this.update(updateData, updateOptions);
 	}

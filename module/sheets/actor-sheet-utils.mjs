@@ -203,7 +203,7 @@ function activateDefaultListeners(html, sheet) {
 
 async function onSendItemToPartyStash(element, sheet) {
 	const item = getItemFromHtml(element, sheet.actor);
-	const party = await FUPartySheet.getActiveModel();
+	const party = FUPartySheet.getActiveModel();
 	if (item && party) {
 		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);
 	}
@@ -383,20 +383,6 @@ function prepareNpcCompanionData(context) {
 	}
 }
 
-function onRenderFUActorSheet(sheet, element) {
-	// Automatically expand elements that are in the _expanded state
-	if (sheet._expanded) {
-		sheet._expanded.forEach((itemId) => {
-			const expandedDescriptions = element.querySelectorAll(`li[data-item-id="${itemId}"] .individual-description`);
-			expandedDescriptions.forEach((el) => {
-				el.classList.remove('hidden');
-				el.style.display = 'block';
-				el.style.height = 'auto';
-			});
-		});
-	}
-}
-
 function resolveItem(actor, target) {
 	const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
 	let item = actor.items.get(dataItemId);
@@ -487,8 +473,6 @@ function preparePressureContext(context) {
 		context.weaponCategories = FU.weaponCategories;
 	}
 }
-
-Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 
 /**
  * @description Provides utility functions for rendering the actor sheet

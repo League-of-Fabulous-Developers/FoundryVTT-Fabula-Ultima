@@ -38,7 +38,7 @@ function addRollContextMenuEntries(application, menuItems) {
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
+const onRenderCheck = (data, checkResult, actor, item, additionalFlags) => {
 	const pushData = checkResult.additionalData.push;
 	if (pushData) {
 		data.sections.push({
