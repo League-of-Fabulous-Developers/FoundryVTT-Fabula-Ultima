@@ -50,7 +50,7 @@ npm install
 npm run pack
 ```
 
-`npm run pack` compiles the JSON source files in `src/packs/` into LevelDB compendium databases for Foundry to read.
+`npm run pack` compiles the JSON source files in `src/packs/` so that their entries are available in Foundry.
 
 Enable the _Hot-Reload Package Files_ option in your Foundry application configuration for an improved developer experience.
 
