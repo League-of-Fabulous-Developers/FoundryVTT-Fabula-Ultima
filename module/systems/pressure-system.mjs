@@ -62,7 +62,7 @@ async function processVulnerability(context) {
 			staggered = true;
 			await stagger.update({
 				system: {
-					changes: foundry.data.operators.ForcedReplacement(changes),
+					changes: foundry.data.operators.ForcedReplacement.create(changes),
 				},
 			});
 		}
