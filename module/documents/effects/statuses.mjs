@@ -22,7 +22,7 @@ export const statusEffects = [
 			{
 				key: 'system.derived.mdef.value',
 				type: 'upgrade',
-				value: '12',
+				value: '12 + min(floor(@system.level.value/20), 2)',
 			},
 		],
 		system: {
@@ -39,7 +39,7 @@ export const statusEffects = [
 			{
 				key: 'system.derived.def.value',
 				type: 'upgrade',
-				value: '12',
+				value: '12 + min(floor(@system.level.value/20), 2)',
 			},
 		],
 		system: {
@@ -52,6 +52,7 @@ export const statusEffects = [
 		id: 'cover',
 		name: 'FU.Cover',
 		img: 'systems/projectfu/styles/static/statuses/Cover.webp',
+		description: 'FU.CoverRule',
 		system: {
 			duration: {
 				event: 'startOfTurn',
@@ -64,6 +65,7 @@ export const statusEffects = [
 		id: 'dazed',
 		name: 'FU.Dazed',
 		img: 'systems/projectfu/styles/static/statuses/Dazed.webp',
+		description: 'FU.DazedRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -81,6 +83,7 @@ export const statusEffects = [
 		id: 'dex-down',
 		name: 'FU.DEXDown',
 		img: 'systems/projectfu/styles/static/statuses/DexDown.webp',
+		description: 'FU.DEXDownRule',
 		changes: [
 			{
 				key: 'system.attributes.dex',
@@ -98,6 +101,7 @@ export const statusEffects = [
 		id: 'dex-up',
 		name: 'FU.DEXUp',
 		img: 'systems/projectfu/styles/static/statuses/DexUp.webp',
+		description: 'FU.DEXUpRule',
 		changes: [
 			{
 				key: 'system.attributes.dex',
@@ -115,6 +119,7 @@ export const statusEffects = [
 		id: 'enraged',
 		name: 'FU.Enraged',
 		img: 'systems/projectfu/styles/static/statuses/Enraged.webp',
+		description: 'FU.EnragedRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -137,6 +142,7 @@ export const statusEffects = [
 		id: 'flying',
 		name: 'FU.Flying',
 		img: 'systems/projectfu/styles/static/statuses/Flying.webp',
+		description: 'FU.FlyingRule',
 		system: {
 			duration: {
 				event: 'endOfScene',
@@ -146,6 +152,7 @@ export const statusEffects = [
 	{
 		id: 'guard',
 		name: 'FU.Guard',
+		description: 'FU.GuardRule',
 		system: {
 			duration: {
 				event: 'startOfTurn',
@@ -211,6 +218,7 @@ export const statusEffects = [
 		id: 'ins-down',
 		name: 'FU.INSDown',
 		img: 'systems/projectfu/styles/static/statuses/InsDown.webp',
+		description: 'FU.INSDownRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -228,6 +236,7 @@ export const statusEffects = [
 		id: 'ins-up',
 		name: 'FU.INSUp',
 		img: 'systems/projectfu/styles/static/statuses/InsUp.webp',
+		description: 'FU.INSUpRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -250,6 +259,7 @@ export const statusEffects = [
 		id: 'mig-down',
 		name: 'FU.MIGDown',
 		img: 'systems/projectfu/styles/static/statuses/MigDown.webp',
+		description: 'FU.MIGDownRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -267,6 +277,7 @@ export const statusEffects = [
 		id: 'mig-up',
 		name: 'FU.MIGUp',
 		img: 'systems/projectfu/styles/static/statuses/MigUp.webp',
+		description: 'FU.MIGUpRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -314,6 +325,7 @@ export const statusEffects = [
 		id: 'shaken',
 		name: 'FU.Shaken',
 		img: 'systems/projectfu/styles/static/statuses/Shaken.webp',
+		description: 'FU.ShakenRule',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
@@ -341,6 +353,7 @@ export const statusEffects = [
 		id: 'slow',
 		name: 'FU.Slow',
 		img: 'systems/projectfu/styles/static/statuses/Slow.webp',
+		description: 'FU.SlowRule',
 		changes: [
 			{
 				key: 'system.attributes.dex',
@@ -358,6 +371,7 @@ export const statusEffects = [
 		id: 'poisoned',
 		name: 'FU.Poisoned',
 		img: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
+		description: 'FU.PoisonedRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -380,6 +394,7 @@ export const statusEffects = [
 		id: 'weak',
 		name: 'FU.Weak',
 		img: 'systems/projectfu/styles/static/statuses/Weak.webp',
+		description: 'FU.WeakRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -397,6 +412,7 @@ export const statusEffects = [
 		id: 'wlp-down',
 		name: 'FU.WLPDown',
 		img: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
+		description: 'FU.WLPDownRule',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
@@ -414,6 +430,7 @@ export const statusEffects = [
 		id: 'wlp-up',
 		name: 'FU.WLPUp',
 		img: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
+		description: 'FU.WLPUpRule',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
@@ -431,6 +448,7 @@ export const statusEffects = [
 		id: 'crisis',
 		name: 'FU.Crisis',
 		img: 'systems/projectfu/styles/static/statuses/Crisis.webp',
+		description: 'FU.CrisisRule',
 	},
 	{
 		id: 'focus',

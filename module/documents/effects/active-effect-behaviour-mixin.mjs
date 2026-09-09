@@ -388,6 +388,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}, identifier: ${this.identifier}`);
 			const changes = {
 				name: game.i18n.localize(data.name),
+				description: game.i18n.localize(data.description ?? ''),
 				[`system.duration.remaining`]: this.system.duration.interval,
 			};
 			// TODO: Verify this is okay
