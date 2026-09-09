@@ -11,7 +11,6 @@ const fields = foundry.data.fields;
 export class ResourceRulePredicate extends RulePredicateDataModel {
 	static defineSchema() {
 		return {
-			// TODO: Add other parameters
 			resource: new fields.StringField({
 				initial: 'hp',
 				choices: Object.keys(FU.resources),
