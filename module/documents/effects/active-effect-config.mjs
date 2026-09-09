@@ -319,7 +319,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			return this.document.update({
 				system: {
 					rules: {
-						elements: new foundry.data.operators.ForcedReplacement({}),
+						elements: foundry.data.operators.ForcedReplacement.create({}),
 					},
 				},
 			});
@@ -342,7 +342,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 					rules: {
 						elements: {
 							[id]: {
-								trigger: new foundry.data.operators.ForcedReplacement({ type: type }),
+								trigger: foundry.data.operators.ForcedReplacement.create({ type: type }),
 							},
 						},
 					},

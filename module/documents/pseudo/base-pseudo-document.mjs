@@ -1192,7 +1192,7 @@ export class BasePseudoDocument extends foundry.abstract.DataModel {
 			.join('.');
 		const nestedCollection = traversalLog.findLast((value) => Array.isArray(value.value));
 		return {
-			changeObject: { [baseKey]: new foundry.data.operators.ForcedReplacement(traversalLog[firstArray].value) },
+			changeObject: { [baseKey]: foundry.data.operators.ForcedReplacement.create(traversalLog[firstArray].value) },
 			nestedCollection: nestedCollection.value,
 		};
 	}
