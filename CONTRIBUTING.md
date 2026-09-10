@@ -25,7 +25,7 @@ Before submitting a bug report, ensure the following:
 
 ## Tooling and Setup
 
-Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD01-Getting-started), using plain JavaScript and [Gulp](https://gulpjs.com/) for build tasks.
+Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD01-Getting-started), using plain JavaScript and plain CSS (no build step).
 Visit [here](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Development-Environment) for setting up an development environment for the system.
 
 ### Branches
@@ -47,21 +47,10 @@ Clone the repository and run:
 
 ```bash
 npm install
+npm run pack
 ```
 
-### Building from Source
-
-Start the build process in watch mode:
-
-```bash
-npm run watch
-```
-
-Or for a one-time build:
-
-```bash
-npm run build
-```
+`npm run pack` compiles the JSON source files in `src/packs/` so that their entries are available in Foundry.
 
 Enable the _Hot-Reload Package Files_ option in your Foundry application configuration for an improved developer experience.
 
