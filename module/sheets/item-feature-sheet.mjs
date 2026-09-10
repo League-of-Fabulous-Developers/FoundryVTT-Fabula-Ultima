@@ -220,7 +220,7 @@ export class FUFeatureSheet extends FUItemSheet {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 					const updates = {
 						system: {
-							data: new foundry.data.operators.ForcedReplacement({ type: selectedType }),
+							data: foundry.data.operators.ForcedReplacement.create({ type: selectedType }),
 						},
 					};
 					await this.item.update(updates);
@@ -238,7 +238,7 @@ export class FUFeatureSheet extends FUItemSheet {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 					const updates = {
 						system: {
-							data: new foundry.data.operators.ForcedReplacement({ type: selectedType }),
+							data: foundry.data.operators.ForcedReplacement.create({ type: selectedType }),
 						},
 					};
 					await this.item.update(updates);
