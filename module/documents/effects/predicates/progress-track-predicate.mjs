@@ -40,15 +40,21 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 			return false;
 		}
 
+		if (!this.identifier) return true;
+
 		const progress = context.character.actor.resolveProgress(this.identifier);
 		if (!progress) return false;
 
 		if (!this.comparisonOperator) {
-			return false;
+			return true;
 		}
 
 		if (this.comparisonOperator === 'max') {
 			return progress.current >= progress.max;
+		}
+
+		if (!this.value) {
+			return true;
 		}
 
 		if (!Number.isFinite(this.value)) {

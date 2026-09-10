@@ -51,8 +51,8 @@ export class MessageRuleAction extends RuleActionDataModel {
 		}
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, sourceInfo);
 		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
-		if (context.check) {
-			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, context.check);
+		if (context.data?.check) {
+			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, context.data.check);
 		}
 		// Message
 		let _message;
@@ -68,10 +68,10 @@ export class MessageRuleAction extends RuleActionDataModel {
 		} else {
 			_message = StringUtils.localize('FU.RuleElementTriggered');
 		}
-		if (context.renderData && context.source) {
+		if (context.data.renderData && context.source) {
 			// TODO: Resolve actor for pseudo-documents too
 			const actor = context.source.actor !== context.character.actor ? context.item?.parent : null;
-			CommonSections.itemText(context.renderData.sections, _message, actor, context.item, flags, ChatSectionOrder.addendum);
+			CommonSections.itemText(context.data.renderData.sections, _message, actor, context.item, flags, ChatSectionOrder.addendum);
 		} else {
 			const actor = context.character.actor;
 			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {

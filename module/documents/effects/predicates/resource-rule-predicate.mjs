@@ -60,7 +60,7 @@ export class ResourceRulePredicate extends RulePredicateDataModel {
 		const { value, max } = actor.system.resources[this.resource];
 		if (value === undefined) return false;
 
-		if (!this.changeThreshold.operator) return false;
+		if (!this.changeThreshold.operator) return true;
 
 		if (this.changeThreshold.operator === 'max') return value >= max;
 

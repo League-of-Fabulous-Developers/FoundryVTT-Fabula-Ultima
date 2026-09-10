@@ -38,8 +38,8 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 	async execute(context, selected) {
 		const targets = selected.map((t) => t.actor);
 		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
-		if (context.check) {
-			expressionContext.withCheck(context.check);
+		if (context.data.check) {
+			expressionContext.withCheck(context.data.check);
 		}
 		const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
 		if (amount === 0) {
@@ -49,17 +49,19 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 		request.fromOrigin(context.origin);
 
 		const targetAction = ResourcePipeline.getTargetedAction(request);
-		if (selected.length === 1 && selected[0] === context.character) {
+		if (selected.length === 1 && selected[0].actor === context.character.actor) {
 			targetAction.forActor(context.character.actor);
 		}
 
-		if (context.config) {
-			context.config.addTargetedAction(targetAction);
-		} else if (context.renderData) {
+		if (context.data.config) {
+			context.data.config.addTargetedAction(targetAction);
+		} else if (context.data.renderData) {
 			let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, context.sourceInfo);
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
-			context.renderData.flags = flags;
-			CommonSections.chatActions(context.renderData.sections, [targetAction], flags, ChatSectionOrder.actions);
+			context.data.renderData.flags = flags;
+			CommonSections.chatActions(context.data.renderData.sections, [targetAction], flags, ChatSectionOrder.actions);
+		} else {
+			await ResourcePipeline.prompt(request);
 		}
 
 		if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {

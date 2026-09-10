@@ -43,31 +43,23 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (this.itemGroups.size > 0) {
-			if (!this.itemGroups.has(context.event.itemGroup)) {
-				return false;
-			}
+		if (this.itemGroups.size > 0 && !this.itemGroups.has(context.event.itemGroup)) {
+			return false;
 		}
 
 		// Validate check types
-		/** @type {CheckType} **/
-		const checkType = context.event.config.check.type;
-		if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
+		if (this.checkTypes.size > 0 && !this.checkTypes.has(context.event.config.check.type)) {
 			return false;
 		}
 
 		// If this RE is on an item, and it doesn't match the item in the event.
-		if (this.local) {
-			if (!context.isLocalItem()) {
-				return false;
-			}
+		if (this.local && !context.isLocalItem()) {
+			return false;
 		}
 
 		// Check identifier
-		if (this.identifier) {
-			if (!context.matchesItem(this.identifier)) {
-				return false;
-			}
+		if (this.identifier && !context.matchesItem(this.identifier)) {
+			return false;
 		}
 		return true;
 	}

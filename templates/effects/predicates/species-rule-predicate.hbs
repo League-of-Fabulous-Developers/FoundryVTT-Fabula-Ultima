@@ -2,3 +2,10 @@
 	<span>{{localize 'FU.Species'}}</span>
 	{{formGroup predicate.schema.fields.species value=predicate.species options=options.speciesOptions name=(pfuConcat path ".species") classes="fu-form__set stacked"}}
 </label>
+
+<label class="fu-form__property">
+	<span>{{localize 'FU.Quantifier'}}</span>
+	<select name="{{pfuConcat path ".quantifier"}}" class="">
+		{{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
+	</select>
+</label>

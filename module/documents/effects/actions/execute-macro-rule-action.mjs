@@ -2,7 +2,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 
 const fields = foundry.data.fields;
-const documents = foundry.documents;
+const Macro = foundry.documents.Macro;
 
 /**
  * @property {documents.Macro} macro
@@ -10,7 +10,7 @@ const documents = foundry.documents;
 export class ExecuteMacroRuleAction extends RuleActionDataModel {
 	static defineSchema() {
 		return {
-			macro: new fields.ForeignDocumentField(documents.Macro),
+			macro: new fields.ForeignDocumentField(Macro),
 		};
 	}
 

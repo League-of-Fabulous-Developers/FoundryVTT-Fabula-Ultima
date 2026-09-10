@@ -84,6 +84,10 @@
 		padding: 4px;
 		background: var(--gradient-button-bg);
 		border: 1px solid var(--border-primary);
+
+		prose-mirror {
+			min-height: unset;
+		}
 	}
 }
 

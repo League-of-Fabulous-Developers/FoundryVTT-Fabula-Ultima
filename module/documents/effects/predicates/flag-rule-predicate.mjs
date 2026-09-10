@@ -53,7 +53,7 @@ export class FlagRulePredicate extends RulePredicateDataModel {
 		if (actualValue === undefined) {
 			return false;
 		}
-		if (this.value === undefined) {
+		if (!this.value) {
 			return true;
 		}
 		return this.value === actualValue;

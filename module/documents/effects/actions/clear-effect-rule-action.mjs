@@ -26,9 +26,14 @@ export class ClearEffectRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
+		const effectData = await Effects.getEffectData(this.identifier);
+		if (!effectData) {
+			return;
+		}
+
 		const action = await Effects.getClearAction(this.identifier, context.sourceInfo);
-		if (context.config) {
-			context.config.addTargetedAction(action);
+		if (context.data.config) {
+			context.data.config.addTargetedAction(action);
 		} else {
 			const builder = new FUChatBuilder(context.character.actor, context.item);
 			if (context.item) {

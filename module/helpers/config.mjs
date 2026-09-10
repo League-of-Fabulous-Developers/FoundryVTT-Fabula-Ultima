@@ -607,16 +607,16 @@ FU.attributeDice = {
 
 FU.bonds = {
 	admInf: {
-		Admiration: 'FU.Admiration',
-		Inferiority: 'FU.Inferiority',
+		admiration: 'FU.Admiration',
+		inferiority: 'FU.Inferiority',
 	},
 	loyMis: {
-		Loyalty: 'FU.Loyalty',
-		Mistrust: 'FU.Mistrust',
+		loyalty: 'FU.Loyalty',
+		mistrust: 'FU.Mistrust',
 	},
 	affHat: {
-		Affection: 'FU.Affection',
-		Hatred: 'FU.Hatred',
+		affection: 'FU.Affection',
+		hatred: 'FU.Hatred',
 	},
 };
 

@@ -244,12 +244,10 @@ async function handleTheriomorphosis(actor, item) {
 			amount: item.system.cost.amount ?? 0,
 		};
 		const expense = await ResourcePipeline.calculateExpense(therioCost, actor, item, []);
-		const therioExpenseWithTraits = {
-			...expense,
-			traits: [FeatureTraits.TherioformManifest],
-		};
-		await CommonEvents.calculateExpense(actor, item, [], therioExpenseWithTraits);
-		console.debug(`Theriomorphosis cost: ${therioExpenseWithTraits.amount}`);
+		expense.traits.push(FeatureTraits.TherioformManifest);
+
+		await CommonEvents.calculateExpense(actor, item, [], expense);
+		console.debug(`Theriomorphosis cost: ${expense.total}`);
 		// Render sections
 		/** @type {FURenderData} **/
 		const renderData = {
@@ -267,10 +265,10 @@ async function handleTheriomorphosis(actor, item) {
 			forms: selectedForms,
 		});
 		CommonSections.content(renderData.sections, content, CHECK_DETAILS);
-		if (therioExpenseWithTraits.amount > 0) {
-			CommonSections.expense(renderData, actor, item, [], flags, therioExpenseWithTraits);
+		if (expense.total > 0) {
+			CommonSections.expense(renderData, actor, item, [], flags, expense);
 		}
-		await CommonEvents.feature(actor, item, therioExpenseWithTraits.traits, [], renderData);
+		await CommonEvents.feature(actor, item, expense.traits, [], renderData);
 		const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
 		await builder.create();
 	} else {
