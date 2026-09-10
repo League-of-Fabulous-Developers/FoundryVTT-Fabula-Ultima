@@ -8,7 +8,7 @@ export class MnemosphereSkillsTableRenderer extends SkillsTableRenderer {
 		getItems: (item) => item.system.skills,
 		columns: {
 			name: { headerSpan: 1 },
-			resourcePoints: new foundry.data.operators.ForcedDeletion(),
+			resourcePoints: foundry.data.operators.ForcedDeletion.create(),
 			controls: CommonColumns.itemControlsColumn(
 				{ type: 'skill', label: 'FU.Skill' },
 				{

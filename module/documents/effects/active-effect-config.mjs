@@ -299,7 +299,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 					system: {
 						rules: {
 							elements: {
-								[id]: new foundry.data.operators.ForcedDeletion(),
+								[id]: foundry.data.operators.ForcedDeletion.create(),
 							},
 						},
 					},
@@ -407,7 +407,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 							elements: {
 								[id]: {
 									actions: {
-										[actionId]: new foundry.data.operators.ForcedDeletion(),
+										[actionId]: foundry.data.operators.ForcedDeletion.create(),
 									},
 								},
 							},
@@ -474,7 +474,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 							elements: {
 								[id]: {
 									predicates: {
-										[predicateId]: new foundry.data.operators.ForcedDeletion(),
+										[predicateId]: foundry.data.operators.ForcedDeletion.create(),
 									},
 								},
 							},

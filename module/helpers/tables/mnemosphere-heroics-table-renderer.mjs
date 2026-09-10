@@ -8,7 +8,7 @@ export class MnemosphereHeroicsTableRenderer extends HeroicsTableRenderer {
 		getItems: (item) => item.system.heroics,
 		columns: {
 			name: { headerSpan: 1 },
-			resourcePoints: new foundry.data.operators.ForcedDeletion(),
+			resourcePoints: foundry.data.operators.ForcedDeletion.create(),
 			controls: CommonColumns.itemControlsColumn(
 				{ type: 'heroic', label: 'FU.Heroic' },
 				{

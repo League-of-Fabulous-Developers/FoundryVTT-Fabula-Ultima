@@ -5,7 +5,7 @@ export class NpcProfileBasicAttacksTableRenderer extends BasicAttacksTableRender
 	static TABLE_CONFIG = {
 		cssClass: 'npc-profile-basic-attacks-table',
 		columns: {
-			controls: new foundry.data.operators.ForcedDeletion(),
+			controls: foundry.data.operators.ForcedDeletion.create(),
 		},
 	};
 }

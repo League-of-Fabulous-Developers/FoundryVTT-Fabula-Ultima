@@ -357,7 +357,7 @@ export class NpcProfileWindow extends FUApplication {
 			if (changedAdversary.revealed.traits) {
 				changedAdversary.revealed.traits = changedAdversary.revealed.traits.filter((t) => traitsArray.includes(t));
 				if (changedAdversary.revealed.traits.length === 0) {
-					changedAdversary.revealed.traits = new foundry.data.operators.ForcedDeletion();
+					changedAdversary.revealed.traits = foundry.data.operators.ForcedDeletion.create();
 				}
 			}
 			await party.parent.update({ system: { adversaries: adversaries } });

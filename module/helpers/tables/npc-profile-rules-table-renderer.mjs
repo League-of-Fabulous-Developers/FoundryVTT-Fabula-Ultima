@@ -6,8 +6,8 @@ export class NpcProfileRulesTableRenderer extends AbilitiesTableRenderer {
 		cssClass: 'npc-profile-rules-table',
 		hideIfEmpty: true,
 		columns: {
-			clock: new foundry.data.operators.ForcedDeletion(),
-			controls: new foundry.data.operators.ForcedDeletion(),
+			clock: foundry.data.operators.ForcedDeletion.create(),
+			controls: foundry.data.operators.ForcedDeletion.create(),
 		},
 		getItems: NpcProfileRulesTableRenderer.#getItems,
 	};
