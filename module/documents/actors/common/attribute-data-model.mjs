@@ -1,17 +1,3 @@
-import { MathHelper } from '../../../helpers/math-helper.mjs';
-
-/**
- * @param {number} number
- * @return {boolean}
- */
-function isEven(number) {
-	return number % 2 === 0;
-}
-
-// TODO: Provide support for NeoHuman
-const minimumValue = 6;
-const maximumValue = 12;
-
 /**
  * @property {number} base
  * @property {number} current
@@ -21,8 +7,8 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField } = foundry.data.fields;
 		return {
-			base: new NumberField({ initial: 8, min: minimumValue, max: maximumValue, integer: true, nullable: false, validate: isEven }),
-			current: new NumberField({ initial: (source) => source.base, min: minimumValue, max: maximumValue, integer: true, nullable: false, persisted: false }),
+			base: new NumberField({ choices: [6, 8, 10, 12], initial: 8 }),
+			current: new NumberField({ choices: [6, 8, 10, 12], initial: (source) => source.base, persisted: false }),
 		};
 	}
 
@@ -34,7 +20,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 			configurable: false,
 			enumerable: true,
 			get: () => {
-				return MathHelper.clamp(2 * Math.floor(current / 2), 6, 12);
+				return Math.clamp(2 * Math.floor(current / 2), 6, 12);
 			},
 			set: (newValue) => {
 				if (Number.isInteger(newValue)) {

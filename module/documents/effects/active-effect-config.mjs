@@ -540,7 +540,6 @@ function getAttributeKeys(document) {
 			// Attributes
 			for (const attr of Object.keys(FU.attributes)) {
 				attributeKeys.push(`system.attributes.${attr}`);
-				attributeKeys.push(`system.attributes.${attr}.current`);
 			}
 			// Stats
 			// for (const stat of ['def', 'mdef', 'init']) {
@@ -549,7 +548,6 @@ function getAttributeKeys(document) {
 			// Affinities
 			for (const aff of Object.keys(FU.damageTypes)) {
 				attributeKeys.push(`system.affinities.${aff}`);
-				attributeKeys.push(`system.affinities.${aff}.current`);
 			}
 		}
 	}
