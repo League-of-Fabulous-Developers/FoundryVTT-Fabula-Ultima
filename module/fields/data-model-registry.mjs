@@ -114,6 +114,10 @@ export class DataModelRegistry {
 	}
 
 	#patchModel(model, qualifiedType) {
+		const schema = model.defineSchema();
+		if ('type' in schema) {
+			throw new Error(`Unable to register '${qualifiedType}'. 'type' is a reserved property for ${this.kind} data models and must not be defined.`);
+		}
 		const patchedClassName = `Patched${model.name}`;
 		const namingHelper = {
 			[patchedClassName]: class extends model {
