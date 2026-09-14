@@ -94,47 +94,47 @@ function activateDefaultListeners(html, sheet) {
 	// Initialize the context menu options
 	const contextMenuOptions = [
 		{
-			name: game.i18n.localize('FU.Edit'),
+			label: game.i18n.localize('FU.Edit'),
 			icon: '<i class="fas fa-edit"></i>',
-			callback: (html) => _onItemEdit(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemEdit(html, sheet),
+			visible: (html) => !!html.closest('[data-item-id]'),
 		},
 		{
-			name: game.i18n.localize('FU.Duplicate'),
+			label: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
-			callback: (html) => _onItemDuplicate(html, sheet),
-			condition: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemDuplicate(html, sheet),
+			visible: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 		{
-			name: game.i18n.localize('FU.ChatMessageSendHint'),
+			label: game.i18n.localize('FU.ChatMessageSendHint'),
 			icon: '<i class="fas fa-comment"></i>',
-			callback: (html) => _onItemSendToChat(html, sheet),
-			condition: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemSendToChat(html, sheet),
+			visible: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 		{
-			name: game.i18n.localize('FU.Delete'),
+			label: game.i18n.localize('FU.Delete'),
 			icon: '<i class="fas fa-trash"></i>',
-			callback: (html) => _onItemDelete(html, sheet),
-			condition: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemDelete(html, sheet),
+			visible: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 	];
 
 	if (sheet.actor.isCharacterType) {
 		contextMenuOptions.push({
-			name: game.i18n.localize('FU.StashItem'),
+			label: game.i18n.localize('FU.StashItem'),
 			icon: '<i class="fa fa-paper-plane"></i>',
-			callback: (html) => onSendItemToPartyStash(html, sheet),
-			condition: (html) => {
+			onClick: (event, html) => onSendItemToPartyStash(html, sheet),
+			visible: (html) => {
 				const item = getItemFromHtml(html, sheet.actor);
 				return sheet.actor.isOwner && item?.canStash;
 			},
 		});
 
 		contextMenuOptions.push({
-			name: `${game.i18n.localize('Deactivate')} ${game.i18n.localize('FU.Behavior')}`,
+			label: `${game.i18n.localize('Deactivate')} ${game.i18n.localize('FU.Behavior')}`,
 			icon: `<i class="fas fa-address-book"></i>`,
-			callback: (html) => _onItemBehavior(html, sheet),
-			condition: (html) => {
+			onClick: (event, html) => _onItemBehavior(html, sheet),
+			visible: (html) => {
 				if (sheet.actor.isOwner && sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
 					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && item.system.isBehavior.value;
@@ -145,10 +145,10 @@ function activateDefaultListeners(html, sheet) {
 		});
 
 		contextMenuOptions.push({
-			name: `${game.i18n.localize('Activate')} ${game.i18n.localize('FU.Behavior')}`,
+			label: `${game.i18n.localize('Activate')} ${game.i18n.localize('FU.Behavior')}`,
 			icon: `<i class="far fa-address-book"></i>`,
-			callback: (html) => _onItemBehavior(html, sheet),
-			condition: (html) => {
+			onClick: (event, html) => _onItemBehavior(html, sheet),
+			visible: (html) => {
 				if (sheet.actor.isOwner && sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
 					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && !item.system.isBehavior.value;
