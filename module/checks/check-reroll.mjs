@@ -18,10 +18,10 @@ const { Die, DiceTerm, NumericTerm } = foundry.dice.terms;
 function addRerollEntry(application, menuItems) {
 	// Character push
 	menuItems.unshift({
-		name: 'FU.ChatContextRerollFabula',
+		label: 'FU.ChatContextRerollFabula',
 		icon: '<i class="fas fa-dice"></i>',
 		group: SYSTEM,
-		condition: (li) => {
+		visible: (li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
@@ -29,7 +29,7 @@ function addRerollEntry(application, menuItems) {
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isOwner && message.isRoll && flag && speakerActor?.isOwner && speakerActor?.type === 'character' && !flag.fumble;
 		},
-		callback: async (li) => {
+		onClick: async (event, li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
@@ -44,10 +44,10 @@ function addRerollEntry(application, menuItems) {
 
 	// Villain reroll
 	menuItems.unshift({
-		name: 'FU.ChatContextRerollUltima',
+		label: 'FU.ChatContextRerollUltima',
 		icon: '<i class="fas fa-dice"></i>',
 		group: SYSTEM,
-		condition: (li) => {
+		visible: (li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
@@ -55,7 +55,7 @@ function addRerollEntry(application, menuItems) {
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isOwner && message.isRoll && flag && speakerActor?.isOwner && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
-		callback: async (li) => {
+		onClick: async (event, li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
