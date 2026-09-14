@@ -455,33 +455,33 @@ export class FUPartySheet extends FUActorSheet {
 						'[data-context-menu="shareCodexEntry"]',
 						[
 							{
-								name: StringUtils.localize('SIDEBAR.CharArt'),
+								label: StringUtils.localize('SIDEBAR.CharArt'),
 								icon: `<i class="fu-icon--xs fas fa-image"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'display');
 								},
 							},
 							{
-								name: StringUtils.localize('FU.ChatMessageSendHint'),
+								label: StringUtils.localize('FU.ChatMessageSendHint'),
 								icon: `<i class="fu-icon--xs fas fa-comment"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'send');
 								},
 							},
 							{
-								name: StringUtils.localize('FU.InstantiateToken'),
+								label: StringUtils.localize('FU.InstantiateToken'),
 								icon: `<i class="fu-icon--xs fas fa-user"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'token');
 								},
 							},
 							{
-								name: StringUtils.localize('CONTROLS.TilePlace'),
+								label: StringUtils.localize('CONTROLS.TilePlace'),
 								icon: `<i class="fu-icon--xs fa-solid fa-cube"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'tile');
 								},
@@ -1413,9 +1413,9 @@ export class FUPartySheet extends FUActorSheet {
 		// Initialize the context menu options
 		let contextMenuOptions = [
 			{
-				name: StringUtils.localize('FU.Delete'),
+				label: StringUtils.localize('FU.Delete'),
 				icon: '<i class="fas fa-trash"></i>',
-				callback: (el) => {
+				onClick: (event, el) => {
 					const id = el.dataset.uuid;
 					const type = el.dataset.type;
 					switch (type) {
@@ -1432,22 +1432,22 @@ export class FUPartySheet extends FUActorSheet {
 				},
 			},
 			{
-				name: StringUtils.localize('FU.Refresh'),
+				label: StringUtils.localize('FU.Refresh'),
 				icon: '<i class="fa fa-refresh"></i>',
-				callback: (el) => {
+				onClick: (event, el) => {
 					const id = el.dataset.uuid;
 					return NpcProfileWindow.updateNpcProfile(this.party, id, false);
 				},
-				condition: (el) => el.dataset.type === 'npc',
+				visible: (el) => el.dataset.type === 'npc',
 			},
 			{
-				name: StringUtils.localize('FU.Edit'),
+				label: StringUtils.localize('FU.Edit'),
 				icon: '<i class="fa fa-pencil"></i>',
-				callback: (el) => {
+				onClick: (event, el) => {
 					const id = el.dataset.uuid;
 					return NpcProfileWindow.updateNpcProfile(this.party, id, true);
 				},
-				condition: (el) => el.dataset.type === 'npc',
+				visible: (el) => el.dataset.type === 'npc',
 			},
 		];
 
