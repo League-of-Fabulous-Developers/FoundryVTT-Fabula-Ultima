@@ -10,10 +10,10 @@ const { DiceTerm, OperatorTerm, NumericTerm } = foundry.dice.terms;
 function addRollContextMenuEntries(application, menuItems) {
 	// Character push
 	menuItems.unshift({
-		name: 'FU.ChatContextPush',
+		label: 'FU.ChatContextPush',
 		icon: '<i class="fas fa-arrow-up-right-dots"></i>',
 		group: SYSTEM,
-		condition: (li) => {
+		visible: (li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
@@ -21,7 +21,7 @@ function addRollContextMenuEntries(application, menuItems) {
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isOwner && message.isRoll && flag && speakerActor?.isOwner && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
-		callback: async (li) => {
+		onClick: async (event, li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
