@@ -19,9 +19,9 @@ const infusionKey = 'infusion';
  */
 function onGetChatLogEntryContext(application, menuItems) {
 	menuItems.push({
-		name: 'FU.ClassFeatureInfusionsApply',
+		label: 'FU.ClassFeatureInfusionsApply',
 		icon: '<i class="fa-solid fa-flask-vial"></i>',
-		condition: (li) => {
+		visible: (li) => {
 			const messageId = li.dataset.messageId;
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
@@ -30,7 +30,7 @@ function onGetChatLogEntryContext(application, menuItems) {
 				return actor.itemTypes.classFeature.some((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel && actor.system.resources.ip.value >= value.system.data.ipCost);
 			}
 		},
-		callback: async (li) => {
+		onClick: async (event, li) => {
 			const messageId = li.dataset.messageId;
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
