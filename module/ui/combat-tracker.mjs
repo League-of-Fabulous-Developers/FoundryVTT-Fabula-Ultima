@@ -1,6 +1,8 @@
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
+import { Checks } from '../checks/checks.mjs';
+import { GroupCheck } from '../checks/group-check.mjs';
 
 /**
  * @class
@@ -28,6 +30,8 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 			removeTrack: this.#onRemoveTrack,
 			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
 			promptTrack: this.#onPromptTrack,
+			// Bulk rolls
+			rollAll: FUCombatTracker.#onRollAll,
 		},
 	};
 
@@ -256,5 +260,53 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	static async #onPromptTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
 		await this.viewed.promptTrack(index);
+	}
+
+	/**
+	 * Prompt for a leader among the characters present in the encounter,
+	 * then start the regular initiative group check flow with that leader.
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRollAll(event, target) {
+		const combat = this.viewed;
+		if (!combat) return;
+
+		const characters = combat.combatants
+			.filter((combatant) => combatant.actor?.type === 'character')
+			.map((combatant) => ({ value: combatant.actorId, label: combatant.name }))
+			.filter((name, index, list) => list.findIndex((other) => other.value === name.value) === index);
+
+		if (characters.length === 0) {
+			ui.notifications.warn(game.i18n.localize('FU.DialogRollAllNoCharacter'));
+			return;
+		}
+
+		const leaderId = await foundry.applications.api.DialogV2.prompt({
+			window: {
+				title: game.i18n.localize('FU.DialogRollAllLeaderTitle'),
+			},
+			content: await foundry.applications.handlebars.renderTemplate(systemPath(`templates/dialog/dialog-roll-all-leader.hbs`), {
+				characters,
+				selected: characters.at(0).value,
+			}),
+			rejectClose: false,
+			ok: {
+				label: game.i18n.localize('FU.DialogRollAllLabel'),
+				callback: (event, button, dialog) => {
+					const select = dialog.element.querySelector(`select[name="leader"]`);
+					if (select instanceof HTMLSelectElement) return select.value;
+					return undefined;
+				},
+			},
+		});
+
+		if (!leaderId) {
+			console.warn(`No leader was selected for the initiative group check`);
+			return;
+		}
+
+		return Checks.groupCheck(game.actors.get(leaderId), GroupCheck.initInitiativeCheck);
 	}
 }
