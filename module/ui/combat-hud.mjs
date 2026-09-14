@@ -539,34 +539,34 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			'.combat-effects [data-effect-id][data-actor-id]',
 			[
 				{
-					name: 'FU.EffectEdit',
+					label: 'FU.EffectEdit',
 					icon: `<i class="fas fa-edit"></i>`,
-					callback: (elem) => {
+					onClick: (event, elem) => {
 						const effect = this._getEffectFromElement(elem);
 						if (!effect) return;
 						new foundry.applications.sheets.ActiveEffectConfig({ document: effect }).render({ force: true });
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem),
+					visible: (elem) => this._canModifyEffectContextMenu(elem),
 				},
 				{
-					name: 'FU.EffectToggle',
+					label: 'FU.EffectToggle',
 					icon: `<i class="fas fa-circle-check"></i>`,
-					callback: async (elem) => {
+					onClick: async (event, elem) => {
 						const effect = this._getEffectFromElement(elem);
 						if (!effect || !effect.canUserModify(game.user, 'update')) return;
 						await effect.update({ disabled: !effect.disabled });
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
+					visible: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
 				},
 				{
-					name: 'FU.EffectDelete',
+					label: 'FU.EffectDelete',
 					icon: `<i class="fas fa-trash"></i>`,
-					callback: async (elem) => {
+					onClick: async (event, elem) => {
 						const effect = this._getEffectFromElement(elem);
 						if (!effect || !effect.canUserModify(game.user, 'delete')) return;
 						await effect.delete();
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
+					visible: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
 				},
 			],
 			{
