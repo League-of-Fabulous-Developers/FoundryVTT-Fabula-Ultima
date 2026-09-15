@@ -314,18 +314,39 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 			return;
 		}
 
-		// Route the check through the leader's owning player(s) so that they roll it themselves.
 		const owners = game.users.filter((user) => user.active && !user.isGM && leader.testUserPermission(user, 'OWNER'));
-		if (owners.length > 0) {
-			return game.projectfu.socket.executeForUsers(
-				MESSAGES.RequestRollAll,
-				owners.map((user) => user.id),
-				leader.id,
-			);
+		// Prefer users who have the actor assigned as their character, as that is a definitive indicator of ownership.
+		const assignedOwners = owners.filter((user) => user.character?.id === leader.id);
+		if (assignedOwners.length === 1) {
+			return game.projectfu.socket.executeForUsers(MESSAGES.RequestInitiativeRollAll, [assignedOwners.at(0).id], leader.id);
 		}
 
-		// No owning player is connected — fall back to rolling the check here.
-		ui.notifications.warn(game.i18n.localize('FU.DialogRollAllNoOwnerWarning'));
-		return Checks.groupCheck(leader, GroupCheck.initInitiativeCheck);
+		// Either no owning player is connected, or the owner among several could not be determined — fall back to rolling the check here.
+		if (owners.length === 0) {
+			ui.notifications.warn(game.i18n.localize('FU.DialogRollAllNoOwnerWarning'));
+		} else {
+			ui.notifications.warn(game.i18n.localize('FU.DialogRollAllAmbiguousOwnerWarning'));
+		}
+		return FUCombatTracker.#startInitiativeGroupCheck(leader);
+	}
+
+	/**
+	 * Starts an initiative group check for the actor with the given ID on the receiving client,
+	 * so that the leader character's owning player performs the roll themselves.
+	 * @param {string} actorId
+	 */
+	static onInitiativeRollAllRequest(actorId) {
+		const actor = game.actors.get(actorId);
+		if (!actor) return;
+		return FUCombatTracker.#startInitiativeGroupCheck(actor);
+	}
+
+	/**
+	 * Starts an initiative group check for the given actor.
+	 * @param {Actor} actor The actor leading the group check
+	 * @returns {Promise<void>}
+	 */
+	static #startInitiativeGroupCheck(actor) {
+		return Checks.groupCheck(actor, GroupCheck.initInitiativeCheck);
 	}
 }
