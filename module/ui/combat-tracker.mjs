@@ -3,6 +3,7 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { GroupCheck } from '../checks/group-check.mjs';
+import { MESSAGES } from '../socket.mjs';
 
 /**
  * @class
@@ -307,6 +308,24 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 			return;
 		}
 
-		return Checks.groupCheck(game.actors.get(leaderId), GroupCheck.initInitiativeCheck);
+		const leader = game.actors.get(leaderId);
+		if (!leader) {
+			console.warn(`Could not find the leader actor ${leaderId} for the initiative group check`);
+			return;
+		}
+
+		// Route the check through the leader's owning player(s) so that they roll it themselves.
+		const owners = game.users.filter((user) => user.active && !user.isGM && leader.testUserPermission(user, 'OWNER'));
+		if (owners.length > 0) {
+			return game.projectfu.socket.executeForUsers(
+				MESSAGES.RequestRollAll,
+				owners.map((user) => user.id),
+				leader.id,
+			);
+		}
+
+		// No owning player is connected — fall back to rolling the check here.
+		ui.notifications.warn(game.i18n.localize('FU.DialogRollAllNoOwnerWarning'));
+		return Checks.groupCheck(leader, GroupCheck.initInitiativeCheck);
 	}
 }

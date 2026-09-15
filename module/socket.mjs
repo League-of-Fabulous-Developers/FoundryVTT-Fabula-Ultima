@@ -21,6 +21,8 @@ import { FUHooks } from './hooks.mjs';
 import { StudyRollHandler } from './pipelines/study-roll.mjs';
 import { DamagePipeline, DamageRequest } from './pipelines/damage-pipeline.mjs';
 import { InlineSourceInfo } from './helpers/inline-helper.mjs';
+import { Checks } from './checks/checks.mjs';
+import { GroupCheck } from './checks/group-check.mjs';
 
 import { DamageData } from './checks/damage-data.mjs';
 import { ResourcePipeline, ResourceRequest } from './pipelines/resource-pipeline.mjs';
@@ -35,6 +37,7 @@ export const MESSAGES = Object.freeze({
 	RequestEndTurn: 'requestEndTurn',
 	RequestTrade: 'requestTrade',
 	RequestZenitTransfer: 'requestZenitTransfer',
+	RequestRollAll: 'requestRollAll',
 	StudyEvent: 'studyEvent',
 	Pipeline: 'pipeline',
 });
@@ -167,6 +170,7 @@ export class FUSocketHandler {
 		this.register(MESSAGES.RequestEndTurn, requestEndTurn);
 		this.register(MESSAGES.RequestZenitTransfer, InventoryPipeline.requestZenitTransfer);
 		this.register(MESSAGES.RequestTrade, InventoryPipeline.requestTrade);
+		this.register(MESSAGES.RequestRollAll, requestRollAll);
 		this.register(MESSAGES.StudyEvent, StudyRollHandler.onStudyEvent);
 		this.register(MESSAGES.Pipeline, this.requestPipeline);
 
@@ -349,4 +353,15 @@ async function requestEndTurn(combatId, combatantId) {
 		const combatant = combat.combatants.get(combatantId);
 		if (combatant) await combat.endTurn(combatant);
 	}
+}
+
+/**
+ * Starts an initiative group check for the actor with the given ID on the receiving client,
+ * so that the leader character's owning player performs the roll themselves.
+ * @param {string} actorId
+ */
+async function requestRollAll(actorId) {
+	const actor = game.actors.get(actorId);
+	if (!actor) return;
+	return Checks.groupCheck(actor, GroupCheck.initInitiativeCheck);
 }
