@@ -11,13 +11,14 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	}
 });
 
+const registry = ClassFeatureRegistry.instance;
+
 export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 	static defineSchema() {
 		const { TypedSchemaField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
-			data: new TypedSchemaField(ClassFeatureRegistry.instance.qualifiedTypes, {
+			data: new TypedSchemaField(registry.qualifiedTypes, {
 				initial: () => {
-					const registry = ClassFeatureRegistry.instance;
 					const typeId = registry.qualifiedChoices.at(0);
 					const typeModel = registry.qualifiedTypes[typeId];
 					return new typeModel({});
@@ -55,6 +56,20 @@ export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
+		if (source.data) {
+			const featureTypes = registry.qualifiedTypes;
+			let type = source.data.type;
+			if (!(type in featureTypes)) {
+				type = source.featureType;
+			}
+			if (type) {
+				const dataModel = featureTypes[type];
+				if (dataModel) {
+					source.data = dataModel.migrateData(source.data);
+				}
+			}
+		}
 		if (source.featureType && source.data && !('type' in source.data)) {
 			source.data.type = source.featureType;
 		}

@@ -9,7 +9,7 @@
 				<div class="fu-tag">{{localize "FU.MagicDefenseAbbr"}}: +{{system.data.shield.magicDefense}}</div>
 			{{/if}}
 		{{else}}
-			<div class="fu-tag">{{localize (lookup additionalData.weaponTypes system.data.type)}}</div>
+			<div class="fu-tag">{{localize (lookup additionalData.weaponTypes system.data.weaponType)}}</div>
 			<div class="fu-tag">{{localize (lookup additionalData.weaponCategories system.data.category)}}</div>
 			{{#if system.data.complex}}
 				<div class="fu-tag">{{localize "FU.ClassFeatureWeaponModuleComplex" }}</div>

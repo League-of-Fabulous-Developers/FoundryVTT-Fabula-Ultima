@@ -9,6 +9,7 @@ import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { WeaponBehaviourMixin } from '../../weapon/weapon-behaviour-mixin.mjs';
 import { Traits } from '../../../../pipelines/traits.mjs';
+import { WeaponModuleMigrations } from './weapon-module-migrations.mjs';
 
 const weaponModuleTypes = {
 	...FU.weaponTypes,
@@ -38,7 +39,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		CheckConfiguration.configure(check)
 			.setDamage(weapon.damage.type, weapon.damage.bonus)
 			.setWeaponTraits({
-				weaponType: weapon.type,
+				weaponType: weapon.weaponType,
 				weaponCategory: weapon.category,
 				handedness: weapon.handedness,
 			})
@@ -64,7 +65,7 @@ const onRenderCheck = (data, result, actor, item) => {
 				weapon: {
 					category: weaponModule.category,
 					hands: weaponModule.handedness,
-					type: weaponModule.type,
+					type: weaponModule.weaponType,
 					quality: weaponModule.quality,
 					summary: item.system.summary.value,
 					description: await TextEditor.enrichHTML(item.system.description),
@@ -87,7 +88,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {Object} damage
  * @property {"physical","air","bolt","dark","earth","fire","ice","light","poison"} damage.type
  * @property {number} damage.bonus
- * @property {"melee","ranged","shield"} type
+ * @property {"melee","ranged","shield"} weaponType
  * @property {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown"} category
  * @property {boolean} complex
  * @property {string} quality
@@ -111,7 +112,7 @@ export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFea
 				type: new StringField({ initial: 'physical', choices: Object.keys(CONFIG.FU.damageTypes) }),
 				bonus: new NumberField({ initial: 0 }),
 			}),
-			type: new StringField({ initial: 'melee', choices: Object.keys(weaponModuleTypes) }),
+			weaponType: new StringField({ initial: 'melee', choices: Object.keys(weaponModuleTypes) }),
 			category: new StringField({
 				initial: 'arcane',
 				choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
@@ -179,8 +180,14 @@ export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFea
 		}
 	}
 
+	static migrateData(source) {
+		source = super.migrateData(source);
+		WeaponModuleMigrations.run(source);
+		return source;
+	}
+
 	get isShield() {
-		return this.type === 'shield';
+		return this.weaponType === 'shield';
 	}
 
 	/**
