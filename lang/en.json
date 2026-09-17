@@ -747,7 +747,7 @@
 		"DialogRollAllLeaderTitle": "Roll All — Choose Leader",
 		"DialogRollAllNoCharacter": "No character combatants are present in this encounter.",
 		"DialogRollAllNoOwnerWarning": "No connected player owns the leading character — the GM will roll the initiative check instead.",
-		"DialogRollAllAmbiguousOwnerWarning": "It could not be determined which player owns the leading character — the GM will roll the initiative check instead.",
+		"DialogRollAllAmbiguousOwnerWarning": "No connected player is assigned the leading character — the GM will roll the initiative check instead.",
 		"CombatCurrentTurn": "Current Turn:{turn}",
 		"CombatFactionFriendly": "Allies",
 		"CombatFactionHostile": "Opponents",
