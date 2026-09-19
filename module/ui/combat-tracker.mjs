@@ -1,6 +1,9 @@
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
+import { Checks } from '../checks/checks.mjs';
+import { GroupCheck } from '../checks/group-check.mjs';
+import { MESSAGES } from '../socket.mjs';
 
 /**
  * @class
@@ -28,6 +31,8 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 			removeTrack: this.#onRemoveTrack,
 			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
 			promptTrack: this.#onPromptTrack,
+			// Bulk rolls
+			rollAll: FUCombatTracker.#onRollAll,
 		},
 	};
 
@@ -256,5 +261,92 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	static async #onPromptTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
 		await this.viewed.promptTrack(index);
+	}
+
+	/**
+	 * Prompt for a leader among the characters present in the encounter,
+	 * then start the regular initiative group check flow with that leader.
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRollAll(event, target) {
+		const combat = this.viewed;
+		if (!combat) return;
+
+		const characters = combat.combatants
+			.filter((combatant) => combatant.actor?.type === 'character')
+			.map((combatant) => ({ value: combatant.actorId, label: combatant.name }))
+			.filter((name, index, list) => list.findIndex((other) => other.value === name.value) === index);
+
+		if (characters.length === 0) {
+			ui.notifications.warn(game.i18n.localize('FU.DialogRollAllNoCharacter'));
+			return;
+		}
+
+		const leaderId = await foundry.applications.api.DialogV2.prompt({
+			window: {
+				title: game.i18n.localize('FU.DialogRollAllLeaderTitle'),
+			},
+			content: await foundry.applications.handlebars.renderTemplate(systemPath(`templates/dialog/dialog-roll-all-leader.hbs`), {
+				characters,
+				selected: characters.at(0).value,
+			}),
+			rejectClose: false,
+			ok: {
+				label: game.i18n.localize('FU.DialogRollAllLabel'),
+				callback: (event, button, dialog) => {
+					const select = dialog.element.querySelector(`select[name="leader"]`);
+					if (select instanceof HTMLSelectElement) return select.value;
+					return undefined;
+				},
+			},
+		});
+
+		if (!leaderId) {
+			console.warn(`No leader was selected for the initiative group check`);
+			return;
+		}
+
+		const leader = game.actors.get(leaderId);
+		if (!leader) {
+			console.warn(`Could not find the leader actor ${leaderId} for the initiative group check`);
+			return;
+		}
+
+		const owners = game.users.filter((user) => user.active && !user.isGM && leader.testUserPermission(user, 'OWNER'));
+		// Prefer users who have the actor assigned as their character, as that is a definitive indicator of ownership.
+		const assignedOwners = owners.filter((user) => user.character?.id === leader.id);
+		if (assignedOwners.length === 1) {
+			return game.projectfu.socket.executeForUsers(MESSAGES.RequestInitiativeRollAll, [assignedOwners.at(0).id], leader.id);
+		}
+
+		// Either no owning player is connected, or the owner among several could not be determined — fall back to rolling the check here.
+		if (owners.length === 0) {
+			ui.notifications.warn(game.i18n.localize('FU.DialogRollAllNoOwnerWarning'));
+		} else {
+			ui.notifications.warn(game.i18n.localize('FU.DialogRollAllAmbiguousOwnerWarning'));
+		}
+		return FUCombatTracker.#startInitiativeGroupCheck(leader);
+	}
+
+	/**
+	 * Starts an initiative group check for the actor with the given ID on the receiving client,
+	 * so that the leader character's owning player performs the roll themselves.
+	 * @param {string} actorId
+	 */
+	static onInitiativeRollAllRequest(actorId) {
+		const actor = game.actors.get(actorId);
+		if (!actor) return;
+		return FUCombatTracker.#startInitiativeGroupCheck(actor);
+	}
+
+	/**
+	 * Starts an initiative group check for the given actor.
+	 * @param {Actor} actor The actor leading the group check
+	 * @returns {Promise<void>}
+	 */
+	static #startInitiativeGroupCheck(actor) {
+		return Checks.groupCheck(actor, GroupCheck.initInitiativeCheck);
 	}
 }
