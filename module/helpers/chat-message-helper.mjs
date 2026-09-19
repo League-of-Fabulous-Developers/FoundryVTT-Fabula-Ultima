@@ -10,16 +10,16 @@ import { SYSTEM } from './config.mjs';
 function registerContextMenuItem(flag, name, iconClass, callback) {
 	const hook = (application, menuItems) => {
 		menuItems.unshift({
-			name: name,
+			label: name,
 			icon: `<i class="${iconClass}"></i>`,
 			group: SYSTEM,
-			condition: (li) => {
+			visible: (li) => {
 				const messageId = li.dataset.messageId;
 				/** @type ChatMessage | undefined */
 				const message = fromId(messageId);
 				return message.getFlag(SYSTEM, flag);
 			},
-			callback: async (li) => {
+			onClick: async (event, li) => {
 				const messageId = li.dataset.messageId;
 				/** @type ChatMessage | undefined */
 				const message = fromId(messageId);

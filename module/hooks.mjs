@@ -202,8 +202,8 @@ export const FUHooks = {
 	/**
 	 * @description Dispatched on first render of a character sheet
 	 * @example
-	 * const callback = (contextOptions: ContextMenuOption[], sheet: ActorSheet, actor: Actor) => {...};
-	 * Hook.on("projectfu.getItemContextMenuOptions", callback)
+	 * const callback = (contextOptions: ContextMenuEntry[], sheet: ActorSheet, actor: Actor) => {...};
+	 * Hook.on("projectfu.getItemTableContextOptions", callback)
 	 */
 	ITEM_TABLE_CONTEXT_OPTIONS: 'projectfu.getItemTableContextOptions',
 	/**
