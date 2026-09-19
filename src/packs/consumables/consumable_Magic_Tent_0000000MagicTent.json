@@ -1,15 +1,15 @@
 {
-  "name": "Tonic",
+  "name": "Magic Tent",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/consumables/tonic.png",
+  "img": "systems/projectfu/styles/static/compendium/consumables/magic-tent.png",
   "system": {
     "subtype": {
       "value": "potion"
     },
     "summary": {
-      "value": "One creature recovers from all status effects."
+      "value": "Allows the entire group to rest while in the wilderness."
     },
-    "description": "<p>One creature recovers from all status effects.</p>",
+    "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. Cannot be used in settlements.</p>",
     "isFavored": {
       "value": false
     },
@@ -17,17 +17,12 @@
       "value": false
     },
     "ipCost": {
-      "value": 2
+      "value": 4
     },
     "source": "FUCR104",
-    "fuid": "tonic",
+    "fuid": "magic-tent",
     "damage": {
       "onApply": ""
-    },
-    "traits": {
-      "entries": [
-        "potion"
-      ]
     }
   },
   "effects": [],
@@ -47,14 +42,14 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
-    "createdTime": 1706516094485,
-    "modifiedTime": 1771880452612,
+    "createdTime": 1706516284047,
+    "modifiedTime": 1775517604907,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
-  "_id": "mZPZqpxSMxzpQ8uX",
-  "sort": 75000,
-  "_key": "!items!mZPZqpxSMxzpQ8uX"
+  "_id": "0000000MagicTent",
+  "sort": 100000,
+  "_key": "!items!0000000MagicTent"
 }

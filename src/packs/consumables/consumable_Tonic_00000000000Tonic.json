@@ -1,15 +1,15 @@
 {
-  "name": "Elixir",
+  "name": "Tonic",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/consumables/elixir.png",
+  "img": "systems/projectfu/styles/static/compendium/consumables/tonic.png",
   "system": {
     "subtype": {
       "value": "potion"
     },
     "summary": {
-      "value": "One creature recovers 50 Mind Points."
+      "value": "One creature recovers from all status effects."
     },
-    "description": "<p>One creature recovers 50 Mind Points.</p>",
+    "description": "<p>One creature recovers from all status effects.</p>",
     "isFavored": {
       "value": false
     },
@@ -17,23 +17,16 @@
       "value": false
     },
     "ipCost": {
-      "value": 3
+      "value": 2
     },
     "source": "FUCR104",
-    "fuid": "elixir",
+    "fuid": "tonic",
     "damage": {
       "onApply": ""
     },
-    "resource": {
-      "enabled": true,
-      "type": "mp",
-      "amount": "50"
-    },
     "traits": {
       "entries": [
-        "potion",
-        "restore",
-        "mind-point"
+        "potion"
       ]
     }
   },
@@ -54,14 +47,14 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
-    "createdTime": 1706515894820,
-    "modifiedTime": 1774718094187,
+    "createdTime": 1706516094485,
+    "modifiedTime": 1771880452612,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
-  "_id": "mn3F6qOfdVYM405v",
-  "sort": 50000,
-  "_key": "!items!mn3F6qOfdVYM405v"
+  "_id": "00000000000Tonic",
+  "sort": 75000,
+  "_key": "!items!00000000000Tonic"
 }

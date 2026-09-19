@@ -131,23 +131,22 @@ export class FUActor extends foundry.documents.Actor {
 				actorLink: true,
 				disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
 			});
-			await this.#addUnarmedStrike();
+			await this.#addStandardIssueItems();
 		}
 	}
 
-	async #addUnarmedStrike() {
-		// Load the compendium
-		const pack = game.packs.get('projectfu.basic-equipment');
-		const content = await pack.getDocuments();
-		// Find the item with system.fuid === 'unarmed-strike'
-		const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
-		if (unarmedStrikeItem) {
-			// Check if the item already exists in the character's inventory
-			const existingCopies = this.getItemsByFuid('unarmed-strike');
-			if (existingCopies.length === 0) {
-				this.updateSource({ items: [...this.items, unarmedStrikeItem.toObject(true)] });
-			}
-		}
+	async #addStandardIssueItems() {
+		const standardIssueItems = [
+			await fromUuid('Compendium.projectfu.basic-equipment.Item.000UnarmedStrike'),
+			await fromUuid('Compendium.projectfu.consumables.Item.0000000000Remedy'),
+			await fromUuid('Compendium.projectfu.consumables.Item.0000000000Elixir'),
+			await fromUuid('Compendium.projectfu.consumables.Item.00000000000Tonic'),
+			await fromUuid('Compendium.projectfu.consumables.Item.00ElementalShard'),
+			await fromUuid('Compendium.projectfu.consumables.Item.0000000MagicTent'),
+		].filter(Boolean);
+		this.updateSource({
+			items: [...this.items, ...standardIssueItems],
+		});
 	}
 
 	/**
