@@ -546,33 +546,19 @@ async function renderCheck(result, actor, item, flags = {}) {
 	return chatBuilder.create();
 }
 
-/**
- * Reapply event listeners when new chat messages are added to the DOM.
- */
-function reapplyClickListeners() {
-	Hooks.on('renderChatLog', (app, element) => {
-		// Reapply event listeners for each chat message
-		element.addEventListener('click', (event) => {
-			const itemId = event.target.dataset.itemId;
-			if (event.target.dataset.itemId) {
-				const messageId = event.target.closest('[data-message-id]')?.dataset?.messageId;
-				const message = game.messages.get(messageId);
-				if (message) {
-					const actor = ChatMessage.getSpeakerActor(message.speaker);
-					if (actor) {
-						const item = actor.items.get(itemId);
-						if (item) {
-							item.sheet.render(true);
-						}
-					}
-				}
+Hooks.on('renderChatMessageHTML', (message, html) => {
+	const onClick = (event) => {
+		const itemId = event.target.dataset.itemId;
+		const actor = ChatMessage.getSpeakerActor(message.speaker);
+		if (actor) {
+			const item = actor.items.get(itemId);
+			if (item) {
+				item.sheet.render(true);
 			}
-		});
-	});
-}
-
-// Initialize click listeners
-reapplyClickListeners();
+		}
+	};
+	html.querySelectorAll('[data-item-id]').forEach((el) => el.addEventListener('click', onClick));
+});
 
 /**
  * @param {Partial<import('./check-hooks.mjs').CheckV2>} check
