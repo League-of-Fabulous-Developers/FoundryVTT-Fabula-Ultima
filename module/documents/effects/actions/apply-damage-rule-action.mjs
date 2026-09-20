@@ -40,25 +40,28 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
+		/** @type {CheckConfigurer|undefined} */
+		const checkConfiguration = context.data.config;
+		/** @type {CheckV2|undefined} */
+		const check = context.data.check;
+
 		const targets = selected.map((t) => t.actor);
-		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets).withCheck(context.check);
+		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets).withCheck(check);
 		const evalAmount = await Expressions.evaluateAsync(this.amount, expressionContext);
 
-		if (context.config) {
-			if (context.check) {
-				const _traits = this.traits.values;
-				context.config.addTraits(_traits);
+		if (check && checkConfiguration) {
+			const _traits = this.traits.values;
+			checkConfiguration.addTraits(_traits);
 
-				switch (context.check.type) {
-					case 'display':
-						context.config.setDamage(this.damageType, evalAmount);
-						break;
+			switch (check.type) {
+				case 'display':
+					checkConfiguration.setDamage(this.damageType, evalAmount);
+					break;
 
-					case 'accuracy':
-					case 'magic':
-						context.config.damage.addModifier(context.label, evalAmount, [this.damageType]);
-						break;
-				}
+				case 'accuracy':
+				case 'magic':
+					checkConfiguration.damage.addModifier(context.label, evalAmount, [this.damageType]);
+					break;
 			}
 		} else {
 			const damageData = DamageData.construct(this.damageType, evalAmount);

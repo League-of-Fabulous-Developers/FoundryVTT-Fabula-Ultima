@@ -31,12 +31,17 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 		if (!this.effect) {
 			return;
 		}
+		const effectData = await Effects.getEffectData(this.effect);
+		if (!effectData) {
+			return;
+		}
 
-		if (context.config) {
+		if (context.data.config) {
 			/** @type CheckConfigurer **/
-			const config = context.event.config;
+			const config = context.data.config;
 			config.addEffects(this.effect);
-		} else if (context.renderData && context.source) {
+		} else if (context.data.renderData && context.source) {
+			const renderData = context.data.renderData;
 			// Flag information
 			let sourceInfo;
 			const item = context.getItem();
@@ -46,11 +51,11 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 				sourceInfo = context.sourceInfo;
 			}
 
-			if (!context.renderData.flags) {
-				context.renderData.flags = [];
+			if (!renderData.flags) {
+				renderData.flags = [];
 			}
-			context.renderData.flags = Pipeline.setFlag(context.renderData.flags, Flags.ChatMessage.Targets, true);
-			context.renderData.flags = Pipeline.setFlag(context.renderData.flags, Flags.ChatMessage.Effects, true);
+			renderData.flags = Pipeline.setFlag(renderData.flags, Flags.ChatMessage.Targets, true);
+			renderData.flags = Pipeline.setFlag(renderData.flags, Flags.ChatMessage.Effects, true);
 
 			const targets = selected.map((c) => c.actor);
 			const targetData = Targeting.serializeTargetData(targets);
@@ -60,7 +65,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			actions.push(await Effects.getTargetedAction(this.effect, sourceInfo));
 			actions = actions.filter((a) => a !== null);
 
-			context.renderData.sections.push(async () => ({
+			renderData.sections.push(async () => ({
 				order: ChatSectionOrder.actions,
 				partial: 'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 				data: {

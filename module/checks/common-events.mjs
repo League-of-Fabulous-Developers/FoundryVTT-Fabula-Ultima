@@ -761,18 +761,18 @@ async function toggleEffect(actor, uuid, enabled) {
  * @typedef CreateConsumableEvent
  * @property {CharacterInfo} source
  * @property {ConsumableDataModel} consumable
- * @property {ConsumableBuilder} builder
+ * @property {{resource?: ConsumableBuilder, damage?: Record<DamageType, ConsumableBuilder>}} actions
  * @property {CharacterInfo[]} targets
  */
 
-async function createConsumable(actor, item, targetData, builder) {
+async function createConsumable(actor, item, targetData, actions) {
 	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetData);
 	/** @type CreateConsumableEvent  **/
 	const event = {
 		source: source,
 		consumable: item.system,
-		builder: builder,
+		actions: actions,
 		targets: targets,
 	};
 	await callHookWithCallbacks(FUHooks.CONSUMABLE_CREATE_EVENT, event);

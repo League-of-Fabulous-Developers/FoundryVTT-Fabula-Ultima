@@ -31,18 +31,39 @@ export class FactionRelationRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		switch (this.relation) {
-			case 'ally':
-				if (!context.targets.some((t) => t.disposition === context.character.disposition && (this.inclusive || t.actor !== context.character.actor))) {
-					return false;
-				}
-				break;
+		const eventOrigin = context.source;
+		const effectOrigin = context.character;
 
-			case 'enemy':
-				if (!context.targets.some((t) => t.disposition !== context.character.disposition && (this.inclusive || t.actor !== context.character.actor))) {
-					return false;
+		if (eventOrigin.actor === effectOrigin.actor) {
+			switch (this.relation) {
+				case 'ally': {
+					if (!context.targets.some((t) => t.disposition === eventOrigin.disposition && (this.inclusive || t.actor !== eventOrigin.actor))) {
+						return false;
+					}
+					break;
 				}
-				break;
+				case 'enemy': {
+					if (!context.targets.some((t) => t.disposition !== eventOrigin.disposition && (this.inclusive || t.actor !== eventOrigin.actor))) {
+						return false;
+					}
+					break;
+				}
+			}
+		} else {
+			switch (this.relation) {
+				case 'ally': {
+					if (eventOrigin.disposition !== effectOrigin.disposition) {
+						return false;
+					}
+					break;
+				}
+				case 'enemy': {
+					if (eventOrigin.disposition === effectOrigin.disposition) {
+						return false;
+					}
+					break;
+				}
+			}
 		}
 
 		return true;

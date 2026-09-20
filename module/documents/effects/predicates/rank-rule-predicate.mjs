@@ -1,5 +1,6 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 const fields = foundry.data.fields;
 
@@ -10,6 +11,11 @@ export class RankRulePredicate extends RulePredicateDataModel {
 	static defineSchema() {
 		return {
 			ranks: new fields.SetField(new fields.StringField()),
+			quantifier: new fields.StringField({
+				initial: 'all',
+				blank: true,
+				choices: Object.keys(FU.predicateQuantifier),
+			}),
 		};
 	}
 
@@ -25,13 +31,23 @@ export class RankRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		for (const target of context.targets) {
-			/** @type NpcDataModel **/
-			const targetData = target.actor.system;
-			if (!this.ranks.has(targetData.rank.value)) {
-				return false;
-			}
+		if (context.character.actor.type !== 'character') return true;
+		if (this.ranks.size === 0) return true;
+
+		switch (this.quantifier) {
+			case 'all':
+				return context.targets.every((character) => this.#hasMatchingRank(character.actor));
+
+			case 'any':
+				return context.targets.some((character) => this.#hasMatchingRank(character.actor));
+
+			case 'none':
+				return context.targets.every((character) => !this.#hasMatchingRank(character.actor));
 		}
 		return true;
+	}
+
+	#hasMatchingRank(actor) {
+		return this.ranks.has(actor.system.rank.value);
 	}
 }

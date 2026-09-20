@@ -37,6 +37,6 @@ export class NotificationRuleTrigger extends RuleTriggerDataModel {
 		if (context.event.origin === context.origin) {
 			return false;
 		}
-		return context.event.id === this.eventId;
+		return !this.eventId || context.event.id === this.eventId;
 	}
 }

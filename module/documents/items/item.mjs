@@ -33,6 +33,7 @@ export class FUItem extends EnablePseudoDocumentsMixin(ItemBehaviourMixin(Item))
 	}
 
 	async update(delta) {
+		delta = foundry.utils.expandObject(delta);
 		const previous = this.system.toObject();
 		const postUpdate = await super.update(delta);
 

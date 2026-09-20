@@ -377,19 +377,44 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {String[]|String} traits
+	 * @param {string[]|string} traits
 	 * @returns {CheckConfigurer}
 	 */
 	addTraits(...traits) {
 		if (!this.check.additionalData[TRAITS]) {
 			this.check.additionalData[TRAITS] = [];
 		}
+		/** @type {string[]} */
+		const checkTraits = this.check.additionalData[TRAITS];
 
-		traits.flat().forEach((t) => {
+		for (const t of traits.flat()) {
 			if (t != null) {
-				this.check.additionalData[TRAITS].push(String(t).toLowerCase());
+				const trait = String(t).toLowerCase();
+				if (!checkTraits.includes(trait)) {
+					checkTraits.push(trait);
+				}
 			}
-		});
+		}
+		return this;
+	}
+
+	/**
+	 * @param {string[]|string} traits
+	 * @returns {CheckConfigurer}
+	 */
+	removeTraits(...traits) {
+		if (!this.check.additionalData[TRAITS]) {
+			return this;
+		}
+		/** @type {string[]} */
+		const checkTraits = this.check.additionalData[TRAITS];
+
+		for (const t of traits.flat()) {
+			if (t != null) {
+				const trait = String(t).toLowerCase();
+				checkTraits.findSplice((el) => el === trait);
+			}
+		}
 		return this;
 	}
 
@@ -452,6 +477,16 @@ export class CheckConfigurer extends CheckInspector {
 	 */
 	addDamageBonus(label, value) {
 		this.check.additionalData[DAMAGE]?.addModifier(label, value);
+		return this;
+	}
+
+	/**
+	 * @param {string} label
+	 * @param {number} multiplier
+	 * @return CheckConfigurer
+	 */
+	addDamageMulti(label, multiplier) {
+		this.check.additionalData[DAMAGE]?.addMultiplier(label, multiplier);
 		return this;
 	}
 

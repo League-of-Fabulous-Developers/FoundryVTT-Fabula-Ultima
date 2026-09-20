@@ -18,9 +18,16 @@ import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
+ * @typedef ResourceModifier
+ * @property {boolean} enabled
+ * @property {number} amount
+ * @property {number} multiplier
+ */
+
+/**
  * @class
  * @property {String} type
- * @property {ScalarModifier[]} modifiers
+ * @property {ResourceModifier[]} modifiers
  */
 export class UpdateResourceData {
 	static get baseModifier() {
@@ -37,7 +44,7 @@ export class UpdateResourceData {
 	/**
 	 * @param {FUResourceType} type
 	 * @param {number} amount
-	 * @returns {DamageData}
+	 * @returns {UpdateResourceData}
 	 */
 	static construct(type, amount) {
 		const data = new UpdateResourceData();
@@ -48,13 +55,29 @@ export class UpdateResourceData {
 
 	/**
 	 * @param {String} label
-	 * @param {Number} amount
+	 * @param {number} amount
 	 */
 	addModifier(label, amount) {
-		/** @type DamageModifier **/
+		/** @type ResourceModifier **/
 		const modifier = {
-			label: label ?? UpdateResourceData.baseModifier,
+			label: label ?? 'FU.Unknown',
 			amount: amount,
+			multiplier: 1,
+			enabled: true,
+		};
+		this.modifiers.push(modifier);
+	}
+
+	/**
+	 * @param {String} label
+	 * @param {number} multiplier
+	 */
+	addMultiplier(label, multiplier) {
+		/** @type ResourceModifier **/
+		const modifier = {
+			label: label ?? 'FU.Unknown',
+			amount: 0,
+			multiplier: multiplier,
 			enabled: true,
 		};
 		this.modifiers.push(modifier);
@@ -66,8 +89,19 @@ export class UpdateResourceData {
 	get total() {
 		let result = 0;
 		for (const mod of this.modifiers) {
-			if (mod.enabled && mod.amount) {
-				result += Number.parseInt(mod.amount);
+			if (mod.enabled) {
+				const amount = Number.parseInt(mod.amount);
+				if (Number.isFinite(amount) && amount !== 0) {
+					result += mod.amount;
+				}
+			}
+		}
+		for (const mod of this.modifiers) {
+			if (mod.enabled) {
+				let multiplier = mod.multiplier;
+				if (Number.isFinite(multiplier) && multiplier !== 1) {
+					result *= mod.amount;
+				}
 			}
 		}
 		return result;
@@ -446,7 +480,12 @@ async function calculateExpense(cost, actor, item, targets) {
 		return {
 			resource: cost.resource,
 			amount: 0,
+			multiplier: 1,
 			source: itemGroup,
+			traits: [],
+			get total() {
+				return this.amount * this.multiplier;
+			},
 		};
 	}
 
@@ -455,7 +494,12 @@ async function calculateExpense(cost, actor, item, targets) {
 	return {
 		resource: cost.resource,
 		amount: amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
+		multiplier: 1,
 		source: itemGroup,
+		traits: [],
+		get total() {
+			return this.amount * this.multiplier;
+		},
 	};
 }
 
@@ -587,7 +631,7 @@ async function configureExpense(config, actor, item, cost) {
 	const targets = config.getTargets();
 	const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
 	await CommonEvents.calculateExpense(actor, item, targets, expense);
-	config.setExpense(expense.resource, expense.amount);
+	config.setExpense(expense.resource, expense.total);
 }
 
 /**

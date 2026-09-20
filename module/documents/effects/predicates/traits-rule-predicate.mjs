@@ -42,8 +42,8 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 			}
 		}
 		// If a check configuration is provided
-		if (context.config) {
-			for (const t of context.config.getTraits()) {
+		if (context.data.config) {
+			for (const t of context.data.config.getTraits()) {
 				_traits.add(t);
 			}
 		}
@@ -60,11 +60,6 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 			}
 		}
 
-		// If any traits could be gathered...
-		if (_traits.size > 0) {
-			const evaluation = this.traits.evaluate(_traits);
-			return evaluation;
-		}
-		return false;
+		return this.traits.evaluate(_traits);
 	}
 }

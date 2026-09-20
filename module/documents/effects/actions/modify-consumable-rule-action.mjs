@@ -1,9 +1,6 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
-import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
-
-const fields = foundry.data.fields;
 
 /**
  * @property {String} bonus
@@ -11,10 +8,7 @@ const fields = foundry.data.fields;
  */
 export class ModifyConsumableRuleAction extends RuleActionDataModel {
 	static defineSchema() {
-		return {
-			bonus: new fields.StringField({ blank: true, nullable: false }),
-			multiplier: new fields.StringField({ blank: true, nullable: false }),
-		};
+		return {};
 	}
 
 	/**
@@ -38,15 +32,6 @@ export class ModifyConsumableRuleAction extends RuleActionDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async execute(context, selected) {
-		// TODO: Do different things based on the item traits?
-		if (context.event.builder) {
-			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, context.targetActors);
-			if (this.bonus) {
-				context.event.builder.bonus += await Expressions.evaluateAsync(this.bonus, expressionContext);
-			}
-			if (this.multiplier) {
-				context.event.builder.multiplier *= await Expressions.evaluateAsync(this.multiplier, expressionContext, false);
-			}
-		}
+		ui.notifications.warn(`The 'ModifyConsumableRuleAction' is deprecated for removal. Until then it is without function. Source: ${context.effect.name} in ${context.effect.actor}`);
 	}
 }

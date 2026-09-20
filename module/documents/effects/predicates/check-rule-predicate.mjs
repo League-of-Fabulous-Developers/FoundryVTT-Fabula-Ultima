@@ -59,10 +59,10 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		let check = context.check;
+		let check = context.data.check;
 		let targets = context.targets;
 
-		if (!context.check || !context.targets) {
+		if (!context.data.check || !context.targets) {
 			if (context.config) {
 				check = context.config.check;
 				targets = context.config.getTargets();

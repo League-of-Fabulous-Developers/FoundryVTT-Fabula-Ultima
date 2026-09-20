@@ -582,47 +582,28 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
  * @param {ResourceExpense|(() => Promise<ResourceExpense>)} expense
  */
 const expense = (data, actor, item, targets, flags, expense) => {
-	if (expense instanceof Function) {
-		data.sections.push(async () => {
-			const actualExpense = await expense();
-
-			if (actualExpense.amount <= 0) return undefined;
-
-			Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-			data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, actualExpense, data));
-			return {
-				order: ChatSectionOrder.expenses,
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-				data: {
-					name: item.name,
-					actor: actor.uuid,
-					item: item.uuid,
-					expense: actualExpense,
-					icon: FU.resourceIcons[actualExpense.resource],
-				},
-			};
-		});
-	} else {
-		if (expense.amount <= 0) {
-			return;
+	data.sections.push(async () => {
+		if (expense instanceof Function) {
+			expense = expense();
 		}
+		expense = await expense;
+
+		if (expense.total <= 0) return undefined;
 
 		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 		data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
-		data.sections.push(async () => {
-			return {
-				order: ChatSectionOrder.expenses,
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-				data: {
-					name: item.name,
-					actor: actor.uuid,
-					item: item.uuid,
-					expense: expense,
-					icon: FU.resourceIcons[expense.resource],
-				},
-			};
-		});
-	}
+		return {
+			order: ChatSectionOrder.expenses,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
 };
 
 /**

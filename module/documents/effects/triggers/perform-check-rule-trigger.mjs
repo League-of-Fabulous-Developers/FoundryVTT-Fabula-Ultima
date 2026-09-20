@@ -43,7 +43,7 @@ export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (!this.checkTypes.has(context.event.check.type)) {
+		if (this.checkTypes.size > 0 && !this.checkTypes.has(context.event.check.type)) {
 			return false;
 		}
 

@@ -11,7 +11,7 @@ export class PlaySoundEffectRuleAction extends RuleActionDataModel {
 	static defineSchema() {
 		return {
 			asset: new fields.FilePathField({ categories: ['AUDIO'] }),
-			volume: new fields.NumberField({ required: true, nullable: false, min: 0, max: 1, initial: 0.5 }),
+			volume: new fields.NumberField({ required: true, nullable: false, min: 0, max: 1, initial: 0.5, step: 0.05 }),
 		};
 	}
 
@@ -25,8 +25,10 @@ export class PlaySoundEffectRuleAction extends RuleActionDataModel {
 
 	async execute(context, selected) {
 		if (this.asset) {
-			// eslint-disable-next-line no-undef
-			AudioHelper.play({ src: this.asset, volume: this.volume, loop: false }, true);
+			/* We are not awaiting because network may be unreliable and loading of the sound may fail */
+			game.audio.play(this.asset, { volume: this.volume, loop: false, context: game.audio.environment }).catch((reason) => {
+				console.error(`Unable to play sound effect '${this.asset}'`, reason);
+			});
 		}
 	}
 }

@@ -90,9 +90,7 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 			return expense;
 		});
 
-		data.sections.push(async () => {
-			CommonEvents.feature(actor, item, [FeatureTraits.Invocation], targets, data);
-		});
+		data.sections.push(async () => CommonEvents.feature(actor, item, [FeatureTraits.Invocation], targets, data));
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);

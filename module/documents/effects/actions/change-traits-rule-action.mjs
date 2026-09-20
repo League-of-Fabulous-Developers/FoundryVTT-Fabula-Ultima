@@ -42,13 +42,14 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 
 	async execute(context, selected) {
 		const values = this.traits.values;
-		if (context.config) {
+		const checkConfig = context.data.config;
+		if (checkConfig) {
 			switch (this.mode) {
 				case 'add':
-					context.config.addTraits(...values);
+					checkConfig.addTraits(values);
 					break;
 				case 'remove':
-					//context.config.removeTraits(values);
+					checkConfig.removeTraits(values);
 					break;
 			}
 		}

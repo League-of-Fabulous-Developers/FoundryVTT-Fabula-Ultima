@@ -129,16 +129,26 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 			const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
 			await ResourcePipeline.configureExpense(config, actor, item, cost);
 
+			let actions = {};
 			if (consumable.resource.enabled) {
-				let builder = new ConsumableBuilder('resource', consumable.resource.amount, consumable.resource.type);
-				await CommonEvents.createConsumable(actor, item, targets, builder);
-				config.setResource(consumable.resource.type, builder.totalAmount());
+				actions.resource = new ConsumableBuilder('resource', consumable.resource.amount, consumable.resource.type);
 			}
 			if (consumable.damage.enabled) {
-				const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+				actions.damage = {};
 				for (const type of consumable.damage.types) {
-					let builder = new ConsumableBuilder('damage', consumable.damage.amount, type);
-					await CommonEvents.createConsumable(actor, item, targets, builder);
+					actions.damage[type] = new ConsumableBuilder('damage', consumable.damage.amount, type);
+				}
+			}
+
+			await CommonEvents.createConsumable(actor, item, targets, actions);
+
+			if (consumable.resource.enabled) {
+				config.setResource(consumable.resource.type, actions.resource.totalAmount());
+			}
+
+			if (consumable.damage.enabled) {
+				const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+				for (const [type, builder] of Object.entries(actions.damage)) {
 					const data = DamageData.construct(type, builder.totalAmount());
 					const action = DamagePipeline.getTargetedAction(data, sourceInfo);
 					config.addTargetedAction(action);

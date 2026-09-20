@@ -136,7 +136,7 @@ function onCombatEvent(e, registerCallback) {
  */
 function onAttackEvent(e, registerCallback) {
 	registerCallback(async (event) => {
-		await evaluate(FUHooks.ATTACK_EVENT, event, event.source, event.targets, event.check);
+		await evaluate(FUHooks.ATTACK_EVENT, event, event.source, event.targets, { check: event.check });
 	});
 }
 
@@ -224,7 +224,10 @@ function onStatusEvent(e, registerCallback) {
  */
 function onCreateConsumableEvent(e, registerCallback) {
 	registerCallback(async (event) => {
-		await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets);
+		await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets, {
+			consumable: event.consumable,
+			actions: event.actions,
+		});
 	});
 }
 
@@ -366,13 +369,17 @@ function getSceneCharacters(targets) {
 }
 
 /**
+ * @param {string} type
+ * @param {any} event
  * @param {ActiveEffect|FUActiveEffect} effect
  * @returns {boolean}
  */
-function canProcessEffect(effect) {
+function canProcessEffect(type, event, effect) {
 	const enabled = !(effect.isSuppressed || effect.disabled);
+	// Special case to allow rule evaluation on effect disable. I know it's not ideal, better solutions welcome.
+	const isToggledEffect = type === FUHooks.EFFECT_TOGGLED_EVENT && event.uuid === effect.uuid;
 	const hasRuleElements = !foundry.utils.isEmpty(effect.system.rules.elements);
-	return enabled && hasRuleElements;
+	return (enabled || isToggledEffect) && hasRuleElements;
 }
 
 /**
@@ -388,7 +395,7 @@ const eventsWithoutSourceCharacter = new Set([FUHooks.COMBAT_EVENT]);
  * @param {RuleElementContext} data Properties for the rule element context.
  * @return {Promise<void>}
  */
-async function evaluate(type, event, source, targets, data = undefined) {
+async function evaluate(type, event, source, targets, data = {}) {
 	// This can happen when sending items to chat.
 	if (!source) {
 		// But some events
@@ -400,7 +407,7 @@ async function evaluate(type, event, source, targets, data = undefined) {
 	const sceneCharacters = getSceneCharacters(source ? [source, ...targets] : targets);
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allApplicableEffects()) {
-			if (!canProcessEffect(effect)) {
+			if (!canProcessEffect(type, event, effect)) {
 				continue;
 			}
 			/** @type RuleElementContext **/
@@ -414,8 +421,9 @@ async function evaluate(type, event, source, targets, data = undefined) {
 				scene: {
 					characters: sceneCharacters,
 				},
-				...data,
+				data,
 			};
+
 			// If this effect was attached on an item (best case)
 			if (effect.parent.documentName === 'Item') {
 				contextData.item = effect.parent;
@@ -428,7 +436,18 @@ async function evaluate(type, event, source, targets, data = undefined) {
 					type: 'rule',
 				});
 			}
-			const context = new RuleElementContext(contextData);
+			let context = new RuleElementContext(contextData);
+			context = new Proxy(context, {
+				get(target, p, receiver) {
+					let rv = undefined;
+					if (Reflect.has(target, p)) {
+						rv = Reflect.get(target, p, receiver);
+					} else {
+						console.warn(new Error(`Accessing undefined context entry ${p}`));
+					}
+					return rv;
+				},
+			});
 
 			for (const element of Object.values(effect.system.rules.elements)) {
 				await element.evaluate(context);

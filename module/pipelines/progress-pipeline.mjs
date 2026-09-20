@@ -24,7 +24,7 @@ import { systemPath } from '../helpers/config.mjs';
  */
 function getAdvanceTargetedAction(actor, id, increment, source) {
 	const icon = 'fa fa-clock';
-	const progress = actor.resolveProgress('brainwave-clock');
+	const progress = actor.resolveProgress(id);
 	const tooltip = StringUtils.localize('FU.ProgressAdvance', {
 		name: progress.name,
 	});

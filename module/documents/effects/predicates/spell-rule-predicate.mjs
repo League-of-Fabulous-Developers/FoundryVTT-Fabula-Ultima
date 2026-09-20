@@ -8,7 +8,7 @@ const fields = foundry.data.fields;
 /**
  * @extends RulePredicateDataModel
  * @inheritDoc
- * @property {Boolean} offensive
+ * @property {"true", "false", ""} offensive
  * @property {FUDurationType} duration
  */
 export class SpellRulePredicate extends RulePredicateDataModel {
@@ -38,9 +38,9 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 	 */
 	validateContext(context) {
 		// Resolve the item among events...
-		let item;
+		let item = context.item;
 		if (context.event.item) {
-			item = context.event.item;
+			item = fromUuidSync(context.event.item.uuid);
 		}
 
 		if (!item) {
@@ -52,16 +52,16 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 
 		/** @type SpellDataModel **/
 		const spell = item.system;
-		if (this.offensive) {
-			if (!spell.isOffensive.value) {
-				// Check if the config has damage data...
-				if (!context.config || !context.config.hasDamage) {
-					return false;
-				}
+		if (this.offensive !== '') {
+			const offensive = this.offensive !== 'false';
+			if (offensive !== spell.hasRoll.value) {
+				return false;
 			}
 		}
-		if (this.duration && this.duration !== spell.duration.value) {
-			return false;
+		if (this.duration !== '') {
+			if (this.duration !== spell.duration.value) {
+				return false;
+			}
 		}
 		return true;
 	}

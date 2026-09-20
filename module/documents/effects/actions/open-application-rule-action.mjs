@@ -38,7 +38,7 @@ export class OpenApplicationRuleAction extends RuleActionDataModel {
 			case FUHooks.RENDER_CHECK_EVENT: {
 				const action = ApplicationPipeline.getChatAction(context.character.actor, context.item, this.application);
 				if (action) {
-					context.config.addTargetedAction(action);
+					context.data.config.addTargetedAction(action);
 				}
 				break;
 			}
