@@ -332,6 +332,7 @@ FU.statusEffects = {
 	aura: 'FU.Aura',
 	barrier: 'FU.Barrier',
 	crisis: 'FU.Crisis',
+	ko: 'FU.KO',
 	cover: 'FU.Cover',
 	flying: 'FU.Flying',
 	guard: 'FU.Guard',
