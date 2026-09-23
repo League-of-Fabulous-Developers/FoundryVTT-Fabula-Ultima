@@ -192,6 +192,11 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		context.expandedRuleElements = this.#expandedRuleElements;
 
 		context.originName = this.document.sourceName;
+
+		context.documents ??= {};
+		context.documents.macro = game.macros.contents;
+
+		console.log(context);
 		return context;
 	}
 

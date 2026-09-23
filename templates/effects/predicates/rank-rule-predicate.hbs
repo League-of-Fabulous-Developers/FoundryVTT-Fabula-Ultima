@@ -1,11 +1,10 @@
 <div class="fu-form__property">
-	<span>{{localize 'FU.Rank'}}</span>
-	{{formGroup predicate.schema.fields.ranks value=predicate.ranks options=options.rankOptions name=(pfuConcat path ".ranks") classes="fu-form__set stacked"}}
+  <span>{{localize 'FU.Rank'}}</span>
+  {{formInput predicate.schema.fields.ranks value=predicate.ranks options=options.rankOptions name=(pfuConcat path ".ranks") classes="fu-form__set stacked"}}
 </div>
-
 <label class="fu-form__property">
-	<span>{{localize 'FU.Quantifier'}}</span>
-	<select name="{{pfuConcat path ".quantifier"}}" class="">
-		{{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
-	</select>
+  <span>{{localize 'FU.Quantifier'}}</span>
+  <select name="{{pfuConcat path ".quantifier"}}">
+    {{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
+  </select>
 </label>

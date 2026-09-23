@@ -1,47 +1,47 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.DamageType'}}</span>
-	<select name="{{pfuConcat path ".damageType"}}">
-		<option value="">-</option>
-		{{selectOptions options.damageTypes selected=trigger.damageType sort=true localize=true}}
-	</select>
+  <span>{{localize 'FU.DamageType'}}</span>
+  <select name="{{pfuConcat path ".damageType"}}">
+    <option value="">-</option>
+    {{selectOptions options.damageTypes selected=trigger.damageType sort=true localize=true}}
+  </select>
 </label>
-
 <div class="fu-form__property">
-	<span>{{localize 'FU.ItemGroup'}}</span>
-	{{formGroup trigger.schema.fields.itemGroups value=trigger.itemGroups options=options.itemGroupOptions name=(pfuConcat path ".itemGroups") classes="fu-form__set stacked"}}
+  <span>{{localize 'FU.ItemGroup'}}</span>
+  {{formInput trigger.schema.fields.itemGroups value=trigger.itemGroups options=options.itemGroupOptions name=(pfuConcat path ".itemGroups") classes="fu-form__set stacked"}}
 </div>
-
 <label class="fu-form__property">
-	<span>{{localize 'FU.Affinity'}}</span>
-	<select name="{{pfuConcat path ".affinity"}}">
-		<option value="">-</option>
-		{{selectOptions options.affinities selected=trigger.affinity sort=true localize=true}}
-	</select>
+  <span>{{localize 'FU.Affinity'}}</span>
+  <select name="{{pfuConcat path ".affinity"}}">
+    <option value="">-</option>
+    {{selectOptions options.affinities selected=trigger.affinity sort=true localize=true}}
+  </select>
 </label>
-
 <div class="fu-form__property-row">
-	<label class="fu-form__property">
-		<span>{{localize 'FU.ComparisonOperator'}}</span>
-		<select name="{{pfuConcat path ".damageThreshold.operator"}}">
-			<option value="">-</option>
-			{{selectOptions options.comparisonOperator selected=trigger.damageThreshold.operator sort=true localize=true}}
-		</select>
-	</label>
-
-	<label class="fu-form__property">
-		<span>{{localize 'FU.Amount'}}</span>
-		<input type="number" name="{{pfuConcat path ".damageThreshold.amount"}}" value="{{ trigger.damageThreshold.amount }}" />
-	</label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.ComparisonOperator'}}</span>
+    <select name="{{pfuConcat path ".damageThreshold.operator"}}">
+      <option value="">-</option>
+      {{selectOptions options.comparisonOperator selected=trigger.damageThreshold.operator sort=true localize=true}}
+    </select>
+  </label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Amount'}}</span>
+    <input type="number"
+           name="{{pfuConcat path ".damageThreshold.amount"}}"
+           value="{{ trigger.damageThreshold.amount }}" />
+  </label>
 </div>
-
 <div class="fu-form__property-row">
-	<div class="fu-form__property">
-		<span>{{localize 'FU.Local'}}</span>
-		{{formGroup trigger.schema.fields.local value=trigger.local name=(pfuConcat path ".local") }}
-	</div>
-
-	<label class="fu-form__property">
-		<span>{{localize 'FU.Identifier'}}</span>
-		<input type="text" name={{pfuConcat path ".identifier"}} value="{{ trigger.identifier }}" />
-	</label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Local'}}</span>
+    <input type="checkbox"
+           name="{{pfuConcat path ".local"}}"
+           {{checked trigger.local}}>
+  </label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Identifier'}}</span>
+    <input type="text"
+           name="{{pfuConcat path ".identifier"}}"
+           value="{{ trigger.identifier }}" />
+  </label>
 </div>

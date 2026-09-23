@@ -1,15 +1,14 @@
 <fieldset class="title-fieldset desc resource-content"
-		  style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-	<legend class="resource-label-full">
-		<label class="resource-label-m">
-			<i class="ra ra-ammo-bag icon"></i>
-			{{localize 'FU.Traits'}}
-		</label>
-	</legend>
-
-	<div class="fu-traits">
-		{{formGroup system.schema.fields.traits value=system.traits options=system.traitOptions classes="resource-label-m stacked"}}
-	</div>
+          style="display: flex;
+                 flex-wrap: wrap;
+                 justify-content: space-around">
+  <legend class="resource-label-full">
+    <label class="resource-label-m">
+      <i class="ra ra-ammo-bag icon"></i>
+      {{localize 'FU.Traits'}}
+    </label>
+  </legend>
+  <div class="fu-traits">
+    {{formInput system.schema.fields.traits value=system.traits options=system.traitOptions classes="resource-label-m stacked"}}
+  </div>
 </fieldset>
-
-

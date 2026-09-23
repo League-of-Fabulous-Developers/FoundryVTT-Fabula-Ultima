@@ -1,4 +1,14 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.Macro'}}</span>
-	{{formGroup action.schema.fields.macro value=action.macro.id name=(pfuConcat path ".macro")}}
+  <span>{{localize 'FU.Macro'}}</span>
+  <select name="{{pfuConcat path ".macro"}}">
+    <option></option>
+    {{#each @root.documents.macro as |macro| }}
+      <option
+        value="{{macro.id}}"
+        {{#if (eq ../action.macro.id macro.id) }}
+          selected
+        {{/if}}
+      >{{macro.name}}</option>
+    {{/each}}
+  </select>
 </label>

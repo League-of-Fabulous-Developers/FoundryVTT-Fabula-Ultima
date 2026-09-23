@@ -1,27 +1,28 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.Identifier'}}</span>
-	<input type="text" name="{{pfuConcat path ".identifier"}}" value="{{ action.identifier }}" />
+  <span>{{localize 'FU.Identifier'}}</span>
+  <input type="text"
+         name="{{pfuConcat path ".identifier"}}"
+         value="{{ action.identifier }}" />
 </label>
-
 <div class="fu-form__property-row">
-	<label class="fu-form__property">
-		<span>{{localize 'FU.Action'}}</span>
-		<select name="{{pfuConcat path ".action"}}">
-			{{selectOptions options.commandAction selected=action.action sort=true localize=true}}
-		</select>
-	</label>
-
-	<label class="fu-form__property">
-		<span>{{localize 'FU.RuleActionNotify'}}</span>
-		{{formGroup action.schema.fields.notify value=action.notify name=(pfuConcat path ".notify") }}
-	</label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Action'}}</span>
+    <select name="{{pfuConcat path ".action"}}">
+      {{selectOptions options.commandAction selected=action.action sort=true localize=true}}
+    </select>
+  </label>
+  <label class="fu-form__property">
+    <span>{{localize 'FU.RuleActionNotify'}}</span>
+    <input type="checkbox"
+           name="{{pfuConcat path ".notify"}}"
+           {{checked action.notify}}>
+  </label>
 </div>
-
-{{#if (eq action.action 'update')}}
-	<label class="fu-form__property">
-		<span>{{localize 'FU.Amount'}}</span>
-		<input type="text" name="{{pfuConcat path ".amount"}}" value="{{ action.amount }}" />
-	</label>
+{{#if (eq action.action 'update') }}
+  <label class="fu-form__property">
+    <span>{{localize 'FU.Amount'}}</span>
+    <input type="text"
+           name="{{pfuConcat path ".amount"}}"
+           value="{{ action.amount }}" />
+  </label>
 {{/if}}
-
-

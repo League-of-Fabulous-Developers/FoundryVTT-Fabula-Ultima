@@ -1,29 +1,28 @@
-{{#if quantifier}}
-	<div class="fu-form__group">
-		{{#if showLabel}}
-			<label class="fu-form__group__header flex-group-center">
-				<i class="ra ra-aries"></i>{{localize 'FU.Traits'}}
-			</label>
-		{{/if}}
-		<div class="fu-traits">
-			{{#if showLabel}}
-				<span>{{localize 'FU.Traits'}}</span>
-			{{/if}}
-			{{formGroup traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
-		</div>
-
-		<label class="fu-form__property">
-			<span>{{localize 'FU.Quantifier'}}</span>
-			<select name="{{quantifier.path}}">
-				{{selectOptions quantifier.options selected=quantifier.value localize=true}}
-			</select>
-		</label>
-	</div>
+{{#if quantifier }}
+  <div class="fu-form__group">
+    {{#if showLabel }}
+      <label class="fu-form__group__header flex-group-center">
+        <i class="ra ra-aries"></i>{{localize 'FU.Traits'}}
+      </label>
+    {{/if}}
+    <div class="fu-traits">
+      {{#if showLabel }}
+        <span>{{localize 'FU.Traits'}}</span>
+      {{/if}}
+      {{formInput traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
+    </div>
+    <label class="fu-form__property">
+      <span>{{localize 'FU.Quantifier'}}</span>
+      <select name="{{quantifier.path}}">
+        {{selectOptions quantifier.options selected=quantifier.value localize=true}}
+      </select>
+    </label>
+  </div>
 {{else}}
-	<div class="fu-traits">
-		{{#if showLabel}}
-			<span>{{localize 'FU.Traits'}}</span>
-		{{/if}}
-		{{formGroup traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
-	</div>
+  <div class="fu-traits">
+    {{#if showLabel }}
+      <span>{{localize 'FU.Traits'}}</span>
+    {{/if}}
+    {{formInput traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
+  </div>
 {{/if}}
