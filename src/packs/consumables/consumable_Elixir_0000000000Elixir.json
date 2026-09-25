@@ -1,15 +1,15 @@
 {
-  "name": "Magic Tent",
+  "name": "Elixir",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/consumables/magic-tent.png",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elixir.png",
   "system": {
     "subtype": {
       "value": "potion"
     },
     "summary": {
-      "value": "Allows the entire group to rest while in the wilderness."
+      "value": "One creature recovers 50 Mind Points."
     },
-    "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. Cannot be used in settlements.</p>",
+    "description": "<p>One creature recovers 50 Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -17,12 +17,24 @@
       "value": false
     },
     "ipCost": {
-      "value": 4
+      "value": 3
     },
     "source": "FUCR104",
-    "fuid": "magic-tent",
+    "fuid": "elixir",
     "damage": {
       "onApply": ""
+    },
+    "resource": {
+      "enabled": true,
+      "type": "mp",
+      "amount": "50"
+    },
+    "traits": {
+      "entries": [
+        "potion",
+        "restore",
+        "mind-point"
+      ]
     }
   },
   "effects": [],
@@ -42,14 +54,14 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
-    "createdTime": 1706516284047,
-    "modifiedTime": 1775517604907,
+    "createdTime": 1706515894820,
+    "modifiedTime": 1774718094187,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
-  "_id": "QYyuig5iy5mMN9F8",
-  "sort": 100000,
-  "_key": "!items!QYyuig5iy5mMN9F8"
+  "_id": "0000000000Elixir",
+  "sort": 50000,
+  "_key": "!items!0000000000Elixir"
 }
