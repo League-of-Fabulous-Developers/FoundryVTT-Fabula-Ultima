@@ -12,7 +12,9 @@
 </label>
 <div class="fu-form__property">
   <span>{{localize 'FU.ItemGroup'}}</span>
-  {{formInput trigger.schema.fields.itemGroups value=trigger.itemGroups options=options.itemGroupOptions name=(pfuConcat path ".itemGroups") classes="fu-form__set stacked"}}
+  <multi-select name="{{pfuConcat path ".itemGroups"}}" class="fu-form__set stacked">
+    {{selectOptions options.itemGroupOptions selected=trigger.itemGroups}}
+  </multi-select>
 </div>
 <div class="fu-form__property-row">
   <label class="fu-form__property">

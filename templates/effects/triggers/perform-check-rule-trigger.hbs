@@ -1,6 +1,8 @@
 <div class="fu-form__property">
   <span>{{localize 'FU.CheckType'}}</span>
-  {{formInput trigger.schema.fields.checkTypes value=trigger.checkTypes options=options.checkTypeOptions name=(pfuConcat path ".checkTypes") classes="fu-form__set stacked"}}
+  <multi-select name="{{pfuConcat path ".checkTypes"}}" class="fu-form__set stacked">
+  {{selectOptions options.checkTypeOptions selected=trigger.checkTypes}}
+  </multi-select>
 </div>
 <div class="fu-form__property-row">
   <label class="fu-form__property">

@@ -1,6 +1,8 @@
 <label class="fu-form__property">
   <span>{{localize 'FU.Species'}}</span>
-  {{formInput predicate.schema.fields.species value=predicate.species options=options.speciesOptions name=(pfuConcat path ".species") classes="fu-form__set stacked"}}
+  <multi-select name="{{pfuConcat path ".species"}}" class="fu-form__set stacked">
+  {{selectOptions options.speciesOptions selected=predicate.species}}
+  </multi-select>
 </label>
 <label class="fu-form__property">
   <span>{{localize 'FU.Quantifier'}}</span>

@@ -25,5 +25,7 @@
 </div>
 <div class="fu-form__property">
   <span>{{localize 'FU.Category'}}</span>
-  {{formInput predicate.schema.fields.categories value=predicate.categories options=options.weaponCategoryOptions name=(pfuConcat path ".categories") classes="fu-form__set stacked"}}
+  <multi-select name="{{pfuConcat path ".categories"}}" class="fu-form__set stacked">
+  {{selectOptions options.weaponCategoryOptions selected=predicate.categories}}
+  </multi-select>
 </div>

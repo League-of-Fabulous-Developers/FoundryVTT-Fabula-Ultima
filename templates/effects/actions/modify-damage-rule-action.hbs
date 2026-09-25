@@ -1,6 +1,8 @@
 <label class="fu-form__property">
   <span>{{localize 'FU.DamageType'}}</span>
-  {{formInput action.schema.fields.damageTypes value=action.damageTypes options=options.damageTypeOptions name=(pfuConcat path ".damageTypes") classes="fu-form__set stacked"}}
+  <multi-select name="{{pfuConcat path ".damageTypes"}}" class="fu-form__set stacked">
+  {{selectOptions options.damageTypeOptions selected=action.damageTypes }}
+  </multi-select>
 </label>
 {{pfuTraits action.traits (pfuConcat path '.traits')}}
 <label class="fu-form__property">

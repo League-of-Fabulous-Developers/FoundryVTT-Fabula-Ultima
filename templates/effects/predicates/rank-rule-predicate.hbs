@@ -1,6 +1,8 @@
 <div class="fu-form__property">
   <span>{{localize 'FU.Rank'}}</span>
-  {{formInput predicate.schema.fields.ranks value=predicate.ranks options=options.rankOptions name=(pfuConcat path ".ranks") classes="fu-form__set stacked"}}
+  <multi-select name="{{pfuConcat path ".ranks"}}" class="fu-form__set stacked">
+  {{selectOptions options.rankOptions selected=predicate.ranks }}
+  </multi-select>
 </div>
 <label class="fu-form__property">
   <span>{{localize 'FU.Quantifier'}}</span>
