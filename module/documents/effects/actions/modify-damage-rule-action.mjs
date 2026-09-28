@@ -55,8 +55,8 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	}
 
 	#variantHandlers = {
-		overChannel: this.#handleOverChannel,
-		psychicGift: this.#handlePsychicGift,
+		overChannel: this.#handleOverChannel.bind(this),
+		psychicGift: this.#handlePsychicGift.bind(this),
 	};
 
 	/**
