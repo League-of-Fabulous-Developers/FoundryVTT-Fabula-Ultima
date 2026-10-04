@@ -168,6 +168,25 @@ export class FUPartySheet extends FUActorSheet {
 				this.render();
 			}
 		});
+
+		let hookId = null;
+
+		this.addEventListener('prerender', () => {
+			if (!hookId) {
+				hookId = Hooks.on(FUHooks.PARTY_SHEET_THEME_CHANGED, () => {
+					const shouldRerender = this.rendered;
+					this.close();
+					this.render(shouldRerender);
+				});
+			}
+		});
+
+		this.addEventListener('close', () => {
+			if (hookId) {
+				Hooks.off(FUHooks.PARTY_SHEET_THEME_CHANGED, hookId);
+				hookId = null;
+			}
+		});
 	}
 
 	/**

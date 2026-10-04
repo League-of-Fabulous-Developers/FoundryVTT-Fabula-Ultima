@@ -192,6 +192,7 @@ export const registerSystemSettings = function () {
 		default: 'modern',
 		choices: FU.partySheetThemes,
 		requiresReload: false,
+		onChange: () => Hooks.callAll(FUHooks.PARTY_SHEET_THEME_CHANGED),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.codexUploadDirectory, {
