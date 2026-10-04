@@ -1,4 +1,6 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.Macro'}}</span>
-	{{formGroup action.schema.fields.macro value=action.macro.id name=(pfuConcat path ".macro")}}
+  <span>{{localize 'FU.Macro'}}</span>
+  <select name="{{pfuConcat path ".macro"}}">
+    {{selectOptions @root.documents.macro selected=action.macro.id valueAttr="id" labelAttr="name" blank=""}}
+  </select>
 </label>

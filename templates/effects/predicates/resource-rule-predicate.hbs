@@ -21,10 +21,12 @@
   </label>
 </div>
 <div class="fu-form__property-row">
-  <div class="fu-form__property">
+  <label class="fu-form__property">
     <span>{{localize 'FU.Local'}}</span>
-    {{formGroup predicate.schema.fields.local value=predicate.local name=(pfuConcat path ".local") }}
-  </div>
+    <input type="check"
+           name="{{pfuConcat path ".local"}}"
+           {{checked predicate.local}}>
+  </label>
   <label class="fu-form__property">
     <span>{{localize 'FU.Identifier'}}</span>
     <input type="text"
