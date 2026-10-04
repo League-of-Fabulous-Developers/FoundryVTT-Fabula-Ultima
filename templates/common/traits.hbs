@@ -9,7 +9,9 @@
       {{#if showLabel }}
         <span>{{localize 'FU.Traits'}}</span>
       {{/if}}
-      {{formInput traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
+      <multi-select class="fu-form__set stacked" name="{{traitFieldPath}}">
+      {{selectOptions traitOptions selected=traitFieldValue}}
+      </multi-select>
     </div>
     <label class="fu-form__property">
       <span>{{localize 'FU.Quantifier'}}</span>
@@ -23,6 +25,8 @@
     {{#if showLabel }}
       <span>{{localize 'FU.Traits'}}</span>
     {{/if}}
-    {{formInput traitField name=traitFieldPath value=traitFieldValue options=traitOptions classes="fu-form__set stacked"}}
+    <multi-select class="fu-form__set stacked" name="{{traitFieldPath}}">
+    {{selectOptions traitOptions selected=traitFieldValue}}
+    </multi-select>
   </div>
 {{/if}}

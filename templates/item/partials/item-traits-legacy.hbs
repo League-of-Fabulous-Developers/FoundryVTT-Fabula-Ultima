@@ -9,6 +9,8 @@
     </label>
   </legend>
   <div class="fu-traits">
-    {{formInput system.schema.fields.traits value=system.traits options=system.traitOptions classes="resource-label-m stacked"}}
+    <multi-select class="resource-label-m stacked" name="system.traits">
+    {{selectOptions system.traitOptions selected=system.traits}}
+    </multi-select>
   </div>
 </fieldset>
