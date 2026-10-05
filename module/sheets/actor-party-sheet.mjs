@@ -173,17 +173,21 @@ export class FUPartySheet extends FUActorSheet {
 
 		this.addEventListener('prerender', () => {
 			if (!hookId) {
-				hookId = Hooks.on(FUHooks.PARTY_SHEET_THEME_CHANGED, () => {
-					const shouldRerender = this.rendered;
-					this.close();
-					this.render(shouldRerender);
+				hookId = Hooks.on('updateSetting', (setting) => {
+					if (setting.key === `${SYSTEM}.${SETTINGS.partySheetTheme}`) {
+						const shouldRerender = this.rendered;
+						const shouldBeMinimized = this.minimized;
+						void this.close()
+							.then(() => this.render(shouldRerender))
+							.then(() => (shouldBeMinimized ? this.minimize() : null));
+					}
 				});
 			}
 		});
 
 		this.addEventListener('close', () => {
 			if (hookId) {
-				Hooks.off(FUHooks.PARTY_SHEET_THEME_CHANGED, hookId);
+				Hooks.off('updateSetting', hookId);
 				hookId = null;
 			}
 		});

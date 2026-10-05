@@ -256,8 +256,4 @@ export const FUHooks = {
 	 * @description Dispatched when the party sheet is about to open, in order to provide options.
 	 */
 	SHEET_EXTENSIONS: `projectfu.sheets.extensions`,
-	/**
-	 * @description Dispatched when the setting for the party sheet theme changes
-	 */
-	PARTY_SHEET_THEME_CHANGED: 'projectfu.partySheetThemeChanged',
 };
