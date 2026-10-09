@@ -148,6 +148,14 @@ jobs:
                   tag: ${{ github.event.release.tag_name }}
                   body: ${{ github.event.release.body }}
 
+            # Looks weird, but puts the minimum, maximum, and validated versions into an output variable for later
+            - name: Compatibility Versions
+              id: compatibility
+              run: |
+                  cat system.json | echo minimum=`jq -r ".compatibility.minimum"` >> "$GITHUB_OUTPUT"
+                  cat system.json | echo maximum=`jq -r ".compatibility.maximum"` >> "$GITHUB_OUTPUT"
+                  cat system.json | echo verified=`jq -r ".compatibility.verified"` >> "$GITHUB_OUTPUT"
+
             # Publish the new version to the FoundryVTT package registry.
             - name: Publish to FoundryVTT
               if: ${{ !github.event.release.prerelease }}
@@ -168,8 +176,9 @@ jobs:
                         \"manifest\": \"${MANIFEST}\",
                         \"notes\": \"${NOTES}\",
                         \"compatibility\": {
-                          \"minimum\": \"13\",
-                          \"verified\": \"13\"
+                          \"minimum\": \"${{steps.compatibility.outputs.minimum}}\",
+                          \"maximum\": \"${{steps.compatibility.outputs.verified}}\",
+                          \"verified\": \"${{steps.compatibility.outputs.maximum}}\"
                         }
                       }
                     }"
