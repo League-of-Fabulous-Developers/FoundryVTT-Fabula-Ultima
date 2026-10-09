@@ -61,6 +61,11 @@
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -176,7 +181,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1770413763149,
+    "modifiedTime": 1791496831018,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p>",
+    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this <strong>only</strong> applies to Open Checks).</p>",
     "isFavored": {
       "value": false
     },
@@ -115,6 +115,11 @@
     "fuid": "focused",
     "targeting": {
       "rule": "special"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -233,7 +238,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706487322210,
-    "modifiedTime": 1770415502053,
+    "modifiedTime": 1786685312599,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

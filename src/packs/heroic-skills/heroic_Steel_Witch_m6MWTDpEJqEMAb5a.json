@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain beneﬁts when you cast spells on a personal vehicle"
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Pilot</strong> Class.</p><hr contenteditable=\"false\" /><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved):</p><ul><li><p>Choose one enabled module and <strong>disable</strong> it, then choose one disabled module and <strong>enable</strong> it.</p></li><li><p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p></li><li><p>The next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p></li></ul><hr contenteditable=\"false\" /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.5180h6kwja4Cn1jm] or @EFFECT[Compendium.projectfu.heroic-skills.Item.MbSByyJGE4BJekAX]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong>.</p><hr contenteditable=\"false\" /><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved):</p><ul><li><p>Choose one enabled <strong>module</strong> and <strong>disable</strong> it, then choose one disabled <strong>module</strong> and <strong>enable</strong> it.</p></li><li><p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p></li><li><p>The next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p></li></ul><hr contenteditable=\"false\" /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.5180h6kwja4Cn1jm] or @EFFECT[Compendium.projectfu.heroic-skills.Item.MbSByyJGE4BJekAX]</p>",
     "isFavored": {
       "value": false
     },
@@ -119,7 +119,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1771898184092,
+    "modifiedTime": 1791524059488,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

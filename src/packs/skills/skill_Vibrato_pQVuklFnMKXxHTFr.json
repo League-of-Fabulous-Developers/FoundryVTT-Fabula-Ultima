@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you sing a <strong>verse</strong> with <strong>low</strong> or <strong>medium volume</strong>, you may perform a <strong>free attack</strong> with a weapon you have equipped; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
+    "description": "<p>After you sing a <strong>verse</strong> with <strong>low</strong> or <strong>medium volume</strong>, you may perform a <strong>free attack</strong> with a <strong>weapon</strong> you have equipped (after the effects of the <strong>verse</strong> have been resolved). Treat your <strong>High Roll</strong> as 0 when calculating damage dealt by this attack.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -72,7 +72,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706551925144,
-    "modifiedTime": 1779264764872,
+    "modifiedTime": 1791527639734,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

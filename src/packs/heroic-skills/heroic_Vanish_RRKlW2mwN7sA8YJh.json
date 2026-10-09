@@ -9,7 +9,7 @@
     "summary": {
       "value": "Disappear after an attack."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Rogue</strong> Class.</p><hr /><p>When you hit one or more creatures with an attack or offensive spell (@ICON[offensive]), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Rogue</strong>.</p><hr /><p>When you hit one or more creatures with an attack or offensive spell (@ICON[offensive]), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706587099416,
-    "modifiedTime": 1771890621356,
+    "modifiedTime": 1787128788123,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

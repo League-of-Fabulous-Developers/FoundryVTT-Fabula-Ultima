@@ -9,7 +9,7 @@
     "summary": {
       "value": "Concentrate multi attacks on a single target."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Weaponmaster</strong> Class.</p><hr /><p>When you perform a <strong>melee</strong> attack with the <strong>multi</strong> property, you gain a bonus to your Accuracy Check equal to the value of that <strong>multi</strong> property, and the attack deals 5 extra damage. If the attack targets <strong>only one creature</strong>, it deals another 5 extra damage.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.9KVveaaOdfnUyqOW] or @EFFECT[Compendium.projectfu.heroic-skills.Item.FBHosj8y0vPI14Dv]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Weaponmaster</strong>.</p><hr /><p>When you perform a <strong>melee</strong> attack with the <strong>multi</strong> property, you gain a bonus to your Accuracy Check equal to the value of that <strong>multi</strong> property, and the attack deals 5 extra damage. If the attack targets <strong>only one creature</strong>, it deals another 5 extra damage.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.9KVveaaOdfnUyqOW] or @EFFECT[Compendium.projectfu.heroic-skills.Item.FBHosj8y0vPI14Dv]</p>",
     "isFavored": {
       "value": false
     },
@@ -123,7 +123,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706586867466,
-    "modifiedTime": 1771890560716,
+    "modifiedTime": 1787128601039,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

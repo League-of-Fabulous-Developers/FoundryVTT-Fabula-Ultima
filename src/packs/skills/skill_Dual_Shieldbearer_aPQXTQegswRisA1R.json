@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee <strong>brawling</strong> weapon:</p><table border=\"1\"><tbody><tr><td><p style=\"width:80px\"><strong>WEAPON</strong></p></td><td><p style=\"text-align:center\"><strong>ACCURACY</strong></p></td><td><p style=\"text-align:center\"><strong>DAMAGE</strong></p></td></tr><tr><td><p style=\"width:80px\">@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</p></td><td><p style=\"text-align:center\"><strong>【MIG + MIG】</strong></p></td><td><p style=\"text-align:center\"><strong>【HR + 5】</strong> <strong>physical</strong></p></td></tr><tr><td colspan=\"3\"><p>Brawling • Melee • Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p></td></tr></tbody></table><hr /><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> the icon in <strong>Equip?</strong> column. The item will be added to the <strong>Phantom Slot</strong>. Make sure this skill is added to your character sheet. Now you can equip shields on both your main and off hand slot.</p>",
+    "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two <strong>shields</strong> equipped, you gain the benefits of both items and may treat them as the following two-handed <strong>melee brawling weapon</strong>:</p><table><tbody><tr><td colspan=\"2\"><p><strong>WEAPON</strong></p></td><td><p style=\"text-align:center\"><strong>ACCURACY</strong></p></td><td><p style=\"text-align:center\"><strong>DAMAGE</strong></p></td></tr><tr><td rowspan=\"2\" style=\"width:80px\"><img src=\"systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png\" width=\"48\" height=\"48\" /></td><td><p><strong>Twin Shields</strong></p></td><td><p style=\"text-align:center\"><strong>【MIG + MIG】</strong></p></td><td><p style=\"text-align:center\"><strong>【HR + 5】</strong> <strong>physical</strong></p></td></tr><tr><td colspan=\"3\"><p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p></td></tr></tbody></table><hr /><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> on the icon in the <strong>Equip?</strong> column. This will equip the item to the <strong>Phantom Slot</strong>. Now you can equip shields on both your main and off hand slot.</p>",
     "isFavored": {
       "value": false
     },
@@ -146,7 +146,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706503515397,
-    "modifiedTime": 1775586031316,
+    "modifiedTime": 1786684845315,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

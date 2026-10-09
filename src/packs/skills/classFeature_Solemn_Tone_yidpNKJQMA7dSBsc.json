@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target recovers from <strong>@DATA[key.status]</strong>. Each target also gains Resistance to <strong>@DATA[key.typeLocal]</strong> damage until the start of your next turn.</p><hr /><p><strong>Targets Receive:</strong> @TYPE[affinity @DATA[key.type] resistance e:sot i:1 t:source]{Solemn Tone}</p>"
+      "description": "<p>Each target recovers from <strong>@DATA[key.status]</strong>. Each target also gains Resistance to <strong>@DATA[key.typeLocal]</strong> damage until the start of your next turn.</p><hr /><p><strong>Targets Gain:</strong> @TYPE[affinity @DATA[key.type] resistance e:sot i:1 t:source]{Solemn Tone}</p>"
     },
     "source": "FUHF139",
     "fuid": "solemn-tone"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710040272509,
-    "modifiedTime": 1771830346422,
+    "modifiedTime": 1791487153226,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

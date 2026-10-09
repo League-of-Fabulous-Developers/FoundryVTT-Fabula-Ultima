@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.7X1SyqQVH5CEXaQA]</p>",
+      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.7X1SyqQVH5CEXaQA]</p>",
       "complex": false
     },
     "source": "FUTF169",

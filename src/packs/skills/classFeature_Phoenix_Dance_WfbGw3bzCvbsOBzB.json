@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>Choose one option: you gain Resistance to <strong>fire</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>fire</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.0cEjieSbfnhsEiBw]{Phoenix Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.D9C0vf9Y6paVA1TD]{Phoenix Dance (Damage)}</p>"
+      "description": "<p>Choose one option: you gain Resistance to <strong>fire</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>fire</strong>.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.0cEjieSbfnhsEiBw]{Phoenix Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.D9C0vf9Y6paVA1TD]{Phoenix Dance (Damage)}</p>"
     },
     "source": "FUHF145",
     "fuid": "phoenix-dance"

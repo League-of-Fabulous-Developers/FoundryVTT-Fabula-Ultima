@@ -10,7 +10,7 @@
     "summary": {
       "value": "Delicacies, potions and spells heal above maximum HP and MP."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Gourmet</strong>, <strong>Loremaster</strong>, <strong>Merchant</strong>, and <strong>Tinkerer</strong>.</p><hr /><p>Potions and delicacies you create, as well as <strong>spells</strong> you cast, can now cause creatures to recover Hit Points and Mind Points beyond their <strong>maximum HP and MP</strong> scores, up to 150% of the respective scores. At the end of each scene, if the <strong>current Hit Points and/or Mind Points</strong> of a creature are still above the maximum scores, they become equal to the maximum score.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Gourmet</strong>, <strong>Loremaster</strong>, <strong>Merchant</strong>, or <strong>Tinkerer</strong>.</p><hr /><p><strong>Potions</strong> and <strong>delicacies</strong> you create, as well as <strong>spells</strong> you cast, can now cause creatures to recover Hit Points and Mind Points beyond their <strong>maximum HP and MP</strong> scores, up to 150% of the respective scores. At the end of each scene, if the <strong>current Hit Points and/or Mind Points</strong> of a creature are still above the maximum scores, they become equal to the maximum score.</p>",
     "isFavored": {
       "value": false
     },
@@ -75,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1775355265414,
+    "modifiedTime": 1791519865347,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

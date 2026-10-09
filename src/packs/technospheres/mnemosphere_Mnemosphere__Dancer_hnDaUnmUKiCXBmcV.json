@@ -37,8 +37,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -98,7 +98,7 @@
             "classConverted": true
           }
         },
-        "_id": "n8liOYfNohtGSGUx",
+        "_id": "aZ7DihG8oAGi33gR",
         "sort": 0
       },
       {
@@ -127,8 +127,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -188,19 +188,19 @@
             "classConverted": true
           }
         },
-        "_id": "ZzkZnbOeEtZGK9gW",
+        "_id": "7H8VAPTUW7eyvLLn",
         "sort": 100000
       },
       {
         "name": "Frenetic Footwork",
         "type": "skill",
-        "_id": "6geOqXU2UJZLW8NJ",
+        "_id": "dIRrP96pQ115UJ9i",
         "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
+          "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -218,8 +218,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -368,7 +368,7 @@
       {
         "name": "Quick-Change",
         "type": "skill",
-        "_id": "M7NyiSPSv00SSjUm",
+        "_id": "d19Fy8mbfwoRHUOC",
         "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_quick-change.png",
         "system": {
           "summary": {
@@ -392,8 +392,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -457,13 +457,13 @@
       {
         "name": "Wardancer",
         "type": "skill",
-        "_id": "geTqIGSWEBgLM82M",
+        "_id": "oOWlokevfTsU5GCh",
         "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped<strong>,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]</p>",
+          "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped<strong>,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -481,8 +481,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -647,7 +647,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191743115,
+    "modifiedTime": 1791524687444,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

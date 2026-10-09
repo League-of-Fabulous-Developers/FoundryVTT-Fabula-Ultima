@@ -10,7 +10,7 @@
     "summary": {
       "value": "React to enemy spells with your invocations."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, and <strong>Symbolist</strong>, and must have acquired the <strong>Invocation</strong> Skill.</p><hr /><p>After an enemy you can see hits or misses you with an offensive spell (@ICON[offensive]), if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a \"<strong>hex</strong>\", and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, or <strong>Symbolist</strong>, and acquired <strong>Invocation</strong>.</p><hr /><p>After an enemy you can see <strong>hits or misses you with an offensive spell (@ICON[offensive])</strong>, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a <strong>\"hex\"</strong>, and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
     "isFavored": {
       "value": false
     },
@@ -181,7 +181,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1775355087925,
+    "modifiedTime": 1791518459654,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

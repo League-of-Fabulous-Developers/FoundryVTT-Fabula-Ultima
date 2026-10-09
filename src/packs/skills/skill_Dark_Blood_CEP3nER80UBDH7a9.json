@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>As long as you are in <strong>Crisis</strong>, you gain Resistance to <strong>dark</strong> damage and <strong>poison</strong> damage.</p>",
+    "description": "<p>As long as you are in <strong>Crisis</strong>, you gain Resistance to <strong>dark</strong> and <strong>poison</strong> damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -119,7 +119,10 @@
     "defense": "def",
     "fuid": "dark-blood",
     "effects": {
-      "entries": []
+      "entries": [],
+      "duration": {
+        "interval": null
+      }
     },
     "targeting": {
       "rule": "self"
@@ -127,18 +130,44 @@
   },
   "effects": [
     {
+      "name": "Dark Blood",
+      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.png",
+      "origin": "Compendium.projectfu.skills.Item.CEP3nER80UBDH7a9",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Dark Blood",
-      "_id": "Iut1nlmgSnsh7FEY",
+      "_id": "BRL6O36QmdAOlmFv",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.dark",
@@ -153,45 +182,34 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you are in <strong>Crisis</strong>, you gain Resistance to <strong>dark</strong> damage and <strong>poison</strong> damage.</p>",
+      "description": "<p>As long as you are in <strong>Crisis</strong>, you gain Resistance to <strong>dark</strong> and <strong>poison</strong> damage.</p>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "active",
-          "type": "default",
-          "source": "FUCR185"
-        }
-      },
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "13.351",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1770248416901,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.png",
-      "type": "base",
-      "system": {
-        "rules": {
-          "progress": {
-            "enabled": false,
-            "id": "",
-            "name": "",
-            "current": 0,
-            "max": 6,
-            "style": "basic"
+          "Source": {
+            "name": "Dark Blood",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.CEP3nER80UBDH7a9",
+            "effectUuid": null,
+            "fuid": "dark-blood"
           }
         }
       },
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!CEP3nER80UBDH7a9.Iut1nlmgSnsh7FEY"
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1786402899897,
+        "modifiedTime": 1786402932260,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!CEP3nER80UBDH7a9.BRL6O36QmdAOlmFv"
     }
   ],
   "ownership": {
@@ -212,7 +230,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706496871786,
-    "modifiedTime": 1770248462569,
+    "modifiedTime": 1786402888611,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

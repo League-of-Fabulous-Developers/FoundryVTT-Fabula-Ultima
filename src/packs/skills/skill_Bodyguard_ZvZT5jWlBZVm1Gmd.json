@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.</p><hr /><p><strong>Target Receives:</strong> @TYPE[affinity all resistance e:sot i:1 t:source]</p>",
+    "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to an ally, that creature gains Resistance to all damage types until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -125,7 +125,10 @@
     "effects": {
       "duration": {
         "interval": null
-      }
+      },
+      "entries": [
+        "Compendium.projectfu.skills.Item.21y8FN9MymAxo1RY"
+      ]
     }
   },
   "effects": [],
@@ -146,7 +149,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706503483660,
-    "modifiedTime": 1775585961693,
+    "modifiedTime": 1786410090186,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

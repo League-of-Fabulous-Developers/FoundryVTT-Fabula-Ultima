@@ -10,7 +10,7 @@
     "summary": {
       "value": "Carry an elemental wellspring of your choice within yourself."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Invoker</strong> Class.</p><hr /><p>When you acquire this Heroic Skill and whenever you <strong>rest</strong>, you may choose one <strong>wellspring: air, earth, fire, lightning,</strong> or <strong>water</strong>. If you do, you gain the following benefits until your next <strong>rest</strong>:</p><ul><li><p>You <strong>always</strong> treat the chosen <strong>wellspring</strong> as being available during each scene, in addition to whatever <strong>wellsprings</strong> are already available.</p></li><li><p>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the element of the chosen <strong>wellspring</strong>.</p></li><li><p>You gain Resistance to the damage type corresponding to the chosen <strong>wellspring</strong>.</p></li><li><p>When you deal damage, you may change its type to the one corresponding to the chosen <strong>wellspring</strong>. If you do, that damage ignores Resistances.</p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.GtQpSPtGlSmKHDCJ], @EFFECT[Compendium.projectfu.heroic-skills.Item.6vWRei0y7zSflcAa], @EFFECT[Compendium.projectfu.heroic-skills.Item.6hf553wjua9gGQj8], @EFFECT[Compendium.projectfu.heroic-skills.Item.2sjAa5CndDe7jCn9], or @EFFECT[Compendium.projectfu.heroic-skills.Item.Pzm4DlB840zw612o]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Invoker</strong>.</p><hr /><p>When you acquire this Heroic Skill and whenever you <strong>rest</strong>, you may choose one <strong>wellspring: air, earth, fire, lightning,</strong> or <strong>water</strong>. If you do, you gain the following benefits until your next <strong>rest</strong>:</p><ul><li><p>You <strong>always</strong> treat the chosen <strong>wellspring</strong> as being available during each scene, in addition to whatever <strong>wellsprings</strong> are already available.</p></li><li><p>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the element of the chosen <strong>wellspring</strong>.</p></li><li><p>You gain Resistance to the damage type corresponding to the chosen <strong>wellspring</strong>.</p></li><li><p>When you deal damage, you may change its type to the one corresponding to the chosen <strong>wellspring</strong>. If you do, that damage ignores Resistances.</p></li></ul><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.GtQpSPtGlSmKHDCJ], @EFFECT[Compendium.projectfu.heroic-skills.Item.6vWRei0y7zSflcAa], @EFFECT[Compendium.projectfu.heroic-skills.Item.6hf553wjua9gGQj8], @EFFECT[Compendium.projectfu.heroic-skills.Item.2sjAa5CndDe7jCn9], or @EFFECT[Compendium.projectfu.heroic-skills.Item.Pzm4DlB840zw612o]</p>",
     "isFavored": {
       "value": false
     },
@@ -75,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894357040,
+    "modifiedTime": 1791519220731,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

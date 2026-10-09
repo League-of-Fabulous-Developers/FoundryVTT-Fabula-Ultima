@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr /><p>While you are driving this <strong>personal vehicle</strong>, if it has an active <strong>Heavy</strong>, <strong>Runic</strong>, or <strong>Standard Plating</strong> module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong>armor module</strong> in question (they may still use their normal scores if those would be better).</p><hr /><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.DwsilbK35F1QPy6u], @EFFECT[Compendium.projectfu.vehicle-modules.Item.AUZm9jLRSF8vvWu9], or @EFFECT[Compendium.projectfu.vehicle-modules.Item.MRgCwdo20vDJm2mO]</p>",
+      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr /><p>While you are driving this <strong>personal vehicle</strong>, if it has an active <strong>heavy</strong>, <strong>runic</strong>, or <strong>standard plating module</strong>, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong>armor module</strong> in question (they may still use their normal scores if those would be better).</p><hr /><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.DwsilbK35F1QPy6u], @EFFECT[Compendium.projectfu.vehicle-modules.Item.AUZm9jLRSF8vvWu9], or @EFFECT[Compendium.projectfu.vehicle-modules.Item.MRgCwdo20vDJm2mO]</p>",
       "complex": false
     },
     "source": "FUTF168",
@@ -27,7 +27,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711477016894,
-    "modifiedTime": 1773733243410,
+    "modifiedTime": 1791523007035,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
