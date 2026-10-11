@@ -454,7 +454,7 @@ function evaluateMacros(expression, context) {
 				if (!_class) {
 					return 0;
 				}
-				return _class.system.level.value;
+				return actor.tlTracker?.getClassLevel(_class);
 			}
 			// Skill level
 			case `sl`: {
