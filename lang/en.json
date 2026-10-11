@@ -2055,6 +2055,8 @@
 		"DialogTradeApprovalButtonCopy": "Copy",
 		"DialogTradeApprovalButtonCopyTooltip": "{sourceName} keeps {itemName}, {targetName} gets a copy.",
 		"DialogTradeApprovalButtonCancel": "Cancel",
-		"DialogTradeApprovalButtonCancelTooltip": "Abort the trade."
+		"DialogTradeApprovalButtonCancelTooltip": "Abort the trade.",
+		"SettingPixelArtDetection": "Pixel Art Detection",
+		"SettingPixelArtDetectionHint": "Attempts to detect pixel art and adjusts image rendering for better pixel art quality but results may vary. This setting may impact performance and is thus disabled by default."
 	}
 }

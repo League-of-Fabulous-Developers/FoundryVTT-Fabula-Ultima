@@ -53,6 +53,7 @@ export const SETTINGS = Object.freeze({
 	theme: 'theme',
 	themeFoundry: 'themeFoundry',
 	themeOptions: 'themeOptions',
+	pixelArtDetection: 'pixelArtDetection',
 	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
@@ -288,6 +289,16 @@ export const registerSystemSettings = function () {
 		default: true,
 		requiresReload: false,
 		onChange: (setting) => document.body.classList.toggle('apply-theme-foundry', setting),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.pixelArtDetection, {
+		name: game.i18n.localize('FU.SettingPixelArtDetection'),
+		hint: game.i18n.localize('FU.SettingPixelArtDetectionHint'),
+		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
 	});
 
 	// CHAT MESSAGE OPTIONS
