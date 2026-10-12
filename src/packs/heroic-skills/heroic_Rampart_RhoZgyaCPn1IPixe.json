@@ -9,7 +9,7 @@
     "summary": {
       "value": "Resist damage and status effects during the first round."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Guardian</strong> Class.</p><hr /><p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you do not recover from preexisting status effects, however). These benefits only last until the end of the first round.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Guardian</strong>.</p><hr /><p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you <strong>do not</strong> recover from preexisting status effects, however). These benefits only last until the end of the first round.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
     "isFavored": {
       "value": false
     },
@@ -136,7 +136,7 @@
                 "PYVTpgQQjcgBWybl": {
                   "type": "messageRuleAction",
                   "_id": "PYVTpgQQjcgBWybl",
-                  "message": "<p>During the first round, you gain Resistance to all damage and cannot suffer statuses.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>"
+                  "message": "<p>During the first round, you gain Resistance to all damage and cannot suffer statuses.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>"
                 }
               },
               "selector": "self"
@@ -207,7 +207,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706586488889,
-    "modifiedTime": 1771889418122,
+    "modifiedTime": 1787128310605,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

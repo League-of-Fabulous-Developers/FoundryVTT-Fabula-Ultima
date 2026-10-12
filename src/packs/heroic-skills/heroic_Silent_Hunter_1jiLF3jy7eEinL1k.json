@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve High Speed with bows, spears, and thrown weapons, and deny free attacks."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and must have acquired the <strong>High Speed</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Rogue</strong>, <strong>Sharpshooter</strong>, or <strong>Weaponmaster</strong>, and acquired <strong>High Speed</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a <strong>weapon</strong> belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a <strong>weapon</strong> that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -220,7 +220,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1775355247977,
+    "modifiedTime": 1791519834016,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

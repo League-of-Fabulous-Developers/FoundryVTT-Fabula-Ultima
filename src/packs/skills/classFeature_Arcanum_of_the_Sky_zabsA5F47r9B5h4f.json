@@ -10,8 +10,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<p>You gain Resistance to <strong>air</strong> and <strong>bolt</strong> damage.</p><p>You may use an action to accurately predict weather conditions for the next day within a range of <strong>two travel days</strong> — the Game Master will tell you what the weather conditions will be.</p>",
-      "dismiss": "<p><strong>Thunderstorm</strong>. Choose any number of creatures you can see: you deal 30 <strong>bolt</strong> damage to each of them. This damage <strong>ignores Resistances</strong>.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) bolt|ignore-resistances|]{Thunderstorm Damage}</p>",
+      "merge": "<p>You gain Resistance to <strong>air</strong> and <strong>bolt</strong> damage.</p><p>You may use an action to accurately predict weather conditions for the next day within a range of <strong>2 travel days</strong>. The Game Master will tell you what the weather conditions will be.</p>",
+      "dismiss": "<p><strong>Thunderstorm</strong>. Choose any number of creatures you can see: you deal 30 <strong>bolt</strong> damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) bolt|ignore-resistances|]{Thunderstorm Damage}</p>",
       "domains": "fog, rain, storms"
     },
     "source": "FUCR180",
@@ -99,7 +99,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710464043159,
-    "modifiedTime": 1771045060930,
+    "modifiedTime": 1786402340572,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

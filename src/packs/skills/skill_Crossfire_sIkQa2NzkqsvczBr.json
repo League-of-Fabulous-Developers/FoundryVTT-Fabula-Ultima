@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
+    "description": "<p>After a creature you can see performs an Accuracy Check for a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of that Accuracy Check】</strong> to have the attack automatically miss all of its targets. You can only use this Skill if you have a <strong>ranged weapon</strong> equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "crossfire",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -241,7 +246,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706506746453,
-    "modifiedTime": 1770604787006,
+    "modifiedTime": 1786686637466,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
