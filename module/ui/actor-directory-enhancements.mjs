@@ -47,11 +47,16 @@ class EnhancedActorDirectory extends foundry.applications.sidebar.tabs.ActorDire
 			const rank = _loc('FU.Companion');
 			return `${species} ${rank}${ownerText}`;
 		} else {
-			const level = actor.system.level.value;
-			const species = _loc(FU.species[actor.system.species.value]);
-			const rank = _loc(FU.rank[actor.system.rank.value]);
-			const rankSuffix = actor.system.rank.value !== 'champion' ? '' : `(${actor.system.rank.replacedSoldiers})`;
-			return `${_loc('FU.Level')} ${level} ${species} ${rank}${rankSuffix}`;
+			const userLevel = actor.getUserLevel();
+			if (userLevel > CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
+				const level = actor.system.level.value;
+				const species = _loc(FU.species[actor.system.species.value]);
+				const rank = _loc(FU.rank[actor.system.rank.value]);
+				const rankSuffix = actor.system.rank.value !== 'champion' ? '' : `(${actor.system.rank.replacedSoldiers})`;
+				return `${_loc('FU.Level')} ${level} ${species} ${rank}${rankSuffix}`;
+			} else {
+				return _loc('FU.NonPlayerCharacterAbbr');
+			}
 		}
 	}
 
