@@ -94,6 +94,11 @@
 .projectfu.active-effect-sheet {
 	.tab[data-tab='rules'].scrollable {
 		overflow: auto;
+
+		.fu-form__property > .form-group > label,
+		.fu-traits > .form-group > label {
+			display: none;
+		}
 	}
 
 	.fu-form__editor {
@@ -104,6 +109,12 @@
 			height: 100%;
 			min-height: 0;
 			max-height: 100%;
+
+			&.editing-source code-mirror.source-editor {
+				flex: 1;
+				height: auto;
+				min-height: 0;
+			}
 		}
 	}
 }
