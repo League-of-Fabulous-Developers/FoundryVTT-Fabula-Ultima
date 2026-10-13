@@ -92,15 +92,6 @@
 }
 
 .projectfu.active-effect-sheet {
-	.tab[data-tab='rules'].scrollable {
-		overflow: auto;
-
-		.fu-form__property > .form-group > label,
-		.fu-traits > .form-group > label {
-			display: none;
-		}
-	}
-
 	.fu-form__editor {
 		overflow: hidden;
 

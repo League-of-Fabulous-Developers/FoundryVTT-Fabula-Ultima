@@ -16,7 +16,6 @@ RuleElements.register();
  */
 export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 	#expandedRuleElements = {};
-	#pendingConfirmations = new Set();
 	#workingDocument;
 
 	constructor(...args) {
@@ -28,8 +27,6 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu', 'sheet', `backgroundstyle`, 'active-effect-sheet'],
 		actions: {
-			addChange: this.#addChange,
-			deleteChange: this.#deleteChange,
 			addRuleElement: this.#addRuleElement,
 			deleteRuleElement: this.#deleteRuleElement,
 			clearRuleElements: this.#clearRuleElements,
@@ -269,36 +266,6 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	}
 
 	/**
-	 * Add a standard Active Effect change to the working copy.
-	 */
-	static #addChange() {
-		this.#syncFormToWorkingDocument();
-		const changes = foundry.utils.deepClone(this.#workingDocument._source.system.changes ?? []);
-		changes.push(this.system.schema.fields.changes.element.getInitialValue());
-		return this.#updateWorkingDocument({
-			system: {
-				changes: foundry.data.operators.ForcedReplacement.create(changes),
-			},
-		});
-	}
-
-	/**
-	 * Delete a standard Active Effect change from the working copy.
-	 * @param {PointerEvent} event The originating click event
-	 */
-	static #deleteChange(event) {
-		this.#syncFormToWorkingDocument();
-		const changes = foundry.utils.deepClone(this.#workingDocument._source.system.changes ?? []);
-		const index = Number(event.target.closest('li').dataset.index) || 0;
-		changes.splice(index, 1);
-		return this.#updateWorkingDocument({
-			system: {
-				changes: foundry.data.operators.ForcedReplacement.create(changes),
-			},
-		});
-	}
-
-	/**
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
@@ -340,7 +307,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		/** @type RuleElementDataModel **/
 		const re = this.system.getRuleElement(id);
 		if (re) {
-			const confirm = await this.#confirmRemoval(`element:${id}`, _loc(re.trigger.constructor.localization));
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(re.trigger.constructor.localization) }));
 			if (confirm) {
 				return this.#updateWorkingDocument({
 					system: {
@@ -446,7 +413,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const action = re?.getAction(actionId);
 		if (action) {
 			console.debug(`Removing rule action ${actionId} from ${id}`);
-			const confirm = await this.#confirmRemoval(`action:${id}:${actionId}`, _loc(action.constructor.localization));
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(action.constructor.localization) }));
 			if (confirm) {
 				return this.#updateWorkingDocument({
 					system: {
@@ -513,7 +480,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const re = this.system.getRuleElement(id);
 		const predicate = re?.getPredicate(predicateId);
 		if (predicate) {
-			const confirm = await this.#confirmRemoval(`predicate:${id}:${predicateId}`, _loc(predicate.constructor.localization));
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(predicate.constructor.localization) }));
 			if (confirm) {
 				return this.#updateWorkingDocument({
 					system: {
@@ -543,20 +510,11 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	/** @inheritdoc */
 	_processFormData(event, form, formData) {
 		const submitData = super._processFormData(event, form, formData);
-
-		const submittedChanges = submitData.system?.changes ?? {};
-		const changes = foundry.utils.deepClone(this.#workingDocument._source.system.changes ?? []);
-		for (const [index, change] of Object.entries(submittedChanges)) {
-			changes[index] ??= {};
-			foundry.utils.mergeObject(changes[index], change, { applyOperators: true, inplace: true });
-		}
-
 		const submittedElements = submitData.system?.rules?.elements ?? {};
 		const elements = foundry.utils.deepClone(this.#workingDocument._source.system.rules.elements);
 		foundry.utils.mergeObject(elements, submittedElements, { applyOperators: true, inplace: true });
 
 		submitData.system ??= {};
-		submitData.system.changes = foundry.data.operators.ForcedReplacement.create(changes);
 		submitData.system.rules ??= {};
 		submitData.system.rules.elements = foundry.data.operators.ForcedReplacement.create(elements);
 		return submitData;
@@ -568,16 +526,6 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 
 		if (event.target instanceof HTMLInputElement && event.target.name === 'transfer') {
 			this.submit({ updateData: { transfer: event.target.checked } });
-		}
-	}
-
-	async #confirmRemoval(key, label) {
-		if (this.#pendingConfirmations.has(key)) return false;
-		this.#pendingConfirmations.add(key);
-		try {
-			return await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label }));
-		} finally {
-			this.#pendingConfirmations.delete(key);
 		}
 	}
 
