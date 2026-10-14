@@ -4,7 +4,7 @@ import { Pipeline, PipelineContext, PipelineRequest } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
-import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
+import { getSelected } from '../helpers/target-handler.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
@@ -13,7 +13,6 @@ import { DamageTraits, Traits, TraitUtils } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { Checks } from '../checks/checks.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
@@ -597,86 +596,46 @@ function onRenderChatMessage(message, html) {
 	// Initialize chat message data
 	let disabled = false;
 
-	// Damage prompt application message
-	if (Checks.isCheck(message)) {
-		const inspector = CheckConfiguration.inspect(message);
-		const damageData = inspector.getDamage();
-		const traits = inspector.getTraits();
-		const sourceInfo = InlineSourceInfo.fromChatMessage(message);
+	const sourceInfo = InlineSourceInfo.fromChatMessage(message);
 
-		const customizeDamage = async (event, targets) => {
-			return DamageCustomizer(
-				damageData,
-				targets,
-				async (extraDamageInfo) => {
-					await handleDamageApplication(event, targets, sourceInfo, damageData, extraDamageInfo, traits);
-					disabled = false;
-				},
-				() => {
-					disabled = false;
-				},
-			);
-		};
-
-		const applyDefaultDamage = async (event, targets) => {
-			return handleDamageApplication(event, targets, sourceInfo, damageData, {}, traits);
-		};
-
-		// TODO: Update someday
-		html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) =>
-			element.addEventListener('click', async (event) => {
-				event.preventDefault();
-				if (!disabled) {
-					disabled = true;
-					const targets = await Pipeline.getSingleTarget(event);
-					if (event.ctrlKey || event.metaKey) {
-						await customizeDamage(event, targets);
-					} else {
-						await applyDefaultDamage(event, targets);
-					}
-					disabled = false;
-				}
-			}),
+	const customizeDamage = async (event, targets, damageData, traits) => {
+		return DamageCustomizer(
+			damageData,
+			targets,
+			(extraDamageInfo) => {
+				handleDamageApplication(event, targets, sourceInfo, damageData, extraDamageInfo, traits);
+				disabled = false;
+			},
+			() => {
+				disabled = false;
+			},
 		);
+	};
 
-		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
+	// TODO: Update someday
+	html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) =>
+		element.addEventListener('click', async (event) => {
 			event.preventDefault();
 			if (!disabled) {
-				const targets = await getTargeted();
-				if (targets.length) {
-					disabled = true;
-					return DamageCustomizer(
-						damageData,
-						targets,
-						async (damageOverride) => {
-							await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
-							disabled = false;
-						},
-						() => {
-							disabled = false;
-						},
-					);
-				}
-			}
-		});
-	}
-	// If not using the check API
-	else {
-		Pipeline.handleClick(message, html, 'applyDamage', async (dataset) => {
-			const fields = StringUtils.fromBase64(dataset.fields);
-			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
-			const damageData = new DamageData(fields.damageData);
-			const targets = await Pipeline.getTargetsFromAction(dataset);
-			const traits = fields.traits;
-			const request = new DamageRequest(sourceInfo, targets, damageData, {});
-			if (traits) {
-				request.addTraits(traits);
-			}
-			return process(request);
-		});
-	}
+				disabled = true;
+				const targets = await Pipeline.getSingleTarget(event);
+				if (event.ctrlKey || event.metaKey) {
+					const fields = StringUtils.fromBase64(element.dataset.fields);
+					const damageData = new DamageData(fields.damageData);
+					const traits = fields.traits;
+					await customizeDamage(event, targets, damageData, traits);
+				} else {
+					const inspector = CheckConfiguration.inspect(message);
+					const damageData = inspector.getDamage();
+					const traits = inspector.getTraits();
 
-	// Always do these
+					handleDamageApplication(event, targets, sourceInfo, damageData, {}, traits);
+				}
+				disabled = false;
+			}
+		}),
+	);
+
 	Pipeline.handleClick(message, html, 'inspectActor', async (dataset) => {
 		const uuid = dataset.uuid;
 		return FUPartySheet.inspectAdversary(uuid);
