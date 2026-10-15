@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>shaken</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>slow</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
+    "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that deals damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>shaken</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>slow</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
     "showTitleCard": {
       "value": false
     },
@@ -63,7 +63,10 @@
       "entries": [
         "shaken",
         "slow"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      }
     },
     "cost": {
       "resource": "mp",
@@ -188,7 +191,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706506787857,
-    "modifiedTime": 1770619302508,
+    "modifiedTime": 1786686940413,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

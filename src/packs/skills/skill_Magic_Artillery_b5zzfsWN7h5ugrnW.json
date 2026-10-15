@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
+    "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane weapon</strong> equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -120,6 +120,11 @@
     "fuid": "magic-artillery",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -232,7 +237,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706497996319,
-    "modifiedTime": 1770253309088,
+    "modifiedTime": 1786403618158,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

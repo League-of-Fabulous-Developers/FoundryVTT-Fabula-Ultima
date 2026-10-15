@@ -10,7 +10,7 @@
     "summary": {
       "value": "Double magiseed effects and manipulate vegetation."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Floralist</strong> Class.</p><hr /><p>Once per turn when a <strong>magiseed</strong> leaves your <strong>garden</strong>, if that <strong>magiseed</strong> has one or more \"at the end of your turn\" effects, you may spend 20 Mind Points. If you do, reproduce <strong>one</strong> of those effects (you may also choose an effect that doesn't match the current sections of your <strong>Growth Clock</strong>).</p><p>Additionally, if you have acquired the @UUID[Compendium.projectfu.skills.Item.ilAq8Q2OSE3oCVdi]{Verdant Sway} Skill, your Rituals can now also influence and control <strong>soldier</strong>-Rank creatures belonging to the <strong>plant</strong> Species (but you are still unable to <strong>create</strong> them).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Floralist</strong>.</p><hr /><p>Once per turn when a <strong>magiseed</strong> leaves your <strong>garden</strong>, if that <strong>magiseed</strong> has one or more \"at the end of your turn\" effects, you may spend 20 Mind Points. If you do, reproduce <strong>one</strong> of those effects (you may also choose an effect that doesn't match the current sections of your <strong>Growth Clock</strong>).</p><p>Additionally, if you have acquired the @UUID[Compendium.projectfu.skills.Item.ilAq8Q2OSE3oCVdi]{Verdant Sway} Skill, your Rituals can now also influence and control <strong>soldier</strong>-Rank creatures belonging to the <strong>plant</strong> Species (but you are still unable to <strong>create</strong> them).</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1775521241937,
+    "modifiedTime": 1791519048864,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

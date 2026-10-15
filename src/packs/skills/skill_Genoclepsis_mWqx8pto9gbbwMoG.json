@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species</strong> and the GM chooses <strong>【SL】 therioforms</strong> appropriate to those NPCs: if you have acquired the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p><hr /><p>For <strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Mutant Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>.</p>",
+    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species and the GM chooses 【SL】 therioforms</strong> appropriate to those NPCs: if you have acquired the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p><hr /><p>For <strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Mutant Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -141,7 +141,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1775595060989,
+    "modifiedTime": 1791521252772,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

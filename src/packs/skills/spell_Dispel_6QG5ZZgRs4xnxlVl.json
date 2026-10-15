@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You release a wave of negative energy and cleanse all magic from a creature. If the target is affected by one or more spells with a <strong>duration</strong> of Scene, they are no longer affected by any of those spells instead.</p>",
+    "description": "<p>You cleanse all magic from a creature. The target stops being affected by all spells with a <strong>duration</strong> of \"Scene\" that are affecting them.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -114,7 +114,8 @@
       "prompt": false,
       "duration": {
         "event": "",
-        "tracking": ""
+        "tracking": "",
+        "interval": null
       }
     },
     "traits": []
@@ -127,7 +128,10 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": null,
@@ -137,7 +141,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771474219373,
-    "modifiedTime": 1771474219373,
+    "modifiedTime": 1786408540035,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "sort": 0,

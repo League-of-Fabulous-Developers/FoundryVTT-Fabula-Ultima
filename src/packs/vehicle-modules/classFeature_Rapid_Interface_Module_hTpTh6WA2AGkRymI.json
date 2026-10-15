@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>When you <strong>enter</strong> this <strong>personal vehicle</strong> on your turn during a conflict, you may immediately perform an additional action.</p>",
+      "description": "<p>When you <strong>enter</strong> this <strong>personal vehicle</strong> on your turn during a conflict, you may perform an additional action.</p>",
       "complex": false
     },
     "source": "FUTF169",
@@ -25,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711477039062,
-    "modifiedTime": 1724180864765,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1791523041055,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

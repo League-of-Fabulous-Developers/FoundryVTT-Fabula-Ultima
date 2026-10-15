@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons.</p>",
+    "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged weapons</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "ranged-weapon-mastery",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -205,7 +210,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706506773814,
-    "modifiedTime": 1770606450412,
+    "modifiedTime": 1786686788412,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

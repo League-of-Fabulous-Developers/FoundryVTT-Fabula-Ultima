@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you rest in an area where commerce is possible, you gain <strong>【SL + 1】 Trade Points</strong>. You may never have more than <strong>【SL + 3】</strong> Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</p><p>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p><hr /><p><strong>You Gain</strong>: @PROGRESS[winds-of-trade update $sl+1]{Gain SL + 1 Trade Points}<br /><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -2]{Spend 2 Trade Points}</p>",
+    "description": "<p>After you <strong>rest</strong> in an area where commerce is possible, you gain <strong>【SL + 1】 Trade Points</strong>. You may never have more than <strong>【SL + 3】 Trade Points</strong>; if you acquire this Skill during character creation, begin play with <strong>2 Trade Points</strong>.</p><p>During a <strong>non-conflict scene</strong>, you may spend <strong>2 Trade Points</strong> to choose one option:</p><ul><li><p>You create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>.</p></li><li><p>You create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p></li></ul><hr /><p><strong>You Gain</strong>: @PROGRESS[winds-of-trade update $sl+1]{Gain SL + 1 Trade Points}<br /><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -2]{Spend 2 Trade Points}</p>",
     "isFavored": {
       "value": false
     },
@@ -164,7 +164,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1782599240967,
+    "modifiedTime": 1791510126087,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

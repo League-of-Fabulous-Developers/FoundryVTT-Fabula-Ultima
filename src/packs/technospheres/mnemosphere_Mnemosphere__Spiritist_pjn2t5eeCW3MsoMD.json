@@ -14,13 +14,13 @@
       {
         "name": "Healing Power",
         "type": "skill",
-        "_id": "5CXuuYfXe9lmwir9",
+        "_id": "hWVcT16KJ7TdBpsK",
         "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_healing_power.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【3 + (SL, multiplied by the number of Bonds you have)】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p>",
+          "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane weapon</strong> equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【3 + (SL, multiplied by the number of Bonds you have)】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -38,8 +38,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -75,16 +75,16 @@
             "amount": "3+($sl*$bc)",
             "type": "hp"
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -145,7 +145,7 @@
                       "X47SaNqzFbRPyrEp": {
                         "type": "messageRuleAction",
                         "_id": "X47SaNqzFbRPyrEp",
-                        "message": "<p>Targeted allies recover <strong>【3 + (SL × Bonds)】</strong> HP.</p>"
+                        "message": "<p>Targeted allies recover<strong>【3 + (SL x Bonds)】</strong>HP.</p>"
                       },
                       "YaNI3PWxfkOSyAdw": {
                         "type": "updateResourceRuleAction",
@@ -198,7 +198,7 @@
       {
         "name": "Spiritual Magic",
         "type": "skill",
-        "_id": "MFiS8MOOmTlV5LYt",
+        "_id": "Cb316krU9Ftl7C35",
         "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_spiritual_magic.png",
         "system": {
           "summary": {
@@ -222,8 +222,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -290,13 +290,13 @@
       {
         "name": "Support Magic",
         "type": "skill",
-        "_id": "RtGyEWi1z8FVdwGD",
+        "_id": "sd64Uh4VZqhO93E2",
         "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one of those allies you have a <strong>Bond</strong> towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
+          "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane weapon</strong> equipped, you may choose one of those allies you have a Bond towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -314,8 +314,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -477,13 +477,13 @@
       {
         "name": "Vismagus",
         "type": "skill",
-        "_id": "BFRCFVNNYVhEafHw",
+        "_id": "DqQqeJHCUvnOKftH",
         "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_vismagus.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you cast a spell, if you don't have enough Mind Points to pay for its total cost, you may choose to spend an amount of Hit Points equal to <strong>【10 + the spell's total MP cost】</strong> instead. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
+          "description": "<p>When you cast a spell, if you do not have enough Mind Points to pay for its total cost, you may choose to spend an amount of Hit Points equal to <strong>【10 + the spell's total MP cost】</strong> instead. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
           "showTitleCard": {
             "value": false
           },
@@ -501,8 +501,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -533,16 +533,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -583,7 +583,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776192167724,
+    "modifiedTime": 1791524931911,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

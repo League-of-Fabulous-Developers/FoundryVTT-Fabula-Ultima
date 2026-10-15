@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</p>"
+      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong> (you may still use your normal scores if better).</p>"
     },
     "source": "FUTF157",
     "fuid": "placophora"
@@ -107,10 +107,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744557535864,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1791521549757,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

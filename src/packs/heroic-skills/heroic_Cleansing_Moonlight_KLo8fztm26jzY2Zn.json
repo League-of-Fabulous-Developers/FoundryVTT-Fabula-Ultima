@@ -10,7 +10,7 @@
     "summary": {
       "value": "Your spells can remove status effects and spells from targets."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Spiritist</strong>.</p><hr /><p>When you hit one or more creatures with an offensive spell (@ICON[offensive]), if you have an <strong>arcane</strong> weapon equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a duration of \"Scene\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Entropist</strong> or <strong>Spiritist</strong>.</p><hr /><p>When you hit one or more creatures with an offensive spell (@ICON[offensive]), if you have an <strong>arcane weapon</strong> equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a <strong>duration</strong> of \"Scene\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane weapon</strong> equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
     "isFavored": {
       "value": false
     },
@@ -213,7 +213,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1775355140642,
+    "modifiedTime": 1791518747796,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
