@@ -118,6 +118,7 @@ import { FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 import { ActorDirectoryEnhancements } from './ui/actor-directory-enhancements.mjs';
+import { PixelArtDetection } from './helpers/pixel-art-detection.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -455,6 +456,7 @@ Hooks.once('init', () => {
 	CompendiumBrowser.initialize();
 	Themes.initialize();
 	ActorDirectoryEnhancements.initialize();
+  PixelArtDetection.initialize();
 
 	// Fetch any extensions from modules
 	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);
