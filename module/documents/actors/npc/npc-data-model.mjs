@@ -137,6 +137,10 @@ export class NpcDataModel extends BaseCharacterDataModel {
 	 */
 	prepareBaseData() {
 		this.#prepareReplacedSoldiers();
+		if (this.rank.value === 'companion') {
+			this.level.value = 5;
+		}
+
 		this.#prepareBasicResource();
 		this.derived.prepareData();
 

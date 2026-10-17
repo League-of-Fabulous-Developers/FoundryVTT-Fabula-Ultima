@@ -91,6 +91,25 @@
 	}
 }
 
+.projectfu.active-effect-sheet {
+	.fu-form__editor {
+		overflow: hidden;
+
+		prose-mirror {
+			--min-height: 0;
+			height: 100%;
+			min-height: 0;
+			max-height: 100%;
+
+			&.editing-source code-mirror.source-editor {
+				flex: 1;
+				height: auto;
+				min-height: 0;
+			}
+		}
+	}
+}
+
 .fu-form__property__header {
 	display: flex;
 	text-align: center;

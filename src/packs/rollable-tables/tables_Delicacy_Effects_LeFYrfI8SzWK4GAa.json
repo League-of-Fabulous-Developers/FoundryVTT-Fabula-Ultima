@@ -161,7 +161,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>Until the end of your next turn, every source that deals (choose one: air; bolt; earth; fire; ice; poison) damage deals 5 extra damage to each of this <strong>delicacy's</strong> targets.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.7Rcgd6DbIh71JmI4], @EFFECT[Compendium.projectfu.skills.Item.W4k52fetZQaXPpCt], @EFFECT[Compendium.projectfu.skills.Item.90WZViysiyqtAXcj], @EFFECT[Compendium.projectfu.skills.Item.DrOCGuzZBaL8Vf9D], @EFFECT[Compendium.projectfu.skills.Item.9KDeMz3Y73muyImH], or @EFFECT[Compendium.projectfu.skills.Item.K2sUsMGhj94eTtTN]</p>",
+      "description": "<p>Until the end of your next turn, every source that deals (choose one: air; bolt; earth; fire; ice; poison) damage deals 5 extra damage to each of this <strong>delicacy's</strong> targets.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.7Rcgd6DbIh71JmI4], @EFFECT[Compendium.projectfu.skills.Item.W4k52fetZQaXPpCt], @EFFECT[Compendium.projectfu.skills.Item.90WZViysiyqtAXcj], @EFFECT[Compendium.projectfu.skills.Item.DrOCGuzZBaL8Vf9D], @EFFECT[Compendium.projectfu.skills.Item.9KDeMz3Y73muyImH], or @EFFECT[Compendium.projectfu.skills.Item.K2sUsMGhj94eTtTN]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.9WHO0tPajgyokXki"
@@ -188,7 +188,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Guard</strong> action during their next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.LzyZ6RnzdvGgeZVJ]</p>",
+      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Guard</strong> action during their next turn.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.LzyZ6RnzdvGgeZVJ]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.2N05BK9tEKKwCE0k"
@@ -215,7 +215,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Spell</strong> action during their next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.OMERADe6BDUB09so]</p>",
+      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Spell</strong> action during their next turn.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.OMERADe6BDUB09so]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.Itl9YI1ShtXBRQSF"
@@ -242,7 +242,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Skill</strong> action during their next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.XsgMEJAuulzfRpPi]</p>",
+      "description": "<p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Skill</strong> action during their next turn.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.XsgMEJAuulzfRpPi]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.Xqr55pvPfddFa7Pg"
@@ -269,7 +269,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>Each of this <strong>delicacy's</strong> targets gains Resistance to <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage until the end of your next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.rR9ci0QDXbRIAP2e], @EFFECT[Compendium.projectfu.skills.Item.PQ4PQC1GCbo22I5j], @EFFECT[Compendium.projectfu.skills.Item.BEhmZuCMOvoNkOkn], @EFFECT[Compendium.projectfu.skills.Item.g9sU2CLB91YfxRBI], @EFFECT[Compendium.projectfu.skills.Item.KkHm2OMClLyoV8VT], or @EFFECT[Compendium.projectfu.skills.Item.gyaexWAK1a4JSyPo]</p>",
+      "description": "<p>Each of this <strong>delicacy's</strong> targets gains Resistance to <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage until the end of your next turn.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.rR9ci0QDXbRIAP2e], @EFFECT[Compendium.projectfu.skills.Item.PQ4PQC1GCbo22I5j], @EFFECT[Compendium.projectfu.skills.Item.BEhmZuCMOvoNkOkn], @EFFECT[Compendium.projectfu.skills.Item.g9sU2CLB91YfxRBI], @EFFECT[Compendium.projectfu.skills.Item.KkHm2OMClLyoV8VT], or @EFFECT[Compendium.projectfu.skills.Item.gyaexWAK1a4JSyPo]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.lm9lOKmihD1gtP53"
@@ -296,7 +296,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>Each of this <strong>delicacy's</strong> targets treats their <strong>(choose one: Dexterity; Insight; Might; Willpower)</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.gc2VICfC8pACRBHy], @EFFECT[Compendium.projectfu.skills.Item.AzPndWotlt98FDhU], @EFFECT[Compendium.projectfu.skills.Item.zfbdUAZcOHuCTyi2], or @EFFECT[Compendium.projectfu.skills.Item.1s3x5TtIPEbdbLM1]</p>",
+      "description": "<p>Each of this <strong>delicacy's</strong> targets treats their <strong>(choose one: Dexterity; Insight; Might; Willpower)</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.gc2VICfC8pACRBHy], @EFFECT[Compendium.projectfu.skills.Item.AzPndWotlt98FDhU], @EFFECT[Compendium.projectfu.skills.Item.zfbdUAZcOHuCTyi2], or @EFFECT[Compendium.projectfu.skills.Item.1s3x5TtIPEbdbLM1]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.jC07L6JDGRjEXnDB"
@@ -323,7 +323,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "<p>During the next turn of each of this <strong>delicacy's</strong> targets, all damage they deal becomes <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> and its type cannot change.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.ndASf08ny01tgBWG], @EFFECT[Compendium.projectfu.skills.Item.NXCuHsCUgSgzKODy], @EFFECT[Compendium.projectfu.skills.Item.pbuWkC9V2wOQ7gnx], @EFFECT[Compendium.projectfu.skills.Item.N67STDVFRwyuoQpm], @EFFECT[Compendium.projectfu.skills.Item.v4g2FQ8W8GtF5xxo], or @EFFECT[Compendium.projectfu.skills.Item.BY4g8p6Sq8lQlQX6]</p>",
+      "description": "<p>During the next turn of each of this <strong>delicacy's</strong> targets, all damage they deal becomes <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> and its type cannot change.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.ndASf08ny01tgBWG], @EFFECT[Compendium.projectfu.skills.Item.NXCuHsCUgSgzKODy], @EFFECT[Compendium.projectfu.skills.Item.pbuWkC9V2wOQ7gnx], @EFFECT[Compendium.projectfu.skills.Item.N67STDVFRwyuoQpm], @EFFECT[Compendium.projectfu.skills.Item.v4g2FQ8W8GtF5xxo], or @EFFECT[Compendium.projectfu.skills.Item.BY4g8p6Sq8lQlQX6]</p>",
       "name": "",
       "documentUuid": null,
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.1p0nXtG8Pwv71jHw"

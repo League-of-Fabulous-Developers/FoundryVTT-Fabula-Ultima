@@ -9,7 +9,7 @@
     "summary": {
       "value": "Deal extra damage with ranged attacks."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter</strong> Class.</p><hr /><p>When you hit one or more creatures with a <strong>ranged</strong> attack, that attack deals 5 extra damage to each creature.</p><p>The amount of extra damage increases to 10 if you are <strong>level 40 or higher</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong>.</p><hr /><p>Your <strong>ranged</strong> attacks deal 5 extra damage.</p><p>The amount of extra damage increases to 10 if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -179,7 +179,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706585303870,
-    "modifiedTime": 1771888675026,
+    "modifiedTime": 1787127986315,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

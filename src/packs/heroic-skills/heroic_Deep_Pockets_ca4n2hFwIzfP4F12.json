@@ -9,7 +9,7 @@
     "summary": {
       "value": "Reduce Inventory Point costs."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Tinkerer</strong> Class.</p><hr /><p>You reduce Inventory Point costs by 1 (to a minimum of 1).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Tinkerer</strong>.</p><hr /><p>You reduce Inventory Point costs by 1 (to a minimum of 1).</p>",
     "isFavored": {
       "value": false
     },
@@ -212,7 +212,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706584047656,
-    "modifiedTime": 1771887260834,
+    "modifiedTime": 1787127016753,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>free attack</strong> granted by the <strong>Cooking</strong> Skill, if you combined <strong>no more than 2 ingredients</strong>, you may have the attack deal damage as normal. If you do, you treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack</p>",
+    "description": "<p>When you perform the <strong>free attack</strong> granted by the <strong>Cooking</strong> Skill, if you combined <strong>no more than 2 ingredients</strong>, you may have the attack deal damage as normal. If you do, you treat your <strong>High Roll</strong> as 0 when calculating damage dealt by this attack</p>",
     "showTitleCard": {
       "value": false
     },
@@ -76,7 +76,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1779263095026,
+    "modifiedTime": 1791496113551,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

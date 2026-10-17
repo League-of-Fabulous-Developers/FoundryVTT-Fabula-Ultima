@@ -14,7 +14,7 @@
       {
         "name": "Condemn",
         "type": "skill",
-        "_id": "Uf4EZv0CvSzUdXQI",
+        "_id": "gHJdr5x84rFdu4TK",
         "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_condemn.png",
         "system": {
           "summary": {
@@ -38,8 +38,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "ins",
-            "secondary": "wlp"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "1",
           "damage": {
@@ -187,13 +187,13 @@
       {
         "name": "Encourage",
         "type": "skill",
-        "_id": "zKjtG9XTmmDB0Dnd",
+        "_id": "yVjqslA2UAsyg515",
         "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_encourage.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You may use an action and spend 5 Mind Points to choose an ally that can hear and understand you. That ally recovers <strong>【SL × 10】</strong> Hit Points and chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>; they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p>",
+          "description": "<p>You may use an action and spend 5 Mind Points to choose an ally that can hear and understand you. That ally recovers <strong>【SL × 10】</strong> Hit Points and, if this is a conflict scene, chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>: they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -211,8 +211,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -282,13 +282,13 @@
       {
         "name": "My Trust In You",
         "type": "skill",
-        "_id": "SOsZwnB7V7pLdrSB",
+        "_id": "h5gHokNx4CdlIMv3",
         "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_my_trust_in_you.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p>",
+          "description": "<p>When another Player Character who is able to hear you rolls dice for a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of their Traits or Bonds in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a Bond towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -306,8 +306,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -348,16 +348,16 @@
             "type": "mp",
             "amount": "$sl*10"
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
-          }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": []
         },
         "effects": [],
         "flags": {
@@ -372,13 +372,13 @@
       {
         "name": "Persuasive",
         "type": "skill",
-        "_id": "QSO5rYpApIiqA7QD",
+        "_id": "hypL0byu7OxQl0dv",
         "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_persuasive.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you successfully perform a Check to fill or erase sections of a Clock, if your approach relied on <strong>charm</strong>, <strong>diplomacy</strong>, <strong>deception</strong>, or <strong>intimidation</strong>, you may spend up to <strong>【SL × 20】</strong> Mind Points. If you do, fill or erase an additional section of that Clock for every 20 Mind Points you spend this way.</p>",
+          "description": "<p>When you successfully perform a Check to fill or erase sections of a Clock, if your approach relied on <strong>charm</strong>, <strong>diplomacy</strong>, <strong>deception</strong> or <strong>intimidation</strong>, you may spend up to <strong>【SL × 20】</strong> Mind Points. If you do, fill or erase <strong>1 additional section</strong> of that Clock for every 20 Mind Points you spend this way.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -396,8 +396,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -433,16 +433,16 @@
             "rule": "self",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "resource": {
             "enabled": false,
             "amount": "",
@@ -462,7 +462,7 @@
       {
         "name": "Unexpected Ally",
         "type": "skill",
-        "_id": "UlMYLj5izI9ykqkW",
+        "_id": "nFjIPvrm6PgE6YAc",
         "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_unexpected_ally.png",
         "system": {
           "summary": {
@@ -486,8 +486,8 @@
             "traits": true
           },
           "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
+            "primary": "mig",
+            "secondary": "mig"
           },
           "accuracy": "0",
           "damage": {
@@ -529,8 +529,7 @@
             "prompt": false,
             "duration": {
               "event": "",
-              "tracking": "",
-              "interval": null
+              "tracking": ""
             }
           },
           "resource": {
@@ -568,7 +567,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776192050818,
+    "modifiedTime": 1791524860762,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

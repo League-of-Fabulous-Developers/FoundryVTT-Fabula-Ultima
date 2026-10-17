@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>You deal an amount of <strong>@DATA[key.typeLocal]</strong> damage equal to <strong>twice</strong> your current <strong>Willpower die</strong> to each target. This tone deals 5 extra damage if you are level <strong>20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>Targets Suffer:</strong> @DMG[(2*$wlp)+&amp;step(0,5,10) @DATA[key.type]]{2 × WLP @DATA[key.typeLocal]}</p>"
+      "description": "<p>You deal an amount of <strong>@DATA[key.typeLocal]</strong> damage equal to <strong>twice</strong> your current <strong>Willpower</strong> die to each target. This tone deals 5 extra damage if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>Targets Suffer:</strong> @DMG[(2*$wlp)+&amp;step(0,5,10) @DATA[key.type]]{2 × WLP @DATA[key.typeLocal]}</p>"
     },
     "source": "FUHF139",
     "fuid": "frantic-tone"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710039980800,
-    "modifiedTime": 1771827505508,
+    "modifiedTime": 1791486913609,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

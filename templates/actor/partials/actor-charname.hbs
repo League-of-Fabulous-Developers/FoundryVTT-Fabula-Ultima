@@ -50,7 +50,7 @@
 			{{localize 'FU.LevelAbbr'}}
 		</label>
 		<input type="number" name="system.level.value" min="5" max="60" step="5" value="{{ system.level.value }}"
-		       class="resource-inputs level-input" />
+		       class="resource-inputs level-input" {{#if (eq actor.system.rank.value 'companion')}}disabled{{/if}} />
 		<!-- Rank -->
 		<label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Rank'}}"
 		       aria-describedby="tooltip"> <i

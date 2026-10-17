@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Willpower</strong> (such as <strong>【DEX + WLP】</strong> for a <strong>shortbow</strong>). Additionally, your <strong>melee attacks</strong> with weapons belonging to the <strong>arcane</strong> or <strong>sword</strong> Categories may target <strong>ﬂying</strong> creatures.</p>",
+    "description": "<p>When you perform an Accuracy Check, you may replace one of the Attribute dice with <strong>Willpower</strong> (such as <strong>【DEX + WLP】</strong> for a <strong>shortbow</strong>). Additionally, your <strong>melee</strong> attacks with <strong>arcane weapons</strong> and <strong>swords</strong> may target <strong>ﬂying</strong> creatures.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,6 +117,11 @@
     "fuid": "psychokinesis",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -138,7 +143,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1770368065080,
+    "modifiedTime": 1791520573652,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

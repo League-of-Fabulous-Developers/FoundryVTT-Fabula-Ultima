@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
+    "description": "<p>The total Mind Point cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the only target (up to a minimum cost of 0 Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -408,7 +408,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1771833577518,
+    "modifiedTime": 1791520423276,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
