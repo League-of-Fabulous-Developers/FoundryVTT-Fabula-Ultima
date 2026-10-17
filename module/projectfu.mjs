@@ -117,6 +117,7 @@ import { Themes } from './ui/themes/theme-options.mjs';
 import { FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
+import { ActorDirectoryEnhancements } from './ui/actor-directory-enhancements.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -453,6 +454,7 @@ Hooks.once('init', () => {
 	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
 	Themes.initialize();
+	ActorDirectoryEnhancements.initialize();
 
 	// Fetch any extensions from modules
 	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);
