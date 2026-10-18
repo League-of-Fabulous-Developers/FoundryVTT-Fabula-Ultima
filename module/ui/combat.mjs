@@ -1,5 +1,4 @@
 import { SETTINGS } from '../settings.js';
-import { Flags } from '../helpers/flags.mjs';
 import { MESSAGES } from '../socket.mjs';
 import { CombatHUD } from './combat-hud.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
@@ -52,11 +51,20 @@ export const HOSTILE = 'hostile';
 
 /**
  * @description Data specific to a conflict in the system, which can includes clocks, etc
+ * @property {"friendly", "hostile"} firstTurn
+ * @property {"friendly", "hostile"} currentTurn
+ * @property {string} activeCombatant
+ * @property {Record<number,string[]>} rounds
+ * @property {ProgressDataModel[]} tracks
  */
 export class FUCombatDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { ArrayField, EmbeddedDataField } = foundry.data.fields;
+		const { StringField, TypedObjectField, ArrayField, EmbeddedDataField } = foundry.data.fields;
 		return {
+			firstTurn: new StringField({ choices: [FRIENDLY, HOSTILE], nullable: true }),
+			currentTurn: new StringField({ choices: [FRIENDLY, HOSTILE], nullable: true }),
+			activeCombatant: new StringField({ nullable: true, blank: false }),
+			rounds: new TypedObjectField(new ArrayField(new StringField({ nullable: false, blank: false }))),
 			tracks: new ArrayField(new EmbeddedDataField(ProgressDataModel, {})),
 		};
 	}
@@ -65,6 +73,7 @@ export class FUCombatDataModel extends foundry.abstract.TypeDataModel {
 /**
  * @property {Collection<FUCombatant>} combatants
  * @extends Combat
+ * @property {FUCombatDataModel} system
  */
 export class FUCombat extends foundry.documents.Combat {
 	/**
@@ -86,12 +95,7 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @returns {Combatant} Get the Combatant who has the current turn.
 	 */
 	get combatant() {
-		const id = this.getFlag(SYSTEM, Flags.CombatantId);
-		return id != null ? this.combatants.get(id) : null;
-	}
-
-	async setCombatant(combatant) {
-		return this.setFlag(SYSTEM, Flags.CombatantId, combatant != null ? combatant.id : null);
+		return this.combatants.get(this.system.activeCombatant);
 	}
 
 	/**
@@ -108,28 +112,11 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @return {string[]}
 	 */
 	get currentRoundTurnsTaken() {
-		const allRoundsTurnsTaken = this.getTurnsTaken();
-		return allRoundsTurnsTaken[this.round] ?? [];
+		return this.system.rounds[this.round] ?? [];
 	}
 
 	/**
-	 * @return {Object<number, string[]>}
-	 */
-	getTurnsTaken() {
-		return this.getFlag(SYSTEM, Flags.CombatantsTurnTaken) ?? {};
-	}
-
-	/**
-	 * @param {Object<number,string[]>} flag
-	 */
-	async setTurnsTaken(flag) {
-		// TODO: This approach of setting one flag at a time is not optimal.
-		// Database transactions aside, each update triggers a refresh of the combat tracker
-		return this.setFlag(SYSTEM, Flags.CombatantsTurnTaken, flag);
-	}
-
-	/**
-	 * @returns {Number} The total number of turns among factions
+	 * @returns {number} The total number of turns among factions
 	 */
 	get totalTurns() {
 		return this.combatants.reduce((sum, combatant) => sum + combatant.totalTurns, 0);
@@ -173,11 +160,14 @@ export class FUCombat extends foundry.documents.Combat {
 			return this;
 		}
 
-		const updateData = { round: 1 };
+		const updateData = {
+			system: {
+				firstTurn: firstTurnFaction,
+				currentTurn: firstTurnFaction,
+			},
+		};
 		await this.update(updateData);
 
-		await this.setFirstTurn(firstTurnFaction);
-		await this.setCurrentTurn(firstTurnFaction);
 		console.debug(`Combat started for ${this.combatants.length} combatants`);
 		await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round, this.combatants));
 		return super.startCombat();
@@ -267,7 +257,11 @@ export class FUCombat extends foundry.documents.Combat {
 		}
 
 		if (game.user?.isGM) {
-			await this.setCombatant(combatant);
+			await this.update({
+				system: {
+					activeCombatant: combatant.id,
+				},
+			});
 			this.current.combatantId = combatant?.id || null;
 			this.current.tokenId = combatant?.tokenId || null;
 
@@ -309,15 +303,18 @@ export class FUCombat extends foundry.documents.Combat {
 		if (game.user?.isGM) {
 			console.info(`Combat turn ended for ${combatant.actor.uuid}`);
 
-			// Set flags
-			const flag = this.getTurnsTaken();
-			flag[this.round] ??= [];
-			flag[this.round].push(combatant.id);
-			await this.setTurnsTaken(flag);
+			const rounds = this.system.rounds;
+			rounds[this.round] ??= [];
+			rounds[this.round].push(combatant.id);
+			await this.update({
+				system: {
+					activeCombatant: null,
+					rounds: foundry.data.operators.ForcedReplacement.create(rounds ?? {}),
+				},
+			});
 
 			// Invoke event
 			await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round, this.combatants).forCombatant(combatant));
-			await this.setCombatant(null);
 
 			// Setup
 			this.setupTurns();
@@ -410,8 +407,14 @@ export class FUCombat extends foundry.documents.Combat {
 			}
 
 			const factionsWithTurnsLeft = turnsNotTaken.map((combatant) => combatant.faction);
-			return factionsWithTurnsLeft.includes(nextTurn) ? nextTurn : lastTurn;
-		} else return this.getFirstTurn();
+			if (factionsWithTurnsLeft.length > 0) {
+				return factionsWithTurnsLeft.includes(nextTurn) ? nextTurn : lastTurn;
+			} else {
+				return this.system.firstTurn;
+			}
+		} else {
+			return this.system.firstTurn;
+		}
 	}
 
 	/**
@@ -430,21 +433,7 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @return {"hostile" | "friendly" | undefined} The faction whose turn it is
 	 */
 	getCurrentTurn() {
-		return this.getFlag(SYSTEM, Flags.CurrentTurn);
-	}
-
-	/**
-	 * @description Sets the faction that has the current turn
-	 * @param {"hostile" | "friendly"} flag
-	 */
-	setCurrentTurn(flag) {
-		if (game.user === game.users.activeGM) {
-			if (flag) {
-				return this.setFlag(SYSTEM, Flags.CurrentTurn, flag);
-			} else {
-				return this.unsetFlag(SYSTEM, Flags.CurrentTurn);
-			}
-		}
+		return this.system.currentTurn;
 	}
 
 	_onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
@@ -466,8 +455,7 @@ export class FUCombat extends foundry.documents.Combat {
 	 */
 	setupTurns() {
 		this.previous ??= {};
-		const result = (this.turns = this.combatants.contents);
-		return result;
+		return (this.turns = this.combatants.contents);
 	}
 
 	/**
@@ -475,18 +463,30 @@ export class FUCombat extends foundry.documents.Combat {
 	 */
 	async previousTurn() {
 		if (this.combatant) {
-			await this.setCombatant(null);
+			await this.update({
+				system: {
+					activeCombatant: null,
+				},
+			});
 			return this;
 		} else {
-			const turnsTaken = this.getTurnsTaken();
+			const turnsTaken = this.system.rounds;
 
 			if (turnsTaken[this.round]) {
 				turnsTaken[this.round].pop();
-				await this.setTurnsTaken(turnsTaken);
+				await this.update({
+					system: {
+						rounds: foundry.data.operators.ForcedReplacement.create(turnsTaken ?? {}),
+					},
+				});
 			}
 
 			await super.previousTurn();
-			await this.setCurrentTurn(this.determineNextTurn());
+			await this.update({
+				system: {
+					currentTurn: this.determineNextTurn(),
+				},
+			});
 			return this;
 		}
 	}
@@ -495,13 +495,12 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @override
 	 */
 	async previousRound() {
-		const flag = this.getTurnsTaken();
+		const rounds = this.system.rounds;
 
-		if (flag[this.round]) {
-			delete flag[this.round];
+		if (rounds[this.round]) {
+			delete rounds[this.round];
 		}
-		flag[this.round - 1]?.pop();
-		await this.setTurnsTaken(flag);
+		rounds[this.round - 1]?.pop();
 
 		let turn = this.round === 0 ? 0 : Math.max(this.totalTurns - 1, 0);
 		if (this.turn === null) turn = null;
@@ -510,12 +509,26 @@ export class FUCombat extends foundry.documents.Combat {
 		let advanceTime = -1 * (this.turn || 0) * CONFIG.time.turnTime;
 		if (round > 0) advanceTime -= CONFIG.time.roundTime;
 
+		const prev = { round: this.round, turn: this.turn };
+		// Transient mutation required for determineNextTurn
+		this.round = round;
+		this.turn = turn;
+		const updatedCurrentTurn = this.determineNextTurn();
+		// Restore so any hook listeners comparing Combat state to updateData don't get confused
+		this.round = prev.round;
+		this.turn = prev.turn;
 		// Update the document, passing data through a hook first
-		const updateData = { round, turn };
+		const updateData = {
+			round,
+			turn,
+			system: {
+				currentTurn: updatedCurrentTurn,
+				activeCombatant: null,
+				rounds: foundry.data.operators.ForcedReplacement.create(rounds),
+			},
+		};
 		const updateOptions = { direction: -1, worldTime: { delta: advanceTime } };
 		Hooks.callAll('combatRound', this, updateData, updateOptions);
-
-		await this.setCurrentTurn(this.determineNextTurn());
 
 		return this.update(updateData, updateOptions);
 	}
@@ -524,8 +537,6 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @override
 	 */
 	async nextTurn() {
-		await this.setCurrentTurn(this.determineNextTurn());
-
 		// Determine the next turn number
 		const turnsTaken = this.currentRoundTurnsTaken.map((id) => this.combatants.get(id));
 		let turnsNotTaken = this.currentRoundTurnsLeft;
@@ -544,7 +555,13 @@ export class FUCombat extends foundry.documents.Combat {
 		}
 
 		// Update the document, passing data through a hook first
-		const updateData = { round, turn: next };
+		const updateData = {
+			round,
+			turn: next,
+			system: {
+				currentTurn: this.determineNextTurn(),
+			},
+		};
 		const updateOptions = { advanceTime: CONFIG.time.turnTime, direction: 1 };
 		Hooks.callAll('combatTurn', this, updateData, updateOptions);
 
@@ -555,15 +572,19 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @override
 	 */
 	async nextRound() {
-		await this.setCurrentTurn(this.getFirstTurn());
-
 		let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
 		let advanceTime = Math.max(this.totalTurns - this.turn, 0) * CONFIG.time.turnTime;
 		advanceTime += CONFIG.time.roundTime;
 		let nextRound = this.round + 1;
 
 		// Update the document, passing data through a hook first
-		const updateData = { round: nextRound, turn };
+		const updateData = {
+			round: nextRound,
+			turn: turn,
+			system: {
+				currentTurn: this.system.firstTurn,
+			},
+		};
 		const updateOptions = { advanceTime, direction: 1 };
 		Hooks.callAll(`combatRound`, this, updateData, updateOptions);
 		// Invoke our custom event
@@ -571,23 +592,6 @@ export class FUCombat extends foundry.documents.Combat {
 		await callHookWithCallbacks(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round, this.combatants));
 		// Update the internals
 		return this.update(updateData, updateOptions);
-	}
-
-	/**
-	 * @return {"hostile" | "friendly"} The facton who has the first turn in the combat
-	 */
-	getFirstTurn() {
-		return this.getFlag(SYSTEM, Flags.FirstTurn);
-	}
-
-	/**
-	 * @description Sets the faction that has the first turn in the combat
-	 * @param {"hostile" | "friendly"} flag
-	 */
-	async setFirstTurn(flag) {
-		// TODO: This approach of setting one flag at a time is not optimal.
-		// Database transactions aside, each update triggers a refresh of the combat tracker
-		return this.setFlag(SYSTEM, Flags.FirstTurn, flag);
 	}
 
 	/**
