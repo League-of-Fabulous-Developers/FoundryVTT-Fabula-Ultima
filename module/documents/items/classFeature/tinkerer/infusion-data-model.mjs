@@ -9,7 +9,7 @@ import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
-import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
+import { UpdateResourceData } from '../../../../pipelines/resource-pipeline.mjs';
 
 const infusionKey = 'infusion';
 
@@ -83,9 +83,16 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
               </div>
             `,
 		});
-		const cost = new ActionCostDataModel({ resource: 'ip', amount: infusionData.ipCost, perTarget: false });
+		const cost = UpdateResourceData.construct('ip', infusionData.ipCost);
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
-		CommonSections.spendResource(data, actor, actor.items.get(infusionData.itemId), cost, targets, additionalFlags);
+		CommonSections.expense(data, actor, actor.items.get(infusionData.itemId), targets, additionalFlags, {
+			resource: 'ip',
+			amount: infusionData.ipCost,
+			total: infusionData.ipCost,
+			multiplier: cost.multiplier,
+			source: 'skill',
+			traits: [],
+		});
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
