@@ -628,6 +628,7 @@ async function resolveCheck(check, actor, item) {
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
+ * @property {CharacterInfo} actor
  * @property {FUItem} item
  * @property {FUItemGroup} itemGroup
  * @property {InlineSourceInfo} sourceInfo
@@ -647,6 +648,7 @@ async function renderCheck(renderData, config, actor, item) {
 		sourceInfo: sourceInfo,
 		config: config,
 		targets: CharacterInfo.fromTargetData(config.getTargets()),
+		actor: source,
 		item: item,
 		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
