@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Electrophora",
   "type": "classFeature",
-  "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/electrophora.png",
   "system": {
     "summary": {
       "value": "Electric creatures, lightning elementals, robots."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Electrophora",
-      "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/electrophora.png",
       "origin": "Compendium.projectfu.skills.Item.vNgf1mOEsQSpbOiv",
       "system": {
         "duration": {
@@ -185,7 +185,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777768586616,
-        "modifiedTime": 1777788539864,
+        "modifiedTime": 1792632393949,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!vNgf1mOEsQSpbOiv.taZXhZ3zGdxN5GoW"
@@ -202,10 +202,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767290543217,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1792632388162,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

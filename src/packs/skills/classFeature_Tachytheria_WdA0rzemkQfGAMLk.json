@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Tachytheria",
   "type": "classFeature",
-  "img": "icons/creatures/mammals/spirit-deer-herd-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/tachytheria.png",
   "system": {
     "summary": {
       "value": "Cats, gazelles, hares, creatures that are agile and quick."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Tachytheria",
-      "img": "icons/creatures/mammals/spirit-deer-herd-blue.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/tachytheria.png",
       "origin": "Compendium.projectfu.skills.Item.WdA0rzemkQfGAMLk",
       "system": {
         "duration": {
@@ -132,7 +132,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777761772936,
-        "modifiedTime": 1777761864018,
+        "modifiedTime": 1792632506203,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!WdA0rzemkQfGAMLk.Wc78nzv2k0QLfVCS"
@@ -149,10 +149,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767290951002,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1792632500365,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
