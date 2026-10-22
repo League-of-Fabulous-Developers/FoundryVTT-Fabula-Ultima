@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Dynamotheria",
   "type": "classFeature",
-  "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/dynamotheria.png",
   "system": {
     "summary": {
       "value": "Bears, dinosaurs, creatures of massive size and strength."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Dynamotheria",
-      "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/dynamotheria.png",
       "origin": "Compendium.projectfu.skills.Item.g7G1eUEz0VaS5bNg",
       "system": {
         "duration": {
@@ -132,7 +132,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777757143906,
-        "modifiedTime": 1777761733979,
+        "modifiedTime": 1792632368135,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!g7G1eUEz0VaS5bNg.SouFd148aBfHiI7t"
@@ -151,7 +151,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1791521488992,
+    "modifiedTime": 1792632361141,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

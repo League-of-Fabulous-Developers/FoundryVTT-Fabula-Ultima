@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Pyrophora",
   "type": "classFeature",
-  "img": "icons/magic/fire/flame-burning-eye.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/pyrophora.png",
   "system": {
     "summary": {
       "value": "Pyrophora Bombardier beetles, pistol shrimps, fire elementals."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Pyrophora",
-      "img": "icons/magic/fire/flame-burning-eye.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/pyrophora.png",
       "origin": "Compendium.projectfu.skills.Item.guVvGJaNqpi2A4WR",
       "system": {
         "duration": {
@@ -185,7 +185,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777787917769,
-        "modifiedTime": 1777788623164,
+        "modifiedTime": 1792632494170,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!guVvGJaNqpi2A4WR.9brc8KUefDrzeF7f"
@@ -202,10 +202,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767290882367,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1792632491274,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

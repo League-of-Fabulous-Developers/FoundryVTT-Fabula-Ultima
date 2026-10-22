@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Placophora",
   "type": "classFeature",
-  "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/placophora.png",
   "system": {
     "summary": {
       "value": "Crustaceans, turtles, armored creatures and vehicles."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Placophora",
-      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/placophora.png",
       "origin": "Compendium.projectfu.skills.Item.aAmIBca4b150uuAH",
       "system": {
         "duration": {
@@ -90,7 +90,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777787160109,
-        "modifiedTime": 1777788400736,
+        "modifiedTime": 1792632430213,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!aAmIBca4b150uuAH.DBT0nBuyIpgRzUHY"
@@ -109,7 +109,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1791521549757,
+    "modifiedTime": 1792632425014,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Pneumophora",
   "type": "classFeature",
-  "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/pneumophora.png",
   "system": {
     "summary": {
       "value": "Jet-propulsion mollusks, great winged beasts, rockets."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Pneumophora",
-      "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/pneumophora.png",
       "origin": "Compendium.projectfu.skills.Item.1QqNBwC1WQKDxk3s",
       "system": {
         "duration": {
@@ -185,7 +185,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777787353792,
-        "modifiedTime": 1777788583891,
+        "modifiedTime": 1792632443469,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!1QqNBwC1WQKDxk3s.cjeCGLY9bnHDbWQP"
@@ -204,7 +204,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1775522653911,
+    "modifiedTime": 1792632437790,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

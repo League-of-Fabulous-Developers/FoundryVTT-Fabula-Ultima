@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Neurophagoida",
   "type": "classFeature",
-  "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/neurophagodia.png",
   "system": {
     "summary": {
       "value": "Parasites, undead, creatures who feed on souls."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Neurophagoida",
-      "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/neurophagodia.png",
       "origin": "Compendium.projectfu.skills.Item.f9NciszRYctYrAnb",
       "system": {
         "duration": {
@@ -233,7 +233,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1783550610356,
-        "modifiedTime": 1783551177496,
+        "modifiedTime": 1792632417667,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!f9NciszRYctYrAnb.TM3voI7NzQauIODl"
@@ -252,7 +252,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1783551661761,
+    "modifiedTime": 1792632411373,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
