@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Toxicophora",
   "type": "classFeature",
-  "img": "icons/creatures/invertebrates/spider-skull-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/toxicophora.png",
   "system": {
     "summary": {
       "value": "Spiders, snakes, toxic slimes and other venomous creatures."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Toxicophora",
-      "img": "icons/creatures/invertebrates/spider-skull-green.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/toxicophora.png",
       "origin": "Compendium.projectfu.skills.Item.dBGoRsrayjBXuM31",
       "system": {
         "duration": {
@@ -185,7 +185,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777788108378,
-        "modifiedTime": 1777788648122,
+        "modifiedTime": 1792632518019,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!dBGoRsrayjBXuM31.LU4u1z7bHcUEYo1I"
@@ -202,10 +202,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767291807723,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1792632512834,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

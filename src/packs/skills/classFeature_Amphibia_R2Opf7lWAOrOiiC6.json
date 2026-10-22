@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Amphibia",
   "type": "classFeature",
-  "img": "icons/creatures/amphibians/frog-water-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/amphibia.png",
   "system": {
     "summary": {
       "value": "Frogs, salamanders, regenerating creatures, aquatic monsters."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Amphibia",
-      "img": "icons/creatures/amphibians/frog-water-teal.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/amphibia.png",
       "origin": "Compendium.projectfu.skills.Item.R2Opf7lWAOrOiiC6",
       "system": {
         "duration": {
@@ -42,7 +42,8 @@
                 "type": "resourceUpdateRuleTrigger",
                 "eventRelation": "target",
                 "resource": "hp",
-                "change": "increment"
+                "change": "increment",
+                "identifier": ""
               },
               "_id": "ggD9rNP3912B1lkX",
               "actions": {
@@ -109,7 +110,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777742665306,
-        "modifiedTime": 1777742938029,
+        "modifiedTime": 1792632331469,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!R2Opf7lWAOrOiiC6.4UiLcpLiqyQPL8ZO"
@@ -128,7 +129,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1777742872371,
+    "modifiedTime": 1792632324635,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

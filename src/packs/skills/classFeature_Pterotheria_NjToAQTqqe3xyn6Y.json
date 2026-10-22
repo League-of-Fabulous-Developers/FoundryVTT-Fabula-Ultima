@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Pterotheria",
   "type": "classFeature",
-  "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/pterotheria.png",
   "system": {
     "summary": {
       "value": "Bats, birds, winged insects, flying creatures."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Pterotheria",
-      "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/pterotheria.png",
       "origin": "Compendium.projectfu.skills.Item.NjToAQTqqe3xyn6Y",
       "system": {
         "duration": {
@@ -47,7 +47,8 @@
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "identifier": ""
               },
               "_id": "rbcUWh6fyidW1YV6",
               "actions": {
@@ -70,7 +71,8 @@
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "identifier": ""
               },
               "_id": "j5hmS08qjkRBwqSm",
               "actions": {
@@ -93,7 +95,8 @@
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "identifier": ""
               },
               "_id": "0G7YG9bVvUifGCXV",
               "actions": {
@@ -153,7 +156,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777787614251,
-        "modifiedTime": 1777787846118,
+        "modifiedTime": 1792632484869,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!NjToAQTqqe3xyn6Y.KAVU4jfHTaNHYD5n"
@@ -172,7 +175,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1791521658852,
+    "modifiedTime": 1792632479155,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
