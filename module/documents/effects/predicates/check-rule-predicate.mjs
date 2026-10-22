@@ -63,9 +63,9 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		let targets = context.targets;
 
 		if (!context.data.check || !context.targets) {
-			if (context.config) {
-				check = context.config.check;
-				targets = context.config.getTargets();
+			if (context.data.config) {
+				check = context.data.config.check;
+				targets = context.data.config.getTargets();
 			} else {
 				console.warn(`No configuration provided for check in the event ${context.eventType}.`);
 				return false;
