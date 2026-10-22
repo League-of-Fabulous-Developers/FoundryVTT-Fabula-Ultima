@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Polypoda",
   "type": "classFeature",
-  "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/polypoda.png",
   "system": {
     "summary": {
       "value": "Squids, octopi, creatures with tendrils or vines."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Polypoda",
-      "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/polypoda.png",
       "origin": "Compendium.projectfu.skills.Item.fHHT9SZwPRXiEA0U",
       "system": {
         "duration": {
@@ -83,7 +83,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777787555787,
-        "modifiedTime": 1777787580518,
+        "modifiedTime": 1792632468647,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!fHHT9SZwPRXiEA0U.FaNniaVa5YuBNTZh"
@@ -100,10 +100,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767291723103,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1792632463129,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

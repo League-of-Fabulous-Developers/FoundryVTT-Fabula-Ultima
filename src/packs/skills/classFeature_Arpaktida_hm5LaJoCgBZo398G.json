@@ -2,7 +2,7 @@
   "folder": "5QBQvcD8cm6ReC2o",
   "name": "Arpaktida",
   "type": "classFeature",
-  "img": "icons/creatures/eyes/humanoid-single-red-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/arpaktida.png",
   "system": {
     "summary": {
       "value": "Wolves, birds of prey, creatures with sharp hunting senses."
@@ -20,7 +20,7 @@
   "effects": [
     {
       "name": "Arpaktida",
-      "img": "icons/creatures/eyes/humanoid-single-red-brown.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/therioforms/arpaktida.png",
       "origin": "Compendium.projectfu.skills.Item.hm5LaJoCgBZo398G",
       "system": {
         "duration": {
@@ -157,7 +157,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1777742996253,
-        "modifiedTime": 1777757160970,
+        "modifiedTime": 1792632353496,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!hm5LaJoCgBZo398G.dyp7joS5INqWgter"
@@ -174,10 +174,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767290361517,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1792632347342,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
