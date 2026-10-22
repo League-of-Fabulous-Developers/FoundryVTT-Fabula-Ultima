@@ -456,7 +456,7 @@ Hooks.once('init', () => {
 	CompendiumBrowser.initialize();
 	Themes.initialize();
 	ActorDirectoryEnhancements.initialize();
-  PixelArtDetection.initialize();
+	PixelArtDetection.initialize();
 
 	// Fetch any extensions from modules
 	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);

@@ -131,6 +131,10 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	};
 }
 
+function isEquipmentUsingNpc(actor) {
+	return actor.type === 'npc' && actor.system.useEquipment;
+}
+
 /**
  * @param {FUActor} actor
  * @param {InlineSourceInfo} sourceInfo
@@ -138,7 +142,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
  * @param {FUActiveEffectConfiguration} config
  */
 async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
-	if (actor.system instanceof CharacterDataModel) {
+	if (actor.system instanceof CharacterDataModel || isEquipmentUsingNpc(actor)) {
 		const source = sourceInfo.resolve();
 		const promptWeapon = await WeaponResolver.prompt(actor, true);
 		if (!promptWeapon) {
