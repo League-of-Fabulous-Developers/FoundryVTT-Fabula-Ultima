@@ -106,6 +106,14 @@ export class UpdateResourceData {
 		}
 		return result;
 	}
+
+	get multiplier() {
+		return this.modifiers
+			.filter((value) => value.enabled)
+			.map((value) => value.multiplier)
+			.filter((value) => Number.isFinite(value))
+			.reduce((acc, curr) => acc * curr, 1);
+	}
 }
 
 /**
