@@ -157,55 +157,68 @@ async function promptWeaponEnchantmentDialog(state, dispatch, view) {
 	}
 }
 
+/**
+ * @param {ProseMirrorMenu} menu
+ * @param {Record<string, ProseMirrorDropDownConfig>} config
+ */
 function onGetProseMirrorMenuDropDowns(menu, config) {
-	config['projectfu.textCommands'] = {
+	const menuId = 'projectfu.textCommands';
+	const entries = [
+		{
+			action: 'icon',
+			title: 'FU.TextEditorButtonCommandIcon',
+			group: 1,
+			cmd: promptIconSelectionDialog,
+		},
+		{
+			action: 'damage',
+			title: 'FU.TextEditorButtonCommandDamage',
+			group: 1,
+			cmd: promptDamageDialog,
+		},
+		{
+			action: 'resourceGain',
+			title: 'FU.TextEditorButtonCommandGain',
+			group: 1,
+			cmd: promptResourceGainDialog,
+		},
+		{
+			action: 'resourceLoss',
+			title: 'FU.TextEditorButtonCommandLoss',
+			group: 1,
+			cmd: promptResourceLossDialog,
+		},
+		{
+			action: 'effect',
+			title: 'FU.TextEditorButtonCommandEffect',
+			group: 1,
+			cmd: InlineEffects.showEffectConfiguration,
+		},
+		{
+			action: 'check',
+			title: 'FU.TextEditorButtonCommandCheck',
+			group: 1,
+			cmd: promptCheckDialog,
+		},
+		{
+			action: 'weapon',
+			title: 'FU.TextEditorButtonCommandWeaponEnchantment',
+			group: 1,
+			cmd: promptWeaponEnchantmentDialog,
+		},
+	];
+	config.format.entries.push({
+		action: menuId,
+		title: 'FU.TextEditorTextCommands',
+		children: entries,
+	});
+	config[menuId] = {
+		menu: menuId,
 		title: 'FU.TextEditorTextCommands',
 		icon: `<i class="star-label fus-star2-border" data-tooltip="FU.TextEditorTextCommands"></i>`,
 		cssClass: 'right',
-		entries: [
-			{
-				action: 'icon',
-				title: 'FU.TextEditorButtonCommandIcon',
-				group: 1,
-				cmd: promptIconSelectionDialog,
-			},
-			{
-				action: 'damage',
-				title: 'FU.TextEditorButtonCommandDamage',
-				group: 1,
-				cmd: promptDamageDialog,
-			},
-			{
-				action: 'resourceGain',
-				title: 'FU.TextEditorButtonCommandGain',
-				group: 1,
-				cmd: promptResourceGainDialog,
-			},
-			{
-				action: 'resourceLoss',
-				title: 'FU.TextEditorButtonCommandLoss',
-				group: 1,
-				cmd: promptResourceLossDialog,
-			},
-			{
-				action: 'effect',
-				title: 'FU.TextEditorButtonCommandEffect',
-				group: 1,
-				cmd: InlineEffects.showEffectConfiguration,
-			},
-			{
-				action: 'check',
-				title: 'FU.TextEditorButtonCommandCheck',
-				group: 1,
-				cmd: promptCheckDialog,
-			},
-			{
-				action: 'weapon',
-				title: 'FU.TextEditorButtonCommandWeaponEnchantment',
-				group: 1,
-				cmd: promptWeaponEnchantmentDialog,
-			},
-		],
+		weight: 250,
+		entries: entries,
 	};
 }
 
