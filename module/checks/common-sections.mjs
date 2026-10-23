@@ -518,6 +518,7 @@ const expense = (data, actor, item, targets, flags, expense) => {
 				item: item.uuid,
 				expense: expense,
 				icon: FU.resourceIcons[expense.resource],
+				resourceLabel: FU.resourcesAbbr[expense.resource],
 			},
 		};
 	});
