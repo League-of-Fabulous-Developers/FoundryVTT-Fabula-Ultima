@@ -198,6 +198,18 @@
 			border-color: var(--pfu-color-control-border);
 			border-radius: var(--pfu-border-radius-medium);
 			background: var(--pfu-color-control-fill);
+			gap: 0;
+
+			--border-color: var(--background-color);
+
+			menu {
+				background: var(--pfu-color-app-control-fill);
+
+				.star-label {
+					/* this re-enables the tooltip for the PFU dropdown in prosemirror editors */
+					pointer-events: auto;
+				}
+			}
 		}
 
 		& .chat-input:focus,
