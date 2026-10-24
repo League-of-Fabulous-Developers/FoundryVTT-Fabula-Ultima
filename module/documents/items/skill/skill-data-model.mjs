@@ -58,8 +58,15 @@ export class SkillDataModel extends BaseSkillDataModel {
 	 * @override
 	 */
 	getTags() {
+		let className = null;
+		if (this.class.value && this.parent.actor) {
+			const classItem = this.parent.actor.getSingleItemByFuid(this.class.value, 'class');
+			if (classItem) {
+				className = classItem.name;
+			}
+		}
 		return [
-			{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value },
+			{ tag: 'FU.Class', separator: ':', value: className, show: !!className },
 			{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: this.level.value },
 		];
 	}
