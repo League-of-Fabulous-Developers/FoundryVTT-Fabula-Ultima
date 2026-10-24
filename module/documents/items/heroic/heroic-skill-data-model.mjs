@@ -55,6 +55,18 @@ export class HeroicSkillDataModel extends BaseSkillDataModel {
 	 * @override
 	 */
 	getTags() {
-		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: FU.heroicType[this.subtype.value] }];
+		let classNames = null;
+		if (this.class.value && this.parent.actor) {
+			const classes = this.class.value
+				.split(',')
+				.map((s) => s.trim())
+				.map((s) => this.parent.actor.getSingleItemByFuid(s, 'class'))
+				.filter((v) => !!v);
+			if (classes.length > 0) {
+				classNames = classes.map((c) => c.name).join(', ');
+			}
+		}
+
+		return [{ tag: 'FU.Class', separator: ':', value: classNames, show: !!classNames }, { tag: FU.heroicType[this.subtype.value] }];
 	}
 }
