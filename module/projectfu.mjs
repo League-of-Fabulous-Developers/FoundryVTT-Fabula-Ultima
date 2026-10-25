@@ -119,6 +119,7 @@ import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 import { ActorDirectoryEnhancements } from './ui/actor-directory-enhancements.mjs';
 import { PixelArtDetection } from './helpers/pixel-art-detection.mjs';
+import { refreshCompendiumData } from './helpers/compendium-refresh.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -138,6 +139,7 @@ globalThis.projectfu = {
 		RulePredicateDataModel,
 		RuleActionDataModel,
 	},
+	refreshCompendiumData,
 };
 
 // These are pulled out of the init hook to ensure they are overridden before any modules that may apply mixins later
