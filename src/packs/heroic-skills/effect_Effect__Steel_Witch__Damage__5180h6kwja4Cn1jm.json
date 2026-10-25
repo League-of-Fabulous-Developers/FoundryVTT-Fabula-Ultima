@@ -29,11 +29,8 @@
         "rules": {
           "elements": {
             "kWMyXjt2nO7ljOyN": {
-              "type": "ruleElement",
-              "_id": "kWMyXjt2nO7ljOyN",
               "trigger": {
-                "_id": "gEeX8PezQBtHTz8T",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -44,27 +41,27 @@
               },
               "predicates": {
                 "dVBiUd1Ouf3m8j6T": {
-                  "type": "traitsRulePredicate",
-                  "_id": "dVBiUd1Ouf3m8j6T",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 }
               },
               "actions": {
                 "QxcEc5hJjTeSeDMd": {
-                  "type": "messageRuleAction",
-                  "_id": "QxcEc5hJjTeSeDMd",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Remove this effect.</p>"
                 },
                 "8UCp1qpkKRfqplYZ": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "8UCp1qpkKRfqplYZ",
+                  "type": "projectfu.clearEffectRuleAction",
                   "identifier": "effect-steel-witch-damage"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -73,26 +70,29 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.spell",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "BdFeozbPR8HuhxVC",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.spell",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -104,32 +104,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770964625497,
-        "modifiedTime": 1770965096746,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922817,
+        "modifiedTime": 1792923922817,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5180h6kwja4Cn1jm.BdFeozbPR8HuhxVC"
     }
   ],
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770964612031,
-    "modifiedTime": 1771018700776,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922817,
+    "modifiedTime": 1792923923008,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!5180h6kwja4Cn1jm"
 }

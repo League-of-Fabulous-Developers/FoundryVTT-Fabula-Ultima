@@ -10,9 +10,6 @@
       "value": "You deal 10 damage of a type of your choice (air, bolt, earth, fire, or ice) to one creature you can see."
     },
     "description": "<p>You deal 10 damage of a type of your choice (<strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>) to one creature you can see.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -38,14 +35,17 @@
         "elemental-shard",
         "damage"
       ]
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "folder": "WTJwnSjYUL3GOIyA",
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -56,10 +56,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706516143319,
-    "modifiedTime": 1771880471785,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923160,
+    "modifiedTime": 1792923923173,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

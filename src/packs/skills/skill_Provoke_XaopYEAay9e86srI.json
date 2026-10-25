@@ -5,16 +5,10 @@
   "_id": "XaopYEAay9e86srI",
   "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against an enemy you can see; describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong>, is compelled to focus their attention on you, and must include you among the targets of their attacks and offensive spells (@ICON[offensive]) if able. This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "fury"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "wlp"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "1",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR195",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "mig"
-        },
-        "secondary": {
-          "value": "wlp"
-        }
-      },
-      "accuracy": {
-        "value": 1
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,12 +49,15 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "provoke",
     "cost": {
-      "amount": 5
+      "amount": "5",
+      "resource": "mp",
+      "perTarget": false
     },
     "effects": {
       "entries": [
@@ -128,11 +65,21 @@
         "Compendium.projectfu.skills.SBaaNDpwZQDafu3J"
       ],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -153,10 +100,8 @@
         "rules": {
           "elements": {
             "9PICIQnEPdbweedJ": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "FynMq2jXxkUTTkBl",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -165,11 +110,9 @@
                 "local": true,
                 "identifier": ""
               },
-              "_id": "9PICIQnEPdbweedJ",
               "actions": {
                 "gOvGI2Ap68JAm9PD": {
-                  "type": "performCheckRuleAction",
-                  "_id": "gOvGI2Ap68JAm9PD",
+                  "type": "projectfu.performCheckRuleAction",
                   "check": "opposed",
                   "bonus": "$sl",
                   "attributes": {
@@ -181,7 +124,10 @@
                     }
                   }
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -190,18 +136,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "xP5YT1ZhyYRekamk",
       "type": "base",
-      "changes": [],
       "description": "<p>Performing the <strong>Provoke</strong> Skill allows you to perform an <strong>Opposed Check</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -213,20 +162,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771836732403,
-        "modifiedTime": 1771905735141,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921253,
+        "modifiedTime": 1792923921253,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!XaopYEAay9e86srI.xP5YT1ZhyYRekamk"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -238,10 +188,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706502413549,
-    "modifiedTime": 1786409797209,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921253,
+    "modifiedTime": 1792923922142,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

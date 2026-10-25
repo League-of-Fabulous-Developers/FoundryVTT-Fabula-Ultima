@@ -4,7 +4,10 @@
   "_id": "hX70STpGG5fgAAkp",
   "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
   "system": {
-    "fuid": "mig-up"
+    "fuid": "mig-up",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -30,31 +33,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.mig",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "L09Qau8dNnBVwgZf",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.mig",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>You treat your <strong>Might</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -75,31 +81,33 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774816877299,
-        "modifiedTime": 1774816892531,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924065,
+        "modifiedTime": 1792923924065,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!hX70STpGG5fgAAkp.L09Qau8dNnBVwgZf"
     }
   ],
   "folder": "mI21NJqZ45bnQ2S3",
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725743333679,
-    "modifiedTime": 1774761649986,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924065,
+    "modifiedTime": 1792923924214,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "sort": 300000,

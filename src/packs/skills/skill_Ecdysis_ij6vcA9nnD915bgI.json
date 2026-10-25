@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>After you lose Hit Points due to damage, if that damage had a type and that type <strong>was not physical</strong>, you may spend 10 Hit Points to gain Resistance to that damage type until you use this Skill again.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.Kty7mXV2rYWYlh7P], @EFFECT[Compendium.projectfu.skills.Item.oRw9IgQb5O3y925W], @EFFECT[Compendium.projectfu.skills.Item.QYm9cOLsAy3z8lYk], @EFFECT[Compendium.projectfu.skills.Item.AalpjgPYtAnE2xUG], @EFFECT[Compendium.projectfu.skills.Item.35Nc53wsvpkolIJo], @EFFECT[Compendium.projectfu.skills.Item.MNqeb3czLk2niQCJ], @EFFECT[Compendium.projectfu.skills.Item.uw4oQDHCsyWLtTCO], or @EFFECT[Compendium.projectfu.skills.Item.ShWqhaoHw5jU8vLU]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After you lose Hit Points due to damage, if that damage had a type and that type <strong>was not physical</strong>, you may spend 10 Hit Points to gain Resistance to that damage type until you use this Skill again.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.Kty7mXV2rYWYlh7P], @EFFECT[Compendium.projectfu.skills.Item.oRw9IgQb5O3y925W], @EFFECT[Compendium.projectfu.skills.Item.QYm9cOLsAy3z8lYk], @EFFECT[Compendium.projectfu.skills.Item.AalpjgPYtAnE2xUG], @EFFECT[Compendium.projectfu.skills.Item.35Nc53wsvpkolIJo], @EFFECT[Compendium.projectfu.skills.Item.MNqeb3czLk2niQCJ], @EFFECT[Compendium.projectfu.skills.Item.uw4oQDHCsyWLtTCO], or @EFFECT[Compendium.projectfu.skills.Item.ShWqhaoHw5jU8vLU]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -24,49 +20,22 @@
       "value": "mutant"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -75,58 +44,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF155",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
     "defense": "def",
     "fuid": "ecdysis",
     "cost": {
-      "amount": 10,
-      "resource": "hp"
+      "amount": "10",
+      "resource": "hp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
@@ -139,10 +88,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711429218464,
-    "modifiedTime": 1791521218001,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921314,
+    "modifiedTime": 1792923922151,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -150,9 +99,7 @@
   "_id": "ij6vcA9nnD915bgI",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!ij6vcA9nnD915bgI"
 }

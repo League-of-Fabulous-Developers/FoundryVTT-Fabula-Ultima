@@ -8,23 +8,17 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>light</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>light</strong>.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.tSDWgpPtvuxhxeSq]{Angel Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ]{Angel Dance (Damage)}</p>",
-      "duration": "nextTurn"
+      "description": "<p>Choose one option: you gain Resistance to <strong>light</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>light</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.tSDWgpPtvuxhxeSq]{Angel Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ]{Angel Dance (Damage)}</p>",
+      "duration": "nextTurn",
+      "type": "projectfu.dance"
     },
     "source": "FUHF144",
     "fuid": "angel-dance"
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {}
@@ -32,10 +26,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710041769185,
-    "modifiedTime": 1774641156716,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921369,
+    "modifiedTime": 1792923922162,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -7,12 +7,9 @@
     "summary": {
       "value": "Frogs, salamanders, regenerating creatures, aquatic monsters."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover 5 additional Hit Points and you may recover from a single status effect of your choice.</p>"
+      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover 5 additional Hit Points and you may recover from a single status effect of your choice.</p>",
+      "type": "projectfu.therioform"
     },
     "source": "FUTF156",
     "fuid": "amphibia"
@@ -36,23 +33,28 @@
         "rules": {
           "elements": {
             "ggD9rNP3912B1lkX": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "E5R2DmMI64qUrMg8",
-                "type": "resourceUpdateRuleTrigger",
+                "type": "projectfu.resourceUpdateRuleTrigger",
                 "eventRelation": "target",
                 "resource": "hp",
                 "change": "increment",
-                "identifier": ""
+                "identifier": "",
+                "changeThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "itemGroups": [],
+                "local": false
               },
-              "_id": "ggD9rNP3912B1lkX",
               "actions": {
                 "ybrQCLq5C2bedcTy": {
-                  "type": "messageRuleAction",
-                  "_id": "ybrQCLq5C2bedcTy",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may recover from a status effect.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -61,31 +63,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingRecovery.hp",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "4UiLcpLiqyQPL8ZO",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.incomingRecovery.hp",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>You are <strong>manifesting</strong> this therioform. You may breathe underwater and your eyes can see perfectly in dim light. When you recover HP, you recover 5 additional HP and you may recover from a single status effect of your choice.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -106,20 +111,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777742665306,
-        "modifiedTime": 1792632331469,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921216,
+        "modifiedTime": 1792923921216,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!R2Opf7lWAOrOiiC6.4UiLcpLiqyQPL8ZO"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -127,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711428338643,
-    "modifiedTime": 1792632324635,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921216,
+    "modifiedTime": 1792923922137,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

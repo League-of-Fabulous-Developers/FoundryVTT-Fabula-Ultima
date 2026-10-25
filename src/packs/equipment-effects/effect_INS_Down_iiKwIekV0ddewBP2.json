@@ -35,30 +35,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.ins",
+            "value": "downgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "C6SyTi5APKgA2OfT",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.ins",
-          "mode": 0,
-          "value": "downgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, you treat your <strong>Insight</strong> as if it were one die size lower (down to a minimum of <strong>d6</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -79,32 +83,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774762336256,
-        "modifiedTime": 1774762355013,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924687,
+        "modifiedTime": 1792923924687,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!iiKwIekV0ddewBP2.C6SyTi5APKgA2OfT"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774762261666,
-    "modifiedTime": 1774762335218,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924687,
+    "modifiedTime": 1792923924856,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!iiKwIekV0ddewBP2"
 }

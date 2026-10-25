@@ -30,27 +30,23 @@
         "rules": {
           "elements": {
             "MbTS7YOcrlGQrxaX": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "Qs3ozE8N0FkdUEiK",
-                "type": "performCheckRuleTrigger",
+                "type": "projectfu.performCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "opposed"
-                ]
+                ],
+                "local": false
               },
-              "_id": "MbTS7YOcrlGQrxaX",
               "actions": {
                 "4wiVTUUXlhkJOM3N": {
-                  "type": "modifyCheckRuleAction",
-                  "_id": "4wiVTUUXlhkJOM3N",
+                  "type": "projectfu.modifyCheckRuleAction",
                   "bonus": "2"
                 }
               },
               "predicates": {
                 "65CmUc1bjzNi80Ks": {
-                  "type": "checkRulePredicate",
-                  "_id": "65CmUc1bjzNi80Ks",
+                  "type": "projectfu.checkRulePredicate",
                   "result": null,
                   "attributes": {
                     "primary": {
@@ -59,9 +55,14 @@
                     "secondary": {
                       "value": ""
                     }
-                  }
+                  },
+                  "parity": "",
+                  "outcome": "",
+                  "quantifier": "any"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -70,23 +71,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "WQi4wFeUuqO3KRvw",
       "type": "base",
-      "changes": [],
       "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Willpower</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -107,32 +111,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774758466317,
-        "modifiedTime": 1774758502957,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924671,
+        "modifiedTime": 1792923924671,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!RTrh4monxzCLKeaz.WQi4wFeUuqO3KRvw"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774685312972,
-    "modifiedTime": 1774758465091,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924671,
+    "modifiedTime": 1792923924849,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!RTrh4monxzCLKeaz"
 }

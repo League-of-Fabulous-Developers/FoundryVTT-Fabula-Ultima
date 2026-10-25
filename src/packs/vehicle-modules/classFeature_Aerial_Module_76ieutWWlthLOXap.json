@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Counts as two enabled modules.</strong></p><hr /><p>This personal vehicle can fly, and its <strong>distance</strong> becomes <strong>×3</strong>.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
-      "complex": true
+      "description": "<p><strong>Counts as two enabled modules.</strong></p><hr><p>This personal vehicle can fly, and its <strong>distance</strong> becomes <strong>×3</strong>.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
+      "complex": true,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF168",
     "fuid": "aerial-module"
@@ -23,13 +21,10 @@
       "img": "icons/commodities/tech/fan-ventilator-copper.webp",
       "origin": "Compendium.projectfu.vehicle-modules.Item.76ieutWWlthLOXap",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Aerial Module",
@@ -43,7 +38,8 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
@@ -52,81 +48,88 @@
           },
           "elements": {
             "3gGJV5MyuQMXyqrb": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "XWfj0q5U7TjBX9Wz",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "target",
                 "damageType": "air",
                 "affinity": "",
-                "damageSources": [],
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "itemGroups": [],
+                "local": false
               },
-              "_id": "3gGJV5MyuQMXyqrb",
               "actions": {
                 "PPAh1z8I7fgVtkgS": {
-                  "type": "messageRuleAction",
-                  "_id": "PPAh1z8I7fgVtkgS",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Flying ceases until the start of your next turn.</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             },
             "FIIqPKp84yvwIDzW": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "PfDRUbi5xap49v6U",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "target",
                 "damageType": "bolt",
                 "affinity": "",
-                "damageSources": [],
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "itemGroups": [],
+                "local": false
               },
-              "_id": "FIIqPKp84yvwIDzW",
               "selector": "self",
               "actions": {
                 "NJSZiWb365pvpzpf": {
-                  "type": "messageRuleAction",
-                  "_id": "NJSZiWb365pvpzpf",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Flying ceases until the start of your next turn.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "enabled": true
             },
             "FsFohoAzqS0WLNQZ": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "xxBh8Ghu2RqTFJtW",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "target",
                 "damageType": "ice",
                 "affinity": "",
-                "damageSources": [],
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "itemGroups": [],
+                "local": false
               },
-              "_id": "FsFohoAzqS0WLNQZ",
               "selector": "self",
               "actions": {
                 "HoujNbwEfnLu8ZzC": {
-                  "type": "messageRuleAction",
-                  "_id": "HoujNbwEfnLu8ZzC",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Flying ceases until the start of your next turn.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "enabled": true
             }
           }
+        },
+        "changes": [],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "inactive"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [],
       "description": "<p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -136,22 +139,23 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "default",
-          "source": "FUTF168",
-          "CrisisInteraction": "inactive"
+          "source": "FUTF168"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743183356662,
-        "modifiedTime": 1773720760363,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923923287,
+        "modifiedTime": 1792923923287,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "showIcon": 2,
+      "start": null,
+      "folder": null,
       "_key": "!items.effects!76ieutWWlthLOXap.iT2kp5MfqL4yaKp7"
     }
   ],
@@ -161,10 +165,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711476977290,
-    "modifiedTime": 1791522875087,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923287,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -172,8 +176,7 @@
   "_id": "76ieutWWlthLOXap",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!76ieutWWlthLOXap"
 }

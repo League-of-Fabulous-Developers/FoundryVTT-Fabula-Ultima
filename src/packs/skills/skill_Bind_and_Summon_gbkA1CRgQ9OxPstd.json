@@ -5,16 +5,10 @@
   "_id": "gbkA1CRgQ9OxPstd",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_bind_and_summon.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend 40 Mind Points to <strong>summon</strong> an Arcanum you have bound.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you. Other than that, you may only obtain new Arcana through exploration and story progression.</p><hr /><p>For <strong>arcana</strong> breakdown and a list of <strong>Arcanums</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcanist Rules} or see <strong>Core Rulebook</strong>, page <strong>178</strong>.</p><p><em>Perform this Skill to automatically <strong>summon</strong> and <strong>dismiss</strong>.</em></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend 40 Mind Points to <strong>summon</strong> an Arcanum you have bound.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you. Other than that, you may only obtain new Arcana through exploration and story progression.</p><hr><p>For <strong>arcana</strong> breakdown and a list of <strong>Arcanums</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcanist Rules} or see <strong>Core Rulebook</strong>, page <strong>178</strong>.</p><p><em>Perform this Skill to automatically <strong>summon</strong> and <strong>dismiss</strong>.</em></p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "arcanist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR177",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,20 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "bind-and-summon",
     "cost": {
-      "amount": 40
+      "amount": "40",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -149,20 +97,19 @@
         "rules": {
           "elements": {
             "b1fmFhNF33FwoU9W": {
-              "type": "ruleElement",
-              "_id": "b1fmFhNF33FwoU9W",
               "trigger": {
-                "_id": "ileIg77maPnwlchk",
-                "type": "itemRollRuleTrigger",
+                "type": "projectfu.itemRollRuleTrigger",
                 "eventRelation": "source"
               },
               "actions": {
                 "sbPG4SSY7vrt9ROo": {
-                  "type": "openApplicationRuleAction",
-                  "_id": "sbPG4SSY7vrt9ROo",
+                  "type": "projectfu.openApplicationRuleAction",
                   "application": "arcanist"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -171,18 +118,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Nqx8jTC7Xyci6rmi",
       "type": "base",
-      "changes": [],
       "description": "<p>Performing the <strong>Bind and Summon</strong> Skill allows you to either <strong>summon</strong> an Arcanum or <strong>dismiss</strong> an Arcanum.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -194,20 +144,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1768060526969,
-        "modifiedTime": 1771821966668,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921300,
+        "modifiedTime": 1792923921300,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!gbkA1CRgQ9OxPstd.Nqx8jTC7Xyci6rmi"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -219,10 +170,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706494654131,
-    "modifiedTime": 1786401782246,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921300,
+    "modifiedTime": 1792923922150,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

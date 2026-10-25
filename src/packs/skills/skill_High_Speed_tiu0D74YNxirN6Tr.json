@@ -5,16 +5,10 @@
   "_id": "tiu0D74YNxirN6Tr",
   "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon you have equipped.</p></li><li><p>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</p></li></ul><p>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon you have equipped.</p></li><li><p>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</p></li></ul><p>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "rogue"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR203",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,20 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "high-speed",
     "cost": {
-      "amount": 10
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -149,22 +97,21 @@
         "rules": {
           "elements": {
             "uZGa0bP1TXQ8Sqma": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "oAI80uE1x5YUF8z3",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "startOfCombat"
+                "eventType": "startOfCombat",
+                "parity": ""
               },
-              "_id": "uZGa0bP1TXQ8Sqma",
               "actions": {
                 "28zPkL7Xf4utBu0o": {
-                  "type": "messageRuleAction",
-                  "_id": "28zPkL7Xf4utBu0o",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -173,23 +120,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "puwoCJqGrvIL3Tmq",
       "type": "base",
-      "changes": [],
       "description": "<p>At the start of a conflict, you may perform a <strong>free attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -201,20 +151,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771839609017,
-        "modifiedTime": 1774637887691,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921370,
+        "modifiedTime": 1792923921370,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!tiu0D74YNxirN6Tr.puwoCJqGrvIL3Tmq"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -226,10 +177,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706504755033,
-    "modifiedTime": 1774637761788,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921370,
+    "modifiedTime": 1792923922162,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

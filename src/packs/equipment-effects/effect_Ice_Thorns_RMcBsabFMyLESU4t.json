@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "UfrsEHCzsMmARfTf": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "sfzkrJHez76IfA0u",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -44,28 +42,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "UfrsEHCzsMmARfTf",
               "predicates": {
                 "5D0gBVPqcgXdrwsh": {
-                  "type": "checkRulePredicate",
-                  "_id": "5D0gBVPqcgXdrwsh",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "FEmQ7tA0jGMsWnXL": {
-                  "type": "weaponRulePredicate",
-                  "_id": "FEmQ7tA0jGMsWnXL",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "KqDmOQrDYrPSNeK1": {
-                  "type": "messageRuleAction",
-                  "_id": "KqDmOQrDYrPSNeK1",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 ice] to them.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -74,23 +83,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "BPQY1vcOGAJRzusF",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>ice</strong> damage to that creature (after the attack has been resolved).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -111,32 +123,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774749051973,
-        "modifiedTime": 1774749965531,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924671,
+        "modifiedTime": 1792923924671,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!RMcBsabFMyLESU4t.BPQY1vcOGAJRzusF"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774748440531,
-    "modifiedTime": 1774749051187,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924671,
+    "modifiedTime": 1792923924849,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!RMcBsabFMyLESU4t"
 }

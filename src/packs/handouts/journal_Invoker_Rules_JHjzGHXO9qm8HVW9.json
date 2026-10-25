@@ -29,12 +29,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1791509822841,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923923600,
+        "modifiedTime": 1792923923600,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "category": null,
@@ -52,7 +52,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<h5><strong>AIR INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Air wellspring (damage type: air)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Aero Blast</strong></p></td><td><p>You deal 20 <strong>air</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Aero Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>bolt</strong> and <strong>fire</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Breeze</strong></p></td><td><p>The target recovers 30 Hit Points.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Twister</strong></p></td><td><p>You deal 10 <strong>air</strong> damage to the target, and they suffer <strong>dazed</strong>.</p></td></tr></tbody></table><hr /><h5>EARTH <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Earth wellspring (damage type: earth)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Geo Blast</strong></p></td><td><p>You deal 20 <strong>earth</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Geo Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Growth</strong></p></td><td><p>The target recovers 30 Hit Points.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Quicksand</strong></p></td><td><p>You deal 10 <strong>earth</strong> damage to the target, and they suffer <strong>slow</strong>.</p></td></tr></tbody></table><hr /><h5>FIRE <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Fire wellspring (damage type: fire)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Pyro Blast</strong></p></td><td><p>You deal 20 <strong>fire</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Pyro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Burst</strong></p></td><td><p>You deal 10 <strong>fire</strong> damage to the target, and they suffer <strong>shaken</strong>.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Smoke</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>weak</strong>.</p></td></tr></tbody></table><hr /><h5>LIGHTNING <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Lightning wellspring (damage type: bolt)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Electro Blast</strong></p></td><td><p>You deal 20 <strong>bolt</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Electro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Static</strong></p></td><td><p>You deal 10 <strong>bolt</strong> damage to the target, and they suffer <strong>slow</strong>.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Thunder</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>dazed</strong>.</p></td></tr></tbody></table><hr /><h5>WATER <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Water wellspring (damage type: ice)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Hydro Blast</strong></p></td><td><p>You deal 20 <strong>ice</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Hydro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Chill</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>shaken</strong>.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Frostbite</strong></p></td><td><p>You deal 10 <strong>ice</strong> damage to the target, and they suffer <strong>weak</strong>.</p></td></tr></tbody></table><hr />",
+        "content": "<h5><strong>AIR INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Air wellspring (damage type: air)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Aero Blast</strong></p></td><td><p>You deal 20 <strong>air</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Aero Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>bolt</strong> and <strong>fire</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Breeze</strong></p></td><td><p>The target recovers 30 Hit Points.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Twister</strong></p></td><td><p>You deal 10 <strong>air</strong> damage to the target, and they suffer <strong>dazed</strong>.</p></td></tr></tbody></table><hr><h5>EARTH <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Earth wellspring (damage type: earth)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Geo Blast</strong></p></td><td><p>You deal 20 <strong>earth</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Geo Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Growth</strong></p></td><td><p>The target recovers 30 Hit Points.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Quicksand</strong></p></td><td><p>You deal 10 <strong>earth</strong> damage to the target, and they suffer <strong>slow</strong>.</p></td></tr></tbody></table><hr><h5>FIRE <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Fire wellspring (damage type: fire)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Pyro Blast</strong></p></td><td><p>You deal 20 <strong>fire</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Pyro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Burst</strong></p></td><td><p>You deal 10 <strong>fire</strong> damage to the target, and they suffer <strong>shaken</strong>.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Smoke</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>weak</strong>.</p></td></tr></tbody></table><hr><h5>LIGHTNING <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Lightning wellspring (damage type: bolt)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Electro Blast</strong></p></td><td><p>You deal 20 <strong>bolt</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Electro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Static</strong></p></td><td><p>You deal 10 <strong>bolt</strong> damage to the target, and they suffer <strong>slow</strong>.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Thunder</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>dazed</strong>.</p></td></tr></tbody></table><hr><h5>WATER <strong>INVOCATIONS</strong></h5><table><tbody><tr><td colspan=\"2\"><p><strong>Water wellspring (damage type: ice)</strong></p></td></tr><tr><td><p style=\"width:80px\"><strong>Hydro Blast</strong></p></td><td><p>You deal 20 <strong>ice</strong> damage to the target.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Hydro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Chill</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>shaken</strong>.</p></td></tr><tr><td><p style=\"width:80px\"><strong>Frostbite</strong></p></td><td><p>You deal 10 <strong>ice</strong> damage to the target, and they suffer <strong>weak</strong>.</p></td></tr></tbody></table><hr>",
         "markdown": ""
       },
       "video": {
@@ -69,12 +69,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1774636839883,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923923600,
+        "modifiedTime": 1792923923600,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "category": null,
@@ -108,12 +108,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1742783831783,
-        "modifiedTime": 1774636677050,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923923600,
+        "modifiedTime": 1792923923600,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "category": null,
@@ -122,19 +122,18 @@
   ],
   "folder": null,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742677066389,
-    "modifiedTime": 1742677068556,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "createdTime": 1792923923600,
+    "modifiedTime": 1792923923696,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "JHjzGHXO9qm8HVW9",

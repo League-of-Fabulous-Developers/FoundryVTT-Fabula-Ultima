@@ -8,22 +8,16 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol</strong> to spend no Inventory Points.</p><hr /><p><strong>You Spend:</strong> @LOSS[2 ip]<br /><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.Sw3nfGBfP09LxxTo]</p>"
+      "description": "<p>When the creature bearing this <strong>symbol</strong> needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol</strong> to spend no Inventory Points.</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.Sw3nfGBfP09LxxTo]</p>",
+      "type": "projectfu.symbol"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-creation"
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {}
@@ -31,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710177315373,
-    "modifiedTime": 1770612435603,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921102,
+    "modifiedTime": 1792923922122,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

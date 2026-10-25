@@ -38,30 +38,29 @@
             "progress": false,
             "duration": false,
             "increment": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "flags.projectfu.scaleIncomingDamage",
+            "value": 0.5,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
-        }
+        ]
       },
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Zero Shield",
       "_id": "eQuLX93g7C1kKqk6",
       "type": "base",
-      "changes": [
-        {
-          "key": "flags.projectfu.scaleIncomingDamage",
-          "mode": 5,
-          "value": "0.5",
-          "priority": null
-        }
-      ],
       "description": "<p>Until the <strong>start of your next turn</strong>, you <strong>reduce all damage taken by half.</strong> This is applied <strong>before affinities</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -72,32 +71,34 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1746365670284,
-        "modifiedTime": 1774832223300,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923924034,
+        "modifiedTime": 1792923924034,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!64onPfJ9EH45XVgW.eQuLX93g7C1kKqk6"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "JXPd932s9DHQRD0w": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1746365622928,
-    "modifiedTime": 1746365654227,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "createdTime": 1792923924034,
+    "modifiedTime": 1792923924209,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!64onPfJ9EH45XVgW"

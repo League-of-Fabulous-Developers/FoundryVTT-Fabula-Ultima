@@ -8,23 +8,17 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.dance",
     "data": {
       "description": "<p>You immediately recover from a single status effect of your choice.</p>",
-      "duration": "instant"
+      "duration": "instant",
+      "type": "projectfu.dance"
     },
     "source": "FUHF144",
     "fuid": "lion-dance"
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {}
@@ -32,10 +26,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710175902626,
-    "modifiedTime": 1774641904117,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921331,
+    "modifiedTime": 1792923922154,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

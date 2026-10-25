@@ -18,9 +18,6 @@
     "type": {
       "value": "melee"
     },
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -32,9 +29,6 @@
       }
     },
     "isMartial": {
-      "value": false
-    },
-    "isCustomWeapon": {
       "value": false
     },
     "quality": {
@@ -60,11 +54,7 @@
     "damage": {
       "value": 5
     },
-    "subtype": {},
     "description": "<p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p>",
-    "isEquipped": {
-      "value": false
-    },
     "impType": {
       "value": "minor"
     },
@@ -75,7 +65,18 @@
       "value": 1
     },
     "defense": "def",
-    "fuid": "twin-shields"
+    "fuid": "twin-shields",
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "hasDamage": true,
+    "traits": []
   },
   "effects": [
     {
@@ -101,30 +102,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.damage.value",
+            "value": "&sl('defensive-mastery')",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "QbAh5N55J9WZm2IQ",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.damage.value",
-          "mode": 2,
-          "value": "&sl('defensive-mastery')",
-          "priority": null
-        }
-      ],
       "description": "<p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
@@ -145,20 +150,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773729334721,
-        "modifiedTime": 1773729368179,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921085,
+        "modifiedTime": 1792923921085,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!2LyT2btVVPDPYY4h.QbAh5N55J9WZm2IQ"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {}
@@ -166,10 +172,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1707628405753,
-    "modifiedTime": 1745363318863,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921085,
+    "modifiedTime": 1792923922119,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

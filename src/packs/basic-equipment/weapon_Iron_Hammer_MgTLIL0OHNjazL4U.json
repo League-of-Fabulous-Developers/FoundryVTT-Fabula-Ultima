@@ -3,16 +3,10 @@
   "type": "weapon",
   "img": "systems/projectfu/styles/static/compendium/weapons/iron-hammer.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -24,10 +18,6 @@
     },
     "quality": {
       "value": ""
-    },
-    "isEquipped": {
-      "value": false,
-      "slot": ""
     },
     "attributes": {
       "primary": {
@@ -64,9 +54,6 @@
     "weight": {
       "value": 1
     },
-    "isCustomWeapon": {
-      "value": false
-    },
     "source": "FUCR131",
     "rollInfo": {
       "useWeapon": {
@@ -76,7 +63,18 @@
       }
     },
     "defense": "def",
-    "fuid": "iron-hammer"
+    "fuid": "iron-hammer",
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "hasDamage": true,
+    "traits": []
   },
   "effects": [],
   "folder": "SnyIBMif9646gEkD",
@@ -86,10 +84,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1706648965710,
-    "modifiedTime": 1724180864483,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923107,
+    "modifiedTime": 1792923923121,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -97,8 +95,7 @@
   "_id": "MgTLIL0OHNjazL4U",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!MgTLIL0OHNjazL4U"
 }

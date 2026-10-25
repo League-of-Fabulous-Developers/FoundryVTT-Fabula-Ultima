@@ -7,10 +7,6 @@
     "summary": {
       "value": "Its vibrantly colored leaves represent tenacity."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 2,
       "effects": [
@@ -24,7 +20,8 @@
           "end": 3,
           "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to <strong>【5 + your Skill Level in Chloromancy】</strong>.</p><hr><p><strong>Targets Recover:</strong> @GAIN[5+&sl('chloromancy')+10*floor($cl/30) mp]{5 + (SL in Chloromancy)}</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF142",
     "fuid": "golden-ginkgo"
@@ -34,17 +31,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.itDfRdC14cGTdFDX",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791494122242,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921281,
+    "modifiedTime": 1792923922147,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "dYAJajkdDUrd6DOY",
   "sort": 0,

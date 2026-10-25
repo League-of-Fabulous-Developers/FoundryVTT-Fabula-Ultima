@@ -36,24 +36,26 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.earth",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "lMGvYapNT9HKIgXG",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.earth",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain Resistance to <strong>earth</strong> damage until your ally dismisses the <strong>Arcanum of the Tower</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -65,12 +67,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771045669055
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921238,
+        "createdTime": 1792923921238
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!V9DDBpBK02qIxkEV.lMGvYapNT9HKIgXG"
     }
   ],
@@ -79,16 +85,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771045331370,
-    "modifiedTime": 1781627886114,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921238,
+    "modifiedTime": 1792923922140,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "V9DDBpBK02qIxkEV",
   "sort": 150000,

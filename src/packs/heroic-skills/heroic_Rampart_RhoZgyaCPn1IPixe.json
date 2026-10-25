@@ -9,81 +9,33 @@
     "summary": {
       "value": "Resist damage and status effects during the first round."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Guardian</strong>.</p><hr /><p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you <strong>do not</strong> recover from preexisting status effects, however). These benefits only last until the end of the first round.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Guardian</strong>.</p><hr><p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you <strong>do not</strong> recover from preexisting status effects, however). These benefits only last until the end of the first round.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "guardian"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR239",
     "hasResource": {
@@ -93,16 +45,37 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "rampart",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -124,22 +97,21 @@
         "rules": {
           "elements": {
             "821py9XbEaxm0b4y": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "KR3O1EnCYn5u4RCF",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "startOfCombat"
+                "eventType": "startOfCombat",
+                "parity": ""
               },
-              "_id": "821py9XbEaxm0b4y",
               "actions": {
                 "PYVTpgQQjcgBWybl": {
-                  "type": "messageRuleAction",
-                  "_id": "PYVTpgQQjcgBWybl",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>During the first round, you gain Resistance to all damage and cannot suffer statuses.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.OpGuNhPQN1GOOxXQ]</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -148,18 +120,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "KPlk3yT9lqzYUk8k",
       "type": "base",
-      "changes": [],
       "description": "<p>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -180,20 +155,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771889420466,
-        "modifiedTime": 1771889794074,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922842,
+        "modifiedTime": 1792923922842,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!RhoZgyaCPn1IPixe.KPlk3yT9lqzYUk8k"
     }
   ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -205,10 +182,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706586488889,
-    "modifiedTime": 1787128310605,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922842,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -5,16 +5,10 @@
   "_id": "7jWycVYFgZ1BMxch",
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bone_crusher.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that deals damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>dazed</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>weak</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR219",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,12 +49,14 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "bone-crusher",
     "targeting": {
-      "rule": "special"
+      "rule": "special",
+      "max": 0
     },
     "effects": {
       "entries": [
@@ -128,13 +64,22 @@
         "weak"
       ],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
     },
     "resource": {
       "enabled": true,
       "type": "mp",
       "amount": "-10*$sl"
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
     }
   },
   "effects": [
@@ -155,11 +100,8 @@
         "rules": {
           "elements": {
             "9r3nnSGW1csXQT6t": {
-              "type": "ruleElement",
-              "_id": "9r3nnSGW1csXQT6t",
               "trigger": {
-                "_id": "87W43PcJeCZksnpe",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy"
@@ -167,21 +109,18 @@
                 "itemGroups": [
                   "attack"
                 ],
-                "outcome": "success",
                 "identifier": "",
                 "local": false
               },
               "actions": {
                 "9e9YoPMUF2VqMiU1": {
-                  "type": "messageRuleAction",
-                  "_id": "9e9YoPMUF2VqMiU1",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Deal no damage to have targets: @EFFECT[dazed], @EFFECT[weak], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
                 }
               },
               "predicates": {
                 "qyfjrVjUjfGzjNdB": {
-                  "type": "checkRulePredicate",
-                  "_id": "qyfjrVjUjfGzjNdB",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
                   "result": null,
                   "attributes": {
@@ -191,15 +130,21 @@
                     "secondary": {
                       "value": ""
                     }
-                  }
+                  },
+                  "parity": "",
+                  "quantifier": "any"
                 },
                 "jXE1ZYNF1tmxz1t9": {
-                  "type": "weaponRulePredicate",
-                  "_id": "jXE1ZYNF1tmxz1t9",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "self"
+                  "selector": "self",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -208,18 +153,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "YkOEtHV4uwAnjQnW",
       "type": "base",
-      "changes": [],
       "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>dazed</strong>, <strong>weak</strong>, or <strong>lose MP</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -231,20 +179,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766788902986,
-        "modifiedTime": 1771888543372,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921113,
+        "modifiedTime": 1792923921113,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!7jWycVYFgZ1BMxch.YkOEtHV4uwAnjQnW"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -256,10 +205,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706514091257,
-    "modifiedTime": 1786689740688,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921113,
+    "modifiedTime": 1792923922124,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

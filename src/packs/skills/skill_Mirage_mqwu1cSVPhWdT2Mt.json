@@ -5,16 +5,10 @@
   "_id": "mqwu1cSVPhWdT2Mt",
   "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_mirages.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; additionally, you may use <strong>Ritualism</strong> to create <strong>sight-based illusions</strong>.</p><p><strong>Ritualism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; additionally, you may use <strong>Ritualism</strong> to create <strong>sight-based illusions</strong>.</p><p><strong>Ritualism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "symbolist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUHF147",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "mirage",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "IMcHZXcpI6R6NDa5": {
-              "type": "ruleElement",
-              "_id": "IMcHZXcpI6R6NDa5",
               "trigger": {
-                "_id": "BtRXifWVV7YrCQRi",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -161,8 +109,7 @@
               },
               "actions": {
                 "7Ti1dJDbvCSZW4F5": {
-                  "type": "performCheckRuleAction",
-                  "_id": "7Ti1dJDbvCSZW4F5",
+                  "type": "projectfu.performCheckRuleAction",
                   "check": "ritual",
                   "attributes": {
                     "primary": {
@@ -173,7 +120,10 @@
                     }
                   }
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -182,18 +132,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Qwpd8cZELeSylmuh",
       "type": "base",
-      "changes": [],
       "description": "",
       "origin": null,
       "tint": "#ffffff",
@@ -205,20 +158,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770610534926,
-        "modifiedTime": 1770610565110,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921333,
+        "modifiedTime": 1792923921333,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!mqwu1cSVPhWdT2Mt.Qwpd8cZELeSylmuh"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -230,10 +184,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706563070199,
-    "modifiedTime": 1791488057922,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921333,
+    "modifiedTime": 1792923922154,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

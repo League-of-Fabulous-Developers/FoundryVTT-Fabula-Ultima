@@ -7,22 +7,17 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "After an enemy you can see performs an  Accuracy Check or a Magic Check",
-      "description": "<p>You may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).</p><hr /><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br /><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.hNeylrus4Ii8hIKa]<br /><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
+      "description": "<p>You may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).</p><hr><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.hNeylrus4Ii8hIKa]<br><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>",
+      "type": "projectfu.psychicGift"
     },
     "source": "FUTF153",
     "fuid": "psychic-shield"
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -30,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711423314741,
-    "modifiedTime": 1771230933632,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921268,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

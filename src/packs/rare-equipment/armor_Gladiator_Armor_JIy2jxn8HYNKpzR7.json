@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-gladiator.png",
   "system": {
     "fuid": "gladiator-armor",
-    "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>heavy</strong> weapons.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>heavy</strong> weapons.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -61,30 +61,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.heavy",
+            "value": 1,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "9fBuIzaDAHAHw0yK",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.heavy",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, you gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>heavy</strong> weapons.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -105,20 +109,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774808865701,
-        "modifiedTime": 1775708866227,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925883,
+        "modifiedTime": 1792923925883,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JIy2jxn8HYNKpzR7.9fBuIzaDAHAHw0yK"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -129,12 +135,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774808784958,
-    "modifiedTime": 1777530566001,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925883,
+    "modifiedTime": 1792923925982,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!JIy2jxn8HYNKpzR7"
 }

@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
       "description": "<p>This <strong>personal vehicle</strong> can travel on water and underwater.</p>",
-      "complex": false
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF169",
     "fuid": "seafarer-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1711477046202,
-    "modifiedTime": 1724180864719,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923290,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "P1Vw28xK0NzPydqG",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!P1Vw28xK0NzPydqG"
 }

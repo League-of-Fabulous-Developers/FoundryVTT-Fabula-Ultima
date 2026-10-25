@@ -9,81 +9,33 @@
     "summary": {
       "value": "Disappear after an attack."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Rogue</strong>.</p><hr /><p>When you hit one or more creatures with an attack or offensive spell (@ICON[offensive]), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Rogue</strong>.</p><hr><p>When you hit one or more creatures with an attack or offensive spell (@ICON[offensive]), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "rogue"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR241",
     "hasResource": {
@@ -93,30 +45,45 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "vanish",
     "cost": {
       "resource": "fp",
-      "amount": "1"
+      "amount": "1",
+      "perTarget": false
     },
     "effects": {
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "entries": [
         "Compendium.projectfu.heroic-skills.Item.4suciB7e8kbt17Zh"
-      ]
+      ],
+      "prompt": false
     },
     "targeting": {
-      "rule": "special"
+      "rule": "special",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -128,10 +95,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706587099416,
-    "modifiedTime": 1787128788123,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922842,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

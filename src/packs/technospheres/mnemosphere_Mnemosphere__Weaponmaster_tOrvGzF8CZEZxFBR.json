@@ -5,9 +5,6 @@
   "_id": "tOrvGzF8CZEZxFBR",
   "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/weaponmaster.png",
   "system": {
-    "isFavored": {
-      "value": false
-    },
     "level": 1,
     "maxLevel": 5,
     "items": [
@@ -201,11 +198,8 @@
               "rules": {
                 "elements": {
                   "9r3nnSGW1csXQT6t": {
-                    "type": "ruleElement",
-                    "_id": "9r3nnSGW1csXQT6t",
                     "trigger": {
-                      "_id": "87W43PcJeCZksnpe",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "accuracy"
@@ -218,15 +212,13 @@
                     },
                     "actions": {
                       "9e9YoPMUF2VqMiU1": {
-                        "type": "messageRuleAction",
-                        "_id": "9e9YoPMUF2VqMiU1",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>Deal no damage to have targets: @EFFECT[dazed], @EFFECT[weak], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
                       }
                     },
                     "predicates": {
                       "qyfjrVjUjfGzjNdB": {
-                        "type": "checkRulePredicate",
-                        "_id": "qyfjrVjUjfGzjNdB",
+                        "type": "projectfu.checkRulePredicate",
                         "outcome": "success",
                         "result": null,
                         "attributes": {
@@ -241,8 +233,7 @@
                         "quantifier": "any"
                       },
                       "jXE1ZYNF1tmxz1t9": {
-                        "type": "weaponRulePredicate",
-                        "_id": "jXE1ZYNF1tmxz1t9",
+                        "type": "projectfu.weaponRulePredicate",
                         "weaponType": "melee",
                         "selector": "self",
                         "martial": "",
@@ -263,23 +254,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "YkOEtHV4uwAnjQnW",
             "type": "base",
-            "changes": [],
             "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>dazed</strong>, <strong>weak</strong>, or <strong>lose MP</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -481,11 +476,8 @@
               "rules": {
                 "elements": {
                   "F5sEhddW5N7Gx7B7": {
-                    "type": "ruleElement",
-                    "_id": "F5sEhddW5N7Gx7B7",
                     "trigger": {
-                      "_id": "Vz9YV1XJh5K70zKl",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "target",
                       "checkTypes": [
                         "accuracy"
@@ -498,8 +490,7 @@
                     },
                     "predicates": {
                       "AccwRopUxS7jiAR4": {
-                        "type": "checkRulePredicate",
-                        "_id": "AccwRopUxS7jiAR4",
+                        "type": "projectfu.checkRulePredicate",
                         "parity": "even",
                         "result": null,
                         "outcome": "",
@@ -514,8 +505,7 @@
                         "quantifier": "any"
                       },
                       "tkEn9IrOdkur7ELc": {
-                        "type": "weaponRulePredicate",
-                        "_id": "tkEn9IrOdkur7ELc",
+                        "type": "projectfu.weaponRulePredicate",
                         "weaponType": "melee",
                         "selector": "source",
                         "martial": "",
@@ -525,8 +515,7 @@
                     },
                     "actions": {
                       "2xZr4iUkZa06agNk": {
-                        "type": "messageRuleAction",
-                        "_id": "2xZr4iUkZa06agNk",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>The weaponmaster may attack back.</p>"
                       }
                     },
@@ -548,23 +537,27 @@
                   "duration": false,
                   "increment": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "3I4QKAPzn55nGTVF",
             "type": "base",
-            "changes": [],
             "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy. This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>HR</strong> as 0 when calculating damage dealt by this attack.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -658,25 +651,14 @@
         "effects": [
           {
             "duration": {
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "rounds": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "name": "Melee Weapon Mastery",
             "_id": "Sks7cSsjFlEgMg53",
-            "changes": [
-              {
-                "key": "system.bonuses.accuracy.accuracyMelee",
-                "mode": 2,
-                "value": "@system.level.value",
-                "priority": null
-              }
-            ],
             "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons.</p>",
             "transfer": true,
             "statuses": [],
@@ -710,10 +692,21 @@
                 "interval": 1,
                 "tracking": "self",
                 "remaining": 0
-              }
+              },
+              "changes": [
+                {
+                  "key": "system.bonuses.accuracy.accuracyMelee",
+                  "value": "@system.level.value",
+                  "priority": null,
+                  "type": "add",
+                  "phase": "initial"
+                }
+              ]
             },
             "origin": null,
-            "sort": 0
+            "sort": 0,
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -734,19 +727,18 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1745491348230,
-    "modifiedTime": 1791524956232,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923925549,
+    "modifiedTime": 1792923925628,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!tOrvGzF8CZEZxFBR"

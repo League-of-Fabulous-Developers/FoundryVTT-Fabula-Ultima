@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/rapier.png",
   "system": {
     "fuid": "the-point",
-    "description": "<p>Attacks with this weapon treat the Defense score of each target as being equal to their current <strong>Insight</strong> die size.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>Attacks with this weapon treat the Defense score of each target as being equal to their current <strong>Insight</strong> die size.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -81,8 +81,7 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -93,12 +92,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774746108113,
-    "modifiedTime": 1777530992362,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925906,
+    "modifiedTime": 1792923925985,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!yBGOLTgCjHu05zNd"
 }

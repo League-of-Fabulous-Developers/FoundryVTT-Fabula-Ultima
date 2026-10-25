@@ -6,7 +6,10 @@
   "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
   "system": {
     "fuid": "magic-check-up",
-    "source": ""
+    "source": "",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -32,31 +35,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.magicCheck",
+            "value": 1,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "NPJ5xbqzgJ9AQUW8",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain a +1 bonus to your <strong>Magic Checks</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -77,31 +83,33 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774817775125,
-        "modifiedTime": 1774817786726,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924061,
+        "modifiedTime": 1792923924061,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!c9zl1Xr8nOK66ED1.NPJ5xbqzgJ9AQUW8"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725745480218,
-    "modifiedTime": 1774758114663,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924061,
+    "modifiedTime": 1792923924214,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!c9zl1Xr8nOK66ED1"

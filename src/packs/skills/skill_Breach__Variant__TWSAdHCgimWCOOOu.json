@@ -101,10 +101,8 @@
         "rules": {
           "elements": {
             "Z9Euvv5YVmTIBRAd": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "yvfOwuE4qSGP5lhp",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
                 "itemGroups": [],
                 "damageTypes": [
@@ -120,11 +118,9 @@
                 "local": true,
                 "identifier": ""
               },
-              "_id": "Z9Euvv5YVmTIBRAd",
               "actions": {
                 "XPn2xUE40oTwtqKT": {
-                  "type": "changeTraitsRuleAction",
-                  "_id": "XPn2xUE40oTwtqKT",
+                  "type": "projectfu.changeTraitsRuleAction",
                   "traits": {
                     "entries": [
                       "ignore-vulnerable"
@@ -181,12 +177,12 @@
         }
       },
       "_stats": {
-        "coreVersion": "14.365",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "KBlCCPnVZr8JzjOr",
-        "createdTime": 1785627987938,
-        "modifiedTime": 1785627987938,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "createdTime": 1792923921232,
+        "modifiedTime": 1792923921232,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -199,8 +195,7 @@
   ],
   "folder": "t0can7tJoRis1H3f",
   "ownership": {
-    "default": 0,
-    "KBlCCPnVZr8JzjOr": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -209,12 +204,12 @@
     }
   },
   "_stats": {
-    "coreVersion": "14.365",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1785627987938,
-    "modifiedTime": 1785627987938,
-    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "createdTime": 1792923921232,
+    "modifiedTime": 1792923922139,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

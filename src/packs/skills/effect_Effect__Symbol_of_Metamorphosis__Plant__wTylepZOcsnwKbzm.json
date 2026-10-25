@@ -14,13 +14,10 @@
     {
       "img": "icons/magic/control/encase-creature-spider-hold.webp",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Symbol of Metamorphosis (Plant)",
@@ -48,9 +45,9 @@
             "step": 1
           },
           "elements": {}
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "description": "<p>While you bear the <strong>Symbol of Metamorphosis</strong>, you are treated as belonging to the <strong>Plant</strong> Species for the sake of Skills and effects, instead of your normal Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -62,12 +59,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770634300766
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921383,
+        "createdTime": 1792923921383
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!wTylepZOcsnwKbzm.i7k3HOyS5R7mLXKH"
     }
   ],
@@ -76,16 +77,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770616540179,
-    "modifiedTime": 1771877936450,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921383,
+    "modifiedTime": 1792923922164,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "wTylepZOcsnwKbzm",
   "sort": 600000,

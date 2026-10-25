@@ -5,7 +5,10 @@
   "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-immunity",
-    "source": ""
+    "source": "",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -31,31 +34,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.physical.current",
+            "value": 2,
+            "priority": null,
+            "type": "upgrade",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "Hd7FtBJRAqnOMTVg",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.physical.current",
-          "mode": 4,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain Immunity to <strong>physical</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -76,13 +82,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774816071613,
-        "modifiedTime": 1774816085194,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924056,
+        "modifiedTime": 1792923924056,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!SDc9JdC2tHXUi5xk.Hd7FtBJRAqnOMTVg"
     }
   ],
@@ -90,19 +99,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725750163418,
-    "modifiedTime": 1774760978566,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924056,
+    "modifiedTime": 1792923924212,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "SDc9JdC2tHXUi5xk",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "_key": "!items!SDc9JdC2tHXUi5xk"
 }

@@ -10,65 +10,30 @@
     "summary": {
       "value": "Synchronize with another pilot or passenger to join forces."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong>.</p><hr /><p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option: you <strong>synchronize</strong> with another Player Character who is present on the scene and driving their own <strong>personal vehicle</strong>; <strong>or</strong> you <strong>synchronize</strong> with another Player Character who is a passenger on your <strong>personal vehicle</strong>. Describe how you join forces! You and the chosen character <strong>both</strong> receive the following benefits as long as the <strong>synchronization</strong> remains active:</p><ul><li><p>When you perform a Check, you may use the current Attribute die sizes of the other Player Character in place of yours (for one or both dice).</p></li><li><p>When you deal damage, deal extra damage equal to <strong>【the strength of your Bond towards the other PC, plus the strength of their Bond towards you】</strong>.</p></li><li><p>You may use an action to perform a <strong>free attack</strong> with one <strong>enabled or disabled weapon module</strong> present on the <strong>personal vehicle</strong> the other PC is currently on.</p></li><li><p>When your turn ends, if the other PC has yet to take their turn during this round, they may take their turn <strong>immediately</strong> after yours.</p></li></ul><p>This <strong>synchronization</strong> lasts until the end of the scene, or until you or the other Player Character die, fall unconscious, leave the scene, <strong>synchronize</strong> again or are no longer aboard a <strong>personal vehicle</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong>.</p><hr><p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option: you <strong>synchronize</strong> with another Player Character who is present on the scene and driving their own <strong>personal vehicle</strong>; <strong>or</strong> you <strong>synchronize</strong> with another Player Character who is a passenger on your <strong>personal vehicle</strong>. Describe how you join forces! You and the chosen character <strong>both</strong> receive the following benefits as long as the <strong>synchronization</strong> remains active:</p><ul><li><p>When you perform a Check, you may use the current Attribute die sizes of the other Player Character in place of yours (for one or both dice).</p></li><li><p>When you deal damage, deal extra damage equal to <strong>【the strength of your Bond towards the other PC, plus the strength of their Bond towards you】</strong>.</p></li><li><p>You may use an action to perform a <strong>free attack</strong> with one <strong>enabled or disabled weapon module</strong> present on the <strong>personal vehicle</strong> the other PC is currently on.</p></li><li><p>When your turn ends, if the other PC has yet to take their turn during this round, they may take their turn <strong>immediately</strong> after yours.</p></li></ul><p>This <strong>synchronization</strong> lasts until the end of the scene, or until you or the other Player Character die, fall unconscious, leave the scene, <strong>synchronize</strong> again or are no longer aboard a <strong>personal vehicle</strong>.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "pilot"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF173",
     "fuid": "dynamic-synchronization",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523608364,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922814,
+    "modifiedTime": 1792923923008,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "3Fxytf91dQuKMn74",
   "sort": 0,

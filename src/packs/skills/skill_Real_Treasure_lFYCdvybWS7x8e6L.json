@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/merchant/real_treasure.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per session, when you help an NPC or community <strong>defeat greed and corruption</strong>, <strong>improve their quality of life</strong>, or <strong>coexist with other creatures</strong>, if you have acquired the <strong>Winds of Trade</strong> Skill, you gain <strong>【SL + 1】</strong> Trade Points.</p><hr /><p><strong>Resource</strong>: @PROGRESS[winds-of-trade update 1+$sl]{Gain SL + 1 Trade Points}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Once per session, when you help an NPC or community <strong>defeat greed and corruption</strong>, <strong>improve their quality of life</strong>, or <strong>coexist with other creatures</strong>, if you have acquired the <strong>Winds of Trade</strong> Skill, you gain <strong>【SL + 1】</strong> Trade Points.</p><hr><p><strong>Resource</strong>: @PROGRESS[winds-of-trade update 1+$sl]{Gain SL + 1 Trade Points}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF159",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "read-treasure",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,14 +64,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -83,12 +91,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.2gZm3zFYKqLsbaPo",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676975651,
-    "modifiedTime": 1775594635214,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921327,
+    "modifiedTime": 1792923922153,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "lFYCdvybWS7x8e6L",

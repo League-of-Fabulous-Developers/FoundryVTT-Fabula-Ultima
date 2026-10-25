@@ -4,63 +4,30 @@
   "type": "miscAbility",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_bind_and_summon.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<h2><strong>MERGING WITH AN ARCANUM</strong></h2><p>When you <strong>summon</strong> an Arcanum, you gain its <strong>merge</strong> benefits; those benefits last until the Arcanum is <strong>dismissed</strong> (see below).</p><p>You cannot <strong>summon</strong> an Arcanum while already <strong>merged</strong> with one; you must first <strong>dismiss</strong> the current Arcanum.</p><p></p><h2><strong>DISMISSING AN ARCANUM</strong></h2><p>An Arcanum can be <strong>dismissed</strong> in several ways:</p><ul><li><p>Once the current scene ends, all Arcana are automatically <strong>dismissed</strong>.</p></li><li><p>If you die or fall unconscious while <strong>merged</strong> with an Arcanum, they are <strong>dismissed</strong>.</p></li><li><p>If you leave the scene while <strong>merged</strong> with an Arcanum, they are <strong>dismissed</strong>.</p></li><li><p>You may <strong>willingly dismiss</strong> your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, while no other effect is being resolved.</p></li></ul><p></p><h2><strong>DISMISS EFFECTS</strong></h2><p>Most Arcana have a powerful <strong>dismiss</strong> effect, which may only be activated when you <strong>willingly dismiss</strong> the Arcanum as described above — if the Arcanum is <strong>dismissed</strong> for any other reason, the <strong>dismiss</strong> effect cannot be triggered.</p><p>If the <strong>dismiss</strong> effect of an Arcanum deals damage, it will deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p><p>You are also free to ignore the <strong>dismiss</strong> effect if you don't want to use it.</p><p></p><h2><strong>DOMAINS</strong></h2><p>Each Arcanum is associated with a few key concepts or <strong>domains</strong>. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the @UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism} Skill.</p><p>If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -75,42 +42,10 @@
       "current": 0,
       "step": 1,
       "max": 6,
-      "name": "Name"
+      "name": "Name",
+      "enabled": false
     },
     "source": "FUCR178",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": null
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -122,17 +57,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "handout-arcana-rules",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
@@ -148,10 +100,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706574599766,
-    "modifiedTime": 1786402007561,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921110,
+    "modifiedTime": 1792923922123,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -159,9 +111,7 @@
   "_id": "7Hw8p7ZefudMdCxV",
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!7Hw8p7ZefudMdCxV"
 }

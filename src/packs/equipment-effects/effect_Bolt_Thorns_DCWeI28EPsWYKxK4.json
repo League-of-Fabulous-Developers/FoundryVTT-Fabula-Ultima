@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "1xflTztiORPI9e20": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "ov2LRx5FdpzqpU3O",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -44,28 +42,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "1xflTztiORPI9e20",
               "predicates": {
                 "A3LllQmy4wnDKOpY": {
-                  "type": "checkRulePredicate",
-                  "_id": "A3LllQmy4wnDKOpY",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "9cTqdqWkOoFydWgm": {
-                  "type": "weaponRulePredicate",
-                  "_id": "9cTqdqWkOoFydWgm",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "fjRGzMKFcsGSLUDU": {
-                  "type": "messageRuleAction",
-                  "_id": "fjRGzMKFcsGSLUDU",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 bolt] to them.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -74,23 +83,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "SQhtVHDfQh4xq767",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -111,32 +123,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774748749753,
-        "modifiedTime": 1774749921950,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924659,
+        "modifiedTime": 1792923924659,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!DCWeI28EPsWYKxK4.SQhtVHDfQh4xq767"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774748419359,
-    "modifiedTime": 1774748748874,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924659,
+    "modifiedTime": 1792923924847,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!DCWeI28EPsWYKxK4"
 }

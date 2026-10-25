@@ -7,12 +7,9 @@
     "summary": {
       "value": "Crustaceans, turtles, armored creatures and vehicles."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong> (you may still use your normal scores if better).</p>"
+      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong> (you may still use your normal scores if better).</p>",
+      "type": "projectfu.therioform"
     },
     "source": "FUTF157",
     "fuid": "placophora"
@@ -41,31 +38,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.derived.def.value",
+            "value": "13+floor(&sl('theriomorphosis')/2)",
+            "priority": null,
+            "type": "upgrade",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "DBT0nBuyIpgRzUHY",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.derived.def.value",
-          "mode": 4,
-          "value": "13+floor(&sl('theriomorphosis')/2)",
-          "priority": null
-        }
-      ],
       "description": "<p>You are <strong>manifesting</strong> this therioform. Treat your <strong>Defense</strong> as <strong>【13 + (half your Theriomorphosis SL)】</strong> unless your normal score is better.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -86,20 +86,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777787160109,
-        "modifiedTime": 1792632430213,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921265,
+        "modifiedTime": 1792923921265,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aAmIBca4b150uuAH.DBT0nBuyIpgRzUHY"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -107,10 +108,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711428338643,
-    "modifiedTime": 1792632425014,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921265,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

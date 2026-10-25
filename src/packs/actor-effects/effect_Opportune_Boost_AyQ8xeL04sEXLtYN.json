@@ -39,25 +39,28 @@
             "progress": false,
             "duration": false,
             "increment": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.all",
+            "value": 4,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
-        }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "k3wtbyDJUHiaY6Lz",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.all",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        }
-      ],
       "description": "<p>The next check performed by you will receive a <strong>+4 bonus.</strong></p>",
       "origin": null,
       "tint": "#ffffff",
@@ -69,33 +72,35 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1754233508092,
-        "modifiedTime": 1774832215451,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924040,
+        "modifiedTime": 1792923924040,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!AyQ8xeL04sEXLtYN.k3wtbyDJUHiaY6Lz"
     }
   ],
   "folder": "423RpDks0B2eewCA",
   "sort": 200000,
   "ownership": {
-    "default": 0,
-    "J5B4HfVqUaCPvzGg": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.342",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1754233004487,
-    "modifiedTime": 1754234635909,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+    "createdTime": 1792923924040,
+    "modifiedTime": 1792923924210,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!AyQ8xeL04sEXLtYN"
 }

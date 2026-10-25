@@ -6,7 +6,7 @@
     "summary": {
       "value": "Gain additional benefits when you successfully Soul Steal from an enemy."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Esper</strong>, <strong>Loremaster</strong> and <strong>Rogue</strong>, and have acquired the <strong>Soul Steal</strong> Skill.</p><hr /><p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may choose one of them. If you do, you immediately perform the <strong>Study</strong> action for free against that enemy: treat the Result and High Roll of this Open Check as being equal to the Result and High Roll of the Check you performed for <strong>Soul Steal</strong> (do not roll dice for this Open Check).</p><p>When you deal damage to an <strong>elite</strong> or <strong>champion</strong>-rank enemy, if you stole that enemy's <strong>soul treasure</strong> during this scene, you deal extra damage equal to <strong>【your Skill Level in Soul Steal】</strong> to that enemy.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Esper</strong>, <strong>Loremaster</strong> and <strong>Rogue</strong>, and have acquired the <strong>Soul Steal</strong> Skill.</p><hr><p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may choose one of them. If you do, you immediately perform the <strong>Study</strong> action for free against that enemy: treat the Result and High Roll of this Open Check as being equal to the Result and High Roll of the Check you performed for <strong>Soul Steal</strong> (do not roll dice for this Open Check).</p><p>When you deal damage to an <strong>elite</strong> or <strong>champion</strong>-rank enemy, if you stole that enemy's <strong>soul treasure</strong> during this scene, you deal extra damage equal to <strong>【your Skill Level in Soul Steal】</strong> to that enemy.</p>",
     "class": {
       "value": "esper, loremaster, rogue"
     },
@@ -33,15 +33,48 @@
     "fuid": "like-an-open-book",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -63,10 +96,8 @@
         "rules": {
           "elements": {
             "KrSgX5USBlbKSMow": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "TmIBzF18YVMxzjgi",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -75,15 +106,15 @@
                 "local": false,
                 "identifier": "soul-steal"
               },
-              "_id": "KrSgX5USBlbKSMow",
               "actions": {
                 "rfCqBaeS3t4PJ0Oa": {
-                  "type": "messageRuleAction",
-                  "_id": "rfCqBaeS3t4PJ0Oa",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may <strong>Study</strong> one of the enemies stolen from.</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -92,18 +123,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "cqLjEw9l0NJm8VWP",
       "type": "base",
-      "changes": [],
       "description": "<p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may immediately perform the <strong>Study</strong> action for free against one of them: treat the Result and High Roll of this Open Check as being equal to the <strong>Soul Steal</strong> Check.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -124,13 +158,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771886113644,
-        "modifiedTime": 1771886853187,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922850,
+        "modifiedTime": 1792923922850,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!bNl3nhk2ULBwLaE4.cqLjEw9l0NJm8VWP"
     }
   ],
@@ -145,18 +182,17 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1767915231139,
-    "modifiedTime": 1775353844213,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922850,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "bNl3nhk2ULBwLaE4",
   "ownership": {
-    "default": 0,
-    "94wV67htTTVBPn7n": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!bNl3nhk2ULBwLaE4"

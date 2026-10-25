@@ -5,16 +5,10 @@
   "_id": "xzyAHegWwSaysYqV",
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_potion_rain.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the <strong>potion</strong> only restores half the normal amount of HP and MP to each creature.</p><hr /><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the <strong>potion</strong> only restores half the normal amount of HP and MP to each creature.</p><hr><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "tinkerer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR211",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,21 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "potion-rain",
     "cost": {
       "resource": "ip",
-      "amount": ""
+      "amount": "",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -150,11 +97,8 @@
         "rules": {
           "elements": {
             "hlGPA1pcnOYW5orC": {
-              "type": "ruleElement",
-              "_id": "hlGPA1pcnOYW5orC",
               "trigger": {
-                "_id": "VkyHhV3FApxSVvDd",
-                "type": "createConsumableRuleTrigger",
+                "type": "projectfu.createConsumableRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
@@ -166,19 +110,17 @@
               },
               "predicates": {
                 "fSBuWemywjUSJtkN": {
-                  "type": "targetingRulePredicate",
-                  "_id": "fSBuWemywjUSJtkN",
+                  "type": "projectfu.targetingRulePredicate",
                   "rule": "multiple"
                 }
               },
               "actions": {
                 "OFbTe9GBsEoOCERK": {
-                  "type": "modifyConsumableRuleAction",
-                  "_id": "OFbTe9GBsEoOCERK",
-                  "bonus": "",
-                  "multiplier": "0.5"
+                  "type": "projectfu.modifyConsumableRuleAction"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -187,18 +129,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "06fNYI2FaCIWg7HX",
       "type": "base",
-      "changes": [],
       "description": "<p>When you target <strong>multiple</strong> creatures with a potion that restores HP and/or MP, the potion will only restore half that normal amount of HP and MP.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -210,20 +155,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766773134400,
-        "modifiedTime": 1771879246205,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921387,
+        "modifiedTime": 1792923921387,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!xzyAHegWwSaysYqV.06fNYI2FaCIWg7HX"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -235,10 +181,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706508730921,
-    "modifiedTime": 1786688024269,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921387,
+    "modifiedTime": 1792923922164,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

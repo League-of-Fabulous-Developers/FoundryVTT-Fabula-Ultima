@@ -5,63 +5,30 @@
   "_id": "dzv1DzQ6N3FKATek",
   "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<table><tbody><tr><td><p><strong>CALM TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.XCtijox9eBrBNSno]{Calm Tone}</p></td></tr></tbody></table><p></p><p>Each target recovers an amount of <strong>【key recovery】</strong> equal to <strong>【10 + twice your current Willpower die size】</strong>. This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p><p>If this <strong>verse</strong> causes MP recovery, it has <strong>no effect</strong> on the character that sings it.</p><p></p><table><tbody><tr><td><p><strong>ENERGETIC TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.XvkMOHPXUg0ikDkf]{Energetic Tone}</p></td></tr></tbody></table><p></p><p>Until the <strong>start of your next turn</strong>, when a target <strong>succeeds</strong> on a <strong>Check</strong> that includes <strong>【key Attribute】</strong> and that <strong>Check</strong> allows them to advance or turn back a Clock, they may fill or erase <strong>1 additional section</strong> of that Clock.</p><p></p><table><tbody><tr><td><p><strong>FRANTIC TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.mtKts9zjHlweSVk4]{Frantic Tone}</p></td></tr></tbody></table><p></p><p>You deal an amount of <strong>【key type】</strong> damage equal to <strong>twice</strong> your current <strong>Willpower</strong> die to each target. This tone deals 5 extra damage if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p></p><table><tbody><tr><td><p><strong>HAUNTING TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.CynydNkxJS1HZVlJ]{Haunting Tune}</p></td></tr></tbody></table><p></p><p>Each target suffers <strong>【key status effect】</strong>. Each target also loses Resistance to <strong>【key type】</strong> damage (if they have it) until the start of your next turn, and cannot gain Resistance to that damage type until the start of your next turn.</p><p></p><table><tbody><tr><td><p><strong>LIVELY TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zLxqETSi6zbRkWKu]{Lively Tone}</p></td></tr></tbody></table><p></p><p>Each target treats their <strong>【key Attribute】</strong> as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><p></p><table><tbody><tr><td><p><strong>MENACING TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.8QMh3jUtgmIMy9Jb]{Menacing Tone}</p></td></tr></tbody></table><p></p><p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>【key type】</strong>. This can trigger once for each target of the verse, separately.</p><p></p><table><tbody><tr><td><p><strong>SOLEMN TONE</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.yidpNKJQMA7dSBsc]{Solemn Tone}</p></td></tr></tbody></table><p></p><p>Each target recovers from <strong>【key status effect】</strong>. Each target also gains Resistance to <strong>【key type】</strong> damage until the start of your next turn.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "dex"
-      },
-      "secondary": {
-        "value": "ins"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -76,42 +43,10 @@
       "current": 0,
       "step": 1,
       "max": 6,
-      "name": "Name"
+      "name": "Name",
+      "enabled": false
     },
     "source": "FUHF139",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -123,23 +58,40 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "handout-tone-list",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "sort": 200000,
   "ownership": {
-    "default": 0,
-    "ebg6FQH2cPZYwDuu": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "projectfu-playtest": {
@@ -152,10 +104,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1707814122369,
-    "modifiedTime": 1791487214625,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921283,
+    "modifiedTime": 1792923922148,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

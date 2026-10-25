@@ -5,16 +5,10 @@
   "_id": "ek0pzfo1bSWGHfzb",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_ritual_spiritism.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>You may perform Rituals whose effects fall within the <strong>Spiritism</strong> discipline.</p><p><strong>Spiritism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Spiritism</strong> discipline.</p><p><strong>Spiritism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "spiritist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR207",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "ritual-spiritism",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "o5BsQTmNE4IUJLcl": {
-              "type": "ruleElement",
-              "_id": "o5BsQTmNE4IUJLcl",
               "trigger": {
-                "_id": "OcHnambtkVzEabbU",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -161,12 +109,22 @@
               },
               "actions": {
                 "MKPu6Ccv1ZmHDR9z": {
-                  "type": "performCheckRuleAction",
-                  "_id": "MKPu6Ccv1ZmHDR9z",
+                  "type": "projectfu.performCheckRuleAction",
                   "check": "ritual",
-                  "bonus": ""
+                  "bonus": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -175,18 +133,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "9yy6BFLcB9551EvD",
       "type": "base",
-      "changes": [],
       "description": "<p>Performing the <strong>Ritual Spiritism</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -198,20 +159,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767130663077,
-        "modifiedTime": 1771877001786,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921289,
+        "modifiedTime": 1792923921289,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ek0pzfo1bSWGHfzb.9yy6BFLcB9551EvD"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -223,10 +185,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706507916684,
-    "modifiedTime": 1775596295564,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921289,
+    "modifiedTime": 1792923922148,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -10,10 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><strong>Requirements:</strong> <strong>Superior</strong> benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}.</p><hr /><p>For 2 Inventory Points, choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; <strong>or</strong> you recover an amount of MP equal to half the HP loss suffered by the target of the attack.</p><p>This infusion can only be used if the attack targeted a single creature.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> <strong>Superior</strong> benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}.</p><hr><p>For 2 Inventory Points, choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; <strong>or</strong> you recover an amount of MP equal to half the HP loss suffered by the target of the attack.</p><p>This infusion can only be used if the attack targeted a single creature.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -23,16 +20,25 @@
     "source": "FUCR214",
     "fuid": "infusion-vampire-superior",
     "damage": {
-      "onApply": ""
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": {
+      "entries": []
     }
   },
   "effects": [],
   "folder": "e32mb2Mr3pGLJugS",
   "sort": 300000,
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -43,10 +49,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1707096643714,
-    "modifiedTime": 1771880261915,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923161,
+    "modifiedTime": 1792923923174,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

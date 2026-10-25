@@ -9,81 +9,33 @@
     "summary": {
       "value": "Equip some two-handed weapons in a single-hand slot."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Fury</strong>.</p><hr /><p>You may now equip two-handed <strong>weapons</strong> belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, and <strong>sword</strong> Categories within a single hand slot.</p><p>Additionally, the <strong>first</strong> attack you perform with a two-handed <strong>weapon</strong> during each turn deals 5 extra damage, and its damage ignores Resistances.</p><hr /><p><strong>You Gain For 1st Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.QXnEpgUL4TX7ZL3c]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Fury</strong>.</p><hr><p>You may now equip two-handed <strong>weapons</strong> belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, and <strong>sword</strong> Categories within a single hand slot.</p><p>Additionally, the <strong>first</strong> attack you perform with a two-handed <strong>weapon</strong> during each turn deals 5 extra damage, and its damage ignores Resistances.</p><hr><p><strong>You Gain For 1st Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.QXnEpgUL4TX7ZL3c]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "fury"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR238",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "monkey-grip",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706584997270,
-    "modifiedTime": 1787127703178,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922874,
+    "modifiedTime": 1792923923016,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

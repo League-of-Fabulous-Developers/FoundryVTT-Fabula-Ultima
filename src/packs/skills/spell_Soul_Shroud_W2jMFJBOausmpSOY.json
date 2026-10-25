@@ -127,9 +127,7 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "bgUzjEHd80A79gwp": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -141,12 +139,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771475560048,
-    "modifiedTime": 1771476680713,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921241,
+    "modifiedTime": 1792923922141,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!W2jMFJBOausmpSOY"
 }

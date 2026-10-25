@@ -29,42 +29,51 @@
         "rules": {
           "elements": {
             "T5PZQ1ZIKJ9uOmz1": {
-              "type": "ruleElement",
-              "_id": "T5PZQ1ZIKJ9uOmz1",
               "trigger": {
-                "_id": "mMU2VNJHZ1dJT3BU",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
+                "damageTypes": [],
+                "itemGroups": [
                   "spell"
                 ],
-                "damageTypes": []
+                "local": false
               },
               "predicates": {
                 "LfdfZTzpa1cAd4rV": {
-                  "type": "weaponRulePredicate",
-                  "_id": "LfdfZTzpa1cAd4rV",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "selector": "initial",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 },
                 "BdzMhWW6jhaX0fZo": {
-                  "type": "spellRulePredicate",
-                  "_id": "BdzMhWW6jhaX0fZo",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 }
               },
               "actions": {
                 "CMTpRIXkourHS8AH": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "CMTpRIXkourHS8AH",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "&sl(\"wardancer\")",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
               },
-              "selector": "source"
+              "selector": "source",
+              "enabled": true
             }
           },
           "progress": {
@@ -73,50 +82,57 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.brawling",
+            "value": "&sl(\"wardancer\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.dagger",
+            "value": "&sl(\"wardancer\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.flail",
+            "value": "&sl(\"wardancer\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.sword",
+            "value": "&sl(\"wardancer\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.thrown",
+            "value": "&sl(\"wardancer\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "YUBjlreN7TSb29z7",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.brawling",
-          "mode": 2,
-          "value": "&sl(\"wardancer\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.dagger",
-          "mode": 2,
-          "value": "&sl(\"wardancer\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.flail",
-          "mode": 2,
-          "value": "&sl(\"wardancer\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.sword",
-          "mode": 2,
-          "value": "&sl(\"wardancer\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.thrown",
-          "mode": 2,
-          "value": "&sl(\"wardancer\")",
-          "priority": null
-        }
-      ],
       "description": "<p>Your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped, offensive spells you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -128,32 +144,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770278548545,
-        "modifiedTime": 1770632346215,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921229,
+        "modifiedTime": 1792923921229,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!T9rvLMTdI2aICL1u.YUBjlreN7TSb29z7"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770278538948,
-    "modifiedTime": 1770280305305,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921229,
+    "modifiedTime": 1792923922139,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!T9rvLMTdI2aICL1u"
 }

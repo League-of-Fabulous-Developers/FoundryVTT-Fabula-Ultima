@@ -35,24 +35,26 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingDamage.air",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "aMv8LMCFMPRRUDWk",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.air",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>While you bear the <strong>Symbol of Weakness</strong>, you suffer 5 extra damage from sources dealing <strong>air</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -64,30 +66,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "createdTime": 1792923921295,
+        "modifiedTime": 1792923921295
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!fibQb1UfU30emdPw.aMv8LMCFMPRRUDWk"
     }
   ],
   "folder": "LcABLqcWe1kgi8v3",
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770634477714,
-    "modifiedTime": 1771877987541,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921295,
+    "modifiedTime": 1792923922149,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "fibQb1UfU30emdPw",
   "sort": 100000,

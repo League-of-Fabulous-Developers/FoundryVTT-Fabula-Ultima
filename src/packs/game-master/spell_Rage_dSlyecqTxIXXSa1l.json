@@ -110,7 +110,12 @@
     "effects": {
       "entries": [
         "enraged"
-      ]
+      ],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
     },
     "traits": []
   },
@@ -126,10 +131,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1690417015023,
-    "modifiedTime": 1771280459480,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923401,
+    "modifiedTime": 1792923923428,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -138,8 +143,7 @@
   "_id": "dSlyecqTxIXXSa1l",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!dSlyecqTxIXXSa1l"
 }

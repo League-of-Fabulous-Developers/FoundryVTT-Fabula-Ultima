@@ -42,24 +42,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.dark",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "dk03CWyervo5sqho",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.dark",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>Until this spell ends, you gain Resistance to <strong>dark</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -71,31 +73,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "3DqQhTAexuyMSem6",
-        "modifiedTime": 1775808149356
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921354,
+        "createdTime": 1792923921354
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!pw3V67Q5TBTnFNXb.dk03CWyervo5sqho"
     }
   ],
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771475560048,
-    "modifiedTime": 1775808145132,
-    "lastModifiedBy": "3DqQhTAexuyMSem6"
+    "createdTime": 1792923921354,
+    "modifiedTime": 1792923922156,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!pw3V67Q5TBTnFNXb"
 }

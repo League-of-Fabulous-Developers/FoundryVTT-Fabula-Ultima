@@ -2,18 +2,15 @@
   "name": "Salty",
   "type": "classFeature",
   "system": {
-    "featureType": "projectfu.ingredient",
     "summary": {
       "value": ""
-    },
-    "isFavored": {
-      "value": false
     },
     "data": {
       "taste": "salty",
       "cost": 10,
       "quantity": 1,
-      "description": ""
+      "description": "",
+      "type": "projectfu.ingredient"
     },
     "source": "FUNF150",
     "fuid": "salty"
@@ -22,8 +19,7 @@
   "effects": [],
   "folder": "7elKsNRPvQqRkFPl",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -31,12 +27,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.UhmQB5s6ci4cIPJ6",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676964457,
-    "modifiedTime": 1742676964457,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "createdTime": 1792923921346,
+    "modifiedTime": 1792923922155,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "pClb5dXEgvo29U0C",

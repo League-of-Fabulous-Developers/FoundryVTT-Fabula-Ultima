@@ -10,65 +10,30 @@
     "summary": {
       "value": "Gain beneﬁts when you cast spells on a personal vehicle"
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong>.</p><hr contenteditable=\"false\" /><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved):</p><ul><li><p>Choose one enabled <strong>module</strong> and <strong>disable</strong> it, then choose one disabled <strong>module</strong> and <strong>enable</strong> it.</p></li><li><p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p></li><li><p>The next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p></li></ul><hr contenteditable=\"false\" /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.5180h6kwja4Cn1jm] or @EFFECT[Compendium.projectfu.heroic-skills.Item.MbSByyJGE4BJekAX]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong>.</p><hr contenteditable=\"false\"><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved):</p><ul><li><p>Choose one enabled <strong>module</strong> and <strong>disable</strong> it, then choose one disabled <strong>module</strong> and <strong>enable</strong> it.</p></li><li><p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p></li><li><p>The next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p></li></ul><hr contenteditable=\"false\"><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.5180h6kwja4Cn1jm] or @EFFECT[Compendium.projectfu.heroic-skills.Item.MbSByyJGE4BJekAX]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "pilot"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF177",
     "fuid": "steel-witch",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791524059488,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922859,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "m6MWTDpEJqEMAb5a",
   "sort": 0,

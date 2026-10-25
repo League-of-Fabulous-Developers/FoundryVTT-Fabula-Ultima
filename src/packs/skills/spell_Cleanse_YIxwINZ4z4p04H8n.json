@@ -137,11 +137,8 @@
         "rules": {
           "elements": {
             "nRJ2l0YUaKU2wyyE": {
-              "type": "ruleElement",
-              "_id": "nRJ2l0YUaKU2wyyE",
               "trigger": {
-                "_id": "AwVj9QkaoGtM81Vv",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -154,8 +151,7 @@
               },
               "actions": {
                 "KhLBomDZKyDdIrGQ": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "KhLBomDZKyDdIrGQ",
+                  "type": "projectfu.clearEffectRuleAction",
                   "identifier": ""
                 }
               },
@@ -173,16 +169,18 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "UagQX4OgszpslcIo",
       "type": "base",
-      "changes": [],
       "description": "",
       "origin": null,
       "tint": "#ffffff",
@@ -194,19 +192,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "createdTime": 1792923921256,
+        "modifiedTime": 1792923921256
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!YIxwINZ4z4p04H8n.UagQX4OgszpslcIo"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -219,12 +219,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771475560048,
-    "modifiedTime": 1771475560048,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921256,
+    "modifiedTime": 1792923922143,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 600000,
   "_key": "!items!YIxwINZ4z4p04H8n"

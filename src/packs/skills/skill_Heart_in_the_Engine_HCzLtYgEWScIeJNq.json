@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>.</strong> If you do, choose one option:</p><ul><li><p>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</p></li><li><p>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</p></li><li><p>You recover from either <strong>slow</strong> or <strong>weak</strong> (your choice).</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -24,51 +20,22 @@
       "value": "pilot"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
-      "expression": "",
-      "extra": "",
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,61 +44,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF159",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
     "defense": "def",
     "fuid": "heart-in-the-engine",
     "cost": {
-      "amount": 10
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "entries": [
         "Compendium.projectfu.skills.Item.XoMumkEXtYQOF7Et",
         "Compendium.projectfu.skills.Item.VM5F00GYKYInRjgM"
-      ]
+      ],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -152,11 +99,8 @@
         "rules": {
           "elements": {
             "qa7XeKAn1iljRv9t": {
-              "type": "ruleElement",
-              "_id": "qa7XeKAn1iljRv9t",
               "trigger": {
-                "_id": "eBXSeqgQKdoPKI42",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -168,33 +112,33 @@
               "selector": "self",
               "actions": {
                 "RVE6u2gmkfQplEeL": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "RVE6u2gmkfQplEeL",
+                  "type": "projectfu.clearEffectRuleAction",
                   "identifier": "slow"
                 },
                 "4CkcBxK61QGbH2Qc": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "4CkcBxK61QGbH2Qc",
+                  "type": "projectfu.clearEffectRuleAction",
                   "identifier": "weak"
                 }
-              }
+              },
+              "predicates": {},
+              "enabled": true
             },
             "StD7HXK1kxQNywZq": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "X18XV6jFPqXmqVcP",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "source",
-                "eventType": "startOfTurn"
+                "eventType": "startOfTurn",
+                "parity": ""
               },
-              "_id": "StD7HXK1kxQNywZq",
               "actions": {
                 "wmcnRwTaUnnDU4NZ": {
-                  "type": "messageRuleAction",
-                  "_id": "wmcnRwTaUnnDU4NZ",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If driving your <strong>vehicle</strong>, you may use this Skill.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -203,18 +147,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "nPQt2DcRKMJqYXcX",
       "type": "base",
-      "changes": [],
       "description": "<p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points to use this Skill.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -226,20 +173,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770453203830,
-        "modifiedTime": 1771839477419,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921163,
+        "modifiedTime": 1792923921163,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!HCzLtYgEWScIeJNq.nPQt2DcRKMJqYXcX"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -251,10 +199,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711431286236,
-    "modifiedTime": 1775595759889,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921163,
+    "modifiedTime": 1792923922130,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

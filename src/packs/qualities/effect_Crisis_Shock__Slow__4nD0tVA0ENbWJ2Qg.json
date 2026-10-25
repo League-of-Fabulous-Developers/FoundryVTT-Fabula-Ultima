@@ -14,7 +14,6 @@
       "name": "Crisis Shock (Slow)",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature deals damage to you, if you are in <strong>Crisis</strong>, you may have that creature suffer @EFFECT[slow].</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -22,35 +21,48 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "active",
           "source": "FUCR283"
         }
       },
       "_id": "LpkHBLXyQ7HkraXW",
-      "system": {},
+      "system": {
+        "changes": [],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1728778033281,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "createdTime": 1792923925148,
+        "modifiedTime": 1792923925148,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!4nD0tVA0ENbWJ2Qg.LpkHBLXyQ7HkraXW"
     }
   ],
@@ -59,19 +71,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747195507,
-    "modifiedTime": 1728747195507,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "createdTime": 1792923925148,
+    "modifiedTime": 1792923925275,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "4nD0tVA0ENbWJ2Qg",
   "sort": 1300000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!4nD0tVA0ENbWJ2Qg"
 }

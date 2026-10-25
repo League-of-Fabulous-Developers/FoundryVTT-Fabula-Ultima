@@ -5,9 +5,6 @@
   "_id": "0s0E8qJzRRLtQstc",
   "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/chanter.png",
   "system": {
-    "isFavored": {
-      "value": false
-    },
     "level": 1,
     "maxLevel": 5,
     "items": [
@@ -379,19 +376,18 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": "Item.0s0E8qJzRRLtQstc",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1745491348230,
-    "modifiedTime": 1791524588791,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923925544,
+    "modifiedTime": 1792923925625,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!0s0E8qJzRRLtQstc"

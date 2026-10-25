@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_biophagy.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>After one of your attacks or offensive spells (@ICON[offensive]) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p><strong>You Gain:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After one of your attacks or offensive spells (@ICON[offensive]) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr><p><strong>You Gain:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -24,49 +20,22 @@
       "value": "mutant"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -75,54 +44,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF155",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
     "defense": "def",
     "fuid": "biophagy",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -143,11 +96,8 @@
         "rules": {
           "elements": {
             "ZVmXT5qwqBX75VSD": {
-              "type": "ruleElement",
-              "_id": "ZVmXT5qwqBX75VSD",
               "trigger": {
-                "_id": "SBCsaQCxm3H2g7Nu",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -158,41 +108,38 @@
               },
               "predicates": {
                 "4EunxyLHd2I2Nlo5": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "4EunxyLHd2I2Nlo5",
+                  "type": "projectfu.targetEffectRulePredicate",
                   "selector": "self",
-                  "effect": "crisis"
+                  "effect": "crisis",
+                  "quantifier": "any"
                 },
                 "lYEJzjkaHEYIlIUE": {
-                  "type": "traitsRulePredicate",
-                  "_id": "lYEJzjkaHEYIlIUE",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 }
               },
               "actions": {
                 "UY578Gh9ibkcAaWg": {
-                  "type": "messageRuleAction",
-                  "_id": "UY578Gh9ibkcAaWg",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "CqmfDSkexO622LiX": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "CqmfDSkexO622LiX",
-                  "amount": "$sl*5"
+                  "type": "projectfu.updateResourceRuleAction",
+                  "amount": "$sl*5",
+                  "resource": "hp"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             },
             "vu6YuEN6vlerB62H": {
-              "type": "ruleElement",
-              "_id": "vu6YuEN6vlerB62H",
               "trigger": {
-                "_id": "22jH2MuqnObsz2El",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -203,46 +150,43 @@
               },
               "predicates": {
                 "32gT2Qs7F5m9xraz": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "32gT2Qs7F5m9xraz",
+                  "type": "projectfu.targetEffectRulePredicate",
                   "selector": "self",
-                  "effect": "crisis"
+                  "effect": "crisis",
+                  "quantifier": "any"
                 },
                 "MtfWKjf3Dakhv83n": {
-                  "type": "traitsRulePredicate",
-                  "_id": "MtfWKjf3Dakhv83n",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 },
                 "CwIkSoJiw4WHH2x2": {
-                  "type": "spellRulePredicate",
-                  "_id": "CwIkSoJiw4WHH2x2",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 }
               },
               "actions": {
                 "G7KWjDzT9URVrjjq": {
-                  "type": "messageRuleAction",
-                  "_id": "G7KWjDzT9URVrjjq",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "2kfZKSRbaN70RlPi": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "2kfZKSRbaN70RlPi",
-                  "amount": "$sl*5"
+                  "type": "projectfu.updateResourceRuleAction",
+                  "amount": "$sl*5",
+                  "resource": "hp"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             },
             "hhpK7dHww70Ln8a3": {
-              "type": "ruleElement",
-              "_id": "hhpK7dHww70Ln8a3",
               "trigger": {
-                "_id": "EtEt4Bxl80S1GVSd",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -253,19 +197,18 @@
               },
               "predicates": {
                 "YQVezlfr2f4Rj30j": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "YQVezlfr2f4Rj30j",
+                  "type": "projectfu.targetEffectRulePredicate",
                   "selector": "self",
-                  "effect": "crisis"
+                  "effect": "crisis",
+                  "quantifier": "any"
                 },
                 "n8afOBh3UypoCbIA": {
-                  "type": "spellRulePredicate",
-                  "_id": "n8afOBh3UypoCbIA",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 },
                 "VUnFPolySETxUlWP": {
-                  "type": "traitsRulePredicate",
-                  "_id": "VUnFPolySETxUlWP",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "loss",
@@ -277,17 +220,17 @@
               },
               "actions": {
                 "RrimQoKy6AraLGPA": {
-                  "type": "messageRuleAction",
-                  "_id": "RrimQoKy6AraLGPA",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you cause one or more enemies to lose HP, you may recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "cUp7Ytuedl5yNPpI": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "cUp7Ytuedl5yNPpI",
-                  "amount": "$sl*5"
+                  "type": "projectfu.updateResourceRuleAction",
+                  "amount": "$sl*5",
+                  "resource": "hp"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             }
           },
           "progress": {
@@ -296,23 +239,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "cHLNid8K4n73xxvO",
       "type": "base",
-      "changes": [],
       "description": "<p>After one of your attacks or offensive spells causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -324,13 +270,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767289793419,
-        "modifiedTime": 1783551316870,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921325,
+        "modifiedTime": 1792923921325,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!kpg23Fs85uniba2A.cHLNid8K4n73xxvO"
     }
   ],
@@ -343,10 +292,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711429218464,
-    "modifiedTime": 1775594893612,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921325,
+    "modifiedTime": 1792923922153,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -354,9 +303,7 @@
   "_id": "kpg23Fs85uniba2A",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!kpg23Fs85uniba2A"
 }

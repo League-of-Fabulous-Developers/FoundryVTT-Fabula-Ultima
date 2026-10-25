@@ -36,17 +36,18 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "rF8QzuzEXc3LD2sB",
       "type": "base",
-      "changes": [],
       "description": "<p>Until the start of the <strong>chanter's</strong> next turn, when you <strong>succeed</strong> on a <strong>Check</strong> that includes <strong>Willpower</strong> and that <strong>Check</strong> allows you to advance or turn back a Clock, you may <strong>fill or erase</strong> an additional section of that Clock.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -58,12 +59,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771826753020
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921273,
+        "createdTime": 1792923921273
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!c5XHYaYaBv0NJ7Z0.rF8QzuzEXc3LD2sB"
     }
   ],
@@ -72,16 +77,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771826688510,
-    "modifiedTime": 1771826739478,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921273,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "c5XHYaYaBv0NJ7Z0",
   "sort": 0,

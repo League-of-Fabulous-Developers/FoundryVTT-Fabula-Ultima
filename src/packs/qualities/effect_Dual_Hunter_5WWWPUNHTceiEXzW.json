@@ -14,14 +14,6 @@
       "name": "Dual Hunter (Humanoid)",
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.humanoid",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -29,9 +21,7 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Offensive",
-          "CrisisInteraction": "none",
           "source": "FUCR269"
         }
       },
@@ -40,43 +30,64 @@
         "rules": {
           "progress": {
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.humanoid",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
-        "systemVersion": "3.0.2",
-        "createdTime": null,
-        "modifiedTime": 1745602610864,
-        "lastModifiedBy": "2sIzoqmFNykqXyPi",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.rLLaCWGQ98VUd8lU"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Monster)",
@@ -93,16 +104,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.monster",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.monster",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -113,26 +127,26 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565602035,
-        "modifiedTime": 1744565836802,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.GfOPa3Zgjhlc411v"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Beast)",
@@ -149,16 +163,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.beast",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.beast",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -169,26 +186,26 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565878682,
-        "modifiedTime": 1744565932673,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.X1lTAYt4OugTZxEp"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Construct)",
@@ -205,16 +222,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.construct",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.construct",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -225,26 +245,26 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565885784,
-        "modifiedTime": 1744565987691,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.XULCoEGkD1AmKgaj"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Demon)",
@@ -261,16 +281,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.demon",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.demon",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "",
       "origin": null,
       "tint": "#ffffff",
@@ -281,26 +304,26 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565886528,
-        "modifiedTime": 1744566010179,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.aJGTp3kFkLjvsJXp"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Element)",
@@ -317,16 +340,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.elemental",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.elemental",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -337,26 +363,26 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565887092,
-        "modifiedTime": 1744566053249,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.SZToILUirvKHXjX5"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Plant)",
@@ -373,16 +399,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.plant",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.plant",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -393,26 +422,26 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565887498,
-        "modifiedTime": 1744566095392,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.fNUp9BI3DDCtxhWZ"
     },
     {
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Dual Hunter (Undead)",
@@ -429,16 +458,19 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.undead",
-          "mode": 2,
-          "value": "5",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.undead",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -449,14 +481,17 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744565887910,
-        "modifiedTime": 1744566146216,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "createdTime": 1792923925149,
+        "modifiedTime": 1792923925149,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5WWWPUNHTceiEXzW.w3IXKkESdwwmFQQe"
     }
   ],
@@ -465,19 +500,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193107,
-    "modifiedTime": 1736223458850,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "createdTime": 1792923925149,
+    "modifiedTime": 1792923925275,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "5WWWPUNHTceiEXzW",
   "sort": 2300000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!5WWWPUNHTceiEXzW"
 }

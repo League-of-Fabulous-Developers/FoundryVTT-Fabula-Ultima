@@ -8,12 +8,12 @@
     "summary": {
       "value": ""
     },
-    "featureType": "projectfu.key",
     "data": {
-      "type": "light",
       "status": "dazed",
       "attribute": "ins",
-      "resource": "hp"
+      "resource": "hp",
+      "damageType": "light",
+      "type": "projectfu.key"
     },
     "source": "FUHF138",
     "fuid": "key-of-radiance"
@@ -21,19 +21,16 @@
   "effects": [],
   "sort": 700000,
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
-    "createdTime": 1710038922334,
-    "modifiedTime": 1757356658497,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921389,
+    "modifiedTime": 1792923922164,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

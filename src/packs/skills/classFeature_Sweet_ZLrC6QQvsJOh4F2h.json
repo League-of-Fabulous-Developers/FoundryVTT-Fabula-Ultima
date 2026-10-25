@@ -2,18 +2,15 @@
   "name": "Sweet",
   "type": "classFeature",
   "system": {
-    "featureType": "projectfu.ingredient",
     "summary": {
       "value": ""
-    },
-    "isFavored": {
-      "value": false
     },
     "data": {
       "taste": "sweet",
       "cost": 10,
       "quantity": 1,
-      "description": ""
+      "description": "",
+      "type": "projectfu.ingredient"
     },
     "source": "FUNF150",
     "fuid": "sweet"
@@ -22,8 +19,7 @@
   "effects": [],
   "folder": "7elKsNRPvQqRkFPl",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -31,12 +27,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.UmYmlC7ekLuFNFTU",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676964457,
-    "modifiedTime": 1742676964457,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "createdTime": 1792923921262,
+    "modifiedTime": 1792923922144,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "ZLrC6QQvsJOh4F2h",

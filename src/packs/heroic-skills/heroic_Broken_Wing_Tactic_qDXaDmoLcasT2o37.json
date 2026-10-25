@@ -6,7 +6,7 @@
     "summary": {
       "value": "Improve your enemies' attacks to deceive them."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p><hr /><p>After an enemy you can see performs an <strong>Accuracy Check</strong> or a <strong>Magic Check</strong> for an offensive spell (@ICON[offensive]) on their turn during a conflict, you may grant them a +3 bonus to the Result of the Check. If you do, choose one option:</p><ul><li><p>You and every ally who is able to hear you gain Resistance to all damage types until the end of this turn.</p></li><li><p>You and every ally who is able to hear you deal 5 extra damage until the end of this turn.</p></li></ul><p>Once you use this Skill, you cannot use it again until the start of your next turn.</p><hr /><p><strong>You &amp; Allies Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.lqgayJpoKwrXlPVl]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p><hr><p>After an enemy you can see performs an <strong>Accuracy Check</strong> or a <strong>Magic Check</strong> for an offensive spell (@ICON[offensive]) on their turn during a conflict, you may grant them a +3 bonus to the Result of the Check. If you do, choose one option:</p><ul><li><p>You and every ally who is able to hear you gain Resistance to all damage types until the end of this turn.</p></li><li><p>You and every ally who is able to hear you deal 5 extra damage until the end of this turn.</p></li></ul><p>Once you use this Skill, you cannot use it again until the start of your next turn.</p><hr><p><strong>You &amp; Allies Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.lqgayJpoKwrXlPVl]</p>",
     "class": {
       "value": "commander, guardian"
     },
@@ -33,15 +33,48 @@
     "fuid": "broken-wing-tactic",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -56,18 +89,17 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1767915231139,
-    "modifiedTime": 1775353724698,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922867,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "qDXaDmoLcasT2o37",
   "ownership": {
-    "default": 0,
-    "94wV67htTTVBPn7n": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!qDXaDmoLcasT2o37"

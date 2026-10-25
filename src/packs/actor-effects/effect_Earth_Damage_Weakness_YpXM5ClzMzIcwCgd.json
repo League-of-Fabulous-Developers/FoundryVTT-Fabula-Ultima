@@ -16,13 +16,10 @@
       "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.actor-effects.Item.YpXM5ClzMzIcwCgd",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Earth Damage Weakness",
@@ -30,29 +27,42 @@
       "type": "base",
       "system": {
         "duration": {
-          "event": "none"
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         },
         "rules": {
           "progress": {
             "id": "",
             "name": "",
-            "style": "bar"
+            "style": "bar",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingDamage.earth",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
+        ],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
         }
       },
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.earth",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>Every source that deals <strong>earth</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -60,40 +70,40 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "default",
-          "source": "",
-          "CrisisInteraction": "none"
+          "source": ""
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1737993851533,
-        "modifiedTime": 1774830310409,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923924059,
+        "modifiedTime": 1792923924059,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!YpXM5ClzMzIcwCgd.zOVD1WzW4Dn6JbeX"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "esOkelwPNblkbxW3": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1737993849524,
-    "modifiedTime": 1774830307151,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924059,
+    "modifiedTime": 1792923924213,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!YpXM5ClzMzIcwCgd"

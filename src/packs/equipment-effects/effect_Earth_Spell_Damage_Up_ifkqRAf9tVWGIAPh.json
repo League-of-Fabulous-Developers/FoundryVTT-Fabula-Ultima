@@ -30,31 +30,38 @@
         "rules": {
           "elements": {
             "dLKh51cD2CTGMF0t": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "Mn9EKEBEJKna8sQ5",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "spell"
-                ],
                 "damageTypes": [
                   "earth"
                 ],
                 "local": false,
-                "identifier": ""
+                "identifier": "",
+                "itemGroups": [
+                  "spell"
+                ]
               },
-              "_id": "dLKh51cD2CTGMF0t",
               "actions": {
                 "qjHtw0IXdcOXccbm": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "qjHtw0IXdcOXccbm",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "5",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -63,23 +70,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "3gsx9IRJDAZ0jWW6",
       "type": "base",
-      "changes": [],
       "description": "<p>While you have this equipped, <strong>spells</strong> you cast that deal <strong>earth</strong> damage deal <strong>5 extra damage</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -100,32 +110,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774746904713,
-        "modifiedTime": 1774764040443,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924686,
+        "modifiedTime": 1792923924686,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ifkqRAf9tVWGIAPh.3gsx9IRJDAZ0jWW6"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774746794250,
-    "modifiedTime": 1774746903848,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924686,
+    "modifiedTime": 1792923924856,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!ifkqRAf9tVWGIAPh"
 }

@@ -5,16 +5,10 @@
   "_id": "EBbeGD1rgPmN6Y6R",
   "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you deal damage to one or more creatures with one of your <strong>Chimerist</strong> spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "chimerist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR183",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,7 +49,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "pathogenesis",
@@ -124,8 +59,26 @@
         "poisoned"
       ],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +99,8 @@
         "rules": {
           "elements": {
             "wG3QUYGcPUhuaWnk": {
-              "type": "ruleElement",
-              "_id": "wG3QUYGcPUhuaWnk",
               "trigger": {
-                "_id": "4xDYjDv3vOrrk3L5",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -161,36 +111,37 @@
               },
               "predicates": {
                 "sscv40mUCY4Frt4I": {
-                  "type": "traitsRulePredicate",
-                  "_id": "sscv40mUCY4Frt4I",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 },
                 "ACaIppU5l1Bb16Cj": {
-                  "type": "speciesRulePredicate",
-                  "_id": "ACaIppU5l1Bb16Cj",
+                  "type": "projectfu.speciesRulePredicate",
                   "species": [
                     "beast",
                     "monster",
                     "plant"
-                  ]
+                  ],
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "X63gHodhVxCaAW8N": {
-                  "type": "messageRuleAction",
-                  "_id": "X63gHodhVxCaAW8N",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you damage one or more with a Chimerist spell, those that share <strong>Species</strong> suffer <strong>poisoned</strong>.</p>"
                 },
                 "TXYeCQTRMxgbBNqK": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "TXYeCQTRMxgbBNqK",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "poisoned"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -199,18 +150,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "UiwmY4WawFJGxq3H",
       "type": "base",
-      "changes": [],
       "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -222,20 +176,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770270015359,
-        "modifiedTime": 1771831035997,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921149,
+        "modifiedTime": 1792923921149,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!EBbeGD1rgPmN6Y6R.UiwmY4WawFJGxq3H"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -247,10 +202,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706495623351,
-    "modifiedTime": 1775516030210,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921149,
+    "modifiedTime": 1792923922128,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

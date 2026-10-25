@@ -5,9 +5,6 @@
   "_id": "ghOpW5JUnPFmTuJn",
   "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/sharpshooter.png",
   "system": {
-    "isFavored": {
-      "value": false
-    },
     "level": 1,
     "maxLevel": 5,
     "items": [
@@ -198,11 +195,8 @@
               "rules": {
                 "elements": {
                   "XCJMRop9wZe4E0w6": {
-                    "type": "ruleElement",
-                    "_id": "XCJMRop9wZe4E0w6",
                     "trigger": {
-                      "_id": "SvxRRbmMaWpg6AFW",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "",
                       "checkTypes": [
                         "accuracy"
@@ -215,14 +209,12 @@
                     },
                     "predicates": {
                       "mcYSEMAjvu14owAY": {
-                        "type": "factionRelationRulePredicate",
-                        "_id": "mcYSEMAjvu14owAY",
+                        "type": "projectfu.factionRelationRulePredicate",
                         "relation": "ally",
                         "inclusive": true
                       },
                       "mOzdLT4f4tE4195B": {
-                        "type": "weaponRulePredicate",
-                        "_id": "mOzdLT4f4tE4195B",
+                        "type": "projectfu.weaponRulePredicate",
                         "weaponType": "ranged",
                         "selector": "source",
                         "martial": "",
@@ -230,8 +222,7 @@
                         "categories": []
                       },
                       "nwwnCFCojQZxCVQO": {
-                        "type": "weaponRulePredicate",
-                        "_id": "nwwnCFCojQZxCVQO",
+                        "type": "projectfu.weaponRulePredicate",
                         "selector": "self",
                         "weaponType": "ranged",
                         "martial": "",
@@ -241,8 +232,7 @@
                     },
                     "actions": {
                       "Jg8qePO1hy7kyP6V": {
-                        "type": "messageRuleAction",
-                        "_id": "Jg8qePO1hy7kyP6V",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + Accuracy Check MP}.</p>"
                       }
                     },
@@ -259,23 +249,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "ZUwqffH7kP8rWg0g",
             "type": "base",
-            "changes": [],
             "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -460,25 +454,14 @@
         "effects": [
           {
             "duration": {
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "rounds": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "name": "Ranged Weapon Mastery",
             "_id": "M8kqwCdFQHllfjGs",
-            "changes": [
-              {
-                "key": "system.bonuses.accuracy.accuracyRanged",
-                "mode": 2,
-                "value": "@system.level.value",
-                "priority": null
-              }
-            ],
             "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>ranged</strong> weapons.</p>",
             "transfer": true,
             "statuses": [],
@@ -512,10 +495,21 @@
                 "interval": 1,
                 "tracking": "self",
                 "remaining": 0
-              }
+              },
+              "changes": [
+                {
+                  "key": "system.bonuses.accuracy.accuracyRanged",
+                  "value": "@system.level.value",
+                  "priority": null,
+                  "type": "add",
+                  "phase": "initial"
+                }
+              ]
             },
             "origin": null,
-            "sort": 0
+            "sort": 0,
+            "start": null,
+            "showIcon": 1
           }
         ],
         "sort": 400000,
@@ -628,11 +622,8 @@
               "rules": {
                 "elements": {
                   "paoUIB9kpHZM7lPC": {
-                    "type": "ruleElement",
-                    "_id": "paoUIB9kpHZM7lPC",
                     "trigger": {
-                      "_id": "PKfluDPVu4hI9ClO",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "accuracy"
@@ -645,15 +636,13 @@
                     },
                     "actions": {
                       "wctGWCNNFyK5NSh4": {
-                        "type": "messageRuleAction",
-                        "_id": "wctGWCNNFyK5NSh4",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>Deal no damage to have targets: @EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
                       }
                     },
                     "predicates": {
                       "4vKUaXH8DGqR6Sr8": {
-                        "type": "checkRulePredicate",
-                        "_id": "4vKUaXH8DGqR6Sr8",
+                        "type": "projectfu.checkRulePredicate",
                         "outcome": "success",
                         "result": null,
                         "parity": "",
@@ -668,8 +657,7 @@
                         "quantifier": "any"
                       },
                       "ahxxYQd2oVRGq1vo": {
-                        "type": "weaponRulePredicate",
-                        "_id": "ahxxYQd2oVRGq1vo",
+                        "type": "projectfu.weaponRulePredicate",
                         "weaponType": "ranged",
                         "selector": "self",
                         "martial": "",
@@ -690,23 +678,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "3KfzmQiRr49axQxk",
             "type": "base",
-            "changes": [],
             "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>shaken</strong>, <strong>slow</strong>, or <strong>lose MP</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -726,19 +718,18 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1745491348230,
-    "modifiedTime": 1791524907191,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923925548,
+    "modifiedTime": 1792923925627,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!ghOpW5JUnPFmTuJn"

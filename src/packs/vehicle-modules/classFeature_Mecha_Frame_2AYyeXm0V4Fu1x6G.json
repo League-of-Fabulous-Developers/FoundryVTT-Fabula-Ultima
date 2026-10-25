@@ -7,16 +7,13 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.vehicle",
     "data": {
       "frame": "mech",
       "passengers": 0,
       "distanceMultiplier": 2,
-      "moduleSlots": 0,
-      "description": "<p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module,</strong> and <strong>any number of support modules</strong> enabled.</p>"
+      "moduleSlots": 3,
+      "description": "<p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module,</strong> and <strong>any number of support modules</strong> enabled.</p>",
+      "type": "projectfu.vehicle"
     },
     "source": "FUTF165",
     "fuid": "mecha-frame"
@@ -45,30 +42,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.data.moduleSlots",
+            "value": "3+&sl(`personal-vehicle`)",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Dd0IC0zzViGrCSq7",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.data.moduleSlots",
-          "mode": 5,
-          "value": "3+&sl(`personal-vehicle`)",
-          "priority": null
-        }
-      ],
       "description": "<p>The maximum number of modules enabled at the same time on a <strong>personal vehicle</strong> is equal to <strong>【3 + Personal Vehicle SL】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
@@ -89,13 +90,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773720121903,
-        "modifiedTime": 1773736024828,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923286,
+        "modifiedTime": 1792923923286,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!2AYyeXm0V4Fu1x6G.Dd0IC0zzViGrCSq7"
     }
   ],
@@ -105,10 +109,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1712878359536,
-    "modifiedTime": 1773735821970,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923286,
+    "modifiedTime": 1792923923318,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -116,8 +120,7 @@
   "_id": "2AYyeXm0V4Fu1x6G",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!2AYyeXm0V4Fu1x6G"
 }

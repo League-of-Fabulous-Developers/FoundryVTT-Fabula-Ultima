@@ -35,30 +35,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.overrides.damageType.spell.normal",
+            "value": "light",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "2h4fWixP0HPc9DCy",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.overrides.damageType.spell.normal",
-          "mode": 5,
-          "value": "light",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, all damage dealt by your spells becomes <strong>light</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -79,32 +83,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774667630317,
-        "modifiedTime": 1774667653301,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924676,
+        "modifiedTime": 1792923924676,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!X1qswzsLfFMX2ZjN.2h4fWixP0HPc9DCy"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774667108964,
-    "modifiedTime": 1774667629632,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924676,
+    "modifiedTime": 1792923924850,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!X1qswzsLfFMX2ZjN"
 }

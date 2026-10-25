@@ -17,9 +17,6 @@
     "type": {
       "value": "ranged"
     },
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -31,9 +28,6 @@
       }
     },
     "isMartial": {
-      "value": false
-    },
-    "isCustomWeapon": {
       "value": false
     },
     "quality": {
@@ -59,11 +53,7 @@
     "damage": {
       "value": 10
     },
-    "subtype": {},
     "description": "<p>A magitech firearm that deals <strong>earth</strong> @ICON[earth] damage.</p>",
-    "isEquipped": {
-      "value": false
-    },
     "impType": {
       "value": "minor"
     },
@@ -74,14 +64,23 @@
       "value": 1
     },
     "defense": "def",
-    "fuid": "magicannon-earth"
+    "fuid": "magicannon-earth",
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "hasDamage": true,
+    "traits": []
   },
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -89,10 +88,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1707097873590,
-    "modifiedTime": 1745361361095,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923161,
+    "modifiedTime": 1792923923174,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

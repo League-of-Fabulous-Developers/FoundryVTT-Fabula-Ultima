@@ -7,10 +7,6 @@
     "summary": {
       "value": "Solemn and elegant, it embodies death's ineluctability."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 3,
       "effects": [
@@ -29,7 +25,8 @@
           "end": 3,
           "effect": "<p>At the end of your turn, you deal an amount of <strong>dark</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>shaken</strong>.</p><hr><p><strong>Targets Suffer:</strong> @DMG[15+&sl('chloromancy')+5*floor($cl/30) dark]{15 + (SL in Chloromancy)}</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF142",
     "fuid": "grave-asphodel"
@@ -39,17 +36,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.ftK48johRIa6TSQm",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791494173098,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921099,
+    "modifiedTime": 1792923922121,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "4lAFsoMQ0OJbubpQ",
   "sort": 0,

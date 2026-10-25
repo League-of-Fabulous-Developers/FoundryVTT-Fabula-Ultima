@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/floralist/battle_gardening.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>After you <strong>plant a magiseed</strong> through the <strong>Chloromancy</strong> Skill (not when using <strong>Graft</strong>), you may choose one option:</p><ul><li><p>Perform a <strong>free attack</strong> with an equipped <strong>weapon</strong>.</p></li><li><p>Perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total Mind Point cost equal to or lower than 【5 + (SL × 5)】</strong>(you must still pay its MP cost).</p></li></ul><p>Treat the <strong>High Roll</strong> of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": true,
-      "damage": true
+      "damage": true,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "",
     "damage": {
       "hasDamage": true,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF139",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "battle-gardening",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "special",
@@ -65,14 +64,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -83,12 +91,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.r5VrCl1Xnz65VrAQ",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791493650257,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921289,
+    "modifiedTime": 1792923922148,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "eZxqfORDilZ4mYip",

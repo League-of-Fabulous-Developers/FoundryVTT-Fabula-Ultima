@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/merchant/expiration_date.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>When a <strong>potion</strong> or <strong>delicacy</strong> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】</strong> to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</p><hr /><p><strong>Target Suffers:</strong> @DMG[($cl/2)+($sl*10) poison]{Level/2 + (SL × 10) Poison (Single)} or @DMG[(($cl/2)+($sl*10)/2) poison]{Level/2 + (SL × 10) /2 Poison (Multi)}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When a <strong>potion</strong> or <strong>delicacy</strong> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】</strong> to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[($cl/2)+($sl*10) poison]{Level/2 + (SL × 10) Poison (Single)} or @DMG[(($cl/2)+($sl*10)/2) poison]{Level/2 + (SL × 10) /2 Poison (Multi)}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF159",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "expiration-date",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "special",
@@ -65,14 +64,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -83,12 +91,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.36UQXB7QHvpkEG7e",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676975651,
-    "modifiedTime": 1775594609953,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921138,
+    "modifiedTime": 1792923922126,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "BW9vyaiaOF5OkIcG",

@@ -3,14 +3,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_hypercognition.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>The total Mind Point cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the only target (up to a minimum cost of 0 Mind Points).</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -23,49 +19,22 @@
       "value": "esper"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -74,54 +43,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF151",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
     "defense": "def",
     "fuid": "hypercognition",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -142,11 +95,8 @@
         "rules": {
           "elements": {
             "3GJTI8ok6JnVSb9h": {
-              "type": "ruleElement",
-              "_id": "3GJTI8ok6JnVSb9h",
               "trigger": {
-                "_id": "OUnQkETnJKHviYEO",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "spell",
@@ -154,33 +104,37 @@
                   "entries": [],
                   "quantifier": "any"
                 },
-                "identifier": ""
+                "identifier": "",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                }
               },
               "predicates": {
                 "ne9InszuSAjoMZuo": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "ne9InszuSAjoMZuo",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 },
                 "puwm9pIYRl9pMOWP": {
-                  "type": "targetingRulePredicate",
-                  "_id": "puwm9pIYRl9pMOWP"
+                  "type": "projectfu.targetingRulePredicate",
+                  "rule": "single"
                 }
               },
               "actions": {
                 "vqEUySRncPvnpy8m": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "vqEUySRncPvnpy8m",
-                  "amount": "-$sl*2"
+                  "type": "projectfu.modifyExpenseRuleAction",
+                  "amount": "-$sl*2",
+                  "operation": "add"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "FMJ65KcDiOEUzFnr": {
-              "type": "ruleElement",
-              "_id": "FMJ65KcDiOEUzFnr",
               "trigger": {
-                "_id": "DzJOC5FtDIt4EGW5",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "spell",
@@ -188,33 +142,37 @@
                   "entries": [],
                   "quantifier": "any"
                 },
-                "identifier": ""
+                "identifier": "",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                }
               },
               "predicates": {
                 "zDayx35nHIPslmjn": {
-                  "type": "targetingRulePredicate",
-                  "_id": "zDayx35nHIPslmjn",
+                  "type": "projectfu.targetingRulePredicate",
                   "rule": "multiple"
                 },
                 "gk3MjyYYXi6bN2FO": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "gk3MjyYYXi6bN2FO",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "hnkwHKWlXFzNreNK": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "hnkwHKWlXFzNreNK",
-                  "amount": "-$sl"
+                  "type": "projectfu.modifyExpenseRuleAction",
+                  "amount": "-$sl",
+                  "operation": "add"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "mXw9rjwnzlnCKaUG": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "XVqdSl8dLPxEFTct",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "skill",
@@ -228,31 +186,31 @@
                 },
                 "identifier": "verse"
               },
-              "_id": "mXw9rjwnzlnCKaUG",
               "predicates": {
                 "iDgzj12MiIb1rhbB": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "iDgzj12MiIb1rhbB",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 },
                 "QE9dWopG2165TFwb": {
-                  "type": "targetingRulePredicate",
-                  "_id": "QE9dWopG2165TFwb"
+                  "type": "projectfu.targetingRulePredicate",
+                  "rule": "single"
                 }
               },
               "actions": {
                 "RhMesE1Xyp0IWniC": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "RhMesE1Xyp0IWniC",
-                  "amount": "-$sl*2"
+                  "type": "projectfu.modifyExpenseRuleAction",
+                  "amount": "-$sl*2",
+                  "operation": "add"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "b5tf92xGllF7K1w4": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "091qN0WTDCQf526R",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "skill",
@@ -266,32 +224,31 @@
                 },
                 "identifier": "verse"
               },
-              "_id": "b5tf92xGllF7K1w4",
               "predicates": {
                 "AGtoIgnDgapJqnox": {
-                  "type": "targetingRulePredicate",
-                  "_id": "AGtoIgnDgapJqnox",
+                  "type": "projectfu.targetingRulePredicate",
                   "rule": "multiple"
                 },
                 "EPus8Nnghx38cuxJ": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "EPus8Nnghx38cuxJ",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "roKAnIwFzkK9gSmj": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "roKAnIwFzkK9gSmj",
-                  "amount": "-$sl"
+                  "type": "projectfu.modifyExpenseRuleAction",
+                  "amount": "-$sl",
+                  "operation": "add"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "DfzsyLhzTpnrktKy": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "kCAxEMXfgzMvVnnZ",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -300,27 +257,26 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "DfzsyLhzTpnrktKy",
               "predicates": {
                 "nAJc81EHNkJB1q9P": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "nAJc81EHNkJB1q9P",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "Mc6mhxIA6N9kf0mf": {
-                  "type": "messageRuleAction",
-                  "_id": "Mc6mhxIA6N9kf0mf",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>The cost of this spell has been reduced.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "JOM6TOxESvvtwjpG": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "xcNSHTNOD9kc4VCH",
-                "type": "featureRuleTrigger",
+                "type": "projectfu.featureRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
@@ -329,21 +285,22 @@
                   "quantifier": "any"
                 }
               },
-              "_id": "JOM6TOxESvvtwjpG",
               "predicates": {
                 "xneWC23XF7bd4UoX": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "xneWC23XF7bd4UoX",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "2EJg2UDoRG2uAKvs": {
-                  "type": "messageRuleAction",
-                  "_id": "2EJg2UDoRG2uAKvs",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>The cost of this verse has been reduced.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -352,23 +309,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "KfTNS2FY3rStlm5m",
       "type": "base",
-      "changes": [],
       "description": "<p>The total MP cost of your <strong>spells</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -380,21 +340,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767266062677,
-        "modifiedTime": 1778182496505,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921197,
+        "modifiedTime": 1792923921197,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!P0oD7KQA9ipYWU8o.KfTNS2FY3rStlm5m"
     }
   ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -406,10 +367,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711424945464,
-    "modifiedTime": 1791520423276,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921197,
+    "modifiedTime": 1792923922135,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

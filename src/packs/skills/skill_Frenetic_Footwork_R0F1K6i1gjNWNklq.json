@@ -5,16 +5,10 @@
   "_id": "R0F1K6i1gjNWNklq",
   "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "dancer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUHF143",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -116,17 +50,33 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "frenetic-footwork",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "entries": [],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -148,10 +98,8 @@
         "rules": {
           "elements": {
             "UVnwu1cz8dSPJr5d": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "Z4rUnFJNpo2KHzoP",
-                "type": "featureRuleTrigger",
+                "type": "projectfu.featureRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
@@ -160,14 +108,15 @@
                   "quantifier": "any"
                 }
               },
-              "_id": "UVnwu1cz8dSPJr5d",
               "actions": {
                 "2VN9owlCXPc4EBfm": {
-                  "type": "messageRuleAction",
-                  "_id": "2VN9owlCXPc4EBfm",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If this dance has a <strong>duration</strong> of \"Until the start of your next turn\", gain @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]{Frenetic Footwork}.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -176,23 +125,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "frz0tJqw9gxnqgLX",
       "type": "base",
-      "changes": [],
       "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -213,21 +165,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774645552403,
-        "modifiedTime": 1774645650491,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921215,
+        "modifiedTime": 1792923921215,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!R0F1K6i1gjNWNklq.frz0tJqw9gxnqgLX"
     }
   ],
   "sort": 400000,
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -238,10 +191,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706560364056,
-    "modifiedTime": 1775525531430,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921215,
+    "modifiedTime": 1792923922137,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

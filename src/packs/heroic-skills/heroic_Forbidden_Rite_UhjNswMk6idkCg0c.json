@@ -9,81 +9,33 @@
     "summary": {
       "value": "Gain access to the Forbidden Monarch set. Your discards grant you strength."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong> and <strong>Arcanist</strong>, and you must have acquired <strong>3 Skill Levels</strong> in the <strong>Magic Cards</strong> Skill.</p><hr /><p>After you discard cards due to the <strong>Magic Cards</strong> Skill, if at least one of those cards is a <strong>joker</strong>, you may choose any number of <strong>non-joker</strong> cards in your <strong>discard pile</strong> and shuffle them into your <strong>deck</strong>.</p><p>You also add the following <strong>effect</strong> to your list of <strong>sets</strong>:</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9621%\"></col><col style=\"width:72.0379%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Forbidden Monarch</strong></td><td style=\"height:17px;border-width:1px\"><p><strong>4 cards</strong> of the <strong>same value</strong>, <strong>none</strong> of which is a <strong>joker</strong> + <strong>1 joker</strong></p></td></tr></tbody></table><p>You deal damage 777 damage to every enemy you can see; the type of this damage is <strong>light</strong> if <strong>【the common value of the 4 cards】</strong> is <strong>even</strong>, or <strong>dark</strong> if that value is <strong>odd</strong>.</p><p>If there is a <strong>joker</strong> in your <strong>discard pile</strong>, the damage dealt by this effect ignores Immunities and Resistances.</p><p></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong> and <strong>Arcanist</strong>, and you must have acquired <strong>3 Skill Levels</strong> in the <strong>Magic Cards</strong> Skill.</p><hr><p>After you discard cards due to the <strong>Magic Cards</strong> Skill, if at least one of those cards is a <strong>joker</strong>, you may choose any number of <strong>non-joker</strong> cards in your <strong>discard pile</strong> and shuffle them into your <strong>deck</strong>.</p><p>You also add the following <strong>effect</strong> to your list of <strong>sets</strong>:</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9621%\"></col><col style=\"width:72.0379%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Forbidden Monarch</strong></td><td style=\"height:17px;border-width:1px\"><p><strong>4 cards</strong> of the <strong>same value</strong>, <strong>none</strong> of which is a <strong>joker</strong> + <strong>1 joker</strong></p></td></tr></tbody></table><p>You deal damage 777 damage to every enemy you can see; the type of this damage is <strong>light</strong> if <strong>【the common value of the 4 cards】</strong> is <strong>even</strong>, or <strong>dark</strong> if that value is <strong>odd</strong>.</p><p>If there is a <strong>joker</strong> in your <strong>discard pile</strong>, the damage dealt by this effect ignores Immunities and Resistances.</p><p></p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "ace-of-cards, arcanist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUBC11",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "forbidden-rite",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "1Ky2u7fi2lfxr4JB",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1708940657180,
-    "modifiedTime": 1775353775339,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922844,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/gourmet/travelling_cook.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain <strong>【SL × 2】 </strong><strong>ingredients</strong>.</p><hr /><p><strong>Refer to:</strong> @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain <strong>【SL × 2】 </strong><strong>ingredients</strong>.</p><hr><p><strong>Refer to:</strong> @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF149",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "traveling-cook",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,8 +64,18 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
@@ -79,17 +88,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Mwaa7jaz1dv2G86Z",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676964457,
-    "modifiedTime": 1791496203768,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921149,
+    "modifiedTime": 1792923922128,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "EU5astEIUK1d8Qk3",
   "sort": 0,

@@ -30,28 +30,28 @@
         "rules": {
           "elements": {
             "zNMMLIYg2UB1ddOz": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "5VMykh4f95LWImnq",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
                 "itemGroups": [],
                 "damageTypes": [],
                 "local": false,
                 "identifier": ""
               },
-              "_id": "zNMMLIYg2UB1ddOz",
               "actions": {
                 "rL4AThhBeILaKZoi": {
-                  "type": "changeTraitsRuleAction",
-                  "_id": "rL4AThhBeILaKZoi",
+                  "type": "projectfu.changeTraitsRuleAction",
                   "traits": {
                     "entries": [
                       "ignore-resistances"
                     ]
-                  }
+                  },
+                  "mode": "add"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -60,31 +60,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.overrides.damageType.all.priority",
+            "value": "fire",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "aunY26fUwvDWQOt7",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.overrides.damageType.all.priority",
-          "mode": 5,
-          "value": "fire",
-          "priority": null
-        }
-      ],
       "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>fire</strong>, its type cannot change, and it ignores Resistances.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -105,32 +108,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777433131720,
-        "modifiedTime": 1782595834253,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921265,
+        "modifiedTime": 1792923921265,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFBbugzUVcnYQE3H.aunY26fUwvDWQOt7"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1777433124336,
-    "modifiedTime": 1777433130847,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921265,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!aFBbugzUVcnYQE3H"
 }

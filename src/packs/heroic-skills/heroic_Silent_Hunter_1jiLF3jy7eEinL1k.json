@@ -10,10 +10,7 @@
     "summary": {
       "value": "Improve High Speed with bows, spears, and thrown weapons, and deny free attacks."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Rogue</strong>, <strong>Sharpshooter</strong>, or <strong>Weaponmaster</strong>, and acquired <strong>High Speed</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a <strong>weapon</strong> belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a <strong>weapon</strong> that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Rogue</strong>, <strong>Sharpshooter</strong>, or <strong>Weaponmaster</strong>, and acquired <strong>High Speed</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a <strong>weapon</strong> belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a <strong>weapon</strong> that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,37 +24,58 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF167",
     "fuid": "silent-hunter",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -79,53 +97,59 @@
         "rules": {
           "elements": {
             "QZjbYBzQFdYNUPvK": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "UaYkEucpybYKN4jP",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "attack"
-                ],
                 "damageTypes": [],
                 "local": false,
-                "identifier": ""
+                "identifier": "",
+                "itemGroups": [
+                  "attack"
+                ]
               },
-              "_id": "QZjbYBzQFdYNUPvK",
               "predicates": {
                 "pLXG4BEnSFnyF3bN": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "pLXG4BEnSFnyF3bN",
+                  "type": "projectfu.targetEffectRulePredicate",
                   "selector": "self",
-                  "effect": "effect-high-speed"
+                  "effect": "effect-high-speed",
+                  "quantifier": "any"
                 },
                 "9wLSn2z4GUUwZvas": {
-                  "type": "weaponRulePredicate",
-                  "_id": "9wLSn2z4GUUwZvas",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "source",
                   "categories": [
                     "bow",
                     "spear",
                     "thrown"
-                  ]
+                  ],
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 }
               },
               "actions": {
                 "10RBDRCgiFRLmyQk": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "10RBDRCgiFRLmyQk",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "&sl('high-speed')*5",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "eQW0MpwWnDw2ulSM": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "XnnH4QTkWc7IIa9f",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy"
@@ -136,26 +160,28 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "eQW0MpwWnDw2ulSM",
               "predicates": {
                 "eq59JmHCoW4WJuiv": {
-                  "type": "weaponRulePredicate",
-                  "_id": "eq59JmHCoW4WJuiv",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "source",
                   "categories": [
                     "bow",
                     "spear",
                     "thrown"
-                  ]
+                  ],
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 }
               },
               "actions": {
                 "5cOJaAOZKQpY3kVj": {
-                  "type": "messageRuleAction",
-                  "_id": "5cOJaAOZKQpY3kVj",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Targets cannot make <strong>free attacks</strong> until end of turn.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -164,18 +190,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "MMzKCD32cIZz0wrn",
       "type": "base",
-      "changes": [],
       "description": "<p>When you use the <strong>High Speed</strong> Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【High Speed SL × 5】</strong>.</p><p>Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -196,13 +225,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771894417627,
-        "modifiedTime": 1771894861104,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922809,
+        "modifiedTime": 1792923922809,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!1jiLF3jy7eEinL1k.MMzKCD32cIZz0wrn"
     }
   ],
@@ -216,18 +248,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.1jiLF3jy7eEinL1k",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791519834016,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922809,
+    "modifiedTime": 1792923923008,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "1jiLF3jy7eEinL1k",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!1jiLF3jy7eEinL1k"

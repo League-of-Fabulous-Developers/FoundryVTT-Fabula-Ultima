@@ -30,10 +30,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "13.351",
-        "createdTime": 1711758472181,
-        "modifiedTime": 1791488364325,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "coreVersion": "14.368",
+        "createdTime": 1792923923643,
+        "modifiedTime": 1792923923643,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -70,10 +70,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "13.351",
-        "createdTime": 1711758487626,
-        "modifiedTime": 1791488809861,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "coreVersion": "14.368",
+        "createdTime": 1792923923643,
+        "modifiedTime": 1792923923643,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -84,9 +84,7 @@
   ],
   "folder": null,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -94,10 +92,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711758455747,
-    "modifiedTime": 1775520256380,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923643,
+    "modifiedTime": 1792923923699,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

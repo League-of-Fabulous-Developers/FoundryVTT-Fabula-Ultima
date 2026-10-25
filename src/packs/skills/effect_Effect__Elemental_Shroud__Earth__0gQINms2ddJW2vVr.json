@@ -41,24 +41,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.earth",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "kHcShxkx44ViFsOr",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.earth",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>Until the this spell ends, you gain Resistance to <strong>earth</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -70,12 +72,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "3DqQhTAexuyMSem6",
-        "modifiedTime": 1775793159113
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921074,
+        "createdTime": 1792923921074
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!0gQINms2ddJW2vVr.kHcShxkx44ViFsOr"
     }
   ],
@@ -84,16 +90,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771454331634,
-    "modifiedTime": 1775793154723,
-    "lastModifiedBy": "3DqQhTAexuyMSem6"
+    "createdTime": 1792923921074,
+    "modifiedTime": 1792923922117,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "0gQINms2ddJW2vVr",
   "sort": 300000,

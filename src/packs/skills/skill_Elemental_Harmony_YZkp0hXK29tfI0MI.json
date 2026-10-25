@@ -3,14 +3,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/invoker/elemental_harmony.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>You may always communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><p><em>Automatically applied to invocations while an elemental is in the encounter.</em></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You may always communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr><p><em>Automatically applied to invocations while an elemental is in the encounter.</em></p>",
     "showTitleCard": {
       "value": false
     },
@@ -24,13 +20,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -47,7 +44,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF155",
     "hasRoll": {
@@ -56,7 +54,8 @@
     "fuid": "elemental-harmony",
     "cost": {
       "resource": "hp",
-      "amount": ""
+      "amount": "",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -64,13 +63,19 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "resource": {
       "enabled": true,
-      "amount": "$sl*5"
-    }
+      "amount": "$sl*5",
+      "type": "hp"
+    },
+    "traits": []
   },
   "effects": [
     {
@@ -91,48 +96,47 @@
         "rules": {
           "elements": {
             "3af5EdiLcqMppdTi": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "H8OXu0eslNHMrj3Y",
-                "type": "calculateResourceRuleTrigger",
+                "type": "projectfu.calculateResourceRuleTrigger",
                 "eventRelation": "source",
                 "resource": "hp",
                 "change": "increment",
-                "identifier": ""
+                "identifier": "",
+                "itemGroups": [],
+                "local": false
               },
-              "_id": "3af5EdiLcqMppdTi",
               "predicates": {
                 "5dx5t6bwoVJlA76T": {
-                  "type": "traitsRulePredicate",
-                  "_id": "5dx5t6bwoVJlA76T",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "invocation"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 },
                 "AJ0aSZW8y86E2oH6": {
-                  "type": "speciesRulePredicate",
-                  "_id": "AJ0aSZW8y86E2oH6",
+                  "type": "projectfu.speciesRulePredicate",
                   "species": [
                     "elemental"
                   ],
-                  "selector": "scene"
+                  "selector": "scene",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "UkaKvruXJqxt6lMh": {
-                  "type": "modifyResourceRuleAction",
-                  "_id": "UkaKvruXJqxt6lMh",
-                  "amount": "$sl*5"
+                  "type": "projectfu.modifyResourceRuleAction",
+                  "amount": "$sl*5",
+                  "operation": "add"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "HA5bUNVTCrRdIr0J": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "ECsH5U0GJ9m5O3I8",
-                "type": "calculateResourceRuleTrigger",
+                "type": "projectfu.calculateResourceRuleTrigger",
                 "eventRelation": "source",
                 "resource": "hp",
                 "change": "increment",
@@ -142,24 +146,25 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "HA5bUNVTCrRdIr0J",
               "predicates": {
                 "zg3dqK8Ink5hu6ub": {
-                  "type": "speciesRulePredicate",
-                  "_id": "zg3dqK8Ink5hu6ub",
+                  "type": "projectfu.speciesRulePredicate",
                   "selector": "scene",
                   "species": [
                     "elemental"
-                  ]
+                  ],
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "l3XD6rLUp3BhnGHA": {
-                  "type": "modifyResourceRuleAction",
-                  "_id": "l3XD6rLUp3BhnGHA",
-                  "amount": "$sl*5"
+                  "type": "projectfu.modifyResourceRuleAction",
+                  "amount": "$sl*5",
+                  "operation": "add"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -168,23 +173,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "oiSxoi3ydH5Pqfsf",
       "type": "base",
-      "changes": [],
       "description": "<p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -205,20 +213,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774599955799,
-        "modifiedTime": 1791496763465,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921258,
+        "modifiedTime": 1792923921258,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!YZkp0hXK29tfI0MI.oiSxoi3ydH5Pqfsf"
     }
   ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -230,12 +240,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.p2XGjdrHOm4MZDw7",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676970366,
-    "modifiedTime": 1791496818612,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921258,
+    "modifiedTime": 1792923922144,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "YZkp0hXK29tfI0MI",

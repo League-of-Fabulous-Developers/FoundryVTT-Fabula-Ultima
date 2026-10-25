@@ -5,16 +5,10 @@
   "_id": "ZTEuKRcX9erp1NDC",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_arcane_regeneration.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>When you <strong>summon</strong> an Arcanum, you recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[&amp;sl(\"arcane-regeneration\")*5 hp]{SL × 5 HP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When you <strong>summon</strong> an Arcanum, you recover <strong>【SL × 5】</strong> Hit Points.</p><hr><p><strong>You Recover:</strong> @GAIN[&amp;sl(\"arcane-regeneration\")*5 hp]{SL × 5 HP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "arcanist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR177",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "arcane-regeneration",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "lQwRdM95TjsYJZ3v": {
-              "type": "ruleElement",
-              "_id": "lQwRdM95TjsYJZ3v",
               "trigger": {
-                "_id": "2zQXKGGMYsn7ZUi4",
-                "type": "featureRuleTrigger",
+                "type": "projectfu.featureRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
@@ -161,16 +109,18 @@
               },
               "actions": {
                 "qCg97rBP9FP1HKun": {
-                  "type": "messageRuleAction",
-                  "_id": "qCg97rBP9FP1HKun",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You recover <strong>【SL × 5】</strong> HP.</p>"
                 },
                 "JQ5QM9OFG5fIDQ0r": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "JQ5QM9OFG5fIDQ0r",
-                  "amount": "$sl*5"
+                  "type": "projectfu.updateResourceRuleAction",
+                  "amount": "$sl*5",
+                  "resource": "hp"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -179,18 +129,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "gKZZD74mFFu4HKUm",
       "type": "base",
-      "changes": [],
       "description": "<p>When you <strong>summon</strong> an Arcanum, you recover <strong>【SL × 5】</strong> Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -202,20 +155,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767997070953,
-        "modifiedTime": 1771821878074,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921262,
+        "modifiedTime": 1792923921262,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ZTEuKRcX9erp1NDC.gKZZD74mFFu4HKUm"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -227,10 +181,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706494639713,
-    "modifiedTime": 1775510242309,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921262,
+    "modifiedTime": 1792923922144,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -10,10 +10,7 @@
     "summary": {
       "value": "Use Might for Magic Checks, and treat weapons relying on Might as being arcane."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Chimerist</strong>, <strong>Darkblade</strong>, <strong>Esper</strong>, <strong>Fury</strong>, or <strong>Wayfarer</strong>.</p><hr /><p>When you perform a Magic Check for a spell or Ritual, you may replace <strong>one</strong> of the Attributes with <strong>Might</strong> (such as <strong>【MIG + MIG】</strong> for a Chimerism Ritual).</p><p>As long as the <strong>Accuracy</strong> formula of a <strong>weapon</strong> you have equipped includes <strong>Might</strong>, you may treat that <strong>weapon</strong> as also belonging to the <strong>arcane</strong> Category for the purpose of Skills and effects that require it.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Chimerist</strong>, <strong>Darkblade</strong>, <strong>Esper</strong>, <strong>Fury</strong>, or <strong>Wayfarer</strong>.</p><hr><p>When you perform a Magic Check for a spell or Ritual, you may replace <strong>one</strong> of the Attributes with <strong>Might</strong> (such as <strong>【MIG + MIG】</strong> for a Chimerism Ritual).</p><p>As long as the <strong>Accuracy</strong> formula of a <strong>weapon</strong> you have equipped includes <strong>Might</strong>, you may treat that <strong>weapon</strong> as also belonging to the <strong>arcane</strong> Category for the purpose of Skills and effects that require it.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,37 +24,58 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF164",
     "fuid": "fitcast",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -71,18 +89,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.VUOVB6ej86Ml3d1j",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791518823675,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922844,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "VUOVB6ej86Ml3d1j",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!VUOVB6ej86Ml3d1j"

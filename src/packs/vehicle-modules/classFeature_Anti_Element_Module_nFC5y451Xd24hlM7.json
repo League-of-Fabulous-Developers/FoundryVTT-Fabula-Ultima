@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> gain Resistance to the chosen damage type until this module remains enabled.</p><hr /><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.jv7iQAgxbAPxlgoy], @EFFECT[Compendium.projectfu.vehicle-modules.Item.qhnavaTu9QpEqtJS], @EFFECT[Compendium.projectfu.vehicle-modules.Item.Nxjt8wn0Bpa4aHbH], @EFFECT[Compendium.projectfu.vehicle-modules.Item.MJuCHhlM3wpbhiDP], or @EFFECT[Compendium.projectfu.vehicle-modules.Item.N8rWmTrC0t79NCmn]</p>",
-      "complex": false
+      "description": "<p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> gain Resistance to the chosen damage type until this module remains enabled.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.jv7iQAgxbAPxlgoy], @EFFECT[Compendium.projectfu.vehicle-modules.Item.qhnavaTu9QpEqtJS], @EFFECT[Compendium.projectfu.vehicle-modules.Item.Nxjt8wn0Bpa4aHbH], @EFFECT[Compendium.projectfu.vehicle-modules.Item.MJuCHhlM3wpbhiDP], or @EFFECT[Compendium.projectfu.vehicle-modules.Item.N8rWmTrC0t79NCmn]</p>",
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF168",
     "fuid": "anti-element-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711476985915,
-    "modifiedTime": 1791522913053,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923292,
+    "modifiedTime": 1792923923320,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "nFC5y451Xd24hlM7",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!nFC5y451Xd24hlM7"
 }

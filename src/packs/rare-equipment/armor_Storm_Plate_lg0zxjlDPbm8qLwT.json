@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-storm.png",
   "system": {
     "fuid": "storm-plate",
-    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -56,10 +56,8 @@
         "rules": {
           "elements": {
             "IE853aL9GdxyYPuq": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "2pmXEGjcKc4CwTR2",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -70,28 +68,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "IE853aL9GdxyYPuq",
               "predicates": {
                 "FWXbsvu9TaMK1ke5": {
-                  "type": "checkRulePredicate",
-                  "_id": "FWXbsvu9TaMK1ke5",
+                  "type": "projectfu.checkRulePredicate",
                   "result": null,
-                  "outcome": "success"
+                  "outcome": "success",
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "GefF1SeowMUK8zs1": {
-                  "type": "weaponRulePredicate",
-                  "_id": "GefF1SeowMUK8zs1",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "2tjSey33odzQbt73": {
-                  "type": "messageRuleAction",
-                  "_id": "2tjSey33odzQbt73",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 bolt] to them.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -100,23 +109,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "7OtFg6doGGC05by1",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -137,20 +149,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774749740217,
-        "modifiedTime": 1775708988393,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925895,
+        "modifiedTime": 1792923925895,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!lg0zxjlDPbm8qLwT.7OtFg6doGGC05by1"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -161,12 +175,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774749459601,
-    "modifiedTime": 1777530755176,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925895,
+    "modifiedTime": 1792923925984,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!lg0zxjlDPbm8qLwT"
 }

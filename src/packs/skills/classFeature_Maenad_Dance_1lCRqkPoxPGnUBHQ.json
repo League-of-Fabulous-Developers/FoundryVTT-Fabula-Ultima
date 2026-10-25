@@ -8,23 +8,17 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose another creature that is able to see you. That creature loses an amount of Mind Points equal to your current <strong>Dexterity</strong> die size.</p><hr /><p><strong>Target Loses:</strong> @LOSS[$dex mp]{DEX MP}</p>",
-      "duration": "instant"
+      "description": "<p>Choose another creature that is able to see you. That creature loses an amount of Mind Points equal to your current <strong>Dexterity</strong> die size.</p><hr><p><strong>Target Loses:</strong> @LOSS[$dex mp]{DEX MP}</p>",
+      "duration": "instant",
+      "type": "projectfu.dance"
     },
     "source": "FUHF144",
     "fuid": "maenad-dance"
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {}
@@ -32,10 +26,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710175954936,
-    "modifiedTime": 1774642065327,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921080,
+    "modifiedTime": 1792923922119,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-orange-silver.png",
   "system": {
     "fuid": "heavenly-ring",
-    "description": "<p>You gain Resistance to <strong>fire</strong> and <strong>light</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>You gain Resistance to <strong>fire</strong> and <strong>light</strong> damage.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -54,36 +54,41 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.fire",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          },
+          {
+            "key": "system.affinities.light",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "BimhodP2ljUKZrP0",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.fire",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
-          "key": "system.affinities.light",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, you gain Resistance to <strong>fire</strong> and <strong>light</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -104,20 +109,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774657351288,
-        "modifiedTime": 1775708588520,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925875,
+        "modifiedTime": 1792923925875,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!0IFCiPXMA7lEqA7d.BimhodP2ljUKZrP0"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -128,12 +135,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774657321204,
-    "modifiedTime": 1777530143635,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925875,
+    "modifiedTime": 1792923925980,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!0IFCiPXMA7lEqA7d"
 }

@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Spires of jagged rock erupt from the ground beneath your foes, closing around them. You deal <strong>【HR + 15】 earth</strong> damage to each target hit by this spell. This spell cannot target creatures who are flying, floating, falling, or otherwise in mid-air.</p><hr /><p><strong>Opportunity:</strong> Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).</p>",
+    "description": "<p>Spires of jagged rock erupt from the ground beneath your foes, closing around them. You deal <strong>【HR + 15】 earth</strong> damage to each target hit by this spell. This spell cannot target creatures who are flying, floating, falling, or otherwise in mid-air.</p><hr><p><strong>Opportunity:</strong> Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).</p>",
     "showTitleCard": {
       "value": false
     },
@@ -123,10 +123,7 @@
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -139,12 +136,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771454310888,
-    "modifiedTime": 1781650978078,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921240,
+    "modifiedTime": 1792923922141,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "VtuW7j5FAIWw56gi",
   "sort": 500000,

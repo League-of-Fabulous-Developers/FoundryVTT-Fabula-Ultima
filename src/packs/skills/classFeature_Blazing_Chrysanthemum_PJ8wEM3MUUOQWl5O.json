@@ -7,10 +7,6 @@
     "summary": {
       "value": "Its thick petals resemble an erupting volcano."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 1,
       "effects": [
@@ -19,7 +15,8 @@
           "end": 3,
           "effect": "<p>At the end of your turn, choose <strong>earth</strong> or <strong>fire</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.q0733esmOGzxhGI8] or @EFFECT[Compendium.projectfu.skills.Item.aFBbugzUVcnYQE3H]</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF141",
     "fuid": "blazing-chrysanthemum"
@@ -29,17 +26,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bqhaz2TVQYCvBabr",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1777433206584,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921199,
+    "modifiedTime": 1792923922135,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "PJ8wEM3MUUOQWl5O",
   "sort": 0,

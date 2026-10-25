@@ -7,16 +7,13 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.vehicle",
     "data": {
       "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>2 weapon modules, 1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the @UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech} Skill with this <strong>personal vehicle</strong>, ignore the IP cost.</p>",
       "frame": "exoskeleton",
       "passengers": 0,
       "distanceMultiplier": 1,
-      "moduleSlots": 0
+      "moduleSlots": 3,
+      "type": "projectfu.vehicle"
     },
     "source": "FUTF165",
     "fuid": "exoskeleton-frame"
@@ -40,10 +37,8 @@
         "rules": {
           "elements": {
             "PE3MY0Ypo7EefhpZ": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "8caJs0gMK1451lIg",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "ip",
                 "expenseSource": "skill",
@@ -57,21 +52,20 @@
                 },
                 "identifier": "compression-tech"
               },
-              "_id": "PE3MY0Ypo7EefhpZ",
               "actions": {
                 "j0f8HqMbmRGLnaWY": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "j0f8HqMbmRGLnaWY",
+                  "type": "projectfu.modifyExpenseRuleAction",
                   "amount": "0",
                   "operation": "multiply"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             },
             "vfIzNEiFPRVRdkJh": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "0p1K9q4FI8bRJq2p",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -82,14 +76,15 @@
                 "local": false,
                 "identifier": "compression-tech"
               },
-              "_id": "vfIzNEiFPRVRdkJh",
               "actions": {
                 "JxFNF1tLKtkQ9adA": {
-                  "type": "messageRuleAction",
-                  "_id": "JxFNF1tLKtkQ9adA",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Ignore the IP cost.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -98,23 +93,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "KHIKOVODhbSOCOiD",
       "type": "base",
-      "changes": [],
       "description": "<p>If you use the <strong>Compression Tech</strong> Skill with this personal vehicle, ignore the IP cost.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -135,13 +133,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773719493275,
-        "modifiedTime": 1773736004342,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923291,
+        "modifiedTime": 1792923923291,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!WG1xG12wMYh2ROoP.KHIKOVODhbSOCOiD"
     },
     {
@@ -167,30 +168,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.data.moduleSlots",
+            "value": "3+&sl(`personal-vehicle`)",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "9bW7k0xc5lLpZhRe",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.data.moduleSlots",
-          "mode": 5,
-          "value": "3+&sl(`personal-vehicle`)",
-          "priority": null
-        }
-      ],
       "description": "<p>The maximum number of modules enabled at the same time on a <strong>personal vehicle</strong> is equal to <strong>【3 + Personal Vehicle SL】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
@@ -211,13 +216,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773719963629,
-        "modifiedTime": 1773736017462,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923291,
+        "modifiedTime": 1792923923291,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!WG1xG12wMYh2ROoP.9bW7k0xc5lLpZhRe"
     }
   ],
@@ -227,10 +235,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1712878359536,
-    "modifiedTime": 1773735816516,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923291,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -238,8 +246,7 @@
   "_id": "WG1xG12wMYh2ROoP",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!WG1xG12wMYh2ROoP"
 }

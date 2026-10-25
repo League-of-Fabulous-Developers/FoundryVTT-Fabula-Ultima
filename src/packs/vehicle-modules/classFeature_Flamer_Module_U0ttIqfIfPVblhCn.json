@@ -7,12 +7,7 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.weaponModule",
     "data": {
-      "type": "ranged",
       "quality": "",
       "category": "firearm",
       "description": "<p>This weapon belongs to the <strong>firearm</strong> Category.</p>",
@@ -23,13 +18,18 @@
       "accuracy": {
         "attr1": "dex",
         "attr2": "ins",
-        "modifier": 0
+        "modifier": 0,
+        "defense": "def"
       },
       "complex": false,
       "shield": {
         "defense": 2,
         "magicDefense": 2
-      }
+      },
+      "weaponType": "ranged",
+      "type": "projectfu.weaponModule",
+      "cost": 500,
+      "traits": []
     },
     "source": "FUTF166",
     "fuid": "flamer-module"
@@ -41,10 +41,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1711474433793,
-    "modifiedTime": 1724180864732,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923291,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -52,8 +52,7 @@
   "_id": "U0ttIqfIfPVblhCn",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!U0ttIqfIfPVblhCn"
 }

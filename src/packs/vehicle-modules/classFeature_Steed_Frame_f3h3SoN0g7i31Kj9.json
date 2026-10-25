@@ -7,16 +7,13 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.vehicle",
     "data": {
       "frame": "steed",
       "passengers": 1,
       "distanceMultiplier": 2,
       "moduleSlots": 3,
-      "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>1 weapon module</strong>, <strong>1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>"
+      "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>1 weapon module</strong>, <strong>1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p><hr><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>",
+      "type": "projectfu.vehicle"
     },
     "source": "FUTF165",
     "fuid": "steed-frame"
@@ -40,10 +37,8 @@
         "rules": {
           "elements": {
             "pjUjui5AkAB51H4a": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "6njmDz03bTcDNnW1",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "skill",
@@ -57,22 +52,20 @@
                 },
                 "identifier": "heart-in-the-engine"
               },
-              "_id": "pjUjui5AkAB51H4a",
               "actions": {
                 "Uwe6673kIoiK1WIp": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "Uwe6673kIoiK1WIp",
+                  "type": "projectfu.modifyExpenseRuleAction",
                   "amount": "0",
                   "operation": "multiply"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             },
             "Vzhs2jhRwgwjbkaS": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "vYSoQiozcPnBv8Wh",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -83,15 +76,15 @@
                 "local": false,
                 "identifier": "heart-in-the-engine"
               },
-              "_id": "Vzhs2jhRwgwjbkaS",
               "actions": {
                 "gRDTYie1YEoaK4ax": {
-                  "type": "messageRuleAction",
-                  "_id": "gRDTYie1YEoaK4ax",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Ignore the MP cost.</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -100,23 +93,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "IGSXsKi2qMmVPdej",
       "type": "base",
-      "changes": [],
       "description": "<p>If you use the <strong>Heart in the Engine</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -137,13 +133,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773718728254,
-        "modifiedTime": 1773736030307,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923292,
+        "modifiedTime": 1792923923292,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!f3h3SoN0g7i31Kj9.IGSXsKi2qMmVPdej"
     },
     {
@@ -169,30 +168,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.data.moduleSlots",
+            "value": "3+&sl(`personal-vehicle`)",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "AoAyvDm9C6lDMvVD",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.data.moduleSlots",
-          "mode": 5,
-          "value": "3+&sl(`personal-vehicle`)",
-          "priority": null
-        }
-      ],
       "description": "<p>The maximum number of modules enabled at the same time on a <strong>personal vehicle</strong> is equal to <strong>【3 + Personal Vehicle SL】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
@@ -213,13 +216,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773720210162,
-        "modifiedTime": 1773736034802,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923292,
+        "modifiedTime": 1792923923292,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!f3h3SoN0g7i31Kj9.AoAyvDm9C6lDMvVD"
     }
   ],
@@ -229,10 +235,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1712878359536,
-    "modifiedTime": 1773735828338,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923292,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -240,8 +246,7 @@
   "_id": "f3h3SoN0g7i31Kj9",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!f3h3SoN0g7i31Kj9"
 }

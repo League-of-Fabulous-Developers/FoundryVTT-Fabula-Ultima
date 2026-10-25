@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half their level】</strong>.</p><hr /><p><strong>Target Loses:</strong> @LOSS[20+floor(@target.level.value/2) hp]{20 + Half Level HP}</p>",
+    "description": "<p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half their level】</strong>.</p><hr><p><strong>Target Loses:</strong> @LOSS[20+floor(@target.level.value/2) hp]{20 + Half Level HP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -122,10 +122,7 @@
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -138,12 +135,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771474219373,
-    "modifiedTime": 1786409105361,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921252,
+    "modifiedTime": 1792923922142,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 0,
   "_key": "!items!XJM910rLM6sj55Uf"

@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.3aaAgDlqa4xgeygv]</p>",
-      "complex": false
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.3aaAgDlqa4xgeygv]</p>",
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF169",
     "fuid": "turbo-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711477122275,
-    "modifiedTime": 1773733408951,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923290,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "OEgMfny6AwrXCkEg",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!OEgMfny6AwrXCkEg"
 }

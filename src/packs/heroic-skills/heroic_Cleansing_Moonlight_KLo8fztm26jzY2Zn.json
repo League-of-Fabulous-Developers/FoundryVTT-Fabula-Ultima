@@ -10,10 +10,7 @@
     "summary": {
       "value": "Your spells can remove status effects and spells from targets."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Entropist</strong> or <strong>Spiritist</strong>.</p><hr /><p>When you hit one or more creatures with an offensive spell (@ICON[offensive]), if you have an <strong>arcane weapon</strong> equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a <strong>duration</strong> of \"Scene\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane weapon</strong> equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Entropist</strong> or <strong>Spiritist</strong>.</p><hr><p>When you hit one or more creatures with an offensive spell (@ICON[offensive]), if you have an <strong>arcane weapon</strong> equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a <strong>duration</strong> of \"Scene\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane weapon</strong> equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,37 +24,58 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF164",
     "fuid": "cleansing-moonlight",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -78,11 +96,8 @@
         "rules": {
           "elements": {
             "kkmO2TYrtcqcjRRP": {
-              "type": "ruleElement",
-              "_id": "kkmO2TYrtcqcjRRP",
               "trigger": {
-                "_id": "1BBiVlfD79SJ82yK",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy",
@@ -97,38 +112,48 @@
               },
               "predicates": {
                 "QclBLkqSfJtjVFb6": {
-                  "type": "checkRulePredicate",
-                  "_id": "QclBLkqSfJtjVFb6",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "TeJinREnV7kKVb7v": {
-                  "type": "weaponRulePredicate",
-                  "_id": "TeJinREnV7kKVb7v",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "selector": "initial",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 },
                 "mBOiMa0hmUbjHPtv": {
-                  "type": "spellRulePredicate",
-                  "_id": "mBOiMa0hmUbjHPtv",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 }
               },
               "actions": {
                 "rmcmu307SqWmZK3r": {
-                  "type": "messageRuleAction",
-                  "_id": "rmcmu307SqWmZK3r",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If <strong>High Roll</strong> is <strong>8+</strong>, you may dispel from targets hit.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "ZE4eUSNPd7GIv4VY": {
-              "type": "ruleElement",
-              "_id": "ZE4eUSNPd7GIv4VY",
               "trigger": {
-                "_id": "fjbJOaoAR3YEIk0I",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -139,25 +164,29 @@
               },
               "predicates": {
                 "SsnrLHCtz4HQu7Hh": {
-                  "type": "factionRelationRulePredicate",
-                  "_id": "SsnrLHCtz4HQu7Hh",
-                  "relation": "ally"
+                  "type": "projectfu.factionRelationRulePredicate",
+                  "relation": "ally",
+                  "inclusive": false
                 },
                 "gM46q1H1wMthPvS5": {
-                  "type": "weaponRulePredicate",
-                  "_id": "gM46q1H1wMthPvS5",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "selector": "initial",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 }
               },
               "actions": {
                 "ZqlNpQR6vsuBkNvG": {
-                  "type": "messageRuleAction",
-                  "_id": "ZqlNpQR6vsuBkNvG",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>All targets may recover from the same status.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -166,18 +195,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "qQnAoHAqC8JE5ifS",
       "type": "base",
-      "changes": [],
       "description": "",
       "origin": null,
       "tint": "#ffffff",
@@ -189,13 +221,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770882603108,
-        "modifiedTime": 1770882986987,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922834,
+        "modifiedTime": 1792923922834,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!KLo8fztm26jzY2Zn.qQnAoHAqC8JE5ifS"
     }
   ],
@@ -209,18 +244,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.KLo8fztm26jzY2Zn",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791518747796,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922834,
+    "modifiedTime": 1792923923011,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "KLo8fztm26jzY2Zn",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!KLo8fztm26jzY2Zn"

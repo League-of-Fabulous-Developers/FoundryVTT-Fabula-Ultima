@@ -2,20 +2,12 @@
   "name": "Garden",
   "type": "classFeature",
   "system": {
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.garden",
     "fuid": "garden",
     "summary": {
       "value": ""
     },
     "data": {
-      "gardenName": "",
-      "clock": {
-        "name": "",
-        "current": 0
-      }
+      "type": "projectfu.garden"
     },
     "source": "FUNF150"
   },
@@ -23,19 +15,18 @@
   "effects": [],
   "folder": "pQcHKAafyjKDqlpQ",
   "ownership": {
-    "default": 0,
-    "uG2TkwmswfdRqaAv": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742853886065,
-    "modifiedTime": 1742853886121,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "createdTime": 1792923921263,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "Zinqoj32T5G0dmyv",

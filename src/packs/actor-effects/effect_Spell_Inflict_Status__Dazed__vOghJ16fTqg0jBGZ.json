@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "mfp6K03sodany0Y9": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "ozIA9UUgVVw8r5yn",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "magic"
@@ -44,21 +42,21 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "mfp6K03sodany0Y9",
               "predicates": {
                 "j8o8FUuYKlPSqufd": {
-                  "type": "spellRulePredicate",
-                  "_id": "j8o8FUuYKlPSqufd",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 }
               },
               "actions": {
                 "PAGu2sDw2W1TdMTh": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "PAGu2sDw2W1TdMTh",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "dazed"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -67,24 +65,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "mbq8YdBoOj0zK6GU",
       "type": "base",
-      "changes": [],
       "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>dazed</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -105,32 +105,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774826791374,
-        "modifiedTime": 1774826833495,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924073,
+        "modifiedTime": 1792923924073,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!vOghJ16fTqg0jBGZ.mbq8YdBoOj0zK6GU"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774811636888,
-    "modifiedTime": 1774811636888,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924073,
+    "modifiedTime": 1792923924216,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!vOghJ16fTqg0jBGZ"
 }

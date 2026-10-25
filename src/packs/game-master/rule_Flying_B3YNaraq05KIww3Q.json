@@ -28,7 +28,58 @@
       "max": 6,
       "enabled": false
     },
-    "source": "FUCR307"
+    "source": "FUCR307",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
+    },
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
   },
   "effects": [
     {
@@ -49,10 +100,8 @@
         "rules": {
           "elements": {
             "6BW6LVqjH8dDivYH": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "hIJn9e1tR8qpes5F",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "target",
                 "damageType": "",
                 "affinity": "vulnerability",
@@ -60,16 +109,18 @@
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
-                }
+                },
+                "local": false
               },
-              "_id": "6BW6LVqjH8dDivYH",
               "actions": {
                 "nxW7T7SI9XZHfH5m": {
-                  "type": "messageRuleAction",
-                  "_id": "nxW7T7SI9XZHfH5m",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You lose <strong>flying</strong> for the rest of the round.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -78,24 +129,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "JvtouHM20473gNH4",
       "type": "base",
-      "changes": [],
       "description": "<p>Use this effect to track if you are currently <strong>flying</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -116,20 +169,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1780529103045,
-        "modifiedTime": 1780529524438,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923399,
+        "modifiedTime": 1792923923399,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!B3YNaraq05KIww3Q.JvtouHM20473gNH4"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -140,12 +195,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1780528980415,
-    "modifiedTime": 1780529161371,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923923399,
+    "modifiedTime": 1792923923427,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!B3YNaraq05KIww3Q"
 }

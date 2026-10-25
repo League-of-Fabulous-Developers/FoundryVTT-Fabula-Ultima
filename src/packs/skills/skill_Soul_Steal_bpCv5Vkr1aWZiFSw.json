@@ -5,16 +5,10 @@
   "_id": "bpCv5Vkr1aWZiFSw",
   "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_soul_steal.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>During a conflict, you may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of an enemy you can see. If you succeed and that enemy is a <strong>soldier</strong>, you regain <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you their <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than 【the enemy's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> appears in your <strong>backpack</strong>. The same character can be successfully stolen from only once, but if they appear again with a different game profile, they can be stolen from again.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】</strong> Checks for this Skill.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,15 +21,9 @@
       "value": "rogue"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "dex",
@@ -43,62 +31,14 @@
     },
     "accuracy": "$sl",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR203",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "wlp"
-        }
-      },
-      "accuracy": {
-        "value": 1
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -109,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "mdef",
     "fuid": "soul-steal",
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -140,11 +97,8 @@
         "rules": {
           "elements": {
             "8GxD4UtzhTXhz4Wu": {
-              "type": "ruleElement",
-              "_id": "8GxD4UtzhTXhz4Wu",
               "trigger": {
-                "_id": "RClBK7QQQFltte5O",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "attribute"
@@ -157,34 +111,41 @@
               },
               "predicates": {
                 "yPliEOxkXoXSEShF": {
-                  "type": "rankRulePredicate",
-                  "_id": "yPliEOxkXoXSEShF",
+                  "type": "projectfu.rankRulePredicate",
                   "ranks": [
                     "soldier"
-                  ]
+                  ],
+                  "quantifier": "all"
                 },
                 "D14B6F9g4kexgdQX": {
-                  "type": "checkRulePredicate",
-                  "_id": "D14B6F9g4kexgdQX",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "eCMD5tSKDowgT34Z": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "eCMD5tSKDowgT34Z",
+                  "type": "projectfu.updateResourceRuleAction",
                   "resource": "ip",
                   "amount": "$sl"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "SsU8eXeTWC4TqXei": {
-              "type": "ruleElement",
-              "_id": "SsU8eXeTWC4TqXei",
               "trigger": {
-                "_id": "CaeGbsnaVyB1K2Cp",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "attribute"
@@ -195,27 +156,37 @@
               },
               "predicates": {
                 "dHF6zta7xccEx9QS": {
-                  "type": "checkRulePredicate",
-                  "_id": "dHF6zta7xccEx9QS",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "nNSjrNqyyH2tJlFI": {
-                  "type": "rankRulePredicate",
-                  "_id": "nNSjrNqyyH2tJlFI",
+                  "type": "projectfu.rankRulePredicate",
                   "ranks": [
                     "elite",
                     "champion"
-                  ]
+                  ],
+                  "quantifier": "all"
                 }
               },
               "actions": {
                 "JsOkrK8Rn1gFjIvk": {
-                  "type": "messageRuleAction",
-                  "_id": "JsOkrK8Rn1gFjIvk",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You have earned a a soul treasure worth <strong style=\"\">the target's level multiplied by 30, or by 50 if they are a Villain】.</strong></p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -224,18 +195,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "i3kIT0IU5XlnYo9m",
       "type": "base",
-      "changes": [],
       "description": "<p>If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target's <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -247,20 +221,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767556995607,
-        "modifiedTime": 1771886365960,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921271,
+        "modifiedTime": 1792923921271,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!bpCv5Vkr1aWZiFSw.i3kIT0IU5XlnYo9m"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -272,10 +247,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706504776432,
-    "modifiedTime": 1786686320990,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921271,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

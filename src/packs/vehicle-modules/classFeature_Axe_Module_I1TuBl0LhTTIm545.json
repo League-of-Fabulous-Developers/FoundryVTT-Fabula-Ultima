@@ -7,10 +7,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.weaponModule",
     "data": {
       "category": "heavy",
       "quality": "",
@@ -22,14 +18,18 @@
       "accuracy": {
         "attr1": "dex",
         "attr2": "ins",
-        "modifier": 0
+        "modifier": 0,
+        "defense": "def"
       },
-      "type": "melee",
       "complex": false,
       "shield": {
         "defense": 2,
         "magicDefense": 2
-      }
+      },
+      "weaponType": "melee",
+      "type": "projectfu.weaponModule",
+      "cost": 500,
+      "traits": []
     },
     "source": "FUTF166",
     "fuid": "axe-module"
@@ -41,10 +41,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1711474298848,
-    "modifiedTime": 1724180864706,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923289,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -52,8 +52,7 @@
   "_id": "I1TuBl0LhTTIm545",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!I1TuBl0LhTTIm545"
 }

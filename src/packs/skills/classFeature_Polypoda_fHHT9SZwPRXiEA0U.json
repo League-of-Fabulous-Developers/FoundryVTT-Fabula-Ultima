@@ -7,12 +7,9 @@
     "summary": {
       "value": "Squids, octopi, creatures with tendrils or vines."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>Your attacks with <strong>unarmed strikes</strong> gain <strong>multi (3).</strong></p>"
+      "description": "<p>Your attacks with <strong>unarmed strikes</strong> gain <strong>multi (3).</strong></p>",
+      "type": "projectfu.therioform"
     },
     "source": "FUTF157",
     "fuid": "polypoda"
@@ -41,24 +38,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "FaNniaVa5YuBNTZh",
       "type": "base",
-      "changes": [],
       "description": "<p>You are <strong>manifesting</strong> this therioform.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -79,20 +78,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777787555787,
-        "modifiedTime": 1792632468647,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921291,
+        "modifiedTime": 1792923921291,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!fHHT9SZwPRXiEA0U.FaNniaVa5YuBNTZh"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -100,10 +100,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711428338643,
-    "modifiedTime": 1792632463129,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921291,
+    "modifiedTime": 1792923922149,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

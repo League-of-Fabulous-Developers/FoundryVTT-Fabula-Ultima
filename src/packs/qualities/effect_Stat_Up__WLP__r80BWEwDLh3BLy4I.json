@@ -14,14 +14,6 @@
       "name": "Stat Up (WLP)",
       "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.wlp",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>As long as you have this armor equipped, you treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -29,35 +21,56 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none",
           "source": "FUCR282"
         }
       },
       "_id": "tCjcWX6rLsfgObFk",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.wlp",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1736220256607,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "createdTime": 1792923925172,
+        "modifiedTime": 1792923925172,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!r80BWEwDLh3BLy4I.tCjcWX6rLsfgObFk"
     }
   ],
@@ -66,19 +79,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193936,
-    "modifiedTime": 1736220248502,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "createdTime": 1792923925172,
+    "modifiedTime": 1792923925280,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "r80BWEwDLh3BLy4I",
   "sort": 700000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!r80BWEwDLh3BLy4I"
 }

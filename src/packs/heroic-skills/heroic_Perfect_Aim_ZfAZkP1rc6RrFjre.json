@@ -9,81 +9,33 @@
     "summary": {
       "value": "Choose two options when using Warning Shot."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong> and acquired <strong>Warning Shot</strong>.</p><hr /><p>When you use the <strong>Warning Shot</strong> Skill, you may choose <strong>two</strong> different options instead of one (for instance, you could inflict both <strong>shaken</strong> and <strong>slow</strong> on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong> and acquired <strong>Warning Shot</strong>.</p><hr><p>When you use the <strong>Warning Shot</strong> Skill, you may choose <strong>two</strong> different options instead of one (for instance, you could inflict both <strong>shaken</strong> and <strong>slow</strong> on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR238",
     "hasResource": {
@@ -93,16 +45,37 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "perfect-aim",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -124,10 +97,8 @@
         "rules": {
           "elements": {
             "gNWcWNk7BaGQneIk": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "goj4LjE5dGJRjRD3",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy"
@@ -138,27 +109,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "gNWcWNk7BaGQneIk",
               "predicates": {
                 "k4maMdhVyaM5l1Xf": {
-                  "type": "checkRulePredicate",
-                  "_id": "k4maMdhVyaM5l1Xf",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "I5W8BEy2voivOJol": {
-                  "type": "weaponRulePredicate",
-                  "_id": "I5W8BEy2voivOJol",
-                  "weaponType": "ranged"
+                  "type": "projectfu.weaponRulePredicate",
+                  "weaponType": "ranged",
+                  "selector": "initial",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "tYTWkoQkOhtNGyKB": {
-                  "type": "messageRuleAction",
-                  "_id": "tYTWkoQkOhtNGyKB",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may choose two options for <strong>Warning Shot</strong>.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -167,18 +150,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "nXxQayufreIj9Lqz",
       "type": "base",
-      "changes": [],
       "description": "<p>When you use the <strong>Warning Shot</strong> Skill, you may choose <strong>two</strong> options instead of one.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -199,20 +185,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771888251295,
-        "modifiedTime": 1771888377691,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922847,
+        "modifiedTime": 1792923922847,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ZfAZkP1rc6RrFjre.nXxQayufreIj9Lqz"
     }
   ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -224,10 +212,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706585143889,
-    "modifiedTime": 1787127829367,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922847,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

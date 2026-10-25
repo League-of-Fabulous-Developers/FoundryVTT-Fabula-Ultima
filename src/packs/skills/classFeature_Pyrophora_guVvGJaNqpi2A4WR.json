@@ -7,12 +7,9 @@
     "summary": {
       "value": "Pyrophora Bombardier beetles, pistol shrimps, fire elementals."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p>",
+      "type": "projectfu.therioform"
     },
     "source": "FUTF157",
     "fuid": "pyrophora"
@@ -36,10 +33,8 @@
         "rules": {
           "elements": {
             "bLmOOmrhfOBIvvTM": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "OAFNUgWnnQ88tH1n",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
                 "itemGroups": [
                   "attack",
@@ -49,26 +44,32 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "bLmOOmrhfOBIvvTM",
               "actions": {
                 "6ntLY6wKiYjxmLpP": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "6ntLY6wKiYjxmLpP",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "damageTypes": [
                     "fire"
                   ],
                   "amount": "",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             },
             "yV47oQGocPB3BnsD": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "djqKZjMvmLpgWXAP",
-                "type": "resourceUpdateRuleTrigger",
+                "type": "projectfu.resourceUpdateRuleTrigger",
                 "eventRelation": "source",
                 "resource": "hp",
                 "change": "decrement",
@@ -80,31 +81,29 @@
                 "local": false,
                 "identifier": "unarmed-strike"
               },
-              "_id": "yV47oQGocPB3BnsD",
               "predicates": {
                 "im6n94cqnxOU2nq0": {
-                  "type": "factionRelationRulePredicate",
-                  "_id": "im6n94cqnxOU2nq0"
+                  "type": "projectfu.factionRelationRulePredicate",
+                  "relation": "enemy",
+                  "inclusive": false
                 }
               },
               "actions": {
                 "Uf20388CUVc8CSF6": {
-                  "type": "messageRuleAction",
-                  "_id": "Uf20388CUVc8CSF6",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If <strong>fire</strong> damage, they also suffer <strong>dazed</strong>.</p>"
                 },
                 "NfeBnxfChzQBT5de": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "NfeBnxfChzQBT5de",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "dazed"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "LjFIsna82pcPaBt8": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "KrGEsl1wdORrHtWh",
-                "type": "resourceUpdateRuleTrigger",
+                "type": "projectfu.resourceUpdateRuleTrigger",
                 "eventRelation": "source",
                 "resource": "hp",
                 "change": "decrement",
@@ -116,25 +115,25 @@
                 "local": false,
                 "identifier": "unarmed-strike-akromorphosis"
               },
-              "_id": "LjFIsna82pcPaBt8",
               "actions": {
                 "symAQ0aN2sxsWL6c": {
-                  "type": "messageRuleAction",
-                  "_id": "symAQ0aN2sxsWL6c",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If <strong>fire</strong> damage, they also suffer <strong>dazed</strong>.</p>"
                 },
                 "lrLZbRcNO9KZ8stm": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "lrLZbRcNO9KZ8stm",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "dazed"
                 }
               },
               "predicates": {
                 "rPDYQUIhxgsEvCA4": {
-                  "type": "factionRelationRulePredicate",
-                  "_id": "rPDYQUIhxgsEvCA4"
+                  "type": "projectfu.factionRelationRulePredicate",
+                  "relation": "enemy",
+                  "inclusive": false
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -143,24 +142,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "9brc8KUefDrzeF7f",
       "type": "base",
-      "changes": [],
       "description": "<p>You are <strong>manifesting</strong> this therioform. When you deal damage with an <strong>attack</strong> or <strong>spell</strong>, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who <strong>loses 20 or more HP</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -181,20 +182,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777787917769,
-        "modifiedTime": 1792632494170,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921301,
+        "modifiedTime": 1792923921301,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!guVvGJaNqpi2A4WR.9brc8KUefDrzeF7f"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -202,10 +204,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711428338643,
-    "modifiedTime": 1792632491274,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921301,
+    "modifiedTime": 1792923922150,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

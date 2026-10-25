@@ -8,12 +8,12 @@
     "summary": {
       "value": ""
     },
-    "featureType": "projectfu.key",
     "data": {
-      "type": "bolt",
       "status": "shaken",
       "attribute": "dex",
-      "resource": "hp"
+      "resource": "hp",
+      "damageType": "bolt",
+      "type": "projectfu.key"
     },
     "source": "FUHF138",
     "fuid": "key-of-thunder"
@@ -21,19 +21,16 @@
   "effects": [],
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
-    "createdTime": 1710039513607,
-    "modifiedTime": 1757356658497,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921158,
+    "modifiedTime": 1792923922129,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

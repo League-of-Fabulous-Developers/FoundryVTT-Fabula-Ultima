@@ -7,10 +7,6 @@
     "summary": {
       "value": "A tenacious plant, it doesn't fear the dryness of dunes."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 2,
       "effects": [
@@ -24,7 +20,8 @@
           "end": 3,
           "effect": "<p>You and your allies present on the scene gain Resistance to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C]</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF141",
     "fuid": "desert-dahlia"
@@ -34,17 +31,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.g453sfa54pv54uOa",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791494080760,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921364,
+    "modifiedTime": 1792923922161,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "sDZwTmNY8mGahfi5",
   "sort": 0,

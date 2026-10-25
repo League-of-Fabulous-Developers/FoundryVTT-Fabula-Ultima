@@ -35,30 +35,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingDamage.earth",
+            "value": -5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "cWIHFkKlztZq0YTa",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.earth",
-          "mode": 2,
-          "value": "-5",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, all <strong>earth</strong> damage you suffer is <strong>reduced by 5</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -79,32 +83,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774830879893,
-        "modifiedTime": 1774830908241,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924688,
+        "modifiedTime": 1792923924688,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!lj7DCerG0XBFeVKV.cWIHFkKlztZq0YTa"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774830699095,
-    "modifiedTime": 1774830699095,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924688,
+    "modifiedTime": 1792923924856,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!lj7DCerG0XBFeVKV"
 }

@@ -7,10 +7,6 @@
     "summary": {
       "value": "Favored by witches and surgeons alike for its purifying properties."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 2,
       "effects": [
@@ -24,7 +20,8 @@
           "end": 3,
           "effect": "<p>You and your allies present on the scene gain Resistance to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.jIYoANfwMxGFgQ39]</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF143",
     "fuid": "horned-hawthorn"
@@ -34,17 +31,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bVjaOoL1hEXdP5Nc",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791494281754,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921375,
+    "modifiedTime": 1792923922163,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "v1GQM5wc1dHhs3JP",
   "sort": 0,

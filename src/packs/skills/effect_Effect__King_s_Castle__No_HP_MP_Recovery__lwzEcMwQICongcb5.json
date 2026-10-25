@@ -29,22 +29,27 @@
         "rules": {
           "elements": {
             "zfgqbNSlTeIW4zys": {
-              "type": "ruleElement",
-              "_id": "zfgqbNSlTeIW4zys",
               "trigger": {
-                "_id": "mIuSaKnNNMsmsdIy",
-                "type": "resourceUpdateRuleTrigger",
+                "type": "projectfu.resourceUpdateRuleTrigger",
                 "eventRelation": "",
                 "resource": "hp",
-                "change": "increment"
+                "change": "increment",
+                "changeThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "itemGroups": [],
+                "local": false
               },
               "actions": {
                 "45qP2rE9bFvQ76XU": {
-                  "type": "messageRuleAction",
-                  "_id": "45qP2rE9bFvQ76XU",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>No creature can recover HP or MP.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -53,37 +58,41 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.multipliers.incomingRecovery.hp",
+            "value": 0,
+            "priority": null,
+            "type": "multiply",
+            "phase": "initial"
+          },
+          {
+            "key": "system.multipliers.incomingRecovery.mp",
+            "value": 0,
+            "priority": null,
+            "type": "multiply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "ncSlU2nJDypBoneS",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.multipliers.incomingRecovery.hp",
-          "mode": 1,
-          "value": "0",
-          "priority": null
-        },
-        {
-          "key": "system.multipliers.incomingRecovery.mp",
-          "mode": 1,
-          "value": "0",
-          "priority": null
-        }
-      ],
       "description": "<p>You <strong>cannot</strong> recover Hit Points or Mind Points until the start of the <strong>commander's</strong> next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -95,32 +104,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770276191960,
-        "modifiedTime": 1775523027704,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921329,
+        "modifiedTime": 1792923921329,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!lwzEcMwQICongcb5.ncSlU2nJDypBoneS"
     }
   ],
   "sort": 200000,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770276181332,
-    "modifiedTime": 1771831143202,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921329,
+    "modifiedTime": 1792923922153,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!lwzEcMwQICongcb5"
 }

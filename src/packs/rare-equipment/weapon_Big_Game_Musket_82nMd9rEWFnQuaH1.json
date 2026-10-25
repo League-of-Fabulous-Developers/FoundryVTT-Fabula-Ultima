@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/gun-brown.png",
   "system": {
     "fuid": "big-game-musket",
-    "description": "<p>This weapon deals 5 extra damage to <strong>beasts</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>This weapon deals 5 extra damage to <strong>beasts</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -97,10 +97,8 @@
         "rules": {
           "elements": {
             "nfOWtD6i25a8TS8Q": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "S1oEzIPvWRBxvaf1",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "source",
                 "damageType": "",
                 "affinity": "",
@@ -112,31 +110,39 @@
                 "local": true,
                 "identifier": ""
               },
-              "_id": "nfOWtD6i25a8TS8Q",
               "predicates": {
                 "03NSFyohKiEfN9ei": {
-                  "type": "speciesRulePredicate",
-                  "_id": "03NSFyohKiEfN9ei",
+                  "type": "projectfu.speciesRulePredicate",
                   "species": [
                     "beast"
-                  ]
+                  ],
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "keVbTysjUWeOxVc5": {
-                  "type": "messageRuleAction",
-                  "_id": "keVbTysjUWeOxVc5",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>This dealt 5 extra damage to a <strong>beast</strong>.</p>"
                 },
                 "gLsYYs5Wu2HVs52E": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "gLsYYs5Wu2HVs52E",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "5",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -145,23 +151,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "kj0QRzgcXP4HCtgr",
       "type": "base",
-      "changes": [],
       "description": "<p>This weapon deals 5 extra damage to <strong>beasts</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -182,20 +191,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774730050671,
-        "modifiedTime": 1781322537203,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925879,
+        "modifiedTime": 1792923925879,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!82nMd9rEWFnQuaH1.kj0QRzgcXP4HCtgr"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -206,12 +217,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774729936886,
-    "modifiedTime": 1777530876377,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925879,
+    "modifiedTime": 1792923925981,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!82nMd9rEWFnQuaH1"
 }

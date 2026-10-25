@@ -14,13 +14,10 @@
     {
       "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Heroic Companion (MIG)",
@@ -48,16 +45,17 @@
             "step": 1
           },
           "elements": {}
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.mig",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.attributes.mig",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>Your <strong>Might</strong> is increased by one die size.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -69,12 +67,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771013606474
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923922843,
+        "createdTime": 1792923922843
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!RvOS6hQbNg9xJx8B.4h30fp8qRSio9SiR"
     }
   ],
@@ -83,16 +85,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770709489355,
-    "modifiedTime": 1771018615195,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922843,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "RvOS6hQbNg9xJx8B",
   "sort": 400000,

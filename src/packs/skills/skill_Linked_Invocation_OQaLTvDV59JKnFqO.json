@@ -3,14 +3,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/invoker/linked_invocation.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>When you perform an <strong>invocation</strong>, you may spend up to <strong>【SL × 10】</strong> additional Mind Points. For every 10 Mind Points you spend this way, the invocation may target an additional creature you can see.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -24,13 +20,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -47,7 +44,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF155",
     "hasRoll": {
@@ -55,8 +53,9 @@
     },
     "fuid": "linked-invocation",
     "cost": {
-      "amount": 10,
-      "resource": "mp"
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -64,8 +63,18 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -87,10 +96,8 @@
         "rules": {
           "elements": {
             "OtBUWHhlgDHBa0dn": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "OqRpukUDzSGWhBFT",
-                "type": "featureRuleTrigger",
+                "type": "projectfu.featureRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
@@ -99,14 +106,15 @@
                   "quantifier": "any"
                 }
               },
-              "_id": "OtBUWHhlgDHBa0dn",
               "actions": {
                 "vB39EIr4TBxWrRIT": {
-                  "type": "messageRuleAction",
-                  "_id": "vB39EIr4TBxWrRIT",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may target @EVAL[$sl] additional targets, spending @LOSS[10 mp] per additional target.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -115,23 +123,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "gfLbsAulc8lLMAn9",
       "type": "base",
-      "changes": [],
       "description": "<p>When you perform an <strong>invocation</strong>, you may spend up to <strong>【SL × 10】</strong> additional MP. For every 10 MP you spend this way, the invocation may target an additional creature you can see.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -152,20 +163,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774600212153,
-        "modifiedTime": 1774634186827,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921194,
+        "modifiedTime": 1792923921194,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!OQaLTvDV59JKnFqO.gfLbsAulc8lLMAn9"
     }
   ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -177,12 +190,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.N4ixsQWp5mgDP1Dk",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676970366,
-    "modifiedTime": 1791496831018,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921194,
+    "modifiedTime": 1792923922135,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "OQaLTvDV59JKnFqO",

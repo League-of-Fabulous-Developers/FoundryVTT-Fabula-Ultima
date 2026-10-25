@@ -41,24 +41,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.immunities.dazed.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "sJloIrKsBjrUWGxt",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.immunities.dazed.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "description": "<p>Until this spell ends, you are immune to <strong>dazed</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -70,12 +72,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "3DqQhTAexuyMSem6",
-        "modifiedTime": 1775876489992
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921073,
+        "createdTime": 1792923921073
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!0SGPkOpasLpl8PuC.sJloIrKsBjrUWGxt"
     }
   ],
@@ -84,16 +90,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771475560048,
-    "modifiedTime": 1775876484949,
-    "lastModifiedBy": "3DqQhTAexuyMSem6"
+    "createdTime": 1792923921073,
+    "modifiedTime": 1792923922117,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "0SGPkOpasLpl8PuC",
   "sort": 100000,

@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-yellow.png",
   "system": {
     "fuid": "electro-magi-robe",
-    "description": "<p>Spells you cast that deal <strong>bolt</strong> damage deal <strong>5 extra damage</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>Spells you cast that deal <strong>bolt</strong> damage deal <strong>5 extra damage</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -56,31 +56,38 @@
         "rules": {
           "elements": {
             "hlVodb3Nsmi3TsRy": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "gd10px8i4FaQwSGc",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "spell"
-                ],
                 "damageTypes": [
                   "bolt"
                 ],
                 "local": false,
-                "identifier": ""
+                "identifier": "",
+                "itemGroups": [
+                  "spell"
+                ]
               },
-              "_id": "hlVodb3Nsmi3TsRy",
               "actions": {
                 "Fe3GHObq0a0Wkiyj": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "Fe3GHObq0a0Wkiyj",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "5",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -89,23 +96,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Iu8s4gtvvX5rggBN",
       "type": "base",
-      "changes": [],
       "description": "<p>While you have this equipped, spells you cast that deal <strong>bolt</strong> damage deal <strong>5 extra damage</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -126,20 +136,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774747517329,
-        "modifiedTime": 1775708898564,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925889,
+        "modifiedTime": 1792923925889,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!W5kwmDLOGH4mTumn.Iu8s4gtvvX5rggBN"
     }
   ],
   "sort": 150000,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -150,12 +162,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774747328786,
-    "modifiedTime": 1777530649090,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925889,
+    "modifiedTime": 1792923925983,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!W5kwmDLOGH4mTumn"
 }

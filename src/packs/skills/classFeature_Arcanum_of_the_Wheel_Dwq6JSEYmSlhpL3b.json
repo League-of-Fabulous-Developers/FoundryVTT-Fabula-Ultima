@@ -8,11 +8,13 @@
     "summary": {
       "value": ""
     },
-    "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<p>You are immune to <strong>slow</strong>.</p><p>You gain a +1 bonus to your Defense.</p>",
       "dismiss": "<p><strong>Time Freeze</strong>. Choose any number of creatures you can see: each of them suffers <strong>slow</strong> . If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p><hr><p><strong>Targets Suffer:</strong> @EFFECT[slow] or @EFFECT[Compendium.projectfu.skills.Item.jM9IP1QwhEH55Qd1]</p>",
-      "domains": "destiny, speed, time"
+      "domains": "destiny, speed, time",
+      "type": "projectfu.arcanum",
+      "enablePulse": false,
+      "pulse": ""
     },
     "source": "FUCR181",
     "fuid": "arcanum-of-the-wheel"
@@ -21,13 +23,10 @@
     {
       "origin": "Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Merged: Wheel",
@@ -42,29 +41,43 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.derived.def.bonus",
+            "value": 1,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.immunities.slow.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.derived.def.bonus",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.immunities.slow.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "description": "<p>You are immune to <strong>slow</strong>.</p><p>You gain a +1 bonus to your <strong>Defense</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -72,22 +85,23 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
           "source": "FUCR181"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725598840239,
-        "modifiedTime": 1775522083458,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921148,
+        "modifiedTime": 1792923921148,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!Dwq6JSEYmSlhpL3b.ydG9HFnv5wiV0oTU"
     }
   ],
@@ -97,19 +111,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710464120707,
-    "modifiedTime": 1771046126878,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921148,
+    "modifiedTime": 1792923922128,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "sort": 300000,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!Dwq6JSEYmSlhpL3b"
 }

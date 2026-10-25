@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You imbue a <strong>weapon</strong> with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the <strong>weapon</strong> becomes <strong>light</strong>. If you have that <strong>weapon</strong> equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a <strong>weapon</strong> equipped by a willing creature.</p><hr /><p><strong>Target Gains:</strong> @WEAPON[light]{Soul Weapon}</p>",
+    "description": "<p>You imbue a <strong>weapon</strong> with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the <strong>weapon</strong> becomes <strong>light</strong>. If you have that <strong>weapon</strong> equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a <strong>weapon</strong> equipped by a willing creature.</p><hr><p><strong>Target Gains:</strong> @WEAPON[light]{Soul Weapon}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -122,10 +122,7 @@
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -138,12 +135,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771475560048,
-    "modifiedTime": 1786687844026,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921109,
+    "modifiedTime": 1792923922123,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 100000,
   "_key": "!items!74xXBzLlG5C0hTf9"

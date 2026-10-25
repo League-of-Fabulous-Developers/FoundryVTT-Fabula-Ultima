@@ -36,17 +36,18 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "fGE882waVH5825FI",
       "type": "base",
-      "changes": [],
       "description": "<p>You are <strong>bewitched</strong>. You must include the originator among the targets of your attacks and offensive spells, if able. This lasts until the start of their next turn or until you recover from <strong>weak</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -58,12 +59,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771019141217
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923922854,
+        "createdTime": 1792923922854
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!hDXc6pWQ5VEyKg4O.fGE882waVH5825FI"
     }
   ],
@@ -72,16 +77,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771013810254,
-    "modifiedTime": 1771018993237,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922854,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "hDXc6pWQ5VEyKg4O",
   "sort": 600000,

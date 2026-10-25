@@ -5,16 +5,10 @@
   "_id": "DtEiCkDsC1amYABn",
   "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_condemn.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【INS + WLP】</strong> Check against an enemy that can hear and understand you. If you succeed, that enemy loses <strong>【SL × 5】</strong> Mind Points, suffers a status effect of your choice between <strong>dazed</strong> and <strong>shaken</strong>, and all sources deal <strong>【SL】</strong> extra damage to them until the start of your next turn.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "orator"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "wlp"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "1",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR201",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "wlp"
-        }
-      },
-      "accuracy": {
-        "value": 1
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,12 +49,15 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "condemn",
     "cost": {
-      "amount": 5
+      "amount": "5",
+      "resource": "mp",
+      "perTarget": false
     },
     "resource": {
       "enabled": true,
@@ -134,12 +71,17 @@
         "Compendium.projectfu.skills.Item.E0u1uXks8xbdQ3Cb"
       ],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
     },
     "targeting": {
-      "rule": "single"
-    }
+      "rule": "single",
+      "max": 0
+    },
+    "traits": []
   },
   "effects": [
     {
@@ -159,10 +101,8 @@
         "rules": {
           "elements": {
             "GCuN1opu0HjRicbJ": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "BqUsPjF1lAhnK0oU",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -171,11 +111,9 @@
                 "local": true,
                 "identifier": ""
               },
-              "_id": "GCuN1opu0HjRicbJ",
               "actions": {
                 "CScX4pLUrtXb0vQT": {
-                  "type": "performCheckRuleAction",
-                  "_id": "CScX4pLUrtXb0vQT",
+                  "type": "projectfu.performCheckRuleAction",
                   "check": "opposed",
                   "bonus": "$sl",
                   "attributes": {
@@ -187,7 +125,10 @@
                     }
                   }
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -196,18 +137,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "TwbBKbRvOuTzpUW1",
       "type": "base",
-      "changes": [],
       "description": "<p>Performing the <strong>Condemn</strong> Skill allows you to perform an <strong>Opposed Check</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -219,20 +163,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771838963062,
-        "modifiedTime": 1771905756079,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921147,
+        "modifiedTime": 1792923921147,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!DtEiCkDsC1amYABn.TwbBKbRvOuTzpUW1"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -244,10 +189,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706504101200,
-    "modifiedTime": 1771839034866,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921147,
+    "modifiedTime": 1792923922128,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

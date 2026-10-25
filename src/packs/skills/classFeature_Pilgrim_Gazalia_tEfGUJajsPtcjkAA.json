@@ -7,10 +7,6 @@
     "summary": {
       "value": "Its flamboyant corolla is synonymous with abundance."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 2,
       "effects": [
@@ -24,7 +20,8 @@
           "end": 3,
           "effect": "<p>At the end of your turn, you <strong>and</strong> every other Player Character you can see regain 1 Inventory Point.</p><hr><p><strong>Targets Recover:</strong> @GAIN[1 ip]</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF144",
     "fuid": "pilgrim-gazalia"
@@ -34,17 +31,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.1QLAto8fX2gqsp7A",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1777431191269,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921369,
+    "modifiedTime": 1792923922162,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "tEfGUJajsPtcjkAA",
   "sort": 0,
