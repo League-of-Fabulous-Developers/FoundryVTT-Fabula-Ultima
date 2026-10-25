@@ -564,7 +564,7 @@ function countBonds(actor) {
  */
 function maximumBondStrength(actor) {
 	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
-	return Math.max(...actor.system.bonds.map((b) => b.strength));
+	return Math.max(0, ...actor.system.bonds.map((b) => b.strength));
 }
 
 /**
