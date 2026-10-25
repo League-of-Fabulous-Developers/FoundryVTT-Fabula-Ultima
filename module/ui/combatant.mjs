@@ -41,20 +41,23 @@ Hooks.on('preCreateCombatant', function (document, data, options, userId) {
  * @inheritDoc
  */
 export class FUCombatant extends foundry.documents.Combatant {
+	async _preCreate(data, options, user) {
+		if (this.actor.type === 'npc' && game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+			await PressureSystem.applyPressureEffect(this.actor);
+		}
+		return super._preCreate(data, options, user);
+	}
+
 	/**
 	 * @override
 	 */
-	async _onCreate(createData, options, userId) {
-		if (userId !== game.user.id) return;
-		if (this.actor.type === 'npc') {
+	_onCreate(createData, options, userId) {
+		if (this.actor.type === 'npc' && game.user.isActiveGM) {
 			if (game.settings.get(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration)) {
 				const party = FUPartySheet.getActiveModel();
 				if (party) {
-					await party.addOrUpdateAdversary(this.actor, 0);
+					party.addOrUpdateAdversary(this.actor, 0);
 				}
-			}
-			if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
-				await PressureSystem.applyPressureEffect(this.actor);
 			}
 		}
 	}
@@ -86,15 +89,15 @@ export class FUCombatant extends foundry.documents.Combatant {
 	 */
 	get totalTurns() {
 		let result = 0;
-		if (this.token?.actor) {
-			if (this.token.actor.system instanceof NpcDataModel) {
-				result += this.token.actor.system.rank.replacedSoldiers;
-			} else if (this.token.actor.system instanceof CharacterDataModel) {
-				result += 1;
+		if (this.actor) {
+			if (this.actor.system instanceof NpcDataModel) {
+				result = this.actor.system.rank.replacedSoldiers;
+			} else if (this.actor.system instanceof CharacterDataModel) {
+				result = 1;
 			}
 			// Apply bonuses
-			if (this.token.actor.system.bonuses.turns) {
-				result += this.token.actor.system.bonuses.turns;
+			if (this.actor.system.bonuses.turns) {
+				result += this.actor.system.bonuses.turns;
 			}
 		}
 		return result;

@@ -1,9 +1,11 @@
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { systemPath } from '../helpers/config.mjs';
+import { SYSTEM, systemPath } from '../helpers/config.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { GroupCheck } from '../checks/group-check.mjs';
 import { MESSAGES } from '../socket.mjs';
+import { renderProgress } from '../helpers/handlebars.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @class
@@ -36,30 +38,6 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		},
 	};
 
-	/** @inheritdoc */
-	static PARTS = {
-		/** Inherited */
-		header: {
-			template: systemPath('templates/ui/combat-tracker-header.hbs'),
-		},
-		/** Overridden, only used for "alternative" combat */
-		tracker: {
-			template: systemPath('templates/ui/combat-tracker.hbs'),
-		},
-		/** Inherited, only used for "alternative" combats */
-		footer: {
-			template: 'templates/sidebar/tabs/combat/footer.hbs',
-		},
-	};
-
-	/** @inheritdoc */
-	_configureRenderParts(options) {
-		// deep clone of static PARTS
-		const parts = super._configureRenderParts(options);
-		//delete parts.footer;
-		return parts;
-	}
-
 	/**
 	 * Prepare render context for the tracker part.
 	 * @param {ApplicationRenderContext} context
@@ -74,27 +52,160 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 
 		combat.populateData(context);
 		// We add more data to the turns objects
-		context.turns = context.turns?.map((turn) => {
-			const combatant = combat.combatants.get(turn.id);
-			if (combatant.actor) {
-				turn.statusEffects = combatant?.actor.temporaryEffects.map((effect) => ({
-					name: effect.name,
-					img: effect.img,
-				}));
-			}
-			turn.css = turn.css.replace('active', '');
-			return turn;
-		});
 		context.factions = await this.getFactions(context.turns, combat);
 		if (context.turns.size === 0) {
 			console.error(`Found no available turns on combat ${combat}`);
 		}
 	}
 
-	_onCombatantMouseDown(event, target) {
-		if (event.type === 'dblclick' && event.target.closest('[data-action]')) {
+	async _prepareTurnContext(combat, combatant, index) {
+		const turn = await super._prepareTurnContext(combat, combatant, index);
+		turn.active = turn.id === combat.combatant?.id;
+
+		if (turn.active && !turn.css.includes('active')) {
+			turn.css = `${turn.css} active`;
+		}
+		if (!turn.active && turn.css.includes('active')) {
+			turn.css = turn.css.replace('active', '');
+		}
+
+		if (combatant.actor) {
+			turn.statusEffects = combatant?.actor.temporaryEffects.map((effect) => ({
+				name: effect.name,
+				img: effect.img,
+			}));
+		}
+
+		return turn;
+	}
+
+	async _onRender(context, options) {
+		await super._onRender(context, options);
+		if (!context.combat) return;
+
+		const friendly = document.createElement('h2');
+		friendly.classList.add('faction');
+		friendly.textContent = `${_loc('FU.CombatFactionFriendly')} ${context.factions.friendly.length}`;
+		const hostile = document.createElement('h2');
+		hostile.classList.add('faction');
+		hostile.textContent = `${_loc('FU.CombatFactionHostile')} ${context.factions.hostile.length}`;
+
+		const factions = {
+			friendly,
+			hostile,
+		};
+
+		this.element.querySelector('.combat-tracker').append(friendly, hostile);
+
+		this.element.querySelectorAll('.combatant[data-combatant-id]').forEach((combatantEl) => {
+			const combatant = this.viewed.combatants.get(combatantEl.dataset.combatantId);
+
+			if (combatant) {
+				combatantEl.querySelectorAll('.token-initiative').forEach((tokenInitiativeEl) => this.#setInitiativeIcon(combatant, tokenInitiativeEl, context));
+				factions[combatant.faction].after(combatantEl);
+			}
+		});
+
+		this.element.querySelectorAll('.combat-control[data-action="nextTurn"], .combat-control[data-action="nextRound"], .combat-control[data-action="rollNPC"]').forEach((el) => {
+			const replacement = document.createElement('span');
+			replacement.classList.add('inline-control');
+			replacement.style.width = 'var(--button-size)';
+			el.replaceWith(replacement);
+		});
+
+		const header = this.element.querySelector('.combat-tracker-header');
+
+		if (this.viewed.isOwner) {
+			const contextMenuButton = header.querySelector('.encounter-controls .control-buttons .encounter-context-menu');
+
+			const addTrackButton = document.createElement('button');
+			addTrackButton.type = 'button';
+			addTrackButton.classList.add('inline-control', 'combat-control', 'icon', 'ra', 'ra-clockwork');
+			addTrackButton.dataset.action = 'addTrack';
+			addTrackButton.dataset.tooltip = 'FU.Tracks';
+
+			if (contextMenuButton.previousElementSibling && contextMenuButton.previousElementSibling.classList.contains('spacer')) {
+				contextMenuButton.previousElementSibling.replaceWith(addTrackButton);
+			} else {
+				contextMenuButton.before(addTrackButton);
+			}
+		}
+
+		const tracks = Object.entries(this.viewed.system.tracks);
+		if (tracks.length > 0) {
+			const tracksContainer = document.createElement('div');
+			tracksContainer.classList.add('desc', 'resource-content', 'pfu-progress__collection');
+			tracksContainer.style.background = 'unset';
+			header.append(tracksContainer);
+
+			for (let [id, track] of tracks) {
+				const wrapper = document.createElement('div');
+				wrapper.innerHTML = renderProgress(track, this.viewed, 'system.tracks', { displayName: true, controls: this.viewed.isOwner }, id);
+				tracksContainer.append(wrapper);
+			}
+		}
+	}
+
+	#setInitiativeIcon(combatant, wrapperEl, context) {
+		wrapperEl.innerHTML = null;
+		if (!this.viewed.started) return;
+
+		const action = document.createElement('a');
+		action.classList.add('combatant-control');
+		action.role = 'button';
+		action.disabled = !combatant.isOwner;
+		wrapperEl.append(action);
+
+		const icon = document.createElement('i');
+		icon.classList.add('mats-o');
+		action.append(icon);
+
+		const turnStarted = context.turnStarted;
+		const turnsLeft = context.turnsLeft[combatant.id];
+		const showTurns = FUCombat.showTurnsFor(combatant);
+		const partOfActiveFaction = this.viewed.getCurrentTurn() === combatant.faction;
+		const hasCurrentTurn = this.viewed.combatant === combatant;
+
+		if (!combatant.isOwner) {
+			action.setAttribute('disabled', '');
+		}
+
+		if (hasCurrentTurn) {
+			action.classList.add('active-combatant', 'take-turn', 'end-turn');
+			action.dataset.action = 'endTurn';
+
+			icon.classList.add('mats-fill');
+			icon.textContent = context.icons.active;
 			return;
 		}
+
+		if (turnsLeft > 0) {
+			if (showTurns) {
+				icon.classList.toggle('mats-fill', partOfActiveFaction);
+				icon.textContent = `counter_${turnsLeft}`;
+			} else {
+				icon.textContent = context.icons.hiddenTurns;
+			}
+
+			if (turnStarted) {
+				action.setAttribute('disabled', '');
+				delete action.dataset.action;
+			} else {
+				action.dataset.action = partOfActiveFaction ? 'startTurn' : 'takeTurnOutOfTurn';
+				action.classList.add('take-turn');
+				action.classList.toggle('start-turn', partOfActiveFaction);
+				action.classList.toggle('out-of-turn', !partOfActiveFaction);
+			}
+		} else {
+			action.setAttribute('disabled', '');
+
+			icon.classList.toggle('mats-fill', partOfActiveFaction);
+			icon.textContent = context.icons.outOfTurns;
+		}
+	}
+
+	_onCombatantMouseDown(event, target) {
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatMouseDown) && event.type === 'click') return;
 		return super._onCombatantMouseDown(event, target);
 	}
 

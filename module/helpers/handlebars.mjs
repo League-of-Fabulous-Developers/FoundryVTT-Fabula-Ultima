@@ -364,7 +364,7 @@ function progressCollection(document, path, index, options) {
  * @param {ProgressHandlebarOptions} options
  * @returns {String}
  */
-function renderProgress(progress, document, path, options, index = undefined) {
+export function renderProgress(progress, document, path, options, index = undefined) {
 	const type = options.type;
 	const style = options.style ?? progress.style ?? 'clock';
 	const action = options.action ?? 'updateTrack';

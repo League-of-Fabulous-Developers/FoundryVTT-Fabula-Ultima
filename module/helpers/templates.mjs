@@ -115,9 +115,6 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/chat/partials/chat-item-text.hbs',
 			'systems/projectfu/templates/chat/partials/chat-message-toggle.hbs',
 
-			// UI FUComponents
-			'systems/projectfu/templates/ui/combat-tracker.hbs',
-
 			// Applications
 			'systems/projectfu/templates/app/app-group-check.hbs',
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
