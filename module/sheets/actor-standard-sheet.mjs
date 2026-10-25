@@ -1313,12 +1313,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				type: choice.type,
 				flags: { [SYSTEM]: { [Flags.Favorite]: true } },
 			};
-			if (choice.type === 'classFeature') {
+			if (choice.type === 'classFeature' || choice.type === 'optionalFeature') {
 				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				(itemData.system ??= {}).featureType = choice.subtype;
-			} else if (choice.type === 'optionalFeature') {
-				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				(itemData.system ??= {}).optionalType = choice.subtype;
+				itemData.system = { data: { type: choice.subtype } };
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}
@@ -1376,12 +1373,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				flags: { [SYSTEM]: { [Flags.Favorite]: true } },
 				system: { hasClock: { value: true } },
 			};
-			if (choice.type === 'classFeature') {
+			if (choice.type === 'classFeature' || choice.type === 'optionalFeature') {
 				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system.featureType = choice.subtype;
-			} else if (choice.type === 'optionalFeature') {
-				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system.optionalType = choice.subtype;
+				itemData.system.data = { type: choice.subtype };
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}
@@ -1433,12 +1427,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 			const itemData = {
 				type: choice.type,
 			};
-			if (choice.type === 'classFeature') {
+			if (choice.type === 'classFeature' || choice.type === 'optionalFeature') {
 				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system = { featureType: choice.subtype };
-			} else if (choice.type === 'optionalFeature') {
-				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system = { optionalType: choice.subtype };
+				itemData.system = { data: { type: choice.subtype } };
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}

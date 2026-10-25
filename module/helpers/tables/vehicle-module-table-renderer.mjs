@@ -32,7 +32,7 @@ export class VehicleModuleTableRenderer extends TradableTableRenderer {
 	#includedFeatureTypes = new Set([FU.classFeatures.armorModule, FU.classFeatures.weaponModule, FU.classFeatures.supportModule]);
 
 	static #getItems(document) {
-		return document.itemTypes.classFeature.filter((item) => this.#includedFeatureTypes.has(item.system.featureType));
+		return document.itemTypes.classFeature.filter((item) => this.#includedFeatureTypes.has(item.system.data.type));
 	}
 
 	static async #renderDescription(item) {

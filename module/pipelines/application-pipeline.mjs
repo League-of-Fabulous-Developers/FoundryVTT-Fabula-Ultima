@@ -33,7 +33,7 @@ async function handleArcanum(actor, item) {
 	const items = actor.itemTypes;
 	const subtype = FU.classFeatures.arcanum;
 	/** @type {FUItem[]} **/
-	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
+	const classFeatures = items.classFeature.filter((it) => it.system.data.type === subtype);
 	/** @type {FUActiveEffect[]} **/
 	const title = StringUtils.localize('FU.ClassFeatureArcanum');
 
@@ -216,7 +216,7 @@ async function handleTheriomorphosis(actor, item) {
 	const items = actor.itemTypes;
 	const subtype = FU.classFeatures.therioform;
 	/** @type {FUItem[]} **/
-	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
+	const classFeatures = items.classFeature.filter((it) => it.system.data.type === subtype);
 	/** @type ItemSelectionData **/
 	const data = {
 		title: `${StringUtils.localize('FU.ClassFeatureTherioformLabel')}`,

@@ -426,7 +426,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					break;
 			}
 
-			const zeroPower = combatant.actor.items.find((i) => i.type === 'optionalFeature' && i.system.optionalType === 'projectfu.zeroPower');
+			const zeroPower = combatant.actor.items.find((i) => i.type === 'optionalFeature' && i.system.data.type === 'projectfu.zeroPower');
 			if (zeroPower) {
 				actorData.zeropower = zeroPower.system.data;
 			}
@@ -1163,9 +1163,9 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 		// Are any of the changes relevant to the combat HUD?
 		if (
-			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.optionalType === 'projectfu.zeroPower') ||
+			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.data.type === 'projectfu.zeroPower') ||
 			// The optionalType can theoretically change, so make sure to check for it.
-			(foundry.utils.hasProperty(changes, 'system.optionalType') &&
+			(foundry.utils.hasProperty(changes, 'system.data.type') &&
 				// Progress changes aren't relevant during create/delete hooks.
 				(!changes || foundry.utils.hasProperty(changes, 'system.data.progress.current') || foundry.utils.hasProperty(changes, 'system.data.progress.max')))
 		) {

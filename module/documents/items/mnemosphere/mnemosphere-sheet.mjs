@@ -93,9 +93,7 @@ export class MnemosphereSheet extends FUItemSheet {
 			const featureType = FU.classFeatureRegistry.byKey(element.dataset.subType);
 			if (featureType) {
 				itemData.name = game.i18n.localize(featureType.translation);
-				itemData.system = {
-					featureType: element.dataset.subType,
-				};
+				itemData.system = { data: { type: element.dataset.subType } };
 			}
 		}
 
