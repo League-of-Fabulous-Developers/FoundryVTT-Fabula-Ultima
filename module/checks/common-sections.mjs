@@ -1,7 +1,7 @@
 import { ChatSectionOrder, CHECK_DETAILS, CHECK_FLAVOR, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
-import { ResourcePipeline, ResourceRequest, UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
@@ -330,7 +330,14 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 		// If expense data was provided for the actions
 		const expense = inspector.getExpense();
 		if (expense) {
-			CommonSections.spendResourceV2(data, actor, item, expense, targetData, flags);
+			CommonSections.expense(data, actor, item, targetData, flags, {
+				resource: expense.type,
+				amount: expense.total,
+				total: expense.total,
+				multiplier: expense.multiplier,
+				source: ItemUtils.resolveItemGroup(item),
+				traits: [],
+			});
 		}
 	}
 
@@ -487,96 +494,6 @@ async function showFloatyText(targetData, localizedText) {
  * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {ActionCostDataModel} cost
- * @param {TargetData[]} targets
- * @param {Object} flags
- */
-const spendResource = (data, actor, item, cost, targets, flags) => {
-	if (!cost.amount) {
-		return;
-	}
-	const _amount = Number.parseInt(cost.amount);
-	if (_amount === 0) {
-		return;
-	}
-
-	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	data.sections.push(async () => {
-		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
-
-		// This can be modified here...
-		await CommonEvents.calculateExpense(actor, item, targets, expense);
-
-		if (expense.amount <= 0) {
-			return;
-		}
-
-		return {
-			order: ChatSectionOrder.expenses,
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-			data: {
-				name: item.name,
-				actor: actor.uuid,
-				item: item.uuid,
-				expense: expense,
-				resourceLabel: FU.resourcesAbbr[expense.resource],
-				icon: FU.resourceIcons[expense.resource],
-			},
-		};
-	});
-};
-
-/**
- * @param {FURenderData} data
- * @param {FUActor} actor
- * @param {FUItem} item
- * @param {UpdateResourceData} updateData
- * @param {TargetData[]} targets
- * @param {Object} flags
- */
-const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
-	// Reconstruct the class from its data if need be
-	if (updateData && !(updateData instanceof UpdateResourceData)) {
-		updateData = new UpdateResourceData(updateData);
-	}
-
-	if (updateData.total <= 0) {
-		return;
-	}
-
-	// TODO: Use the update resource data model?
-	/** @type {ResourceExpense} **/
-	const expense = {
-		resource: updateData.type,
-		amount: updateData.total,
-		traits: [],
-		source: ItemUtils.resolveItemGroup(item),
-	};
-
-	// Allow modification of the amount
-	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
-
-	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	data.sections.push(async () => {
-		return {
-			order: ChatSectionOrder.expenses,
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-			data: {
-				name: item.name,
-				actor: actor.uuid,
-				item: item.uuid,
-				expense: expense,
-				resourceLabel: FU.resourcesAbbr[expense.resource],
-				icon: FU.resourceIcons[expense.resource],
-			},
-		};
-	});
-};
-
-/**
- * @param {FURenderData} data
- * @param {FUActor} actor
- * @param {FUItem} item
  * @param targets
  * @param {Object} flags
  * @param {ResourceExpense|(() => Promise<ResourceExpense>)} expense
@@ -591,7 +508,7 @@ const expense = (data, actor, item, targets, flags, expense) => {
 		if (expense.total <= 0) return undefined;
 
 		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-		data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+		data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense));
 		return {
 			order: ChatSectionOrder.expenses,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
@@ -601,6 +518,7 @@ const expense = (data, actor, item, targets, flags, expense) => {
 				item: item.uuid,
 				expense: expense,
 				icon: FU.resourceIcons[expense.resource],
+				resourceLabel: FU.resourcesAbbr[expense.resource],
 			},
 		};
 	});
@@ -635,8 +553,6 @@ export const CommonSections = {
 	genericFlavor,
 	opportunity,
 	actions,
-	spendResource,
-	spendResourceV2,
 	expense,
 	slottedTechnospheres,
 };
