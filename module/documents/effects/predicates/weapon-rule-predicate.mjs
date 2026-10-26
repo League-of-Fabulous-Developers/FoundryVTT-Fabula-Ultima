@@ -55,7 +55,7 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 			}
 			case FUHooks.RESOLVE_CHECK_EVENT:
 			case FUHooks.RENDER_CHECK_EVENT: {
-				const weaponReference = context.config.getWeaponReference();
+				const weaponReference = context.data.config.getWeaponReference();
 				if (weaponReference) {
 					attackItem = fromUuidSync(weaponReference);
 				} else {
@@ -63,7 +63,7 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 					const itemGroup = context.event.itemGroup;
 					switch (itemGroup) {
 						case 'attack':
-							attackItem = fromUuidSync(context.event.item);
+							attackItem = context.event.item;
 					}
 				}
 

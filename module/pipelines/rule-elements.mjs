@@ -418,9 +418,7 @@ async function evaluate(type, event, source, targets, data = {}) {
 				character: character,
 				source: source,
 				targets: targets,
-				scene: {
-					characters: sceneCharacters,
-				},
+				sceneCharacters: sceneCharacters,
 				data,
 			};
 
@@ -438,10 +436,10 @@ async function evaluate(type, event, source, targets, data = {}) {
 			}
 			let context = new RuleElementContext(contextData);
 			context = new Proxy(context, {
-				get(target, p, receiver) {
+				get(target, p) {
 					let rv = undefined;
 					if (Reflect.has(target, p)) {
-						rv = Reflect.get(target, p, receiver);
+						rv = Reflect.get(target, p, target);
 					} else {
 						console.warn(new Error(`Accessing undefined context entry ${p}`));
 					}
