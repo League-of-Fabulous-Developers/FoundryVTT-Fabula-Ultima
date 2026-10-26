@@ -36,24 +36,26 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.ins",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "p2eB16wif50bOYGt",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.ins",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>Your <strong>Insight</strong> is increased by one die size. This lasts until the end of the scene or until the originator uses <strong>My Trust in You</strong> on you again.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -65,12 +67,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770878481174
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923922849,
+        "createdTime": 1792923922849
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aGBmSaKFRyInlX7r.p2eB16wif50bOYGt"
     }
   ],
@@ -79,16 +85,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770878454615,
-    "modifiedTime": 1770884914179,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922849,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "aGBmSaKFRyInlX7r",
   "sort": 200000,

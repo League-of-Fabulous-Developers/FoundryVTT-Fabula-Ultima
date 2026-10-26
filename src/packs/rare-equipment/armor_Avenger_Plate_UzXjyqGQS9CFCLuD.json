@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-avenger.png",
   "system": {
     "fuid": "avenger-plate",
-    "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -61,30 +61,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.accuracyCheck",
+            "value": 1,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "yk13ZemARXEtFpXW",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, you gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -105,20 +109,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774809262012,
-        "modifiedTime": 1775708858675,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925888,
+        "modifiedTime": 1792923925888,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!UzXjyqGQS9CFCLuD.yk13ZemARXEtFpXW"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -129,12 +135,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774809056539,
-    "modifiedTime": 1777530558852,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925888,
+    "modifiedTime": 1792923925983,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!UzXjyqGQS9CFCLuD"
 }

@@ -29,21 +29,18 @@
         "rules": {
           "elements": {
             "JYoKsuzlPLx5GmzX": {
-              "type": "ruleElement",
-              "_id": "JYoKsuzlPLx5GmzX",
               "trigger": {
-                "_id": "SynmOuP0b0GxbzQM",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
+                "damageTypes": [],
+                "itemGroups": [
                   "attack"
                 ],
-                "damageTypes": []
+                "local": false
               },
               "actions": {
                 "Ew6UgTaJXpZNrFnt": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "Ew6UgTaJXpZNrFnt",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "traits": {
                     "entries": [
                       "ignore-resistances",
@@ -52,10 +49,18 @@
                   },
                   "amount": "",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -64,26 +69,29 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.accuracyCheck",
+            "value": "&sl('hawkeye')",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "9XppahcIvSmMziFs",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "&sl('hawkeye')",
-          "priority": null
-        }
-      ],
       "description": "<p>For your <strong>free attack</strong>, it gains a bonus equal to <strong>【Hawkeye SL】</strong> to your Accuracy Check, and its damage ignores Immunities and Resistances.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -95,32 +103,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770956433004,
-        "modifiedTime": 1770956595043,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922833,
+        "modifiedTime": 1792923922833,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!IU181rG9SX4PeZVS.9XppahcIvSmMziFs"
     }
   ],
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770956299962,
-    "modifiedTime": 1770964804130,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922833,
+    "modifiedTime": 1792923923011,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!IU181rG9SX4PeZVS"
 }

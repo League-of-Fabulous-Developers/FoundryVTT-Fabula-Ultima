@@ -7,12 +7,9 @@
     "summary": {
       "value": "Wolves, birds of prey, creatures with sharp hunting senses."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>"
+      "description": "<p>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>",
+      "type": "projectfu.therioform"
     },
     "source": "FUTF156",
     "fuid": "arpaktida"
@@ -36,70 +33,76 @@
         "rules": {
           "elements": {
             "ECmjuXz6i55x4RuP": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "8VgHnq1f2Xdqllcm",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
                 "itemGroups": [],
                 "damageTypes": [],
                 "local": false,
                 "identifier": ""
               },
-              "_id": "ECmjuXz6i55x4RuP",
               "actions": {
                 "0ZBCER8q1UCb6dgm": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "0ZBCER8q1UCb6dgm",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "5",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
               },
               "predicates": {
                 "d7u8awawyPFrJfGh": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "d7u8awawyPFrJfGh",
-                  "effect": "crisis"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "crisis",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "nSDmXVzDNFAfWTQ2": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "RCaebIkI6de8LLO2",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [],
                 "local": false,
                 "identifier": ""
               },
-              "_id": "nSDmXVzDNFAfWTQ2",
               "predicates": {
                 "3T62xBx0cQjiJC7U": {
-                  "type": "traitsRulePredicate",
-                  "_id": "3T62xBx0cQjiJC7U",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 },
                 "ad0rJeVnpB9jCxxi": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "ad0rJeVnpB9jCxxi",
-                  "effect": "crisis"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "crisis",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "lnXfekaGa3kiA3ka": {
-                  "type": "messageRuleAction",
-                  "_id": "lnXfekaGa3kiA3ka",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>This dealt 5 extra damage. Remove this damage if its not the first time you dealt damage this turn.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -108,31 +111,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.ins",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "dyp7joS5INqWgter",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.ins",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>You are <strong>manifesting</strong> this therioform. You treat your <strong>Insight</strong> as one die size higher (up to <strong>d12</strong>). When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -153,20 +159,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777742996253,
-        "modifiedTime": 1792632353496,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921307,
+        "modifiedTime": 1792923921307,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!hm5LaJoCgBZo398G.dyp7joS5INqWgter"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -174,10 +181,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711428338643,
-    "modifiedTime": 1792632347342,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921307,
+    "modifiedTime": 1792923922151,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

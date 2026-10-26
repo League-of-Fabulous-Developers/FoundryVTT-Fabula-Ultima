@@ -4,28 +4,23 @@
   "type": "miscAbility",
   "img": "systems/projectfu/styles/static/compendium/classes/floralist/graft.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<h3>THE GARDEN</h3><p>When you plant a <strong>magiseed</strong>, it takes root in your <strong>garden</strong> until removed. Your <strong>garden</strong> is an <strong>abstract</strong> space whose appearance varies depending on your character's look: it might be a pot on their back, a gap along their blade, or even the ground under their feet. Your <strong>garden</strong> can only contain <strong>one magiseed at a time</strong>, and any <strong>magiseeds</strong> in your <strong>garden</strong> are <strong>automatically removed</strong> at the end of each scene.</p><p></p><h3>THE GROWTH CLOCK</h3><p>When you acquire the @UUID[Compendium.projectfu.skills.Item.ZmzDl88kGMvrumoJ]{Chloromancy} Skill, you also receive a <strong>Growth Clock</strong> which is present <strong>only</strong> during conflict scenes and represents the cycle of life in your <strong>garden.</strong></p><ul><li><p>Your <strong>Growth Clock</strong> has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p></li><li><p>At the end of your turn, if a <strong>magiseed</strong> is present in your <strong>garden, fill 1 section</strong> of your Growth Clock; <strong>then</strong>, if there is still a <strong>magiseed</strong> in your <strong>garden</strong> and that <strong>magiseed</strong> has an “at the end of your turn” effect (see below), apply that effect.</p></li><li><p>When you fill the <strong>fourth section</strong> of your <strong>Growth Clock</strong>, <strong>remove</strong> the <strong>magiseeds</strong> in your <strong>garden</strong>, then <strong>erase all sections</strong> of your <strong>Growth Clock</strong>.</p></li><li><p>Sections of your <strong>Growth Clock may not be filled nor erased</strong> in any way other than described above, through @UUID[Compendium.projectfu.heroic-skills.Item.FvqC34UYxD3O2bFt]{Brambleheart} and @UUID[Compendium.projectfu.heroic-skills.Item.nm6Ec7nbsrNlRZCf]{Green Thumb}, or through effects that <strong>explicitly affect Growth Clocks</strong>.</p></li></ul><h3>MAGISEED EFFECTS</h3><p><strong>Magiseeds</strong> can have passive effects, or have effects that trigger at the <strong>end</strong> of your turn, <strong>after</strong> your <strong>Growth Clock</strong> has increased.</p><ul><li><p>The effects of a <strong>magiseed</strong> apply only while it is present in your <strong>garden</strong>, and they vary depending on the current number of filled sections in your Growth Clock (⏱).</p></li><li><p>You <strong>only</strong> apply the effect corresponding to the <strong>exact number</strong> of currently filled sections in your <strong>Growth Clock</strong>, not any effect above or below it.</p></li><li><p>If a magiseed's effect deals damage, it deals 5 extra damage if you are <strong>level 30 or higher</strong>. If a magiseed's effect causes Hit Point and/or Mind Point loss and/or recovery, the amount increases by 10 if you are <strong>level 30 or higher</strong>.</p></li></ul><p></p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "dex",
       "secondary": "dex"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "damage": {
       "hasDamage": false,
       "value": 0,
@@ -50,13 +45,15 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "rp": {
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF140",
     "hasRoll": {
@@ -67,7 +64,8 @@
     "fuid": "handout-magiseed-rules",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "special",
@@ -75,14 +73,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "projectfu-playtest": {
@@ -96,12 +103,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.3wujzPJj4dyCUUHX",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791494776986,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921301,
+    "modifiedTime": 1792923922150,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "gf73sZuiSvnt7FtX",

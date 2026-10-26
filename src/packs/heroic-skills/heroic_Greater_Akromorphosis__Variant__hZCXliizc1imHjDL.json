@@ -90,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "14.365",
-    "createdTime": 1785484824125,
-    "modifiedTime": 1785484824125,
-    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922855,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "KBlCCPnVZr8JzjOr": 3
+    "default": 0
   },
   "_id": "hZCXliizc1imHjDL",
   "sort": 0,

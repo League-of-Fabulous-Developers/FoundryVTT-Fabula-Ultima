@@ -9,81 +9,33 @@
     "summary": {
       "value": "Extend single-target spells."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Loremaster</strong>.</p><hr /><p>When you cast a spell with a <strong>target</strong> of “One creature”, you may choose an Attribute (<strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>) and a die size (<strong>d6</strong>, <strong>d8</strong>, <strong>d10</strong>, or <strong>d12</strong>). If you do, the spell's <strong>target</strong> becomes “Every creature present on the scene whose <strong>current</strong> die size in that Attribute matches your choice” and its <strong>total Mind Point cost is doubled</strong>. Additionally, all mentions of “the target” in the spell's text are replaced with “each target”; or they are replaced with “one or more targets” if the spell is <strong>Anomaly</strong>, <strong>Dispel</strong>, <strong>Mercy</strong>, or <strong>Mirror</strong>. When the spell ends on one or more of its targets, it automatically ends on all its targets.</p><p>If you cast an offensive spell (@ICON[offensive]) this way, you perform a single Magic Check and compare it with the Magic Defense of each target.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Loremaster</strong>.</p><hr><p>When you cast a spell with a <strong>target</strong> of “One creature”, you may choose an Attribute (<strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>) and a die size (<strong>d6</strong>, <strong>d8</strong>, <strong>d10</strong>, or <strong>d12</strong>). If you do, the spell's <strong>target</strong> becomes “Every creature present on the scene whose <strong>current</strong> die size in that Attribute matches your choice” and its <strong>total Mind Point cost is doubled</strong>. Additionally, all mentions of “the target” in the spell's text are replaced with “each target”; or they are replaced with “one or more targets” if the spell is <strong>Anomaly</strong>, <strong>Dispel</strong>, <strong>Mercy</strong>, or <strong>Mirror</strong>. When the spell ends on one or more of its targets, it automatically ends on all its targets.</p><p>If you cast an offensive spell (@ICON[offensive]) this way, you perform a single Magic Check and compare it with the Magic Defense of each target.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "loremaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR237",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "mathemagic",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706584898728,
-    "modifiedTime": 1787127637186,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922866,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

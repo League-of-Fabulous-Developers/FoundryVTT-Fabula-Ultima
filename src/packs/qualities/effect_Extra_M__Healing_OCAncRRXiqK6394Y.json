@@ -14,7 +14,6 @@
       "name": "Extra M. Healing",
       "img": "systems/projectfu/styles/static/statuses/Regen.webp",
       "type": "base",
-      "changes": [],
       "description": "<p>Spells you cast whose effects restore Hit Points will restore an extra @GAIN[5 hp].</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -22,35 +21,48 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none",
           "source": "FUCR270"
         }
       },
       "_id": "m2IUwUtR5bSkUXsu",
-      "system": {},
+      "system": {
+        "changes": [],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1736220804324,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "createdTime": 1792923925159,
+        "modifiedTime": 1792923925159,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!OCAncRRXiqK6394Y.m2IUwUtR5bSkUXsu"
     }
   ],
@@ -59,19 +71,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193936,
-    "modifiedTime": 1736220798852,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "createdTime": 1792923925159,
+    "modifiedTime": 1792923925278,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "OCAncRRXiqK6394Y",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!OCAncRRXiqK6394Y"
 }

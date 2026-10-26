@@ -14,20 +14,6 @@
       "name": "Hounding",
       "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain a +2 bonus to Accuracy Checks and Magic Checks against <strong>enraged</strong> targets.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -35,35 +21,63 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Check",
-          "CrisisInteraction": "none",
           "source": "FUCR275"
         }
       },
       "_id": "OJVOtK52HlYmKlsk",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.accuracyCheck",
+            "value": 2,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.accuracy.magicCheck",
+            "value": 2,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1736274375053,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "createdTime": 1792923925167,
+        "modifiedTime": 1792923925167,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!YWpULyMuk55HT40W.OJVOtK52HlYmKlsk"
     }
   ],
@@ -72,19 +86,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747190299,
-    "modifiedTime": 1736274367773,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "createdTime": 1792923925167,
+    "modifiedTime": 1792923925279,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "YWpULyMuk55HT40W",
   "sort": 300000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!YWpULyMuk55HT40W"
 }

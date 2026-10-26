@@ -14,14 +14,6 @@
       "name": "Antistatus (Slow)",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.immunities.slow.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "description": "<p>You are immune to <strong>slow</strong> status effect.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -29,35 +21,56 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "none",
           "source": "FUCR269"
         }
       },
       "_id": "J38ozRyZwkbZj0wm",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.immunities.slow.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1728778067644,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "createdTime": 1792923925152,
+        "modifiedTime": 1792923925152,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9qAemeMNQKm2IrC5.J38ozRyZwkbZj0wm"
     }
   ],
@@ -66,19 +79,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747195507,
-    "modifiedTime": 1728747195507,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "createdTime": 1792923925152,
+    "modifiedTime": 1792923925276,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "9qAemeMNQKm2IrC5",
   "sort": 1900000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!9qAemeMNQKm2IrC5"
 }

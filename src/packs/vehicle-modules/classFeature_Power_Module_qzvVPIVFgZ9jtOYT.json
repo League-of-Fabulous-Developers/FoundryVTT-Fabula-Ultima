@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.7X1SyqQVH5CEXaQA]</p>",
-      "complex": false
+      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.7X1SyqQVH5CEXaQA]</p>",
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF169",
     "fuid": "power-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711477032123,
-    "modifiedTime": 1773733307695,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923293,
+    "modifiedTime": 1792923923320,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "qzvVPIVFgZ9jtOYT",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!qzvVPIVFgZ9jtOYT"
 }

@@ -7,10 +7,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.invocations",
     "data": {
       "level": "basic",
       "description": "<h3>DETERMINING AVAILABLE WELLSPRINGS</h3><p>During each scene, your surroundings grant you <strong>two different wellsprings.</strong> (See @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules})</p><p>When you perform an <strong>invocation</strong>, choose one option you have access to, then apply its effects to <strong>one</strong> creature you can see.</p>",
@@ -103,15 +99,15 @@
           "name": "Frostbite",
           "description": "<p>You deal <strong>10</strong> <strong>ice damage</strong> to the target, and they <strong>suffer</strong> <strong>weak</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(10,15,20) ice]{Ice Damage} @EFFECT[weak]</p>"
         }
-      }
+      },
+      "type": "projectfu.invocations"
     },
     "source": "FUNF156",
     "fuid": "invocations"
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -119,12 +115,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.DKwGGGSalTj1ewvM",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676970366,
-    "modifiedTime": 1775522629602,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921192,
+    "modifiedTime": 1792923922134,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "OCPEJcHypOPXaDUM",

@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/ace-card/high_or_low.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】</strong> Hit Points.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.do8NdI13icFfJflO] and/or @EFFECT[Compendium.projectfu.skills.Item.pM2eTYvKrmR3wATD] or @GAIN[&amp;sl(\"high-or-low\")*2 hp]{SL × 2 HP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】</strong> Hit Points.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.do8NdI13icFfJflO] and/or @EFFECT[Compendium.projectfu.skills.Item.pM2eTYvKrmR3wATD] or @GAIN[&amp;sl(\"high-or-low\")*2 hp]{SL × 2 HP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -24,84 +20,24 @@
       "value": "ace-of-cards"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUBC7",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -113,24 +49,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "high-or-low",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "ebg6FQH2cPZYwDuu": 3,
-    "Vk2gQrsAJ2GZ8hcN": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -142,10 +92,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1707643024284,
-    "modifiedTime": 1775508904954,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921370,
+    "modifiedTime": 1792923922162,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

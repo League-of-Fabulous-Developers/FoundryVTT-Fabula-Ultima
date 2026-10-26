@@ -5,16 +5,10 @@
   "_id": "04DiGVKhF3DtmJ4n",
   "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_encourage.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You may use an action and spend 5 Mind Points to choose an ally that can hear and understand you. That ally recovers <strong>【SL × 10】</strong> Hit Points and, if this is a conflict scene, chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>: they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "orator"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR201",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,19 +49,24 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "encourage",
     "cost": {
-      "amount": 5
+      "amount": "5",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "resource": {
       "enabled": true,
-      "amount": "$sl*10"
+      "amount": "$sl*10",
+      "type": "hp"
     },
     "effects": {
       "entries": [
@@ -137,16 +76,17 @@
         "Compendium.projectfu.skills.Item.nBSrAu72JcvvNcWq"
       ],
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "prompt": true
-    }
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -158,10 +98,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706504115400,
-    "modifiedTime": 1786685538305,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921070,
+    "modifiedTime": 1792923922117,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

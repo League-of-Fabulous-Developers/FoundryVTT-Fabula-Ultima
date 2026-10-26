@@ -5,16 +5,10 @@
   "_id": "XhcTVGtGEk7L2Ddq",
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_counterattack.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> with a <strong>melee weapon</strong> you have equipped against that enemy (after their attack has been fully resolved). This attack must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll</strong> as 0 when calculating damage dealt by this attack.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -29,22 +23,13 @@
     "useWeapon": {
       "accuracy": true,
       "damage": true,
-      "hrZero": {
-        "value": false
-      },
       "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
       "hasDamage": true,
       "value": 0,
@@ -53,52 +38,7 @@
       "onApply": "",
       "hrZero": true
     },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
-    },
     "source": "FUCR219",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": true
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": true
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": true
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -109,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "",
     "fuid": "counterattack",
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -140,11 +97,8 @@
         "rules": {
           "elements": {
             "F5sEhddW5N7Gx7B7": {
-              "type": "ruleElement",
-              "_id": "F5sEhddW5N7Gx7B7",
               "trigger": {
-                "_id": "Vz9YV1XJh5K70zKl",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -152,31 +106,42 @@
                 "itemGroups": [
                   "attack"
                 ],
-                "outcome": "",
                 "identifier": "",
                 "local": false
               },
               "predicates": {
                 "AccwRopUxS7jiAR4": {
-                  "type": "checkRulePredicate",
-                  "_id": "AccwRopUxS7jiAR4",
+                  "type": "projectfu.checkRulePredicate",
                   "parity": "even",
-                  "result": null
+                  "result": null,
+                  "outcome": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "tkEn9IrOdkur7ELc": {
-                  "type": "weaponRulePredicate",
-                  "_id": "tkEn9IrOdkur7ELc",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "2xZr4iUkZa06agNk": {
-                  "type": "messageRuleAction",
-                  "_id": "2xZr4iUkZa06agNk",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>The weaponmaster may attack back.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -185,23 +150,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "3I4QKAPzn55nGTVF",
       "type": "base",
-      "changes": [],
       "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy. This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>HR</strong> as 0 when calculating damage dealt by this attack.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -213,20 +181,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766789080881,
-        "modifiedTime": 1773335742462,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1792923921253,
+        "modifiedTime": 1792923921253,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!XhcTVGtGEk7L2Ddq.3I4QKAPzn55nGTVF"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -238,10 +207,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706514121336,
-    "modifiedTime": 1786689925220,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921253,
+    "modifiedTime": 1792923922143,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

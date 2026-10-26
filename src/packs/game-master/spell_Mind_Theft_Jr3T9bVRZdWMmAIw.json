@@ -114,8 +114,11 @@
     "effects": {
       "entries": [],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
     }
   },
   "effects": [],
@@ -130,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1690417015023,
-    "modifiedTime": 1775513136189,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923400,
+    "modifiedTime": 1792923923427,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -142,8 +145,7 @@
   "_id": "Jr3T9bVRZdWMmAIw",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!Jr3T9bVRZdWMmAIw"
 }

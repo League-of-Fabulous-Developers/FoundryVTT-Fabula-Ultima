@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/star-iron.png",
   "system": {
     "fuid": "iron-star",
-    "description": "<p>You gain Resistance to <strong>physical</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>You gain Resistance to <strong>physical</strong> damage.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -54,30 +54,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.physical",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "4CsOw8wwgYAiy9mP",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.physical",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, you gain Resistance to <strong>physical</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -98,20 +102,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774655055035,
-        "modifiedTime": 1775708475876,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925891,
+        "modifiedTime": 1792923925891,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!awM8KEQwZEdUXW59.4CsOw8wwgYAiy9mP"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -122,12 +128,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774655019549,
-    "modifiedTime": 1777530064507,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925891,
+    "modifiedTime": 1792923925983,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!awM8KEQwZEdUXW59"
 }

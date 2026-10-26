@@ -41,24 +41,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.poison",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "dk03CWyervo5sqho",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.poison",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>Until this spell ends, you gain Resistance to <strong>poison</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -70,12 +72,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "3DqQhTAexuyMSem6",
-        "modifiedTime": 1775808509484
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921388,
+        "createdTime": 1792923921388
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!yOlZYERCLxYMAZq5.dk03CWyervo5sqho"
     }
   ],
@@ -84,16 +90,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771475560048,
-    "modifiedTime": 1775808505501,
-    "lastModifiedBy": "3DqQhTAexuyMSem6"
+    "createdTime": 1792923921388,
+    "modifiedTime": 1792923922164,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "yOlZYERCLxYMAZq5",
   "sort": 300000,

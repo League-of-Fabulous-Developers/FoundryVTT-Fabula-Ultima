@@ -34,30 +34,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.all",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "sDS3LnhFgkwd9c5Y",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.all",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, you deal <strong>5 extra damage</strong> (be it with attacks, spells, Arcana, items, or any other method).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -78,32 +82,33 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774831988043,
-        "modifiedTime": 1774832012842,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924664,
+        "modifiedTime": 1792923924664,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!LcwvBmvd76ZtoZ1P.sDS3LnhFgkwd9c5Y"
     }
   ],
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774812331804,
-    "modifiedTime": 1774812331840,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924664,
+    "modifiedTime": 1792923924848,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "LcwvBmvd76ZtoZ1P",
   "sort": 300000,

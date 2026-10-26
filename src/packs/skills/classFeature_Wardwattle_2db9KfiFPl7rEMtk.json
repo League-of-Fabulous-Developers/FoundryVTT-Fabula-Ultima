@@ -7,10 +7,6 @@
     "summary": {
       "value": "A tangle of robust branches, whose thorns spread powerful poison."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 3,
       "effects": [
@@ -29,7 +25,8 @@
           "end": 3,
           "effect": "<p>You gain Resistance to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison</strong> damage to that creature equal to <strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.UUwKmAmXaMWdilui]<br><strong>Attacker Suffers:</strong> @DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)} and @DMG[5+&sl('chloromancy')+5*floor($cl/30) poison]{5 + (SL in Chloromancy)}</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF147",
     "fuid": "wardwattle"
@@ -39,17 +36,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.FcYWXh9yYMcwozuw",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791494605360,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921087,
+    "modifiedTime": 1792923922119,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "2db9KfiFPl7rEMtk",
   "sort": 0,

@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "nvUOZP6SdAhTaGJg": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "uvihiqC6KYT6wsZg",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "skill",
@@ -47,15 +45,16 @@
                 },
                 "identifier": "bladestorm"
               },
-              "_id": "nvUOZP6SdAhTaGJg",
               "actions": {
                 "ritMenDZ2R5cXXW9": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "ritMenDZ2R5cXXW9",
+                  "type": "projectfu.modifyExpenseRuleAction",
                   "amount": "0.5",
                   "operation": "multiply"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -64,24 +63,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "FW7XEYm0YW9oMeOU",
       "type": "base",
-      "changes": [],
       "description": "<p>When you use the <strong>Bladestorm</strong> Skill, its MP cost is <strong>halved</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -102,32 +103,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774827385846,
-        "modifiedTime": 1774827481676,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924067,
+        "modifiedTime": 1792923924067,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!lfUmpQo4UueiGvxg.FW7XEYm0YW9oMeOU"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774814569256,
-    "modifiedTime": 1774814569256,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924067,
+    "modifiedTime": 1792923924215,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!lfUmpQo4UueiGvxg"
 }

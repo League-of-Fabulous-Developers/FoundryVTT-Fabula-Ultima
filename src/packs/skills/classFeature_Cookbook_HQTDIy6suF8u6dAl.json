@@ -7,10 +7,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.cookbook",
     "data": {
       "combinations": {
         "bitter_salty": {
@@ -88,7 +84,8 @@
           "taste2": "umami",
           "effect": ""
         }
-      }
+      },
+      "type": "projectfu.cookbook"
     },
     "source": "FUNF151",
     "fuid": "cookbook"
@@ -97,13 +94,10 @@
     {
       "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": true,
       "name": "Taste Aliases",
@@ -120,40 +114,47 @@
           "tracking": "self",
           "remaining": 0
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "flags.projectfu.tasteAliases.bitter",
-          "mode": 5,
-          "value": "",
-          "priority": null
-        },
-        {
-          "key": "flags.projectfu.tasteAliases.salty",
-          "mode": 5,
-          "value": "",
-          "priority": null
-        },
-        {
-          "key": "flags.projectfu.tasteAliases.sour",
-          "mode": 5,
-          "value": "",
-          "priority": null
-        },
-        {
-          "key": "flags.projectfu.tasteAliases.sweet",
-          "mode": 5,
-          "value": "",
-          "priority": null
-        },
-        {
-          "key": "flags.projectfu.tasteAliases.umami",
-          "mode": 5,
-          "value": "",
-          "priority": null
+        "changes": [
+          {
+            "key": "flags.projectfu.tasteAliases.bitter",
+            "value": "",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          },
+          {
+            "key": "flags.projectfu.tasteAliases.salty",
+            "value": "",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          },
+          {
+            "key": "flags.projectfu.tasteAliases.sour",
+            "value": "",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          },
+          {
+            "key": "flags.projectfu.tasteAliases.sweet",
+            "value": "",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          },
+          {
+            "key": "flags.projectfu.tasteAliases.umami",
+            "value": "",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>Adjust the values to change how the tastes are displayed.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -164,31 +165,33 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743352342231,
-        "modifiedTime": 1743352573826,
-        "lastModifiedBy": "aylHtMTxbnWEKFH9",
+        "createdTime": 1792923921163,
+        "modifiedTime": 1792923921163,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!HQTDIy6suF8u6dAl.k9WbWvZnDJe5GesN"
     }
   ],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.QUQhMl5YMbIf1Wdb",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676964457,
-    "modifiedTime": 1744383261568,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "createdTime": 1792923921163,
+    "modifiedTime": 1792923922130,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "HQTDIy6suF8u6dAl",

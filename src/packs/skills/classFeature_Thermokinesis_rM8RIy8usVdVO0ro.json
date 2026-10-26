@@ -7,13 +7,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you deal damage",
-      "description": "<p>That damage becomes <strong>fire</strong> or <strong>ice</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br /><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
+      "description": "<p>That damage becomes <strong>fire</strong> or <strong>ice</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p><hr><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>",
+      "type": "projectfu.psychicGift"
     },
     "source": "FUTF152",
     "fuid": "thermokinesis"
@@ -36,29 +33,36 @@
         "rules": {
           "elements": {
             "WjJCSCArXFhCEFMe": {
-              "type": "ruleElement",
-              "_id": "WjJCSCArXFhCEFMe",
               "trigger": {
-                "_id": "fJW46Rdq0ULBX5EJ",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": []
+                "itemGroups": [],
+                "damageTypes": [],
+                "local": false
               },
               "actions": {
                 "tlptSkk4N6udmMjq": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "tlptSkk4N6udmMjq",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "damageTypes": [
                     "fire",
                     "ice"
                   ],
                   "amount": "2+&pg('brainwave-clock')",
                   "cost": {
-                    "amount": 5
+                    "amount": "5",
+                    "resource": "mp",
+                    "perTarget": false
                   },
-                  "variant": "psychicGift"
+                  "variant": "psychicGift",
+                  "operation": "add",
+                  "traits": {
+                    "entries": []
+                  }
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -67,18 +71,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "4HGrhhcMhMyGOOSC",
       "type": "base",
-      "changes": [],
       "description": "",
       "origin": null,
       "tint": "#ffffff",
@@ -90,20 +97,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767268729348,
-        "modifiedTime": 1767268777343,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1792923921360,
+        "modifiedTime": 1792923921360,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!rM8RIy8usVdVO0ro.4HGrhhcMhMyGOOSC"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -111,10 +119,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711423314741,
-    "modifiedTime": 1771231040087,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921360,
+    "modifiedTime": 1792923922160,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

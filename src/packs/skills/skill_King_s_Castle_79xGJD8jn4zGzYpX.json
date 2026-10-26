@@ -5,16 +5,10 @@
   "_id": "79xGJD8jn4zGzYpX",
   "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover Hit Points or Mind Points.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional Mind Points.</p></li></ul><p>The chosen effect lasts until the start of your next turn.</p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>No creature can recover Hit Points or Mind Points.</p></li><li><p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional Mind Points.</p></li></ul><p>The chosen effect lasts until the start of your next turn.</p><hr><p><em>Apply chosen effect to all characters.</em></p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "commander"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUHF141",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,15 +49,19 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "kings-castle",
     "cost": {
-      "amount": 10
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "entries": [
@@ -131,16 +69,22 @@
         "Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5"
       ],
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "prompt": true
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -152,10 +96,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706555549756,
-    "modifiedTime": 1791487432903,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921110,
+    "modifiedTime": 1792923922123,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

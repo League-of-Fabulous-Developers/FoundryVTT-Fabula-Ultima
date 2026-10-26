@@ -27,7 +27,58 @@
       "enabled": false,
       "name": "Doom"
     },
-    "source": ""
+    "source": "",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
+    },
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
   },
   "effects": [
     {
@@ -48,17 +99,13 @@
         "rules": {
           "elements": {
             "oLFOxA8OimaQhUZ3": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "nnRRuHvd8i6cDkSH",
-                "type": "itemRollRuleTrigger",
+                "type": "projectfu.itemRollRuleTrigger",
                 "eventRelation": ""
               },
-              "_id": "oLFOxA8OimaQhUZ3",
               "actions": {
                 "enJQnv7Hk9orUs7u": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "enJQnv7Hk9orUs7u",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "impending-doom",
                   "amount": "1",
                   "notify": false,
@@ -70,21 +117,17 @@
               "enabled": true
             },
             "RbrGiEVeGfsTXR1V": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "At22VW2qh5BRquoG",
-                "type": "progressTrackRuleTrigger",
+                "type": "projectfu.progressTrackRuleTrigger",
                 "eventRelation": "",
                 "identifier": "impending-doom",
                 "local": true,
                 "comparisonOperator": "max",
                 "value": null
               },
-              "_id": "RbrGiEVeGfsTXR1V",
               "actions": {
                 "wGTszD95JCMHObTk": {
-                  "type": "messageRuleAction",
-                  "_id": "wGTszD95JCMHObTk",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>All enemies are reduced to 1 Hit Point.</p><hr><ul><li><p>Lose: @LOSS[(@target.resources.hp.value - 1) hp]</p></li></ul>"
                 }
               },
@@ -107,18 +150,18 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": 0,
-        "combat": null,
-        "startRound": 37,
-        "startTurn": 0
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "acnKHbEenNXVnQK0",
       "type": "base",
-      "changes": [],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,
@@ -139,11 +182,23 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "createdTime": 1792923923400,
+        "modifiedTime": 1792923923400
       },
+      "start": {
+        "combat": null,
+        "round": 37,
+        "time": 0,
+        "turn": 0,
+        "combatant": null,
+        "initiative": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!O98KC5i4kMlTOjnA.acnKHbEenNXVnQK0"
     },
     {
@@ -164,17 +219,13 @@
         "rules": {
           "elements": {
             "xiIh9Yis2rd7vx2D": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "YnjypQa2iOoISo8z",
-                "type": "itemRollRuleTrigger",
+                "type": "projectfu.itemRollRuleTrigger",
                 "eventRelation": ""
               },
-              "_id": "xiIh9Yis2rd7vx2D",
               "actions": {
                 "gGpUNuLWcVKctAQO": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "gGpUNuLWcVKctAQO",
+                  "type": "projectfu.updateTrackRuleAction",
                   "action": "update",
                   "identifier": "impending-doom",
                   "notify": false,
@@ -200,18 +251,18 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": 0,
-        "combat": null,
-        "startRound": 37,
-        "startTurn": 0
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "4t9m69SdQmrhhpCY",
       "type": "base",
-      "changes": [],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,
@@ -232,18 +283,29 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "createdTime": 1792923923400,
+        "modifiedTime": 1792923923400
       },
+      "start": {
+        "combat": null,
+        "round": 37,
+        "time": 0,
+        "turn": 0,
+        "combatant": null,
+        "initiative": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!O98KC5i4kMlTOjnA.4t9m69SdQmrhhpCY"
     }
   ],
   "folder": "EPexzx5pMkqZD8ai",
   "ownership": {
-    "default": 0,
-    "UvCiJsCjJ2VCTD5X": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -254,12 +316,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1779091483140,
-    "modifiedTime": 1779091483140,
-    "lastModifiedBy": "UvCiJsCjJ2VCTD5X"
+    "createdTime": 1792923923400,
+    "modifiedTime": 1792923923428,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "O98KC5i4kMlTOjnA",
   "sort": 0,

@@ -28,11 +28,8 @@
         "rules": {
           "elements": {
             "JayWJfWpcKXycLyG": {
-              "type": "ruleElement",
-              "_id": "JayWJfWpcKXycLyG",
               "trigger": {
-                "_id": "BfhQcCy26Sg3GVOj",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -43,31 +40,39 @@
               },
               "predicates": {
                 "X82dweGdmzf560Gf": {
-                  "type": "checkRulePredicate",
-                  "_id": "X82dweGdmzf560Gf",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "faqcYnNXOWgV8BEO": {
-                  "type": "messageRuleAction",
-                  "_id": "faqcYnNXOWgV8BEO",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you hit one or more, you recover 5 HP and MP.</p>"
                 },
                 "fuDP4PgO8cnEc9lR": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "fuDP4PgO8cnEc9lR",
-                  "amount": "5"
+                  "type": "projectfu.updateResourceRuleAction",
+                  "amount": "5",
+                  "resource": "hp"
                 },
                 "cJdq5okRgiQUT0ib": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "cJdq5okRgiQUT0ib",
+                  "type": "projectfu.updateResourceRuleAction",
                   "resource": "mp",
                   "amount": "5"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             }
           },
           "progress": {
@@ -79,17 +84,18 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "XEl6sAxB5DPiQoeS",
       "type": "base",
-      "changes": [],
       "description": "<p>If you hit one or more creatures with an attack using this weapon during this turn, you recover 5 HP and MP.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -101,12 +107,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771012189405
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923922814,
+        "createdTime": 1792923922814
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!3PRgAxgGjeOiBjKg.XEl6sAxB5DPiQoeS"
     }
   ],
@@ -115,16 +125,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771009954442,
-    "modifiedTime": 1771018974167,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922814,
+    "modifiedTime": 1792923923008,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "3PRgAxgGjeOiBjKg",
   "sort": 200000,

@@ -7,10 +7,6 @@
     "summary": {
       "value": "A symbol of energy and vivacity, it spreads seeds through stormy winds."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 1,
       "effects": [
@@ -19,7 +15,8 @@
           "end": 3,
           "effect": "<p>At the end of your turn, choose <strong>air</strong> or <strong>bolt</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.sgyOnXZVNT0UGuKu] or @EFFECT[Compendium.projectfu.skills.Item.7VKGFcNG5KomJiIJ]</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF144",
     "fuid": "prancing-dandelion"
@@ -29,17 +26,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.iq1eZM2RgfZ20TIt",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1777439633152,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921213,
+    "modifiedTime": 1792923922137,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "QgP1cPK2HOdfP6F2",
   "sort": 0,

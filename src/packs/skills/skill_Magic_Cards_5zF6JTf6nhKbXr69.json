@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/ace-card/magic_cards.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, discard and <strong>resolve 1 card</strong> from your hand for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), draw that many cards.</p><hr /><p>For <strong>deck</strong> breakdown and a list of <strong>Set Effects</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.ooqMmifaiQc2Rcgc]{Ace of Cards Rules} or see <strong>Bonus Collection</strong>, page <strong>8</strong>.<br /><strong>You Spend for Each Card:</strong> @LOSS[5 mp]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, discard and <strong>resolve 1 card</strong> from your hand for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), draw that many cards.</p><hr><p>For <strong>deck</strong> breakdown and a list of <strong>Set Effects</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.ooqMmifaiQc2Rcgc]{Ace of Cards Rules} or see <strong>Bonus Collection</strong>, page <strong>8</strong>.<br><strong>You Spend for Each Card:</strong> @LOSS[5 mp]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -24,84 +20,24 @@
       "value": "ace-of-cards"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUBC7",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -112,24 +48,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "magic-cards",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -141,10 +92,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1707643024284,
-    "modifiedTime": 1775597402725,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921104,
+    "modifiedTime": 1792923922122,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

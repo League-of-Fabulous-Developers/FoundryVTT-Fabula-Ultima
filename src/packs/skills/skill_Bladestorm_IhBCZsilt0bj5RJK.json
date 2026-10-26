@@ -5,16 +5,10 @@
   "_id": "IhBCZsilt0bj5RJK",
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bladestorm.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you perform a <strong>melee</strong> attack, you may spend 10 Mind Points to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,82 +21,24 @@
       "value": "weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": true,
+      "damage": true,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
       "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR219",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": true
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": true
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -113,22 +49,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "bladestorm",
     "cost": {
-      "amount": 10
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "traits": [],
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -140,10 +92,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706514077118,
-    "modifiedTime": 1770618823500,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921169,
+    "modifiedTime": 1792923922131,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -14,13 +14,10 @@
     {
       "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Bishop's Edict (Extra Damage)",
@@ -37,7 +34,6 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1,
         "rules": {
           "progress": {
             "enabled": false,
@@ -45,18 +41,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingDamage.all",
+            "value": "~&sl(\"bishops-edict\")*3",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
-        }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.all",
-          "mode": 2,
-          "value": "~&sl(\"bishops-edict\")*3",
-          "priority": null
-        }
-      ],
       "description": "<p>All sources of damage deal <strong>【SL × 3】</strong> extra damage until the start of the commander's next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -67,32 +66,34 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744460652448,
-        "modifiedTime": 1770630763023,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921375,
+        "modifiedTime": 1792923921375,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!uxc0tTLb3If2Denp.JzMDbxLQ1uT85e7C"
     }
   ],
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "WNNELbIcUepK9pGq": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744460630626,
-    "modifiedTime": 1771831207001,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921375,
+    "modifiedTime": 1792923922163,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!uxc0tTLb3If2Denp"

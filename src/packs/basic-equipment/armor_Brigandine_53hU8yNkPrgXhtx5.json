@@ -3,16 +3,10 @@
   "type": "armor",
   "img": "systems/projectfu/styles/static/compendium/armor/brigadine.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -25,42 +19,21 @@
     "quality": {
       "value": ""
     },
-    "isEquipped": {
-      "value": false,
-      "slot": ""
-    },
     "def": {
-      "value": 10
+      "value": 10,
+      "attribute": ""
     },
     "mdef": {
-      "value": 0
+      "value": 0,
+      "attribute": "ins"
     },
     "init": {
       "value": -2
     },
-    "isBehavior": {
-      "value": false
-    },
-    "weight": {
-      "value": 1
-    },
-    "attributes": {
-      "primary": {
-        "value": ""
-      },
-      "secondary": {
-        "value": "ins"
-      }
-    },
     "source": "FUCR132",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        }
-      }
-    },
-    "fuid": "brigandine"
+    "fuid": "brigandine",
+    "slots": "alpha",
+    "items": []
   },
   "effects": [],
   "folder": "05D3J15J6lL30XAq",
@@ -70,10 +43,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1706646424338,
-    "modifiedTime": 1724180864435,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923107,
+    "modifiedTime": 1792923923121,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -81,8 +54,7 @@
   "_id": "53hU8yNkPrgXhtx5",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!53hU8yNkPrgXhtx5"
 }

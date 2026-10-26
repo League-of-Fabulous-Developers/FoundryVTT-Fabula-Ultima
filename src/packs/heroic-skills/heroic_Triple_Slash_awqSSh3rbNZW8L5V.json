@@ -9,81 +9,33 @@
     "summary": {
       "value": "Equip three daggers/swords and perform triple attacks."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Dancer</strong> or <strong>Weaponmaster</strong>.</p><hr /><p>As long as you have a one-handed <strong>melee weapon</strong> that belongs to the <strong>dagger</strong> or <strong>sword</strong> Categories equipped in each of your normal hand slots, you may treat your <strong>armor</strong> slot as if it were a second <strong>off-hand</strong> slot. You may only use this special slot to equip a one-handed <strong>melee weapon</strong> that belongs to the <strong>dagger</strong> or <strong>sword</strong> Categories — note that the <strong>Monkey Grip</strong> Skill <strong>does not</strong> turn two-handed <strong>weapons</strong> into one-handed <strong>weapons</strong>, and thus cannot be used in combination with <strong>Triple Slash</strong>.</p><p>When you perform the <strong>Attack</strong> action while you have three <strong>daggers</strong> and/or <strong>swords</strong> equipped, you may attack once with each <strong>weapon</strong>. This follows the normal rules for <strong>two-weapon fighting</strong>: each of the three attacks loses the multi property and cannot gain it, and you treat the <strong>High Roll</strong> of each Accuracy Check as being equal to 0 when determining damage.</p><hr /><p><em>To <strong>automate</strong>, navigate to the '<strong>Items</strong>' tab where the weapon you want to equip is located, and press <strong>Ctrl+Click</strong> on the icon in the '<strong>Equip?</strong>' column. The item will be added to the <strong>Phantom Slot</strong>. Equip weapons in both your main and off-hand slots. <strong>Shift+Click</strong> each weapon to roll as <strong>HR Zero</strong>. Make sure your <strong>Armor Slot</strong> is empty.</em></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Dancer</strong> or <strong>Weaponmaster</strong>.</p><hr><p>As long as you have a one-handed <strong>melee weapon</strong> that belongs to the <strong>dagger</strong> or <strong>sword</strong> Categories equipped in each of your normal hand slots, you may treat your <strong>armor</strong> slot as if it were a second <strong>off-hand</strong> slot. You may only use this special slot to equip a one-handed <strong>melee weapon</strong> that belongs to the <strong>dagger</strong> or <strong>sword</strong> Categories — note that the <strong>Monkey Grip</strong> Skill <strong>does not</strong> turn two-handed <strong>weapons</strong> into one-handed <strong>weapons</strong>, and thus cannot be used in combination with <strong>Triple Slash</strong>.</p><p>When you perform the <strong>Attack</strong> action while you have three <strong>daggers</strong> and/or <strong>swords</strong> equipped, you may attack once with each <strong>weapon</strong>. This follows the normal rules for <strong>two-weapon fighting</strong>: each of the three attacks loses the multi property and cannot gain it, and you treat the <strong>High Roll</strong> of each Accuracy Check as being equal to 0 when determining damage.</p><hr><p><em>To <strong>automate</strong>, navigate to the '<strong>Items</strong>' tab where the weapon you want to equip is located, and press <strong>Ctrl+Click</strong> on the icon in the '<strong>Equip?</strong>' column. The item will be added to the <strong>Phantom Slot</strong>. Equip weapons in both your main and off-hand slots. <strong>Shift+Click</strong> each weapon to roll as <strong>HR Zero</strong>. Make sure your <strong>Armor Slot</strong> is empty.</em></p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "dancer, weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF161",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "triple-slash",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684778697,
-    "modifiedTime": 1791493281101,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922849,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

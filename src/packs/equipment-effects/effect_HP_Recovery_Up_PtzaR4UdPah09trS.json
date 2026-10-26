@@ -35,30 +35,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingRecovery.hp",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "OMuvbeMDfUEG8iqx",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.incomingRecovery.hp",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>Whenever you recover <strong>Hit Points</strong> while you have this equipped, you recover <strong>5 additional Hit Points</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -79,32 +83,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774670083771,
-        "modifiedTime": 1774827251805,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924669,
+        "modifiedTime": 1792923924669,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!PtzaR4UdPah09trS.OMuvbeMDfUEG8iqx"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774670047583,
-    "modifiedTime": 1774670081016,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924669,
+    "modifiedTime": 1792923924849,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!PtzaR4UdPah09trS"
 }

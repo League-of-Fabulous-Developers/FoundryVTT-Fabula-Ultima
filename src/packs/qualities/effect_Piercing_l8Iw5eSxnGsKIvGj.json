@@ -14,7 +14,6 @@
       "name": "Piercing",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [],
       "description": "<p>Damage dealt by the weapon ignores Resistances.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -22,36 +21,49 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Offensive",
           "cost": "400",
-          "CrisisInteraction": "none",
           "source": "FUCR269"
         }
       },
       "_id": "Bcstwj9R41jdjEfh",
-      "system": {},
+      "system": {
+        "changes": [],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": "Compendium.world.weaponqualities.Item.IRhl8FEN6dzHAuhT.ActiveEffect.9RYq1bSswXmmUmCR",
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1728749884726,
-        "modifiedTime": 1728775168246,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "createdTime": 1792923925171,
+        "modifiedTime": 1792923925171,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!l8Iw5eSxnGsKIvGj.Bcstwj9R41jdjEfh"
     }
   ],
@@ -60,19 +72,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193107,
-    "modifiedTime": 1728747193107,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "createdTime": 1792923925171,
+    "modifiedTime": 1792923925280,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "l8Iw5eSxnGsKIvGj",
   "sort": 1900000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!l8Iw5eSxnGsKIvGj"
 }

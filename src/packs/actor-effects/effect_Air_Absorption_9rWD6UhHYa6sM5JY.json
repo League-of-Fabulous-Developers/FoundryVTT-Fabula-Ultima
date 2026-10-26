@@ -5,7 +5,10 @@
   "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-absorption",
-    "source": ""
+    "source": "",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -31,31 +34,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.air.current",
+            "value": 3,
+            "priority": null,
+            "type": "upgrade",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "REKM1UJjrhbyI7Br",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.air.current",
-          "mode": 4,
-          "value": "3",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain Absorption to <strong>air</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -76,13 +82,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774815369040,
-        "modifiedTime": 1774815522734,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924038,
+        "modifiedTime": 1792923924038,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9rWD6UhHYa6sM5JY.REKM1UJjrhbyI7Br"
     }
   ],
@@ -90,19 +99,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725750295038,
-    "modifiedTime": 1774761488079,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924038,
+    "modifiedTime": 1792923924210,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "9rWD6UhHYa6sM5JY",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "_key": "!items!9rWD6UhHYa6sM5JY"
 }

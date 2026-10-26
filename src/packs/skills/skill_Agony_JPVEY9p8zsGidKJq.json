@@ -5,16 +5,10 @@
   "_id": "JPVEY9p8zsGidKJq",
   "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_agony.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per turn (including other creatures' turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover</strong>: @GAIN[$sl*2 hp]{SL × 2 HP} @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Once per turn (including other creatures' turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr><p><strong>You Recover</strong>: @GAIN[$sl*2 hp]{SL × 2 HP} @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "darkblade"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR185",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "agony",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "grA677dITyK5ugVJ": {
-              "type": "ruleElement",
-              "_id": "grA677dITyK5ugVJ",
               "trigger": {
-                "_id": "bWYQO0RoEVpuZESG",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [],
@@ -159,44 +107,52 @@
               },
               "predicates": {
                 "NVZLOf2l41OpllgF": {
-                  "type": "bondRulePredicate",
-                  "_id": "NVZLOf2l41OpllgF"
+                  "type": "projectfu.bondRulePredicate",
+                  "bond": ""
                 },
                 "jBEybKjWgl1cpOEM": {
-                  "type": "traitsRulePredicate",
-                  "_id": "jBEybKjWgl1cpOEM",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 },
                 "jasZeLFZt6kJffW4": {
-                  "type": "checkRulePredicate",
-                  "_id": "jasZeLFZt6kJffW4",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "QgDZPEPEy9dHthfQ": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "QgDZPEPEy9dHthfQ",
-                  "amount": "$sl*2"
+                  "type": "projectfu.updateResourceRuleAction",
+                  "amount": "$sl*2",
+                  "resource": "hp"
                 },
                 "wJbhj0mK5u2eGvcX": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "wJbhj0mK5u2eGvcX",
+                  "type": "projectfu.updateResourceRuleAction",
                   "resource": "mp",
                   "amount": "$sl*2"
                 },
                 "Ih8IlZNuYlq4PD3G": {
-                  "type": "messageRuleAction",
-                  "_id": "Ih8IlZNuYlq4PD3G",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Once per turn, if you damage one or more <strong>Bond</strong> enemies, you may recover <strong>【SL × 2】</strong> HP & MP.</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             }
           },
           "progress": {
@@ -205,18 +161,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "3CjUfXdmW7p1L7tJ",
       "type": "base",
-      "changes": [],
       "description": "<p>Once per turn (including other creatures' turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -228,20 +187,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766871996877,
-        "modifiedTime": 1771832201348,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921171,
+        "modifiedTime": 1792923921171,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -253,10 +213,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706496854934,
-    "modifiedTime": 1775525863927,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921171,
+    "modifiedTime": 1792923922131,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

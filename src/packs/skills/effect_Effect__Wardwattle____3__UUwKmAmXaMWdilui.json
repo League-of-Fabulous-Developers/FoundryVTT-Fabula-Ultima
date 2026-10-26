@@ -28,11 +28,8 @@
         "rules": {
           "elements": {
             "2HvR5dhKswFpe9TP": {
-              "type": "ruleElement",
-              "_id": "2HvR5dhKswFpe9TP",
               "trigger": {
-                "_id": "KLZ0EkyM1mv7IfNv",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -45,15 +42,13 @@
               },
               "actions": {
                 "iTZz0J3qbnSm0yCc": {
-                  "type": "messageRuleAction",
-                  "_id": "iTZz0J3qbnSm0yCc",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you <strong>hit</strong> the floralist with a <strong>melee</strong> attack, they deal <strong>physical</strong> and <strong>poison</strong> damage to you.</p>"
                 }
               },
               "predicates": {
                 "rTibumXwo7sYzKdr": {
-                  "type": "checkRulePredicate",
-                  "_id": "rTibumXwo7sYzKdr",
+                  "type": "projectfu.checkRulePredicate",
                   "parity": "",
                   "outcome": "success",
                   "attributes": {
@@ -64,11 +59,11 @@
                       "value": ""
                     }
                   },
-                  "result": null
+                  "result": null,
+                  "quantifier": "any"
                 },
                 "uEqpsAfZKS1wvKsW": {
-                  "type": "weaponRulePredicate",
-                  "_id": "uEqpsAfZKS1wvKsW",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "source",
                   "martial": "",
                   "handedness": "",
@@ -94,24 +89,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.physical",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "8YOfsARvtUrdqrtK",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.physical",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>physical</strong> damage. After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Chloromancy SL】</strong>, and then deal an amount of <strong>poison</strong> damage to that creature equal to <strong>【5 + your Chloromancy SL】</strong> (after their attack was resolved).</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -123,12 +120,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1777440610833
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921236,
+        "createdTime": 1792923921236
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!UUwKmAmXaMWdilui.8YOfsARvtUrdqrtK"
     }
   ],
@@ -137,16 +138,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770374100560,
-    "modifiedTime": 1777431542879,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921236,
+    "modifiedTime": 1792923922140,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "UUwKmAmXaMWdilui",
   "sort": 200000,

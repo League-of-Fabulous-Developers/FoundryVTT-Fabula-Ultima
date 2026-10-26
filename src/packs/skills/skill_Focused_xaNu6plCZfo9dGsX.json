@@ -5,16 +5,10 @@
   "_id": "xaNu6plCZfo9dGsX",
   "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this <strong>only</strong> applies to Open Checks).</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,15 +21,9 @@
       "value": "loremaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
@@ -43,62 +31,14 @@
     },
     "accuracy": "$sl",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR199",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": true
     },
@@ -109,59 +49,63 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "",
     "fuid": "focused",
     "targeting": {
-      "rule": "special"
+      "rule": "special",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
     {
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Focused",
       "_id": "xbzOApLkBkOo2YeB",
-      "changes": [
-        {
-          "key": "system.resources.mp.bonus",
-          "mode": 2,
-          "value": "3*$sl",
-          "priority": null
-        }
-      ],
       "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
           "source": "FUCR199"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1771837306158,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921385,
+        "modifiedTime": 1792923921385,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -172,20 +116,17 @@
         "rules": {
           "elements": {
             "Cy7av3Vt9yKqJ1ig": {
-              "type": "ruleElement",
-              "_id": "Cy7av3Vt9yKqJ1ig",
               "trigger": {
-                "_id": "L0K3WNpDMsip9oBj",
-                "type": "performCheckRuleTrigger",
+                "type": "projectfu.performCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "open"
-                ]
+                ],
+                "local": false
               },
               "predicates": {
                 "N5FnDMpHmZ4JA6wb": {
-                  "type": "checkRulePredicate",
-                  "_id": "N5FnDMpHmZ4JA6wb",
+                  "type": "projectfu.checkRulePredicate",
                   "result": null,
                   "attributes": {
                     "primary": {
@@ -194,16 +135,20 @@
                     "secondary": {
                       "value": "ins"
                     }
-                  }
+                  },
+                  "parity": "",
+                  "outcome": "",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "RT27nMrkrFKu8UEA": {
-                  "type": "modifyCheckRuleAction",
-                  "_id": "RT27nMrkrFKu8UEA",
+                  "type": "projectfu.modifyCheckRuleAction",
                   "bonus": "$sl"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -212,19 +157,40 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
+        },
+        "changes": [
+          {
+            "key": "system.resources.mp.bonus",
+            "value": "3*$sl",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
       "origin": null,
       "sort": 0,
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!xaNu6plCZfo9dGsX.xbzOApLkBkOo2YeB"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -236,10 +202,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706487322210,
-    "modifiedTime": 1786685312599,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921385,
+    "modifiedTime": 1792923922164,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

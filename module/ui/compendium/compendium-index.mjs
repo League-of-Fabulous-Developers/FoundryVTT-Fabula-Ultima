@@ -154,7 +154,7 @@ export class CompendiumIndex {
 		fuid: 'system.fuid',
 
 		// Feature
-		featureType: 'system.featureType',
+		featureType: 'system.data.type',
 
 		// Class
 		class: 'system.class.value',
@@ -478,7 +478,7 @@ export class CompendiumIndex {
 				}
 				break;
 		}
-		switch (entry.system.featureType) {
+		switch (entry.system.data?.type) {
 			case 'projectfu.dance':
 				_class = 'dancer';
 				break;

@@ -4,16 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_melee_weapon_mastery.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee weapons</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -26,84 +20,24 @@
       "value": "weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR219",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -114,59 +48,63 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "melee-weapon-mastery",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
     {
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Melee Weapon Mastery",
       "_id": "Sks7cSsjFlEgMg53",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyMelee",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
           "source": "FUCR219"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1771884547389,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921394,
+        "modifiedTime": 1792923921394,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -181,20 +119,41 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.accuracyMelee",
+            "value": "@system.level.value",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
+        ],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
       "origin": null,
       "sort": 0,
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ztxLYzo1ADCaRupR.Sks7cSsjFlEgMg53"
     }
   ],
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -206,10 +165,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706514138632,
-    "modifiedTime": 1786689983657,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921394,
+    "modifiedTime": 1792923922166,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

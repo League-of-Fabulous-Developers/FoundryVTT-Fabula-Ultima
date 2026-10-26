@@ -9,81 +9,33 @@
     "summary": {
       "value": "Gain benefits for consecutive attacks with brawling weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Fury</strong> or <strong>Weaponmaster</strong>.</p><hr /><p>When you perform a <strong>melee</strong> attack using a <strong>brawling weapon</strong>, if you have <strong>no martial armor</strong> and <strong>no shields</strong> equipped, you gain <strong>1 Bravery Point</strong>.</p><p>As long as you have <strong>no martial armor</strong> and <strong>no shields</strong> equipped, your <strong>melee</strong> attacks with <strong>brawling weapons</strong> deal extra damage equal to <strong>【2 + your current Bravery Points】</strong>.</p><p>At the end of each scene, <strong>or</strong> if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you lose all accumulated Bravery Points. Then, if you lost at least 1 point this way, you recover 10 Hit Points <strong>and</strong> 10 Mind Points.</p><hr /><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Gain 1 Bravery Point} or @PROGRESS[rising-tide reset]{Lose All Bravery Points}<br /><strong>You Recover:</strong> @GAIN[10 hp] @GAIN[10 mp]</p>",
-    "isFavored": {
-      "value": true
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Fury</strong> or <strong>Weaponmaster</strong>.</p><hr><p>When you perform a <strong>melee</strong> attack using a <strong>brawling weapon</strong>, if you have <strong>no martial armor</strong> and <strong>no shields</strong> equipped, you gain <strong>1 Bravery Point</strong>.</p><p>As long as you have <strong>no martial armor</strong> and <strong>no shields</strong> equipped, your <strong>melee</strong> attacks with <strong>brawling weapons</strong> deal extra damage equal to <strong>【2 + your current Bravery Points】</strong>.</p><p>At the end of each scene, <strong>or</strong> if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you lose all accumulated Bravery Points. Then, if you lost at least 1 point this way, you recover 10 Hit Points <strong>and</strong> 10 Mind Points.</p><hr><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Gain 1 Bravery Point} or @PROGRESS[rising-tide reset]{Lose All Bravery Points}<br><strong>You Recover:</strong> @GAIN[10 hp] @GAIN[10 mp]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "fury, weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF158",
     "hasResource": {
@@ -93,13 +45,37 @@
       "name": "Bravery Points",
       "current": 0,
       "step": 1,
-      "max": 10
+      "max": 10,
+      "enabled": false
     },
     "fuid": "rising-tide",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "defense": "def",
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -120,46 +96,44 @@
         "rules": {
           "elements": {
             "eNc8rZnFFdqqvNIX": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "nZsGKMk9SJKZ1AXO",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "startOfCombat"
+                "eventType": "startOfCombat",
+                "parity": ""
               },
-              "_id": "eNc8rZnFFdqqvNIX",
               "actions": {
                 "yIvOMVXBseiywq3C": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "yIvOMVXBseiywq3C",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "rising-tide",
                   "action": "reset",
                   "notify": true,
                   "amount": ""
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             },
             "kooO5eTb4iWFDMzF": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "u1fXiuoLYb9QIkQj",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "endOfCombat"
+                "eventType": "endOfCombat",
+                "parity": ""
               },
-              "_id": "kooO5eTb4iWFDMzF",
               "actions": {
                 "tYdr7WgPfImsmLuS": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "tYdr7WgPfImsmLuS",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "rising-tide",
                   "action": "reset",
                   "notify": true,
                   "amount": ""
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -168,30 +142,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.brawling",
+            "value": "2+&cs('rising-tide')",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Q4OWLn6rBzIOGRxo",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.brawling",
-          "mode": 2,
-          "value": "2+&cs('rising-tide')",
-          "priority": null
-        }
-      ],
       "description": "<p>Your <strong>melee</strong> attacks using weapons that belong to the <strong>brawling</strong> Category deal extra damage equal to your current <strong>Bravery Points</strong>.</p><p>At the end of each scene, you lose all accumulated <strong>Bravery Points</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -203,31 +181,36 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770764390879,
-        "modifiedTime": 1775521780342,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922823,
+        "modifiedTime": 1792923922823,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!8tBwzNz4egN1Lu4L.Q4OWLn6rBzIOGRxo"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": true
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684696121,
-    "modifiedTime": 1791492897804,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922823,
+    "modifiedTime": 1792923923009,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

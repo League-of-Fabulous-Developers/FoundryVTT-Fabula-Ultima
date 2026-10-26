@@ -6,7 +6,7 @@
     "summary": {
       "value": "Converts Shadow Strike into fire or ice."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Elementalist</strong> and <strong>Pilot</strong>, and have acquired the <strong>Shadow Strike</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong> (its damage type cannot change, as usual), and you gain Resistance to the damage type you did not choose until the start of your next turn.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Shadow Strike</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.gJWZDrbPrRIA0Udi] or @EFFECT[Compendium.projectfu.heroic-skills.Item.YD0Qid4TdxUVksXQ]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Elementalist</strong> and <strong>Pilot</strong>, and have acquired the <strong>Shadow Strike</strong> Skill.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong> (its damage type cannot change, as usual), and you gain Resistance to the damage type you did not choose until the start of your next turn.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Shadow Strike</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.gJWZDrbPrRIA0Udi] or @EFFECT[Compendium.projectfu.heroic-skills.Item.YD0Qid4TdxUVksXQ]</p>",
     "class": {
       "value": "darkblade, elementalist, pilot"
     },
@@ -33,12 +33,48 @@
     "fuid": "nether-slash",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -59,67 +95,76 @@
         "rules": {
           "elements": {
             "wScMVICn0F2ev7dk": {
-              "type": "ruleElement",
-              "_id": "wScMVICn0F2ev7dk",
               "trigger": {
-                "_id": "8T4P54R2WEUd1osm",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "skill"
-                ],
                 "damageTypes": [],
                 "local": false,
-                "identifier": "shadow-strike"
+                "identifier": "shadow-strike",
+                "itemGroups": [
+                  "skill"
+                ]
               },
               "actions": {
                 "xKBD8uKbfnzC3QIT": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "xKBD8uKbfnzC3QIT",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "damageTypes": [
                     "fire"
                   ],
                   "amount": "",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             },
             "NKCQxdlVWP9lSNMF": {
-              "type": "ruleElement",
-              "_id": "NKCQxdlVWP9lSNMF",
               "trigger": {
-                "_id": "wxxPXqhBvvX1UAHu",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "skill"
-                ],
                 "damageTypes": [],
                 "local": false,
-                "identifier": "shadow-strike"
+                "identifier": "shadow-strike",
+                "itemGroups": [
+                  "skill"
+                ]
               },
               "actions": {
                 "nGF5hAaWFTccUdvR": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "nGF5hAaWFTccUdvR",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "damageTypes": [
                     "ice"
                   ],
                   "amount": "",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             },
             "V9bQPirBkNCOhBVR": {
-              "type": "ruleElement",
-              "_id": "V9bQPirBkNCOhBVR",
               "trigger": {
-                "_id": "JtQAyZwVfFRVfMpz",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -131,22 +176,20 @@
               "predicates": {},
               "actions": {
                 "3Atfvxwmd0FJmkYQ": {
-                  "type": "messageRuleAction",
-                  "_id": "3Atfvxwmd0FJmkYQ",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you changed the damage to <strong>fire</strong> or <strong>ice</strong>, you gain Resistance to the damage type you did not choose.</p>"
                 },
                 "jTpilrr1G8rOePO4": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "jTpilrr1G8rOePO4",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "Compendium.projectfu.heroic-skills.Item.gJWZDrbPrRIA0Udi"
                 },
                 "ZMgJg0536UjwnISg": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "ZMgJg0536UjwnISg",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "Compendium.projectfu.heroic-skills.Item.YD0Qid4TdxUVksXQ"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             }
           },
           "progress": {
@@ -155,18 +198,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "GhlfMRLPbvFfYsSe",
       "type": "base",
-      "changes": [],
       "description": "<p>When you use the <strong>Shadow Strike</strong> Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong>, and you gain Resistance to the damage type you did not choose until the start of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -178,13 +224,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771282679453,
-        "modifiedTime": 1771886895638,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922827,
+        "modifiedTime": 1792923922827,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!DkaqHnTnEw2eMRDa.GhlfMRLPbvFfYsSe"
     }
   ],
@@ -199,18 +248,17 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1767915231139,
-    "modifiedTime": 1775353854151,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922827,
+    "modifiedTime": 1792923923010,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "DkaqHnTnEw2eMRDa",
   "ownership": {
-    "default": 0,
-    "94wV67htTTVBPn7n": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!DkaqHnTnEw2eMRDa"

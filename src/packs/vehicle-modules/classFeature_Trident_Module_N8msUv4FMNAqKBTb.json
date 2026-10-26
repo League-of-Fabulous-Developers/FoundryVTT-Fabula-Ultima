@@ -7,10 +7,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.weaponModule",
     "data": {
       "quality": "",
       "description": "<p>This weapon belongs to the <strong>spear</strong> Category.</p><p>A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p>",
@@ -19,17 +15,21 @@
       "accuracy": {
         "modifier": 1,
         "attr1": "dex",
-        "attr2": "ins"
+        "attr2": "ins",
+        "defense": "def"
       },
       "damage": {
         "bonus": 14,
         "type": "physical"
       },
-      "type": "melee",
       "shield": {
         "defense": 2,
         "magicDefense": 2
-      }
+      },
+      "weaponType": "melee",
+      "type": "projectfu.weaponModule",
+      "cost": 500,
+      "traits": []
     },
     "source": "FUTF167",
     "fuid": "trident-module"
@@ -41,10 +41,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1711474523134,
-    "modifiedTime": 1724180864714,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923290,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -52,8 +52,7 @@
   "_id": "N8msUv4FMNAqKBTb",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!N8msUv4FMNAqKBTb"
 }

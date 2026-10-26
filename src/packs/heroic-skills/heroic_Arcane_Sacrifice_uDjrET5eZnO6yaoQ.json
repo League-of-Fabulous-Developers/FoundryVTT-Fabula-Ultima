@@ -6,7 +6,7 @@
     "summary": {
       "value": "Dismiss an Arcanum to protect your group."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Guardian</strong>.</p><hr /><p>Once per scene, when you and/or one or more allies you can see are reduced to 0 Hit Points, if you are <strong>merged</strong> with an Arcanum, you may instead be reduced to exactly 1 Hit Point. If you do, you must immediately <strong>dismiss</strong> that Arcanum (without applying any dismiss effect), and cannot summon them again until the end of the scene.</p><hr /><p><strong>You Gain:</strong> @GAIN[1 hp]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Guardian</strong>.</p><hr><p>Once per scene, when you and/or one or more allies you can see are reduced to 0 Hit Points, if you are <strong>merged</strong> with an Arcanum, you may instead be reduced to exactly 1 Hit Point. If you do, you must immediately <strong>dismiss</strong> that Arcanum (without applying any dismiss effect), and cannot summon them again until the end of the scene.</p><hr><p><strong>You Gain:</strong> @GAIN[1 hp]</p>",
     "class": {
       "value": "arcanist, guardian"
     },
@@ -33,15 +33,48 @@
     "fuid": "arcane-sacrifice",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -56,18 +89,17 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1767915231139,
-    "modifiedTime": 1775353701360,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922872,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "uDjrET5eZnO6yaoQ",
   "ownership": {
-    "default": 0,
-    "94wV67htTTVBPn7n": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!uDjrET5eZnO6yaoQ"

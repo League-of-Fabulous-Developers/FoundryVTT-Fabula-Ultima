@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option:</p><ul><li><p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p></li><li><p>You may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p></li></ul><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]</p>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option:</p><ul><li><p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 3】</strong> extra damage.</p></li><li><p>You may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p></li></ul><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.enboiNabyACt4OUB]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -26,16 +26,10 @@
       "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
       "hasDamage": true,
       "value": 0,
@@ -55,21 +49,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "",
     "fuid": "hawkeye",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -81,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706506760285,
-    "modifiedTime": 1786686776241,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921307,
+    "modifiedTime": 1792923922151,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

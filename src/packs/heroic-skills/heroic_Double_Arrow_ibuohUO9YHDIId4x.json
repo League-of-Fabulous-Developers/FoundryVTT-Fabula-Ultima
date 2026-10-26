@@ -9,81 +9,33 @@
     "summary": {
       "value": "Attack twice with bows"
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Commander</strong> or <strong>Sharpshooter</strong>.</p><hr /><p>When you perform the <strong>Attack</strong> action with a <strong>ranged weapon</strong> that belongs to the <strong>bow</strong> Category, if you have <strong>no other weapon equipped</strong>, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi</strong> property and cannot gain it, and you treat the <strong>High Roll</strong> of each Accuracy Check as being equal to 0 when determining damage.</p><p>Note that this Heroic Skill <strong>does not stack</strong> with a <strong>custom weapon</strong>'s <strong>quick</strong> customization (using <strong>Double Arrows</strong> with a <strong>quick bow</strong> doesn't allow more than two attacks).</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Commander</strong> or <strong>Sharpshooter</strong>.</p><hr><p>When you perform the <strong>Attack</strong> action with a <strong>ranged weapon</strong> that belongs to the <strong>bow</strong> Category, if you have <strong>no other weapon equipped</strong>, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi</strong> property and cannot gain it, and you treat the <strong>High Roll</strong> of each Accuracy Check as being equal to 0 when determining damage.</p><p>Note that this Heroic Skill <strong>does not stack</strong> with a <strong>custom weapon</strong>'s <strong>quick</strong> customization (using <strong>Double Arrows</strong> with a <strong>quick bow</strong> doesn't allow more than two attacks).</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "commander, sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF155",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "double-arrow",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684593529,
-    "modifiedTime": 1791492121643,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922856,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

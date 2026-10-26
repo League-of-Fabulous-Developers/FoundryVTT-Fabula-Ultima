@@ -14,13 +14,10 @@
     {
       "img": "icons/sundries/misc/pet-collar-red.webp",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Side by Side (Check)",
@@ -49,11 +46,8 @@
           },
           "elements": {
             "farZdLle9czqLK8r": {
-              "type": "ruleElement",
-              "_id": "farZdLle9czqLK8r",
               "trigger": {
-                "_id": "xWlbZa7SAUBCDokZ",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy",
@@ -71,41 +65,47 @@
               },
               "actions": {
                 "0l7bo13QPnpA8IHg": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "0l7bo13QPnpA8IHg",
+                  "type": "projectfu.clearEffectRuleAction",
                   "identifier": "effect-side-by-side-check"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.accuracyCheck",
+            "value": "~&sl(\"faithful-companion\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.accuracy.magicCheck",
+            "value": "~&sl(\"faithful-companion\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.accuracy.openCheck",
+            "value": "~&sl(\"faithful-companion\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.accuracy.opposedCheck",
+            "value": "~&sl(\"faithful-companion\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "~&sl(\"faithful-companion\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "~&sl(\"faithful-companion\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.openCheck",
-          "mode": 2,
-          "value": "~&sl(\"faithful-companion\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.opposedCheck",
-          "mode": 2,
-          "value": "~&sl(\"faithful-companion\")",
-          "priority": null
-        }
-      ],
       "description": "<p>The first time you perform a Check before the end of the wayfarer's next turn, that Check gains a bonus equal to <strong>【Wafarer's SL in Faithful Companion】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -117,12 +117,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771014019577
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923922859,
+        "createdTime": 1792923922859
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!m8syR9MuczFEI1l8.nJHoE47tFyNEOMiP"
     }
   ],
@@ -131,16 +135,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770886822514,
-    "modifiedTime": 1771018666259,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922859,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "m8syR9MuczFEI1l8",
   "sort": 100000,

@@ -36,42 +36,47 @@
             "style": "basic",
             "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.dark",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.earth",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.ice",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.physical",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "8vOqPCvwa7JxPB3u",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.dark",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.earth",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.ice",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.physical",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>When you deal <strong>dark</strong>, <strong>earth</strong>, <strong>ice</strong>, or <strong>physical</strong> damage for the first time during a turn, if you have <strong>at least 1 Yang Point</strong>, you deal 5 extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -83,12 +88,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771008755971
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923922846,
+        "createdTime": 1792923922846
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!XziwyFx5pn8OHLM1.8vOqPCvwa7JxPB3u"
     }
   ],
@@ -97,16 +106,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771008712771,
-    "modifiedTime": 1771018965586,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922846,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "XziwyFx5pn8OHLM1",
   "sort": 100000,

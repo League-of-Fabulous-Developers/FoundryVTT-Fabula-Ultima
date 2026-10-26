@@ -53,7 +53,7 @@ export class OtherItemsTableRenderer extends TradableTableRenderer {
 		for (let item of document.allItems()) {
 			if (!excludedTypes.has(item.type)) {
 				if (featureItemTypes.has(item.type)) {
-					if (!excludedFeatureTypes.has(item.system.featureType)) {
+					if (!excludedFeatureTypes.has(item.system.data.type)) {
 						items.push(item);
 					}
 				} else {

@@ -14,13 +14,10 @@
     {
       "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Sound Barrier",
@@ -37,7 +34,6 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1,
         "rules": {
           "progress": {
             "enabled": false,
@@ -45,18 +41,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.incomingDamage.physical",
+            "value": "-&sl(\"sound-barrier\")",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
-        }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.physical",
-          "mode": 2,
-          "value": "-&sl(\"sound-barrier\")",
-          "priority": null
-        }
-      ],
       "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -67,32 +66,34 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744458722447,
-        "modifiedTime": 1770632043761,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921287,
+        "modifiedTime": 1792923921287,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!e85QX4FWBQxwTt8V.x7pVRBkWCUAvhThO"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "WNNELbIcUepK9pGq": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744458713844,
-    "modifiedTime": 1744458799700,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "createdTime": 1792923921287,
+    "modifiedTime": 1792923922148,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!e85QX4FWBQxwTt8V"

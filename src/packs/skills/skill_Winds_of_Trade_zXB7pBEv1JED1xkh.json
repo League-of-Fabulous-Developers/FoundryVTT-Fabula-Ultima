@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>After you <strong>rest</strong> in an area where commerce is possible, you gain <strong>【SL + 1】 Trade Points</strong>. You may never have more than <strong>【SL + 3】 Trade Points</strong>; if you acquire this Skill during character creation, begin play with <strong>2 Trade Points</strong>.</p><p>During a <strong>non-conflict scene</strong>, you may spend <strong>2 Trade Points</strong> to choose one option:</p><ul><li><p>You create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>.</p></li><li><p>You create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p></li></ul><hr /><p><strong>You Gain</strong>: @PROGRESS[winds-of-trade update $sl+1]{Gain SL + 1 Trade Points}<br /><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -2]{Spend 2 Trade Points}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After you <strong>rest</strong> in an area where commerce is possible, you gain <strong>【SL + 1】 Trade Points</strong>. You may never have more than <strong>【SL + 3】 Trade Points</strong>; if you acquire this Skill during character creation, begin play with <strong>2 Trade Points</strong>.</p><p>During a <strong>non-conflict scene</strong>, you may spend <strong>2 Trade Points</strong> to choose one option:</p><ul><li><p>You create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>.</p></li><li><p>You create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p></li></ul><hr><p><strong>You Gain</strong>: @PROGRESS[winds-of-trade update $sl+1]{Gain SL + 1 Trade Points}<br><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -2]{Spend 2 Trade Points}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Trade Points",
       "current": 2,
       "step": 1,
-      "max": 4
+      "max": 4,
+      "enabled": false
     },
     "source": "FUNF159",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "winds-of-trade",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,8 +64,18 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -93,30 +102,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.rp.max",
+            "value": "$sl+3",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "jiGkBkZpdBtdlK6f",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.rp.max",
-          "mode": 5,
-          "value": "$sl+3",
-          "priority": null
-        }
-      ],
       "description": "<p>You may never have more than <strong>【SL + 3】</strong> Trade Points.</p>",
       "tint": "#ffffff",
       "transfer": false,
@@ -137,19 +150,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1782599197054,
-        "modifiedTime": 1782599293807,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921391,
+        "modifiedTime": 1792923921391,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!zXB7pBEv1JED1xkh.jiGkBkZpdBtdlK6f"
     }
   ],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -160,12 +175,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.qRAlgOFGnPeODppk",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676975651,
-    "modifiedTime": 1791510126087,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921391,
+    "modifiedTime": 1792923922165,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "zXB7pBEv1JED1xkh",

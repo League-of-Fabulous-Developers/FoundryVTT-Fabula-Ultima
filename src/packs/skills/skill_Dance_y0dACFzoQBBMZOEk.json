@@ -4,16 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_dance.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you learn a <strong>dance</strong>.</p><p>On your turn during a conflict scene, if you have <strong>no martial armor</strong> equipped, you may spend 10 Mind Points to <strong>perform a dance</strong> you have learned. This doesn't require an action, but it can only be done <strong>once per turn</strong>, while no other effect is being resolved. If you already performed a <strong>different dance</strong> during your previous turn in this scene, the cost of the new <strong>dance</strong> is reduced to 5 Mind Points.</p><p>Some <strong>dances</strong> are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr /><p>For <strong>dance</strong> breakdown and a list of <strong>Dances</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dancer Rules} or see <strong>High Fantasy</strong>, page <strong>144</strong>.<br /><strong>You Spend (reduced)</strong>: @LOSS[5 mp]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Each time you take this Skill, you learn a <strong>dance</strong>.</p><p>On your turn during a conflict scene, if you have <strong>no martial armor</strong> equipped, you may spend 10 Mind Points to <strong>perform a dance</strong> you have learned. This doesn't require an action, but it can only be done <strong>once per turn</strong>, while no other effect is being resolved. If you already performed a <strong>different dance</strong> during your previous turn in this scene, the cost of the new <strong>dance</strong> is reduced to 5 Mind Points.</p><p>Some <strong>dances</strong> are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr><p>For <strong>dance</strong> breakdown and a list of <strong>Dances</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dancer Rules} or see <strong>High Fantasy</strong>, page <strong>144</strong>.<br><strong>You Spend (reduced)</strong>: @LOSS[5 mp]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -26,85 +20,24 @@
       "value": "dancer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
-      "expression": "",
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUHF143",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,27 +48,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "dance",
     "cost": {
-      "amount": 10
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -147,10 +92,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706558084944,
-    "modifiedTime": 1775525436087,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921387,
+    "modifiedTime": 1792923922164,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

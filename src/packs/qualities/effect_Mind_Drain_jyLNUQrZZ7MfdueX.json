@@ -14,7 +14,6 @@
       "name": "Mind Drain",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [],
       "description": "<p>Whenever you hit one or more creatures with this weapon, each of them loses @LOSS[10 mp].</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -22,35 +21,48 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Offensive",
-          "CrisisInteraction": "none",
           "source": "FUCR270"
         }
       },
       "_id": "lH9bOwSBVE709x02",
-      "system": {},
+      "system": {
+        "changes": [],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1728775203880,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "createdTime": 1792923925170,
+        "modifiedTime": 1792923925170,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!jyLNUQrZZ7MfdueX.lH9bOwSBVE709x02"
     }
   ],
@@ -59,19 +71,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193107,
-    "modifiedTime": 1728747193107,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "createdTime": 1792923925170,
+    "modifiedTime": 1792923925280,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "jyLNUQrZZ7MfdueX",
   "sort": 800000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!jyLNUQrZZ7MfdueX"
 }

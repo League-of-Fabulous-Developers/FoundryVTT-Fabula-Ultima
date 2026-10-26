@@ -5,16 +5,10 @@
   "_id": "hEj8s21iAOPhDtJN",
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_arcane_circle.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict, if that Arcanum had <strong>not</strong> been <strong>summoned</strong> during this same turn and you have an <strong>arcane weapon</strong> equipped, you may perform the <strong>Spell</strong> action for free (after resolving the <strong>dismiss</strong> effect). The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay its MP cost).</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "arcanist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR177",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "arcane-circle",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "1YUX7sDn0Q5wvBY7": {
-              "type": "ruleElement",
-              "_id": "1YUX7sDn0Q5wvBY7",
               "trigger": {
-                "_id": "lYpe8QhYl2RMZ3pX",
-                "type": "featureRuleTrigger",
+                "type": "projectfu.featureRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
@@ -161,21 +109,24 @@
               },
               "actions": {
                 "w8BWzeteOxxe2dlU": {
-                  "type": "messageRuleAction",
-                  "_id": "w8BWzeteOxxe2dlU",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If the Arcanum had not been <strong>summoned</strong> this turn, you may perform the <strong>Spell</strong> action.</p>"
                 }
               },
               "predicates": {
                 "KyBMLOSiNpMMmaZi": {
-                  "type": "weaponRulePredicate",
-                  "_id": "KyBMLOSiNpMMmaZi",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "arcane"
                   ],
-                  "selector": "self"
+                  "selector": "self",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -184,18 +135,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "UFyEiFjoYZc4p9e2",
       "type": "base",
-      "changes": [],
       "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -207,20 +161,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1768060798954,
-        "modifiedTime": 1771822083678,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921304,
+        "modifiedTime": 1792923921304,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!hEj8s21iAOPhDtJN.UFyEiFjoYZc4p9e2"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -232,10 +187,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706494627418,
-    "modifiedTime": 1786401253598,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921304,
+    "modifiedTime": 1792923922150,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

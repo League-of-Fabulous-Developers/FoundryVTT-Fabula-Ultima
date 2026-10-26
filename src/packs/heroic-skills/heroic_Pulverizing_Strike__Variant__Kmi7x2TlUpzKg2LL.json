@@ -82,8 +82,7 @@
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "KBlCCPnVZr8JzjOr": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -92,12 +91,12 @@
     }
   },
   "_stats": {
-    "coreVersion": "14.365",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1785627960292,
-    "modifiedTime": 1785627960350,
-    "lastModifiedBy": "KBlCCPnVZr8JzjOr",
+    "createdTime": 1792923922835,
+    "modifiedTime": 1792923923011,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -41,24 +41,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.all",
+            "value": 3,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "vtQW0Tb2MeYEYzRX",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.all",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain a +3 bonus to the next Check you perform during the current scene.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -70,12 +72,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1774637981840
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921270,
+        "createdTime": 1792923921270
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!bZ6Lm98z1vNg1rHs.vtQW0Tb2MeYEYzRX"
     }
   ],
@@ -84,16 +90,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770609452839,
-    "modifiedTime": 1771475707332,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921270,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "bZ6Lm98z1vNg1rHs",
   "sort": 300000,

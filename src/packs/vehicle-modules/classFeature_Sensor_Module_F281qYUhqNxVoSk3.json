@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.KJsVY7mPr0ub8tGM]</p>",
-      "complex": false
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.KJsVY7mPr0ub8tGM]</p>",
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF169",
     "fuid": "sensor-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711477115279,
-    "modifiedTime": 1773733398022,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923288,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "F281qYUhqNxVoSk3",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!F281qYUhqNxVoSk3"
 }

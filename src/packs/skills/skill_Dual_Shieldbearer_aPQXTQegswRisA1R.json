@@ -5,16 +5,10 @@
   "_id": "aPQXTQegswRisA1R",
   "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_dual_shieldbearer.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two <strong>shields</strong> equipped, you gain the benefits of both items and may treat them as the following two-handed <strong>melee brawling weapon</strong>:</p><table><tbody><tr><td colspan=\"2\"><p><strong>WEAPON</strong></p></td><td><p style=\"text-align:center\"><strong>ACCURACY</strong></p></td><td><p style=\"text-align:center\"><strong>DAMAGE</strong></p></td></tr><tr><td rowspan=\"2\" style=\"width:80px\"><img src=\"systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png\" width=\"48\" height=\"48\" /></td><td><p><strong>Twin Shields</strong></p></td><td><p style=\"text-align:center\"><strong>【MIG + MIG】</strong></p></td><td><p style=\"text-align:center\"><strong>【HR + 5】</strong> <strong>physical</strong></p></td></tr><tr><td colspan=\"3\"><p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p></td></tr></tbody></table><hr /><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> on the icon in the <strong>Equip?</strong> column. This will equip the item to the <strong>Phantom Slot</strong>. Now you can equip shields on both your main and off hand slot.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two <strong>shields</strong> equipped, you gain the benefits of both items and may treat them as the following two-handed <strong>melee brawling weapon</strong>:</p><table><tbody><tr><td colspan=\"2\"><p><strong>WEAPON</strong></p></td><td><p style=\"text-align:center\"><strong>ACCURACY</strong></p></td><td><p style=\"text-align:center\"><strong>DAMAGE</strong></p></td></tr><tr><td rowspan=\"2\" style=\"width:80px\"><img src=\"systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png\" width=\"48\" height=\"48\"></td><td><p><strong>Twin Shields</strong></p></td><td><p style=\"text-align:center\"><strong>【MIG + MIG】</strong></p></td><td><p style=\"text-align:center\"><strong>【HR + 5】</strong> <strong>physical</strong></p></td></tr><tr><td colspan=\"3\"><p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p></td></tr></tbody></table><hr><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> on the icon in the <strong>Equip?</strong> column. This will equip the item to the <strong>Phantom Slot</strong>. Now you can equip shields on both your main and off hand slot.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "guardian"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR196",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,24 +49,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "dual-shieldbearer",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -144,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706503515397,
-    "modifiedTime": 1786684845315,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921266,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

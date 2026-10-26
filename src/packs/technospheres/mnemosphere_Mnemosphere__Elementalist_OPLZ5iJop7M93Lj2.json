@@ -5,9 +5,6 @@
   "_id": "OPLZ5iJop7M93Lj2",
   "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/elementalist.png",
   "system": {
-    "isFavored": {
-      "value": false
-    },
     "level": 1,
     "maxLevel": 5,
     "items": [
@@ -109,11 +106,8 @@
               "rules": {
                 "elements": {
                   "mwqxq5RZ2uX5Iyzv": {
-                    "type": "ruleElement",
-                    "_id": "mwqxq5RZ2uX5Iyzv",
                     "trigger": {
-                      "_id": "Pc2XVX08qsypdnQR",
-                      "type": "calculateDamageRuleTrigger",
+                      "type": "projectfu.calculateDamageRuleTrigger",
                       "eventRelation": "source",
                       "identifier": "",
                       "itemGroups": [
@@ -124,8 +118,7 @@
                     },
                     "predicates": {
                       "3i8OFA8Qwk5Lqqz5": {
-                        "type": "weaponRulePredicate",
-                        "_id": "3i8OFA8Qwk5Lqqz5",
+                        "type": "projectfu.weaponRulePredicate",
                         "categories": [
                           "arcane"
                         ],
@@ -135,14 +128,12 @@
                         "weaponType": ""
                       },
                       "hBGetuaUyjiB9K3S": {
-                        "type": "spellRulePredicate",
-                        "_id": "hBGetuaUyjiB9K3S",
+                        "type": "projectfu.spellRulePredicate",
                         "offensive": "",
                         "duration": "instantaneous"
                       },
                       "LcVRmR6hyTZeqcKi": {
-                        "type": "traitsRulePredicate",
-                        "_id": "LcVRmR6hyTZeqcKi",
+                        "type": "projectfu.traitsRulePredicate",
                         "traits": {
                           "entries": [
                             "damage"
@@ -153,8 +144,7 @@
                     },
                     "actions": {
                       "pEDv6onCfA8WnUKB": {
-                        "type": "modifyDamageRuleAction",
-                        "_id": "pEDv6onCfA8WnUKB",
+                        "type": "projectfu.modifyDamageRuleAction",
                         "amount": "5",
                         "cost": {
                           "amount": "10",
@@ -165,7 +155,8 @@
                         "damageTypes": [],
                         "traits": {
                           "entries": []
-                        }
+                        },
+                        "operation": "add"
                       }
                     },
                     "selector": "initial",
@@ -181,23 +172,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "Dd03wzpbYRkqDcq9",
             "type": "base",
-            "changes": [],
             "description": "<p>When you cast a spell with a <strong>duration</strong> of “Instantaneous”, if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell's total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -407,11 +402,8 @@
                 },
                 "elements": {
                   "Cqt3QsRMqS4OsC2z": {
-                    "type": "ruleElement",
-                    "_id": "Cqt3QsRMqS4OsC2z",
                     "trigger": {
-                      "_id": "lGSK8sZMvteClIjE",
-                      "type": "performCheckRuleTrigger",
+                      "type": "projectfu.performCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "magic"
@@ -420,15 +412,13 @@
                     },
                     "actions": {
                       "LS13E6pWUYcj4TBl": {
-                        "type": "modifyCheckRuleAction",
-                        "_id": "LS13E6pWUYcj4TBl",
+                        "type": "projectfu.modifyCheckRuleAction",
                         "bonus": "$sl*2"
                       }
                     },
                     "predicates": {
                       "GhYb996DR8A8hfkh": {
-                        "type": "weaponRulePredicate",
-                        "_id": "GhYb996DR8A8hfkh",
+                        "type": "projectfu.weaponRulePredicate",
                         "selector": "self",
                         "categories": [
                           "arcane"
@@ -438,8 +428,7 @@
                         "weaponType": ""
                       },
                       "GD8emSyDZnGVTSMr": {
-                        "type": "spellRulePredicate",
-                        "_id": "GD8emSyDZnGVTSMr",
+                        "type": "projectfu.spellRulePredicate",
                         "offensive": "true",
                         "duration": ""
                       }
@@ -448,23 +437,27 @@
                     "enabled": true
                   }
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "qHjYR6862sVRMKSg",
             "type": "base",
-            "changes": [],
             "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -561,13 +554,10 @@
           {
             "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
             "duration": {
-              "rounds": null,
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "name": "Spellblade",
@@ -587,11 +577,8 @@
               "rules": {
                 "elements": {
                   "n51WK4vf6h7Pn9Rt": {
-                    "type": "ruleElement",
-                    "_id": "n51WK4vf6h7Pn9Rt",
                     "trigger": {
-                      "_id": "NkUGhN3O6wegQ14w",
-                      "type": "performCheckRuleTrigger",
+                      "type": "projectfu.performCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "magic"
@@ -600,8 +587,7 @@
                     },
                     "predicates": {
                       "YAHJUD5SD1ClxolQ": {
-                        "type": "checkRulePredicate",
-                        "_id": "YAHJUD5SD1ClxolQ",
+                        "type": "projectfu.checkRulePredicate",
                         "result": null,
                         "attributes": {
                           "primary": {
@@ -616,8 +602,7 @@
                         "quantifier": "any"
                       },
                       "jhaZQdISJVvn4vew": {
-                        "type": "weaponRulePredicate",
-                        "_id": "jhaZQdISJVvn4vew",
+                        "type": "projectfu.weaponRulePredicate",
                         "categories": [
                           "bow",
                           "brawling",
@@ -637,8 +622,7 @@
                     },
                     "actions": {
                       "OVdMuTH6qx98kFEi": {
-                        "type": "modifyCheckRuleAction",
-                        "_id": "OVdMuTH6qx98kFEi",
+                        "type": "projectfu.modifyCheckRuleAction",
                         "bonus": "$sl"
                       }
                     },
@@ -655,23 +639,26 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": [
+                {
+                  "key": "flags.projectfu.weaponMagicCheck",
+                  "value": true,
+                  "priority": null,
+                  "type": "override",
+                  "phase": "initial"
+                }
+              ]
             },
-            "changes": [
-              {
-                "key": "flags.projectfu.weaponMagicCheck",
-                "mode": 5,
-                "value": "true",
-                "priority": null
-              }
-            ],
             "description": "<p>Your <strong>Magic Check</strong> for spells will use the <em>chosen weapon'</em>s <strong>Accuracy Check</strong> formula. If that formula includes <strong>Dexterity</strong>, the Magic Check also gains a bonus equal to <strong>【SL】</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -691,19 +678,18 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1745491348230,
-    "modifiedTime": 1791524723685,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923925546,
+    "modifiedTime": 1792923925626,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!OPLZ5iJop7M93Lj2"

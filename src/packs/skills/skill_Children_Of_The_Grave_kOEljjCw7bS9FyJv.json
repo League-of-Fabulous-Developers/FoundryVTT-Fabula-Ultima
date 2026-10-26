@@ -6,9 +6,6 @@
       "value": ""
     },
     "description": "<p>You can always communicate with <strong>undead</strong> creatures. Once per scene, you may ask an <strong>undead</strong> a single question. They are compelled to answer truthfully.</p>",
-    "isFavored": {
-      "value": false
-    },
     "level": {
       "value": 1,
       "max": 1,
@@ -18,49 +15,22 @@
       "value": "necromancer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "showTitleCard": {
       "value": false
@@ -68,41 +38,7 @@
     "hasRoll": {
       "value": false
     },
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "source": "FUBC13",
-    "subtype": {},
     "defense": "def",
     "hasResource": {
       "value": false
@@ -111,11 +47,32 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "children-of-the-grave",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "traits": [],
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "img": "systems/projectfu/styles/static/compendium/classes/necromancer/children_of_the_grave.png",
@@ -131,20 +88,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1684757022956,
-    "modifiedTime": 1770431931079,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921323,
+    "modifiedTime": 1792923922152,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "folder": "HL1x2SDWkdiaZf56",
   "ownership": {
-    "default": 0,
-    "ebg6FQH2cPZYwDuu": 3,
-    "Vk2gQrsAJ2GZ8hcN": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "kOEljjCw7bS9FyJv",
   "sort": 300000,

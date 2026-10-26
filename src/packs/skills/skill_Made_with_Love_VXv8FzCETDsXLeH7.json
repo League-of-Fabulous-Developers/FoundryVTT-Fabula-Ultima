@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/gourmet/made_with_love.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>When you use the <strong>Cooking</strong> Skill and choose to apply the effects of the <strong>delicacy</strong> to yourself or an ally you can see, you may spend up to <strong>【SL × 10】</strong> MP. For every 10 MP you spend this way, you also apply the <strong>delicacy</strong>'s effects to an additional ally you can see.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF149",
     "hasRoll": {
@@ -56,7 +54,7 @@
     },
     "fuid": "made-with-love",
     "cost": {
-      "amount": 10,
+      "amount": "10",
       "resource": "mp",
       "perTarget": false
     },
@@ -66,8 +64,18 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
@@ -80,17 +88,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.1iorFCalcL7yO2Y9",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676964457,
-    "modifiedTime": 1791496157715,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921239,
+    "modifiedTime": 1792923922140,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "VXv8FzCETDsXLeH7",
   "sort": 0,

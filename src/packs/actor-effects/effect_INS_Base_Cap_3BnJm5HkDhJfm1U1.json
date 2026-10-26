@@ -5,7 +5,10 @@
   "_id": "3BnJm5HkDhJfm1U1",
   "img": "systems/projectfu/styles/static/statuses/InsDown.webp",
   "system": {
-    "fuid": "ins-base-cap"
+    "fuid": "ins-base-cap",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -31,31 +34,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.ins.current",
+            "value": "@system.attributes.ins.base",
+            "priority": null,
+            "type": "downgrade",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "E7UIJE2mjEZ58P1M",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.ins.current",
-          "mode": 3,
-          "value": "@system.attributes.ins.base",
-          "priority": null
-        }
-      ],
       "description": "<p>Your <strong>Insight</strong> die size cannot be higher than your <strong>base</strong> Insight die size.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -76,31 +82,33 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774817080019,
-        "modifiedTime": 1774817096735,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924031,
+        "modifiedTime": 1792923924031,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!3BnJm5HkDhJfm1U1.E7UIJE2mjEZ58P1M"
     }
   ],
   "sort": 200000,
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725743850693,
-    "modifiedTime": 1774761358601,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924031,
+    "modifiedTime": 1792923924208,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!3BnJm5HkDhJfm1U1"

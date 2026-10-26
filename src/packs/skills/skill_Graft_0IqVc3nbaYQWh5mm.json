@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/floralist/graft.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>As long as there is a <strong>magiseed</strong> in your <strong>garden</strong> and <strong>1 or more sections</strong> of your <strong>Growth Clock</strong> are <strong>filled</strong>, you may use an action to <strong>remove</strong> that <strong>magiseed</strong> from your <strong>garden</strong>: if you do, <strong>plant a different magiseed</strong> among those you have discovered (keep the current filled sections of your <strong>Growth Clock</strong> unchanged).</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF139",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "graft",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,14 +64,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -84,12 +92,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.c8XnasogJbKkVL4o",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791493727896,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921072,
+    "modifiedTime": 1792923922117,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "0IqVc3nbaYQWh5mm",

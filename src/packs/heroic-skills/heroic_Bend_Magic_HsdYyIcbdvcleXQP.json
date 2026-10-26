@@ -10,10 +10,7 @@
     "summary": {
       "value": "React to enemy spells with your invocations."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, or <strong>Symbolist</strong>, and acquired <strong>Invocation</strong>.</p><hr /><p>After an enemy you can see <strong>hits or misses you with an offensive spell (@ICON[offensive])</strong>, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a <strong>\"hex\"</strong>, and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, or <strong>Symbolist</strong>, and acquired <strong>Invocation</strong>.</p><hr><p>After an enemy you can see <strong>hits or misses you with an offensive spell (@ICON[offensive])</strong>, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a <strong>\"hex\"</strong>, and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,37 +24,58 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF162",
     "fuid": "bend-magic",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -78,11 +96,8 @@
         "rules": {
           "elements": {
             "jotNPxvUv3VfB2R8": {
-              "type": "ruleElement",
-              "_id": "jotNPxvUv3VfB2R8",
               "trigger": {
-                "_id": "d5qWYffdmxtsd9XF",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "magic"
@@ -95,13 +110,12 @@
               },
               "predicates": {
                 "23jc960agpUFBwlg": {
-                  "type": "spellRulePredicate",
-                  "_id": "23jc960agpUFBwlg",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 },
                 "4JUflNoXPiCPK0sr": {
-                  "type": "checkRulePredicate",
-                  "_id": "4JUflNoXPiCPK0sr",
+                  "type": "projectfu.checkRulePredicate",
                   "parity": "even",
                   "result": null,
                   "attributes": {
@@ -111,16 +125,19 @@
                     "secondary": {
                       "value": ""
                     }
-                  }
+                  },
+                  "outcome": "",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "Ez8GhdHPNpnCOxXK": {
-                  "type": "messageRuleAction",
-                  "_id": "Ez8GhdHPNpnCOxXK",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>The invoker may use an <strong>Invocation</strong> back.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -129,23 +146,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Y5NywAw1nL87QTHa",
       "type": "base",
-      "changes": [],
       "description": "<p>After an enemy you can see hits or misses you with an offensive spell, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -157,13 +177,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770875865113,
-        "modifiedTime": 1774844164325,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922830,
+        "modifiedTime": 1792923922830,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!HsdYyIcbdvcleXQP.Y5NywAw1nL87QTHa"
     }
   ],
@@ -177,18 +200,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.HsdYyIcbdvcleXQP",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791518459654,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922830,
+    "modifiedTime": 1792923923010,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "HsdYyIcbdvcleXQP",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!HsdYyIcbdvcleXQP"

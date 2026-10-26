@@ -41,24 +41,26 @@
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.bolt",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "kHcShxkx44ViFsOr",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.bolt",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>Until this spell ends, you gain Resistance to <strong>bolt</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -70,12 +72,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "3DqQhTAexuyMSem6",
-        "modifiedTime": 1775792610178
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921174,
+        "createdTime": 1792923921174
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JxkkqwY0eyzqjIXU.kHcShxkx44ViFsOr"
     }
   ],
@@ -84,16 +90,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771454331634,
-    "modifiedTime": 1775792606384,
-    "lastModifiedBy": "3DqQhTAexuyMSem6"
+    "createdTime": 1792923921174,
+    "modifiedTime": 1792923922132,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "JxkkqwY0eyzqjIXU",
   "sort": 200000,

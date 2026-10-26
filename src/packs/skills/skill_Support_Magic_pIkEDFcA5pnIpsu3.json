@@ -5,16 +5,10 @@
   "_id": "pIkEDFcA5pnIpsu3",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane weapon</strong> equipped, you may choose one of those allies you have a Bond towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "spiritist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR207",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,12 +49,14 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "support-magic",
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "effects": {
       "entries": [
@@ -129,8 +65,22 @@
         "Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs"
       ],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -151,11 +101,8 @@
         "rules": {
           "elements": {
             "V2J7u2tnkQtTmhhG": {
-              "type": "ruleElement",
-              "_id": "V2J7u2tnkQtTmhhG",
               "trigger": {
-                "_id": "rJoNv3Oef4BXvgD1",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -166,30 +113,33 @@
               },
               "predicates": {
                 "VCIXsjeNpMM6xLvL": {
-                  "type": "weaponRulePredicate",
-                  "_id": "VCIXsjeNpMM6xLvL",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "self",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 },
                 "pTk6zFhDWbnI8Te8": {
-                  "type": "factionRelationRulePredicate",
-                  "_id": "pTk6zFhDWbnI8Te8",
-                  "relation": "ally"
+                  "type": "projectfu.factionRelationRulePredicate",
+                  "relation": "ally",
+                  "inclusive": false
                 },
                 "MphJwqfru4en8QVR": {
-                  "type": "bondRulePredicate",
-                  "_id": "MphJwqfru4en8QVR"
+                  "type": "projectfu.bondRulePredicate",
+                  "bond": ""
                 }
               },
               "actions": {
                 "CJ1BDSAuZrGfQJLt": {
-                  "type": "messageRuleAction",
-                  "_id": "CJ1BDSAuZrGfQJLt",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Choose one <strong>Bonded</strong> ally targeted to grant a check bonus equal to your <strong>Bond strength</strong> towards them.</p><hr><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.Fl82KkmDq9R7i86N]{Check Up +1}, @EFFECT[Compendium.projectfu.skills.Item.s9gRkNI1b5eSIuxi]{Check Up +2}, or @EFFECT[Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs]{Check Up +3}</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -198,18 +148,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "rRpOsI2RT5P5mbMW",
       "type": "base",
-      "changes": [],
       "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one of those allies you have a <strong>Bond</strong> towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -221,20 +174,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770609517157,
-        "modifiedTime": 1771877126749,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921347,
+        "modifiedTime": 1792923921347,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!pIkEDFcA5pnIpsu3.rRpOsI2RT5P5mbMW"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -246,10 +200,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706507941545,
-    "modifiedTime": 1786687096201,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921347,
+    "modifiedTime": 1792923922155,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

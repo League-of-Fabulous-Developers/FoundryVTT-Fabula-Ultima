@@ -8,23 +8,17 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (@ICON[offensive]) during this scene, that attack or spell must include you among its targets if possible.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.9b6mngsWCfB7TLa7]{Peacock Dance}</p>",
-      "duration": "instant"
+      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (@ICON[offensive]) during this scene, that attack or spell must include you among its targets if possible.</p><hr><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.9b6mngsWCfB7TLa7]{Peacock Dance}</p>",
+      "duration": "instant",
+      "type": "projectfu.dance"
     },
     "source": "FUHF145",
     "fuid": "peacock-dance"
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {}
@@ -32,10 +26,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710176414684,
-    "modifiedTime": 1774642322105,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921324,
+    "modifiedTime": 1792923922153,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

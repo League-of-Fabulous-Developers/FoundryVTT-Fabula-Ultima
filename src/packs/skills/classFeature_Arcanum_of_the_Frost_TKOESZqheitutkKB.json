@@ -8,11 +8,13 @@
     "summary": {
       "value": ""
     },
-    "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal ignores Resistances.</p>",
       "dismiss": "<p><strong>Ice Age</strong>. Choose any number of creatures you can see: you deal 30 <strong>ice</strong> damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) ice|ignore-resistances|]{Ice Age Damage}</p>",
-      "domains": "cold, ice, silence"
+      "domains": "cold, ice, silence",
+      "type": "projectfu.arcanum",
+      "enablePulse": false,
+      "pulse": ""
     },
     "source": "FUCR179",
     "fuid": "arcanum-of-the-frost"
@@ -21,13 +23,10 @@
     {
       "origin": "Compendium.projectfu.skills.Item.TKOESZqheitutkKB",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Merged: Frost",
@@ -38,21 +37,18 @@
         "rules": {
           "elements": {
             "1W8xsrNxlmKrCJy2": {
-              "type": "ruleElement",
-              "_id": "1W8xsrNxlmKrCJy2",
               "trigger": {
-                "_id": "4AVi7hxQrAx1KRch",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [],
                 "damageTypes": [
                   "ice"
-                ]
+                ],
+                "itemGroups": [],
+                "local": false
               },
               "actions": {
                 "Vb17erUOqix9kPLr": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "Vb17erUOqix9kPLr",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "traits": {
                     "entries": [
                       "ignore-resistances"
@@ -61,10 +57,17 @@
                   "amount": "",
                   "cost": {
                     "amount": null,
-                    "resource": ""
-                  }
+                    "resource": "",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -73,24 +76,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.ice",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          },
+          {
+            "key": "system.immunities.enraged.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.affinities.ice",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
-          "key": "system.immunities.enraged.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal ignores Resistances.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -98,22 +114,23 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
           "source": "FUCR179"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725596891866,
-        "modifiedTime": 1771044787749,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921231,
+        "modifiedTime": 1792923921231,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!TKOESZqheitutkKB.NlNLwaqwYxflNKXr"
     }
   ],
@@ -123,19 +140,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710463982993,
-    "modifiedTime": 1786402349805,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921231,
+    "modifiedTime": 1792923922139,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "sort": 600000,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!TKOESZqheitutkKB"
 }

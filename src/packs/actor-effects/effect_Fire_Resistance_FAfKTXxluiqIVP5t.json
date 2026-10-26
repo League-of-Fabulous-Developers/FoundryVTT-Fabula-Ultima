@@ -5,7 +5,10 @@
   "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-resistance",
-    "source": ""
+    "source": "",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -31,31 +34,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.fire",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "xZs0nH1RY4BvE3Tb",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.affinities.fire",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain Resistance to <strong>fire</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -76,13 +82,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774816620027,
-        "modifiedTime": 1774816638649,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924043,
+        "modifiedTime": 1792923924043,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!FAfKTXxluiqIVP5t.xZs0nH1RY4BvE3Tb"
     }
   ],
@@ -90,19 +99,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725750014969,
-    "modifiedTime": 1774761043758,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924043,
+    "modifiedTime": 1792923924211,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "FAfKTXxluiqIVP5t",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "_key": "!items!FAfKTXxluiqIVP5t"
 }

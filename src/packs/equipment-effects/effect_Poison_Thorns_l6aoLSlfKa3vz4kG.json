@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "FfiwKIUhW8g7Zn5y": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "Mdpo4bC6zi41fiIV",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -44,28 +42,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "FfiwKIUhW8g7Zn5y",
               "predicates": {
                 "Fd0K3gLb62mNdwp0": {
-                  "type": "checkRulePredicate",
-                  "_id": "Fd0K3gLb62mNdwp0",
+                  "type": "projectfu.checkRulePredicate",
                   "result": null,
-                  "outcome": "success"
+                  "outcome": "success",
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "3gVzl74GXsYwO8j2": {
-                  "type": "weaponRulePredicate",
-                  "_id": "3gVzl74GXsYwO8j2",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "WcG1rIO4M6bxYJzs": {
-                  "type": "messageRuleAction",
-                  "_id": "WcG1rIO4M6bxYJzs",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 poison] to them.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -74,23 +83,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "vyFzdheBet4Tj216",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>poison</strong> damage to that creature (after the attack has been resolved).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -111,32 +123,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774749208812,
-        "modifiedTime": 1774749989286,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924688,
+        "modifiedTime": 1792923924688,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!l6aoLSlfKa3vz4kG.vyFzdheBet4Tj216"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774748456783,
-    "modifiedTime": 1774749208053,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924688,
+    "modifiedTime": 1792923924856,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!l6aoLSlfKa3vz4kG"
 }

@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr /><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p><hr /><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>",
-      "complex": false
+      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p><hr><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>",
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF169",
     "fuid": "seat-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711477056500,
-    "modifiedTime": 1773733333565,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923293,
+    "modifiedTime": 1792923923320,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "vGz7COjgUSUh9vY3",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!vGz7COjgUSUh9vY3"
 }

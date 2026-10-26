@@ -5,16 +5,10 @@
   "_id": "v6rTedHMjbLuLdN3",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you cast an offensive spell (@ICON[offensive]) targeting a <strong>single creature</strong>, if the spell has a <strong>total Mind Point cost of 【SL × 20】 or lower</strong>, you may choose one <strong>non-arcane weapon</strong> you have equipped. If you do, your Magic Check for the spell uses the chosen <strong>weapon</strong>'s Accuracy Check formula; if that formula includes <strong>Dexterity</strong>, the Magic Check also gains a bonus equal to <strong>【SL】.</strong></p><p>For instance, casting a spell through a <strong>bronze sword</strong> when you have <strong>Skill Level 2</strong> in <strong>Spellblade</strong> will cause the Magic Check to be <strong>【DEX + MIG】 +3</strong> instead of <strong>【INS + WLP】</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "elementalist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": true,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR187",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,30 +49,44 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "spellblade",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
     {
       "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Spellblade",
@@ -155,34 +103,35 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1,
         "rules": {
           "elements": {
             "n51WK4vf6h7Pn9Rt": {
-              "type": "ruleElement",
-              "_id": "n51WK4vf6h7Pn9Rt",
               "trigger": {
-                "_id": "NkUGhN3O6wegQ14w",
-                "type": "performCheckRuleTrigger",
+                "type": "projectfu.performCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "magic"
-                ]
+                ],
+                "local": false
               },
               "predicates": {
                 "YAHJUD5SD1ClxolQ": {
-                  "type": "checkRulePredicate",
-                  "_id": "YAHJUD5SD1ClxolQ",
+                  "type": "projectfu.checkRulePredicate",
                   "result": null,
                   "attributes": {
                     "primary": {
                       "value": "dex"
+                    },
+                    "secondary": {
+                      "value": ""
                     }
-                  }
+                  },
+                  "parity": "",
+                  "outcome": "",
+                  "quantifier": "any"
                 },
                 "jhaZQdISJVvn4vew": {
-                  "type": "weaponRulePredicate",
-                  "_id": "jhaZQdISJVvn4vew",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "bow",
                     "brawling",
@@ -194,16 +143,20 @@
                     "sword",
                     "thrown"
                   ],
-                  "selector": "self"
+                  "selector": "self",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 }
               },
               "actions": {
                 "OVdMuTH6qx98kFEi": {
-                  "type": "modifyCheckRuleAction",
-                  "_id": "OVdMuTH6qx98kFEi",
+                  "type": "projectfu.modifyCheckRuleAction",
                   "bonus": "$sl"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -212,18 +165,20 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "flags.projectfu.weaponMagicCheck",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "flags.projectfu.weaponMagicCheck",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "description": "<p>Your <strong>Magic Check</strong> for spells will use the <em>chosen weapon'</em>s <strong>Accuracy Check</strong> formula. If that formula includes <strong>Dexterity</strong>, the Magic Check also gains a bonus equal to <strong>【SL】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -234,21 +189,22 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743535722306,
-        "modifiedTime": 1771832393259,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921377,
+        "modifiedTime": 1792923921377,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!v6rTedHMjbLuLdN3.DhBhEANF8jRMaBo4"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -260,10 +216,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706498028252,
-    "modifiedTime": 1786403718545,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921377,
+    "modifiedTime": 1792923922163,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

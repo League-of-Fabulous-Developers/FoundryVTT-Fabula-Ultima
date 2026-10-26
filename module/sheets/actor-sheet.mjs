@@ -363,11 +363,8 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			}
 		}
 
-		if (type === 'classFeature') {
-			itemData.system = { featureType: subType };
-			itemData.name = this._determineNewFeatureName(type, subType, this.actor);
-		} else if (type === 'optionalFeature') {
-			itemData.system = { optionalType: subType };
+		if (type === 'classFeature' || type === 'optionalFeature') {
+			itemData.system = { data: { type: subType } };
 			itemData.name = this._determineNewFeatureName(type, subType, this.actor);
 		} else {
 			itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });

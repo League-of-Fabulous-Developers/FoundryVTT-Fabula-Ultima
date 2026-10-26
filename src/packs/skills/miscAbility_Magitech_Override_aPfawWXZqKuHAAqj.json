@@ -3,63 +3,30 @@
   "type": "miscAbility",
   "img": "icons/commodities/tech/antenna-powered-purple.webp",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p><strong>Requirement:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><hr /><p>During a conflict, you may use an action and spend 10 Mind Points to choose a <strong>construct</strong> or <strong>elemental</strong> enemy you can see that does not possess independent intelligence and is suffering from <strong>one or more status effects</strong>. If you do so, that enemy recovers from all status effects, then the Game Master reveals its <strong>entire profile</strong> and you may force it to immediately perform an action of your choice; during that action, the creature is treated as an ally of your group.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirement:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><hr><p>During a conflict, you may use an action and spend 10 Mind Points to choose a <strong>construct</strong> or <strong>elemental</strong> enemy you can see that does not possess independent intelligence and is suffering from <strong>one or more status effects</strong>. If you do so, that enemy recovers from all status effects, then the Game Master reveals its <strong>entire profile</strong> and you may force it to immediately perform an action of your choice; during that action, the creature is treated as an ally of your group.</p>",
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "dex"
-      },
-      "secondary": {
-        "value": "ins"
-      }
+      "primary": "ins",
+      "secondary": "ins"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -77,48 +44,17 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "rp": {
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUCR215",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "ins"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -126,23 +62,34 @@
     "defense": "def",
     "fuid": "magitech-override",
     "cost": {
-      "amount": 10
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "folder": "deLkolgURtb8RMPr",
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -156,10 +103,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711293254460,
-    "modifiedTime": 1771878897541,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921267,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

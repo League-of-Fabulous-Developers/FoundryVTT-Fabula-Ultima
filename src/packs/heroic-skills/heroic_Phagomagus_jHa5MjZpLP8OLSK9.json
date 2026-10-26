@@ -6,7 +6,7 @@
     "summary": {
       "value": "Devour the magic present on your foes."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Entropist</strong>, <strong>Gourmet</strong> and <strong>Mutant</strong>.</p><hr /><p>When you cast the @UUID[Compendium.projectfu.skills.Item.6QG5ZZgRs4xnxlVl]{Dispel} spell, its <strong>MP</strong> cost becomes \"10 × T\" and its <strong>target</strong> becomes \"Up to three creatures\".</p><p>When you cause one or more enemies to stop being affected by one or more spells with a <strong>duration</strong> of \"Scene\", choose <strong>one</strong> option:</p><ul><li><p>You recover 20 Mind Points for each different spell whose effects ended on at least one of those enemies this way.</p></li><li><p>For each different spell whose effects ended on at least one of those enemies this way, apply a copy of that spell on yourself (if a spell allowed for choices upon casting it, you must retain the same choices that were made for this casting of the spell). This copying effect does not require actions, Mind Points, or Checks, and is not treated as \"casting a spell\".</p></li></ul><hr /><p><strong>You Gain:</strong> @GAIN[20 mp]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Entropist</strong>, <strong>Gourmet</strong> and <strong>Mutant</strong>.</p><hr><p>When you cast the @UUID[Compendium.projectfu.skills.Item.6QG5ZZgRs4xnxlVl]{Dispel} spell, its <strong>MP</strong> cost becomes \"10 × T\" and its <strong>target</strong> becomes \"Up to three creatures\".</p><p>When you cause one or more enemies to stop being affected by one or more spells with a <strong>duration</strong> of \"Scene\", choose <strong>one</strong> option:</p><ul><li><p>You recover 20 Mind Points for each different spell whose effects ended on at least one of those enemies this way.</p></li><li><p>For each different spell whose effects ended on at least one of those enemies this way, apply a copy of that spell on yourself (if a spell allowed for choices upon casting it, you must retain the same choices that were made for this casting of the spell). This copying effect does not require actions, Mind Points, or Checks, and is not treated as \"casting a spell\".</p></li></ul><hr><p><strong>You Gain:</strong> @GAIN[20 mp]</p>",
     "class": {
       "value": "chimerist, entropist, gourmet, mutant"
     },
@@ -33,15 +33,48 @@
     "fuid": "phagomagus",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -56,18 +89,17 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1767915231139,
-    "modifiedTime": 1775353880905,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923922857,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "jHa5MjZpLP8OLSK9",
   "ownership": {
-    "default": 0,
-    "94wV67htTTVBPn7n": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!jHa5MjZpLP8OLSK9"

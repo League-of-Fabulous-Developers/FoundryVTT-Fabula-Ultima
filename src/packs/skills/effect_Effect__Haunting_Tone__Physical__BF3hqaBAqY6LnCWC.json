@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "JUzDLumzpyYxARIR": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "BH7ABedjvIWjZZZW",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "target",
                 "damageType": "physical",
                 "affinity": "resistance",
@@ -45,11 +43,9 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "JUzDLumzpyYxARIR",
               "actions": {
                 "dGiePh78zOclvA9H": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "dGiePh78zOclvA9H",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "traits": {
                     "entries": [
                       "ignore-resistances"
@@ -57,10 +53,18 @@
                   },
                   "amount": "",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -69,24 +73,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "2KUEcWV1mTnc3K66",
       "type": "base",
-      "changes": [],
       "description": "<p>All <strong>physical</strong> damage dealt to you ignores your Resistances. This lasts until the start of the <strong>chanter's</strong> next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -107,32 +113,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1782596816596,
-        "modifiedTime": 1782596850585,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921137,
+        "modifiedTime": 1792923921137,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!BF3hqaBAqY6LnCWC.2KUEcWV1mTnc3K66"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1782596223607,
-    "modifiedTime": 1782596289135,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921137,
+    "modifiedTime": 1792923922126,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!BF3hqaBAqY6LnCWC"
 }

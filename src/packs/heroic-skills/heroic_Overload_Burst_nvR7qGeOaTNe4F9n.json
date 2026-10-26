@@ -10,62 +10,30 @@
     "summary": {
       "value": "Destroy your vehicle to avoid defeat and damage your enemy."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong> and acquired <strong>Compression Tech</strong>.</p><hr /><p>Choose a damage type among <strong>bolt</strong>, <strong>dark</strong>, <strong>fire</strong>, <strong>ice</strong>, and <strong>light</strong>.</p><p>When you are reduced to 0 Hit Points for the first time during a scene, if you are driving your <strong>personal vehicle</strong>, you may choose to be reduced to exactly 1 Hit Point instead. If you do, you and any passengers <strong>leave</strong> your <strong>personal vehicle</strong>, which <strong>disappears</strong> from the game world. Then, you may deal an amount of damage equal to your <strong>Crisis</strong> score to a single creature you can see. This damage is of the type you have chosen from the list above. If your <strong>personal vehicle</strong> disappears from the game world this way, the next use of your @UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech} Skill will have an additional cost of 1 Fabula Point.</p><hr /><p><em>Alter this Skill's damage type to match the one chosen.<br /></em><strong>You Recover:</strong> @GAIN[1 hp]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Pilot</strong> and acquired <strong>Compression Tech</strong>.</p><hr><p>Choose a damage type among <strong>bolt</strong>, <strong>dark</strong>, <strong>fire</strong>, <strong>ice</strong>, and <strong>light</strong>.</p><p>When you are reduced to 0 Hit Points for the first time during a scene, if you are driving your <strong>personal vehicle</strong>, you may choose to be reduced to exactly 1 Hit Point instead. If you do, you and any passengers <strong>leave</strong> your <strong>personal vehicle</strong>, which <strong>disappears</strong> from the game world. Then, you may deal an amount of damage equal to your <strong>Crisis</strong> score to a single creature you can see. This damage is of the type you have chosen from the list above. If your <strong>personal vehicle</strong> disappears from the game world this way, the next use of your @UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech} Skill will have an additional cost of 1 Fabula Point.</p><hr><p><em>Alter this Skill's damage type to match the one chosen.<br></em><strong>You Recover:</strong> @GAIN[1 hp]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "pilot"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      },
+      "accuracy": false,
+      "damage": false,
       "traits": false
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
       "hasDamage": true,
       "value": 0,
       "type": "bolt",
       "onRoll": "floor(@source.resources.hp.max/2)",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -74,36 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF176",
     "fuid": "overload-burst",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "resource": {
-      "enabled": false
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523907581,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922862,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "nvR7qGeOaTNe4F9n",
   "sort": 0,

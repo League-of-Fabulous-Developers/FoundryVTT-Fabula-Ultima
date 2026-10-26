@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/merchant/ive_heard_of_it.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>After you or an ally that is able to hear and understand you roll dice for a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to <strong>【SL × 2】</strong> to the Result of that Check.</p><hr /><p><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After you or an ally that is able to hear and understand you roll dice for a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to <strong>【SL × 2】</strong> to the Result of that Check.</p><hr><p><strong>You Spend:</strong> @PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF159",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "ive-heard-of-it",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,14 +64,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -83,12 +91,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bDP47SDoLzbmoRxq",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676975651,
-    "modifiedTime": 1791509934493,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921160,
+    "modifiedTime": 1792923922130,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "GkFFLkshtNlg0vgV",

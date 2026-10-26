@@ -76,7 +76,9 @@
         "bonus": 0
       }
     },
-    "equipped": {},
+    "equipped": {
+      "therioforms": []
+    },
     "bonuses": {
       "bondStrength": 0,
       "incomingRecovery": {
@@ -105,7 +107,8 @@
         "heavy": 0,
         "spear": 0,
         "sword": 0,
-        "thrown": 0
+        "thrown": 0,
+        "all": 0
       },
       "incomingDamage": {
         "all": 0,
@@ -173,7 +176,12 @@
         "plant": 0,
         "undead": 0
       },
-      "turns": 0
+      "turns": 0,
+      "incomingLoss": {
+        "hp": 0,
+        "mp": 0,
+        "ip": 0
+      }
     },
     "immunities": {
       "slow": {
@@ -228,7 +236,47 @@
       "value": 0
     },
     "description": "",
-    "associatedTherioforms": ""
+    "associatedTherioforms": "",
+    "multipliers": {
+      "incomingRecovery": {
+        "mp": 1,
+        "ip": 1,
+        "hp": 1
+      },
+      "incomingLoss": {
+        "hp": 1,
+        "mp": 1,
+        "ip": 1
+      },
+      "outgoingRecovery": {
+        "hp": 1,
+        "mp": 1,
+        "ip": 1
+      }
+    },
+    "overrides": {
+      "damageType": {
+        "all": {
+          "normal": "",
+          "priority": ""
+        },
+        "attack": {
+          "normal": "",
+          "priority": ""
+        },
+        "spell": {
+          "normal": "",
+          "priority": ""
+        },
+        "skill": {
+          "normal": "",
+          "priority": ""
+        }
+      }
+    },
+    "pressurePoints": {
+      "entries": []
+    }
   },
   "prototypeToken": {
     "name": "Faithful Companion",
@@ -242,12 +290,9 @@
       "src": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer_faithful_companion.png",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -298,7 +343,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -322,7 +367,8 @@
       "src": null,
       "disposition": false
     },
-    "movementAction": null
+    "movementAction": null,
+    "depth": 1
   },
   "items": [
     {
@@ -330,16 +376,10 @@
       "type": "weapon",
       "img": "systems/projectfu/styles/static/compendium/weapons/unarmed-strike.png",
       "system": {
-        "subtype": {
-          "value": ""
-        },
         "summary": {
           "value": ""
         },
         "description": "<p>Automatically equipped in each empty hand slot.</p>",
-        "isFavored": {
-          "value": false
-        },
         "showTitleCard": {
           "value": false
         },
@@ -387,9 +427,6 @@
         "weight": {
           "value": 1
         },
-        "isCustomWeapon": {
-          "value": false
-        },
         "source": "FUCR130",
         "rollInfo": {
           "useWeapon": {
@@ -408,7 +445,9 @@
         },
         "init": {
           "value": 0
-        }
+        },
+        "hasDamage": true,
+        "traits": []
       },
       "effects": [],
       "folder": "SnyIBMif9646gEkD",
@@ -418,12 +457,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "createdTime": 1792923919253,
+        "modifiedTime": 1792923919253,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "u63JtMuqDDj0kOOY",
@@ -440,13 +479,10 @@
     {
       "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer_faithful_companion.png",
       "duration": {
-        "rounds": null,
-        "startTime": 0,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": 4,
-        "startTurn": 0
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Effect: Faithful Companion",
@@ -463,22 +499,26 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "@refSkill.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "@refSkill.level.value",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.accuracyCheck",
+            "value": "@refSkill.level.value",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.accuracy.magicCheck",
+            "value": "@refSkill.level.value",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "rules": {
+          "elements": {}
         }
-      ],
+      },
       "description": "<p>Companion gains a bonus equal to <strong>【SL】</strong> to Accuracy Checks and Magic Checks</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -489,14 +529,24 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744074593378,
-        "modifiedTime": 1744074729084,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "createdTime": 1792923919253,
+        "modifiedTime": 1792923919253,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": {
+        "combat": null,
+        "round": 4,
+        "time": 0,
+        "turn": 0,
+        "combatant": null,
+        "initiative": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!actors.effects!7J6fSVwbaWwi3Ojv.1PE4407la2PKSESD"
     },
     {
@@ -528,18 +578,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "changes": [],
+        "rules": {
+          "elements": {}
+        }
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": 0,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": 4,
-        "startTurn": 0
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "origin": null,
@@ -549,14 +598,24 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744074803379,
-        "modifiedTime": 1744074803379,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "createdTime": 1792923919253,
+        "modifiedTime": 1792923919253,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "showIcon": 2,
+      "start": {
+        "combat": null,
+        "round": 4,
+        "time": 0,
+        "turn": 0,
+        "combatant": null,
+        "initiative": null
+      },
+      "folder": null,
       "_key": "!actors.effects!7J6fSVwbaWwi3Ojv.cai3IigQncZpVrtg"
     },
     {
@@ -588,18 +647,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "changes": [],
+        "rules": {
+          "elements": {}
+        }
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": 0,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": 4,
-        "startTurn": 0
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "origin": null,
@@ -609,32 +667,41 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744074803387,
-        "modifiedTime": 1744074803387,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "createdTime": 1792923919253,
+        "modifiedTime": 1792923919253,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "showIcon": 2,
+      "start": {
+        "combat": null,
+        "round": 4,
+        "time": 0,
+        "turn": 0,
+        "combatant": null,
+        "initiative": null
+      },
+      "folder": null,
       "_key": "!actors.effects!7J6fSVwbaWwi3Ojv.8vS32pwR9yfxKdCq"
     }
   ],
   "folder": null,
   "ownership": {
-    "default": 0,
-    "uG2TkwmswfdRqaAv": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744074261893,
-    "modifiedTime": 1744074803370,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "createdTime": 1792923919253,
+    "modifiedTime": 1792923919269,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "7J6fSVwbaWwi3Ojv",

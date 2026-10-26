@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/floralist/tree_of_life.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>When a <strong>magiseed</strong> is removed from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</p><hr /><p><strong>Target Recovers:</strong> @GAIN[5+(5*$sl) hp]{5 + (SL × 5) HP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When a <strong>magiseed</strong> is removed from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</p><hr><p><strong>Target Recovers:</strong> @GAIN[5+(5*$sl) hp]{5 + (SL × 5) HP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF139",
     "hasRoll": {
@@ -57,7 +55,8 @@
     "fuid": "tree-of-life",
     "cost": {
       "resource": "mp",
-      "amount": 0
+      "amount": "0",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,14 +64,23 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -84,12 +92,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bzts77PlpTm21uNN",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1791493781225,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921179,
+    "modifiedTime": 1792923922133,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "LldlV87wO5Tqnl4L",

@@ -5,63 +5,30 @@
   "_id": "c8jU0AIm1nOBRQaX",
   "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<p></p><table><tbody><tr><td><p><strong>Key</strong></p></td><td><p style=\"text-align:center\"><strong>Type</strong></p></td><td><p style=\"text-align:center\"><strong>Status Effect</strong></p></td><td><p style=\"text-align:center\"><strong>Attribute</strong></p></td><td><p style=\"text-align:center\"><strong>Recovery</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.cmo71xT0QgJCOOMp]{Key of Flame}</p></td><td><p style=\"text-align:center\">fire @ICON[fire]</p></td><td><p style=\"text-align:center\">shaken</p></td><td><p style=\"text-align:center\">Might</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.QZOttsghYTCeqnCx]{Key of Frost}</p></td><td><p style=\"text-align:center\">ice @ICON[ice]</p></td><td><p style=\"text-align:center\">weak</p></td><td><p style=\"text-align:center\">Willpower</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.qpRWVxEuy6iHiUCP]{Key of Iron}</p></td><td><p style=\"text-align:center\">physical @ICON[physical]</p></td><td><p style=\"text-align:center\">slow</p></td><td><p style=\"text-align:center\">Willpower</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.ymWN6HhIvwji1Y39]{Key of Radiance}</p></td><td><p style=\"text-align:center\">light @ICON[light]</p></td><td><p style=\"text-align:center\">dazed</p></td><td><p style=\"text-align:center\">Insight</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zzyNprcgb1RF2niW]{Key of Shadow}</p></td><td><p style=\"text-align:center\">dark @ICON[dark]</p></td><td><p style=\"text-align:center\">weak</p></td><td><p style=\"text-align:center\">Dexterity</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.dyyFIR6iB0brrh1I]{Key of Stone}</p></td><td><p style=\"text-align:center\">earth @ICON[earth]</p></td><td><p style=\"text-align:center\">dazed</p></td><td><p style=\"text-align:center\">Might</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.GBEltqKPxdTA0ppJ]{Key of Thunder}</p></td><td><p style=\"text-align:center\">bolt @ICON[bolt]</p></td><td><p style=\"text-align:center\">shaken</p></td><td><p style=\"text-align:center\">Dexterity</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zqNF92stxmhiX85K]{Key of Wind}</p></td><td><p style=\"text-align:center\">air @ICON[air]</p></td><td><p style=\"text-align:center\">slow</p></td><td><p style=\"text-align:center\">Insight</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr></tbody></table>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "dex"
-      },
-      "secondary": {
-        "value": "ins"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -79,48 +46,17 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "rp": {
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUHF138",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -129,17 +65,33 @@
     "fuid": "handout-key-list",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "ebg6FQH2cPZYwDuu": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "projectfu-playtest": {
@@ -152,10 +104,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1708922588320,
-    "modifiedTime": 1791487201565,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921274,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

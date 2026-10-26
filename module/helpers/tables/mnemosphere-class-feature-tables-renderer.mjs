@@ -27,7 +27,7 @@ class MnemosphereClassFeaturesTableRenderer extends FeaturesTableRenderer {
 	#sheetLocked;
 
 	static #getItems(mnemosphere) {
-		return mnemosphere.system.classFeatures.filter((item) => item.system.featureType === this.featureKey);
+		return mnemosphere.system.classFeatures.filter((item) => item.system.data.type === this.featureKey);
 	}
 
 	static #isSheetLocked() {

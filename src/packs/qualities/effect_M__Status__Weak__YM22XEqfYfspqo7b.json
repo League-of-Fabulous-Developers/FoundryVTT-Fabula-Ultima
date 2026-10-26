@@ -14,7 +14,6 @@
       "name": "M. Status (Weak)",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [],
       "description": "<p>When you hit one or more creatures with an offensive spell, each of them suffers @EFFECT[weak].</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -22,35 +21,48 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "none",
           "source": "FUCR270"
         }
       },
       "_id": "0eWMFYIXfkQ7hALT",
-      "system": {},
+      "system": {
+        "changes": [],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1728777991016,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "createdTime": 1792923925166,
+        "modifiedTime": 1792923925166,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!YM22XEqfYfspqo7b.0eWMFYIXfkQ7hALT"
     }
   ],
@@ -59,19 +71,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747195507,
-    "modifiedTime": 1728747195507,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "createdTime": 1792923925166,
+    "modifiedTime": 1792923925279,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "YM22XEqfYfspqo7b",
   "sort": 700000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!YM22XEqfYfspqo7b"
 }

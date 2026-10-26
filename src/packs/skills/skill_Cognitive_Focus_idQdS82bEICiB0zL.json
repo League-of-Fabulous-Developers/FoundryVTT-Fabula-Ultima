@@ -3,14 +3,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells (@ICON[offensive]) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -23,49 +19,22 @@
       "value": "esper"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -74,42 +43,10 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF151",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -118,10 +55,27 @@
     "effects": {
       "entries": [
         "focus"
-      ]
+      ],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": ""
+      }
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -142,46 +96,35 @@
         "rules": {
           "elements": {
             "DOBtjnZdanXuPRqy": {
-              "type": "ruleElement",
-              "_id": "DOBtjnZdanXuPRqy",
               "trigger": {
-                "_id": "Sry2ltMpAYvYkBUa",
-                "type": "performCheckRuleTrigger",
+                "type": "projectfu.performCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy",
                   "magic"
                 ],
-                "attributes": {
-                  "primary": {
-                    "value": ""
-                  },
-                  "secondary": {
-                    "value": ""
-                  }
-                }
+                "local": false
               },
               "predicates": {
                 "Lw3YvRTsOnUBPy1h": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "Lw3YvRTsOnUBPy1h",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "xWiwmlyWgSjX6m8K": {
-                  "type": "modifyCheckRuleAction",
-                  "_id": "xWiwmlyWgSjX6m8K",
+                  "type": "projectfu.modifyCheckRuleAction",
                   "bonus": "$sl"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "A7MrxrxfDKnAqbnm": {
-              "type": "ruleElement",
-              "_id": "A7MrxrxfDKnAqbnm",
               "trigger": {
-                "_id": "f4pz9aSChgNSBYI5",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [],
@@ -190,13 +133,13 @@
               },
               "predicates": {
                 "mjxbVDAi3pjY51Tc": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "mjxbVDAi3pjY51Tc",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 },
                 "0zURdqfxPfCjRhSi": {
-                  "type": "traitsRulePredicate",
-                  "_id": "0zURdqfxPfCjRhSi",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "gain",
@@ -208,18 +151,16 @@
               },
               "actions": {
                 "mYbH78f8MSjL2Gzo": {
-                  "type": "messageRuleAction",
-                  "_id": "mYbH78f8MSjL2Gzo",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Your <strong>focus</strong> recovers extra @GAIN[&sl('cognitive-focus')*2 hp]{SL × 2 HP}.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "R1OHDd7sJEu9967V": {
-              "type": "ruleElement",
-              "_id": "R1OHDd7sJEu9967V",
               "trigger": {
-                "_id": "1Mc0Ko9kFW543UK0",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [],
@@ -228,20 +169,19 @@
               },
               "actions": {
                 "gL2C8YwZzHTmV4Ob": {
-                  "type": "messageRuleAction",
-                  "_id": "gL2C8YwZzHTmV4Ob",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Your <strong>focus</strong> recovers extra @GAIN[&sl('cognitive-focus')*2 mp]{SL × 2 MP}.</p>"
                 }
               },
               "predicates": {
                 "2hVcpxTfAMd4x1op": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "2hVcpxTfAMd4x1op",
-                  "effect": "focus"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "focus",
+                  "selector": "initial",
+                  "quantifier": "any"
                 },
                 "ZjlRUGVlgWRJLf8n": {
-                  "type": "traitsRulePredicate",
-                  "_id": "ZjlRUGVlgWRJLf8n",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "gain",
@@ -250,24 +190,26 @@
                     "quantifier": "all"
                   }
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "mcr0Ct3QQjrsek8E": {
-              "type": "ruleElement",
-              "_id": "mcr0Ct3QQjrsek8E",
               "trigger": {
-                "_id": "g5HpN1BwCrnS2s5H",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "source",
-                "eventType": "startOfTurn"
+                "eventType": "startOfTurn",
+                "parity": ""
               },
               "actions": {
                 "JjuQxsQe3VjS7C7L": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "JjuQxsQe3VjS7C7L",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "focus"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -276,18 +218,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "3vHmCpjussdJcEgM",
       "type": "base",
-      "changes": [],
       "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -299,21 +244,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767260254243,
-        "modifiedTime": 1771875947112,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921313,
+        "modifiedTime": 1792923921313,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!idQdS82bEICiB0zL.3vHmCpjussdJcEgM"
     }
   ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -325,10 +271,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711424945464,
-    "modifiedTime": 1770367820556,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921313,
+    "modifiedTime": 1792923922151,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

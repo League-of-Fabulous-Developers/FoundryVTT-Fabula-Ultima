@@ -9,81 +9,33 @@
     "summary": {
       "value": "Sacrifice HP for massive damage."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong>.</p><hr /><p>When you hit a creature with an attack, if that attack <strong>only</strong> targeted that creature and you have a <strong>Bond</strong> towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p><strong>Target Suffers:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong>.</p><hr><p>When you hit a creature with an attack, if that attack <strong>only</strong> targeted that creature and you have a <strong>Bond</strong> towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "darkblade"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR236",
     "hasResource": {
@@ -93,20 +45,37 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "heartbreaker",
     "cost": {
       "amount": "floor($hp/2)",
-      "resource": "hp"
+      "resource": "hp",
+      "perTarget": false
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -128,10 +97,8 @@
         "rules": {
           "elements": {
             "P07ch1U6FR84vk01": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "274bC1klpVPzix1d",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -140,31 +107,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "P07ch1U6FR84vk01",
               "predicates": {
                 "Wa2t37OYnTFC1o9k": {
-                  "type": "bondRulePredicate",
-                  "_id": "Wa2t37OYnTFC1o9k"
+                  "type": "projectfu.bondRulePredicate",
+                  "bond": ""
                 },
                 "LuXLD2NihjEyRRws": {
-                  "type": "targetingRulePredicate",
-                  "_id": "LuXLD2NihjEyRRws"
+                  "type": "projectfu.targetingRulePredicate",
+                  "rule": "single"
                 },
                 "XjC9PesIPX5CjdDv": {
-                  "type": "checkRulePredicate",
-                  "_id": "XjC9PesIPX5CjdDv",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "1N1IiaSaAHGepxd2": {
-                  "type": "messageRuleAction",
-                  "_id": "1N1IiaSaAHGepxd2",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may spend half your HP to deal extra damage.</p>"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             }
           },
           "progress": {
@@ -173,18 +148,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Lbkn2cBwEfIjUW4x",
       "type": "base",
-      "changes": [],
       "description": "<p>When you hit a creature with an attack, if that attack <strong>only</strong> targeted that creature and you have a <strong>Bond</strong> towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -205,20 +183,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771887910802,
-        "modifiedTime": 1771888027001,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922822,
+        "modifiedTime": 1792923922822,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!8Djx8D9cU36qHQYz.Lbkn2cBwEfIjUW4x"
     }
   ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -230,10 +210,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706584345254,
-    "modifiedTime": 1787127112884,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922822,
+    "modifiedTime": 1792923923009,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

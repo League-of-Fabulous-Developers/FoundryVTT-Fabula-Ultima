@@ -9,81 +9,33 @@
     "summary": {
       "value": "Force enemies to spend MP to act after hitting with a spear."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Commander</strong> or <strong>Weaponmaster</strong>.</p><hr /><p>After you hit one or more creatures with a <strong>melee</strong> attack using a <strong>weapon</strong> that belongs to the <strong>spear</strong> Category, if you have <strong>no other weapon equipped</strong>, you may spend 20 Mind Points and choose one of those creatures. If you do so, the attack deals <strong>half</strong> the normal amount of damage to each of its targets, and you choose one type of action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong>. From now on, the chosen creature must spend 10 Mind points whenever they wish to perform that type of action. If they can't, they must perform a different type of action. This effect lasts until the start of your next turn, or until you use this Skill again.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Commander</strong> or <strong>Weaponmaster</strong>.</p><hr><p>After you hit one or more creatures with a <strong>melee</strong> attack using a <strong>weapon</strong> that belongs to the <strong>spear</strong> Category, if you have <strong>no other weapon equipped</strong>, you may spend 20 Mind Points and choose one of those creatures. If you do so, the attack deals <strong>half</strong> the normal amount of damage to each of its targets, and you choose one type of action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong>. From now on, the chosen creature must spend 10 Mind points whenever they wish to perform that type of action. If they can't, they must perform a different type of action. This effect lasts until the start of your next turn, or until you use this Skill again.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "commander, weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF157",
     "hasResource": {
@@ -93,15 +45,20 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "iron-forest",
     "cost": {
-      "amount": "20"
+      "amount": "20",
+      "resource": "mp",
+      "perTarget": false
     },
     "effects": {
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "entries": [
         "Compendium.projectfu.heroic-skills.Item.SZAZdgiDWIvxWE00",
@@ -113,7 +70,18 @@
       "prompt": true
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -135,10 +103,8 @@
         "rules": {
           "elements": {
             "zVuNRr7uEo9SRjqd": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "nab6TfxPJnldkx7H",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy"
@@ -149,31 +115,41 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "zVuNRr7uEo9SRjqd",
               "predicates": {
                 "xWdaqaE8b7BzB52k": {
-                  "type": "weaponRulePredicate",
-                  "_id": "xWdaqaE8b7BzB52k",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "source",
                   "weaponType": "melee",
                   "categories": [
                     "spear"
-                  ]
+                  ],
+                  "martial": "",
+                  "handedness": ""
                 },
                 "pTk1Coq1mM86uXHg": {
-                  "type": "checkRulePredicate",
-                  "_id": "pTk1Coq1mM86uXHg",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "gThpPPUG7ZljvNoH": {
-                  "type": "messageRuleAction",
-                  "_id": "gThpPPUG7ZljvNoH",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may spend 20 MP to forbid an action.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -182,18 +158,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "XdBbwopGjo7hVkye",
       "type": "base",
-      "changes": [],
       "description": "<p>After you hit one or more creatures with a <strong>spear</strong> <strong>melee</strong> attack, you may spend 20 MP and choose one of those creatures. If you do so, the attack deals <strong>half</strong> the normal amount of damage to each of its targets, and you choose one type of action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong>. From now on, the chosen creature must spend 10 Mind points whenever they wish to perform that action. If they can't, they must perform a different action. This effect lasts until the start of your next turn, or until you use this Skill again.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -214,20 +193,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1771892475427,
-        "modifiedTime": 1771892797960,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922824,
+        "modifiedTime": 1792923922824,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9ga5k07i5o6nEE1c.XdBbwopGjo7hVkye"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -239,10 +220,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684646291,
-    "modifiedTime": 1791492526999,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922824,
+    "modifiedTime": 1792923923009,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

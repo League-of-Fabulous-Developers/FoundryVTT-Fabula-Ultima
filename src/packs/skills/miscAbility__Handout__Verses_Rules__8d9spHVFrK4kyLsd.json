@@ -4,63 +4,30 @@
   "type": "miscAbility",
   "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<h2>SINGING A VERSE</h2><p>When you sing a <strong>verse</strong>, you combine a <strong>volume</strong>, a <strong>key</strong> and a <strong>tone</strong> you learned. These three aspects determine the <strong>verse's</strong> MP cost, targets, and effect.</p><ul><li><p>The <strong>volume</strong> determines the sound intensity of your <strong>verse</strong> (and the creatures you can reach with it).</p></li><li><p>Each <strong>tone</strong> determines the general effects of your <strong>verse</strong>.</p></li><li><p>Each <strong>key</strong> has an associated <strong>damage type</strong>, <strong>status effect</strong>, <strong>Attribute</strong> and <strong>recovery</strong>. These modify the effects determined by the <strong>tone</strong> of your <strong>verse</strong>.</p></li></ul><blockquote><p><strong>Example:</strong> you might combine a <strong>low volume</strong> with the <strong>key of Flame</strong> and a <strong>haunting tone</strong> to inflict <strong>shaken</strong> on a single creature for 10 Mind Points, or you could combine a <strong>medium volume</strong> with the <strong>key of Iron</strong> and an <strong>energetic tone</strong> to allow your allies to make additional progress on Clocks when using <strong>Willpower</strong>.</p></blockquote><p></p><h2>VOLUME LIST</h2><p></p><table><tbody><tr><td style=\"width:90px\"><p><strong>Volume</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td><p><strong>Targets</strong></p></td></tr><tr><td style=\"width:90px\"><p><strong>Low</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\">10</p></td><td><p>Yourself <strong>or</strong> another creature you can see who can hear you.</p></td></tr><tr><td style=\"width:90px\"><p><strong>Medium</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\">20</p></td><td><p>Every ally that is able to hear you.</p></td></tr><tr><td style=\"width:90px\"><p><strong>High</strong></p></td><td style=\"width:40px\"><p style=\"text-align:center\">30</p></td><td><p>Every enemy that is able to hear you.</p></td></tr></tbody></table>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -75,42 +42,10 @@
       "current": 0,
       "step": 1,
       "max": 6,
-      "name": "Name"
+      "name": "Name",
+      "enabled": false
     },
     "source": "FUHF138",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": null
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -122,23 +57,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "handout-verses-rules",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "ebg6FQH2cPZYwDuu": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -152,10 +103,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706550590433,
-    "modifiedTime": 1791487266066,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921117,
+    "modifiedTime": 1792923922124,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -6,19 +6,19 @@
   "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
   "system": {
     "fuid": "alter-damage-type-untyped",
-    "source": ""
+    "source": "",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
       "origin": "Compendium.projectfu.equipment-effects.Item.pQVSoX6ol3vmg1eC",
       "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Alter Damage Type (Untyped)",
@@ -33,62 +33,75 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.damageType.value",
+            "value": "untyped",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.damageType.value",
-          "mode": 5,
-          "value": "untyped",
-          "priority": null
-        }
-      ],
       "description": "<p>The damage type of this weapon becomes <strong>untyped</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725776568929,
-        "modifiedTime": 1774732901527,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923924692,
+        "modifiedTime": 1792923924692,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!pQVSoX6ol3vmg1eC.OeYBD0qXY8yDrZs7"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "dobQfkKFj2NK96cc": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725776482515,
-    "modifiedTime": 1774732898441,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923924692,
+    "modifiedTime": 1792923924857,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!pQVSoX6ol3vmg1eC"

@@ -10,65 +10,30 @@
     "summary": {
       "value": "Double the HR of an attack but risk damaging the weapon."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong> or <strong>Fury</strong>.</p><hr /><p>Before you perform an Accuracy Check, you may declare <strong>\"make it or break it!\"</strong>. If you do, the Check's <strong>High Roll</strong> is <strong>doubled</strong> when determining damage, but if the Result is an <strong>even</strong> number, you apply the following penalties after the attack is resolved:</p><ul><li><p>If the weapon you used is <strong>transforming</strong>, it <strong>immediately changes form</strong> and <strong>it cannot change form again</strong> until the end of the scene.</p></li><li><p>If the weapon you used <strong>is not transforming,</strong> or if it is a <strong>transforming weapon</strong> that <strong>cannot change form</strong> (see above), it is <strong>placed inside your backpack</strong> and <strong>cannot be equipped</strong> until the end of the scene; however, you may <strong>immediately</strong> perform the <strong>Equipment</strong> action <strong>for free</strong>.</p></li></ul><p>This Heroic Skill does not apply to attacks with <strong>unarmed strikes</strong>, <strong>improvised weapons</strong>, <strong>weapon modules</strong>, or <strong>Twin Shields</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong> or <strong>Fury</strong>.</p><hr><p>Before you perform an Accuracy Check, you may declare <strong>\"make it or break it!\"</strong>. If you do, the Check's <strong>High Roll</strong> is <strong>doubled</strong> when determining damage, but if the Result is an <strong>even</strong> number, you apply the following penalties after the attack is resolved:</p><ul><li><p>If the weapon you used is <strong>transforming</strong>, it <strong>immediately changes form</strong> and <strong>it cannot change form again</strong> until the end of the scene.</p></li><li><p>If the weapon you used <strong>is not transforming,</strong> or if it is a <strong>transforming weapon</strong> that <strong>cannot change form</strong> (see above), it is <strong>placed inside your backpack</strong> and <strong>cannot be equipped</strong> until the end of the scene; however, you may <strong>immediately</strong> perform the <strong>Equipment</strong> action <strong>for free</strong>.</p></li></ul><p>This Heroic Skill does not apply to attacks with <strong>unarmed strikes</strong>, <strong>improvised weapons</strong>, <strong>weapon modules</strong>, or <strong>Twin Shields</strong>.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "darkblade, fury"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF175",
     "fuid": "make-it-or-break-it",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711519472393,
-    "modifiedTime": 1791523783889,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922867,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "p8vmh280ByFh88tK",
   "sort": 0,

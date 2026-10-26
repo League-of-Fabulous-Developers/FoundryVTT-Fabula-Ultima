@@ -31,10 +31,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "13.351",
-        "createdTime": 1719224862060,
-        "modifiedTime": 1775517572464,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "coreVersion": "14.368",
+        "createdTime": 1792923923628,
+        "modifiedTime": 1792923923628,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -46,17 +46,16 @@
   "folder": null,
   "sort": 400000,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1719224822220,
-    "modifiedTime": 1723766576881,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923628,
+    "modifiedTime": 1792923923698,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

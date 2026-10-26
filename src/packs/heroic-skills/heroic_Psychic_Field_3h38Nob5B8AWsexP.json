@@ -10,65 +10,30 @@
     "summary": {
       "value": "Extend some of your psychic gifts to your allies."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Esper</strong>.</p><hr /><p>Your <strong>gifts</strong> with <strong>event</strong> \"When you <strong>deal damage</strong>\" can also be used \"When an ally who is able to hear you <strong>deals damage</strong>\".</p><p>Your @UUID[Compendium.projectfu.skills.Item.aqgXqI567dkudwMN] <strong>gift</strong>, if you have acquired it, has its <strong>effect</strong> changed to \"You and every ally who is able to hear you may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).\"</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Esper</strong>.</p><hr><p>Your <strong>gifts</strong> with <strong>event</strong> \"When you <strong>deal damage</strong>\" can also be used \"When an ally who is able to hear you <strong>deals damage</strong>\".</p><p>Your @UUID[Compendium.projectfu.skills.Item.aqgXqI567dkudwMN] <strong>gift</strong>, if you have acquired it, has its <strong>effect</strong> changed to \"You and every ally who is able to hear you may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).\"</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "esper"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF176",
     "fuid": "psychic-field",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523939887,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922815,
+    "modifiedTime": 1792923923008,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "3h38Nob5B8AWsexP",
   "sort": 0,

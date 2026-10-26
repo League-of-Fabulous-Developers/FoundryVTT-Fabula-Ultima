@@ -35,37 +35,41 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.overrides.damageType.attack.normal",
+            "value": "light",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          },
+          {
+            "key": "system.overrides.damageType.spell.normal",
+            "value": "light",
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "RQ4JkyAsLwLGcF8Z",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.overrides.damageType.attack.normal",
-          "mode": 5,
-          "value": "light",
-          "priority": null
-        },
-        {
-          "key": "system.overrides.damageType.spell.normal",
-          "mode": 5,
-          "value": "light",
-          "priority": null
-        }
-      ],
       "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>light</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -86,32 +90,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774640764731,
-        "modifiedTime": 1775844228142,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921348,
+        "modifiedTime": 1792923921348,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!pTGmqlUV6EvHquoQ.RQ4JkyAsLwLGcF8Z"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774640657045,
-    "modifiedTime": 1774640703429,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921348,
+    "modifiedTime": 1792923922156,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!pTGmqlUV6EvHquoQ"
 }

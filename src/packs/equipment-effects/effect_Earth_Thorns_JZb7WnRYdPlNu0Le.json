@@ -30,10 +30,8 @@
         "rules": {
           "elements": {
             "8KZJ09zjzREtPoY8": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "TgLeQPi6Vrr3M2fG",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -44,28 +42,39 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "8KZJ09zjzREtPoY8",
               "predicates": {
                 "VMxQ8q2yAsbmHCCo": {
-                  "type": "checkRulePredicate",
-                  "_id": "VMxQ8q2yAsbmHCCo",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "w2CaiKLxw9lqfFzC": {
-                  "type": "weaponRulePredicate",
-                  "_id": "w2CaiKLxw9lqfFzC",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "melee",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "f1tEMhpL5LxHUCnI": {
-                  "type": "messageRuleAction",
-                  "_id": "f1tEMhpL5LxHUCnI",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 earth] to them.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -74,23 +83,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "66IGA4I5Zfjwgkrx",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>earth</strong> damage to that creature (after the attack has been resolved).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -111,32 +123,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774748948193,
-        "modifiedTime": 1774749940660,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923924663,
+        "modifiedTime": 1792923924663,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JZb7WnRYdPlNu0Le.66IGA4I5Zfjwgkrx"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774748429490,
-    "modifiedTime": 1774748946929,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923924663,
+    "modifiedTime": 1792923924848,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!JZb7WnRYdPlNu0Le"
 }

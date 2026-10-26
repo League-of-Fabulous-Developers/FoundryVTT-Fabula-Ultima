@@ -9,81 +9,33 @@
     "summary": {
       "value": "Learn the Hope spell."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Spiritist</strong>.</p><hr /><p>You learn the ultimate <strong>Spiritist</strong> spell: <strong>Hope</strong>.</p><table style=\"width:93.4884%\" border=\"1\"><tbody><tr><td style=\"text-align:center;width:16%\"><p><strong>Hope</strong></p></td><td style=\"text-align:center;width:18%\"><p><strong>MP:</strong> 40</p></td><td style=\"text-align:center;width:32%\"><p><strong>Target:</strong> Special</p></td><td style=\"text-align:center;width:32%\"><p><strong>Duration:</strong> Instantaneous</p></td></tr></tbody></table><p>You rekindle the flames of courage and hope within a defeated hero. Choose a Player Character who <strong>Surrendered</strong> but is still present on the scene: that Player Character immediately regains consciousness and recovers an amount of Hit Points equal to their <strong>Crisis</strong> score. Note that this spell will not undo the <strong>consequences</strong> of the character's <strong>Surrender</strong> and is of no use if the character left the surrounding area as part of them, such as if they were captured and dragged away, if they were trapped in a parallel dimension, and so on.</p><p>A Player Character may only be affected by this spell once per scene. If a character is brought back into the conflict by this spell and is subsequently reduced to 0 Hit Points again, they must <strong>Sacrifice</strong> themselves or <strong>Surrender</strong> as per the normal rules (including a new <strong>consequence</strong> and 2 more Fabula Points if they <strong>Surrender</strong>).</p><hr /><p>Add the @UUID[Compendium.projectfu.heroic-skills.Item.5Oh7VSxoQuiMbb2r]{Hope} spell to your character sheet.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Spiritist</strong>.</p><hr><p>You learn the ultimate <strong>Spiritist</strong> spell: <strong>Hope</strong>.</p><table style=\"width:93.4884%\" border=\"1\"><tbody><tr><td style=\"text-align:center;width:16%\"><p><strong>Hope</strong></p></td><td style=\"text-align:center;width:18%\"><p><strong>MP:</strong> 40</p></td><td style=\"text-align:center;width:32%\"><p><strong>Target:</strong> Special</p></td><td style=\"text-align:center;width:32%\"><p><strong>Duration:</strong> Instantaneous</p></td></tr></tbody></table><p>You rekindle the flames of courage and hope within a defeated hero. Choose a Player Character who <strong>Surrendered</strong> but is still present on the scene: that Player Character immediately regains consciousness and recovers an amount of Hit Points equal to their <strong>Crisis</strong> score. Note that this spell will not undo the <strong>consequences</strong> of the character's <strong>Surrender</strong> and is of no use if the character left the surrounding area as part of them, such as if they were captured and dragged away, if they were trapped in a parallel dimension, and so on.</p><p>A Player Character may only be affected by this spell once per scene. If a character is brought back into the conflict by this spell and is subsequently reduced to 0 Hit Points again, they must <strong>Sacrifice</strong> themselves or <strong>Surrender</strong> as per the normal rules (including a new <strong>consequence</strong> and 2 more Fabula Points if they <strong>Surrender</strong>).</p><hr><p>Add the @UUID[Compendium.projectfu.heroic-skills.Item.5Oh7VSxoQuiMbb2r]{Hope} spell to your character sheet.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "spiritist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR237",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "heroic-hope",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706584753266,
-    "modifiedTime": 1787127560591,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922858,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

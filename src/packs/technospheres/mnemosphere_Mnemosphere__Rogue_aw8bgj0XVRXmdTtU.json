@@ -5,9 +5,6 @@
   "_id": "aw8bgj0XVRXmdTtU",
   "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/rogue.png",
   "system": {
-    "isFavored": {
-      "value": false
-    },
     "level": 1,
     "maxLevel": 5,
     "items": [
@@ -110,10 +107,8 @@
               "rules": {
                 "elements": {
                   "iMeiSArQrJM5MAh7": {
-                    "type": "ruleElement",
                     "trigger": {
-                      "_id": "OHQTsrY8tqFSIFGH",
-                      "type": "calculateDamageRuleTrigger",
+                      "type": "projectfu.calculateDamageRuleTrigger",
                       "eventRelation": "source",
                       "damageTypes": [],
                       "local": false,
@@ -122,16 +117,13 @@
                         "attack"
                       ]
                     },
-                    "_id": "iMeiSArQrJM5MAh7",
                     "predicates": {
                       "ilm0KpbJ3hHp907Z": {
-                        "type": "targetingRulePredicate",
-                        "_id": "ilm0KpbJ3hHp907Z",
+                        "type": "projectfu.targetingRulePredicate",
                         "rule": "single"
                       },
                       "Av5MT6g88DEgoDBq": {
-                        "type": "traitsRulePredicate",
-                        "_id": "Av5MT6g88DEgoDBq",
+                        "type": "projectfu.traitsRulePredicate",
                         "traits": {
                           "entries": [
                             "attack"
@@ -142,8 +134,7 @@
                     },
                     "actions": {
                       "a5eygozQFnmIGLi8": {
-                        "type": "modifyDamageRuleAction",
-                        "_id": "a5eygozQFnmIGLi8",
+                        "type": "projectfu.modifyDamageRuleAction",
                         "amount": "(min($tsc, 1)*$sl)+$tsc",
                         "cost": {
                           "amount": null,
@@ -154,7 +145,8 @@
                         "traits": {
                           "entries": []
                         },
-                        "variant": ""
+                        "variant": "",
+                        "operation": "add"
                       }
                     },
                     "selector": "initial",
@@ -175,16 +167,18 @@
                   "duration": false,
                   "increment": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "zXuBvWCNg61ggCWh",
             "type": "base",
-            "changes": [],
             "description": "<p>When you hit a creature with an attack, if the attack <strong>only</strong> targeted that creature and they are suffering from <strong>one or more status effects</strong>, you may have it deal extra damage equal to <strong>【SL + the number of status effects on the creature】</strong>.</p>",
             "tint": "#ffffff",
             "transfer": true,
@@ -200,7 +194,9 @@
                   "fuid": "cheap-shot"
                 }
               }
-            }
+            },
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -295,25 +291,14 @@
         "effects": [
           {
             "duration": {
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "rounds": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "name": "Dodge",
             "_id": "JB8FXzYLdzxU3NgX",
-            "changes": [
-              {
-                "key": "system.derived.def.bonus",
-                "mode": 2,
-                "value": "@system.level.value",
-                "priority": null
-              }
-            ],
             "description": "<p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by<strong>【SL】</strong>.</p>",
             "transfer": true,
             "statuses": [],
@@ -338,10 +323,21 @@
               },
               "rules": {
                 "elements": {}
-              }
+              },
+              "changes": [
+                {
+                  "key": "system.derived.def.bonus",
+                  "value": "@system.level.value",
+                  "priority": null,
+                  "type": "add",
+                  "phase": "initial"
+                }
+              ]
             },
             "origin": null,
-            "sort": 0
+            "sort": 0,
+            "start": null,
+            "showIcon": 1
           }
         ],
         "sort": 350000,
@@ -451,19 +447,15 @@
               "rules": {
                 "elements": {
                   "uZGa0bP1TXQ8Sqma": {
-                    "type": "ruleElement",
                     "trigger": {
-                      "_id": "oAI80uE1x5YUF8z3",
-                      "type": "combatRuleTrigger",
+                      "type": "projectfu.combatRuleTrigger",
                       "eventRelation": "",
                       "eventType": "startOfCombat",
                       "parity": ""
                     },
-                    "_id": "uZGa0bP1TXQ8Sqma",
                     "actions": {
                       "28zPkL7Xf4utBu0o": {
-                        "type": "messageRuleAction",
-                        "_id": "28zPkL7Xf4utBu0o",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>You may perform an <strong>Attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>"
                       }
                     },
@@ -486,23 +478,27 @@
                   "duration": false,
                   "increment": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "puwoCJqGrvIL3Tmq",
             "type": "base",
-            "changes": [],
             "description": "<p>At the start of a conflict, you may perform a <strong>free attack</strong>, <strong>Hinder</strong>, or <strong>Objective</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -702,11 +698,8 @@
               "rules": {
                 "elements": {
                   "8GxD4UtzhTXhz4Wu": {
-                    "type": "ruleElement",
-                    "_id": "8GxD4UtzhTXhz4Wu",
                     "trigger": {
-                      "_id": "RClBK7QQQFltte5O",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "attribute"
@@ -719,15 +712,14 @@
                     },
                     "predicates": {
                       "yPliEOxkXoXSEShF": {
-                        "type": "rankRulePredicate",
-                        "_id": "yPliEOxkXoXSEShF",
+                        "type": "projectfu.rankRulePredicate",
                         "ranks": [
                           "soldier"
-                        ]
+                        ],
+                        "quantifier": "all"
                       },
                       "D14B6F9g4kexgdQX": {
-                        "type": "checkRulePredicate",
-                        "_id": "D14B6F9g4kexgdQX",
+                        "type": "projectfu.checkRulePredicate",
                         "outcome": "success",
                         "result": null,
                         "parity": "",
@@ -744,8 +736,7 @@
                     },
                     "actions": {
                       "eCMD5tSKDowgT34Z": {
-                        "type": "updateResourceRuleAction",
-                        "_id": "eCMD5tSKDowgT34Z",
+                        "type": "projectfu.updateResourceRuleAction",
                         "resource": "ip",
                         "amount": "$sl"
                       }
@@ -754,11 +745,8 @@
                     "enabled": true
                   },
                   "SsU8eXeTWC4TqXei": {
-                    "type": "ruleElement",
-                    "_id": "SsU8eXeTWC4TqXei",
                     "trigger": {
-                      "_id": "CaeGbsnaVyB1K2Cp",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "attribute"
@@ -769,8 +757,7 @@
                     },
                     "predicates": {
                       "dHF6zta7xccEx9QS": {
-                        "type": "checkRulePredicate",
-                        "_id": "dHF6zta7xccEx9QS",
+                        "type": "projectfu.checkRulePredicate",
                         "outcome": "success",
                         "result": null,
                         "parity": "",
@@ -785,18 +772,17 @@
                         "quantifier": "any"
                       },
                       "nNSjrNqyyH2tJlFI": {
-                        "type": "rankRulePredicate",
-                        "_id": "nNSjrNqyyH2tJlFI",
+                        "type": "projectfu.rankRulePredicate",
                         "ranks": [
                           "elite",
                           "champion"
-                        ]
+                        ],
+                        "quantifier": "all"
                       }
                     },
                     "actions": {
                       "JsOkrK8Rn1gFjIvk": {
-                        "type": "messageRuleAction",
-                        "_id": "JsOkrK8Rn1gFjIvk",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>You have earned a a soul treasure worth <strong style=\"\">the target's level multiplied by 30, or by 50 if they are a Villain】.</strong></p>"
                       }
                     },
@@ -813,23 +799,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "i3kIT0IU5XlnYo9m",
             "type": "base",
-            "changes": [],
             "description": "<p>If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target's <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -849,19 +839,18 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1745491348230,
-    "modifiedTime": 1791524886971,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923925547,
+    "modifiedTime": 1792923925626,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!aw8bgj0XVRXmdTtU"

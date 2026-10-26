@@ -10,65 +10,30 @@
     "summary": {
       "value": "Learn spells through the Mutant's Genoclepsis."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Chimerist</strong> or <strong>Mutant</strong>, and must have acquired both <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis} Skill on an NPC, if that NPC's Species is among those you can learn spells from with the <strong>Spell Mimic</strong> Skill, the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spells, you may learn <strong>one of those spells</strong> as a <strong>Chimerist</strong> spell of your own.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Chimerist</strong> or <strong>Mutant</strong>, and must have acquired both <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis} Skill on an NPC, if that NPC's Species is among those you can learn spells from with the <strong>Spell Mimic</strong> Skill, the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spells, you may learn <strong>one of those spells</strong> as a <strong>Chimerist</strong> spell of your own.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "chimerist, mutant"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF175",
     "fuid": "mimeoclepsis",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523834124,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922824,
+    "modifiedTime": 1792923923009,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "8vzHUmPg4Cksad7D",
   "sort": 0,

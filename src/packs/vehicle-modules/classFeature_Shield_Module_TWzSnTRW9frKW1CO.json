@@ -7,19 +7,15 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.weaponModule",
     "data": {
       "complex": false,
       "quality": "",
-      "type": "shield",
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a “weapon”: instead, it counts as an equipped <strong>shield</strong>. This module <strong>cannot</strong> be equipped in your <strong>main hand slot</strong>, unless you have acquired the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill. If you have, your @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p>",
+      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a “weapon”: instead, it counts as an equipped <strong>shield</strong>. This module <strong>cannot</strong> be equipped in your <strong>main hand slot</strong>, unless you have acquired the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill. If you have, your @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p>",
       "accuracy": {
         "attr1": "dex",
         "attr2": "ins",
-        "modifier": 0
+        "modifier": 0,
+        "defense": "def"
       },
       "damage": {
         "type": "physical",
@@ -29,7 +25,11 @@
       "shield": {
         "defense": 2,
         "magicDefense": 2
-      }
+      },
+      "weaponType": "shield",
+      "type": "projectfu.weaponModule",
+      "cost": 500,
+      "traits": []
     },
     "source": "FUTF167",
     "fuid": "shield-module"
@@ -53,29 +53,36 @@
         "rules": {
           "elements": {
             "WJtwa43Eik0EhOh2": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "t1sEgWPLE39BIO1j",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "attack"
-                ],
                 "damageTypes": [],
                 "local": false,
-                "identifier": "twin-shields"
+                "identifier": "twin-shields",
+                "itemGroups": [
+                  "attack"
+                ]
               },
-              "_id": "WJtwa43Eik0EhOh2",
               "actions": {
                 "4FswUp80O9ttgcNj": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "4FswUp80O9ttgcNj",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "2",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -84,23 +91,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "jOKhdioJP2SPIWgX",
       "type": "base",
-      "changes": [],
       "description": "<p>Your <strong>Twin Shields</strong> deal 2 extra damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -121,13 +131,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1773729109005,
-        "modifiedTime": 1773729248239,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923923290,
+        "modifiedTime": 1792923923290,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!TWzSnTRW9frKW1CO.jOKhdioJP2SPIWgX"
     }
   ],
@@ -137,10 +150,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711474486592,
-    "modifiedTime": 1773729174881,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923290,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -148,8 +161,7 @@
   "_id": "TWzSnTRW9frKW1CO",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!TWzSnTRW9frKW1CO"
 }

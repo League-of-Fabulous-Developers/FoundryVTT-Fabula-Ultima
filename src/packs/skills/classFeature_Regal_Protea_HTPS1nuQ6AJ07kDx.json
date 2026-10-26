@@ -7,10 +7,6 @@
     "summary": {
       "value": "A colorful and tenacious flower, favored by an ancient dynasty."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.magiseed",
     "data": {
       "effectCount": 3,
       "effects": [
@@ -29,7 +25,8 @@
           "end": 3,
           "effect": "<p>You and every ally you can see treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.cz8lEMw5IqRBiT2a]</p>"
         }
-      ]
+      ],
+      "type": "projectfu.magiseed"
     },
     "source": "FUNF145",
     "fuid": "regal-protea"
@@ -39,17 +36,16 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.l0rQXCU5aCwVUHwW",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1777440022748,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921163,
+    "modifiedTime": 1792923922130,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "_id": "HTPS1nuQ6AJ07kDx",
   "sort": 0,

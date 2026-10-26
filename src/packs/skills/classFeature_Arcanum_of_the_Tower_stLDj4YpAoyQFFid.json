@@ -8,11 +8,13 @@
     "summary": {
       "value": ""
     },
-    "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is <strong>dismissed</strong>, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p><hr><p><strong>Allies Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.sh7pcJRup2dGA6vN], @EFFECT[Compendium.projectfu.skills.Item.Btu1RHeizzXGmuWj], @EFFECT[Compendium.projectfu.skills.Item.lMyJnByJO4A2SU9h], @EFFECT[Compendium.projectfu.skills.Item.V9DDBpBK02qIxkEV], @EFFECT[Compendium.projectfu.skills.Item.uW0OZk83vqZOw5uW], or @EFFECT[Compendium.projectfu.skills.Item.SBWScyP5dLPEmv5r]</p>",
       "dismiss": "<p><strong>Judgment</strong>. Choose any number of creatures you can see: you deal 30 <strong>light</strong> damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[30 light|ignore-resistances|]{Judgment Damage}</p>",
-      "domains": "judgment, protection, sacrifice"
+      "domains": "judgment, protection, sacrifice",
+      "type": "projectfu.arcanum",
+      "enablePulse": false,
+      "pulse": ""
     },
     "source": "FUCR181",
     "fuid": "arcanum-of-the-tower"
@@ -21,13 +23,10 @@
     {
       "origin": "Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Merge: Tower",
@@ -42,11 +41,23 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
-          }
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [],
       "description": "<p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -54,22 +65,23 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
           "source": "FUCR181"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725598799518,
-        "modifiedTime": 1771045831822,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921368,
+        "modifiedTime": 1792923921368,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!stLDj4YpAoyQFFid.xy0M0poZ1no2aSAs"
     }
   ],
@@ -79,19 +91,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710464096011,
-    "modifiedTime": 1786402532417,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921368,
+    "modifiedTime": 1792923922162,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "sort": 1100000,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!stLDj4YpAoyQFFid"
 }

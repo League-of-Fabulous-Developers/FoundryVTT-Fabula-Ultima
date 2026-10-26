@@ -9,81 +9,33 @@
     "summary": {
       "value": "Force an enemy to spend MP to perform specific actions."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Loremaster</strong>.</p><hr /><p>During a conflict, you may use an action and spend 20 Mind Points to anticipate the upcoming moves of a creature you can see, as long as you know <strong>two or more</strong> of that creature's <strong>Traits</strong>. If you do so, choose one type of action among the following: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. Until the start of your next turn, the creature must spend 20 Mind Points whenever they wish to perform that action. If they can't, they must perform a different action.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Loremaster</strong>.</p><hr><p>During a conflict, you may use an action and spend 20 Mind Points to anticipate the upcoming moves of a creature you can see, as long as you know <strong>two or more</strong> of that creature's <strong>Traits</strong>. If you do so, choose one type of action among the following: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. Until the start of your next turn, the creature must spend 20 Mind Points whenever they wish to perform that action. If they can't, they must perform a different action.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "loremaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR239",
     "hasResource": {
@@ -93,15 +45,20 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "predictable",
     "cost": {
-      "amount": "20"
+      "amount": "20",
+      "resource": "mp",
+      "perTarget": false
     },
     "effects": {
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "entries": [
         "Compendium.projectfu.heroic-skills.Item.1Oq4CktThiUInrbk",
@@ -118,14 +75,19 @@
       "amount": "-20"
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -137,10 +99,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706585767184,
-    "modifiedTime": 1787128260611,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922868,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

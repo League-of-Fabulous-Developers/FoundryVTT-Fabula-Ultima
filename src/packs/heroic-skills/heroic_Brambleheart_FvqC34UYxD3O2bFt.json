@@ -10,10 +10,7 @@
     "summary": {
       "value": "Your brambles protect you and react to enemy attacks."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong> or <strong>Floralist</strong>, and acquired <strong>Chloromancy</strong>.</p><hr /><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p><p>Additionally, when you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong> or <strong>Floralist</strong>, and acquired <strong>Chloromancy</strong>.</p><hr><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p><p>Additionally, when you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,75 +24,77 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF162",
     "fuid": "brambleheart",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
     {
       "origin": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.FvqC34UYxD3O2bFt",
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "name": "Brambleheart",
       "_id": "ZxLj2AuUV9ocHtuC",
-      "changes": [
-        {
-          "key": "system.affinities.light",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
-          "key": "system.affinities.poison",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p><p>Additionally, when you use the <strong>Shadow Strike</strong> Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage. If you do, it deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
           "source": "FUNF162"
         }
       },
@@ -103,12 +102,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1771282528880,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922828,
+        "modifiedTime": 1792923922828,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "img": "icons/magic/nature/root-vine-thorned-fire-purple.webp",
@@ -121,67 +120,107 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "elements": {
             "rdPSz3gF6mPqJrEK": {
-              "type": "ruleElement",
-              "_id": "rdPSz3gF6mPqJrEK",
               "trigger": {
-                "_id": "wN5ZJXLvqe8fLzVH",
-                "type": "resourceUpdateRuleTrigger",
+                "type": "projectfu.resourceUpdateRuleTrigger",
                 "eventRelation": "target",
                 "resource": "hp",
-                "change": "decrement"
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "itemGroups": [],
+                "local": false
               },
               "predicates": {
                 "WZgDEsoXhdoocj0p": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "WZgDEsoXhdoocj0p",
+                  "type": "projectfu.targetEffectRulePredicate",
                   "selector": "self",
-                  "effect": "crisis"
+                  "effect": "crisis",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "78DvTiGrCr6CuwmF": {
-                  "type": "messageRuleAction",
-                  "_id": "78DvTiGrCr6CuwmF",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "sq0oDoutTdJGv6WZ": {
-              "type": "ruleElement",
-              "_id": "sq0oDoutTdJGv6WZ",
               "trigger": {
-                "_id": "YiX1UqBTMiMUO35C",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "attack"
-                ],
                 "damageTypes": [],
                 "local": false,
-                "identifier": "shadow-strike"
+                "identifier": "shadow-strike",
+                "itemGroups": [
+                  "attack"
+                ]
               },
               "actions": {
                 "Trb1ORR4Fthzw5fs": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "Trb1ORR4Fthzw5fs",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "damageTypes": [
                     "poison"
                   ],
                   "amount": "2*&cs('garden')",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           }
+        },
+        "changes": [
+          {
+            "key": "system.affinities.light",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          },
+          {
+            "key": "system.affinities.poison",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ],
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
       "sort": 0,
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!FvqC34UYxD3O2bFt.ZxLj2AuUV9ocHtuC"
     }
   ],
@@ -195,18 +234,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.FvqC34UYxD3O2bFt",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791518547231,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922828,
+    "modifiedTime": 1792923923010,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "FvqC34UYxD3O2bFt",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!FvqC34UYxD3O2bFt"

@@ -15,13 +15,10 @@
     {
       "img": "icons/commodities/materials/feather-colored-blue.webp",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Peacock Dance",
@@ -38,7 +35,6 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1,
         "rules": {
           "progress": {
             "enabled": false,
@@ -46,16 +42,18 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
-          }
-        }
+          },
+          "elements": {}
+        },
+        "changes": []
       },
-      "changes": [],
       "description": "<p>The next time you perform an <strong>attack</strong> or <strong>offensive spell</strong> during this scene, that attack or spell must include the <strong>dancer</strong> among your targets if possible.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -66,32 +64,34 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744467622828,
-        "modifiedTime": 1775844421812,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923921122,
+        "modifiedTime": 1792923921122,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9b6mngsWCfB7TLa7.3OKMqmXgMxSVzoXI"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "WNNELbIcUepK9pGq": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744467614088,
-    "modifiedTime": 1770280298487,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921122,
+    "modifiedTime": 1792923922125,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!9b6mngsWCfB7TLa7"

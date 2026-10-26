@@ -3,14 +3,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong>.</p><hr /><p>For <strong>gift</strong> breakdown and a list of <strong>Psychic Gifts</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Esper Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong>.</p><hr><p>For <strong>gift</strong> breakdown and a list of <strong>Psychic Gifts</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Esper Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>.<br>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -23,49 +19,22 @@
       "value": "esper"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -74,54 +43,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF151",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
     "defense": "def",
     "fuid": "psychic-gifts",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -142,45 +95,43 @@
         "rules": {
           "elements": {
             "D5N1JmboaDyZFPzc": {
-              "type": "ruleElement",
-              "_id": "D5N1JmboaDyZFPzc",
               "actions": {
                 "HjnLNGtPXTyrqcf5": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "HjnLNGtPXTyrqcf5",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "brainwave-clock",
                   "action": "reset",
                   "notify": true
                 }
               },
               "trigger": {
-                "_id": "ykOI8xL7tsGMpIpx",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "startOfCombat"
+                "eventType": "startOfCombat",
+                "parity": ""
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             },
             "wrgz6uZUeNUDwhoe": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "2bYFszkDTDraX00x",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "endOfCombat"
+                "eventType": "endOfCombat",
+                "parity": ""
               },
-              "_id": "wrgz6uZUeNUDwhoe",
               "actions": {
                 "caTcaCtMhsDBeR5P": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "caTcaCtMhsDBeR5P",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "brainwave-clock",
                   "action": "reset",
                   "amount": "",
                   "notify": true
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -189,18 +140,21 @@
             "name": "Brainwave Clock",
             "current": 0,
             "max": 4,
-            "style": "clock"
+            "style": "clock",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "7cmcuxTm8MqCKIWi",
       "type": "base",
-      "changes": [],
       "description": "<p>This tracks your <strong>Brainwave Clock</strong> for your <strong>Psychic Gifts</strong>.</p><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -212,21 +166,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1769306151242,
-        "modifiedTime": 1771876259599,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921374,
+        "modifiedTime": 1792923921374,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!uiXJvj0qK0pVfnwY.7cmcuxTm8MqCKIWi"
     }
   ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -238,10 +193,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711424945464,
-    "modifiedTime": 1775526838056,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921374,
+    "modifiedTime": 1792923922163,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -120,7 +120,9 @@
         "Compendium.projectfu.game-master.Item.I6AH3hPvNHDqFggI"
       ],
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "prompt": true
     },
@@ -138,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1690417015023,
-    "modifiedTime": 1775513524597,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923399,
+    "modifiedTime": 1792923923427,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -150,8 +152,7 @@
   "_id": "AUIhgG59yCsNnaT4",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!AUIhgG59yCsNnaT4"
 }

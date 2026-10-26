@@ -9,81 +9,33 @@
     "summary": {
       "value": "Place Rituals into seals."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Symbolist</strong>.</p><hr /><p>When you perform a Ritual outside a conflict scene, if that Ritual has a <strong>total cost equal to or lower than 60 Mind Points</strong>, you may stop the process immediately before the Magic Check and store the Ritual's effect inside a <strong>Ritual seal</strong> placed on a surface you can touch. If you do, name a <strong>condition</strong> — this can be anything from “when I enter <strong>Crisis</strong>” to \"as soon as I snap my fingers\". When that condition is met, the <strong>seal</strong> vanishes and the Ritual is unleashed at the <strong>seal</strong>'s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</p><p>You may only have <strong>one Ritual seal</strong> active at the same time — if you die or create a new <strong>Ritual seal</strong>, the one you previously created will vanish.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Symbolist</strong>.</p><hr><p>When you perform a Ritual outside a conflict scene, if that Ritual has a <strong>total cost equal to or lower than 60 Mind Points</strong>, you may stop the process immediately before the Magic Check and store the Ritual's effect inside a <strong>Ritual seal</strong> placed on a surface you can touch. If you do, name a <strong>condition</strong> — this can be anything from “when I enter <strong>Crisis</strong>” to \"as soon as I snap my fingers\". When that condition is met, the <strong>seal</strong> vanishes and the Ritual is unleashed at the <strong>seal</strong>'s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</p><p>You may only have <strong>one Ritual seal</strong> active at the same time — if you die or create a new <strong>Ritual seal</strong>, the one you previously created will vanish.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "symbolist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF159",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "ritual-seals",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684704873,
-    "modifiedTime": 1791492952910,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922858,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

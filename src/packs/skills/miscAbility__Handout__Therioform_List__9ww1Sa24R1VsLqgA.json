@@ -4,63 +4,30 @@
   "type": "miscAbility",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_teriomorphosis.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.R2Opf7lWAOrOiiC6]{Amphibia}</p></td><td><p>Frogs, salamanders, regenerating creatures, aquatic monsters.</p></td></tr></tbody></table><p></p><p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover 5 additional Hit Points and you may immediately recover from a single status effect of your choice.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.hm5LaJoCgBZo398G]{Arpaktida}</p></td><td><p>Wolves, birds of prey, creatures with sharp hunting senses.</p></td></tr></tbody></table><p></p><p>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.g7G1eUEz0VaS5bNg]{Dynamotheria}</p></td><td><p>Bears, dinosaurs, creatures of massive size and strength.</p></td></tr></tbody></table><p></p><p>You treat your <strong>Might</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Might</strong>, you may fill or erase <strong>1 additional section</strong> of that Clock.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.vNgf1mOEsQSpbOiv]{Electrophora}</p></td><td><p>Electric creatures, lightning elementals, robots.</p></td></tr></tbody></table><p></p><p>When you deal damage with an attack or spell, you may have all that damage become <strong>bolt</strong>. While your <strong>unarmed strikes</strong> deal <strong>bolt</strong> damage, any enemy who loses <strong>20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>slow</strong>.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.f9NciszRYctYrAnb]{Neurophagoida}</p></td><td><p>Parasites, undead, creatures who feed on souls.</p></td></tr></tbody></table><p></p><p>When you use the <strong>Biophagy</strong> Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.aAmIBca4b150uuAH]{Placophora}</p></td><td><p>Crustaceans, turtles, armored creatures and vehicles.</p></td></tr></tbody></table><p></p><p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong> (you may still use your normal scores if better).</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.1QqNBwC1WQKDxk3s]{Pneumophora}</p></td><td><p>Jet-propulsion mollusks, great winged beasts, rockets.</p></td></tr></tbody></table><p></p><p>When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal <strong>air</strong> damage, any enemy who loses <strong>20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>weak</strong>.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.fHHT9SZwPRXiEA0U]{Polypoda}</p></td><td><p>Squids, octopi, creatures with tendrils or vines.</p></td></tr></tbody></table><p></p><p>Your attacks with <strong>unarmed strikes</strong> gain <strong>multi (3)</strong>.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.NjToAQTqqe3xyn6Y]{Pterotheria}</p></td><td><p>Bats, birds, winged insects, flying creatures.</p></td></tr></tbody></table><p></p><p>You are able to <strong>fly</strong>. In addition to the obvious advantages in mobility, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures and you cannot be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.guVvGJaNqpi2A4WR]{Pyrophora}</p></td><td><p>Pyrophora Bombardier beetles, pistol shrimps, fire elementals.</p></td></tr></tbody></table><p></p><p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses <strong>20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.WdA0rzemkQfGAMLk]{Tachytheria}</p></td><td><p>Cats, gazelles, hares, creatures that are agile and quick.</p></td></tr></tbody></table><p></p><p>You treat your <strong>Dexterity</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Dexterity</strong>, you may fill or erase <strong>1 additional section</strong> of that Clock.</p><p></p><table style=\"width:100%;height:34px;border:1px solid black\"><tbody><tr style=\"height:17px\"><td style=\"width:160px\"><p><strong>THERIOFORM</strong></p></td><td><p><strong>GENOCLEPSIS ADVICE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"width:160px\"><p>@UUID[Compendium.projectfu.skills.Item.dBGoRsrayjBXuM31]{Toxicophora}</p></td><td><p>Spiders, snakes, toxic slimes and other venomous creatures.</p></td></tr></tbody></table><p></p><p>When you deal damage with an attack or spell, you may have all that damage become <strong>poison</strong>. While your <strong>unarmed strikes</strong> deal <strong>poison</strong> damage, any enemy who loses <strong>20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>poisoned</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "dex"
-      },
-      "secondary": {
-        "value": "ins"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -78,48 +45,17 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "rp": {
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF156",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -128,15 +64,32 @@
     "fuid": "handout-therioform-list",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "projectfu-playtest": {
@@ -150,10 +103,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711423290912,
-    "modifiedTime": 1791521688129,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921129,
+    "modifiedTime": 1792923922125,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

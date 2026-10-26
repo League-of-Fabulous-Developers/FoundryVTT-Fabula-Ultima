@@ -5,16 +5,10 @@
   "_id": "c46SCybV1gtiHbL4",
   "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail weapon</strong> equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail weapon</strong> equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "chimerist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR183",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "consume",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "0pSgDRx5DTtpbC1r": {
-              "type": "ruleElement",
-              "_id": "0pSgDRx5DTtpbC1r",
               "trigger": {
-                "_id": "vLC7M37rryxzsNwg",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -161,39 +109,40 @@
               },
               "predicates": {
                 "1FXM0cyqHXfTBwMp": {
-                  "type": "weaponRulePredicate",
-                  "_id": "1FXM0cyqHXfTBwMp",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "arcane",
                     "dagger",
                     "flail"
                   ],
-                  "selector": "self"
+                  "selector": "self",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 },
                 "fMX5d5xLaGe4IfTN": {
-                  "type": "traitsRulePredicate",
-                  "_id": "fMX5d5xLaGe4IfTN",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "damage"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 }
               },
               "actions": {
                 "38M0seyIClMNOZsr": {
-                  "type": "messageRuleAction",
-                  "_id": "38M0seyIClMNOZsr",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If you damage one or more, recover <strong>【SL × 2】</strong> MP.</p>"
                 },
                 "C4sr0SUqEHuh5PXh": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "C4sr0SUqEHuh5PXh",
+                  "type": "projectfu.updateResourceRuleAction",
                   "resource": "mp",
                   "amount": "$sl*2"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "enabled": true
             }
           },
           "progress": {
@@ -202,23 +151,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "QvJKfoqYcZGOxmLS",
       "type": "base",
-      "changes": [],
       "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -230,20 +182,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766925259175,
-        "modifiedTime": 1791530722979,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921273,
+        "modifiedTime": 1792923921273,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -255,10 +208,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706495586490,
-    "modifiedTime": 1786402690704,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921273,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

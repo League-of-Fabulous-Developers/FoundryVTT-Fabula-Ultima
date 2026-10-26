@@ -9,17 +9,9 @@
     "summary": {
       "value": "Counterattack with firearms after using Crossfire."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong>.</p><hr /><p>After you negate a <strong>ranged</strong> attack with the @UUID[Compendium.projectfu.skills.Item.sIkQa2NzkqsvczBr]{Crossfire} Skill, if the Result of the Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against the attacker with a <strong>ranged firearm weapon</strong> you have equipped. This attack must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll</strong> as 0 when calculating damage dealt by it.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong>.</p><hr><p>After you negate a <strong>ranged</strong> attack with the @UUID[Compendium.projectfu.skills.Item.sIkQa2NzkqsvczBr]{Crossfire} Skill, if the Result of the Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against the attacker with a <strong>ranged firearm weapon</strong> you have equipped. This attack must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll</strong> as 0 when calculating damage dealt by it.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "sharpshooter"
@@ -27,17 +19,11 @@
     "useWeapon": {
       "accuracy": true,
       "damage": true,
-      "hrZero": {
-        "value": false
-      }
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
     "accuracy": "0",
     "damage": {
@@ -48,33 +34,8 @@
       "onApply": "",
       "hrZero": true
     },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
-    },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF154",
     "hasResource": {
@@ -84,24 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "bullet-break",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "hasRoll": {
       "value": true
     },
-    "defense": ""
+    "defense": "",
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -113,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684563458,
-    "modifiedTime": 1791492180859,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922849,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

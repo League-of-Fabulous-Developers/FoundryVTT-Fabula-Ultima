@@ -122,9 +122,7 @@
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "bgUzjEHd80A79gwp": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -136,12 +134,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771454297981,
-    "modifiedTime": 1771454315969,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921112,
+    "modifiedTime": 1792923922124,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "7i3Zat2ctLyi1z8l",
   "sort": 1400000,

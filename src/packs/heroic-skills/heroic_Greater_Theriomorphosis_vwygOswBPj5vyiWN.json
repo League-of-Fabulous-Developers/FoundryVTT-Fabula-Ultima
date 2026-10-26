@@ -10,65 +10,30 @@
     "summary": {
       "value": "Act after Theriomorphosis."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Mutant</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill on your turn during a conflict, if this <strong>did not</strong> happen through the <strong>Genoclepsis</strong> Skill, you may manifest the effects of <strong>up to three therioforms</strong> from those you have learned (instead of two); then, you may immediately perform an additional action. This additional action <strong>cannot</strong> be used for the <strong>Theriomorphosis</strong> Skill.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Mutant</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill on your turn during a conflict, if this <strong>did not</strong> happen through the <strong>Genoclepsis</strong> Skill, you may manifest the effects of <strong>up to three therioforms</strong> from those you have learned (instead of two); then, you may immediately perform an additional action. This additional action <strong>cannot</strong> be used for the <strong>Theriomorphosis</strong> Skill.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "mutant"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF174",
     "fuid": "greater-theriomorphosis",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523694986,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922872,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "vwygOswBPj5vyiWN",
   "sort": 0,

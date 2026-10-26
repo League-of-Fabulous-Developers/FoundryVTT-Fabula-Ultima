@@ -5,14 +5,10 @@
   "_id": "7ZIT4N07zc2yWsre",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_akromorphosis.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, cannot receive extra damage from <strong>Quirks</strong>, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p><p>At the start of your turn during a conflict, you may choose a <strong>weapon</strong> Category other than <strong>brawling</strong>. If you do, your <strong>unarmed strikes</strong> now belong to the chosen Category. If you choose <strong>bow</strong>, <strong>firearm</strong> or <strong>thrown</strong>, they become <strong>ranged weapons</strong> instead of <strong>melee</strong>. If you choose <strong>dagger</strong> or <strong>sword</strong>, they cannot be used with <strong>Triple Slash</strong>. These changes last until the start of your next turn.</p><hr /><p>For <strong>automation</strong>, add the @UUID[Compendium.projectfu.skills.XlN2TtdK4Sn4ssQS] to your character sheet and edit it for different weapons types.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, cannot receive extra damage from <strong>Quirks</strong>, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p><p>At the start of your turn during a conflict, you may choose a <strong>weapon</strong> Category other than <strong>brawling</strong>. If you do, your <strong>unarmed strikes</strong> now belong to the chosen Category. If you choose <strong>bow</strong>, <strong>firearm</strong> or <strong>thrown</strong>, they become <strong>ranged weapons</strong> instead of <strong>melee</strong>. If you choose <strong>dagger</strong> or <strong>sword</strong>, they cannot be used with <strong>Triple Slash</strong>. These changes last until the start of your next turn.</p><hr><p>For <strong>automation</strong>, add the @UUID[Compendium.projectfu.skills.XlN2TtdK4Sn4ssQS] to your character sheet and edit it for different weapons types.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,50 +21,22 @@
       "value": "mutant"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
-      "expression": "",
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,54 +45,38 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF155",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "ins"
-        },
-        "secondary": {
-          "value": "mig"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
     "defense": "def",
     "fuid": "akromorphosis",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
@@ -137,19 +89,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711429218464,
-    "modifiedTime": 1791521773850,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921112,
+    "modifiedTime": 1792923922123,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!7ZIT4N07zc2yWsre"
 }

@@ -2,21 +2,18 @@
   "name": "Verse",
   "type": "classFeature",
   "system": {
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.verse",
     "summary": {
       "value": ""
     },
     "data": {
-      "key": "",
-      "tone": "",
+      "key": ".Item.",
+      "tone": ".Item.",
       "config": {
         "low": 10,
         "medium": 20,
         "high": 30
-      }
+      },
+      "type": "projectfu.verse"
     },
     "source": "FUHF138",
     "fuid": "verse"
@@ -25,9 +22,7 @@
   "effects": [],
   "folder": "NSF7G1xLIJ71r9qX",
   "ownership": {
-    "default": 0,
-    "CLAzxWQsDDB8fCLx": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -35,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1717279270211,
-    "modifiedTime": 1744502321600,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921339,
+    "modifiedTime": 1792923922155,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

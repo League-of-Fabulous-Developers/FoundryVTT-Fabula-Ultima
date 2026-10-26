@@ -14,14 +14,6 @@
       "name": "Lesser Accuracy Up (Sword)",
       "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.sword",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "description": "<p>You gain a +1 bonus to Accuracy Checks with the <strong>sword</strong> weapon category).</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -29,35 +21,56 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Check",
-          "CrisisInteraction": "none",
           "source": "FUCR281"
         }
       },
       "_id": "DeR8sd8qT5j57W1p",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.accuracy.sword",
+            "value": 1,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1736274275679,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "createdTime": 1792923925152,
+        "modifiedTime": 1792923925152,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9PHdbX3YxVxjJKZy.DeR8sd8qT5j57W1p"
     }
   ],
@@ -66,19 +79,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747190299,
-    "modifiedTime": 1736274270020,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "createdTime": 1792923925152,
+    "modifiedTime": 1792923925276,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "9PHdbX3YxVxjJKZy",
   "sort": 1500000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!9PHdbX3YxVxjJKZy"
 }

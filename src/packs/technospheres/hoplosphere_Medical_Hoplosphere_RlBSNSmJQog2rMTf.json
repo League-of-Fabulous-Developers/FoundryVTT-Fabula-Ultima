@@ -26,20 +26,19 @@
   "effects": [],
   "folder": "pIAOmLB7jnha0Ab3",
   "ownership": {
-    "default": 0,
-    "VpDy3go69LzoCFsX": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1759658496583,
-    "modifiedTime": 1760404567867,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+    "createdTime": 1792923925547,
+    "modifiedTime": 1792923925626,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "RlBSNSmJQog2rMTf",
   "sort": 1100000,

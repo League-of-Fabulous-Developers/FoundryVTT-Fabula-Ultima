@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-crusader.png",
   "system": {
     "fuid": "crusader-shield",
-    "description": "<p>Your attacks with <strong>sword</strong> weapons deal <strong>5 extra damage</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>Your attacks with <strong>sword</strong> weapons deal <strong>5 extra damage</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -100,30 +100,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.sword",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "4Q6mXmXQyeoCfpvt",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.sword",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>While you have this equipped, your attacks with <strong>sword</strong> weapons deal <strong>5 extra damage</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -144,20 +148,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774833483289,
-        "modifiedTime": 1775709000956,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925880,
+        "modifiedTime": 1792923925880,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!AnJy4DoVzwKkTBSY.4Q6mXmXQyeoCfpvt"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -168,12 +174,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774833439520,
-    "modifiedTime": 1777530764873,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925880,
+    "modifiedTime": 1792923925981,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!AnJy4DoVzwKkTBSY"
 }

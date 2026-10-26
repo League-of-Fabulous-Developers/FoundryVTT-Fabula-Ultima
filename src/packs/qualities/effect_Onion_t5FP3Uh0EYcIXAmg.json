@@ -14,20 +14,6 @@
       "name": "Onion",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.resources.hp.bonus",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.resources.mp.bonus",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "description": "<p>Increase your <strong>maximum Hit Points</strong> and <strong>Maximum Mind Points</strong> by 2 for each different <strong>Class</strong> you have.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -35,35 +21,63 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none",
           "source": "FUCR287"
         }
       },
       "_id": "7fV2mUJ9hIpCMH2O",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.resources.hp.bonus",
+            "value": 2,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.resources.mp.bonus",
+            "value": 2,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1728776409081,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "createdTime": 1792923925174,
+        "modifiedTime": 1792923925174,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!t5FP3Uh0EYcIXAmg.7fV2mUJ9hIpCMH2O"
     }
   ],
@@ -72,19 +86,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193936,
-    "modifiedTime": 1728747193936,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "createdTime": 1792923925174,
+    "modifiedTime": 1792923925281,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "t5FP3Uh0EYcIXAmg",
   "sort": 1500000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!t5FP3Uh0EYcIXAmg"
 }

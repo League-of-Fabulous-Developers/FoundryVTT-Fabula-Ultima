@@ -9,81 +9,33 @@
     "summary": {
       "value": "Remove spells and status effects from creatures."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Symbolist</strong>.</p><hr /><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration</strong> of “Scene” that were affecting them.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Symbolist</strong>.</p><hr><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration</strong> of “Scene” that were affecting them.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "symbolist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF155",
     "hasResource": {
@@ -93,13 +45,18 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "clean-slate",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
       "rule": "special",
@@ -107,7 +64,18 @@
     },
     "cost": {
       "perTarget": true,
-      "amount": "5"
+      "amount": "5",
+      "resource": "mp"
+    },
+    "defense": "def",
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -128,11 +96,8 @@
         "rules": {
           "elements": {
             "0ziInr3GpLSeQwFS": {
-              "type": "ruleElement",
-              "_id": "0ziInr3GpLSeQwFS",
               "trigger": {
-                "_id": "jawSw2ohfWUTaFuq",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "",
                 "checkTypes": [
                   "display"
@@ -143,11 +108,13 @@
               },
               "actions": {
                 "vauj4T4GiqyW20Ml": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "vauj4T4GiqyW20Ml",
+                  "type": "projectfu.clearEffectRuleAction",
                   "identifier": ""
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -156,18 +123,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "3EAZ42QOyjxfcLjq",
       "type": "base",
-      "changes": [],
       "description": "",
       "origin": null,
       "tint": "#ffffff",
@@ -179,20 +149,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770750585719,
-        "modifiedTime": 1770750615826,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922833,
+        "modifiedTime": 1792923922833,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!IgteRExMGSKQwg1G.3EAZ42QOyjxfcLjq"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -204,10 +176,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684583539,
-    "modifiedTime": 1791492062116,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922833,
+    "modifiedTime": 1792923923011,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

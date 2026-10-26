@@ -5,10 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more enemies with a spell, you may spend 1 Grave Point. If you do, choose one option:</p><ul><li><p>Choose one of those enemies, and the spell deals extra damage equal to <strong>【SL + the number of status effects the chosen enemy is suffering from】</strong>.</p></li><li><p>Each of those enemies suffers <strong>shaken</strong> after the effects of the spell are resolved.</p></li></ul><hr /><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -1]{Spend 1 Grave Point}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When you deal damage to one or more enemies with a spell, you may spend 1 Grave Point. If you do, choose one option:</p><ul><li><p>Choose one of those enemies, and the spell deals extra damage equal to <strong>【SL + the number of status effects the chosen enemy is suffering from】</strong>.</p></li><li><p>Each of those enemies suffers <strong>shaken</strong> after the effects of the spell are resolved.</p></li></ul><hr><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -1]{Spend 1 Grave Point}</p>",
     "level": {
       "value": 1,
       "max": 5,
@@ -18,49 +15,22 @@
       "value": "necromancer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "showTitleCard": {
       "value": false
@@ -68,41 +38,7 @@
     "hasRoll": {
       "value": false
     },
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "source": "FUBC13",
-    "subtype": {},
     "defense": "def",
     "hasResource": {
       "value": false
@@ -111,11 +47,13 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "for-whom-the-bell-tolls",
     "targeting": {
-      "rule": "special"
+      "rule": "special",
+      "max": 0
     },
     "effects": {
       "entries": [
@@ -123,8 +61,22 @@
         "shaken"
       ],
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_whom_the_bell_tolls.png",
@@ -140,20 +92,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1684757022676,
-    "modifiedTime": 1775595386503,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921343,
+    "modifiedTime": 1792923922155,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "folder": "HL1x2SDWkdiaZf56",
   "ownership": {
-    "default": 0,
-    "ebg6FQH2cPZYwDuu": 3,
-    "Vk2gQrsAJ2GZ8hcN": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "oevRD7ES46HQEOKn",
   "sort": 0,

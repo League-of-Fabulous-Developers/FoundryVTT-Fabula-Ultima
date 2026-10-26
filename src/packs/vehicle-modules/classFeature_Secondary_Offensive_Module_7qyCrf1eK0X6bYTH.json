@@ -7,13 +7,11 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one of its <strong>disabled weapon modules.</strong> As long as the chosen <strong>weapon module</strong> is <strong>disabled</strong> and this module is <strong>enabled</strong>, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p>",
-      "complex": false
+      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one of its <strong>disabled weapon modules.</strong> As long as the chosen <strong>weapon module</strong> is <strong>disabled</strong> and this module is <strong>enabled</strong>, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p>",
+      "complex": false,
+      "type": "projectfu.supportModule",
+      "cost": 1000
     },
     "source": "FUTF169",
     "fuid": "secondary-offensive-module"
@@ -25,10 +23,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711477104179,
-    "modifiedTime": 1791523107915,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923287,
+    "modifiedTime": 1792923923319,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -36,8 +34,7 @@
   "_id": "7qyCrf1eK0X6bYTH",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!7qyCrf1eK0X6bYTH"
 }

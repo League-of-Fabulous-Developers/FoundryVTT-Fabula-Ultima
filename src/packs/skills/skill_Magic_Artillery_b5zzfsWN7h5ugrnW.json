@@ -4,16 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_magical_artillery.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane weapon</strong> equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -26,84 +20,24 @@
       "value": "elementalist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR187",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -114,17 +48,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "magic-artillery",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -154,50 +105,53 @@
           },
           "elements": {
             "Cqt3QsRMqS4OsC2z": {
-              "type": "ruleElement",
-              "_id": "Cqt3QsRMqS4OsC2z",
               "trigger": {
-                "_id": "lGSK8sZMvteClIjE",
-                "type": "performCheckRuleTrigger",
+                "type": "projectfu.performCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "magic"
-                ]
+                ],
+                "local": false
               },
               "actions": {
                 "LS13E6pWUYcj4TBl": {
-                  "type": "modifyCheckRuleAction",
-                  "_id": "LS13E6pWUYcj4TBl",
+                  "type": "projectfu.modifyCheckRuleAction",
                   "bonus": "$sl*2"
                 }
               },
               "predicates": {
                 "GhYb996DR8A8hfkh": {
-                  "type": "weaponRulePredicate",
-                  "_id": "GhYb996DR8A8hfkh",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "self",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 },
                 "GD8emSyDZnGVTSMr": {
-                  "type": "spellRulePredicate",
-                  "_id": "GD8emSyDZnGVTSMr",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "qHjYR6862sVRMKSg",
       "type": "base",
-      "changes": [],
       "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -209,21 +163,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1755194021736,
-        "modifiedTime": 1770343207864,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921269,
+        "modifiedTime": 1792923921269,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!b5zzfsWN7h5ugrnW.qHjYR6862sVRMKSg"
     }
   ],
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -235,10 +189,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706497996319,
-    "modifiedTime": 1786403618158,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921269,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

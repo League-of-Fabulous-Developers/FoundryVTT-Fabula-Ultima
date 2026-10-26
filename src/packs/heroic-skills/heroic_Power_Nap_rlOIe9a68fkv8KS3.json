@@ -10,10 +10,7 @@
     "summary": {
       "value": "Take a little nap during a conﬂict to regain your energies."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Guardian</strong>, <strong>Merchant</strong>, or <strong>Wayfarer</strong>.</p><hr /><p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】</strong> and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the @UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect} Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> (@ICON[offensive]).</p><hr /><p><strong>You Recover:</strong> @GAIN[20+($cl/2) hp]{20 + Half Level HP} @GAIN[20+($cl/2) mp]{20 + Half Level MP}<br /><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.dweyiPp3Ujt9sE43]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Guardian</strong>, <strong>Merchant</strong>, or <strong>Wayfarer</strong>.</p><hr><p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】</strong> and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the @UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect} Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> (@ICON[offensive]).</p><hr><p><strong>You Recover:</strong> @GAIN[20+($cl/2) hp]{20 + Half Level HP} @GAIN[20+($cl/2) mp]{20 + Half Level MP}<br><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.dweyiPp3Ujt9sE43]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,37 +24,58 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF166",
     "fuid": "power-nap",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -71,18 +89,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.rlOIe9a68fkv8KS3",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791519287415,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922869,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "rlOIe9a68fkv8KS3",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!rlOIe9a68fkv8KS3"

@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You summon the power of winds against your enemy. You deal <strong>【HR + 15】 air</strong> damage to each target hit by this spell.</p><hr /><p><strong>Opportunity:</strong> Each <strong>flying</strong> target hit by this spell is forced to land immediately.</p>",
+    "description": "<p>You summon the power of winds against your enemy. You deal <strong>【HR + 15】 air</strong> damage to each target hit by this spell.</p><hr><p><strong>Opportunity:</strong> Each <strong>flying</strong> target hit by this spell is forced to land immediately.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -121,10 +121,7 @@
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -137,12 +134,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771454312700,
-    "modifiedTime": 1781650990138,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921277,
+    "modifiedTime": 1792923922147,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_id": "czRvhEWniKUB6B1K",
   "sort": 700000,

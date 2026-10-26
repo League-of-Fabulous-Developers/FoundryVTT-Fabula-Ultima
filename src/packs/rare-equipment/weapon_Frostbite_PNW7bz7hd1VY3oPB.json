@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-frostbite.png",
   "system": {
     "fuid": "frostbite",
-    "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong>, that spell's total MP cost is <strong>halved</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong>, that spell's total MP cost is <strong>halved</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -97,10 +97,8 @@
         "rules": {
           "elements": {
             "pK3axvT38gf9D6sx": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "XagIDgBj7u0nAQ34",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "spell",
@@ -114,27 +112,28 @@
                 },
                 "identifier": ""
               },
-              "_id": "pK3axvT38gf9D6sx",
               "predicates": {
                 "2kg17jzSRA3VpTWK": {
-                  "type": "spellRulePredicate",
-                  "_id": "2kg17jzSRA3VpTWK",
-                  "offensive": "true"
+                  "type": "projectfu.spellRulePredicate",
+                  "offensive": "true",
+                  "duration": ""
                 },
                 "9s8B3di2cnNu1cLP": {
-                  "type": "targetEffectRulePredicate",
-                  "_id": "9s8B3di2cnNu1cLP",
-                  "effect": "weak"
+                  "type": "projectfu.targetEffectRulePredicate",
+                  "effect": "weak",
+                  "selector": "initial",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "Un0vMYMFrzfwVOIy": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "Un0vMYMFrzfwVOIy",
+                  "type": "projectfu.modifyExpenseRuleAction",
                   "amount": "0.5",
                   "operation": "multiply"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -143,23 +142,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "mgtjgwUxP6AZkOix",
       "type": "base",
-      "changes": [],
       "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong> while you have this equipped, that spell's total MP cost is <strong>halved</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -180,20 +182,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774811029048,
-        "modifiedTime": 1775709257891,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925885,
+        "modifiedTime": 1792923925885,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!PNW7bz7hd1VY3oPB.mgtjgwUxP6AZkOix"
     }
   ],
   "sort": 100000,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -204,12 +208,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774810975531,
-    "modifiedTime": 1777530968652,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925885,
+    "modifiedTime": 1792923925983,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!PNW7bz7hd1VY3oPB"
 }

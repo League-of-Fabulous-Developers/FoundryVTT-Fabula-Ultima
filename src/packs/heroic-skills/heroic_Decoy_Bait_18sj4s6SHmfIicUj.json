@@ -10,65 +10,30 @@
     "summary": {
       "value": "Hawkeye creates a decoy and grants a punishing attack."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong> and acquired <strong>Hawkeye</strong>.</p><hr /><p>When you use your @UUID[Compendium.projectfu.skills.Item.hmDCgX5OEk5l4uXW]{Hawkeye} Skill and choose the <strong>first option</strong>, if no <strong>decoy bait</strong> is present on the scene, you may spend 10 Mind Points. If you do, you create a <strong>decoy bait</strong> with Hit Points equal to <strong>【half your level + (your SL in Hawkeye, multiplied by 5)】</strong>.</p><p>When an enemy who can see your <strong>decoy bait</strong> deals damage to one or more creatures, your <strong>decoy bait</strong> automatically suffers damage <strong>in place of one of those creatures</strong>, chosen <strong>randomly</strong> (your <strong>decoy bait</strong> is always treated as having neutral Affinity towards all damage types, and cannot gain any other Affinity).</p><p>When an enemy reduces your <strong>decoy bait</strong> to 0 Hit Points, your <strong>decoy bait</strong> is automatically destroyed and you roll [[/r 1d10]]. If the number rolled is equal to or lower than <strong>【3 + your SL in Hawkeye】</strong>, you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> weapon you have equipped. This attack may <strong>only</strong> target that enemy, gains a bonus equal to <strong>【your SL in Hawkeye】</strong> to its Accuracy Check, and its damage ignores Immunities and Resistances.</p><p>Your <strong>decoy bait</strong> cannot recover Hit Points and is automatically destroyed at the end of the scene. Make sure to describe what it looks like!</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp]<br /><strong>You Gain Before Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.IU181rG9SX4PeZVS]<br />To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.3Nt3Kj1uUlYg7P1E]{Decoy Bait}<br />Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this decoy bait, and for '<strong>Skill</strong>,' select the '<strong>Hawkeye</strong>' skill.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Sharpshooter</strong> and acquired <strong>Hawkeye</strong>.</p><hr><p>When you use your @UUID[Compendium.projectfu.skills.Item.hmDCgX5OEk5l4uXW]{Hawkeye} Skill and choose the <strong>first option</strong>, if no <strong>decoy bait</strong> is present on the scene, you may spend 10 Mind Points. If you do, you create a <strong>decoy bait</strong> with Hit Points equal to <strong>【half your level + (your SL in Hawkeye, multiplied by 5)】</strong>.</p><p>When an enemy who can see your <strong>decoy bait</strong> deals damage to one or more creatures, your <strong>decoy bait</strong> automatically suffers damage <strong>in place of one of those creatures</strong>, chosen <strong>randomly</strong> (your <strong>decoy bait</strong> is always treated as having neutral Affinity towards all damage types, and cannot gain any other Affinity).</p><p>When an enemy reduces your <strong>decoy bait</strong> to 0 Hit Points, your <strong>decoy bait</strong> is automatically destroyed and you roll [[/r 1d10]]. If the number rolled is equal to or lower than <strong>【3 + your SL in Hawkeye】</strong>, you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> weapon you have equipped. This attack may <strong>only</strong> target that enemy, gains a bonus equal to <strong>【your SL in Hawkeye】</strong> to its Accuracy Check, and its damage ignores Immunities and Resistances.</p><p>Your <strong>decoy bait</strong> cannot recover Hit Points and is automatically destroyed at the end of the scene. Make sure to describe what it looks like!</p><hr><p><strong>You Spend:</strong> @LOSS[10 mp]<br><strong>You Gain Before Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.IU181rG9SX4PeZVS]<br>To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.3Nt3Kj1uUlYg7P1E]{Decoy Bait}<br>Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this decoy bait, and for '<strong>Skill</strong>,' select the '<strong>Hawkeye</strong>' skill.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF172",
     "fuid": "decoy-bait",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -117,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523512945,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922808,
+    "modifiedTime": 1792923923008,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "18sj4s6SHmfIicUj",
   "sort": 0,

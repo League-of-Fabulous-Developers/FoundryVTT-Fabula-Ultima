@@ -10,65 +10,30 @@
     "summary": {
       "value": "Shadow Strike reduces MP and causes action loss with swords."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong> or <strong>Esper</strong>.</p><hr /><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a <strong>weapon</strong> that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>.</p><p>Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a Bond towards them, that creature will perform one fewer action during their next turn (to a minimum of 0 actions).</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong> or <strong>Esper</strong>.</p><hr><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a <strong>weapon</strong> that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>.</p><p>Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a Bond towards them, that creature will perform one fewer action during their next turn (to a minimum of 0 actions).</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "darkblade, esper"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,36 +42,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF173",
     "fuid": "dreamslice",
     "effects": {
       "duration": {
-        "interval": null
+        "interval": null,
+        "event": "",
+        "tracking": ""
       },
       "entries": [
         "Compendium.projectfu.heroic-skills.Item.aLED91LvFGUlFNFz"
-      ]
+      ],
+      "prompt": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -127,11 +99,8 @@
         "rules": {
           "elements": {
             "4LWSuv6OubzmlAOT": {
-              "type": "ruleElement",
-              "_id": "4LWSuv6OubzmlAOT",
               "trigger": {
-                "_id": "OhQHbFV3osd9LEHQ",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "accuracy"
@@ -144,26 +113,39 @@
               },
               "actions": {
                 "0n6DsITkN1pHu6Bh": {
-                  "type": "messageRuleAction",
-                  "_id": "0n6DsITkN1pHu6Bh",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>Hit targets lose MP equal to the <strong>Might</strong> die result.</p>"
                 }
               },
               "predicates": {
                 "Roqixz9AYyZImi4G": {
-                  "type": "checkRulePredicate",
-                  "_id": "Roqixz9AYyZImi4G",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 },
                 "SuCS8XvGUBqiaajH": {
-                  "type": "weaponRulePredicate",
-                  "_id": "SuCS8XvGUBqiaajH",
+                  "type": "projectfu.weaponRulePredicate",
                   "categories": [
                     "sword"
-                  ]
+                  ],
+                  "selector": "initial",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -172,18 +154,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "lC0vrmonf2x2uiO1",
       "type": "base",
-      "changes": [],
       "description": "<p>When you hit one or more creatures with an attack from your <strong>Shadow Strike</strong> Skill using a <strong>sword</strong> , each of those creatures loses an amount of MP equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -195,13 +180,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770955523195,
-        "modifiedTime": 1771895893906,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922857,
+        "modifiedTime": 1792923922857,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!jdhnFWPhnFtLRLe8.lC0vrmonf2x2uiO1"
     }
   ],
@@ -215,17 +203,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523557159,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922857,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "jdhnFWPhnFtLRLe8",
   "sort": 0,

@@ -7,12 +7,9 @@
     "summary": {
       "value": "Cats, gazelles, hares, creatures that are agile and quick."
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You treat your <strong>Dexterity</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Dexterity</strong>, you may fill or erase 1 additional section of that Clock.</p>"
+      "description": "<p>You treat your <strong>Dexterity</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Dexterity</strong>, you may fill or erase 1 additional section of that Clock.</p>",
+      "type": "projectfu.therioform"
     },
     "source": "FUTF157",
     "fuid": "tachytheria"
@@ -36,10 +33,8 @@
         "rules": {
           "elements": {
             "fDXWEH50PHShxo33": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "IUhs1Hn2tUCpZwc2",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "attribute",
@@ -51,11 +46,9 @@
                 "local": false,
                 "identifier": ""
               },
-              "_id": "fDXWEH50PHShxo33",
               "predicates": {
                 "tLQswHgDWnWqBo6V": {
-                  "type": "checkRulePredicate",
-                  "_id": "tLQswHgDWnWqBo6V",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
                   "result": null,
                   "attributes": {
@@ -65,16 +58,19 @@
                     "secondary": {
                       "value": ""
                     }
-                  }
+                  },
+                  "parity": "",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "Hy79yl9RsS4iCu43": {
-                  "type": "messageRuleAction",
-                  "_id": "Hy79yl9RsS4iCu43",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>If this Check was used to alter a Clock, you may fill or erase 1 additional section.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -83,31 +79,34 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.attributes.dex",
+            "value": "upgrade",
+            "priority": null,
+            "type": "projectfu.apply",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "combat": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "_id": "Wc78nzv2k0QLfVCS",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.attributes.dex",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        }
-      ],
       "description": "<p>You are <strong>manifesting</strong> this therioform. You treat your <strong>Dexterity</strong> as one die size higher (up to <strong>d12</strong>). When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Dexterity</strong>, you may fill or erase 1 additional section of that Clock.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -128,20 +127,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1777761772936,
-        "modifiedTime": 1792632506203,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921248,
+        "modifiedTime": 1792923921248,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!WdA0rzemkQfGAMLk.Wc78nzv2k0QLfVCS"
     }
   ],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {}
@@ -149,10 +149,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711428338643,
-    "modifiedTime": 1792632500365,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921248,
+    "modifiedTime": 1792923922142,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

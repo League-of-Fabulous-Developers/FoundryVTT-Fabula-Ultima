@@ -5,16 +5,10 @@
   "_id": "L34pOGhdH0ZwV4Bt",
   "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer_faithful_companion.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>Together with your group, create a <strong>level 5 beast</strong>, <strong>construct</strong>, <strong>elemental</strong> or <strong>plant</strong> NPC that becomes your <strong>companion</strong>. This creature has <strong>no initiative score</strong>, <strong>does not level up</strong>, can have a <strong>maximum of two basic attacks</strong>, gains a bonus equal to <strong>【SL】</strong> to Accuracy Checks and Magic Checks, and their maximum Hit Points are equal to <strong>【(SL, multiplied by the companion's base Might size) + half your level】</strong>.</p><p>Your <strong>companion</strong> does not get an independent turn during conflicts, but you can use an action to have them perform an action (once per turn). If your <strong>companion</strong> is affected by any <strong>turn-related effects</strong>, these are based on <strong>your</strong> turn.</p><p>Your <strong>companion</strong> joins and leaves scenes when you do, and gains your same benefits for rests. If reduced to 0 HP, your <strong>companion</strong> flees the scene and rejoins you at the start of the next scene in which you are present, with current HP equal to their <strong>Crisis</strong> score.</p><hr /><p>For <strong>Designing NPCs</strong>, refer to <strong>Core Rulebook</strong>, page <strong>302</strong>.</p><p>To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.7J6fSVwbaWwi3Ojv]{Faithful Companion}<br />Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this companion, and for '<strong>Skill</strong>,' select the '<strong>Faithful Companion</strong>' skill.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Together with your group, create a <strong>level 5 beast</strong>, <strong>construct</strong>, <strong>elemental</strong> or <strong>plant</strong> NPC that becomes your <strong>companion</strong>. This creature has <strong>no initiative score</strong>, <strong>does not level up</strong>, can have a <strong>maximum of two basic attacks</strong>, gains a bonus equal to <strong>【SL】</strong> to Accuracy Checks and Magic Checks, and their maximum Hit Points are equal to <strong>【(SL, multiplied by the companion's base Might size) + half your level】</strong>.</p><p>Your <strong>companion</strong> does not get an independent turn during conflicts, but you can use an action to have them perform an action (once per turn). If your <strong>companion</strong> is affected by any <strong>turn-related effects</strong>, these are based on <strong>your</strong> turn.</p><p>Your <strong>companion</strong> joins and leaves scenes when you do, and gains your same benefits for rests. If reduced to 0 HP, your <strong>companion</strong> flees the scene and rejoins you at the start of the next scene in which you are present, with current HP equal to their <strong>Crisis</strong> score.</p><hr><p>For <strong>Designing NPCs</strong>, refer to <strong>Core Rulebook</strong>, page <strong>302</strong>.</p><p>To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.7J6fSVwbaWwi3Ojv]{Faithful Companion}<br>Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this companion, and for '<strong>Skill</strong>,' select the '<strong>Faithful Companion</strong>' skill.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "wayfarer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR217",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,24 +49,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "faithful-companion",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -144,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706513058235,
-    "modifiedTime": 1786689472125,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921178,
+    "modifiedTime": 1792923922132,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

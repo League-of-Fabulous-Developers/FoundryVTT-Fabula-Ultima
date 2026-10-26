@@ -9,81 +9,33 @@
     "summary": {
       "value": "Ignore a status effect."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Wayfarer</strong>.</p><hr /><p>You are permanently immune to a single status effect of your choice among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>.</p><hr /><p><em>Enable the passive effect on this Skill that matches your chosen status effect and delete the others.</em></p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Wayfarer</strong>.</p><hr><p>You are permanently immune to a single status effect of your choice among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>.</p><hr><p><em>Enable the passive effect on this Skill that matches your chosen status effect and delete the others.</em></p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "wayfarer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR240",
     "hasResource": {
@@ -93,16 +45,37 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "status-immunity",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -118,27 +91,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.immunities.dazed.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.immunities.dazed.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You are immune to <strong>dazed</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B",
@@ -147,22 +130,23 @@
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743124188945,
-        "modifiedTime": 1771889935784,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922848,
+        "modifiedTime": 1792923922848,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "YRGjUvOPdnz184Ci",
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFS46NM5EYoywktL.YRGjUvOPdnz184Ci"
     },
     {
@@ -177,27 +161,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.immunities.enraged.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.immunities.enraged.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You are immune to <strong>enraged</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs",
@@ -206,22 +200,23 @@
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743124191618,
-        "modifiedTime": 1771889959605,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922848,
+        "modifiedTime": 1792923922848,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "h6HH9q8HGNvsDM5m",
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFS46NM5EYoywktL.h6HH9q8HGNvsDM5m"
     },
     {
@@ -236,27 +231,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.immunities.poisoned.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.immunities.poisoned.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You are immune to <strong>poisoned</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q",
@@ -265,22 +270,23 @@
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743124193376,
-        "modifiedTime": 1771889979221,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922848,
+        "modifiedTime": 1792923922848,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "u7iKFqmDec3FwaFN",
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFS46NM5EYoywktL.u7iKFqmDec3FwaFN"
     },
     {
@@ -295,27 +301,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.immunities.shaken.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.immunities.shaken.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You are immune to <strong>shaken</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz",
@@ -324,22 +340,23 @@
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743124195358,
-        "modifiedTime": 1771889994135,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922848,
+        "modifiedTime": 1792923922848,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "lxV8fAopDYfWSndK",
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFS46NM5EYoywktL.lxV8fAopDYfWSndK"
     },
     {
@@ -354,27 +371,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.immunities.slow.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.immunities.slow.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You are immune to <strong>slow</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
@@ -383,22 +410,23 @@
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743124197373,
-        "modifiedTime": 1771890015599,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922848,
+        "modifiedTime": 1792923922848,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "m3uIzxOUvRFWbPwG",
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFS46NM5EYoywktL.m3uIzxOUvRFWbPwG"
     },
     {
@@ -413,27 +441,37 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        },
+        "changes": [
+          {
+            "key": "system.immunities.weak.base",
+            "value": true,
+            "priority": null,
+            "type": "override",
+            "phase": "initial"
           }
+        ],
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "type": "default",
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
         }
       },
-      "changes": [
-        {
-          "key": "system.immunities.weak.base",
-          "mode": 5,
-          "value": "true",
-          "priority": null
-        }
-      ],
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You are immune to <strong>weak</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG",
@@ -442,29 +480,29 @@
       "statuses": [],
       "sort": 0,
       "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
+        "projectfu": {}
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743124199919,
-        "modifiedTime": 1771890036907,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "createdTime": 1792923922848,
+        "modifiedTime": 1792923922848,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "_id": "uWGrcgM1XbnxmvFP",
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aFS46NM5EYoywktL.uWGrcgM1XbnxmvFP"
     }
   ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -476,10 +514,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706586741656,
-    "modifiedTime": 1787128676288,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922848,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

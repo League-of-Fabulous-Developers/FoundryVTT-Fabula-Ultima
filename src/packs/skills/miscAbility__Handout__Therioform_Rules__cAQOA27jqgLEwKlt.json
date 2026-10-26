@@ -4,63 +4,30 @@
   "type": "miscAbility",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_teriomorphosis.png",
   "system": {
-    "subtype": {
-      "value": "other"
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>Therioforms are mutations that grant powerful abilities. The way that they manifest is completely up to you: <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you large feathered wings.</p><ul><li><p>Once you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the <strong>Guard</strong> action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, and only while no other effect is being resolved.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend 10 Mind Points to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "dex"
-      },
-      "secondary": {
-        "value": "ins"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "isBehavior": {
       "value": false
@@ -78,48 +45,17 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "rp": {
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUTF156",
-    "rollInfo": {
-      "useWeapon": {
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        },
-        "hrZero": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "value": 0,
-        "type": {
-          "value": "physical"
-        }
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -128,15 +64,32 @@
     "fuid": "handout-therioform-rules",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "projectfu-playtest": {
@@ -150,10 +103,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711422481438,
-    "modifiedTime": 1791521416990,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921274,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

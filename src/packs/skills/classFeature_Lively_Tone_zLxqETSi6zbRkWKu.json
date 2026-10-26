@@ -8,12 +8,9 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
-    "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target treats their <strong>@DATA[key.attributeLocal]</strong> as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><p><strong>Targets Gain:</strong> @EFFECT[@DATA[key.attribute]-up e:sot i:1 t:source]</p>"
+      "description": "<p>Each target treats their <strong>@DATA[key.attributeLocal]</strong> as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[@DATA[key.attribute]-up e:sot i:1 t:source]</p>",
+      "type": "projectfu.tone"
     },
     "source": "FUHF139",
     "fuid": "lively-tone"
@@ -21,19 +18,16 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1710040149139,
-    "modifiedTime": 1771828539749,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921390,
+    "modifiedTime": 1792923922165,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

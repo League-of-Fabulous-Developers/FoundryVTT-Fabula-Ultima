@@ -9,81 +9,33 @@
     "summary": {
       "value": "Negate enemy spells while you are in Guard."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, or <strong>Spiritist</strong>.</p><hr /><p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you gain the following benefit until the start of your next turn:</p><p>When a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of Mind Points equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects (the spell isn't cast, but the creature is still considered to have spent their action).</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.31aBh1Qf91fjWhdl]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, or <strong>Spiritist</strong>.</p><hr><p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you gain the following benefit until the start of your next turn:</p><p>When a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of Mind Points equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects (the spell isn't cast, but the creature is still considered to have spent their action).</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.31aBh1Qf91fjWhdl]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "chimerist, elementalist, entropist, spiritist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF157",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "magic-guard",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684656698,
-    "modifiedTime": 1791492592812,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922851,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -10,9 +10,6 @@
       "value": "Allows the entire group to rest while in the wilderness."
     },
     "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. Cannot be used in settlements.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -22,15 +19,24 @@
     "source": "FUCR104",
     "fuid": "magic-tent",
     "damage": {
-      "onApply": ""
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": {
+      "entries": []
     }
   },
   "effects": [],
   "folder": "WTJwnSjYUL3GOIyA",
   "ownership": {
-    "default": 0,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -41,10 +47,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706516284047,
-    "modifiedTime": 1775517604907,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923160,
+    "modifiedTime": 1792923923173,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

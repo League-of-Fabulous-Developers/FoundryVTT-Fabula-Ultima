@@ -14,13 +14,10 @@
     {
       "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_anomaly.png",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Anomaly",
@@ -48,9 +45,9 @@
             "enabled": false
           },
           "elements": {}
-        }
+        },
+        "changes": []
       },
-      "changes": [],
       "description": "<p>Until this spell ends, if you would suffer damage of a type you Absorb or are Immune to, you are instead treated as if you were Vulnerable to that damage type. Once that happens, this spell ends.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -62,31 +59,34 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "createdTime": 1792923921361,
+        "modifiedTime": 1792923921361
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!rOzrw717cgCgjTZ7.mYnEsYLJMdCobMhd"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "LokWlpJRX2uVxtGn": 3,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1771474219373,
-    "modifiedTime": 1771474219373,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921361,
+    "modifiedTime": 1792923922160,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!rOzrw717cgCgjTZ7"
 }

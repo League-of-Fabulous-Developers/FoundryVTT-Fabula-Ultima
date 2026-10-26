@@ -14,14 +14,6 @@
       "name": "Lesser Weapon Up (Flail)",
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.flail",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
       "description": "<p>Your attacks with <strong>flail</strong> weapons deal 5 extra damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -29,35 +21,56 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "quality",
           "subtype": "Offensive",
-          "CrisisInteraction": "none",
           "source": "FUCR282"
         }
       },
       "_id": "rEhPw5HtPy7QfeGr",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.damage.flail",
+            "value": 5,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ],
+        "type": "quality",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1736223350329,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "createdTime": 1792923925156,
+        "modifiedTime": 1792923925156,
+        "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!FpbuB0diSwGFmz2u.rEhPw5HtPy7QfeGr"
     }
   ],
@@ -66,19 +79,18 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193107,
-    "modifiedTime": 1736223346092,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "createdTime": 1792923925156,
+    "modifiedTime": 1792923925277,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "FpbuB0diSwGFmz2u",
   "sort": 3500000,
   "ownership": {
-    "default": 0,
-    "7kOzP8RBVJhI8wKx": 3
+    "default": 0
   },
   "_key": "!items!FpbuB0diSwGFmz2u"
 }

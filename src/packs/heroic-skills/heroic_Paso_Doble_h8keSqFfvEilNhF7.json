@@ -9,81 +9,33 @@
     "summary": {
       "value": "Ignore the MP cost of Follow My Lead when you are in Crisis."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Dancer</strong> and acquired <strong>Follow My Lead</strong>.</p><hr /><p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your @UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead} Skill.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Dancer</strong> and acquired <strong>Follow My Lead</strong>.</p><hr><p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your @UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead} Skill.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "dancer"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF158",
     "hasResource": {
@@ -93,16 +45,37 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "paso-doble",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -123,11 +96,8 @@
         "rules": {
           "elements": {
             "lhWH7pURWojI0Zgx": {
-              "type": "ruleElement",
-              "_id": "lhWH7pURWojI0Zgx",
               "trigger": {
-                "_id": "67ua5hzY1RXHqhok",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -140,18 +110,17 @@
               },
               "actions": {
                 "kgb5OOAOyfqNqBuE": {
-                  "type": "messageRuleAction",
-                  "_id": "kgb5OOAOyfqNqBuE",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>While you are in <strong>Crisis</strong>, you ignore the MP cost.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             },
             "Q95dMk0g4AHFStD0": {
-              "type": "ruleElement",
-              "_id": "Q95dMk0g4AHFStD0",
               "trigger": {
-                "_id": "lSPJvwv3It3BMmMf",
-                "type": "calculateExpenseRuleTrigger",
+                "type": "projectfu.calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
                 "expenseSource": "skill",
@@ -159,16 +128,22 @@
                   "entries": [],
                   "quantifier": "any"
                 },
-                "identifier": "follow-my-lead"
+                "identifier": "follow-my-lead",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                }
               },
               "actions": {
                 "GzWahT3Bq3W9768E": {
-                  "type": "modifyExpenseRuleAction",
-                  "_id": "GzWahT3Bq3W9768E",
+                  "type": "projectfu.modifyExpenseRuleAction",
                   "amount": "0",
                   "operation": "multiply"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -177,18 +152,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "Le5vpTg6eOOHgTTZ",
       "type": "base",
-      "changes": [],
       "description": "<p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your <strong>Follow My Lead</strong> Skill.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -200,20 +178,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770763544541,
-        "modifiedTime": 1771283945234,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922854,
+        "modifiedTime": 1792923922854,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!h8keSqFfvEilNhF7.Le5vpTg6eOOHgTTZ"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -225,10 +205,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684669665,
-    "modifiedTime": 1791492626835,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922854,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

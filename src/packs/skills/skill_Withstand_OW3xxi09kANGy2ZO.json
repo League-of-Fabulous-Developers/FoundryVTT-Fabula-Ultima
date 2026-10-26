@@ -5,16 +5,10 @@
   "_id": "OW3xxi09kANGy2ZO",
   "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover:</strong> @GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.jSII3l7tDl8xF5O6] or @EFFECT[Compendium.projectfu.skills.Item.YI4Y5gg5ivvqmO5f]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr><p><strong>You Recover:</strong> @GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.jSII3l7tDl8xF5O6] or @EFFECT[Compendium.projectfu.skills.Item.YI4Y5gg5ivvqmO5f]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "fury"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR195",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,24 +49,39 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "withstand",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -144,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706502423483,
-    "modifiedTime": 1775527648621,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921195,
+    "modifiedTime": 1792923922135,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

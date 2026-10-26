@@ -9,81 +9,33 @@
     "summary": {
       "value": "Bind a previously unknown Arcanum, and improve dismiss effects."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Arcanist</strong>.</p><hr /><p>You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</p><p>Once per scene while you are <strong>merged</strong> with an Arcanum, you may use an action and spend 2 Fabula Points to <strong>trigger</strong> that Arcanum's <strong>dismiss</strong> effect (if any) without dismissing them. Doing so <strong>does not</strong> trigger the <strong>Arcane Circle</strong> Skill.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Arcanist</strong>.</p><hr><p>You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</p><p>Once per scene while you are <strong>merged</strong> with an Arcanum, you may use an action and spend 2 Fabula Points to <strong>trigger</strong> that Arcanum's <strong>dismiss</strong> effect (if any) without dismissing them. Doing so <strong>does not</strong> trigger the <strong>Arcane Circle</strong> Skill.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "arcanist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR240",
     "hasResource": {
@@ -93,27 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "revelation",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "cost": {
       "resource": "fp",
-      "amount": "2"
+      "amount": "2",
+      "perTarget": false
+    },
+    "defense": "def",
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -125,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706586656617,
-    "modifiedTime": 1787128507709,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922871,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

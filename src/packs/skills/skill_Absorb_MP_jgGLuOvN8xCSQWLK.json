@@ -2,16 +2,10 @@
   "name": "Absorb MP",
   "type": "skill",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
-    "description": "<p>After you suffer damage, you may recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>After you suffer damage, you may recover <strong>【SL × 2】</strong> Mind Points.</p><hr><p><strong>You Recover:</strong> @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -24,84 +18,24 @@
       "value": "entropist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR191",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -112,17 +46,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "absorb-mp",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_absorb_mp.png",
@@ -144,34 +95,33 @@
         "rules": {
           "elements": {
             "muzDjLIvfufoz9AZ": {
-              "type": "ruleElement",
-              "_id": "muzDjLIvfufoz9AZ",
               "trigger": {
-                "_id": "BEoVEbo5FTGa71Hb",
-                "type": "damageRuleTrigger",
+                "type": "projectfu.damageRuleTrigger",
                 "eventRelation": "target",
                 "damageType": "",
-                "damageSources": [],
                 "damageThreshold": {
                   "operator": "",
                   "amount": 0
                 },
-                "identifier": ""
+                "identifier": "",
+                "itemGroups": [],
+                "affinity": "",
+                "local": false
               },
               "actions": {
                 "9qZlJnRWhNntEkfe": {
-                  "type": "messageRuleAction",
-                  "_id": "9qZlJnRWhNntEkfe",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You recover <strong>【SL × 2】</strong> Mind Points.</p>"
                 },
                 "B4GECG8iCZhy8Yt1": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "B4GECG8iCZhy8Yt1",
+                  "type": "projectfu.updateResourceRuleAction",
                   "amount": "$sl*2",
                   "resource": "mp"
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -180,23 +130,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "5VkoqLalYTeuaJX1",
       "type": "base",
-      "changes": [],
       "description": "<p>After you suffer damage, you may immediately recover <strong>【SL × 2】</strong> Mind Points.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -208,13 +161,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766925670202,
-        "modifiedTime": 1783559900959,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921320,
+        "modifiedTime": 1792923921320,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!jgGLuOvN8xCSQWLK.5VkoqLalYTeuaJX1"
     }
   ],
@@ -229,19 +185,17 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706421327382,
-    "modifiedTime": 1786408100427,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921320,
+    "modifiedTime": 1792923922152,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "_id": "jgGLuOvN8xCSQWLK",
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "sort": 500000,
   "_key": "!items!jgGLuOvN8xCSQWLK"

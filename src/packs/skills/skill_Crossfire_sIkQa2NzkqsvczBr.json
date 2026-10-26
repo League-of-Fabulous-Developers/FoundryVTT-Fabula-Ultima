@@ -5,16 +5,10 @@
   "_id": "sIkQa2NzkqsvczBr",
   "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>After a creature you can see performs an Accuracy Check for a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of that Accuracy Check】</strong> to have the attack automatically miss all of its targets. You can only use this Skill if you have a <strong>ranged weapon</strong> equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,84 +21,24 @@
       "value": "sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "source": "FUCR205",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -115,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "crossfire",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -146,11 +97,8 @@
         "rules": {
           "elements": {
             "XCJMRop9wZe4E0w6": {
-              "type": "ruleElement",
-              "_id": "XCJMRop9wZe4E0w6",
               "trigger": {
-                "_id": "SvxRRbmMaWpg6AFW",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "",
                 "checkTypes": [
                   "accuracy"
@@ -163,31 +111,35 @@
               },
               "predicates": {
                 "mcYSEMAjvu14owAY": {
-                  "type": "factionRelationRulePredicate",
-                  "_id": "mcYSEMAjvu14owAY",
+                  "type": "projectfu.factionRelationRulePredicate",
                   "relation": "ally",
                   "inclusive": true
                 },
                 "mOzdLT4f4tE4195B": {
-                  "type": "weaponRulePredicate",
-                  "_id": "mOzdLT4f4tE4195B",
+                  "type": "projectfu.weaponRulePredicate",
                   "weaponType": "ranged",
-                  "selector": "source"
+                  "selector": "source",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 },
                 "nwwnCFCojQZxCVQO": {
-                  "type": "weaponRulePredicate",
-                  "_id": "nwwnCFCojQZxCVQO",
+                  "type": "projectfu.weaponRulePredicate",
                   "selector": "self",
-                  "weaponType": "ranged"
+                  "weaponType": "ranged",
+                  "martial": "",
+                  "handedness": "",
+                  "categories": []
                 }
               },
               "actions": {
                 "Jg8qePO1hy7kyP6V": {
-                  "type": "messageRuleAction",
-                  "_id": "Jg8qePO1hy7kyP6V",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + Accuracy Check MP}.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -196,18 +148,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "ZUwqffH7kP8rWg0g",
       "type": "base",
-      "changes": [],
       "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -219,20 +174,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1766863644203,
-        "modifiedTime": 1771840136883,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923921365,
+        "modifiedTime": 1792923921365,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -244,10 +200,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706506746453,
-    "modifiedTime": 1786686637466,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921365,
+    "modifiedTime": 1792923922161,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

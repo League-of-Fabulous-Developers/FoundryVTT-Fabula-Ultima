@@ -9,81 +9,33 @@
     "summary": {
       "value": "Fight with two weapons of different categories."
     },
-    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to <strong>weapons</strong> belonging to different Categories, even if one is a <strong>melee weapon</strong> and the other is a <strong>ranged weapon</strong> (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p><hr /><p><strong>You Gain For 2nd Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.n8smo5hXfdkEOI4e]</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to <strong>weapons</strong> belonging to different Categories, even if one is a <strong>melee weapon</strong> and the other is a <strong>ranged weapon</strong> (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p><hr><p><strong>You Gain For 2nd Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.n8smo5hXfdkEOI4e]</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": ""
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUCR234",
     "hasResource": {
@@ -93,16 +45,37 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "ambidextrous",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -128,25 +101,29 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.derived.def.bonus",
+            "value": 2,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "gfaJRHEgiMjxJojC",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.derived.def.bonus",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "description": "<p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -158,20 +135,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770707975821,
-        "modifiedTime": 1770750403511,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922873,
+        "modifiedTime": 1792923922873,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!wr1if7rQttzxelbV.gfaJRHEgiMjxJojC"
     }
   ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -183,10 +162,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706583614340,
-    "modifiedTime": 1787126772342,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922873,
+    "modifiedTime": 1792923923015,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

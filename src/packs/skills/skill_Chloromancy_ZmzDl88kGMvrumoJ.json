@@ -4,14 +4,10 @@
   "type": "skill",
   "img": "systems/projectfu/styles/static/compendium/classes/floralist/chloromancy.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you discover <strong>a new type of magiseed</strong>.</p><p>During a conflict, if there are <strong>no magiseeds</strong> in your <strong>garden</strong>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered.</p><hr /><p>For <strong>magiseed</strong> breakdown and a list of <strong>Magiseeds</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Floralist Rules} or see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX.JournalEntryPage.8e8kglGnqyKy1Nju]{Magiseed VTT Instructions}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p>Each time you acquire this Skill, you discover <strong>a new type of magiseed</strong>.</p><p>During a conflict, if there are <strong>no magiseeds</strong> in your <strong>garden</strong>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered.</p><hr><p>For <strong>magiseed</strong> breakdown and a list of <strong>Magiseeds</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Floralist Rules} or see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>.<br>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX.JournalEntryPage.8e8kglGnqyKy1Nju]{Magiseed VTT Instructions}</p>",
     "showTitleCard": {
       "value": false
     },
@@ -25,13 +21,14 @@
     },
     "useWeapon": {
       "accuracy": false,
-      "damage": false
+      "damage": false,
+      "traits": true
     },
     "attributes": {
       "primary": "ins",
       "secondary": "mig"
     },
-    "accuracy": 0,
+    "accuracy": "0",
     "defense": "def",
     "damage": {
       "hasDamage": false,
@@ -48,7 +45,8 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "source": "FUNF139",
     "hasRoll": {
@@ -56,8 +54,9 @@
     },
     "fuid": "chloromancy",
     "cost": {
-      "amount": 20,
-      "resource": "mp"
+      "amount": "20",
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
       "rule": "self",
@@ -65,8 +64,18 @@
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -93,23 +102,26 @@
             "name": "Garden",
             "current": 0,
             "max": 4,
-            "style": "clock"
+            "style": "clock",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "iNGe7hdKe1Gwx2FQ",
       "type": "base",
-      "changes": [],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,
@@ -130,19 +142,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774899180736,
-        "modifiedTime": 1774910823198,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1792923921263,
+        "modifiedTime": 1792923921263,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ZmzDl88kGMvrumoJ.iNGe7hdKe1Gwx2FQ"
     }
   ],
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -154,12 +168,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Pm6x5aNGstD5tAoz",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1775527416946,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923921263,
+    "modifiedTime": 1792923922145,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "ZmzDl88kGMvrumoJ",

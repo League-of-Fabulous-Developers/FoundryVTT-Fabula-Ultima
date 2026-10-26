@@ -10,17 +10,9 @@
     "summary": {
       "value": "Perform an attack, then cast an offensive spell."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Elementalist</strong>, <strong>Sharpshooter</strong>, or <strong>Weaponmaster</strong>, and must know at least <strong>two</strong> offensive spells (@ICON[offensive]).</p><hr /><p>You may use an action to perform a <strong>free attack</strong> with a <strong>weapon</strong> you have equipped. This attack must target <strong>a single enemy</strong>. If the attack is successful, treat your <strong>High Roll</strong> as 0 when determining damage dealt by it. After the attack has been resolved, if it was successful, you may immediately perform the <strong>Spell</strong> action for free: the spell you cast this way <strong>must</strong> be an offensive (@ICON[offensive]) spell with a total MP cost <strong>equal to or lower than 20,</strong> and it may <strong>only</strong> target the enemy you attacked (you must still spend the appropriate Mind Points and perform the Magic Check). Treat your Magic Check's <strong>High Roll</strong> as 0 when determining damage or other effects caused by this spell.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Elementalist</strong>, <strong>Sharpshooter</strong>, or <strong>Weaponmaster</strong>, and must know at least <strong>two</strong> offensive spells (@ICON[offensive]).</p><hr><p>You may use an action to perform a <strong>free attack</strong> with a <strong>weapon</strong> you have equipped. This attack must target <strong>a single enemy</strong>. If the attack is successful, treat your <strong>High Roll</strong> as 0 when determining damage dealt by it. After the attack has been resolved, if it was successful, you may immediately perform the <strong>Spell</strong> action for free: the spell you cast this way <strong>must</strong> be an offensive (@ICON[offensive]) spell with a total MP cost <strong>equal to or lower than 20,</strong> and it may <strong>only</strong> target the enemy you attacked (you must still spend the appropriate Mind Points and perform the Magic Check). Treat your Magic Check's <strong>High Roll</strong> as 0 when determining damage or other effects caused by this spell.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "elementalist, sharpshooter, weaponmaster"
@@ -28,17 +20,11 @@
     "useWeapon": {
       "accuracy": true,
       "damage": true,
-      "hrZero": {
-        "value": false
-      }
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
     "accuracy": "",
     "damage": {
@@ -49,18 +35,6 @@
       "onApply": "",
       "hrZero": true
     },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
-    },
     "hasResource": {
       "value": false
     },
@@ -68,38 +42,42 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF171",
     "fuid": "arcane-soldier",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "hasRoll": {
       "value": true
     },
-    "defense": ""
+    "defense": "",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
   },
   "effects": [],
   "flags": {
@@ -112,17 +90,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523386897,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922827,
+    "modifiedTime": 1792923923010,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "E3OppAz7I4f0g19B",
   "sort": 0,

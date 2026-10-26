@@ -10,10 +10,7 @@
     "summary": {
       "value": "Quicken or delay the growth of your magiseeds"
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Floralist</strong>.</p><hr /><p>When <strong>you fill 1 or more sections of your Growth Clock</strong>, you may choose one option:</p><ul><li><p>You fill <strong>1 additional section</strong> of your <strong>Growth Clock</strong>.</p></li><li><p>You fill <strong>1 fewer section</strong> of your <strong>Growth Clock</strong> (to a minimum of 0 sections filled).</p></li></ul><p>If you do, you cannot use this effect again until after your <strong>Growth Clock</strong> has become completely empty.</p><p>Additionally, damage dealt by your <strong>magiseeds</strong> ignores Resistances.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Floralist</strong>.</p><hr><p>When <strong>you fill 1 or more sections of your Growth Clock</strong>, you may choose one option:</p><ul><li><p>You fill <strong>1 additional section</strong> of your <strong>Growth Clock</strong>.</p></li><li><p>You fill <strong>1 fewer section</strong> of your <strong>Growth Clock</strong> (to a minimum of 0 sections filled).</p></li></ul><p>If you do, you cannot use this effect again until after your <strong>Growth Clock</strong> has become completely empty.</p><p>Additionally, damage dealt by your <strong>magiseeds</strong> ignores Resistances.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -27,37 +24,58 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUNF166",
     "fuid": "green-thumb",
     "damage": {
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical"
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
@@ -71,18 +89,17 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.nm6Ec7nbsrNlRZCf",
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676906838,
-    "modifiedTime": 1791519081652,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923922862,
+    "modifiedTime": 1792923923014,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_id": "nm6Ec7nbsrNlRZCf",
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "sort": 0,
   "_key": "!items!nm6Ec7nbsrNlRZCf"

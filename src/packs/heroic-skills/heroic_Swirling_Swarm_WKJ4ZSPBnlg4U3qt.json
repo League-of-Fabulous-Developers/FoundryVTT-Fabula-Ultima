@@ -9,81 +9,33 @@
     "summary": {
       "value": "Gain benefits for consecutive attacks with thrown weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Dancer</strong>, <strong>Fury</strong>, or <strong>Sharpshooter</strong>.</p><hr /><p>When you perform a <strong>ranged</strong> attack using a <strong>weapon</strong> that belongs to the <strong>thrown</strong> Category, if you have <strong>no martial armor</strong> and <strong>no shields</strong> equipped, you gain <strong>1 Momentum Point</strong>.</p><p>You may never have more than <strong>5 Momentum Points</strong>.</p><p>Your <strong>ranged</strong> attacks using <strong>weapons</strong> that belong to the <strong>thrown</strong> Category deal extra damage equal to your current <strong>Momentum Points</strong>.</p><p>When a creature hits you with an attack targeting your <strong>Defense</strong>, you <strong>must</strong> spend all your accumulated <strong>Momentum Points</strong> and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</p><p>You also lose all <strong>Momentum Points</strong> at the end of each scene, or if you equip a <strong>shield</strong> or <strong>martial armor</strong>.</p><hr /><p><strong>Resource:</strong> @PROGRESS[swirling-swarm update 1]{Gain 1 Momentum Point} or @PROGRESS[swirling-swarm reset]{Lose All Momentum Points}</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Dancer</strong>, <strong>Fury</strong>, or <strong>Sharpshooter</strong>.</p><hr><p>When you perform a <strong>ranged</strong> attack using a <strong>weapon</strong> that belongs to the <strong>thrown</strong> Category, if you have <strong>no martial armor</strong> and <strong>no shields</strong> equipped, you gain <strong>1 Momentum Point</strong>.</p><p>You may never have more than <strong>5 Momentum Points</strong>.</p><p>Your <strong>ranged</strong> attacks using <strong>weapons</strong> that belong to the <strong>thrown</strong> Category deal extra damage equal to your current <strong>Momentum Points</strong>.</p><p>When a creature hits you with an attack targeting your <strong>Defense</strong>, you <strong>must</strong> spend all your accumulated <strong>Momentum Points</strong> and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</p><p>You also lose all <strong>Momentum Points</strong> at the end of each scene, or if you equip a <strong>shield</strong> or <strong>martial armor</strong>.</p><hr><p><strong>Resource:</strong> @PROGRESS[swirling-swarm update 1]{Gain 1 Momentum Point} or @PROGRESS[swirling-swarm reset]{Lose All Momentum Points}</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "dancer, fury, sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF160",
     "hasResource": {
@@ -93,16 +45,37 @@
       "name": "Momentum Points",
       "current": 0,
       "step": 1,
-      "max": 5
+      "max": 5,
+      "enabled": false
     },
     "fuid": "swirling-swarm",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -123,11 +96,8 @@
         "rules": {
           "elements": {
             "EAc6rWjllXErp9Kp": {
-              "type": "ruleElement",
-              "_id": "EAc6rWjllXErp9Kp",
               "trigger": {
-                "_id": "0dHoHzguWjdGxpQQ",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "target",
                 "checkTypes": [
                   "accuracy"
@@ -140,61 +110,69 @@
               },
               "predicates": {
                 "rMXpL4C13KQWAmSB": {
-                  "type": "checkRulePredicate",
-                  "_id": "rMXpL4C13KQWAmSB",
+                  "type": "projectfu.checkRulePredicate",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "parity": "",
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  },
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "yiYuNTAdkwG11Hva": {
-                  "type": "messageRuleAction",
-                  "_id": "yiYuNTAdkwG11Hva",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>This character must spend all <strong>Momentum Points</strong> and check to see if this attack would still hit.</p>"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             },
             "cRHuJxog5Hq8tYUv": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "xkHMNik5BkLJFaJz",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "startOfCombat"
+                "eventType": "startOfCombat",
+                "parity": ""
               },
-              "_id": "cRHuJxog5Hq8tYUv",
               "actions": {
                 "YWKJb8YOeIz6qpgI": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "YWKJb8YOeIz6qpgI",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "swirling-swarm",
                   "action": "reset",
                   "notify": true,
                   "amount": ""
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             },
             "4AzuFv02u7D0wZh4": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "DPrCmEFRaw0B0aKB",
-                "type": "combatRuleTrigger",
+                "type": "projectfu.combatRuleTrigger",
                 "eventRelation": "",
-                "eventType": "endOfCombat"
+                "eventType": "endOfCombat",
+                "parity": ""
               },
-              "_id": "4AzuFv02u7D0wZh4",
               "actions": {
                 "pa03XzbTSkd1djjN": {
-                  "type": "updateTrackRuleAction",
-                  "_id": "pa03XzbTSkd1djjN",
+                  "type": "projectfu.updateTrackRuleAction",
                   "identifier": "swirling-swarm",
                   "action": "reset",
                   "notify": true,
                   "amount": ""
                 }
               },
-              "selector": "self"
+              "selector": "self",
+              "predicates": {},
+              "enabled": true
             }
           },
           "progress": {
@@ -203,25 +181,29 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": [
+          {
+            "key": "system.bonuses.damage.thrown",
+            "value": "@system.rp.current",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "iAZxATXrL2K1NHc4",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.thrown",
-          "mode": 2,
-          "value": "@system.rp.current",
-          "priority": null
-        }
-      ],
       "description": "<p>Your <strong>ranged</strong> attacks using weapons that belong to the <strong>thrown</strong> Category deal extra damage equal to your current <strong>Momentum Points</strong>.</p><p>When a creature hits you with an attack targeting your <strong>Defense</strong>, you <strong>must</strong> spend all your accumulated <strong>Momentum Points</strong> and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</p><p>You also lose all <strong>Momentum Points</strong> at the end of each scene.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -233,20 +215,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770765412760,
-        "modifiedTime": 1771893307891,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922845,
+        "modifiedTime": 1792923922845,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!WKJ4ZSPBnlg4U3qt.iAZxATXrL2K1NHc4"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -258,10 +242,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684737113,
-    "modifiedTime": 1791493143095,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922845,
+    "modifiedTime": 1792923923012,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

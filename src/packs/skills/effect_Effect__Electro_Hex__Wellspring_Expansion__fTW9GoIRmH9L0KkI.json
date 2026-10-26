@@ -14,13 +14,10 @@
     {
       "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": 1,
+        "units": "rounds",
+        "expiry": "turnStart",
+        "expired": false
       },
       "disabled": false,
       "name": "Electro Hex (Wellspring Expansion)",
@@ -53,22 +50,24 @@
             "duration": false,
             "increment": 1
           }
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.earth",
-          "mode": 2,
-          "value": "5+(~&sl('wellspring-expansion'))",
-          "priority": null
         },
-        {
-          "key": "system.bonuses.incomingDamage.fire",
-          "mode": 2,
-          "value": "5+(~&sl('wellspring-expansion'))",
-          "priority": null
-        }
-      ],
+        "changes": [
+          {
+            "key": "system.bonuses.incomingDamage.earth",
+            "value": "5+(~&sl('wellspring-expansion'))",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.incomingDamage.fire",
+            "value": "5+(~&sl('wellspring-expansion'))",
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
+      },
       "description": "<p>Until the start of the <strong>invoker's</strong> next turn, you suffer <strong>【5 + Wellspring Expansion SL】</strong> extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -80,12 +79,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1775522895997
+        "lastModifiedBy": "qSTUglS93W7Had7H",
+        "modifiedTime": 1792923921295,
+        "createdTime": 1792923921295
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!fTW9GoIRmH9L0KkI.OM4F1lYKawySMYTa"
     }
   ],
@@ -94,16 +97,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770633058451,
-    "modifiedTime": 1770633105253,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923921295,
+    "modifiedTime": 1792923922149,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "_id": "fTW9GoIRmH9L0KkI",
   "sort": 100000,

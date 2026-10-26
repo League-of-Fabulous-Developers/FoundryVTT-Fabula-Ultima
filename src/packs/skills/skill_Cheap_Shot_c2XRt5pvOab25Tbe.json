@@ -5,16 +5,10 @@
   "_id": "c2XRt5pvOab25Tbe",
   "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_cheap_shot.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you hit a creature with an attack, if the attack <strong>only</strong> targeted that creature and they are suffering from <strong>one or more status effects</strong>, you may have it deal extra damage equal to <strong>【SL + the number of status effects on the creature】</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -29,75 +23,22 @@
     "useWeapon": {
       "accuracy": false,
       "damage": true,
-      "hrZero": {
-        "value": false
-      }
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
       "hasDamage": false,
       "value": 0,
       "type": "",
-      "extra": "$sl+$tsc",
       "onRoll": "",
-      "onApply": "(min($tsc, 1) * $sl) + $tsc"
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "(min($tsc, 1) * $sl) + $tsc",
+      "hrZero": false
     },
     "source": "FUCR203",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": false
-        },
-        "damage": {
-          "value": false
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": false
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
     "hasRoll": {
       "value": false
     },
@@ -108,17 +49,34 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "",
     "fuid": "cheap-shot",
     "targeting": {
-      "rule": "single"
+      "rule": "single",
+      "max": 0
     },
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
+    },
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
     }
   },
   "effects": [
@@ -140,48 +98,50 @@
         "rules": {
           "elements": {
             "iMeiSArQrJM5MAh7": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "OHQTsrY8tqFSIFGH",
-                "type": "calculateDamageRuleTrigger",
+                "type": "projectfu.calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
-                  "attack"
-                ],
                 "damageTypes": [],
                 "local": false,
                 "identifier": "",
                 "itemGroups": [
-                  "attack",
-                  "skill"
+                  "attack"
                 ]
               },
-              "_id": "iMeiSArQrJM5MAh7",
               "predicates": {
                 "ilm0KpbJ3hHp907Z": {
-                  "type": "targetingRulePredicate",
-                  "_id": "ilm0KpbJ3hHp907Z"
+                  "type": "projectfu.targetingRulePredicate",
+                  "rule": "single"
                 },
                 "Av5MT6g88DEgoDBq": {
-                  "type": "traitsRulePredicate",
-                  "_id": "Av5MT6g88DEgoDBq",
+                  "type": "projectfu.traitsRulePredicate",
                   "traits": {
                     "entries": [
                       "attack"
-                    ]
+                    ],
+                    "quantifier": "any"
                   }
                 }
               },
               "actions": {
                 "a5eygozQFnmIGLi8": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "a5eygozQFnmIGLi8",
+                  "type": "projectfu.modifyDamageRuleAction",
                   "amount": "(min($tsc, 1)*$sl)+$tsc",
                   "cost": {
-                    "amount": null
-                  }
+                    "amount": null,
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "operation": "add",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "variant": ""
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -190,23 +150,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "zXuBvWCNg61ggCWh",
       "type": "base",
-      "changes": [],
       "description": "<p>When you hit a creature with an attack, if the attack <strong>only</strong> targeted that creature and they are suffering from <strong>one or more status effects</strong>, you may have it deal extra damage equal to <strong>【SL + the number of status effects on the creature】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -227,20 +190,21 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774633534207,
-        "modifiedTime": 1776794401499,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1792923921272,
+        "modifiedTime": 1792923921272,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!c2XRt5pvOab25Tbe.zXuBvWCNg61ggCWh"
     }
   ],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 2
   },
   "flags": {
     "core": {},
@@ -252,10 +216,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706504733585,
-    "modifiedTime": 1774633770211,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923921272,
+    "modifiedTime": 1792923922146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

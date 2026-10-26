@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/spear-bluelight.png",
   "system": {
     "fuid": "bellringer",
-    "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -97,10 +97,8 @@
         "rules": {
           "elements": {
             "SP3rw1Pszx7zgTUi": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "zDIdebvnBUFJAUuM",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
@@ -109,14 +107,15 @@
                 "local": true,
                 "identifier": ""
               },
-              "_id": "SP3rw1Pszx7zgTUi",
               "actions": {
                 "BiHWxNOu0lnb2AkH": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "BiHWxNOu0lnb2AkH",
+                  "type": "projectfu.applyEffectRuleAction",
                   "effect": "dazed"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -125,23 +124,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "GQ3gxFVWwBnd8jVj",
       "type": "base",
-      "changes": [],
       "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -162,20 +164,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774740364324,
-        "modifiedTime": 1775709179284,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925903,
+        "modifiedTime": 1792923925903,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!s9IAXPFtyNSh1Zeb.GQ3gxFVWwBnd8jVj"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -186,12 +190,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774739799041,
-    "modifiedTime": 1777530914582,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925903,
+    "modifiedTime": 1792923925984,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!s9IAXPFtyNSh1Zeb"
 }

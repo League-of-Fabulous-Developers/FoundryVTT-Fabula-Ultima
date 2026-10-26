@@ -5,9 +5,6 @@
   "_id": "KCXzvuZQnzva9t5Z",
   "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/chimerist.png",
   "system": {
-    "isFavored": {
-      "value": false
-    },
     "level": 1,
     "maxLevel": 5,
     "items": [
@@ -109,11 +106,8 @@
               "rules": {
                 "elements": {
                   "0pSgDRx5DTtpbC1r": {
-                    "type": "ruleElement",
-                    "_id": "0pSgDRx5DTtpbC1r",
                     "trigger": {
-                      "_id": "vLC7M37rryxzsNwg",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [],
                       "itemGroups": [
@@ -124,8 +118,7 @@
                     },
                     "predicates": {
                       "1FXM0cyqHXfTBwMp": {
-                        "type": "weaponRulePredicate",
-                        "_id": "1FXM0cyqHXfTBwMp",
+                        "type": "projectfu.weaponRulePredicate",
                         "categories": [
                           "arcane",
                           "dagger",
@@ -137,8 +130,7 @@
                         "weaponType": ""
                       },
                       "fMX5d5xLaGe4IfTN": {
-                        "type": "traitsRulePredicate",
-                        "_id": "fMX5d5xLaGe4IfTN",
+                        "type": "projectfu.traitsRulePredicate",
                         "traits": {
                           "entries": [
                             "damage"
@@ -149,13 +141,11 @@
                     },
                     "actions": {
                       "38M0seyIClMNOZsr": {
-                        "type": "messageRuleAction",
-                        "_id": "38M0seyIClMNOZsr",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>If you damage one or more, recover<strong>【SL × 2】</strong>MP.</p>"
                       },
                       "C4sr0SUqEHuh5PXh": {
-                        "type": "updateResourceRuleAction",
-                        "_id": "C4sr0SUqEHuh5PXh",
+                        "type": "projectfu.updateResourceRuleAction",
                         "resource": "mp",
                         "amount": "$sl*2"
                       }
@@ -173,23 +163,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "QvJKfoqYcZGOxmLS",
             "type": "base",
-            "changes": [],
             "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -390,11 +384,8 @@
               "rules": {
                 "elements": {
                   "wG3QUYGcPUhuaWnk": {
-                    "type": "ruleElement",
-                    "_id": "wG3QUYGcPUhuaWnk",
                     "trigger": {
-                      "_id": "4xDYjDv3vOrrk3L5",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [],
                       "itemGroups": [
@@ -405,8 +396,7 @@
                     },
                     "predicates": {
                       "sscv40mUCY4Frt4I": {
-                        "type": "traitsRulePredicate",
-                        "_id": "sscv40mUCY4Frt4I",
+                        "type": "projectfu.traitsRulePredicate",
                         "traits": {
                           "entries": [
                             "damage"
@@ -415,25 +405,23 @@
                         }
                       },
                       "ACaIppU5l1Bb16Cj": {
-                        "type": "speciesRulePredicate",
-                        "_id": "ACaIppU5l1Bb16Cj",
+                        "type": "projectfu.speciesRulePredicate",
                         "species": [
                           "beast",
                           "monster",
                           "plant"
                         ],
-                        "selector": "initial"
+                        "selector": "initial",
+                        "quantifier": "any"
                       }
                     },
                     "actions": {
                       "X63gHodhVxCaAW8N": {
-                        "type": "messageRuleAction",
-                        "_id": "X63gHodhVxCaAW8N",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>If you damage one or more with a Chimerist spell, those that share <strong>Species</strong> suffer <strong>poisoned</strong>.</p>"
                       },
                       "TXYeCQTRMxgbBNqK": {
-                        "type": "applyEffectRuleAction",
-                        "_id": "TXYeCQTRMxgbBNqK",
+                        "type": "projectfu.applyEffectRuleAction",
                         "effect": "poisoned"
                       }
                     },
@@ -450,23 +438,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "UiwmY4WawFJGxq3H",
             "type": "base",
-            "changes": [],
             "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -576,11 +568,8 @@
               "rules": {
                 "elements": {
                   "gV4JoLHDd53BVD78": {
-                    "type": "ruleElement",
-                    "_id": "gV4JoLHDd53BVD78",
                     "trigger": {
-                      "_id": "ate421kuSXwlruFV",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "projectfu.renderCheckRuleTrigger",
                       "eventRelation": "",
                       "checkTypes": [],
                       "itemGroups": [
@@ -591,20 +580,19 @@
                     },
                     "predicates": {
                       "72E5kUiLUBiNIiMv": {
-                        "type": "speciesRulePredicate",
-                        "_id": "72E5kUiLUBiNIiMv",
+                        "type": "projectfu.speciesRulePredicate",
                         "species": [
                           "beast",
                           "monster",
                           "plant"
                         ],
-                        "selector": "source"
+                        "selector": "source",
+                        "quantifier": "any"
                       }
                     },
                     "actions": {
                       "TmtaC4LiXQe9p888": {
-                        "type": "messageRuleAction",
-                        "_id": "TmtaC4LiXQe9p888",
+                        "type": "projectfu.messageRuleAction",
                         "message": "<p>The chimerist may learn this as a Chimerist spell.</p>"
                       }
                     },
@@ -621,23 +609,27 @@
                   "style": "basic",
                   "step": 1
                 }
-              }
+              },
+              "changes": []
             },
             "duration": {
-              "startTime": null,
-              "combat": null
+              "value": null,
+              "units": "seconds",
+              "expiry": null,
+              "expired": false
             },
             "disabled": false,
             "_id": "LSKs1p3YHGDXv1IS",
             "type": "base",
-            "changes": [],
             "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p>",
             "origin": null,
             "tint": "#ffffff",
             "transfer": true,
             "statuses": [],
             "sort": 0,
-            "flags": {}
+            "flags": {},
+            "start": null,
+            "showIcon": 1
           }
         ],
         "flags": {
@@ -657,19 +649,18 @@
   "effects": [],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1745491348230,
-    "modifiedTime": 1791524619145,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "createdTime": 1792923925545,
+    "modifiedTime": 1792923925626,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "_key": "!items!KCXzvuZQnzva9t5Z"

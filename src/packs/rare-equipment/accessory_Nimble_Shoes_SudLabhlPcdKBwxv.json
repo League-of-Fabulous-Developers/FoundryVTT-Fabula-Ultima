@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/shoe-lightbrown-short.png",
   "system": {
     "fuid": "nimble-shoes",
-    "description": "<p>You gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Dexterity</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
+    "description": "<p>You gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Dexterity</strong>.</p><hr><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -49,20 +49,17 @@
         "rules": {
           "elements": {
             "w08eLZl0UHTH1B7b": {
-              "type": "ruleElement",
               "trigger": {
-                "_id": "z34z3sV6AeCoE4K5",
-                "type": "performCheckRuleTrigger",
+                "type": "projectfu.performCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "opposed"
-                ]
+                ],
+                "local": false
               },
-              "_id": "w08eLZl0UHTH1B7b",
               "predicates": {
                 "6k6ADSFjxFhhcP8T": {
-                  "type": "checkRulePredicate",
-                  "_id": "6k6ADSFjxFhhcP8T",
+                  "type": "projectfu.checkRulePredicate",
                   "result": null,
                   "attributes": {
                     "primary": {
@@ -71,16 +68,20 @@
                     "secondary": {
                       "value": ""
                     }
-                  }
+                  },
+                  "parity": "",
+                  "outcome": "",
+                  "quantifier": "any"
                 }
               },
               "actions": {
                 "VZpPLqNgH0cMj8l7": {
-                  "type": "modifyCheckRuleAction",
-                  "_id": "VZpPLqNgH0cMj8l7",
+                  "type": "projectfu.modifyCheckRuleAction",
                   "bonus": "2"
                 }
-              }
+              },
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -89,23 +90,26 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "bar"
+            "style": "bar",
+            "step": 1
           },
           "stacking": {
             "progress": false,
             "duration": false,
             "increment": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "ldSi4qG0X8VBmYHL",
       "type": "base",
-      "changes": [],
       "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Dexterity</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
@@ -126,20 +130,22 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1774686627613,
-        "modifiedTime": 1775708225122,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923925887,
+        "modifiedTime": 1792923925887,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!SudLabhlPcdKBwxv.ldSi4qG0X8VBmYHL"
     }
   ],
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
+    "default": 0
   },
   "flags": {
     "projectfu": {
@@ -150,12 +156,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1774686609277,
-    "modifiedTime": 1777529947124,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "createdTime": 1792923925887,
+    "modifiedTime": 1792923925983,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!SudLabhlPcdKBwxv"
 }

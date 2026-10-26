@@ -3,16 +3,10 @@
   "type": "armor",
   "img": "systems/projectfu/styles/static/compendium/armor/silk-shirt.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -25,42 +19,21 @@
     "quality": {
       "value": ""
     },
-    "isEquipped": {
-      "value": false,
-      "slot": ""
-    },
     "def": {
-      "value": 0
+      "value": 0,
+      "attribute": "dex"
     },
     "mdef": {
-      "value": 2
+      "value": 2,
+      "attribute": "ins"
     },
     "init": {
       "value": -1
     },
-    "isBehavior": {
-      "value": false
-    },
-    "weight": {
-      "value": 1
-    },
-    "attributes": {
-      "primary": {
-        "value": "dex"
-      },
-      "secondary": {
-        "value": "ins"
-      }
-    },
     "source": "FUCR132",
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        }
-      }
-    },
-    "fuid": "silk-shirt"
+    "fuid": "silk-shirt",
+    "slots": "alpha",
+    "items": []
   },
   "effects": [],
   "folder": "05D3J15J6lL30XAq",
@@ -70,10 +43,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
-    "createdTime": 1706589281049,
-    "modifiedTime": 1741947682472,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "coreVersion": "14.368",
+    "createdTime": 1792923923106,
+    "modifiedTime": 1792923923121,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
@@ -81,8 +54,7 @@
   "_id": "23VCQdoqi2lYsVbS",
   "sort": 0,
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_key": "!items!23VCQdoqi2lYsVbS"
 }

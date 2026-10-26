@@ -9,81 +9,33 @@
     "summary": {
       "value": "Breach deals more damage with heavy weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong>, <strong>Fury</strong>, or <strong>Weaponmaster</strong>.</p><hr /><p>After you hit a creature with @UUID[Compendium.projectfu.skills.Item.WZDdQfw9VF64La2P]{Breach}, if you attacked with a <strong>melee weapon</strong> that belongs to the <strong>heavy</strong> Category, you may have the attack deal damage equal to your <strong>High Roll</strong> instead of dealing no damage. Any source of extra damage, including the extra damage from the third option of the <strong>Breach</strong> Skill itself, still applies — ignore the bonus to damage granted by the <strong>weapon</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Darkblade</strong>, <strong>Fury</strong>, or <strong>Weaponmaster</strong>.</p><hr><p>After you hit a creature with @UUID[Compendium.projectfu.skills.Item.WZDdQfw9VF64La2P]{Breach}, if you attacked with a <strong>melee weapon</strong> that belongs to the <strong>heavy</strong> Category, you may have the attack deal damage equal to your <strong>High Roll</strong> instead of dealing no damage. Any source of extra damage, including the extra damage from the third option of the <strong>Breach</strong> Skill itself, still applies — ignore the bonus to damage granted by the <strong>weapon</strong>.</p>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "darkblade, fury, weaponmaster"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "mig",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUHF158",
     "hasResource": {
@@ -93,23 +45,43 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "fuid": "pulverizing-strike",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "flags": {
     "core": {},
@@ -121,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1706684687580,
-    "modifiedTime": 1791492779968,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922827,
+    "modifiedTime": 1792923923010,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

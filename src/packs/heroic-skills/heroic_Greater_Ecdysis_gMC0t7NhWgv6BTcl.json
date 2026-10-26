@@ -10,65 +10,30 @@
     "summary": {
       "value": "Ecdysis allows you to end status effects and spells."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Mutant</strong>.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options:</p><ul><li><p>You recover from all status effects.</p></li><li><p>If you are affected by one or more spells with a <strong>duration</strong> of “Scene”, you are no longer affected by any of those spells.</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
+    "description": "<p><strong>Requirements:</strong> you must have mastered <strong>Mutant</strong>.</p><hr><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options:</p><ul><li><p>You recover from all status effects.</p></li><li><p>If you are affected by one or more spells with a <strong>duration</strong> of “Scene”, you are no longer affected by any of those spells.</p></li></ul>",
     "showTitleCard": {
       "value": false
-    },
-    "level": {
-      "value": 1,
-      "max": 10,
-      "min": 0
     },
     "class": {
       "value": "mutant"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": false,
+      "damage": false,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "ins"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "mig"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "physical",
       "onRoll": "",
-      "onApply": ""
-    },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
+      "onApply": "",
+      "hrZero": false
     },
     "hasResource": {
       "value": false
@@ -77,33 +42,41 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "requirement": {
       "value": ""
-    },
-    "benefits": {
-      "resources": {
-        "hp": {
-          "value": false
-        },
-        "mp": {
-          "value": false
-        },
-        "ip": {
-          "value": false
-        }
-      }
     },
     "source": "FUTF174",
     "fuid": "greater-ecdysis",
     "effects": {
       "duration": {
-        "interval": null
-      }
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "entries": [],
+      "prompt": false
     },
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
+    },
+    "defense": "def",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "hasRoll": {
+      "value": false
     }
   },
   "effects": [
@@ -124,11 +97,8 @@
         "rules": {
           "elements": {
             "HfMkk5jM1Y82YWoo": {
-              "type": "ruleElement",
-              "_id": "HfMkk5jM1Y82YWoo",
               "trigger": {
-                "_id": "OFmG6vwHkuHqETYz",
-                "type": "renderCheckRuleTrigger",
+                "type": "projectfu.renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "display"
@@ -141,11 +111,13 @@
               },
               "actions": {
                 "eJC1hdN9CJQQcshD": {
-                  "type": "messageRuleAction",
-                  "_id": "eJC1hdN9CJQQcshD",
+                  "type": "projectfu.messageRuleAction",
                   "message": "<p>You may recover a status or dispel on yourself.</p>"
                 }
-              }
+              },
+              "predicates": {},
+              "selector": "initial",
+              "enabled": true
             }
           },
           "progress": {
@@ -154,18 +126,21 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "basic",
+            "step": 1
           }
-        }
+        },
+        "changes": []
       },
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "disabled": false,
       "_id": "dNIr7MVVPt2HfMst",
       "type": "base",
-      "changes": [],
       "description": "<p>When you use the <strong>Ecdysis</strong> Skill, you may also choose one or both options: you recover from all status effects, <strong>and/or</strong> if you are affected by one or more spells with a <strong>duration</strong> of “Scene”, you are no longer affected by any of those spells.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -177,13 +152,16 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770960949158,
-        "modifiedTime": 1771896104012,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "createdTime": 1792923922853,
+        "modifiedTime": 1792923922853,
+        "lastModifiedBy": "qSTUglS93W7Had7H"
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!gMC0t7NhWgv6BTcl.dNIr7MVVPt2HfMst"
     }
   ],
@@ -197,17 +175,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
-    "createdTime": 1711473807263,
-    "modifiedTime": 1791523677291,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "coreVersion": "14.368",
+    "createdTime": 1792923922853,
+    "modifiedTime": 1792923923013,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "ownership": {
-    "default": 0,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0
   },
   "_id": "gMC0t7NhWgv6BTcl",
   "sort": 0,
