@@ -145,7 +145,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Used by the templates
 		 */
 		get sourceName() {
-			return this.sourceInfo?.name ?? this.parent.name;
+			return this.sourceInfo?.name ?? this.parent?.name ?? super.sourceName;
 		}
 
 		/**
@@ -368,7 +368,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Unlike `_onCreate`, is managed by the GM.
 		 */
 		async _preCreate(data, options, user) {
-			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}, identifier: ${this.identifier}`);
+			console.debug(`Created active effect ${this.name} on ${this.parent?.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo?.name ?? ''}, identifier: ${this.identifier}`);
 			const changes = {
 				name: game.i18n.localize(data.name),
 				description: game.i18n.localize(data.description ?? ''),

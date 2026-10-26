@@ -115,7 +115,7 @@ async function getEffectData(id) {
 		}
 		// Resolve by fuid
 		else {
-			const entry = await CompendiumIndex.instance.getItemByFuid(id);
+			const entry = await CompendiumIndex.instance.getEffectByFuid(id);
 			if (entry) {
 				effect = await fromUuid(entry.uuid);
 			}

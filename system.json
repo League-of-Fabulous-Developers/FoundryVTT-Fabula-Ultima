@@ -153,9 +153,9 @@
 		},
 		{
 			"label": "Actor Effects",
-			"type": "Item",
-			"name": "actor-effects",
-			"path": "packs/actor-effects",
+			"type": "ActiveEffect",
+			"name": "actor-active-effects",
+			"path": "packs/actor-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -164,9 +164,9 @@
 		},
 		{
 			"label": "Conditions",
-			"type": "Item",
-			"name": "conditions-effects",
-			"path": "packs/conditions-effects",
+			"type": "ActiveEffect",
+			"name": "condition-active-effects",
+			"path": "packs/conditions-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -175,9 +175,9 @@
 		},
 		{
 			"label": "Equipment Effects",
-			"type": "Item",
-			"name": "equipment-effects",
-			"path": "packs/equipment-effects",
+			"type": "ActiveEffect",
+			"name": "equipment-active-effects",
+			"path": "packs/equipment-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -186,9 +186,9 @@
 		},
 		{
 			"label": "Qualities",
-			"type": "Item",
-			"name": "qualities",
-			"path": "packs/qualities",
+			"type": "ActiveEffect",
+			"name": "quality-active-effects",
+			"path": "packs/quality-active-effect",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
