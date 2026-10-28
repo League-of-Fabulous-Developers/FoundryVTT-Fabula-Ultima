@@ -1,0 +1,75 @@
+{
+  "name": "Delicacy (Guard Restrict)",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "6tPLJde7xSf3AsTV",
+  "type": "base",
+  "description": "<p>You cannot perform the <strong>Guard</strong> action during your next turn.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Delicacy (Guard Restrict)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.LzyZ6RnzdvGgeZVJ",
+        "effectUuid": null,
+        "fuid": "effect-delicacy-guard-restrict"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218560815,
+    "modifiedTime": 1793218566528,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "9jBASLeLMBPzNiSC",
+  "sort": 100000,
+  "_key": "!effects!6tPLJde7xSf3AsTV"
+}

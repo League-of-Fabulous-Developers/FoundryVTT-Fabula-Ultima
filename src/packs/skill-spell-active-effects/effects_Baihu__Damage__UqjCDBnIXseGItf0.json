@@ -1,0 +1,111 @@
+{
+  "name": "Baihu (Damage)",
+  "img": "icons/creatures/abilities/cougar-pounce-stalk-black.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "r54CRMYWRUv2T5UH": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "itemGroups": [],
+            "damageTypes": [
+              "physical",
+              "air"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "kcd5oTy541ygUnoh": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "5",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "variant": ""
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "UqjCDBnIXseGItf0",
+  "type": "base",
+  "description": "<p>When you deal damage for the first time on your turn during a conflict, as long as that damage is <strong>air</strong> or <strong>physical</strong> and your Defense score is equal to or higher than 12, you deal 5 extra damage and that damage ignores Resistances.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Baihu (Damage)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.pNq1QR6QeND249Xs",
+        "effectUuid": null,
+        "fuid": "effect-baihu-damage"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217228009,
+    "modifiedTime": 1793217228009,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "mSezwKFHYqOGLssL",
+  "sort": 0,
+  "_key": "!effects!UqjCDBnIXseGItf0"
+}

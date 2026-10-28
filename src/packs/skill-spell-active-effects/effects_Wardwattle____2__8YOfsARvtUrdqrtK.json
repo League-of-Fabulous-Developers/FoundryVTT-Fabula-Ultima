@@ -1,0 +1,121 @@
+{
+  "name": "Wardwattle (⏱ 2)",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wardwattle.png",
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "2HvR5dhKswFpe9TP": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "accuracy"
+            ],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "rTibumXwo7sYzKdr": {
+              "type": "projectfu.checkRulePredicate",
+              "outcome": "success",
+              "result": null,
+              "parity": "",
+              "attributes": {
+                "primary": {
+                  "value": ""
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "quantifier": "any"
+            },
+            "uEqpsAfZKS1wvKsW": {
+              "type": "projectfu.weaponRulePredicate",
+              "weaponType": "melee",
+              "selector": "source",
+              "martial": "",
+              "handedness": "",
+              "categories": []
+            }
+          },
+          "actions": {
+            "iTZz0J3qbnSm0yCc": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>If you <strong>hit</strong> the floralist with a <strong>melee</strong> attack, they deal <strong>physical</strong> damage to you.</p>"
+            }
+          },
+          "selector": "self",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.physical",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "8YOfsARvtUrdqrtK",
+  "type": "base",
+  "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>physical</strong> damage. After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Chloromancy SL】</strong> (after their attack was resolved).</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218267293,
+    "modifiedTime": 1793218267293,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "QYZ7cYH4eDTJvYRK",
+  "sort": 0,
+  "_key": "!effects!8YOfsARvtUrdqrtK"
+}

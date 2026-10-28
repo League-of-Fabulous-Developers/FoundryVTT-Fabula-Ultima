@@ -1,0 +1,84 @@
+{
+  "img": "icons/creatures/reptiles/serpent-horned-green.webp",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Hydra Dance",
+  "_id": "6pWZZ25JH3nhZdjg",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {
+        "b9UeDp9AN6jzufDE": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "target",
+            "damageType": "",
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "itemGroups": [],
+            "affinity": "",
+            "local": false
+          },
+          "actions": {
+            "FccrcuFwACJGfubk": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>After you suffer damage, you recover 5 HP <strong>or</strong> 5 MP.</p><hr><p><strong>You Recover:</strong> @GAIN[5 hp] or @GAIN[5 mp]</p>"
+            }
+          },
+          "selector": "self",
+          "predicates": {},
+          "enabled": true
+        }
+      }
+    },
+    "changes": []
+  },
+  "description": "<p>Until the start of your next turn, after you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover 5 HP, <strong>or</strong> you recover 5 MP.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217867328,
+    "modifiedTime": 1793217873505,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "YBLOSEfw9ukjWYUF",
+  "sort": 200000,
+  "_key": "!effects!6pWZZ25JH3nhZdjg"
+}

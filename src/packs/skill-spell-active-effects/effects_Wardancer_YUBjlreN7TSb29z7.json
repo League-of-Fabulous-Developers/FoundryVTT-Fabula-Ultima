@@ -1,0 +1,144 @@
+{
+  "name": "Wardancer",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "T5PZQ1ZIKJ9uOmz1": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "damageTypes": [],
+            "itemGroups": [
+              "spell"
+            ],
+            "local": false
+          },
+          "predicates": {
+            "LfdfZTzpa1cAd4rV": {
+              "type": "projectfu.weaponRulePredicate",
+              "categories": [
+                "arcane"
+              ],
+              "selector": "initial",
+              "martial": "",
+              "handedness": "",
+              "weaponType": ""
+            },
+            "BdzMhWW6jhaX0fZo": {
+              "type": "projectfu.spellRulePredicate",
+              "offensive": "true",
+              "duration": ""
+            }
+          },
+          "actions": {
+            "CMTpRIXkourHS8AH": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "&sl(\"wardancer\")",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "traits": {
+                "entries": []
+              },
+              "variant": ""
+            }
+          },
+          "selector": "source",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.brawling",
+        "value": "&sl(\"wardancer\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.dagger",
+        "value": "&sl(\"wardancer\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.flail",
+        "value": "&sl(\"wardancer\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.sword",
+        "value": "&sl(\"wardancer\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.thrown",
+        "value": "&sl(\"wardancer\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "YUBjlreN7TSb29z7",
+  "type": "base",
+  "description": "<p>Your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped, offensive spells you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217873487,
+    "modifiedTime": 1793217873505,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "YBLOSEfw9ukjWYUF",
+  "sort": 300000,
+  "_key": "!effects!YUBjlreN7TSb29z7"
+}

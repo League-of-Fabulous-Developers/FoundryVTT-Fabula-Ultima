@@ -1,0 +1,113 @@
+{
+  "name": "Haunting Tone (Bolt)",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "oJjNlR8QyTGlRHNO": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "target",
+            "damageType": "bolt",
+            "affinity": "resistance",
+            "itemGroups": [],
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "V5DtlNVmw9XI3ATk": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "amount": "",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "variant": ""
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "vLK6GKuVQeAeYAOs",
+  "type": "base",
+  "description": "<p>All <strong>bolt</strong> damage dealt to you ignores your Resistances. This lasts until the start of the <strong>chanter's</strong> next turn.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Haunting Tone (Bolt)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.vyykMV9QXsiWrlc6",
+        "effectUuid": null,
+        "fuid": "effect-haunting-tone-bolt"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217525007,
+    "modifiedTime": 1793217530024,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "2OhY67tEiDQN1eGD",
+  "sort": 200000,
+  "_key": "!effects!vLK6GKuVQeAeYAOs"
+}

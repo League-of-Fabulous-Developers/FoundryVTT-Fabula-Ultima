@@ -1,0 +1,113 @@
+{
+  "name": "Haunting Tone (Fire)",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "K6YODuTNeIdPP3mB": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "target",
+            "damageType": "fire",
+            "affinity": "resistance",
+            "itemGroups": [],
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "wSmLKeyIB1OLxQC1": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "amount": "",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "variant": ""
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "7paDiyEUiJ4f1MsF",
+  "type": "base",
+  "description": "<p>All <strong>fire</strong> damage dealt to you ignores your Resistances. This lasts until the start of the <strong>chanter's</strong> next turn.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Haunting Tone (Fire)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.gHzrl6kqjqLgoE5b",
+        "effectUuid": null,
+        "fuid": "effect-haunting-tone-fire"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217532201,
+    "modifiedTime": 1793217532201,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "2OhY67tEiDQN1eGD",
+  "sort": 0,
+  "_key": "!effects!7paDiyEUiJ4f1MsF"
+}

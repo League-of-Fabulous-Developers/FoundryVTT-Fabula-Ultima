@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "Meomn6aeDleM5Lbd",
+  "name": "Resonance",
+  "color": "#94a138",
+  "sorting": "a",
+  "_id": "mFgCw8YNpzaJ0til",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217480047,
+    "modifiedTime": 1793217480047,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!mFgCw8YNpzaJ0til"
+}

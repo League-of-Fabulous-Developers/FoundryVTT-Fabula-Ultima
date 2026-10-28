@@ -1,0 +1,60 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_divination.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Divination",
+  "_id": "jjylFI3HoTrd25kY",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "id": "divination-used",
+        "name": "Divination Used",
+        "current": 0,
+        "max": 2,
+        "style": "basic",
+        "enabled": true,
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "createdTime": 1793218007574,
+    "modifiedTime": 1793218013041,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "VReas370modrq3t3",
+  "sort": 300000,
+  "_key": "!effects!jjylFI3HoTrd25kY"
+}

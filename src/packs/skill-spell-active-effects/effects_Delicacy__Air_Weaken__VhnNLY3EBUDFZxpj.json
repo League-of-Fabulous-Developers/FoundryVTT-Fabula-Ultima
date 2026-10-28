@@ -1,0 +1,83 @@
+{
+  "name": "Delicacy (Air Weaken)",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.air",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "VhnNLY3EBUDFZxpj",
+  "type": "base",
+  "description": "<p>Until the end of the <strong>gourmet's</strong> next turn, every source that deals <strong>air</strong> damage deals 5 extra damage to you.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Delicacy (Air Weaken)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.7Rcgd6DbIh71JmI4",
+        "effectUuid": null,
+        "fuid": "effect-delicacy-air-weaken"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218489866,
+    "modifiedTime": 1793218500037,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BGra1Ulo5wqi144n",
+  "sort": 100000,
+  "_key": "!effects!VhnNLY3EBUDFZxpj"
+}

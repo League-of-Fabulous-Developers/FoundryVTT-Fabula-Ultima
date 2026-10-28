@@ -1,0 +1,75 @@
+{
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Despair",
+  "_id": "mW4KxjbQ2kx3aKaA",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.multipliers.incomingRecovery.hp",
+        "value": 0.5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.multipliers.incomingRecovery.mp",
+        "value": 0.5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "description": "<p>When you recover HP and/or MP during conflicts while you bear the <strong>Symbol of Despair</strong>, instead you only recover <strong>half</strong> the normal amount of HP and/or MP.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793219294423,
+    "modifiedTime": 1793219317091,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "BdbRnFmQsvWhyg5Q",
+  "sort": 800000,
+  "_key": "!effects!mW4KxjbQ2kx3aKaA"
+}

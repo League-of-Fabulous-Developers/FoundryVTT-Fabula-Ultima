@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Arcanist",
+  "color": "#1b7e62",
+  "sorting": "a",
+  "_id": "kgGUHoH5GDBvTZGb",
+  "description": "",
+  "sort": -100000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217162539,
+    "modifiedTime": 1793217387577,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!kgGUHoH5GDBvTZGb"
+}

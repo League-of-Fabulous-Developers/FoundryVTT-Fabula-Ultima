@@ -1,0 +1,90 @@
+{
+  "name": "Horned Hawthorn",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/horned-hawthorn.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.dark",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.poison",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "9i4Dre3geKGlG9NJ",
+  "type": "base",
+  "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>dark</strong> and <strong>poison</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Horned Hawthorn",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.jIYoANfwMxGFgQ39",
+        "effectUuid": null,
+        "fuid": "effect-horned-hawthorn"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218094095,
+    "modifiedTime": 1793218098988,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "04TQgusXjpRwlpJh",
+  "sort": 300000,
+  "_key": "!effects!9i4Dre3geKGlG9NJ"
+}

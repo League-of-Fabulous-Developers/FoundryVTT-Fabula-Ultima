@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "kgGUHoH5GDBvTZGb",
+  "name": "Arcanum of the Tower",
+  "color": "#57a282",
+  "sorting": "a",
+  "_id": "wGXSpzLHyQARqh2u",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217195138,
+    "modifiedTime": 1793217398011,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!wGXSpzLHyQARqh2u"
+}

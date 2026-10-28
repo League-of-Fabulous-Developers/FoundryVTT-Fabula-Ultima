@@ -1,0 +1,90 @@
+{
+  "name": "Griffin Dance (Damage)",
+  "img": "icons/commodities/materials/feather-blue-glowing.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.attack.normal",
+        "value": "air",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.overrides.damageType.spell.normal",
+        "value": "air",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "qZmexcxYjK5RRCVe",
+  "type": "base",
+  "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>air</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Griffin Dance (Damage)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.IBPW4POIOr7FcYo7",
+        "effectUuid": null,
+        "fuid": "effect-griffin-dance-damage"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217814824,
+    "modifiedTime": 1793217814824,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "hHutLoOotMQYqdLp",
+  "sort": 0,
+  "_key": "!effects!qZmexcxYjK5RRCVe"
+}

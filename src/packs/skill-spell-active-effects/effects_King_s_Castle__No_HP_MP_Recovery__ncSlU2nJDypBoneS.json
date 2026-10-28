@@ -1,0 +1,104 @@
+{
+  "name": "King's Castle (No HP/MP Recovery)",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "zfgqbNSlTeIW4zys": {
+          "trigger": {
+            "type": "projectfu.resourceUpdateRuleTrigger",
+            "eventRelation": "",
+            "resource": "hp",
+            "change": "increment",
+            "changeThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "itemGroups": [],
+            "local": false
+          },
+          "actions": {
+            "45qP2rE9bFvQ76XU": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>No creature can recover HP or MP.</p>"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.multipliers.incomingRecovery.hp",
+        "value": 0,
+        "priority": null,
+        "type": "multiply",
+        "phase": "initial"
+      },
+      {
+        "key": "system.multipliers.incomingRecovery.mp",
+        "value": 0,
+        "priority": null,
+        "type": "multiply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "ncSlU2nJDypBoneS",
+  "type": "base",
+  "description": "<p>You <strong>cannot</strong> recover Hit Points or Mind Points until the start of the <strong>commander's</strong> next turn.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217681239,
+    "modifiedTime": 1793217681239,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "IjyO4DMqWFLCrVBj",
+  "sort": 0,
+  "_key": "!effects!ncSlU2nJDypBoneS"
+}

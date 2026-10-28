@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "9jBASLeLMBPzNiSC",
+  "name": "Delicacy 12 (Damage Change)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "nQaDAxHFDIIfTJRj",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218478089,
+    "modifiedTime": 1793218482751,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!nQaDAxHFDIIfTJRj"
+}

@@ -1,0 +1,83 @@
+{
+  "name": "Delicacy (Poison Weaken)",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.poison",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "7beIUNJfeV8ELs74",
+  "type": "base",
+  "description": "<p>Until the end of the <strong>gourmet's</strong> next turn, every source that deals <strong>poison</strong> damage deals 5 extra damage to you.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Delicacy (Poison Weaken)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.K2sUsMGhj94eTtTN",
+        "effectUuid": null,
+        "fuid": "effect-delicacy-poison-weaken"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218504878,
+    "modifiedTime": 1793218504878,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BGra1Ulo5wqi144n",
+  "sort": 0,
+  "_key": "!effects!7beIUNJfeV8ELs74"
+}

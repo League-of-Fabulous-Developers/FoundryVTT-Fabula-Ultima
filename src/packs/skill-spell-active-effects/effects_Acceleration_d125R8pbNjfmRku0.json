@@ -1,0 +1,60 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_acceleration.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Acceleration",
+  "_id": "d125R8pbNjfmRku0",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "id": "acceleration-used",
+        "name": "Acceleration Used",
+        "style": "basic",
+        "enabled": true,
+        "max": 2,
+        "current": 0,
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>Until this spell ends, at the end of each of your turns, you may choose <strong>one</strong> option:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon they have equipped.</p></li><li><p>Perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost).</p></li></ul><p>After you benefit from this effect a second time, this spell ends.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "createdTime": 1793218001322,
+    "modifiedTime": 1793218013040,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "VReas370modrq3t3",
+  "sort": 100000,
+  "_key": "!effects!d125R8pbNjfmRku0"
+}

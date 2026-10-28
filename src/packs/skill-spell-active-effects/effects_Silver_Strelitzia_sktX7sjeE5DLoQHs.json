@@ -1,0 +1,90 @@
+{
+  "name": "Silver Strelitzia",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/silver-strelitzia.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.bolt",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.light",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "sktX7sjeE5DLoQHs",
+  "type": "base",
+  "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>bolt</strong> and <strong>light</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Silver Strelitzia",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.SNKcr8pAgOEnZe1b",
+        "effectUuid": null,
+        "fuid": "effect-silver-strelitzia"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218096565,
+    "modifiedTime": 1793218098988,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "04TQgusXjpRwlpJh",
+  "sort": 500000,
+  "_key": "!effects!sktX7sjeE5DLoQHs"
+}

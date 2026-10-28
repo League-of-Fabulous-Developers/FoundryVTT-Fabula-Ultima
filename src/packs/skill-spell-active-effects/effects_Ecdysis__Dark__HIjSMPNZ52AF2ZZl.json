@@ -1,0 +1,68 @@
+{
+  "name": "Ecdysis (Dark)",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.dark",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>You gain Resistance to <strong>dark</strong> until you use <strong>Ecdysis</strong> again.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793218776723,
+    "createdTime": 1793218773246,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "Rw6wzvRPcwmdBxLj",
+  "_id": "HIjSMPNZ52AF2ZZl",
+  "sort": 300000,
+  "_key": "!effects!HIjSMPNZ52AF2ZZl"
+}

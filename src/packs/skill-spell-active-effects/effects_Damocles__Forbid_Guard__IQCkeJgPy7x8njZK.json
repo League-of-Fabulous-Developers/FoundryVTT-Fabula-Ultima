@@ -1,0 +1,75 @@
+{
+  "name": "Damocles (Forbid Guard)",
+  "img": "icons/skills/melee/sword-twirl-orange.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "IQCkeJgPy7x8njZK",
+  "type": "base",
+  "description": "<p>When you perform the <strong>Guard</strong> action, you lose 10 Hit Points (after the action has been resolved). This amount increases to 20 Hit Points if the <strong>Arcanist</strong> is <strong>level 30 or higher</strong>. This lasts until the start of the <strong>Arcanist's</strong> next turn.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Damocles (Forbid Guard)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.A9d11UtfPxZBwhoJ",
+        "effectUuid": null,
+        "fuid": "effect-damocles-forbid-guard"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217244528,
+    "modifiedTime": 1793217247492,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "VmOMlpkdDqCMURQJ",
+  "sort": 300000,
+  "_key": "!effects!IQCkeJgPy7x8njZK"
+}

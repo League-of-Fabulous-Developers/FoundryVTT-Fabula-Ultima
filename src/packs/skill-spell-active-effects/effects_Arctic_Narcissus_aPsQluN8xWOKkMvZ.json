@@ -1,0 +1,90 @@
+{
+  "name": "Arctic Narcissus",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/arctic-narcissus.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.earth",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.ice",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "aPsQluN8xWOKkMvZ",
+  "type": "base",
+  "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>earth</strong> and <strong>ice</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Arctic Narcissus",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.FY10zsYzeTKnK3uP",
+        "effectUuid": null,
+        "fuid": "effect-arctic-narcissus"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218088400,
+    "modifiedTime": 1793218098988,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "04TQgusXjpRwlpJh",
+  "sort": 100000,
+  "_key": "!effects!aPsQluN8xWOKkMvZ"
+}

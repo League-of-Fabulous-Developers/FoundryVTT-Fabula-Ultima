@@ -1,0 +1,60 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/effects/effect_mercy.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Mercy",
+  "_id": "C6pRUA9cFTWSGauX",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>Until this spell ends, if you would be reduced to 0 HP, you are instead left standing with exactly 1 HP. Once that happens, this spell ends.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "createdTime": 1793219139177,
+    "modifiedTime": 1793219139177,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "SIOfjB7LqylfnlNU",
+  "sort": 0,
+  "_key": "!effects!C6pRUA9cFTWSGauX"
+}

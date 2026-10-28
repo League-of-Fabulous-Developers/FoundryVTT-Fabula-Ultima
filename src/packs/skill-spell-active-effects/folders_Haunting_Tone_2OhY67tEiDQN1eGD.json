@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "Meomn6aeDleM5Lbd",
+  "name": "Haunting Tone",
+  "color": "#94a138",
+  "sorting": "a",
+  "_id": "2OhY67tEiDQN1eGD",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217464294,
+    "modifiedTime": 1793217464294,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!2OhY67tEiDQN1eGD"
+}

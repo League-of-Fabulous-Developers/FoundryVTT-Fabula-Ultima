@@ -196,6 +196,17 @@
 			}
 		},
 		{
+			"label": "Skill & Spell Effects",
+			"type": "ActiveEffect",
+			"name": "skill-spell-active-effects",
+			"path": "packs/skill-spell-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Technospheres",
 			"type": "Item",
 			"name": "technospheres",
@@ -235,7 +246,7 @@
 			"name": "Effects",
 			"sorting": "a",
 			"color": "#8b5c00",
-			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects"]
+			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects", "skill-spell-active-effects"]
 		},
 		{
 			"name": "Equipment",

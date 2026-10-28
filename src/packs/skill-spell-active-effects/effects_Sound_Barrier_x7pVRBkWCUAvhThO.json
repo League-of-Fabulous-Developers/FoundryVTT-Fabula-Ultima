@@ -1,0 +1,68 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Sound Barrier",
+  "_id": "x7pVRBkWCUAvhThO",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.physical",
+        "value": "-&sl(\"sound-barrier\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217601403,
+    "modifiedTime": 1793217601403,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Meomn6aeDleM5Lbd",
+  "sort": 0,
+  "_key": "!effects!x7pVRBkWCUAvhThO"
+}

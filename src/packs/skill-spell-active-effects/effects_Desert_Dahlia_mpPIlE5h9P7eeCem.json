@@ -1,0 +1,90 @@
+{
+  "name": "Desert Dahlia",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/desert-dahlia.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "self",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.air",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.fire",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "mpPIlE5h9P7eeCem",
+  "type": "base",
+  "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>air</strong> and <strong>fire</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Desert Dahlia",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C",
+        "effectUuid": null,
+        "fuid": "effect-desert-dahlia"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218091347,
+    "modifiedTime": 1793218098988,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "04TQgusXjpRwlpJh",
+  "sort": 200000,
+  "_key": "!effects!mpPIlE5h9P7eeCem"
+}

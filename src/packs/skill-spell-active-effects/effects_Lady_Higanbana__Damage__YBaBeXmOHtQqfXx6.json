@@ -1,0 +1,123 @@
+{
+  "name": "Lady Higanbana (Damage)",
+  "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "UCaLlKxSrNRfeO4A": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "itemGroups": [
+              "attack"
+            ],
+            "damageTypes": [],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "u5Xd0ihKv3ekN2KE": {
+              "type": "projectfu.targetEffectRulePredicate",
+              "selector": "self",
+              "effect": "crisis",
+              "quantifier": "any"
+            }
+          },
+          "actions": {
+            "pBoavTD6aUgQFmAr": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "5",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "traits": {
+                "entries": []
+              },
+              "variant": ""
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.all",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "YBaBeXmOHtQqfXx6",
+  "type": "base",
+  "description": "<p>As long as you are merged with this Arcanum and <strong>it is not your turn</strong>, your attacks deal 5 extra damage, or 10 extra damage if you are also in <strong>Crisis</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Effect: Lady Higanbana (Damage)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.skills.Item.fJV07izZgyMXvPw1",
+        "effectUuid": null,
+        "fuid": "effect-lady-higanbana-damage"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217314225,
+    "modifiedTime": 1793217314225,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "DyMr90faVNOaRGmS",
+  "sort": 0,
+  "_key": "!effects!YBaBeXmOHtQqfXx6"
+}

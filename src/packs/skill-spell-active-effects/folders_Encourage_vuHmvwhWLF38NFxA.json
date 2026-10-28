@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "vqv8CqHiP4QqJQj0",
+  "name": "Encourage",
+  "color": "#bd8b02",
+  "sorting": "a",
+  "_id": "vuHmvwhWLF38NFxA",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218878166,
+    "modifiedTime": 1793218878166,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!vuHmvwhWLF38NFxA"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "kgGUHoH5GDBvTZGb",
+  "name": "Lady Higanbana",
+  "color": "#57a282",
+  "sorting": "a",
+  "_id": "DyMr90faVNOaRGmS",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217288050,
+    "modifiedTime": 1793217411407,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!DyMr90faVNOaRGmS"
+}

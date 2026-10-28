@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Symbolist",
+  "color": "#2e7e8e",
+  "sorting": "a",
+  "_id": "BdbRnFmQsvWhyg5Q",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793219182982,
+    "modifiedTime": 1793219182982,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!BdbRnFmQsvWhyg5Q"
+}

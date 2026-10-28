@@ -1,0 +1,68 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Bishop's Edict (Extra Damage)",
+  "_id": "JzMDbxLQ1uT85e7C",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.all",
+        "value": "~&sl(\"bishops-edict\")*3",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "description": "<p>All sources of damage deal <strong>【SL × 3】</strong> extra damage until the start of the commander's next turn.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217669056,
+    "modifiedTime": 1793217669056,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "6hDJMmwUVEdnas7N",
+  "sort": 0,
+  "_key": "!effects!JzMDbxLQ1uT85e7C"
+}

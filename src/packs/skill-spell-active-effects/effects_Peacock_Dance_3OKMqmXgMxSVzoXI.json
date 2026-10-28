@@ -1,0 +1,65 @@
+{
+  "img": "icons/commodities/materials/feather-colored-blue.webp",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Peacock Dance",
+  "_id": "3OKMqmXgMxSVzoXI",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>The next time you perform an <strong>attack</strong> or <strong>offensive spell</strong> during this scene, that attack or spell must include the <strong>dancer</strong> among your targets if possible.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217869917,
+    "modifiedTime": 1793217873505,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "YBLOSEfw9ukjWYUF",
+  "sort": 400000,
+  "_key": "!effects!3OKMqmXgMxSVzoXI"
+}
