@@ -1,0 +1,104 @@
+{
+  "name": "Steel Witch (Damage)",
+  "img": "icons/commodities/tech/detonator-timer.webp",
+  "system": {
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "kWMyXjt2nO7ljOyN": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [],
+            "itemGroups": [
+              "spell"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "dVBiUd1Ouf3m8j6T": {
+              "type": "projectfu.traitsRulePredicate",
+              "traits": {
+                "entries": [
+                  "damage"
+                ],
+                "quantifier": "any"
+              }
+            }
+          },
+          "actions": {
+            "QxcEc5hJjTeSeDMd": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>Remove this effect.</p>"
+            },
+            "8UCp1qpkKRfqplYZ": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effect-steel-witch-damage"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.spell",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "BdFeozbPR8HuhxVC",
+  "type": "base",
+  "description": "<p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220904468,
+    "modifiedTime": 1793220904468,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "UGfMeP9tfkeEkwu9",
+  "sort": 0,
+  "_key": "!effects!BdFeozbPR8HuhxVC"
+}

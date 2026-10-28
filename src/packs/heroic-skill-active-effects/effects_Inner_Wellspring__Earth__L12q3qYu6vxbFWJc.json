@@ -1,0 +1,109 @@
+{
+  "name": "Inner Wellspring (Earth)",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+  "system": {
+    "duration": {
+      "event": "rest",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "6rUzkUG1usOhYD4Q": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "damageTypes": [],
+            "itemGroups": [],
+            "local": false
+          },
+          "actions": {
+            "rqrIFXXdeoKuByoE": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "",
+              "damageTypes": [
+                "earth"
+              ],
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "cost": {
+                "resource": "mp",
+                "amount": null,
+                "perTarget": false
+              },
+              "variant": "",
+              "operation": "add"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "flags.projectfu.innerWellspring",
+        "value": "earth",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.earth",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>Your inner wellspring is <strong>earth</strong>.</p><ul><li>You <strong>always</strong> treat the <strong>earth wellspring</strong> as being available during each scene.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the <strong>earth</strong> element.</li><li>You gain <strong>earth</strong> Resistance.</li><li>When you deal damage, you may change its type to <strong>earth</strong>. If you do, that damage ignores Resistances.</li></ul>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793220744821,
+    "createdTime": 1793220736681,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "ciVhfkSVrlg3XtHW",
+  "_id": "L12q3qYu6vxbFWJc",
+  "sort": 100000,
+  "_key": "!effects!L12q3qYu6vxbFWJc"
+}

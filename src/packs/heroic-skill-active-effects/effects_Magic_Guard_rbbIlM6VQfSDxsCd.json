@@ -1,0 +1,60 @@
+{
+  "name": "Magic Guard",
+  "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "rbbIlM6VQfSDxsCd",
+  "type": "base",
+  "description": "<p>When a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of MP equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220563722,
+    "modifiedTime": 1793220563722,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KO8GdUXcvZGUnnRl",
+  "sort": 0,
+  "_key": "!effects!rbbIlM6VQfSDxsCd"
+}

@@ -1,0 +1,68 @@
+{
+  "name": "War Cry",
+  "img": "icons/sundries/flags/banner-flag-red-white.webp",
+  "system": {
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.accuracyCheck",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "ADR6O0kN9j1HNY72",
+  "type": "base",
+  "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793221129800,
+    "modifiedTime": 1793221129800,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": null,
+  "sort": 0,
+  "_key": "!effects!ADR6O0kN9j1HNY72"
+}

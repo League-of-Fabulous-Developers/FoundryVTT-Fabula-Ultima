@@ -130,6 +130,17 @@
 			}
 		},
 		{
+			"label": "Game Master Effects",
+			"type": "ActiveEffect",
+			"name": "game-master-active-effects",
+			"path": "packs/game-master-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Rollable Tables",
 			"type": "RollTable",
 			"name": "rollable-tables",
@@ -207,6 +218,17 @@
 			}
 		},
 		{
+			"label": "Heroic SKill Effects",
+			"type": "ActiveEffect",
+			"name": "heroic-skill-active-effects",
+			"path": "packs/heroic-skill-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Technospheres",
 			"type": "Item",
 			"name": "technospheres",
@@ -246,7 +268,7 @@
 			"name": "Effects",
 			"sorting": "a",
 			"color": "#8b5c00",
-			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects", "skill-spell-active-effects"]
+			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects", "skill-spell-active-effects", "heroic-skill-active-effects"]
 		},
 		{
 			"name": "Equipment",
@@ -258,7 +280,7 @@
 			"name": "GM Tools",
 			"sorting": "a",
 			"color": "#831101",
-			"packs": ["rollable-tables", "game-master"]
+			"packs": ["rollable-tables", "game-master", "game-master-active-effects"]
 		},
 		{
 			"name": "Journals",

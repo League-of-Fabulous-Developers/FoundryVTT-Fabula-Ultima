@@ -1,0 +1,89 @@
+{
+  "name": "Flow of Yin and Yang (Yin Damage)",
+  "img": "icons/commodities/currency/coin-yingyang.webp",
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.air",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.bolt",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.fire",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.light",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>When you deal <strong>air</strong>, <strong>bolt</strong>, <strong>fire</strong>, or <strong>light</strong> damage for the first time during a turn, if you have <strong>at least 1 Yin Point</strong>, you deal 5 extra damage.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220209274,
+    "modifiedTime": 1793220209274,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "YfwxKOWC5e9R3hKt",
+  "_id": "ubWUlTBUtnrbMKPJ",
+  "sort": 0,
+  "_key": "!effects!ubWUlTBUtnrbMKPJ"
+}

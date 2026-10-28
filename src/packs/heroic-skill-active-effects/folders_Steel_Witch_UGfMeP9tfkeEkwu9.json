@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "g18Aph32n2BJA5KC",
+  "name": "Steel Witch",
+  "color": "#63819c",
+  "sorting": "a",
+  "_id": "UGfMeP9tfkeEkwu9",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220886499,
+    "modifiedTime": 1793220886499,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!UGfMeP9tfkeEkwu9"
+}

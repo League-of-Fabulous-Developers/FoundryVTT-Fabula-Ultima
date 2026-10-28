@@ -1,0 +1,68 @@
+{
+  "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Heroic Companion (MIG)",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.attributes.mig",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "description": "<p>Your <strong>Might</strong> is increased by one die size.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793220431676,
+    "createdTime": 1793220431664,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Pe9YzfFngAKWksIm",
+  "_id": "OyrX4FVfreqzZDwg",
+  "sort": 200000,
+  "_key": "!effects!OyrX4FVfreqzZDwg"
+}

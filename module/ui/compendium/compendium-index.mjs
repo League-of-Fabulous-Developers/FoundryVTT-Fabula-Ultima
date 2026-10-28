@@ -296,14 +296,16 @@ export class CompendiumIndex {
 	async getEffectByFuid(fuid) {
 		if (!this.#effectsByFuid) {
 			const effects = await this.getEffects();
-			this.#effectsByFuid = effects.reduce((acc, effect) => {
-				if (acc[effect.system.fuid]) {
-					console.warn(`Duplicate Effect FUID '${effect.system.fuid}'`, acc[effect.system.fuid], effect);
-				} else {
-					acc[effect.system.fuid] = effect;
-				}
-				return acc;
-			}, {});
+			this.#effectsByFuid = effects
+				.filter((e) => !!e.system.fuid)
+				.reduce((acc, effect) => {
+					if (acc[effect.system.fuid]) {
+						console.warn(`Duplicate Effect FUID '${effect.system.fuid}'`, acc[effect.system.fuid], effect);
+					} else {
+						acc[effect.system.fuid] = effect;
+					}
+					return acc;
+				}, {});
 		}
 		return this.#effectsByFuid[fuid] ?? null;
 	}

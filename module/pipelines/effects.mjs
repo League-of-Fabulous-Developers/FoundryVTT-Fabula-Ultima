@@ -15,6 +15,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
+import { PseudoActiveEffect } from '../documents/effects/pseudo-active-effect.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -118,15 +119,17 @@ async function getEffectData(id) {
 			const entry = await CompendiumIndex.instance.getEffectByFuid(id);
 			if (entry) {
 				effect = await fromUuid(entry.uuid);
+			} else {
+				effect = game.items
+					.search({ filter: [{ field: 'type', value: 'effect' }] })
+					.flatMap((item) => [...item.effects])
+					.filter((effect) => !!effect.system.fuid && effect.system.fuid === id)
+					.sort((a, b) => a.id - b.id)
+					.at(0);
 			}
 		}
-		// Get the first AE attached to the item
-		if (effect && effect instanceof FUItem) {
-			sourceInfo = new InlineSourceInfo(effect.name, null, effect.uuid, null, effect.system.fuid);
-			effect = effect.effects.entries().next().value[1];
-		}
 	}
-	if (!effect) {
+	if (!effect || !(effect instanceof foundry.documents.ActiveEffect || effect instanceof PseudoActiveEffect)) {
 		console.warn(`No effect with id '${id}' could be resolved.`);
 	}
 

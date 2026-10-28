@@ -8,6 +8,7 @@ import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mj
 import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
+import { slugify } from '../../util.mjs';
 
 RuleElements.register();
 
@@ -224,6 +225,19 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	async _onRender(context, options) {
 		await super._onRender(context, options);
 		const html = this.element;
+
+		html.querySelector('input[name="system.fuid"]').after(
+			(() => {
+				const button = document.createElement('button');
+				button.classList.add('inline-control', 'icon', 'fa-regular', 'fa-arrow-rotate-left');
+				button.dataset.tooltip = 'FU.FUID.Regenerate';
+				button.addEventListener('click', (e) => {
+					const fuid = slugify(this.#workingDocument.name);
+					this.#updateWorkingDocument({ system: { fuid } });
+				});
+				return button;
+			})(),
+		);
 
 		// CHANGES Tab
 		const effectKeyOptions = html.querySelector('#effect-key-options');

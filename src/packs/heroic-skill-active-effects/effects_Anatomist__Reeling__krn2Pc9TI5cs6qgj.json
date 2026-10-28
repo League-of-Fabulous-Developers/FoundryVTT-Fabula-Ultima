@@ -1,0 +1,130 @@
+{
+  "name": "Anatomist (Reeling)",
+  "img": "icons/magic/death/undead-bird-skeleton-purple.webp",
+  "system": {
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "C3ZA5CUqhBbr8UUb": {
+          "trigger": {
+            "type": "projectfu.resourceUpdateRuleTrigger",
+            "eventRelation": "target",
+            "resource": "hp",
+            "change": "increment",
+            "changeThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "itemGroups": [],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "j1vUnXzZvYqpYipV": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effect-anatomist-reeling"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        },
+        "0vM8r1a9vlIjPmDG": {
+          "trigger": {
+            "type": "projectfu.resourceUpdateRuleTrigger",
+            "eventRelation": "target",
+            "resource": "mp",
+            "change": "increment",
+            "changeThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "itemGroups": [],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "tbX6WFt2aRBbas2g": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effect-anatomist-reeling"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.multipliers.incomingRecovery.hp",
+        "value": 0.5,
+        "priority": null,
+        "type": "multiply",
+        "phase": "initial"
+      },
+      {
+        "key": "system.multipliers.incomingRecovery.mp",
+        "value": 0.5,
+        "priority": null,
+        "type": "multiply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": ""
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "krn2Pc9TI5cs6qgj",
+  "type": "base",
+  "description": "<p>You are <strong>reeling</strong>. When you recover Hit Points and/or Mind Points, instead you recover <strong>half</strong> the normal amount of HP and/or MP and are no longer <strong>reeling</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220272355,
+    "modifiedTime": 1793220327963,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "nVAqbMLJVRKgLgOO",
+  "sort": 0,
+  "_key": "!effects!krn2Pc9TI5cs6qgj"
+}

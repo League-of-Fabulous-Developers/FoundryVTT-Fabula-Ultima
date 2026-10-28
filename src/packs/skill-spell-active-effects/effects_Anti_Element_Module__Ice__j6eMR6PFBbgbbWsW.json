@@ -1,0 +1,83 @@
+{
+  "name": "Anti-Element Module (Ice)",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.ice",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "j6eMR6PFBbgbbWsW",
+  "type": "base",
+  "description": "<p>While you are driving or a passenger of a <strong>personal vehicle</strong> with the <strong>anti-element module</strong> enabled, you gain Resistance to <strong>ice</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Anti-Element Module (Ice)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.vehicle-modules.Item.N8rWmTrC0t79NCmn",
+        "effectUuid": null,
+        "fuid": "anti-element-module-ice"
+      }
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793221634580,
+    "modifiedTime": 1793221634580,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "sHNe4sokr8LmoXu4",
+  "sort": 0,
+  "_key": "!effects!j6eMR6PFBbgbbWsW"
+}

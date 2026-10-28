@@ -1,0 +1,118 @@
+{
+  "img": "icons/sundries/misc/pet-collar-red.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Side by Side (Check)",
+  "_id": "nJHoE47tFyNEOMiP",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {
+        "farZdLle9czqLK8r": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [
+              "accuracy",
+              "attribute",
+              "group",
+              "magic",
+              "open",
+              "opposed",
+              "ritual",
+              "support"
+            ],
+            "itemGroups": [],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "0l7bo13QPnpA8IHg": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effect-side-by-side-check"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.accuracyCheck",
+        "value": "~&sl(\"faithful-companion\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.accuracy.magicCheck",
+        "value": "~&sl(\"faithful-companion\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.accuracy.openCheck",
+        "value": "~&sl(\"faithful-companion\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.accuracy.opposedCheck",
+        "value": "~&sl(\"faithful-companion\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "description": "<p>The first time you perform a Check before the end of the wayfarer's next turn, that Check gains a bonus equal to <strong>【Wafarer's SL in Faithful Companion】</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793220752299,
+    "createdTime": 1793220752299,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KD2DLo9pPr2lBJAM",
+  "sort": 0,
+  "_key": "!effects!nJHoE47tFyNEOMiP"
+}

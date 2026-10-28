@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "nVAqbMLJVRKgLgOO",
+  "name": "Flow of Yin and Yang",
+  "color": "#535978",
+  "sorting": "a",
+  "_id": "YfwxKOWC5e9R3hKt",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220133515,
+    "modifiedTime": 1793220133515,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!YfwxKOWC5e9R3hKt"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "GrTjWNMavCUd7UnY",
+  "name": "Tempest Strike",
+  "color": "#4f6f66",
+  "sorting": "a",
+  "_id": "8pelEZJJ7I4bURMF",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220408968,
+    "modifiedTime": 1793220408968,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!8pelEZJJ7I4bURMF"
+}

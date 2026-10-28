@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "KO8GdUXcvZGUnnRl",
+  "name": "Iron Forest",
+  "color": "#9d2f2f",
+  "sorting": "a",
+  "_id": "jn9fN3ffqnLgEdxe",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220536134,
+    "modifiedTime": 1793220536134,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!jn9fN3ffqnLgEdxe"
+}

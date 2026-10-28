@@ -1,0 +1,88 @@
+{
+  "name": "Overload Burst",
+  "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "Qxp9S3gpowoJs0L0": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [
+              "display"
+            ],
+            "itemGroups": [
+              "skill"
+            ],
+            "local": false,
+            "identifier": "compression-tech"
+          },
+          "actions": {
+            "awzPfbZ8FoUzCCnJ": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>This costs 1 Fabula Point. Then, remove this effect.</p>"
+            },
+            "O6Ho4fuzQIqak2NK": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effect-overload-burst"
+            }
+          },
+          "selector": "self",
+          "predicates": {},
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "ZAR5bQfnAnyQfH8R",
+  "type": "base",
+  "description": "<p>Your <strong>personal vehicle</strong> has been <strong>destroyed</strong>. The next use of your <strong>Compression Tech</strong> will have an additional cost of 1 Fabula Point.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220923709,
+    "modifiedTime": 1793220923759,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "g18Aph32n2BJA5KC",
+  "sort": 200000,
+  "_key": "!effects!ZAR5bQfnAnyQfH8R"
+}

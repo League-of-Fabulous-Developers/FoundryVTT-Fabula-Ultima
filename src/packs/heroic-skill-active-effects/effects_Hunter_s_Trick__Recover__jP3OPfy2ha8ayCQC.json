@@ -1,0 +1,108 @@
+{
+  "name": "Hunter's Trick (Recover)",
+  "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "JayWJfWpcKXycLyG": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "X82dweGdmzf560Gf": {
+              "type": "projectfu.checkRulePredicate",
+              "outcome": "success",
+              "result": null,
+              "parity": "",
+              "attributes": {
+                "primary": {
+                  "value": ""
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "quantifier": "any"
+            }
+          },
+          "actions": {
+            "faqcYnNXOWgV8BEO": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>If you hit one or more, you recover 5 HP and MP.</p>"
+            },
+            "fuDP4PgO8cnEc9lR": {
+              "type": "projectfu.updateResourceRuleAction",
+              "amount": "5",
+              "resource": "hp"
+            },
+            "cJdq5okRgiQUT0ib": {
+              "type": "projectfu.updateResourceRuleAction",
+              "resource": "mp",
+              "amount": "5"
+            }
+          },
+          "selector": "self",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": []
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>If you hit one or more creatures with an attack using this weapon during this turn, you recover 5 HP and MP.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793220217189,
+    "createdTime": 1793220217189,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "p8mTWc9r5zgM9SQ8",
+  "_id": "jP3OPfy2ha8ayCQC",
+  "sort": 0,
+  "_key": "!effects!jP3OPfy2ha8ayCQC"
+}

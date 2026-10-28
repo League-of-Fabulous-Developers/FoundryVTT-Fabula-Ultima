@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "2NfuHz3oOHaF32IL",
+  "name": "Side by Side",
+  "color": "#348c31",
+  "sorting": "a",
+  "_id": "KD2DLo9pPr2lBJAM",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220631322,
+    "modifiedTime": 1793220631322,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!KD2DLo9pPr2lBJAM"
+}

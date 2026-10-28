@@ -10,4 +10,10 @@ export class FUEffectItemSheet extends FUItemSheet {
 			initial: 'effects',
 		},
 	};
+
+	static PARTS = (() => {
+		const parts = { ...super.PARTS };
+		delete parts.tabs;
+		return parts;
+	})();
 }

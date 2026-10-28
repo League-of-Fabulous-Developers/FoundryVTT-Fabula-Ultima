@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Heroic Skills [BC]",
+  "color": "#363e52",
+  "sorting": "a",
+  "_id": "nVAqbMLJVRKgLgOO",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220099931,
+    "modifiedTime": 1793220099931,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!nVAqbMLJVRKgLgOO"
+}
