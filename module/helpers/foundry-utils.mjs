@@ -91,7 +91,7 @@ export default class FoundryUtils {
 	 */
 	static async input(title, content, options = {}) {
 		let defaultOptions = {
-			window: { title: title, icon: 'fas fa-comment' },
+			window: { title: foundry.utils.escapeHTML(title), icon: 'fas fa-comment' },
 			content: content,
 			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
 			rejectClose: false,
