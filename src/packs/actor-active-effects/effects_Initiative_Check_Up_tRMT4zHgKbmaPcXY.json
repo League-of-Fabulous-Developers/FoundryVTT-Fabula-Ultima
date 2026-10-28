@@ -1,0 +1,84 @@
+{
+  "name": "Initiative Check Up",
+  "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.derived.init.bonus",
+        "value": 4,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "initiative-check-up"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "tRMT4zHgKbmaPcXY",
+  "type": "base",
+  "description": "<p>You gain a +4 bonus to your <strong>Initiative</strong> modifier.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Initiative Check Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.ffSszvzVhpH3vkFm",
+        "effectUuid": null,
+        "fuid": "initiative-check-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924063,
+    "modifiedTime": 1792923924063,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "OkqwV9Qct6wMjKU4",
+  "_key": "!effects!tRMT4zHgKbmaPcXY"
+}

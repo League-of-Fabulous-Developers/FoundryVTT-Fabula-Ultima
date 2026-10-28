@@ -1,0 +1,103 @@
+{
+  "name": "Spell HP Restore Up",
+  "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "HWXl6npX0zUgGShW": {
+          "trigger": {
+            "type": "projectfu.calculateResourceRuleTrigger",
+            "eventRelation": "source",
+            "resource": "hp",
+            "change": "increment",
+            "itemGroups": [],
+            "local": false
+          },
+          "predicates": {
+            "MrrSK6hM87RkHT32": {
+              "type": "projectfu.spellRulePredicate",
+              "offensive": "",
+              "duration": ""
+            }
+          },
+          "actions": {
+            "mRdefHhspF5gzxkF": {
+              "type": "projectfu.modifyResourceRuleAction",
+              "amount": "5",
+              "operation": "add"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "spell-hp-restore-up"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "r1ozYATkE7AiaCTg",
+  "type": "base",
+  "description": "<p>While you have this equipped, <strong>spells</strong> you cast whose effect restores <strong>Hit Points</strong> will restore <strong>5 additional Hit Points</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Spell HP Restore Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.RjgXavSj05SGTxzj",
+        "effectUuid": null,
+        "fuid": "spell-hp-restore-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924672,
+    "modifiedTime": 1792923924672,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "gFIBB0I6XXkT9Mo9",
+  "_key": "!effects!r1ozYATkE7AiaCTg"
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Bolt Resistance",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.bolt",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "bolt-resistance"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "Gp1YICRCD5JycM5c",
+  "type": "base",
+  "description": "<p>You gain Resistance to <strong>bolt</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Bolt Resistance",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj",
+        "effectUuid": null,
+        "fuid": "bolt-resistance"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924053,
+    "modifiedTime": 1792923924053,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KoamGTrOopqqmbxH",
+  "_key": "!effects!Gp1YICRCD5JycM5c"
+}

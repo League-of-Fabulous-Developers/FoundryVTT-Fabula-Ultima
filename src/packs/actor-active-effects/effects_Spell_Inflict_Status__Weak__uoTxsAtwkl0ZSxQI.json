@@ -1,0 +1,106 @@
+{
+  "name": "Spell Inflict Status (Weak)",
+  "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "suI7fjLD4c5SiC7w": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [
+              "magic"
+            ],
+            "itemGroups": [
+              "spell"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "hwNUJh1Dz7QHcpvD": {
+              "type": "projectfu.applyEffectRuleAction",
+              "effect": "weak"
+            }
+          },
+          "predicates": {
+            "NfY9KejikeHoJszG": {
+              "type": "projectfu.spellRulePredicate",
+              "offensive": "true",
+              "duration": ""
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "spell-inflict-status-weak"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "uoTxsAtwkl0ZSxQI",
+  "type": "base",
+  "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>weak</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Spell Inflict Status (Weak)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.mVYDH7TXI5N364zQ",
+        "effectUuid": null,
+        "fuid": "spell-inflict-status-weak"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924068,
+    "modifiedTime": 1792923924068,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "5ZenCjx6n04peFsh",
+  "_key": "!effects!uoTxsAtwkl0ZSxQI"
+}

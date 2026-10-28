@@ -1,0 +1,124 @@
+{
+  "name": "Ice Thorns",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "UfrsEHCzsMmARfTf": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "accuracy"
+            ],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "5D0gBVPqcgXdrwsh": {
+              "type": "projectfu.checkRulePredicate",
+              "outcome": "success",
+              "result": null,
+              "parity": "",
+              "attributes": {
+                "primary": {
+                  "value": ""
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "quantifier": "any"
+            },
+            "FEmQ7tA0jGMsWnXL": {
+              "type": "projectfu.weaponRulePredicate",
+              "weaponType": "melee",
+              "selector": "source",
+              "martial": "",
+              "handedness": "",
+              "categories": []
+            }
+          },
+          "actions": {
+            "KqDmOQrDYrPSNeK1": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 ice] to them.</p>"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "ice-thorns"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "BPQY1vcOGAJRzusF",
+  "type": "base",
+  "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>ice</strong> damage to that creature (after the attack has been resolved).</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Ice Thorns",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.RMcBsabFMyLESU4t",
+        "effectUuid": null,
+        "fuid": "ice-thorns"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924671,
+    "modifiedTime": 1792923924671,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BlKCuhMT72VW7Anp",
+  "_key": "!effects!BPQY1vcOGAJRzusF"
+}

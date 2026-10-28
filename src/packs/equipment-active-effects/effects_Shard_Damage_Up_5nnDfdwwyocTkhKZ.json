@@ -1,0 +1,98 @@
+{
+  "name": "Shard Damage Up",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elemental-shard.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "d3NSRtpWQ8B9spo3": {
+          "trigger": {
+            "type": "projectfu.createConsumableRuleTrigger",
+            "eventRelation": "source",
+            "traits": {
+              "entries": [
+                "elemental-shard",
+                "damage"
+              ],
+              "quantifier": "any"
+            }
+          },
+          "actions": {
+            "i8kuYwnGTgY10EkY": {
+              "type": "projectfu.modifyConsumableRuleAction"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "shard-damage-up"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "5nnDfdwwyocTkhKZ",
+  "type": "base",
+  "description": "<p>When you create an <strong>elemental shard</strong> with your Inventory Points while you have this equipped, it deals <strong>5 extra damage</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Shard Damage Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.pzsBq3QmfsOmk8QK",
+        "effectUuid": null,
+        "fuid": "shard-damage-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924692,
+    "modifiedTime": 1792923924692,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "uFZ8jKMARjGWZd5Y",
+  "_key": "!effects!5nnDfdwwyocTkhKZ"
+}

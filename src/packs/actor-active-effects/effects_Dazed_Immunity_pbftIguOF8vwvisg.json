@@ -1,0 +1,84 @@
+{
+  "name": "Dazed Immunity",
+  "img": "systems/projectfu/styles/static/statuses/immunities/DazedImmune.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.immunities.dazed.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "dazed-immunity"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "pbftIguOF8vwvisg",
+  "type": "base",
+  "description": "<p>You are immune to <strong>dazed</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Dazed Immunity",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B",
+        "effectUuid": null,
+        "fuid": "dazed-immunity"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924047,
+    "modifiedTime": 1792923924047,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Rr4bzTcg5QASOjQc",
+  "_key": "!effects!pbftIguOF8vwvisg"
+}

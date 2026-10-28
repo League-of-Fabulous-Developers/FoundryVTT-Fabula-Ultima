@@ -1,0 +1,84 @@
+{
+  "name": "Light Resistance",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.light",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "light-resistance"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "otdQOHtFNXkPTkiI",
+  "type": "base",
+  "description": "<p>You gain Resistance to <strong>light</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Light Resistance",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu",
+        "effectUuid": null,
+        "fuid": "light-resistance"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924059,
+    "modifiedTime": 1792923924059,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KoamGTrOopqqmbxH",
+  "_key": "!effects!otdQOHtFNXkPTkiI"
+}

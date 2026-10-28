@@ -1,0 +1,65 @@
+{
+  "disabled": false,
+  "name": "Antistatus (Enraged)",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>You are immune to <strong>enraged</strong> status effect.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "subtype": "Status",
+      "source": "FUCR269"
+    }
+  },
+  "_id": "XMFoMp9PpV2BnB4T",
+  "system": {
+    "changes": [
+      {
+        "key": "system.immunities.enraged.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 0
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "effect"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923925146,
+    "modifiedTime": 1792923925146,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "GvNesyOurlR0JNH8",
+  "_key": "!effects!XMFoMp9PpV2BnB4T"
+}

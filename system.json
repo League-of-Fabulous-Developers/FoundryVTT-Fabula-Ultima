@@ -166,7 +166,7 @@
 			"label": "Conditions",
 			"type": "ActiveEffect",
 			"name": "condition-active-effects",
-			"path": "packs/conditions-active-effects",
+			"path": "packs/condition-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -188,7 +188,7 @@
 			"label": "Qualities",
 			"type": "ActiveEffect",
 			"name": "quality-active-effects",
-			"path": "packs/quality-active-effect",
+			"path": "packs/quality-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -235,7 +235,7 @@
 			"name": "Effects",
 			"sorting": "a",
 			"color": "#8b5c00",
-			"packs": ["actor-effects", "conditions-effects", "equipment-effects", "qualities"]
+			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects"]
 		},
 		{
 			"name": "Equipment",

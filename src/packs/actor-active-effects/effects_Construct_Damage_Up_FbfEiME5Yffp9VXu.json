@@ -1,0 +1,84 @@
+{
+  "name": "Construct Damage Up",
+  "img": "systems/projectfu/styles/static/icons/construct.svg",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.construct",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "construct-damage-up"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "FbfEiME5Yffp9VXu",
+  "type": "base",
+  "description": "<p>While you have this equipped, all damage you deal to <strong>constructs</strong> deal <strong>5 extra damage</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Construct Damage Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.QEAYFWbN9U6sT95g",
+        "effectUuid": null,
+        "fuid": "construct-damage-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924052,
+    "modifiedTime": 1792923924052,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "2tE6Ya4uidA9PhD8",
+  "_key": "!effects!FbfEiME5Yffp9VXu"
+}

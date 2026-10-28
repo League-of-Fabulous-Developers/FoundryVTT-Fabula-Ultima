@@ -1,0 +1,84 @@
+{
+  "name": "Thrown Accuracy Check Up",
+  "img": "systems/projectfu/styles/static/icons/weapons/thrown.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.thrown",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "thrown-accuracy-check-up"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "h6KZwa9vcOwEw9RF",
+  "type": "base",
+  "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>thrown</strong> weapons.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Thrown Accuracy Check Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.EXL4hMh5jy39f8PT",
+        "effectUuid": null,
+        "fuid": "thrown-accuracy-check-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924042,
+    "modifiedTime": 1792923924042,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "uVLG7Fn26UP2kgRX",
+  "_key": "!effects!h6KZwa9vcOwEw9RF"
+}

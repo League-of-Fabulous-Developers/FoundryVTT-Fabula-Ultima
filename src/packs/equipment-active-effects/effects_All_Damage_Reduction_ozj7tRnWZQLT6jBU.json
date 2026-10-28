@@ -1,0 +1,84 @@
+{
+  "name": "All Damage Reduction",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.all",
+        "value": -5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "all-damage-reduction"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "ozj7tRnWZQLT6jBU",
+  "type": "base",
+  "description": "<p>While you have this equipped, all damage you suffer is <strong>reduced by 5</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "All Damage Reduction",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.qy1K7DHrYjME5HXe",
+        "effectUuid": null,
+        "fuid": "all-damage-reduction"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924693,
+    "modifiedTime": 1792923924693,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "AeIKzfJeywgb32S5",
+  "_key": "!effects!ozj7tRnWZQLT6jBU"
+}

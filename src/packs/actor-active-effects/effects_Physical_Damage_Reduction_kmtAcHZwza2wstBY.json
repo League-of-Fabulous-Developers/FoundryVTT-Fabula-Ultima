@@ -1,0 +1,84 @@
+{
+  "name": "Physical Damage Reduction",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.physical",
+        "value": -5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "physical-damage-reduction"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "kmtAcHZwza2wstBY",
+  "type": "base",
+  "description": "<p>All <strong>physical</strong> damage you suffer is <strong>reduced by 5</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Physical Damage Reduction",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.NYSbbX6vkW4rJWXw",
+        "effectUuid": null,
+        "fuid": "physical-damage-reduction"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924049,
+    "modifiedTime": 1792923924049,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "AeIKzfJeywgb32S5",
+  "_key": "!effects!kmtAcHZwza2wstBY"
+}

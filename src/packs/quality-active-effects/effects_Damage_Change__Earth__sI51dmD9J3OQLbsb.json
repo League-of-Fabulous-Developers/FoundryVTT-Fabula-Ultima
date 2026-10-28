@@ -1,0 +1,64 @@
+{
+  "origin": null,
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Damage Change (Earth)",
+  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "_id": "sI51dmD9J3OQLbsb",
+  "type": "base",
+  "system": {
+    "changes": [
+      {
+        "key": "system.damageType.value",
+        "value": "earth",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 0
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "effect"
+  },
+  "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>earth</strong> damage type.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "source": "FUCR284"
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923925152,
+    "modifiedTime": 1792923925152,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "_key": "!effects!sI51dmD9J3OQLbsb"
+}

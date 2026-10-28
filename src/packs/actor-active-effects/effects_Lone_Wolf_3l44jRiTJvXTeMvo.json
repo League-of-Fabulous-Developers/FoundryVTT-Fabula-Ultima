@@ -1,0 +1,91 @@
+{
+  "name": "Lone Wolf",
+  "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.turns",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.resources.hp.max",
+        "value": 2,
+        "priority": null,
+        "type": "multiply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "lone-wolf"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "3l44jRiTJvXTeMvo",
+  "type": "base",
+  "description": "<p>You take <strong>2 turns per round</strong> and <strong>double</strong> your <strong>maximum HP.</strong></p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Lone Wolf",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.8VUidC7jGyZyDb56",
+        "effectUuid": null,
+        "fuid": "lone-wolf"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924037,
+    "modifiedTime": 1792923924037,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "423RpDks0B2eewCA",
+  "_key": "!effects!3l44jRiTJvXTeMvo"
+}

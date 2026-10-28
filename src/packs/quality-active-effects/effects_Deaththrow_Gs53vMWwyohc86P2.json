@@ -1,0 +1,65 @@
+{
+  "disabled": false,
+  "name": "Deaththrow",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "type": "base",
+  "description": "<p>Deals 5 extra damage if you are in <strong>Crisis.</strong></p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "subtype": "Offensive",
+      "source": "FUCR278"
+    }
+  },
+  "_id": "Gs53vMWwyohc86P2",
+  "system": {
+    "changes": [
+      {
+        "key": "system.damage.value",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "active"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 0
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "effect"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923925148,
+    "modifiedTime": 1792923925148,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "SH8cHX3lJkZlLgj8",
+  "_key": "!effects!Gs53vMWwyohc86P2"
+}

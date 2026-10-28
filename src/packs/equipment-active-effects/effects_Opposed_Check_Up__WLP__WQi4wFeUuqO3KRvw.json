@@ -1,0 +1,112 @@
+{
+  "name": "Opposed Check Up (WLP)",
+  "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "MbTS7YOcrlGQrxaX": {
+          "trigger": {
+            "type": "projectfu.performCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [
+              "opposed"
+            ],
+            "local": false
+          },
+          "actions": {
+            "4wiVTUUXlhkJOM3N": {
+              "type": "projectfu.modifyCheckRuleAction",
+              "bonus": "2"
+            }
+          },
+          "predicates": {
+            "65CmUc1bjzNi80Ks": {
+              "type": "projectfu.checkRulePredicate",
+              "result": null,
+              "attributes": {
+                "primary": {
+                  "value": "wlp"
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "parity": "",
+              "outcome": "",
+              "quantifier": "any"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "opposed-check-up-wlp"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "WQi4wFeUuqO3KRvw",
+  "type": "base",
+  "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Willpower</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Opposed Check Up (WLP)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.RTrh4monxzCLKeaz",
+        "effectUuid": null,
+        "fuid": "opposed-check-up-wlp"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924671,
+    "modifiedTime": 1792923924671,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KdeKj6lCpEeWNudK",
+  "_key": "!effects!WQi4wFeUuqO3KRvw"
+}

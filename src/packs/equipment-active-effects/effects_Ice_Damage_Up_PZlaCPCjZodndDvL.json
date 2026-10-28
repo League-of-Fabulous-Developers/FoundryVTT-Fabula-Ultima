@@ -1,0 +1,84 @@
+{
+  "name": "Ice Damage Up",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.ice",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "ice-damage-up"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "PZlaCPCjZodndDvL",
+  "type": "base",
+  "description": "<p>While you have this equipped, you deal <strong>5 extra damage</strong> with all <strong>ice</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Ice Damage Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.gokXTeJfgIQX3ObN",
+        "effectUuid": null,
+        "fuid": "ice-damage-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924685,
+    "modifiedTime": 1792923924685,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "s9huIFW6pnH7kn6j",
+  "_key": "!effects!PZlaCPCjZodndDvL"
+}

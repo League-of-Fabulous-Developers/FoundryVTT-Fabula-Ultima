@@ -1,0 +1,106 @@
+{
+  "name": "Spell Inflict Status (Slow)",
+  "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "j3lvgrRCTtaLsdek": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [
+              "magic"
+            ],
+            "itemGroups": [
+              "spell"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "9PMbZarhIakaGBgI": {
+              "type": "projectfu.applyEffectRuleAction",
+              "effect": "slow"
+            }
+          },
+          "predicates": {
+            "hav8EsqMDiXHcQKM": {
+              "type": "projectfu.spellRulePredicate",
+              "offensive": "true",
+              "duration": ""
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "spell-inflict-status-slow"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "0LoQQK8iI5Aw0CoB",
+  "type": "base",
+  "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>slow</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Spell Inflict Status (Slow)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.RVK4jjaUEguyucbP",
+        "effectUuid": null,
+        "fuid": "spell-inflict-status-slow"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924671,
+    "modifiedTime": 1792923924671,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "5ZenCjx6n04peFsh",
+  "_key": "!effects!0LoQQK8iI5Aw0CoB"
+}

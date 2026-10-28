@@ -1,0 +1,98 @@
+{
+  "name": "Inflict Status (Shaken)",
+  "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "vvCXgGQ2L0cZ06XF": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": true,
+            "identifier": ""
+          },
+          "actions": {
+            "pc6QrYdYmXFDDVOw": {
+              "type": "projectfu.applyEffectRuleAction",
+              "effect": "shaken"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "inflict-status-shaken"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "Q2B7QgetvfYilHZB",
+  "type": "base",
+  "description": "<p>Each target hit by this weapon suffers <strong>shaken</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Inflict Status (Shaken)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.Vks9FOKWuDUXLq0B",
+        "effectUuid": null,
+        "fuid": "inflict-status-shaken"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924674,
+    "modifiedTime": 1792923924674,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "9eMA0CXLIWjQMypE",
+  "_key": "!effects!Q2B7QgetvfYilHZB"
+}

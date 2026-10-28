@@ -1,0 +1,84 @@
+{
+  "name": "Bolt Damage Up",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.bolt",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "bolt-damage-up"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "JZ6jegazAKllwPAA",
+  "type": "base",
+  "description": "<p>You deal <strong>5 extra damage</strong> with all <strong>bolt</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Bolt Damage Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.K3Z6FnodIXlfsv8D",
+        "effectUuid": null,
+        "fuid": "bolt-damage-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924046,
+    "modifiedTime": 1792923924046,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "s9huIFW6pnH7kn6j",
+  "_key": "!effects!JZ6jegazAKllwPAA"
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Heavy Accuracy Check Up",
+  "img": "systems/projectfu/styles/static/icons/weapons/heavy.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.heavy",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "heavy-accuracy-check-up"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "rBOhmBjiW8O86whh",
+  "type": "base",
+  "description": "<p>While you have this equipped, you gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>heavy</strong> weapons.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Heavy Accuracy Check Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.XhruoNniOJsADnwJ",
+        "effectUuid": null,
+        "fuid": "heavy-accuracy-check-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924676,
+    "modifiedTime": 1792923924676,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "sT60HsbrtK4laoQE",
+  "_key": "!effects!rBOhmBjiW8O86whh"
+}

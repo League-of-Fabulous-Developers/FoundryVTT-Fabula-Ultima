@@ -1,0 +1,84 @@
+{
+  "name": "Opposed Check Up (All)",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.opposedCheck",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "opposed-check-up-all"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "g1fhwI7hG6i1Qrll",
+  "type": "base",
+  "description": "<p>While you have this equipped, you gain a +1 bonus to <strong>Opposed Checks</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Opposed Check Up (All)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.kjGfvrVE8xfykbmW",
+        "effectUuid": null,
+        "fuid": "opposed-check-up-all"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924687,
+    "modifiedTime": 1792923924687,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KdeKj6lCpEeWNudK",
+  "_key": "!effects!g1fhwI7hG6i1Qrll"
+}

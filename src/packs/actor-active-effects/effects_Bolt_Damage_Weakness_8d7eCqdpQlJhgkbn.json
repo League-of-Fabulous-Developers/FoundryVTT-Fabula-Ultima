@@ -1,0 +1,78 @@
+{
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+  "origin": null,
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Bolt Damage Weakness",
+  "_id": "8d7eCqdpQlJhgkbn",
+  "type": "base",
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 0
+    },
+    "rules": {
+      "progress": {
+        "id": "",
+        "name": "",
+        "style": "bar",
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.bolt",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "fuid": "bolt-damage-weakness"
+  },
+  "description": "<p>Every source that deals <strong>bolt</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "source": ""
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924048,
+    "modifiedTime": 1792923924048,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "ZRup8UZGBBD2SFVi",
+  "_key": "!effects!8d7eCqdpQlJhgkbn"
+}

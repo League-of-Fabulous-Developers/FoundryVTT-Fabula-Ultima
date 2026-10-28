@@ -1,0 +1,98 @@
+{
+  "name": "Inflict Status (Dazed)",
+  "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "AtXIJi96JI8BLCEB": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": true,
+            "identifier": ""
+          },
+          "predicates": {},
+          "actions": {
+            "HFiGMNSqGpOoYFCg": {
+              "type": "projectfu.applyEffectRuleAction",
+              "effect": "dazed"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "inflict-status-dazed"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "GuKGmX2SOHeOV6cj",
+  "type": "base",
+  "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Inflict Status (Dazed)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.ffsodHO7zfbT8nTv",
+        "effectUuid": null,
+        "fuid": "inflict-status-dazed"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924684,
+    "modifiedTime": 1792923924684,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "9eMA0CXLIWjQMypE",
+  "_key": "!effects!GuKGmX2SOHeOV6cj"
+}

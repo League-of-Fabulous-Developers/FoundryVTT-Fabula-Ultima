@@ -1,0 +1,57 @@
+{
+  "disabled": false,
+  "name": "Flowing",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>After you reduce a creature's Hit Points to 0 with this weapon, you may immediately perform a <strong>dance</strong> with a <strong>duration</strong> of “Instantaneous” among those you have learned (see <strong>Atlas High Fantasy</strong>, page <strong>144</strong>); the MP cost of a dance performed this way can <strong>never</strong> be lower than 10.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "subtype": "Skill",
+      "source": "FUHF79"
+    }
+  },
+  "_id": "rqmf6QJ08JXiCiIG",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 0
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "effect"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923925175,
+    "modifiedTime": 1792923925175,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "wRqZOkZnfCN50Yil",
+  "_key": "!effects!rqmf6QJ08JXiCiIG"
+}

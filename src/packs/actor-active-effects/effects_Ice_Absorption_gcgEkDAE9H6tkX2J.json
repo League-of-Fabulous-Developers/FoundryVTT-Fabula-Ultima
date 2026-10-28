@@ -1,0 +1,84 @@
+{
+  "name": "Ice Absorption",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.ice.current",
+        "value": 3,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "ice-absorption"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "gcgEkDAE9H6tkX2J",
+  "type": "base",
+  "description": "<p>You gain Absorption to <strong>ice</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Ice Absorption",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.VhdH4DOOCAJMd197",
+        "effectUuid": null,
+        "fuid": "ice-absorption"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924058,
+    "modifiedTime": 1792923924058,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "rPNBQ4ka3rcyorik",
+  "_key": "!effects!gcgEkDAE9H6tkX2J"
+}

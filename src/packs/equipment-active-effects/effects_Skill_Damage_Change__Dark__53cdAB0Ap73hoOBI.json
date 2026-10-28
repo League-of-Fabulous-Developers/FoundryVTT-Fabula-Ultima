@@ -1,0 +1,84 @@
+{
+  "name": "Skill Damage Change (Dark)",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.skill.normal",
+        "value": "dark",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "skill-damage-change-dark"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "53cdAB0Ap73hoOBI",
+  "type": "base",
+  "description": "<p>While you have this equipped, all damage dealt by your Skills becomes <strong>dark</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Skill Damage Change (Dark)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.eQCI2Sx70ueePyxV",
+        "effectUuid": null,
+        "fuid": "skill-damage-change-dark"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924683,
+    "modifiedTime": 1792923924683,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "e6VG70pYUgpuiLoP",
+  "_key": "!effects!53cdAB0Ap73hoOBI"
+}

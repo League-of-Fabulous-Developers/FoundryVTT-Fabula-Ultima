@@ -1,0 +1,124 @@
+{
+  "name": "Poison Thorns",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "FfiwKIUhW8g7Zn5y": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "accuracy"
+            ],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "Fd0K3gLb62mNdwp0": {
+              "type": "projectfu.checkRulePredicate",
+              "result": null,
+              "outcome": "success",
+              "parity": "",
+              "attributes": {
+                "primary": {
+                  "value": ""
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "quantifier": "any"
+            },
+            "3gVzl74GXsYwO8j2": {
+              "type": "projectfu.weaponRulePredicate",
+              "weaponType": "melee",
+              "selector": "source",
+              "martial": "",
+              "handedness": "",
+              "categories": []
+            }
+          },
+          "actions": {
+            "WcG1rIO4M6bxYJzs": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 poison] to them.</p>"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "poison-thorns"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "vyFzdheBet4Tj216",
+  "type": "base",
+  "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>poison</strong> damage to that creature (after the attack has been resolved).</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Poison Thorns",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.l6aoLSlfKa3vz4kG",
+        "effectUuid": null,
+        "fuid": "poison-thorns"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924688,
+    "modifiedTime": 1792923924688,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BlKCuhMT72VW7Anp",
+  "_key": "!effects!vyFzdheBet4Tj216"
+}

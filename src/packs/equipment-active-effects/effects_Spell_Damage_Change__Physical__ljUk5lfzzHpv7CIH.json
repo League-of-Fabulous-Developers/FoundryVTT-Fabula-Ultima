@@ -1,0 +1,84 @@
+{
+  "name": "Spell Damage Change (Physical)",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.spell.normal",
+        "value": "physical",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "spell-damage-change-physical"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "ljUk5lfzzHpv7CIH",
+  "type": "base",
+  "description": "<p>While you have this equipped, all damage dealt by your spells becomes <strong>physical</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Spell Damage Change (Physical)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.nCNdbcu848eu0R6q",
+        "effectUuid": null,
+        "fuid": "spell-damage-change-physical"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924690,
+    "modifiedTime": 1792923924690,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BKWTTfVn4R6JFRRx",
+  "_key": "!effects!ljUk5lfzzHpv7CIH"
+}

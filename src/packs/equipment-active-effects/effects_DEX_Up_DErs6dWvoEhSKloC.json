@@ -1,0 +1,84 @@
+{
+  "name": "DEX Up",
+  "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.attributes.dex",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "dex-up"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "DErs6dWvoEhSKloC",
+  "type": "base",
+  "description": "<p>While you have this equipped, you treat your <strong>Dexterity</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "DEX Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.gE2gjUOAMQ3q62Tr",
+        "effectUuid": null,
+        "fuid": "dex-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924684,
+    "modifiedTime": 1792923924684,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "lcWBXdBj3CFpWnCq",
+  "_key": "!effects!DErs6dWvoEhSKloC"
+}

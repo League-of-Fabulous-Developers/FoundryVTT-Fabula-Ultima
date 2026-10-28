@@ -1,0 +1,84 @@
+{
+  "name": "Air Immunity",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.air.current",
+        "value": 2,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "air-immunity"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "9rksQkBCdhokDPTe",
+  "type": "base",
+  "description": "<p>While you have this equipped, you gain Immunity to <strong>air</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Air Immunity",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.Zyqt9yJwXetrEabj",
+        "effectUuid": null,
+        "fuid": "air-immunity"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924678,
+    "modifiedTime": 1792923924678,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "kGpC8iYbtR62qou9",
+  "_key": "!effects!9rksQkBCdhokDPTe"
+}

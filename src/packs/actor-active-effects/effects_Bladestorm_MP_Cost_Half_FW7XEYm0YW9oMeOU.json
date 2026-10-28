@@ -1,0 +1,104 @@
+{
+  "name": "Bladestorm MP Cost Half",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bladestorm.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "nvUOZP6SdAhTaGJg": {
+          "trigger": {
+            "type": "projectfu.calculateExpenseRuleTrigger",
+            "eventRelation": "source",
+            "resource": "mp",
+            "expenseSource": "skill",
+            "threshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "traits": {
+              "entries": [],
+              "quantifier": "any"
+            },
+            "identifier": "bladestorm"
+          },
+          "actions": {
+            "ritMenDZ2R5cXXW9": {
+              "type": "projectfu.modifyExpenseRuleAction",
+              "amount": "0.5",
+              "operation": "multiply"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "bladestorm-mp-cost-half"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "FW7XEYm0YW9oMeOU",
+  "type": "base",
+  "description": "<p>When you use the <strong>Bladestorm</strong> Skill, its MP cost is <strong>halved</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Bladestorm MP Cost Half",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.lfUmpQo4UueiGvxg",
+        "effectUuid": null,
+        "fuid": "bladestorm-mp-cost-half"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924067,
+    "modifiedTime": 1792923924067,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "otoipAEPi73bXx73",
+  "_key": "!effects!FW7XEYm0YW9oMeOU"
+}

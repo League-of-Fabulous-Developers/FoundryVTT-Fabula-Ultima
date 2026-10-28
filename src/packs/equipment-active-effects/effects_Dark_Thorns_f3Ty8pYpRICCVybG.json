@@ -1,0 +1,124 @@
+{
+  "name": "Dark Thorns",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "FA9AZUkLHmWX3bna": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "accuracy"
+            ],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "aFQMUbQTfNWrcwET": {
+              "type": "projectfu.checkRulePredicate",
+              "outcome": "success",
+              "result": null,
+              "parity": "",
+              "attributes": {
+                "primary": {
+                  "value": ""
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "quantifier": "any"
+            },
+            "HM6awkPORTWH2Tos": {
+              "type": "projectfu.weaponRulePredicate",
+              "weaponType": "melee",
+              "selector": "source",
+              "martial": "",
+              "handedness": "",
+              "categories": []
+            }
+          },
+          "actions": {
+            "N3JqCDyw8I2YqviD": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 dark] to them.</p>"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "dark-thorns"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "f3Ty8pYpRICCVybG",
+  "type": "base",
+  "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>dark</strong> damage to that creature (after the attack has been resolved).</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Dark Thorns",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.bVRAbrXkWg75Miq7",
+        "effectUuid": null,
+        "fuid": "dark-thorns"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924680,
+    "modifiedTime": 1792923924680,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BlKCuhMT72VW7Anp",
+  "_key": "!effects!f3Ty8pYpRICCVybG"
+}

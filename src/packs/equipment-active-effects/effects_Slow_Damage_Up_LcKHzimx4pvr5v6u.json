@@ -1,0 +1,123 @@
+{
+  "name": "Slow Damage Up",
+  "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "m0sSEoT6RGBkCsff": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "source",
+            "damageType": "",
+            "affinity": "",
+            "itemGroups": [],
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "6Hljwmjl5X1nQkrx": {
+              "type": "projectfu.targetEffectRulePredicate",
+              "selector": "initial",
+              "quantifier": "any",
+              "effect": "slow"
+            }
+          },
+          "actions": {
+            "DIOqAUd9ajnDB2sM": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>You dealt 5 extra damage to a <strong>slow</strong> creature.</p>"
+            },
+            "2TAQ0LKVy6FGquag": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "5",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "traits": {
+                "entries": []
+              },
+              "variant": ""
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "slow-damage-up"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "LcKHzimx4pvr5v6u",
+  "type": "base",
+  "description": "<p>You deal <strong>5 extra damage</strong> to <strong>slow</strong> creatures.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Slow Damage Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.u1oXTVOPSiddJDXt",
+        "effectUuid": null,
+        "fuid": "slow-damage-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924695,
+    "modifiedTime": 1792923924695,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Eyh5P2Dt6MZzu84a",
+  "_key": "!effects!LcKHzimx4pvr5v6u"
+}

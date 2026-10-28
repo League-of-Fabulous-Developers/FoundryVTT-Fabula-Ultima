@@ -1,0 +1,84 @@
+{
+  "name": "Spell Damage Change (Ice)",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.spell.normal",
+        "value": "ice",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "spell-damage-change-ice"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "K0jxY0PCvlHw8nRi",
+  "type": "base",
+  "description": "<p>All damage dealt by your <strong>spells</strong> becomes <strong>ice</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Spell Damage Change (Ice)",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.xOmtUmq58O9mR6Nl",
+        "effectUuid": null,
+        "fuid": "spell-damage-change-ice"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924075,
+    "modifiedTime": 1792923924075,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BKWTTfVn4R6JFRRx",
+  "_key": "!effects!K0jxY0PCvlHw8nRi"
+}

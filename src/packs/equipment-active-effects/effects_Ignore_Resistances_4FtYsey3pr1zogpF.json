@@ -1,0 +1,103 @@
+{
+  "name": "Ignore Resistances",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "HQYbiCIkg3Lb2cqe": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "damageTypes": [],
+            "local": true,
+            "identifier": "",
+            "itemGroups": [
+              "attack"
+            ]
+          },
+          "actions": {
+            "8wJytIeuF39nD2nW": {
+              "type": "projectfu.changeTraitsRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "mode": "add"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "ignore-resistances"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "4FtYsey3pr1zogpF",
+  "type": "base",
+  "description": "<p>Damage dealt by this weapon <strong>ignores Resistances</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Ignores Resistances",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.equipment-effects.Item.oLtejAUkzMeFVIdx",
+        "effectUuid": null,
+        "fuid": "ignores-resistances"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924691,
+    "modifiedTime": 1792923924691,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "hNMNCF1h2hiZcgBa",
+  "_key": "!effects!4FtYsey3pr1zogpF"
+}

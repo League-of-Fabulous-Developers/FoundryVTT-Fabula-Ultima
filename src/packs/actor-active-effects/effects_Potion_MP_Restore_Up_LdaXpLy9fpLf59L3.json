@@ -1,0 +1,99 @@
+{
+  "name": "Potion MP Restore Up",
+  "img": "systems/projectfu/styles/static/icons/resources/mp.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "MmVCoews3Kb6KHOf": {
+          "trigger": {
+            "type": "projectfu.createConsumableRuleTrigger",
+            "eventRelation": "source",
+            "traits": {
+              "entries": [
+                "potion",
+                "restore",
+                "mind-point"
+              ],
+              "quantifier": "all"
+            }
+          },
+          "actions": {
+            "XdBJTFbTPGtGqVpo": {
+              "type": "projectfu.modifyConsumableRuleAction"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "potion-mp-restore-up"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "LdaXpLy9fpLf59L3",
+  "type": "base",
+  "description": "<p>When you create a <strong>potion</strong> with your Inventory Points whose effects restore <strong>Mind Points</strong>, it restores <strong>5 extra Mind Points</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Potion MP Restore Up",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.qvPhBVSkXZ3MGqpk",
+        "effectUuid": null,
+        "fuid": "potion-mp-restore-up"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924072,
+    "modifiedTime": 1792923924072,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "gFIBB0I6XXkT9Mo9",
+  "_key": "!effects!LdaXpLy9fpLf59L3"
+}

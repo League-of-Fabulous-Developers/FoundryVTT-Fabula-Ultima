@@ -1,0 +1,76 @@
+{
+  "origin": null,
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Alter Damage Type (Ice)",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "_id": "x8jNIpCDg72PSmmr",
+  "type": "base",
+  "system": {
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.damageType.value",
+        "value": "ice",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "type": "default",
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 0
+    },
+    "fuid": "alter-damage-type-ice"
+  },
+  "description": "<p>The damage type of this weapon becomes <strong>ice</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924691,
+    "modifiedTime": 1792923924691,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "_key": "!effects!x8jNIpCDg72PSmmr"
+}

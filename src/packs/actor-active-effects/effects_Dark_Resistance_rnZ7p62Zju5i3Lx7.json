@@ -1,0 +1,84 @@
+{
+  "name": "Dark Resistance",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.affinities.dark",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "dark-resistance"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "rnZ7p62Zju5i3Lx7",
+  "type": "base",
+  "description": "<p>You gain Resistance to <strong>dark</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": true,
+  "statuses": [],
+  "sort": 0,
+  "flags": {
+    "projectfu": {
+      "Source": {
+        "name": "Dark Resistance",
+        "actorUuid": null,
+        "itemUuid": "Compendium.projectfu.actor-effects.Item.fBbLvII5LUEqInQQ",
+        "effectUuid": null,
+        "fuid": "dark-resistance"
+      }
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1792923924062,
+    "modifiedTime": 1792923924062,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "KoamGTrOopqqmbxH",
+  "_key": "!effects!rnZ7p62Zju5i3Lx7"
+}
