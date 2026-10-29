@@ -1,0 +1,60 @@
+{
+  "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Elements (Bolt)",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>When you deal damage to one or more creatures while you bear the <strong>Symbol of Elements</strong>, if the symbolist can see you, they may spend an amount of MP equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way becomes <strong>bolt</strong> damage.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793308943916,
+    "createdTime": 1793308926346,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "FSECZoQlCHyxXkSp",
+  "_id": "yMhvg8i2b4GqmWiq",
+  "sort": 500000,
+  "_key": "!effects!yMhvg8i2b4GqmWiq"
+}

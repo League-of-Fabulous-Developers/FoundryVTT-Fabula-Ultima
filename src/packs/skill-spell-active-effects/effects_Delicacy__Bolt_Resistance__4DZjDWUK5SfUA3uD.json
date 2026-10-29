@@ -1,5 +1,5 @@
 {
-  "name": "Effect: Delicacy (Bolt Resistance)",
+  "name": "Delicacy (Bolt Resistance)",
   "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "pfu-effect-delicacy-bolt-resistance"
+    "fuid": "pfu-delicacy-bolt-resistance"
   },
   "duration": {
     "value": 1,
@@ -70,7 +70,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1793218515096,
-    "modifiedTime": 1793218521493,
+    "modifiedTime": 1793310006705,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

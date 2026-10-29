@@ -1,0 +1,60 @@
+{
+  "img": "icons/magic/control/encase-creature-spider-hold.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Metamorphosis (Construct)",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>While you bear the <strong>Symbol of Metamorphosis</strong>, you are treated as belonging to the <strong>Construct</strong> Species for the sake of Skills and effects, instead of your normal Species.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793309111615,
+    "createdTime": 1793309106428,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "tVIqqJbm4zkgcWHo",
+  "_id": "5ONReBGXJ2hVZZJ4",
+  "sort": 100000,
+  "_key": "!effects!5ONReBGXJ2hVZZJ4"
+}

@@ -1,0 +1,68 @@
+{
+  "name": "Personal Touch (Damage)",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_personal_touch.png",
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.all",
+        "value": "~&sl(\"personal-touch\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ]
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "LYgTJyvbIHs5z3hR",
+  "type": "base",
+  "description": "<p>When you suffer damage while bearing a <strong>symbol</strong>, you suffer <strong>【SL】</strong> extra damage.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793308883442,
+    "modifiedTime": 1793308883442,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "v6nHOMQ24q5xtPwm",
+  "sort": 0,
+  "_key": "!effects!LYgTJyvbIHs5z3hR"
+}
