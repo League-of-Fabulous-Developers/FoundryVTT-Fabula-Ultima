@@ -55,8 +55,8 @@
     "fuid": "resonance",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.KgYNKoG8RE2NvCiV",
-        "Compendium.projectfu.skills.Item.MNsuRCvzqSNEqSc6"
+        "pfu-resonance-damage",
+        "pfu-resonance-mp"
       ],
       "duration": {
         "interval": null,

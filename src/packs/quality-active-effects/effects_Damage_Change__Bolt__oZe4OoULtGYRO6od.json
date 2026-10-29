@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Bolt)",
+  "name": "Damage Change (Bolt) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/bolt.svg",
   "_id": "oZe4OoULtGYRO6od",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-bolt"
+    "fuid": "pfu-damage-change-bolt-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>bolt</strong> damage type.</p>",
   "tint": "#ffffff",

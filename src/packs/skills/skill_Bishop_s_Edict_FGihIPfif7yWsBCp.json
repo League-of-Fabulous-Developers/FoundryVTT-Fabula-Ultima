@@ -61,8 +61,8 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.i9wagJN9DD7bjJ3k",
-        "Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp"
+        "pfu-bishops-edict-mp-costs-doubled",
+        "pfu-bishops-edict-extra-damage"
       ],
       "duration": {
         "interval": null,

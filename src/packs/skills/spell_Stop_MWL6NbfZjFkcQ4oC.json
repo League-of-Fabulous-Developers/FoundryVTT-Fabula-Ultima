@@ -96,7 +96,7 @@
     "fuid": "stop",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.3TCvFEruZDYy6BNx"
+        "pfu-stop"
       ],
       "prompt": false,
       "duration": {

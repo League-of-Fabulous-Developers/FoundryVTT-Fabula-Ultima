@@ -56,7 +56,7 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm"
+        "pfu-arcane-marked"
       ],
       "prompt": false
     },
@@ -162,7 +162,7 @@
                 },
                 "laWcdDSjNKgSAHJe": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm"
+                  "effect": "pfu-arcane-marked"
                 }
               },
               "selector": "initial",

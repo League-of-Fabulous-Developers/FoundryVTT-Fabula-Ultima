@@ -96,7 +96,7 @@
     "fuid": "barrier",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.kIqy89LUoYwqRltb"
+        "pfu-barrier"
       ],
       "prompt": false,
       "duration": {

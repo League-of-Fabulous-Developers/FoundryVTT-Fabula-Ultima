@@ -96,7 +96,7 @@
     "fuid": "anomaly",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.rOzrw717cgCgjTZ7"
+        "pfu-anomaly"
       ],
       "prompt": false,
       "duration": {

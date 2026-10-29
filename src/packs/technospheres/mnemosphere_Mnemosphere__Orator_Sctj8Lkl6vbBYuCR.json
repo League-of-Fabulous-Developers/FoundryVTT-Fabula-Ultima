@@ -77,7 +77,7 @@
             "entries": [
               "dazed",
               "shaken",
-              "Compendium.projectfu.skills.Item.E0u1uXks8xbdQ3Cb"
+              "pfu-condemn"
             ],
             "duration": {
               "interval": null,
@@ -252,10 +252,10 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.zdJc2zsLCgyA5wOp",
-              "Compendium.projectfu.skills.Item.F9ep5ecBHb7R4RRr",
-              "Compendium.projectfu.skills.Item.eTDq4RldNEYv5XTd",
-              "Compendium.projectfu.skills.Item.nBSrAu72JcvvNcWq"
+              "pfu-encourage-dex",
+              "pfu-encourage-ins",
+              "pfu-encourage-mig",
+              "pfu-encourage-wlp"
             ],
             "duration": {
               "interval": null,

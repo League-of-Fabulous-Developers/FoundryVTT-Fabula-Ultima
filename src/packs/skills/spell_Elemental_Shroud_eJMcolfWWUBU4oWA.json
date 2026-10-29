@@ -95,11 +95,11 @@
     "fuid": "elemental-shroud",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.xp2bMd7jkx1rfjrb",
-        "Compendium.projectfu.skills.Item.JxkkqwY0eyzqjIXU",
-        "Compendium.projectfu.skills.Item.0gQINms2ddJW2vVr",
-        "Compendium.projectfu.skills.Item.jdmbn0LS5Plv2BI2",
-        "Compendium.projectfu.skills.Item.l7FVA1qEtGVhFRne"
+        "pfu-elemental-shroud-air",
+        "pfu-elemental-shroud-bolt",
+        "pfu-elemental-shroud-earth",
+        "pfu-elemental-shroud-fire",
+        "pfu-elemental-shroud-ice"
       ],
       "duration": {
         "interval": null,

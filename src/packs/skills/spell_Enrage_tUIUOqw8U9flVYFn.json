@@ -97,7 +97,7 @@
     "effects": {
       "entries": [
         "enraged",
-        "Compendium.projectfu.skills.Item.AZnLD3nCoMk2GJRe"
+        "pfu-enrage-restrict-guard-spell"
       ],
       "prompt": false,
       "duration": {

@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Fire)",
+  "name": "Damage Change (Fire) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/fire.svg",
   "_id": "8pd9i30YrQ982pG1",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-fire"
+    "fuid": "pfu-damage-change-fire-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>fire</strong> damage type.</p>",
   "tint": "#ffffff",

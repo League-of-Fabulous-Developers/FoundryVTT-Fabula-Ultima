@@ -47,10 +47,10 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.2TtzNh1YqFDLyOKo",
-        "Compendium.projectfu.heroic-skills.Item.aGBmSaKFRyInlX7r",
-        "Compendium.projectfu.heroic-skills.Item.GChgfUsVVDlhM9Y8",
-        "Compendium.projectfu.heroic-skills.Item.0cahhGuSayt6t5CW"
+        "pfu-cheer-up-dex",
+        "pfu-cheer-up-ins",
+        "pfu-cheer-up-mig",
+        "pfu-cheer-up-wlp"
       ],
       "prompt": true
     },
@@ -121,19 +121,19 @@
                 },
                 "BfgG59qwzOUIGJMf": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.2TtzNh1YqFDLyOKo"
+                  "effect": "pfu-cheer-up-dex"
                 },
                 "2BBMdhclHL61oXif": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.aGBmSaKFRyInlX7r"
+                  "effect": "pfu-cheer-up-ins"
                 },
                 "5yd3YXhQlC1It3LF": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.GChgfUsVVDlhM9Y8"
+                  "effect": "pfu-cheer-up-mig"
                 },
                 "3mgiNUIcVvmeDBI5": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.0cahhGuSayt6t5CW"
+                  "effect": "pfu-cheer-up-wlp"
                 }
               },
               "predicates": {},

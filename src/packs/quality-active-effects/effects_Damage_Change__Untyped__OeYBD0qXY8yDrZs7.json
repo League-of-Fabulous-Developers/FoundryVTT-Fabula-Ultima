@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Untyped)",
+  "name": "Damage Change (Untyped) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/melee.svg",
   "_id": "OeYBD0qXY8yDrZs7",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-untyped"
+    "fuid": "pfu-damage-change-untyped-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>untyped</strong> damage type.</p>",
   "tint": "#ffffff",

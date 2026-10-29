@@ -345,7 +345,7 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.Cc1391vhlS1yIMrI"
+              "pfu-breach"
             ],
             "duration": {
               "interval": null,

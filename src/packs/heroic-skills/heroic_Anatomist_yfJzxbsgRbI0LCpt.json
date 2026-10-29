@@ -33,7 +33,7 @@
     "fuid": "anatomist",
     "effects": {
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.XAhMUL9NMOTGjP3A"
+        "pfu-anatomist-reeling"
       ],
       "duration": {
         "interval": null,

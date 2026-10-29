@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Earth)",
+  "name": "Damage Change (Earth) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/earth.svg",
   "_id": "sI51dmD9J3OQLbsb",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-earth"
+    "fuid": "pfu-damage-change-earth-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>earth</strong> damage type.</p>",
   "tint": "#ffffff",

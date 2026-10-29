@@ -45,9 +45,9 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.pw3V67Q5TBTnFNXb",
-        "Compendium.projectfu.skills.Item.rCmUbGKNsyJPZ70N",
-        "Compendium.projectfu.skills.Item.yOlZYERCLxYMAZq5"
+        "pfu-soul-shroud-dark",
+        "pfu-soul-shroud-light",
+        "pfu-soul-shroud-poison"
       ],
       "duration": {
         "interval": null,

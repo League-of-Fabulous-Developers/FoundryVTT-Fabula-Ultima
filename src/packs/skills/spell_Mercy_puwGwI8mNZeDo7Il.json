@@ -96,7 +96,7 @@
     "fuid": "mercy",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.87su2PuI6rSMblmN"
+        "pfu-mercy"
       ],
       "prompt": false,
       "duration": {

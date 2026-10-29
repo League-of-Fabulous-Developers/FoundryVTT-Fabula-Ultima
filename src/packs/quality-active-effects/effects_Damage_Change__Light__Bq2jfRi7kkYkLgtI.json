@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Light)",
+  "name": "Damage Change (Light) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/light.svg",
   "_id": "Bq2jfRi7kkYkLgtI",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-light"
+    "fuid": "pfu-damage-change-light-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>light</strong> damage type.</p>",
   "tint": "#ffffff",

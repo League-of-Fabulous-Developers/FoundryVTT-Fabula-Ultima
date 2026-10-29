@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Air)",
+  "name": "Damage Change (Air) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/air.svg",
   "_id": "4tay6tc1XdWR8IGm",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-air"
+    "fuid": "pfu-damage-change-air-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>air</strong> damage type.</p>",
   "tint": "#ffffff",

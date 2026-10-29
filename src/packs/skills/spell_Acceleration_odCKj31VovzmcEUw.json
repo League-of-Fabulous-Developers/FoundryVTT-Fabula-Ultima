@@ -96,7 +96,7 @@
     "fuid": "acceleration",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.O8ZlgIEzCodMsadz"
+        "pfu-acceleration"
       ],
       "prompt": false,
       "duration": {

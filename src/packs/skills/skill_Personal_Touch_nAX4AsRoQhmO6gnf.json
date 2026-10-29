@@ -60,8 +60,8 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.Q6EZyCIiILYVlmAW",
-        "Compendium.projectfu.skills.Item.YbvwZKzEu25o0Lun"
+        "pfu-personal-touch-damage",
+        "pfu-personal-touch-hpmp"
       ],
       "prompt": false,
       "duration": {

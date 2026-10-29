@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Poison)",
+  "name": "Damage Change (Poison) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/poison.svg",
   "_id": "xWb1ScygsswzktYg",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-poison"
+    "fuid": "pfu-damage-change-poison-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>poison</strong> damage type.</p>",
   "tint": "#ffffff",

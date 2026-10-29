@@ -96,7 +96,7 @@
     "fuid": "aura",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.j37149fnaCxNS08N"
+        "pfu-aura"
       ],
       "prompt": false,
       "duration": {

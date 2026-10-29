@@ -61,11 +61,11 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.SZAZdgiDWIvxWE00",
-        "Compendium.projectfu.heroic-skills.Item.oRft212JDPyEPtgK",
-        "Compendium.projectfu.heroic-skills.Item.OyKecnR9UFPl2K54",
-        "Compendium.projectfu.heroic-skills.Item.ypy8r2tt2cuQEqF6",
-        "Compendium.projectfu.heroic-skills.Item.hCtWyKj1o9x8UfdL"
+        "pfu-iron-forest-attack",
+        "pfu-iron-forest-guard",
+        "pfu-iron-forest-objective",
+        "pfu-iron-forest-skill",
+        "pfu-iron-forest-spell"
       ],
       "prompt": true
     },

@@ -65,8 +65,8 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.lwzEcMwQICongcb5",
-        "Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5"
+        "pfu-kings-castle-no-hpmp-recovery",
+        "pfu-kings-castle-extra-mp"
       ],
       "duration": {
         "interval": null,

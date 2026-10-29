@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Physical)",
+  "name": "Damage Change (Physical) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/physical.svg",
   "_id": "skO0HIoywH6e9bIK",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-physical"
+    "fuid": "pfu-damage-change-physical-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>physical</strong> damage type.</p>",
   "tint": "#ffffff",

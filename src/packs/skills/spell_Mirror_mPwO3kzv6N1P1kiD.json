@@ -96,7 +96,7 @@
     "fuid": "mirror",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.cyA5qMihPTXCsCyD"
+        "pfu-mirror"
       ],
       "prompt": false,
       "duration": {

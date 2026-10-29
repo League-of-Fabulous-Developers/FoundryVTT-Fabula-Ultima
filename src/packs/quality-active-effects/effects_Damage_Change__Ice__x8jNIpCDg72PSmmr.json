@@ -7,7 +7,7 @@
     "expired": false
   },
   "disabled": false,
-  "name": "Damage Change (Ice)",
+  "name": "Damage Change (Ice) (Quality)",
   "img": "systems/projectfu/styles/static/affinities/ice.svg",
   "_id": "x8jNIpCDg72PSmmr",
   "type": "base",
@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "pfu-damage-change-ice"
+    "fuid": "pfu-damage-change-ice-quality"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>ice</strong> damage type.</p>",
   "tint": "#ffffff",
