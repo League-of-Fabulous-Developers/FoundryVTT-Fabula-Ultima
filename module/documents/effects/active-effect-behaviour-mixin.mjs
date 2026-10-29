@@ -44,6 +44,12 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		static migrateData(source) {
 			source = super.migrateData(source);
 
+			// migrate temporary core duration plus 'none' system duration to always show icon
+			if (source.duration?.value != null && source.system?.duration?.event === 'none') {
+				source.showIcon = CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
+				source.duration = {};
+			}
+
 			const crisisInteraction = 'CrisisInteraction';
 			const type = 'type';
 
@@ -90,29 +96,6 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 					change.phase = 'default';
 				}
 			}
-		}
-
-		/**
-		 * @description Compute derived data related to active effect duration.
-		 * @returns {{
-		 *   type: string,
-		 *   duration: number|null,
-		 *   remaining: number|null,
-		 *   label: string,
-		 *   [_worldTime]: number,
-		 *   [_combatTime]: number}
-		 * }
-		 * @private
-		 * @override
-		 */
-		_prepareDuration() {
-			// We handle this through the event system
-			return {
-				type: 'none',
-				duration: null,
-				remaining: null,
-				label: game.i18n.localize('None'),
-			};
 		}
 
 		/**
