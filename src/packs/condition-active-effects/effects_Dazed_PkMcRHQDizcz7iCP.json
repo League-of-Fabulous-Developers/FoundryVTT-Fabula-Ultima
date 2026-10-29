@@ -1,9 +1,9 @@
 {
   "origin": null,
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -29,7 +29,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -38,7 +38,7 @@
   },
   "description": "<p>Reduce Insight die size by 1.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [
     "dazed"
   ],
@@ -52,8 +52,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924280,
-    "modifiedTime": 1792923924280,
+    "createdTime": 1793311129764,
+    "modifiedTime": 1793311129764,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>You have Resistance to <strong>earth</strong> damage type.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -33,7 +33,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -53,8 +53,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925148,
-    "modifiedTime": 1792923925148,
+    "createdTime": 1793311130268,
+    "modifiedTime": 1793311130268,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

@@ -2,9 +2,9 @@
   "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "origin": null,
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -46,13 +46,13 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "fuid": "pfu-poison-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>poison</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -66,13 +66,13 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924031,
-    "modifiedTime": 1792923924031,
+    "createdTime": 1793311129673,
+    "modifiedTime": 1793311129673,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "ZRup8UZGBBD2SFVi",
   "_key": "!effects!cYu5F6yJb5nlOMfD"
 }

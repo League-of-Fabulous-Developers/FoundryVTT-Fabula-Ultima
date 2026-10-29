@@ -42,9 +42,9 @@
     "fuid": "pfu-sword-damage-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -52,7 +52,7 @@
   "type": "base",
   "description": "<p>Your attacks with <strong>sword</strong> weapons deal <strong>5 extra damage</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -73,12 +73,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924037,
-    "modifiedTime": 1792923924037,
+    "createdTime": 1793311129661,
+    "modifiedTime": 1793311129661,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "2ydTveFhgatlxP99",
   "_key": "!effects!Fz4mF8sYuOFzgmR1"
 }

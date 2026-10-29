@@ -49,9 +49,9 @@
     "fuid": "pfu-def-mdef-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -59,7 +59,7 @@
   "type": "base",
   "description": "<p>You gain a +1 bonus to <strong>Defense</strong> and <strong>Magic Defense</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -80,12 +80,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924033,
-    "modifiedTime": 1792923924033,
+    "createdTime": 1793311129657,
+    "modifiedTime": 1793311129657,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "dZMicV7pVY6D6iSH",
   "_key": "!effects!83MSVl96372BuHez"
 }

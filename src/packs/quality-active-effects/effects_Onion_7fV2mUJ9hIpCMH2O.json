@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>Increase your <strong>maximum Hit Points</strong> and <strong>Maximum Mind Points</strong> by 2 for each different <strong>Class</strong> you have.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -40,7 +40,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -60,8 +60,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925174,
-    "modifiedTime": 1792923925174,
+    "createdTime": 1793311130253,
+    "modifiedTime": 1793311130253,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

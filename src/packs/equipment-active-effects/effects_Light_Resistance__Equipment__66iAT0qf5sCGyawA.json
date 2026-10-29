@@ -52,7 +52,7 @@
   "type": "base",
   "description": "<p>While you have this equipped, you gain Resistance to <strong>light</strong> damage.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -73,8 +73,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924655,
-    "modifiedTime": 1792923924655,
+    "createdTime": 1793311130030,
+    "modifiedTime": 1793311130030,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

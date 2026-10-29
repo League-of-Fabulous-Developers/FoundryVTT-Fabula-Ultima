@@ -69,9 +69,9 @@
     "fuid": "pfu-fire-spell-damage-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -79,7 +79,7 @@
   "type": "base",
   "description": "<p><strong>Spells</strong> you cast that deal <strong>fire</strong> damage deal <strong>5 extra damage</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -100,12 +100,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924035,
-    "modifiedTime": 1792923924035,
+    "createdTime": 1793311129675,
+    "modifiedTime": 1793311129675,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "iUWEn7Lso1K0AIOK",
   "_key": "!effects!iyWE0GsdvXJ0pao9"
 }

@@ -72,7 +72,7 @@
   "type": "base",
   "description": "<p>When you use the <strong>Awaken</strong> spell while you have this equipped, its MP cost is <strong>halved</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -93,8 +93,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924650,
-    "modifiedTime": 1792923924650,
+    "createdTime": 1793311130037,
+    "modifiedTime": 1793311130037,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>As long as you have at least two <strong>Bonds</strong> of <strong>(choose bond type)</strong>, you gain a +1 bonus to both your Defense and Magic Defense.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -40,7 +40,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -60,8 +60,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925168,
-    "modifiedTime": 1792923925168,
+    "createdTime": 1793311130261,
+    "modifiedTime": 1793311130261,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

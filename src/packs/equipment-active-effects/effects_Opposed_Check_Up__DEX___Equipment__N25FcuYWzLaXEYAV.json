@@ -80,7 +80,7 @@
   "type": "base",
   "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Dexterity</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -101,8 +101,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924700,
-    "modifiedTime": 1792923924700,
+    "createdTime": 1793311130036,
+    "modifiedTime": 1793311130036,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

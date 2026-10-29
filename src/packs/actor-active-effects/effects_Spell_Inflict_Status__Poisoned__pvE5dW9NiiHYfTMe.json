@@ -64,9 +64,9 @@
     "fuid": "pfu-spell-inflict-status-poisoned"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -74,7 +74,7 @@
   "type": "base",
   "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>poisoned</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -95,12 +95,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924058,
-    "modifiedTime": 1792923924058,
+    "createdTime": 1793311129679,
+    "modifiedTime": 1793311129679,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "5ZenCjx6n04peFsh",
   "_key": "!effects!pvE5dW9NiiHYfTMe"
 }

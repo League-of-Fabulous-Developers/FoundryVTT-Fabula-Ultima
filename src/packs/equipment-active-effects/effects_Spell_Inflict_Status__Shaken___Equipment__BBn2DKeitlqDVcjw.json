@@ -74,7 +74,7 @@
   "type": "base",
   "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>shaken</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -95,8 +95,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924647,
-    "modifiedTime": 1792923924647,
+    "createdTime": 1793311130032,
+    "modifiedTime": 1793311130032,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

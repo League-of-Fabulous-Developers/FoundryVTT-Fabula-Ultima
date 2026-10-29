@@ -2,9 +2,9 @@
   "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "origin": null,
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -16,7 +16,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "progress": {
@@ -52,7 +52,7 @@
   },
   "description": "<p>Every source that deals <strong>air</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -66,13 +66,13 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924060,
-    "modifiedTime": 1792923924060,
+    "createdTime": 1793311129658,
+    "modifiedTime": 1793311129658,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "ZRup8UZGBBD2SFVi",
   "_key": "!effects!BBDEPNCinRNIJDKm"
 }

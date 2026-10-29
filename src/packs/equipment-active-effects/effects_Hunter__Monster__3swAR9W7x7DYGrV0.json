@@ -93,7 +93,7 @@
   "type": "base",
   "description": "<p>The weapon deals <strong>5 extra damage</strong> to <strong>monsters</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -114,8 +114,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924664,
-    "modifiedTime": 1792923924664,
+    "createdTime": 1793311130029,
+    "modifiedTime": 1793311130029,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

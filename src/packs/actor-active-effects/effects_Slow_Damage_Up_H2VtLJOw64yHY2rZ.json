@@ -81,9 +81,9 @@
     "fuid": "pfu-slow-damage-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -91,7 +91,7 @@
   "type": "base",
   "description": "<p>You deal <strong>5 extra damage</strong> to <strong>slow</strong> creatures.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -112,12 +112,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924066,
-    "modifiedTime": 1792923924066,
+    "createdTime": 1793311129661,
+    "modifiedTime": 1793311129661,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "fRD9lkQMClSvp8jJ",
   "_key": "!effects!H2VtLJOw64yHY2rZ"
 }

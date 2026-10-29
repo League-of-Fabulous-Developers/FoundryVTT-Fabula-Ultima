@@ -46,7 +46,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "fuid": "pfu-alter-damage-type-earth"
   },
@@ -64,8 +64,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924654,
-    "modifiedTime": 1792923924654,
+    "createdTime": 1793311130055,
+    "modifiedTime": 1793311130055,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

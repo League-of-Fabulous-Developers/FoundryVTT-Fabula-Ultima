@@ -52,7 +52,7 @@
   "type": "base",
   "description": "<p>While you have this equipped, you are immune to <strong>enraged</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -73,8 +73,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924661,
-    "modifiedTime": 1792923924661,
+    "createdTime": 1793311130040,
+    "modifiedTime": 1793311130040,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

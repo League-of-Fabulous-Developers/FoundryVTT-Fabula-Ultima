@@ -52,7 +52,7 @@
   "type": "base",
   "description": "<p>While you have this equipped, <strong>spells</strong> you cast deal <strong>5 extra damage</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -73,8 +73,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924648,
-    "modifiedTime": 1792923924648,
+    "createdTime": 1793311130028,
+    "modifiedTime": 1793311130028,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

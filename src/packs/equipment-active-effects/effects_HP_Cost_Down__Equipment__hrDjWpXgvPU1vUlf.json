@@ -72,7 +72,7 @@
   "type": "base",
   "description": "<p>Whenever you spend <strong>Hit Points</strong> while you have this equipped, you spend <strong>5 less Hit Points</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -93,8 +93,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924685,
-    "modifiedTime": 1792923924685,
+    "createdTime": 1793311130050,
+    "modifiedTime": 1793311130050,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>As long as you have this armor equipped, you treat your <strong>Dexterity</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -33,7 +33,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -53,8 +53,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925145,
-    "modifiedTime": 1792923925145,
+    "createdTime": 1793311130253,
+    "modifiedTime": 1793311130253,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

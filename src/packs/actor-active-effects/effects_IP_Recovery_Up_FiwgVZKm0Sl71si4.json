@@ -42,9 +42,9 @@
     "fuid": "pfu-ip-recovery-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -52,7 +52,7 @@
   "type": "base",
   "description": "<p>Whenever you recover <strong>Inventory Points</strong>, you recover <strong>1 additional Inventory Point</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -73,12 +73,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924059,
-    "modifiedTime": 1792923924059,
+    "createdTime": 1793311129661,
+    "modifiedTime": 1793311129661,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "TeRSK11zUNs12irv",
   "_key": "!effects!FiwgVZKm0Sl71si4"
 }

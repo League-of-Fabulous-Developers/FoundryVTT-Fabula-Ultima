@@ -36,7 +36,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -45,7 +45,7 @@
   },
   "description": "<p>Reduce Might and Willpower die size by 1.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [
     "poisoned"
   ],
@@ -59,8 +59,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924279,
-    "modifiedTime": 1792923924279,
+    "createdTime": 1793311129765,
+    "modifiedTime": 1793311129765,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

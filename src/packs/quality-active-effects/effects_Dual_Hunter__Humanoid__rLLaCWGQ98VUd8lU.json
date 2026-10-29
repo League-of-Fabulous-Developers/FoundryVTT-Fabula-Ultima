@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -44,7 +44,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "fuid": "pfu-dual-hunter-humanoid"
   },
@@ -61,8 +61,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925149,
-    "modifiedTime": 1792923925149,
+    "createdTime": 1793311130268,
+    "modifiedTime": 1793311130268,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

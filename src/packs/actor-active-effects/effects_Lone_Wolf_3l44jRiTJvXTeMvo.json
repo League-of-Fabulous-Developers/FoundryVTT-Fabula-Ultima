@@ -49,9 +49,9 @@
     "fuid": "pfu-lone-wolf"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -59,7 +59,7 @@
   "type": "base",
   "description": "<p>You take <strong>2 turns per round</strong> and <strong>double</strong> your <strong>maximum HP.</strong></p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -80,12 +80,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924037,
-    "modifiedTime": 1792923924037,
+    "createdTime": 1793311129653,
+    "modifiedTime": 1793311129653,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "423RpDks0B2eewCA",
   "_key": "!effects!3l44jRiTJvXTeMvo"
 }

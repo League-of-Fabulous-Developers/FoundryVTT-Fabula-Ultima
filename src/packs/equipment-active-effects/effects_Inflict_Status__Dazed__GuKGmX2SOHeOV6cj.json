@@ -66,7 +66,7 @@
   "type": "base",
   "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -87,8 +87,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924684,
-    "modifiedTime": 1792923924684,
+    "createdTime": 1793311130035,
+    "modifiedTime": 1793311130035,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

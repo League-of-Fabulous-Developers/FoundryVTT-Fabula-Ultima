@@ -42,9 +42,9 @@
     "fuid": "pfu-spell-damage-change-physical"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -52,7 +52,7 @@
   "type": "base",
   "description": "<p>All damage dealt by your <strong>spells</strong> becomes <strong>physical</strong> damage.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -73,12 +73,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924069,
-    "modifiedTime": 1792923924069,
+    "createdTime": 1793311129683,
+    "modifiedTime": 1793311129683,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "BKWTTfVn4R6JFRRx",
   "_key": "!effects!yslN0B1jySFip23o"
 }

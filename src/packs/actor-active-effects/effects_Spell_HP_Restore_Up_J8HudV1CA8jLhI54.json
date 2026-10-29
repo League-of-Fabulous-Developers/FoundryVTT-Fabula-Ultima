@@ -61,9 +61,9 @@
     "fuid": "pfu-spell-hp-restore-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -71,7 +71,7 @@
   "type": "base",
   "description": "<p><strong>Spells</strong> you cast whose effect restores <strong>Hit Points</strong> will restore <strong>5 additional Hit Points</strong>.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -92,12 +92,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924055,
-    "modifiedTime": 1792923924055,
+    "createdTime": 1793311129662,
+    "modifiedTime": 1793311129662,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "gFIBB0I6XXkT9Mo9",
   "_key": "!effects!J8HudV1CA8jLhI54"
 }

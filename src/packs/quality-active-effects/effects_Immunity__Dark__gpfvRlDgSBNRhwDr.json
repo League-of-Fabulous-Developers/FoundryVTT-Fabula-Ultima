@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>You have Immunity to <strong>dark</strong> damage.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -33,7 +33,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -53,8 +53,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925169,
-    "modifiedTime": 1792923925169,
+    "createdTime": 1793311130264,
+    "modifiedTime": 1793311130264,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

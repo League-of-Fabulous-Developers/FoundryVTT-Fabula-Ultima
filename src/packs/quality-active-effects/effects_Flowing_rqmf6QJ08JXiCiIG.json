@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>After you reduce a creature's Hit Points to 0 with this weapon, you may immediately perform a <strong>dance</strong> with a <strong>duration</strong> of “Instantaneous” among those you have learned (see <strong>Atlas High Fantasy</strong>, page <strong>144</strong>); the MP cost of a dance performed this way can <strong>never</strong> be lower than 10.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -25,7 +25,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -45,8 +45,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925175,
-    "modifiedTime": 1792923925175,
+    "createdTime": 1793311130269,
+    "modifiedTime": 1793311130269,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

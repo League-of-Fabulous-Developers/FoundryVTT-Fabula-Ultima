@@ -72,7 +72,7 @@
   "type": "base",
   "description": "<p>Whenever you spend <strong>Inventory Points</strong> while you have this equipped, you spend <strong>1 less Inventory Point</strong> (minimum 1).</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -93,8 +93,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924689,
-    "modifiedTime": 1792923924689,
+    "createdTime": 1793311130027,
+    "modifiedTime": 1793311130027,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,

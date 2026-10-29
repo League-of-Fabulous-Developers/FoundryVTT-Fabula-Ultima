@@ -5,7 +5,7 @@
   "type": "base",
   "description": "<p>When you use the <strong>Barrage</strong> Skill (see Sharpshooter Class, <strong>Core Rulebook</strong> page <strong>205</strong>), the MP cost is halved.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -25,7 +25,7 @@
       "event": "none",
       "interval": 1,
       "tracking": "self",
-      "remaining": 0
+      "remaining": 1
     },
     "rules": {
       "elements": {}
@@ -45,8 +45,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925158,
-    "modifiedTime": 1792923925158,
+    "createdTime": 1793311130252,
+    "modifiedTime": 1793311130252,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

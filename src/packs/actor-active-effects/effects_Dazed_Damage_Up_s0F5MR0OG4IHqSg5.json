@@ -81,9 +81,9 @@
     "fuid": "pfu-dazed-damage-up"
   },
   "duration": {
-    "value": 1,
-    "units": "rounds",
-    "expiry": "turnStart",
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
     "expired": false
   },
   "disabled": false,
@@ -91,7 +91,7 @@
   "type": "base",
   "description": "<p>You deal <strong>5 extra damage</strong> to <strong>dazed</strong> creatures.</p>",
   "tint": "#ffffff",
-  "transfer": true,
+  "transfer": false,
   "statuses": [],
   "sort": 0,
   "flags": {
@@ -112,12 +112,12 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923924035,
-    "modifiedTime": 1792923924035,
+    "createdTime": 1793311129680,
+    "modifiedTime": 1793311129680,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "start": null,
-  "showIcon": 1,
+  "showIcon": 2,
   "folder": "fRD9lkQMClSvp8jJ",
   "_key": "!effects!s0F5MR0OG4IHqSg5"
 }

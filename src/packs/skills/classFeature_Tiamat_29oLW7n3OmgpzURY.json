@@ -98,9 +98,9 @@
         ]
       },
       "duration": {
-        "value": 1,
-        "units": "rounds",
-        "expiry": "turnStart",
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
         "expired": false
       },
       "disabled": false,
@@ -129,12 +129,12 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923921083,
-        "modifiedTime": 1792923921083,
+        "createdTime": 1793311127905,
+        "modifiedTime": 1793311127905,
         "lastModifiedBy": "qSTUglS93W7Had7H"
       },
       "start": null,
-      "showIcon": 1,
+      "showIcon": 2,
       "folder": null,
       "_key": "!items.effects!29oLW7n3OmgpzURY.i61oDu3JjfmpbTYC"
     }
@@ -151,8 +151,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921083,
-    "modifiedTime": 1792923922119,
+    "createdTime": 1793311127905,
+    "modifiedTime": 1793311128300,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!29oLW7n3OmgpzURY"
