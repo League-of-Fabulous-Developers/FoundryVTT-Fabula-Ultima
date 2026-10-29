@@ -32,7 +32,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-encourage-ins"
   },
   "duration": {
     "value": 1,

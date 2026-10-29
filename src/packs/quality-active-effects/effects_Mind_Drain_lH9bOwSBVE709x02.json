@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-mind-drain"
   },
   "duration": {
     "value": null,

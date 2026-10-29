@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "earth-absorption"
+    "fuid": "pfu-earth-absorption"
   },
   "duration": {
     "value": 1,

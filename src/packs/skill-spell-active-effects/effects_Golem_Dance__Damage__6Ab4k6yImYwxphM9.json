@@ -45,7 +45,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-golem-dance-damage"
   },
   "duration": {
     "value": 1,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-immunity"
+    "fuid": "pfu-poison-immunity"
   },
   "duration": {
     "value": 1,

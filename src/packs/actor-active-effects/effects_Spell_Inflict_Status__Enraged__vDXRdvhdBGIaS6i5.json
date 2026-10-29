@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-enraged"
+    "fuid": "pfu-spell-inflict-status-enraged"
   },
   "duration": {
     "value": 1,

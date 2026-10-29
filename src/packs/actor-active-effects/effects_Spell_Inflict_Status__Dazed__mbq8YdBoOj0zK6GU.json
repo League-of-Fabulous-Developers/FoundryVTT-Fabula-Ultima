@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-dazed"
+    "fuid": "pfu-spell-inflict-status-dazed"
   },
   "duration": {
     "value": 1,

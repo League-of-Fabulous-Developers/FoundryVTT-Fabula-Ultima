@@ -48,7 +48,7 @@
     "predicate": {
       "crisisInteraction": "none"
     },
-    "fuid": "bolt-damage-weakness"
+    "fuid": "pfu-bolt-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>bolt</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

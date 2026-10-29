@@ -1,5 +1,5 @@
 {
-  "name": "Physical Resistance",
+  "name": "Physical Resistance (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "physical-resistance"
+    "fuid": "pfu-physical-resistance-equipment"
   },
   "duration": {
     "value": null,

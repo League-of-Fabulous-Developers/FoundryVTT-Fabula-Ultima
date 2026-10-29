@@ -1,5 +1,5 @@
 {
-  "name": "Brawling Damage Up",
+  "name": "Brawling Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/brawling.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "brawling-weapon-damage-up"
+    "fuid": "pfu-brawling-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Poison Damage Up",
+  "name": "Poison Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-damage-up"
+    "fuid": "pfu-poison-damage-up-equipment"
   },
   "duration": {
     "value": null,

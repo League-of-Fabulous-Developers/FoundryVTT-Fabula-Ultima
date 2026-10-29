@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-damage-type-fire"
+    "fuid": "pfu-alter-damage-type-fire"
   },
   "description": "<p>The damage type of this weapon becomes <strong>fire</strong>.</p>",
   "tint": "#ffffff",

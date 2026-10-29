@@ -38,7 +38,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-delicacy-ice-weaken"
   },
   "duration": {
     "value": 1,

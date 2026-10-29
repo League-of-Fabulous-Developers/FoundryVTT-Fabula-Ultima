@@ -97,7 +97,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-rampart"
   },
   "description": "<p>You have Resistance to all damage types and cannot suffer status effects. These benefits only last until the end of the first round.</p>",
   "origin": null,

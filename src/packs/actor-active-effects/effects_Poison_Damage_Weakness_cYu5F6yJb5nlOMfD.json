@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "poison-damage-weakness"
+    "fuid": "pfu-poison-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>poison</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

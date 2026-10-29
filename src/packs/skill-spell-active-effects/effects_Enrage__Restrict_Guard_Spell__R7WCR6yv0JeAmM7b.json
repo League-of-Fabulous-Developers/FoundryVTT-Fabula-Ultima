@@ -24,7 +24,8 @@
         "step": 1
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-enrage-restrict-guard-spell"
   },
   "duration": {
     "value": 1,

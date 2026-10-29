@@ -1,5 +1,5 @@
 {
-  "name": "Skill Damage Change (Dark)",
+  "name": "Skill Damage Change (Dark) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "skill-damage-change-dark"
+    "fuid": "pfu-skill-damage-change-dark-equipment"
   },
   "duration": {
     "value": null,

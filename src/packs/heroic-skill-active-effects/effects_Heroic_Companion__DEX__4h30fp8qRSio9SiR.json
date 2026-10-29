@@ -41,7 +41,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-heroic-companion-dex"
   },
   "description": "<p>Your <strong>Dexterity</strong> is increased by one die size.</p>",
   "origin": null,

@@ -48,7 +48,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-power-chord"
   },
   "description": "<p>Your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
   "origin": null,

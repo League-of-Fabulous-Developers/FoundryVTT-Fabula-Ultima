@@ -1,5 +1,5 @@
 {
-  "name": "Bolt Resistance",
+  "name": "Bolt Resistance (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bolt-resistance"
+    "fuid": "pfu-bolt-resistance-equipment"
   },
   "duration": {
     "value": null,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "fire-damage-reduction"
+    "fuid": "pfu-fire-damage-reduction"
   },
   "duration": {
     "value": 1,

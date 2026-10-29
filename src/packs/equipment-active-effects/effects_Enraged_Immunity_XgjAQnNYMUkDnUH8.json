@@ -1,5 +1,5 @@
 {
-  "name": "Enraged Immunity",
+  "name": "Enraged Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/immunities/EnragedImmune.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "enraged-immunity"
+    "fuid": "pfu-enraged-immunity-equipment"
   },
   "duration": {
     "value": null,

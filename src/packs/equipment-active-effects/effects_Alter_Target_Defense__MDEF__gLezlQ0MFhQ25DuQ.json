@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-target-defense-mdef"
+    "fuid": "pfu-alter-target-defense-mdef"
   },
   "description": "<p>This weapon targets <strong>Magic</strong> <strong>Defense</strong> instead of Defense.</p>",
   "tint": "#ffffff",

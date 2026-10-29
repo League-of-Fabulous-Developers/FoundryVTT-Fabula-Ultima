@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-mp-cost-down"
+    "fuid": "pfu-spell-mp-cost-down"
   },
   "duration": {
     "value": 1,

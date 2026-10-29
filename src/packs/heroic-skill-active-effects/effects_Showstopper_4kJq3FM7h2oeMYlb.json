@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-showstopper"
   },
   "description": "<p>You <strong>cannot perform dances in any way</strong> until the end of your next turn.</p>",
   "origin": null,

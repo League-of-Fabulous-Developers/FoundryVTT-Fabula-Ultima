@@ -1,5 +1,5 @@
 {
-  "name": "Ranged Damage Up",
+  "name": "Ranged Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "ranged-damage-up"
+    "fuid": "pfu-ranged-damage-up-equipment"
   },
   "duration": {
     "value": null,

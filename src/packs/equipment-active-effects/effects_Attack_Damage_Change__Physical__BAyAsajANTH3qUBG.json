@@ -1,5 +1,5 @@
 {
-  "name": "Attack Damage Change (Physical)",
+  "name": "Attack Damage Change (Physical) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "attack-damage-change-physical"
+    "fuid": "pfu-attack-damage-change-physical-equipment"
   },
   "duration": {
     "value": null,

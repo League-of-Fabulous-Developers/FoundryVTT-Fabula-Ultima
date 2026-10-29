@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "elemental-damage-up"
+    "fuid": "pfu-elemental-damage-up"
   },
   "duration": {
     "value": 1,

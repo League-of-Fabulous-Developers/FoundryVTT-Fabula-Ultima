@@ -1,5 +1,5 @@
 {
-  "name": "Damage Change (Air)",
+  "name": "Damage Change (Air) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-air"
+    "fuid": "pfu-damage-change-air-equipment"
   },
   "duration": {
     "value": null,

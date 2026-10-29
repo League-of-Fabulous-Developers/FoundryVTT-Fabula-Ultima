@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-creation"
   },
   "description": "<p>When you spend Inventory Points during a conflict while you bear the <strong>Symbol of Creation</strong>, you may instead destroy this <strong>symbol</strong> to spend no Inventory Points.</p>",
   "origin": null,

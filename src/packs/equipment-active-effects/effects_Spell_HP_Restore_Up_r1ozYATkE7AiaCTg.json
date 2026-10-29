@@ -1,5 +1,5 @@
 {
-  "name": "Spell HP Restore Up",
+  "name": "Spell HP Restore Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/resources/hp.png",
   "origin": null,
   "system": {
@@ -58,7 +58,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-hp-restore-up"
+    "fuid": "pfu-spell-hp-restore-up-equipment"
   },
   "duration": {
     "value": null,

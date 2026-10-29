@@ -45,7 +45,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "custom-npc"
+    "fuid": "pfu-damage-bonuses"
   },
   "duration": {
     "value": null,

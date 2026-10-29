@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "opposed-check-up"
+    "fuid": "pfu-opposed-check-up"
   },
   "duration": {
     "value": 1,

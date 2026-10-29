@@ -72,7 +72,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-charging-cavalry-accuracy-up"
   },
   "duration": {
     "value": 1,

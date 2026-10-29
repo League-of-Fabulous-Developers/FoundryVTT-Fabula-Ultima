@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "thrown-damage-up"
+    "fuid": "pfu-thrown-damage-up"
   },
   "duration": {
     "value": 1,

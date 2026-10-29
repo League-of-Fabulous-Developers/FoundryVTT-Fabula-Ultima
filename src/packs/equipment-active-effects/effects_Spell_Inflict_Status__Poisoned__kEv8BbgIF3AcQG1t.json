@@ -1,5 +1,5 @@
 {
-  "name": "Spell Inflict Status (Poisoned)",
+  "name": "Spell Inflict Status (Poisoned) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
   "origin": null,
   "system": {
@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-poisoned"
+    "fuid": "pfu-spell-inflict-status-poisoned-equipment"
   },
   "duration": {
     "value": null,

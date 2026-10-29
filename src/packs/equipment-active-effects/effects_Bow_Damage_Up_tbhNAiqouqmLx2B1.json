@@ -1,5 +1,5 @@
 {
-  "name": "Bow Damage Up",
+  "name": "Bow Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/bow.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bow-weapon-damage-up"
+    "fuid": "pfu-bow-damage-up-equipment"
   },
   "duration": {
     "value": null,

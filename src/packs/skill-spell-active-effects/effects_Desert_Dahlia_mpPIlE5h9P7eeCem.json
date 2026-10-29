@@ -45,7 +45,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-desert-dahlia"
   },
   "duration": {
     "value": 1,

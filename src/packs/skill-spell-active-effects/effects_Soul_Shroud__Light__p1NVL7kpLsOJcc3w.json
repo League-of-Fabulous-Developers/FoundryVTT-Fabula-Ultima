@@ -37,7 +37,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-soul-shroud-light"
   },
   "duration": {
     "value": 1,

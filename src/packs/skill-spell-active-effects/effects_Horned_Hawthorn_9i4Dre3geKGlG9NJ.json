@@ -45,7 +45,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-horned-hawthorn"
   },
   "duration": {
     "value": 1,

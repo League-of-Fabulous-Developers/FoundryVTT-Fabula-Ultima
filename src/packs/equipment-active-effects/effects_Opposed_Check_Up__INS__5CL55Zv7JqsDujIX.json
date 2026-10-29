@@ -1,5 +1,5 @@
 {
-  "name": "Opposed Check Up (INS)",
+  "name": "Opposed Check Up (INS) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
   "origin": null,
   "system": {
@@ -67,7 +67,7 @@
       }
     },
     "changes": [],
-    "fuid": "opposed-check-up-ins"
+    "fuid": "pfu-opposed-check-up-ins-equipment"
   },
   "duration": {
     "value": null,

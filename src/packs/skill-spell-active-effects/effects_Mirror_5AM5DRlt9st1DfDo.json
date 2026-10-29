@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-mirror"
   },
   "description": "<p>Until this spell ends, if an offensive spell is cast on you, the creature who cast that offensive spell will be targeted in your stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p>",
   "origin": null,

@@ -24,7 +24,8 @@
         "step": 1
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-wheel-arcanum-reduce-action"
   },
   "duration": {
     "value": 1,

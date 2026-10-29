@@ -38,7 +38,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-ranged-weapon-up"
   },
   "duration": {
     "value": null,

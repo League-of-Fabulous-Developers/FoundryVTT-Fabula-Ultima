@@ -94,7 +94,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-bodyguard"
   },
   "duration": {
     "value": 1,

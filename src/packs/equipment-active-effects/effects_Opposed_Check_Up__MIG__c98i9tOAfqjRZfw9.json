@@ -1,5 +1,5 @@
 {
-  "name": "Opposed Check Up (MIG)",
+  "name": "Opposed Check Up (MIG) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
   "origin": null,
   "system": {
@@ -67,7 +67,7 @@
       }
     },
     "changes": [],
-    "fuid": "opposed-check-up-mig"
+    "fuid": "pfu-opposed-check-up-mig-equipment"
   },
   "duration": {
     "value": null,

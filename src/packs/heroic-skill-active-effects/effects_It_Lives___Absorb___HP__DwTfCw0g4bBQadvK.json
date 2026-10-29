@@ -39,7 +39,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-it-lives-absorb-hp"
   },
   "duration": {
     "value": null,

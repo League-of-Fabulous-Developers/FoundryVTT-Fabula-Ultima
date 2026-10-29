@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-damage-change-air"
   },
   "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>air</strong> damage type.</p>",
   "tint": "#ffffff",

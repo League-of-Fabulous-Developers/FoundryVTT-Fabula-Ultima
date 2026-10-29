@@ -32,7 +32,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-condemn"
   },
   "duration": {
     "value": 1,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "undead-damage-up"
+    "fuid": "pfu-undead-damage-up"
   },
   "duration": {
     "value": 1,

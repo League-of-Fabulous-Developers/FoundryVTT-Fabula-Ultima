@@ -1,5 +1,5 @@
 {
-  "name": "Skill Damage Change (Ice)",
+  "name": "Skill Damage Change (Ice) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "skill-damage-change-ice"
+    "fuid": "pfu-skill-damage-change-ice-equipment"
   },
   "duration": {
     "value": null,

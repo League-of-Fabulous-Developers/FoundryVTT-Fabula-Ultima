@@ -32,7 +32,8 @@
         "type": "upgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-barrier"
   },
   "duration": {
     "value": 1,

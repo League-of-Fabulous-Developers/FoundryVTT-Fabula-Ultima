@@ -1,5 +1,5 @@
 {
-  "name": "Weak Immunity",
+  "name": "Weak Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/immunities/WeakImmune.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "weak-immunity"
+    "fuid": "pfu-weak-immunity-equipment"
   },
   "duration": {
     "value": null,

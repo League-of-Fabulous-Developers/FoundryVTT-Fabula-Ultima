@@ -45,7 +45,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-regal-protea-status"
   },
   "duration": {
     "value": 1,

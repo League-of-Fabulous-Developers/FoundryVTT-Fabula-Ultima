@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "flail-damage-up"
+    "fuid": "pfu-flail-damage-up"
   },
   "duration": {
     "value": 1,

@@ -1,5 +1,5 @@
 {
-  "name": "Heavy Damage Up",
+  "name": "Heavy Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/heavy.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "heavy-damage-up"
+    "fuid": "pfu-heavy-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -38,7 +38,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-delicacy-air-weaken"
   },
   "duration": {
     "value": 1,

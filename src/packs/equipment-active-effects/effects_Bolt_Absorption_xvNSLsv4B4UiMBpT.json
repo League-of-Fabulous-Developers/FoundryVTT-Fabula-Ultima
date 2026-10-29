@@ -1,5 +1,5 @@
 {
-  "name": "Bolt Absorption",
+  "name": "Bolt Absorption (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bolt-absorption"
+    "fuid": "pfu-bolt-absorption-equipment"
   },
   "duration": {
     "value": null,

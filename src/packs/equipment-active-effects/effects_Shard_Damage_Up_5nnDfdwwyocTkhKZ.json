@@ -1,5 +1,5 @@
 {
-  "name": "Shard Damage Up",
+  "name": "Shard Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/compendium/consumables/elemental-shard.png",
   "origin": null,
   "system": {
@@ -53,7 +53,7 @@
       }
     },
     "changes": [],
-    "fuid": "shard-damage-up"
+    "fuid": "pfu-shard-damage-up-equipment"
   },
   "duration": {
     "value": null,

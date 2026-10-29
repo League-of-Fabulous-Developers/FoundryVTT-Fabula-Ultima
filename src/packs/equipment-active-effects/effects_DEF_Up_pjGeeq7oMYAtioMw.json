@@ -1,5 +1,5 @@
 {
-  "name": "DEF Up",
+  "name": "DEF Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "def-up"
+    "fuid": "pfu-def-up-equipment"
   },
   "duration": {
     "value": null,

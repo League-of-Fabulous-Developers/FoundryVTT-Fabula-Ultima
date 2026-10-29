@@ -63,7 +63,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-lunar-magnolia-light"
   },
   "duration": {
     "value": 1,

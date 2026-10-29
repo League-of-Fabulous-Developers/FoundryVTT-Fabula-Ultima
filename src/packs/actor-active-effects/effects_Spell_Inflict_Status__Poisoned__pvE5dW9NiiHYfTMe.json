@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-poisoned"
+    "fuid": "pfu-spell-inflict-status-poisoned"
   },
   "duration": {
     "value": 1,

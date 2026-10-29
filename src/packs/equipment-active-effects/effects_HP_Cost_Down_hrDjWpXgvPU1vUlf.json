@@ -1,5 +1,5 @@
 {
-  "name": "HP Cost Down",
+  "name": "HP Cost Down (Equipment)",
   "img": "systems/projectfu/styles/static/icons/resources/hp.png",
   "origin": null,
   "system": {
@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "hp-cost-down"
+    "fuid": "pfu-hp-cost-down-equipment"
   },
   "duration": {
     "value": null,

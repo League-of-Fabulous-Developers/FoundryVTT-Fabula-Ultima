@@ -38,7 +38,8 @@
         "type": "upgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-baihu-defense"
   },
   "duration": {
     "value": 1,

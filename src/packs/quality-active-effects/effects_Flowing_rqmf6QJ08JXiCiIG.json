@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-flowing"
   },
   "duration": {
     "value": null,

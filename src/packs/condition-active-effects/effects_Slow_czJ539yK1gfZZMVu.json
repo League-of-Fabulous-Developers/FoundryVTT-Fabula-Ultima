@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "slow"
+    "fuid": "pfu-slow"
   },
   "description": "<p>Reduce Dexterity die size by 1.</p>",
   "tint": "#ffffff",

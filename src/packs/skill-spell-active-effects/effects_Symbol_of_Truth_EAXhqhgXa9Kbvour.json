@@ -89,7 +89,8 @@
         }
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-truth"
   },
   "description": "<p>While you bear the <strong>Symbol of Truth</strong>, checks performed to examine or locate you, as well as Accuracy Checks and Magic Checks for attacks and offensive spells that include you among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
   "origin": null,

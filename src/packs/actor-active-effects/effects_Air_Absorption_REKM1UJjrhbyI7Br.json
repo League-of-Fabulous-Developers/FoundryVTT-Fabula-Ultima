@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "air-absorption"
+    "fuid": "pfu-air-absorption"
   },
   "duration": {
     "value": 1,

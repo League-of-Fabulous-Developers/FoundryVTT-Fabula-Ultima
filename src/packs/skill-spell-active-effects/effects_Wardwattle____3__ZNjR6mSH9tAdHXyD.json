@@ -85,7 +85,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-wardwattle-3"
   },
   "duration": {
     "value": 1,

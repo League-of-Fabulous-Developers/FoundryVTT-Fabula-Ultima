@@ -1,5 +1,5 @@
 {
-  "name": "Awaken MP Cost Half",
+  "name": "Awaken MP Cost Half (Equipment)",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
   "origin": null,
   "system": {
@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "awaken-mp-cost-half"
+    "fuid": "pfu-awaken-mp-cost-half-equipment"
   },
   "duration": {
     "value": null,

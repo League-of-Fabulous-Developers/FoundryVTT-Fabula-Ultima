@@ -1,5 +1,5 @@
 {
-  "name": "INS Down",
+  "name": "INS Down (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/InsDown.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "ins-down"
+    "fuid": "pfu-ins-down-equipment"
   },
   "duration": {
     "value": null,

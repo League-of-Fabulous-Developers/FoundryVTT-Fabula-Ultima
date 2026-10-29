@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "air-damage-up"
+    "fuid": "pfu-air-damage-up"
   },
   "duration": {
     "value": 1,

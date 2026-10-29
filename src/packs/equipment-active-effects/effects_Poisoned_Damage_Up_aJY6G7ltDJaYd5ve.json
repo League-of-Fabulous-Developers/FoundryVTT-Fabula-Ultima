@@ -1,5 +1,5 @@
 {
-  "name": "Poisoned Damage Up",
+  "name": "Poisoned Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
   "origin": null,
   "system": {
@@ -78,7 +78,7 @@
       }
     },
     "changes": [],
-    "fuid": "poisoned-damage-up"
+    "fuid": "pfu-poisoned-damage-up-equipment"
   },
   "duration": {
     "value": null,

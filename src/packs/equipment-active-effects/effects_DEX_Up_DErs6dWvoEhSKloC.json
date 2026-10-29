@@ -1,5 +1,5 @@
 {
-  "name": "DEX Up",
+  "name": "DEX Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dex-up"
+    "fuid": "pfu-dex-up-equipment"
   },
   "duration": {
     "value": null,

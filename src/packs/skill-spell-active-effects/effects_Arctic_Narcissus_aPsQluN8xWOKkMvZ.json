@@ -45,7 +45,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-arctic-narcissus"
   },
   "duration": {
     "value": 1,

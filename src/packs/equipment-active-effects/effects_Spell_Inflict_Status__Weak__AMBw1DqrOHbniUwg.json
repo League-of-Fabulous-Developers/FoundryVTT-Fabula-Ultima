@@ -1,5 +1,5 @@
 {
-  "name": "Spell Inflict Status (Weak)",
+  "name": "Spell Inflict Status (Weak) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Weak.webp",
   "origin": null,
   "system": {
@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-weak"
+    "fuid": "pfu-spell-inflict-status-weak-equipment"
   },
   "duration": {
     "value": null,

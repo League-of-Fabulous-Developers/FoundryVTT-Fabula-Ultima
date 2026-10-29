@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dex-base-cap"
+    "fuid": "pfu-dex-base-cap"
   },
   "duration": {
     "value": 1,

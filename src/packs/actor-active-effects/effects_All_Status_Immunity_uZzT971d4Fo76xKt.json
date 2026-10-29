@@ -74,7 +74,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "all-status-immunity"
+    "fuid": "pfu-all-status-immunity"
   },
   "duration": {
     "value": 1,

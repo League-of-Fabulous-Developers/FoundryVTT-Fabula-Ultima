@@ -1,5 +1,5 @@
 {
-  "name": "Light Damage Up",
+  "name": "Light Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "light-damage-up"
+    "fuid": "pfu-light-damage-up-equipment"
   },
   "duration": {
     "value": null,

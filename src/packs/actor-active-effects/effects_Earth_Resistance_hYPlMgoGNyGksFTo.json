@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "earth-resistance"
+    "fuid": "pfu-earth-resistance"
   },
   "duration": {
     "value": 1,

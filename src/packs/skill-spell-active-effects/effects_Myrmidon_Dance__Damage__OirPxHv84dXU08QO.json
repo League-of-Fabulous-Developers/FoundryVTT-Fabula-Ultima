@@ -45,7 +45,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-myrmidon-dance-damage"
   },
   "duration": {
     "value": 1,

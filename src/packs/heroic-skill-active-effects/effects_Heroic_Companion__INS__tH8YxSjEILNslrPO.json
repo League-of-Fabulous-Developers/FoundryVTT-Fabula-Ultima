@@ -40,7 +40,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-heroic-companion-ins"
   },
   "description": "<p>Your <strong>Insight</strong> is increased by one die size.</p>",
   "origin": null,

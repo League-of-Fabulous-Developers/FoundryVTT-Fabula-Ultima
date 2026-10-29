@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-slow"
+    "fuid": "pfu-spell-inflict-status-slow"
   },
   "duration": {
     "value": 1,

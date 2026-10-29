@@ -1,5 +1,5 @@
 {
-  "name": "Shaken Damage Up",
+  "name": "Shaken Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
   "origin": null,
   "system": {
@@ -78,7 +78,7 @@
       }
     },
     "changes": [],
-    "fuid": "shaken-damage-up"
+    "fuid": "pfu-shaken-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-health-absorbtion"
   },
   "duration": {
     "value": null,

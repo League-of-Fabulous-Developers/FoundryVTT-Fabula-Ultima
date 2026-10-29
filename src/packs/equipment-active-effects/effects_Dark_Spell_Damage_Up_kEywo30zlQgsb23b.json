@@ -1,5 +1,5 @@
 {
-  "name": "Dark Spell Damage Up",
+  "name": "Dark Spell Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "origin": null,
   "system": {
@@ -66,7 +66,7 @@
       }
     },
     "changes": [],
-    "fuid": "dark-spell-damage-up"
+    "fuid": "pfu-dark-spell-damage-up-equipment"
   },
   "duration": {
     "value": null,

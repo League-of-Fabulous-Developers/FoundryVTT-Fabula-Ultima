@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-damage-type-dark"
+    "fuid": "pfu-alter-damage-type-dark"
   },
   "description": "<p>The damage type of this weapon becomes <strong>dark</strong>.</p>",
   "tint": "#ffffff",

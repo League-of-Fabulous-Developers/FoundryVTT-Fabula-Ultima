@@ -38,7 +38,8 @@
         "type": "multiply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-lady-higanbana-no-hp-recovery"
   },
   "duration": {
     "value": 1,

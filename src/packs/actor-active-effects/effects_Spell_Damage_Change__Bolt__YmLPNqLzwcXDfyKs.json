@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-change-bolt"
+    "fuid": "pfu-spell-damage-change-bolt"
   },
   "duration": {
     "value": 1,

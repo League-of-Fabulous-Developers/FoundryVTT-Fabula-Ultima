@@ -1,5 +1,5 @@
 {
-  "name": "Firearm Damage Up",
+  "name": "Firearm Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/firearm.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "firearm-damage-up"
+    "fuid": "pfu-firearm-damage-up-equipment"
   },
   "duration": {
     "value": null,

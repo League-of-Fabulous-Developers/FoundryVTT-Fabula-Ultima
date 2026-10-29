@@ -1,5 +1,5 @@
 {
-  "name": "Humanoid Damage Up",
+  "name": "Humanoid Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/humanoid.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "humanoid-damage-up"
+    "fuid": "pfu-humanoid-damage-up-equipment"
   },
   "duration": {
     "value": null,

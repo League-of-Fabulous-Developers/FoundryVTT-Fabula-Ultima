@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-provoke"
   },
   "description": "<p>You are compelled to focus your attention on the enemy who provoked you.</p><p><em>For automation purposes, add </em>@EFFECT[Compendium.projectfu.conditions-effects.vuJGp3kTdnZeEqQO]<em> separately.</em></p>",
   "origin": null,

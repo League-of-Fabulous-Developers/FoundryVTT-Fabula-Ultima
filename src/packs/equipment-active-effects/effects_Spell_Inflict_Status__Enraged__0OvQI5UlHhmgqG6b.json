@@ -1,5 +1,5 @@
 {
-  "name": "Spell Inflict Status (Enraged)",
+  "name": "Spell Inflict Status (Enraged) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
   "origin": null,
   "system": {
@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-enraged"
+    "fuid": "pfu-spell-inflict-status-enraged-equipment"
   },
   "duration": {
     "value": null,

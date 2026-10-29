@@ -45,7 +45,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-ocean-lotus-status"
   },
   "duration": {
     "value": 1,

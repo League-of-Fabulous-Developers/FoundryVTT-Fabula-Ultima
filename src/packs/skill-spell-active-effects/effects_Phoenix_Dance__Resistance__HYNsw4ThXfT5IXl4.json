@@ -38,7 +38,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-phoenix-dance-resistance"
   },
   "duration": {
     "value": 1,

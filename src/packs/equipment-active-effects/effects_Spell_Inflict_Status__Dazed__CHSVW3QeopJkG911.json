@@ -1,5 +1,5 @@
 {
-  "name": "Spell Inflict Status (Dazed)",
+  "name": "Spell Inflict Status (Dazed) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
   "origin": null,
   "system": {
@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-dazed"
+    "fuid": "pfu-spell-inflict-status-dazed-equipment"
   },
   "duration": {
     "value": null,

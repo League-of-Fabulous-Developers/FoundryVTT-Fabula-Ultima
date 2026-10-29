@@ -39,7 +39,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-hunters-trick-damage"
   },
   "duration": {
     "value": 1,

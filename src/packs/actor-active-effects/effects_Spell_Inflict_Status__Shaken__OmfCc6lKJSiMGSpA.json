@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-shaken"
+    "fuid": "pfu-spell-inflict-status-shaken"
   },
   "duration": {
     "value": 1,

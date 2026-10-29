@@ -108,7 +108,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-wardancer"
   },
   "duration": {
     "value": 1,

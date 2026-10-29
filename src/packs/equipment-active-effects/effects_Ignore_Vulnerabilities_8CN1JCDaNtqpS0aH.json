@@ -58,7 +58,7 @@
       }
     },
     "changes": [],
-    "fuid": "ignore-vulnerabilities"
+    "fuid": "pfu-ignore-vulnerabilities"
   },
   "duration": {
     "value": null,

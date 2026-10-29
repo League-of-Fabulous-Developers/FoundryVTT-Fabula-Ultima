@@ -45,7 +45,8 @@
         "type": "upgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-expanded-plating-module-standard"
   },
   "duration": {
     "value": null,

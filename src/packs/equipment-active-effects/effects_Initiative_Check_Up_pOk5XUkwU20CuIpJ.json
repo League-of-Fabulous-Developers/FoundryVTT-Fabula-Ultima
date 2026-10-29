@@ -1,5 +1,5 @@
 {
-  "name": "Initiative Check Up",
+  "name": "Initiative Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "initiative-check-up"
+    "fuid": "pfu-initiative-check-up-equipment"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Enraged Damage Up",
+  "name": "Enraged Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
   "origin": null,
   "system": {
@@ -78,7 +78,7 @@
       }
     },
     "changes": [],
-    "fuid": "enraged-damage-up"
+    "fuid": "pfu-enraged-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -38,7 +38,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-anti-element-module-bolt"
   },
   "duration": {
     "value": null,

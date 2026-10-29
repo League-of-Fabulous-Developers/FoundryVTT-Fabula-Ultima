@@ -1,5 +1,5 @@
 {
-  "name": "Dazed Immunity",
+  "name": "Dazed Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/immunities/DazedImmune.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dazed-immunity"
+    "fuid": "pfu-dazed-immunity-equipment"
   },
   "duration": {
     "value": null,

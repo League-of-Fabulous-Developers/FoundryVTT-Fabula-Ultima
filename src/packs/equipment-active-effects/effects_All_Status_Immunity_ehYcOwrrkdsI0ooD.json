@@ -1,5 +1,5 @@
 {
-  "name": "All Status Immunity",
+  "name": "All Status Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/immunities/BlankImmune.webp",
   "origin": null,
   "system": {
@@ -74,7 +74,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "all-status-immunity"
+    "fuid": "pfu-all-status-immunity-equipment"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Spell Damage Change (Dark)",
+  "name": "Spell Damage Change (Dark) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-change-dark"
+    "fuid": "pfu-spell-damage-change-dark-equipment"
   },
   "duration": {
     "value": null,

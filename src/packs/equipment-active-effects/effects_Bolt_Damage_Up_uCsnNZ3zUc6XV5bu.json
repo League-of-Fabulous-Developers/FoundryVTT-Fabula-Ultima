@@ -1,5 +1,5 @@
 {
-  "name": "Bolt Damage Up",
+  "name": "Bolt Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bolt-damage-up"
+    "fuid": "pfu-bolt-damage-up-equipment"
   },
   "duration": {
     "value": null,

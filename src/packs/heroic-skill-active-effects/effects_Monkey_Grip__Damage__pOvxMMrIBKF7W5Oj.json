@@ -107,7 +107,8 @@
         "increment": 1
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-monkey-grip-damage"
   },
   "duration": {
     "value": 1,

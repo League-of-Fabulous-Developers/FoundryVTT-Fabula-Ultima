@@ -1,5 +1,5 @@
 {
-  "name": "MIG Down",
+  "name": "MIG Down (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/MigDown.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "mig-down"
+    "fuid": "pfu-mig-down-equipment"
   },
   "duration": {
     "value": null,

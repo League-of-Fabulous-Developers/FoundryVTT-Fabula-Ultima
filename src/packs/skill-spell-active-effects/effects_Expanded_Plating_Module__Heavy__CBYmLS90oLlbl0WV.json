@@ -45,7 +45,8 @@
         "type": "upgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-expanded-plating-module-heavy"
   },
   "duration": {
     "value": null,

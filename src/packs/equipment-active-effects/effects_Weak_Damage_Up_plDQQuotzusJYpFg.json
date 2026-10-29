@@ -1,5 +1,5 @@
 {
-  "name": "Weak Damage Up",
+  "name": "Weak Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Weak.webp",
   "origin": null,
   "system": {
@@ -78,7 +78,7 @@
       }
     },
     "changes": [],
-    "fuid": "weak-damage-up"
+    "fuid": "pfu-weak-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -32,7 +32,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-predictable-skill"
   },
   "description": "<p>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Skill</strong> action. If you can't, you must perform a different action.</p>",
   "origin": null,

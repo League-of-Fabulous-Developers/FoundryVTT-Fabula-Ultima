@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-poison"
+    "fuid": "pfu-damage-change-poison"
   },
   "duration": {
     "value": 1,

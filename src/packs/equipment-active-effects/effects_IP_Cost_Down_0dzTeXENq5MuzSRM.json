@@ -1,5 +1,5 @@
 {
-  "name": "IP Cost Down",
+  "name": "IP Cost Down (Equipment)",
   "img": "systems/projectfu/styles/static/icons/resources/ip.png",
   "origin": null,
   "system": {
@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "ip-cost-down"
+    "fuid": "pfu-ip-cost-down-equipment"
   },
   "duration": {
     "value": null,

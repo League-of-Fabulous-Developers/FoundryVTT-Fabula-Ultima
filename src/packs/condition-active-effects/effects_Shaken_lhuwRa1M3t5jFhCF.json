@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "shaken"
+    "fuid": "pfu-shaken"
   },
   "description": "<p>Reduce Willpower die size by 1.</p>",
   "tint": "#ffffff",

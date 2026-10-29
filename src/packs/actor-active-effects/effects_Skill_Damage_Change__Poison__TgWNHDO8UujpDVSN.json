@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "skill-damage-change-poison"
+    "fuid": "pfu-skill-damage-change-poison"
   },
   "duration": {
     "value": 1,

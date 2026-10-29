@@ -1,5 +1,5 @@
 {
-  "name": "Monster Damage Up",
+  "name": "Monster Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/monster.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "monster-damage-up"
+    "fuid": "pfu-monster-damage-up-equipment"
   },
   "duration": {
     "value": null,

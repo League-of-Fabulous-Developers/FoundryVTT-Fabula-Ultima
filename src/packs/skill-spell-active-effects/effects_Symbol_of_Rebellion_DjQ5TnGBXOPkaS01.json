@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-rebellion"
   },
   "description": "<p>If a <strong>Villain</strong> is present on the scene while you are bearing the <strong>Symbol of Rebellion</strong>, any Opposed Checks you make trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
   "origin": null,

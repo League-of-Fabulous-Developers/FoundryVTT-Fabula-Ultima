@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "air-immunity"
+    "fuid": "pfu-air-immunity"
   },
   "duration": {
     "value": 1,

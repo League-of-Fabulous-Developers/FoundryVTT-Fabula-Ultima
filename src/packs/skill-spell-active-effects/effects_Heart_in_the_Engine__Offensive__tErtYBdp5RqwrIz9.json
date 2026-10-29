@@ -65,7 +65,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-heart-in-the-engine-offensive"
   },
   "description": "<p>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</p>",
   "origin": null,

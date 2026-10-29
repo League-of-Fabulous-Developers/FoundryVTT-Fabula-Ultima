@@ -1,5 +1,5 @@
 {
-  "name": "Spell Damage Up",
+  "name": "Spell Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/SpellUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-up"
+    "fuid": "pfu-spell-damage-up-equipment"
   },
   "duration": {
     "value": null,

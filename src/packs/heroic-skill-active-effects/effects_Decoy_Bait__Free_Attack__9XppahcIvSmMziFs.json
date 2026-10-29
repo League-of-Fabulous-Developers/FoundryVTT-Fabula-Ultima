@@ -67,7 +67,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-decoy-bait-free-attack"
   },
   "duration": {
     "value": 1,

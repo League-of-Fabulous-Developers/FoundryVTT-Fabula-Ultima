@@ -32,7 +32,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-nether-slash-fire-resist"
   },
   "duration": {
     "value": 1,

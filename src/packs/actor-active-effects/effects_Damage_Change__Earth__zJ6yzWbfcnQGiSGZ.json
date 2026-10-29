@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-earth"
+    "fuid": "pfu-damage-change-earth"
   },
   "duration": {
     "value": 1,

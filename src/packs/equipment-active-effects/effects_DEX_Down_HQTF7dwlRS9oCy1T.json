@@ -1,5 +1,5 @@
 {
-  "name": "DEX Down",
+  "name": "DEX Down (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/DexDown.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dex-down"
+    "fuid": "pfu-dex-down-equipment"
   },
   "duration": {
     "value": null,

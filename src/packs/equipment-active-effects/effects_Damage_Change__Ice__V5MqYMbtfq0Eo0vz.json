@@ -1,5 +1,5 @@
 {
-  "name": "Damage Change (Ice)",
+  "name": "Damage Change (Ice) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-ice"
+    "fuid": "pfu-damage-change-ice-equipment"
   },
   "duration": {
     "value": null,

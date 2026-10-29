@@ -38,7 +38,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-delicacy-fire-change"
   },
   "duration": {
     "value": 1,

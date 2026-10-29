@@ -1,5 +1,5 @@
 {
-  "name": "Dark Resistance",
+  "name": "Dark Resistance (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dark-resistance"
+    "fuid": "pfu-dark-resistance-equipment"
   },
   "duration": {
     "value": null,

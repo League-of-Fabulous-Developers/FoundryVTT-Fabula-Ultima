@@ -38,7 +38,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-sensor-module"
   },
   "duration": {
     "value": null,

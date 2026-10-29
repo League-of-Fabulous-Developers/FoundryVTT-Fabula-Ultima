@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "shaken-immunity"
+    "fuid": "pfu-shaken-immunity"
   },
   "duration": {
     "value": 1,

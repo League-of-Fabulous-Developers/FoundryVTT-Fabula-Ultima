@@ -1,5 +1,5 @@
 {
-  "name": "Physical Immunity",
+  "name": "Physical Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "physical-immunity"
+    "fuid": "pfu-physical-immunity-equipment"
   },
   "duration": {
     "value": null,

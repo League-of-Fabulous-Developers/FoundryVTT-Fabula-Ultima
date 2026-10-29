@@ -37,7 +37,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-elemental-shroud-air"
   },
   "duration": {
     "value": 1,

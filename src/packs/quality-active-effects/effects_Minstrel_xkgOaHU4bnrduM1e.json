@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-minstrel"
   },
   "duration": {
     "value": null,

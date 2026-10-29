@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "ice-damage-up"
+    "fuid": "pfu-ice-damage-up"
   },
   "duration": {
     "value": 1,

@@ -1,5 +1,5 @@
 {
-  "name": "Plant Damage Up",
+  "name": "Plant Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/plant.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "plant-damage-up"
+    "fuid": "pfu-plant-damage-up-equipment"
   },
   "duration": {
     "value": null,

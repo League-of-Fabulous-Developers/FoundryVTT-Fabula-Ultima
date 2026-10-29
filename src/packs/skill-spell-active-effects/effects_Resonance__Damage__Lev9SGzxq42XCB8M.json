@@ -41,7 +41,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-resonance-damage"
   },
   "description": "<p>You suffer <strong>【SL】</strong> extra from the chanter's allies until the start of their next turn.</p>",
   "origin": null,

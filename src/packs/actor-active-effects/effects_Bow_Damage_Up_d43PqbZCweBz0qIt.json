@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bow-weapon-damage-up"
+    "fuid": "pfu-bow-damage-up"
   },
   "duration": {
     "value": 1,

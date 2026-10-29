@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "monster-damage-up"
+    "fuid": "pfu-monster-damage-up"
   },
   "duration": {
     "value": 1,

@@ -68,7 +68,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-steel-witch-damage"
   },
   "duration": {
     "value": 1,

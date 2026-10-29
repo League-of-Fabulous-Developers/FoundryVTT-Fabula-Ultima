@@ -45,7 +45,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-dual-immunity"
   },
   "duration": {
     "value": null,

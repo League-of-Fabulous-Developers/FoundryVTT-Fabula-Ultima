@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "plant-damage-up"
+    "fuid": "pfu-plant-damage-up"
   },
   "duration": {
     "value": 1,

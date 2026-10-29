@@ -1,5 +1,5 @@
 {
-  "name": "Air Spell Damage Up",
+  "name": "Air Spell Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "origin": null,
   "system": {
@@ -66,7 +66,7 @@
       }
     },
     "changes": [],
-    "fuid": "air-spell-damage-up"
+    "fuid": "pfu-air-spell-damage-up-equipment"
   },
   "duration": {
     "value": null,

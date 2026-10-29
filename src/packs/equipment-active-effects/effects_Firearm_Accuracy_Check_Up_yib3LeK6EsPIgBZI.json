@@ -1,5 +1,5 @@
 {
-  "name": "Firearm Accuracy Check Up",
+  "name": "Firearm Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/firearm.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "firearm-accuracy-check-up"
+    "fuid": "pfu-firearm-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

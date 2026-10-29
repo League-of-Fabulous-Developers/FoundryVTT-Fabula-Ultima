@@ -1,5 +1,5 @@
 {
-  "name": "Dagger Accuracy Check Up",
+  "name": "Dagger Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/dagger.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dagger-accuracy-check-up"
+    "fuid": "pfu-dagger-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

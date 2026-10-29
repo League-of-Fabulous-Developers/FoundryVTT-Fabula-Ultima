@@ -38,7 +38,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-delicacy-poison-change"
   },
   "duration": {
     "value": 1,

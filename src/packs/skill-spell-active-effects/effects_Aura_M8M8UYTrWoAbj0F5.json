@@ -32,7 +32,8 @@
         "type": "upgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-aura"
   },
   "duration": {
     "value": 1,

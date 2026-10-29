@@ -40,7 +40,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-side-by-side-damage"
   },
   "description": "<p>When your companion deals damage, they deal 5 extra damage.</p>",
   "origin": null,

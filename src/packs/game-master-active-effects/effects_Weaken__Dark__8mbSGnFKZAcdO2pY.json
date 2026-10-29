@@ -32,7 +32,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-weaken-dark"
   },
   "duration": {
     "value": 1,

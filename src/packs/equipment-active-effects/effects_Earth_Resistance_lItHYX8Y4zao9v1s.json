@@ -1,5 +1,5 @@
 {
-  "name": "Earth Resistance",
+  "name": "Earth Resistance (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "earth-resistance"
+    "fuid": "pfu-earth-resistance-equipment"
   },
   "duration": {
     "value": null,

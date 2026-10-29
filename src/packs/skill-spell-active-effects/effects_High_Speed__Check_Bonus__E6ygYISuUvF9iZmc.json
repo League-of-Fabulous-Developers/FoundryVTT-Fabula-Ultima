@@ -37,7 +37,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-high-speed-check-bonus"
   },
   "duration": {
     "value": 1,

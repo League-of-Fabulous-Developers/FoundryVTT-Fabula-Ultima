@@ -1,5 +1,5 @@
 {
-  "name": "MIG Up",
+  "name": "MIG Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "mig-up"
+    "fuid": "pfu-mig-up-equipment"
   },
   "duration": {
     "value": null,

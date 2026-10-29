@@ -53,7 +53,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-flow-of-yin-and-yang-yin-damage"
   },
   "duration": {
     "value": 1,

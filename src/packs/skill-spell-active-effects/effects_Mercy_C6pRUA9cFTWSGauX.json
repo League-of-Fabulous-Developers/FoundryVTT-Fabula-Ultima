@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-mercy"
   },
   "description": "<p>Until this spell ends, if you would be reduced to 0 HP, you are instead left standing with exactly 1 HP. Once that happens, this spell ends.</p>",
   "origin": null,

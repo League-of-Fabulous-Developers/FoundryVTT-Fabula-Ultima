@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-damage-type-light"
+    "fuid": "pfu-alter-damage-type-light"
   },
   "description": "<p>The damage type of this weapon becomes <strong>light</strong>.</p>",
   "tint": "#ffffff",

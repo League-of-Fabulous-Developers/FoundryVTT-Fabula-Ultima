@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-m-status-shaken"
   },
   "duration": {
     "value": null,

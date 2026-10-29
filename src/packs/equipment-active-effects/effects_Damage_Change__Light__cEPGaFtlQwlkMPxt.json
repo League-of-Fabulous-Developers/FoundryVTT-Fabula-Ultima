@@ -1,5 +1,5 @@
 {
-  "name": "Damage Change (Light)",
+  "name": "Damage Change (Light) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-light"
+    "fuid": "pfu-damage-change-light-equipment"
   },
   "duration": {
     "value": null,

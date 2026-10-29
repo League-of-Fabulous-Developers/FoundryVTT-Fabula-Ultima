@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "light-damage-reduction"
+    "fuid": "pfu-light-damage-reduction"
   },
   "duration": {
     "value": 1,

@@ -71,7 +71,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-hookleaf-nightshade-poison"
   },
   "description": "<p>While this magiseed is <strong>planted</strong>, all damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances.</p>",
   "origin": null,

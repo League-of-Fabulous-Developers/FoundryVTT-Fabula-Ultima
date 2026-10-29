@@ -1,5 +1,5 @@
 {
-  "name": "Attack Damage Change (Earth)",
+  "name": "Attack Damage Change (Earth) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "attack-damage-change-earth"
+    "fuid": "pfu-attack-damage-change-earth-equipment"
   },
   "duration": {
     "value": null,

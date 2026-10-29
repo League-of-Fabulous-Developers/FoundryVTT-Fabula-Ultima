@@ -1,5 +1,5 @@
 {
-  "name": "Poison Damage Reduction",
+  "name": "Poison Damage Reduction (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-damage-reduction"
+    "fuid": "pfu-poison-damage-reduction-equipment"
   },
   "duration": {
     "value": null,

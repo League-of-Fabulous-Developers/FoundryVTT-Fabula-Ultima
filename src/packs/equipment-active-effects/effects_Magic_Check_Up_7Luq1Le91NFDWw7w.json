@@ -1,5 +1,5 @@
 {
-  "name": "Magic Check Up",
+  "name": "Magic Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "magic-check-up"
+    "fuid": "pfu-magic-check-up-equipment"
   },
   "duration": {
     "value": null,

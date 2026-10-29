@@ -1,5 +1,5 @@
 {
-  "name": "Spell Inflict Status (Slow)",
+  "name": "Spell Inflict Status (Slow) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Slow.webp",
   "origin": null,
   "system": {
@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-slow"
+    "fuid": "pfu-spell-inflict-status-slow-equipment"
   },
   "duration": {
     "value": null,

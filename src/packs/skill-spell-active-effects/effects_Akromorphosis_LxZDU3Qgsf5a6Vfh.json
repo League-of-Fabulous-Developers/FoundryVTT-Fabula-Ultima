@@ -49,7 +49,8 @@
       "interval": 1,
       "tracking": "self",
       "remaining": 1
-    }
+    },
+    "fuid": "pfu-akromorphosis"
   },
   "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p>",
   "tint": "#ffffff",

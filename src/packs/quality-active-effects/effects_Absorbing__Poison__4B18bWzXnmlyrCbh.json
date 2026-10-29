@@ -38,7 +38,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-absorbing-poison"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Thrown Accuracy Check Up",
+  "name": "Thrown Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/thrown.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "thrown-accuracy-check-up"
+    "fuid": "pfu-thrown-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

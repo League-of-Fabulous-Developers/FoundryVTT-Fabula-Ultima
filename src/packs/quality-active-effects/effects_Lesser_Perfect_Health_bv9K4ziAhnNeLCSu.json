@@ -73,7 +73,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-lesser-perfect-health"
   },
   "duration": {
     "value": null,

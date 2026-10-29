@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-vanish"
   },
   "description": "<p>You are unable to see the rogue until the start of their next turn.</p>",
   "origin": null,

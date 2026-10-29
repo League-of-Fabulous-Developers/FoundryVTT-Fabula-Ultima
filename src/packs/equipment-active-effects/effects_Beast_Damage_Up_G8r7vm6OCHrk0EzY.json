@@ -1,5 +1,5 @@
 {
-  "name": "Beast Damage Up",
+  "name": "Beast Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/beast.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "beast-damage-up"
+    "fuid": "pfu-beast-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Arcane Damage Up",
+  "name": "Arcane Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/arcane.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "arcane-damage-up"
+    "fuid": "pfu-arcane-damage-up-equipment"
   },
   "duration": {
     "value": null,

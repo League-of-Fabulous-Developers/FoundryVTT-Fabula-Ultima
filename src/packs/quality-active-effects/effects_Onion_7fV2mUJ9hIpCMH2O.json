@@ -45,7 +45,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-onion"
   },
   "duration": {
     "value": null,

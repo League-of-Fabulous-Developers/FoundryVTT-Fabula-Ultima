@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-damage-type-poison"
+    "fuid": "pfu-alter-damage-type-poison"
   },
   "description": "<p>The damage type of this weapon becomes <strong>poison</strong>.</p>",
   "tint": "#ffffff",

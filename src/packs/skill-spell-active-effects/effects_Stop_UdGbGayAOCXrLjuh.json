@@ -47,7 +47,8 @@
         "increment": 1
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-stop"
   },
   "duration": {
     "value": 1,

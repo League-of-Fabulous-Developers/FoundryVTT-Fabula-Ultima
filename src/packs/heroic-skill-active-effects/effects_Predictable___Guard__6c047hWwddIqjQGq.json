@@ -37,7 +37,8 @@
         "increment": 1
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-predictable-guard"
   },
   "description": "<p>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Guard</strong> action. If you can't, you must perform a different action.</p>",
   "origin": null,

@@ -37,7 +37,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-reinforce-weak"
   },
   "duration": {
     "value": 1,

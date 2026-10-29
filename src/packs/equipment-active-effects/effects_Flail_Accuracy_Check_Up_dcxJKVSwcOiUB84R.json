@@ -1,5 +1,5 @@
 {
-  "name": "Flail Accuracy Check Up",
+  "name": "Flail Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/flail.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "flail-accuracy-check-up"
+    "fuid": "pfu-flail-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

@@ -63,7 +63,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-lunar-magnolia-ice"
   },
   "duration": {
     "value": 1,

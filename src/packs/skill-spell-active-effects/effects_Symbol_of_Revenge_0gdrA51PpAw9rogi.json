@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-revenge"
   },
   "description": "<p>When a creature in <strong>Crisis</strong> hits you with an attack or offensive spell while you are bearing the <strong>Symbol of Revenge</strong>, the creature in <strong>Crisis</strong> recovers 5 HP and MP.</p>",
   "origin": null,

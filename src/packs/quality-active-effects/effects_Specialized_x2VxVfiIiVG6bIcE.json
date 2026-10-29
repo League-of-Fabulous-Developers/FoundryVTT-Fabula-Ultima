@@ -52,7 +52,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-specialized"
   },
   "duration": {
     "value": null,

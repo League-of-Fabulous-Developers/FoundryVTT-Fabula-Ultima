@@ -1,5 +1,5 @@
 {
-  "name": "Accuracy Check Up",
+  "name": "Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "accuracy-check-up"
+    "fuid": "pfu-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

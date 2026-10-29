@@ -78,7 +78,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-lady-higanbana-damage"
   },
   "duration": {
     "value": 1,

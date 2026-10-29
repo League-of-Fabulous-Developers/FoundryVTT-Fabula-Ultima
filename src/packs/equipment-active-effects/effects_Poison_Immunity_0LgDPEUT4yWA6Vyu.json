@@ -1,5 +1,5 @@
 {
-  "name": "Poison Immunity",
+  "name": "Poison Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-immunity"
+    "fuid": "pfu-poison-immunity-equipment"
   },
   "duration": {
     "value": null,

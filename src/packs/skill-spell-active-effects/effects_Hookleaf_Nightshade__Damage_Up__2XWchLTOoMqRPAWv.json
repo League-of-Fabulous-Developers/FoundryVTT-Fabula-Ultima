@@ -80,7 +80,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-hookleaf-nightshade-damage-up"
   },
   "description": "<p>When you deal <strong>poison</strong> damage for the first time during your turn while this magiseed is <strong>planted</strong>, you deal extra damage equal to <strong>【SL in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
   "origin": null,

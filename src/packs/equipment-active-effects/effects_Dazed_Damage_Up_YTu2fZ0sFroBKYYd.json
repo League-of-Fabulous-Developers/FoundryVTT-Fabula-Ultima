@@ -1,5 +1,5 @@
 {
-  "name": "Dazed Damage Up",
+  "name": "Dazed Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
   "origin": null,
   "system": {
@@ -78,7 +78,7 @@
       }
     },
     "changes": [],
-    "fuid": "dazed-damage-up"
+    "fuid": "pfu-dazed-damage-up-equipment"
   },
   "duration": {
     "value": null,

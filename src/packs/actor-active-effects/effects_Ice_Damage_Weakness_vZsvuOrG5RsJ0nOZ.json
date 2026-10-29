@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "ice-damage-weakness"
+    "fuid": "pfu-ice-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>ice</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

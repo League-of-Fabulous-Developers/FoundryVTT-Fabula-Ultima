@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "physical-damage-weakness"
+    "fuid": "pfu-physical-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>physical</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

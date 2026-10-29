@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "brawling-weapon-damage-up"
+    "fuid": "pfu-brawling-damage-up"
   },
   "duration": {
     "value": 1,

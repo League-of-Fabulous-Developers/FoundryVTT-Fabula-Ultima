@@ -38,7 +38,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-turbo-module"
   },
   "duration": {
     "value": null,

@@ -32,7 +32,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-weaken-light"
   },
   "duration": {
     "value": 1,

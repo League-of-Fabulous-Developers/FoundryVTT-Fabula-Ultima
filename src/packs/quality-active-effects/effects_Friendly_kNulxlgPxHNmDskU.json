@@ -45,7 +45,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-friendly"
   },
   "duration": {
     "value": null,

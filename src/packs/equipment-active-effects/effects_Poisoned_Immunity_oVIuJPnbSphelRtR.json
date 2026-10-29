@@ -1,5 +1,5 @@
 {
-  "name": "Poisoned Immunity",
+  "name": "Poisoned Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/immunities/PoisonedImmune.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poisoned-immunity"
+    "fuid": "pfu-poisoned-immunity-equipment"
   },
   "duration": {
     "value": null,

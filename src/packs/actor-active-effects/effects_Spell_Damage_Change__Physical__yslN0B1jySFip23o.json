@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-change-physical"
+    "fuid": "pfu-spell-damage-change-physical"
   },
   "duration": {
     "value": 1,

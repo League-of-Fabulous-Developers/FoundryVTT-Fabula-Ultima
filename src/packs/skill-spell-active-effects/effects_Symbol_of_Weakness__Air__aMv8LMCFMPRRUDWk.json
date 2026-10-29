@@ -32,7 +32,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-symbol-of-weakness-air"
   },
   "duration": {
     "value": null,

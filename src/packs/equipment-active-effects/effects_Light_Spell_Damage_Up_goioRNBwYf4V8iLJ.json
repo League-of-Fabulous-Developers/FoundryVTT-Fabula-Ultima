@@ -1,5 +1,5 @@
 {
-  "name": "Light Spell Damage Up",
+  "name": "Light Spell Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "origin": null,
   "system": {
@@ -66,7 +66,7 @@
       }
     },
     "changes": [],
-    "fuid": "light-spell-damage-up"
+    "fuid": "pfu-light-spell-damage-up-equipment"
   },
   "duration": {
     "value": null,

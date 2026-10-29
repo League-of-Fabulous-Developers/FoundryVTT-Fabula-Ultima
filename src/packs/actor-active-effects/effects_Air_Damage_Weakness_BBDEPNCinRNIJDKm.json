@@ -48,7 +48,7 @@
     "predicate": {
       "crisisInteraction": "none"
     },
-    "fuid": "air-damage-weakness"
+    "fuid": "pfu-air-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>air</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

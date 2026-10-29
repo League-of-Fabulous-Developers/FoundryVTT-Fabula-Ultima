@@ -1,5 +1,5 @@
 {
-  "name": "Spell Damage Change (Bolt)",
+  "name": "Spell Damage Change (Bolt) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-change-bolt"
+    "fuid": "pfu-spell-damage-change-bolt-equipment"
   },
   "duration": {
     "value": null,

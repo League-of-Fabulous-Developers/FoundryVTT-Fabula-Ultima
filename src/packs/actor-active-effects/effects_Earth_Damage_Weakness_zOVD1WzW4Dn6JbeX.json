@@ -48,7 +48,7 @@
     "predicate": {
       "crisisInteraction": "none"
     },
-    "fuid": "earth-damage-weakness"
+    "fuid": "pfu-earth-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>earth</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

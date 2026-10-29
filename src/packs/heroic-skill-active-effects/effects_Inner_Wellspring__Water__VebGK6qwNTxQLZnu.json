@@ -73,7 +73,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-inner-wellspring-water"
   },
   "duration": {
     "value": 1,

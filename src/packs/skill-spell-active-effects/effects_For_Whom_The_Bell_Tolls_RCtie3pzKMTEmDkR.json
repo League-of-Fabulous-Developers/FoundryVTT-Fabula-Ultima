@@ -41,7 +41,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-for-whom-the-bell-tolls"
   },
   "description": "<p>The spell the necromancer casts deals extra damage to you equal to <strong>【SL + the number of status effects you are suffering from】</strong>.</p>",
   "origin": null,

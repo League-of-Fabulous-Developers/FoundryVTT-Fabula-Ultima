@@ -1,5 +1,5 @@
 {
-  "name": "Demon Damage Up",
+  "name": "Demon Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/demon.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "demon-damage-up"
+    "fuid": "pfu-demon-damage-up-equipment"
   },
   "duration": {
     "value": null,

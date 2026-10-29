@@ -39,7 +39,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-chimeric-soul-beast-resistance"
   },
   "duration": {
     "value": 1,

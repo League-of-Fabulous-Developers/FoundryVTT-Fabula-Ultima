@@ -1,5 +1,5 @@
 {
-  "name": "Bladestorm MP Cost Half",
+  "name": "Bladestorm MP Cost Half (Equipment)",
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bladestorm.png",
   "origin": null,
   "system": {
@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "bladestorm-mp-cost-half"
+    "fuid": "pfu-bladestorm-mp-cost-half-equipment"
   },
   "duration": {
     "value": null,

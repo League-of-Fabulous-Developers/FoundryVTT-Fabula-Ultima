@@ -1,5 +1,5 @@
 {
-  "name": "Flail Damage Up",
+  "name": "Flail Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/flail.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "flail-damage-up"
+    "fuid": "pfu-flail-damage-up-equipment"
   },
   "duration": {
     "value": null,

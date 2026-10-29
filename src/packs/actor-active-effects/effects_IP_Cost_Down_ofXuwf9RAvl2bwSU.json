@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "ip-cost-down"
+    "fuid": "pfu-ip-cost-down"
   },
   "duration": {
     "value": 1,

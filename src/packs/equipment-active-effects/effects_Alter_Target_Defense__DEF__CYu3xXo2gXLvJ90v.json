@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-target-defense-def"
+    "fuid": "pfu-alter-target-defense-def"
   },
   "description": "<p>This weapon targets <strong>Defense</strong>.</p>",
   "tint": "#ffffff",

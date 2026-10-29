@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-dark"
+    "fuid": "pfu-damage-change-dark"
   },
   "duration": {
     "value": 1,

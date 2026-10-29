@@ -41,7 +41,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-bishops-edict-extra-damage"
   },
   "description": "<p>All sources of damage deal <strong>【SL × 3】</strong> extra damage until the start of the commander's next turn.</p>",
   "origin": null,

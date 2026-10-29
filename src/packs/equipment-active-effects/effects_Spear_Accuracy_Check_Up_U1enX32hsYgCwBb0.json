@@ -1,5 +1,5 @@
 {
-  "name": "Spear Accuracy Check Up",
+  "name": "Spear Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/spear.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spear-accuracy-check-up"
+    "fuid": "pfu-spear-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

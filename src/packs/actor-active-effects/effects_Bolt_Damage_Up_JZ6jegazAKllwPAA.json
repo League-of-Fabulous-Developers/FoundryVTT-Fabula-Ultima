@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bolt-damage-up"
+    "fuid": "pfu-bolt-damage-up"
   },
   "duration": {
     "value": 1,

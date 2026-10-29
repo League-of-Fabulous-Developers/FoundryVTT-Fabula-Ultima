@@ -58,7 +58,7 @@
       }
     },
     "changes": [],
-    "fuid": "ignore-affinities"
+    "fuid": "pfu-ignore-affinities"
   },
   "duration": {
     "value": null,

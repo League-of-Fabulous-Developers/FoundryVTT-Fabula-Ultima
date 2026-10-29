@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-anomaly"
   },
   "description": "<p>Until this spell ends, if you would suffer damage of a type you Absorb or are Immune to, you are instead treated as if you were Vulnerable to that damage type. Once that happens, this spell ends.</p>",
   "origin": null,

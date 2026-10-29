@@ -58,7 +58,7 @@
       }
     },
     "changes": [],
-    "fuid": "ignore-resistances"
+    "fuid": "pfu-ignore-resistances"
   },
   "duration": {
     "value": null,

@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-sacrifice"
   },
   "description": "<p>When you suffer damage while bearing the <strong>Symbol of Sacrifice</strong>, if the symbolist is able to see you, they may destroy this <strong>symbol</strong>: if they do, they suffer the same amount of damage instead of you.</p>",
   "origin": null,

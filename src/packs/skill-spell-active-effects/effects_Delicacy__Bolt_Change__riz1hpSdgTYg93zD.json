@@ -38,7 +38,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-delicacy-bolt-change"
   },
   "duration": {
     "value": 1,

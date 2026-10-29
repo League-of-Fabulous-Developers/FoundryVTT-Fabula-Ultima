@@ -39,7 +39,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-greater-akromorphosis-damage"
   },
   "duration": {
     "value": 1,

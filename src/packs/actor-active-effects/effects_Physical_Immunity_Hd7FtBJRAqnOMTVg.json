@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "physical-immunity"
+    "fuid": "pfu-physical-immunity"
   },
   "duration": {
     "value": 1,

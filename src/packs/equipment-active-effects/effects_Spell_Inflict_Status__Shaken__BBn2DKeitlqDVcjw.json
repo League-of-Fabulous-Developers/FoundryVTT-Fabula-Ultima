@@ -1,5 +1,5 @@
 {
-  "name": "Spell Inflict Status (Shaken)",
+  "name": "Spell Inflict Status (Shaken) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
   "origin": null,
   "system": {
@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-shaken"
+    "fuid": "pfu-spell-inflict-status-shaken-equipment"
   },
   "duration": {
     "value": null,

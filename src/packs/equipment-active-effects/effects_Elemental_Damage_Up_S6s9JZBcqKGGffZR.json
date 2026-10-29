@@ -1,5 +1,5 @@
 {
-  "name": "Elemental Damage Up",
+  "name": "Elemental Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/elemental.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "elemental-damage-up"
+    "fuid": "pfu-elemental-damage-up-equipment"
   },
   "duration": {
     "value": null,

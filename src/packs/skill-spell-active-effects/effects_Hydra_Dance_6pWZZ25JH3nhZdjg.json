@@ -57,7 +57,8 @@
         }
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-hydra-dance"
   },
   "description": "<p>Until the start of your next turn, after you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover 5 HP, <strong>or</strong> you recover 5 MP.</p>",
   "origin": null,

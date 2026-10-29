@@ -1,5 +1,5 @@
 {
-  "name": "All Damage Up",
+  "name": "All Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "all-damage-up"
+    "fuid": "pfu-all-damage-up-equipment"
   },
   "duration": {
     "value": null,

@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-enmity"
   },
   "description": "<p>As long as you are in <strong>Crisis</strong> and bearing the <strong>Symbol of Enmity</strong>, any of that your enemies who are able to see you must include you among the targets of their attacks and offensive spells, if possible.</p>",
   "origin": null,

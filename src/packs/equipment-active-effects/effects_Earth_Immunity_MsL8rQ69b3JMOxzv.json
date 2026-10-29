@@ -1,5 +1,5 @@
 {
-  "name": "Earth Immunity",
+  "name": "Earth Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "earth-immunity"
+    "fuid": "pfu-earth-immunity-equipment"
   },
   "duration": {
     "value": null,

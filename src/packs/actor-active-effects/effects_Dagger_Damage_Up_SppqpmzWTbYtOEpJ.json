@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dagger-damage-up"
+    "fuid": "pfu-dagger-damage-up"
   },
   "duration": {
     "value": 1,

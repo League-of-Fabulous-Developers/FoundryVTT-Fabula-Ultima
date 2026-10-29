@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "light-absorption"
+    "fuid": "pfu-light-absorption"
   },
   "duration": {
     "value": 1,

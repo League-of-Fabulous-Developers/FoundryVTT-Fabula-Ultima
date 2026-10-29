@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-crisis-shock-shaken"
   },
   "duration": {
     "value": null,

@@ -32,7 +32,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-card-vanguard-earth"
   },
   "duration": {
     "value": 1,

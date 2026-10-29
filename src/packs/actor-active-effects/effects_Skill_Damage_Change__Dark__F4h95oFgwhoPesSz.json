@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "skill-damage-change-dark"
+    "fuid": "pfu-skill-damage-change-dark"
   },
   "duration": {
     "value": 1,

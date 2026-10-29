@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "mp-recovery-up"
+    "fuid": "pfu-mp-recovery-up"
   },
   "duration": {
     "value": 1,

@@ -1,5 +1,5 @@
 {
-  "name": "Brawling Accuracy Check Up",
+  "name": "Brawling Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/brawling.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "brawling-accuracy-check-up"
+    "fuid": "pfu-brawling-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

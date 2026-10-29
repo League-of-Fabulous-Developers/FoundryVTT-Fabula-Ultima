@@ -1,5 +1,5 @@
 {
-  "name": "Melee Damage Up",
+  "name": "Melee Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "melee-damage-up"
+    "fuid": "pfu-melee-damage-up-equipment"
   },
   "duration": {
     "value": null,

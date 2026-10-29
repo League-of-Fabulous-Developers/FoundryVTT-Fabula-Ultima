@@ -37,7 +37,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-support-magic-1"
   },
   "duration": {
     "value": 1,

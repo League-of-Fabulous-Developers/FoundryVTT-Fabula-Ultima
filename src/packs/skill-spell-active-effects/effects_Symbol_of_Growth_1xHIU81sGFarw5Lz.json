@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-growth"
   },
   "description": "<p>While bearing the <strong>Symbol of Growth</strong>, spells you cast with a <strong>target</strong> of “Up to three creatures” have a <strong>target</strong> of “Up to four creatures” instead. You still need to spend additional Mind Points for a fourth target.</p>",
   "origin": null,

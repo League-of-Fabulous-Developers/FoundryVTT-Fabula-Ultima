@@ -68,7 +68,8 @@
         "type": "multiply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-kings-castle-no-hpmp-recovery"
   },
   "duration": {
     "value": 1,

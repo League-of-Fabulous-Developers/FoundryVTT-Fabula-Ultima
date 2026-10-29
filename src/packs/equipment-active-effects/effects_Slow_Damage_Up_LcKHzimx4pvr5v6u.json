@@ -1,5 +1,5 @@
 {
-  "name": "Slow Damage Up",
+  "name": "Slow Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Slow.webp",
   "origin": null,
   "system": {
@@ -78,7 +78,7 @@
       }
     },
     "changes": [],
-    "fuid": "slow-damage-up"
+    "fuid": "pfu-slow-damage-up-equipment"
   },
   "duration": {
     "value": null,

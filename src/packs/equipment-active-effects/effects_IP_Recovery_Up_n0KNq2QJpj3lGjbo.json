@@ -1,5 +1,5 @@
 {
-  "name": "IP Recovery Up",
+  "name": "IP Recovery Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/resources/ip.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "ip-recovery-up"
+    "fuid": "pfu-ip-recovery-up-equipment"
   },
   "duration": {
     "value": null,

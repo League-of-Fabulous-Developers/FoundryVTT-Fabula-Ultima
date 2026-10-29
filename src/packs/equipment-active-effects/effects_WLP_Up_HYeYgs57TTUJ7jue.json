@@ -1,5 +1,5 @@
 {
-  "name": "WLP Up",
+  "name": "WLP Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "wlp-up"
+    "fuid": "pfu-wlp-up-equipment"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Spear Damage Up",
+  "name": "Spear Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/spear.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spear-damage-up"
+    "fuid": "pfu-spear-damage-up-equipment"
   },
   "duration": {
     "value": null,

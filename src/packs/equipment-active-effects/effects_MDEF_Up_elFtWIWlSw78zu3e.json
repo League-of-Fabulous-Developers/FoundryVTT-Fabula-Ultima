@@ -1,5 +1,5 @@
 {
-  "name": "MDEF Up",
+  "name": "MDEF Up (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/Aura.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "mdef-up"
+    "fuid": "pfu-mdef-up-equipment"
   },
   "duration": {
     "value": null,

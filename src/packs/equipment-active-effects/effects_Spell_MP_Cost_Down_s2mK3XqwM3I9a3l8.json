@@ -1,5 +1,5 @@
 {
-  "name": "Spell MP Cost Down",
+  "name": "Spell MP Cost Down (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
   "origin": null,
   "system": {
@@ -59,7 +59,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-mp-cost-down"
+    "fuid": "pfu-spell-mp-cost-down-equipment"
   },
   "duration": {
     "value": null,

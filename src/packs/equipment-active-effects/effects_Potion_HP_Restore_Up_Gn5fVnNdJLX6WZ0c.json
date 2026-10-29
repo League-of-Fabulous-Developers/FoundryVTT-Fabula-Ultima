@@ -1,5 +1,5 @@
 {
-  "name": "Potion HP Restore Up",
+  "name": "Potion HP Restore Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/resources/hp.png",
   "origin": null,
   "system": {
@@ -54,7 +54,7 @@
       }
     },
     "changes": [],
-    "fuid": "potion-hp-restore-up"
+    "fuid": "pfu-potion-hp-restore-up-equipment"
   },
   "duration": {
     "value": null,

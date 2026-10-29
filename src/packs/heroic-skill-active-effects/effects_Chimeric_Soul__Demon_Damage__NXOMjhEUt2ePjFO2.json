@@ -39,7 +39,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-chimeric-soul-demon-damage"
   },
   "duration": {
     "value": 1,

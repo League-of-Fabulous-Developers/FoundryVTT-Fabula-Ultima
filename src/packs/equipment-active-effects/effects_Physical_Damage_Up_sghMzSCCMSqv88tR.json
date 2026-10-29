@@ -1,5 +1,5 @@
 {
-  "name": "Physical Damage Up",
+  "name": "Physical Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "physical-damage-up"
+    "fuid": "pfu-physical-damage-up-equipment"
   },
   "duration": {
     "value": null,

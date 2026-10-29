@@ -45,7 +45,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-angel-dance-damage"
   },
   "duration": {
     "value": 1,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-change-air"
+    "fuid": "pfu-spell-damage-change-air"
   },
   "duration": {
     "value": 1,

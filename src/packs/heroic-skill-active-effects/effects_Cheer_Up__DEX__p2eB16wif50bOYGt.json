@@ -32,7 +32,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-cheer-up-dex"
   },
   "duration": {
     "value": 1,

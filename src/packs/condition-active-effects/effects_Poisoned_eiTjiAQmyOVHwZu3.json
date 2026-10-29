@@ -41,7 +41,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "poisoned"
+    "fuid": "pfu-poisoned"
   },
   "description": "<p>Reduce Might and Willpower die size by 1.</p>",
   "tint": "#ffffff",

@@ -47,7 +47,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-heroic-companion-hp-damage"
   },
   "description": "<p>Your max HP increases by 10 and you deal 5 extra damage.</p>",
   "origin": null,

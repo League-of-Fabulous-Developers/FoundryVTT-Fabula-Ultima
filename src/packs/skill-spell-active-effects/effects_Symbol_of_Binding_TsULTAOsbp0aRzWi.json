@@ -62,7 +62,8 @@
         "type": "downgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-symbol-of-binding"
   },
   "description": "<p>While you bear the <strong>Symbol of Binding</strong>, your <strong>current</strong> Attribute die sizes can <strong>never</strong> be <strong>higher</strong> than your corresponding <strong>base</strong> Attribute die sizes.</p>",
   "origin": null,

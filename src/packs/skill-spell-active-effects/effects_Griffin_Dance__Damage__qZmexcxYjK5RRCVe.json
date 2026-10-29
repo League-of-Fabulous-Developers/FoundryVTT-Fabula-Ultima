@@ -45,7 +45,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-griffin-dance-damage"
   },
   "duration": {
     "value": 1,

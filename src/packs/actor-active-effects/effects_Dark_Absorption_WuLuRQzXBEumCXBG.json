@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "dark-absorption"
+    "fuid": "pfu-dark-absorption"
   },
   "duration": {
     "value": 1,

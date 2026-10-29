@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "light-immunity"
+    "fuid": "pfu-light-immunity"
   },
   "duration": {
     "value": 1,

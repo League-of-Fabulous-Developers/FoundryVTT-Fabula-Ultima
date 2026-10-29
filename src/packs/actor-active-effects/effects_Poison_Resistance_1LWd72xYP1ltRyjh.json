@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-resistance"
+    "fuid": "pfu-poison-resistance"
   },
   "duration": {
     "value": 1,

@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "weapon-damage-up"
+    "fuid": "pfu-weapon-damage-up"
   },
   "description": "<p>This weapon deals <strong>4 extra damage</strong>.</p>",
   "tint": "#ffffff",

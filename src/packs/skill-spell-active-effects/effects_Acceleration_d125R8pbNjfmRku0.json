@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-acceleration"
   },
   "description": "<p>Until this spell ends, at the end of each of your turns, you may choose <strong>one</strong> option:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon they have equipped.</p></li><li><p>Perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost).</p></li></ul><p>After you benefit from this effect a second time, this spell ends.</p>",
   "origin": null,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "skill-damage-change-untyped"
+    "fuid": "pfu-skill-damage-change-untyped"
   },
   "duration": {
     "value": 1,

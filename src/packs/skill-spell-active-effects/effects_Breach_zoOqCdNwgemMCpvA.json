@@ -41,7 +41,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-breach"
   },
   "description": "<p>Whenever you suffer damage before the start of the weaponmaster's next turn, that source deals <strong>【SL × 2】</strong> extra damage to you.</p>",
   "origin": null,

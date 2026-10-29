@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-status-plus-poisoned"
   },
   "duration": {
     "value": null,

@@ -61,7 +61,7 @@
       }
     },
     "changes": [],
-    "fuid": "spell-inflict-status-weak"
+    "fuid": "pfu-spell-inflict-status-weak"
   },
   "duration": {
     "value": 1,

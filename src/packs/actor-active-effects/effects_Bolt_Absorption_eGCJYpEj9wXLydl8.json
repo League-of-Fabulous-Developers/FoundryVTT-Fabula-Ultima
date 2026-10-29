@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bolt-absorption"
+    "fuid": "pfu-bolt-absorption"
   },
   "duration": {
     "value": 1,

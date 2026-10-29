@@ -38,7 +38,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "custom-npc"
+    "fuid": "pfu-check-bonuses"
   },
   "duration": {
     "value": null,

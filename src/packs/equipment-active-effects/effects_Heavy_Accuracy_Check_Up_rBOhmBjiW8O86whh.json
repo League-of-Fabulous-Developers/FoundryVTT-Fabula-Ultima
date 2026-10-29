@@ -1,5 +1,5 @@
 {
-  "name": "Heavy Accuracy Check Up",
+  "name": "Heavy Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/heavy.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "heavy-accuracy-check-up"
+    "fuid": "pfu-heavy-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

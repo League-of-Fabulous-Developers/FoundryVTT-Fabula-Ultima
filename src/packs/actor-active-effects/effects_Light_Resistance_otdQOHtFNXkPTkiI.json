@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "light-resistance"
+    "fuid": "pfu-light-resistance"
   },
   "duration": {
     "value": 1,

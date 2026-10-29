@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-rebirth"
   },
   "description": "<p>If you are about to be reduced to 0 HP while bearing the <strong>Symbol of Rebirth</strong>, you may destroy this <strong>symbol</strong>: if you do, you are instead reduced to exactly 1 HP.</p>",
   "origin": null,

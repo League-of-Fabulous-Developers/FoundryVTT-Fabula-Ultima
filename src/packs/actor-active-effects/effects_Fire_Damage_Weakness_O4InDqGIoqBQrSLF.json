@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "fire-damage-weakness"
+    "fuid": "pfu-fire-damage-weakness"
   },
   "description": "<p>Every source that deals <strong>fire</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
   "tint": "#ffffff",

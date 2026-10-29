@@ -72,7 +72,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-power-nap"
   },
   "description": "<p>Your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way.</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong>.</p>",
   "origin": null,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-fire"
+    "fuid": "pfu-damage-change-fire"
   },
   "duration": {
     "value": 1,

@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "bolt-resistance"
+    "fuid": "pfu-bolt-resistance"
   },
   "duration": {
     "value": 1,

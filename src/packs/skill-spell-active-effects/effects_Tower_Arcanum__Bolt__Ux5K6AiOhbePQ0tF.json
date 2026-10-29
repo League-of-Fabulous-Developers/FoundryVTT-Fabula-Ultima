@@ -32,7 +32,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-tower-arcanum-bolt"
   },
   "duration": {
     "value": 1,

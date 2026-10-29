@@ -38,7 +38,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-resistance-air"
   },
   "duration": {
     "value": null,

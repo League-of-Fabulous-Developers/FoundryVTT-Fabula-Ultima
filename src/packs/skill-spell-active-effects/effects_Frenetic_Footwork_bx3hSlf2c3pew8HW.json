@@ -32,7 +32,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-frenetic-footwork"
   },
   "duration": {
     "value": 1,

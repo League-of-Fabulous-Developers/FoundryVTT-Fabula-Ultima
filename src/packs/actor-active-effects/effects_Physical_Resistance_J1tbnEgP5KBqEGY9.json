@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "physical-resistance"
+    "fuid": "pfu-physical-resistance"
   },
   "duration": {
     "value": 1,

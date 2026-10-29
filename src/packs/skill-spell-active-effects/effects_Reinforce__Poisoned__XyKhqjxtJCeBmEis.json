@@ -37,7 +37,8 @@
         "type": "override",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-reinforce-poisoned"
   },
   "duration": {
     "value": 1,

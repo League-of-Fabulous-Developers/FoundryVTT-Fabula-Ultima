@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "alter-target-defense-dex"
+    "fuid": "pfu-alter-target-defense-dex"
   },
   "duration": {
     "value": null,

@@ -38,7 +38,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-magic-up"
   },
   "duration": {
     "value": null,

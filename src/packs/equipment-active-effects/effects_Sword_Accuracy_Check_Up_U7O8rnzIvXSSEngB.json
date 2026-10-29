@@ -1,5 +1,5 @@
 {
-  "name": "Sword Accuracy Check Up",
+  "name": "Sword Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/sword.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "sword-accuracy-check-up"
+    "fuid": "pfu-sword-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

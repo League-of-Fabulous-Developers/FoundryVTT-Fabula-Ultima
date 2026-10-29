@@ -30,7 +30,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-extra-m-healing"
   },
   "duration": {
     "value": null,

@@ -41,7 +41,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "enraged"
+    "fuid": "pfu-enraged"
   },
   "description": "<p>Reduce Dexterity and Insight die size by 1.</p>",
   "tint": "#ffffff",

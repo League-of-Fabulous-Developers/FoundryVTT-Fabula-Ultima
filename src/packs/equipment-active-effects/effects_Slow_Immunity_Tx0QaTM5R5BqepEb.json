@@ -1,5 +1,5 @@
 {
-  "name": "Slow Immunity",
+  "name": "Slow Immunity (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/immunities/SlowImmune.webp",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "slow-immunity"
+    "fuid": "pfu-slow-immunity-equipment"
   },
   "duration": {
     "value": null,

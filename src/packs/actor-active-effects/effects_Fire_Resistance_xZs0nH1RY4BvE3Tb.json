@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "fire-resistance"
+    "fuid": "pfu-fire-resistance"
   },
   "duration": {
     "value": 1,

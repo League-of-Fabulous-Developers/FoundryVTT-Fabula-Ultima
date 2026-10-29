@@ -85,7 +85,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-tempest-strike-multi-3"
   },
   "duration": {
     "value": null,

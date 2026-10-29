@@ -1,5 +1,5 @@
 {
-  "name": "Damage Change (Bolt)",
+  "name": "Damage Change (Bolt) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "damage-change-bolt"
+    "fuid": "pfu-damage-change-bolt-equipment"
   },
   "duration": {
     "value": null,

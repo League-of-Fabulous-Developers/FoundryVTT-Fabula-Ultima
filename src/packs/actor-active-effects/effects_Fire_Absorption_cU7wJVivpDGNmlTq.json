@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "fire-absorption"
+    "fuid": "pfu-fire-absorption"
   },
   "duration": {
     "value": 1,

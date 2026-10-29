@@ -1,5 +1,5 @@
 {
-  "name": "Opposed Check Up (DEX)",
+  "name": "Opposed Check Up (DEX) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
   "origin": null,
   "system": {
@@ -67,7 +67,7 @@
       }
     },
     "changes": [],
-    "fuid": "opposed-check-up-dex"
+    "fuid": "pfu-opposed-check-up-dex-equipment"
   },
   "duration": {
     "value": null,

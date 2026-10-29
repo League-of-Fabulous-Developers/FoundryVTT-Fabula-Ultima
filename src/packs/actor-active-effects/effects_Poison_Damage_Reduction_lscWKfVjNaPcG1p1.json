@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-damage-reduction"
+    "fuid": "pfu-poison-damage-reduction"
   },
   "duration": {
     "value": 1,

@@ -1,5 +1,5 @@
 {
-  "name": "Undead Damage Up",
+  "name": "Undead Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/undead.svg",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "undead-damage-up"
+    "fuid": "pfu-undead-damage-up-equipment"
   },
   "duration": {
     "value": null,

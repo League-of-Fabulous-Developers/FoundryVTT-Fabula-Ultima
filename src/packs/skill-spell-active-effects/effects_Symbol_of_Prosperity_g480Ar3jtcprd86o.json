@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-prosperity"
   },
   "description": "<p>When you spend 1 <strong>Fabula Point</strong> to <strong>invoke a Trait or Bond</strong> while bearing the <strong>Symbol of Prosperity</strong>, you also receive 100 zenit.</p>",
   "origin": null,

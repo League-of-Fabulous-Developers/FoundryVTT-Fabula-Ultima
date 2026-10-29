@@ -33,7 +33,8 @@
       },
       "elements": {}
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-symbol-of-sorcery"
   },
   "description": "<p>While you bear the <strong>Symbol of Sorcery,</strong> the total Mind Point cost of spells that target you are reduced by 5 MP (to a minimum total cost of 5 MP). If a spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
   "origin": null,

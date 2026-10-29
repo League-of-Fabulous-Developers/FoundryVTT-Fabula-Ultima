@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "skill-damage-change-ice"
+    "fuid": "pfu-skill-damage-change-ice"
   },
   "duration": {
     "value": 1,

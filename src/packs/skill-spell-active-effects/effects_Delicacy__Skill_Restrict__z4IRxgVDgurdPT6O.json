@@ -30,7 +30,8 @@
         "increment": 1
       }
     },
-    "changes": []
+    "changes": [],
+    "fuid": "pfu-delicacy-skill-restrict"
   },
   "duration": {
     "value": 1,

@@ -33,7 +33,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-dual-hunter-beast"
   },
   "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
   "origin": null,

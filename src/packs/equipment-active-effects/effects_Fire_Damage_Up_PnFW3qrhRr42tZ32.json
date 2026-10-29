@@ -1,5 +1,5 @@
 {
-  "name": "Fire Damage Up",
+  "name": "Fire Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "fire-damage-up"
+    "fuid": "pfu-fire-damage-up-equipment"
   },
   "duration": {
     "value": null,

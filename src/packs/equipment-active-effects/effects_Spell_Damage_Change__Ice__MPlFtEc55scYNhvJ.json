@@ -1,5 +1,5 @@
 {
-  "name": "Spell Damage Change (Ice)",
+  "name": "Spell Damage Change (Ice) (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "spell-damage-change-ice"
+    "fuid": "pfu-spell-damage-change-ice-equipment"
   },
   "duration": {
     "value": null,

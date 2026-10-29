@@ -1,5 +1,5 @@
 {
-  "name": "Air Damage Up",
+  "name": "Air Damage Up (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "air-damage-up"
+    "fuid": "pfu-air-damage-up-equipment"
   },
   "duration": {
     "value": null,

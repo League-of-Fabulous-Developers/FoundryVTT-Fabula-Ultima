@@ -45,7 +45,8 @@
         "type": "upgrade",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-expanded-plating-module-runic"
   },
   "duration": {
     "value": null,

@@ -48,7 +48,7 @@
       "tracking": "self",
       "remaining": 0
     },
-    "fuid": "alter-damage-type-earth"
+    "fuid": "pfu-alter-damage-type-earth"
   },
   "description": "<p>The damage type of this weapon becomes <strong>earth</strong>.</p>",
   "tint": "#ffffff",

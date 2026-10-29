@@ -32,7 +32,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-tower-arcanum-air"
   },
   "duration": {
     "value": 1,

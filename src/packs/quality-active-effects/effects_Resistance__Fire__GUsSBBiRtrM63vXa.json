@@ -38,7 +38,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "effect"
+    "fuid": "pfu-resistance-fire"
   },
   "duration": {
     "value": null,

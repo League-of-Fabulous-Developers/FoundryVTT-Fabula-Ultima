@@ -1,5 +1,5 @@
 {
-  "name": "Opposed Check Up (WLP)",
+  "name": "Opposed Check Up (WLP) (Equipment)",
   "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
   "origin": null,
   "system": {
@@ -67,7 +67,7 @@
       }
     },
     "changes": [],
-    "fuid": "opposed-check-up-wlp"
+    "fuid": "pfu-opposed-check-up-wlp-equipment"
   },
   "duration": {
     "value": null,

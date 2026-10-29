@@ -1,5 +1,5 @@
 {
-  "name": "Arcane Accuracy Check Up",
+  "name": "Arcane Accuracy Check Up (Equipment)",
   "img": "systems/projectfu/styles/static/icons/weapons/arcane.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "arcane-accuracy-check-up"
+    "fuid": "pfu-arcane-accuracy-check-up-equipment"
   },
   "duration": {
     "value": null,

@@ -1,5 +1,5 @@
 {
-  "name": "Poison Damage Weakness",
+  "name": "Poison Damage Weakness (Equipment)",
   "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "origin": null,
   "system": {
@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "poison-damage-weakness"
+    "fuid": "pfu-poison-damage-weakness-equipment"
   },
   "duration": {
     "value": null,

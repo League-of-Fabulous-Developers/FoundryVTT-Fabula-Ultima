@@ -34,7 +34,7 @@
     "rules": {
       "elements": {}
     },
-    "fuid": "weak"
+    "fuid": "pfu-weak"
   },
   "description": "<p>Reduce Might die size by 1.</p>",
   "tint": "#ffffff",

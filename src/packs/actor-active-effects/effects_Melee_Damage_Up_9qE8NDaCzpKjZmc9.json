@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "melee-damage-up"
+    "fuid": "pfu-melee-damage-up"
   },
   "duration": {
     "value": 1,

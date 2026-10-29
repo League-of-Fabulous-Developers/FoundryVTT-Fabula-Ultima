@@ -54,7 +54,7 @@
       }
     },
     "changes": [],
-    "fuid": "potion-hp-restore-up"
+    "fuid": "pfu-potion-hp-restore-up"
   },
   "duration": {
     "value": 1,

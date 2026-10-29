@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "ice-absorption"
+    "fuid": "pfu-ice-absorption"
   },
   "duration": {
     "value": 1,

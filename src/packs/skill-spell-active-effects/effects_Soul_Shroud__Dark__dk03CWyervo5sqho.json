@@ -37,7 +37,8 @@
         "type": "projectfu.apply",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-soul-shroud-dark"
   },
   "duration": {
     "value": 1,

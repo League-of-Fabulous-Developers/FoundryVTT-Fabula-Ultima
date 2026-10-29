@@ -38,7 +38,8 @@
         "type": "add",
         "phase": "initial"
       }
-    ]
+    ],
+    "fuid": "pfu-power-module"
   },
   "duration": {
     "value": null,

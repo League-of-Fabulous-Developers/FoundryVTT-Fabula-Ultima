@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "all-damage-weakness"
+    "fuid": "pfu-all-damage-weakness"
   },
   "duration": {
     "value": 1,

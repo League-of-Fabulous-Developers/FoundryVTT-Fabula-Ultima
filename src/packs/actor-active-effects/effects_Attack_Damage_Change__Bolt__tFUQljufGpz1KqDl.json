@@ -39,7 +39,7 @@
         "phase": "initial"
       }
     ],
-    "fuid": "attack-damage-change-bolt"
+    "fuid": "pfu-attack-damage-change-bolt"
   },
   "duration": {
     "value": 1,
