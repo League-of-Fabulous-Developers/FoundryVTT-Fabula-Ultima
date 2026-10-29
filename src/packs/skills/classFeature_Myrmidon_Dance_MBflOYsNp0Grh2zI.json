@@ -10,7 +10,7 @@
     },
     "data": {
       "duration": "nextTurn",
-      "description": "<p>Choose one option: you gain Resistance to <strong>earth</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>earth</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.QD5BcfrAiU3xTZsr]{Myrmidon Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.pbh1nZKCCYWVdK4q]{Myrmidon Dance (Damage)}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>earth</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>earth</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-myrmidon-dance-resistance]{Myrmidon Dance (Resistance)} or @EFFECT[pfu-myrmidon-dance-damage]{Myrmidon Dance (Damage)}</p>",
       "type": "projectfu.dance"
     },
     "source": "FUHF145",

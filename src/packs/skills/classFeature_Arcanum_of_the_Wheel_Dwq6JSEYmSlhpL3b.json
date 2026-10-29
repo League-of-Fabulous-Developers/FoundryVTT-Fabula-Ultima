@@ -10,7 +10,7 @@
     },
     "data": {
       "merge": "<p>You are immune to <strong>slow</strong>.</p><p>You gain a +1 bonus to your Defense.</p>",
-      "dismiss": "<p><strong>Time Freeze</strong>. Choose any number of creatures you can see: each of them suffers <strong>slow</strong> . If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p><hr><p><strong>Targets Suffer:</strong> @EFFECT[slow] or @EFFECT[Compendium.projectfu.skills.Item.jM9IP1QwhEH55Qd1]</p>",
+      "dismiss": "<p><strong>Time Freeze</strong>. Choose any number of creatures you can see: each of them suffers <strong>slow</strong> . If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p><hr><p><strong>Targets Suffer:</strong> @EFFECT[slow] or @EFFECT[pfu-wheel-arcanum-reduce-action]</p>",
       "domains": "destiny, speed, time",
       "type": "projectfu.arcanum",
       "enablePulse": false,

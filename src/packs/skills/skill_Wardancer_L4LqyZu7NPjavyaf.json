@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped<strong>,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]</p>",
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped<strong>,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-wardancer]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -112,7 +112,7 @@
               "actions": {
                 "4f4lnGLdlQim8PGT": {
                   "type": "projectfu.messageRuleAction",
-                  "message": "<p>You gain @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]{Wardancer}</p>"
+                  "message": "<p>You gain @EFFECT[pfu-wardancer]{Wardancer}</p>"
                 }
               },
               "selector": "initial",

@@ -10,9 +10,9 @@
       "value": "The tearful spirit who mourns those fallen in battle."
     },
     "data": {
-      "merge": "<h3>Scarlet Blossoms</h3><p>If you have acquired the <strong>Counterattack</strong> Skill, it also applies to enemy <strong>ranged</strong> attacks.</p><p>During conflict scenes, as long as you are <strong>merged</strong> with this Arcanum and <strong>it is not your turn</strong>, your attacks deal 5 extra damage, or 10 extra damage if you are also in <strong>Crisis</strong>.</p><hr><p><strong>You Gain (Out of Your Turn):</strong> @EFFECT[Compendium.projectfu.skills.Item.fJV07izZgyMXvPw1]</p>",
+      "merge": "<h3>Scarlet Blossoms</h3><p>If you have acquired the <strong>Counterattack</strong> Skill, it also applies to enemy <strong>ranged</strong> attacks.</p><p>During conflict scenes, as long as you are <strong>merged</strong> with this Arcanum and <strong>it is not your turn</strong>, your attacks deal 5 extra damage, or 10 extra damage if you are also in <strong>Crisis</strong>.</p><hr><p><strong>You Gain (Out of Your Turn):</strong> @EFFECT[pfu-lady-higanbana-damage]</p>",
       "pulse": "",
-      "dismiss": "<h3>Sepulchral Shroud</h3><p>You deal 40 <strong>dark</strong> damage to one creature you can see; damage dealt by this effect ignores Immunities and Resistances. If a creature loses Hit Points this way, they cannot recover Hit Points until the start of your next turn.</p><hr><p><strong>Enemy Suffers:</strong> @DMG[&step(40,50,60) dark|ignore-resistances,ignore-immunities|]{Dark Damage} @EFFECT[Compendium.projectfu.skills.Item.evHua0Xq9vExaHNj]</p>",
+      "dismiss": "<h3>Sepulchral Shroud</h3><p>You deal 40 <strong>dark</strong> damage to one creature you can see; damage dealt by this effect ignores Immunities and Resistances. If a creature loses Hit Points this way, they cannot recover Hit Points until the start of your next turn.</p><hr><p><strong>Enemy Suffers:</strong> @DMG[&step(40,50,60) dark|ignore-resistances,ignore-immunities|]{Dark Damage} @EFFECT[pfu-lady-higanbana-no-hp-recovery]</p>",
       "domains": "death, isolation, melancholy",
       "type": "projectfu.arcanum",
       "enablePulse": false

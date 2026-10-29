@@ -10,7 +10,7 @@
     },
     "data": {
       "duration": "nextTurn",
-      "description": "<p>After you suffer damage, choose one option: you recover 5 Hit Points, <strong>or</strong> you recover 5 Mind Points.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.v7HpgVautZEWUbS7]<br><strong>You Recover:</strong> @GAIN[5 hp] or @GAIN[5 mp]</p>",
+      "description": "<p>After you suffer damage, choose one option: you recover 5 Hit Points, <strong>or</strong> you recover 5 Mind Points.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-hydra-dance]<br><strong>You Recover:</strong> @GAIN[5 hp] or @GAIN[5 mp]</p>",
       "type": "projectfu.dance"
     },
     "source": "FUHF144",

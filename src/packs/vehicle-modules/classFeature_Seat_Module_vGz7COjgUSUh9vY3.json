@@ -8,7 +8,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p><hr><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>",
+      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p><hr><p><strong>Target Gains:</strong> @EFFECT[pfu-passenger]</p>",
       "complex": false,
       "type": "projectfu.supportModule",
       "cost": 1000

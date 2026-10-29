@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you lose Hit Points due to damage, if that damage had a type and that type <strong>was not physical</strong>, you may spend 10 Hit Points to gain Resistance to that damage type until you use this Skill again.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.Kty7mXV2rYWYlh7P], @EFFECT[Compendium.projectfu.skills.Item.oRw9IgQb5O3y925W], @EFFECT[Compendium.projectfu.skills.Item.QYm9cOLsAy3z8lYk], @EFFECT[Compendium.projectfu.skills.Item.AalpjgPYtAnE2xUG], @EFFECT[Compendium.projectfu.skills.Item.35Nc53wsvpkolIJo], @EFFECT[Compendium.projectfu.skills.Item.MNqeb3czLk2niQCJ], @EFFECT[Compendium.projectfu.skills.Item.uw4oQDHCsyWLtTCO], or @EFFECT[Compendium.projectfu.skills.Item.ShWqhaoHw5jU8vLU]</p>",
+    "description": "<p>After you lose Hit Points due to damage, if that damage had a type and that type <strong>was not physical</strong>, you may spend 10 Hit Points to gain Resistance to that damage type until you use this Skill again.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-ecdysis-air], @EFFECT[pfu-ecdysis-bolt], @EFFECT[pfu-ecdysis-dark], @EFFECT[pfu-ecdysis-earth], @EFFECT[pfu-ecdysis-fire], @EFFECT[pfu-ecdysis-ice], @EFFECT[pfu-ecdysis-light], or @EFFECT[pfu-ecdysis-poison]</p>",
     "showTitleCard": {
       "value": false
     },

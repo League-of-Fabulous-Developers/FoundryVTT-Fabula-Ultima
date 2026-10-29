@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.Jhppf0TyPKJgfxUS]{Golem Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.AYjd1XWMIMXSHzAr]{Golem Dance (Damage)}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-golem-dance-resistance]{Golem Dance (Resistance)} or @EFFECT[pfu-golem-dance-damage]{Golem Dance (Damage)}</p>",
       "duration": "nextTurn",
       "type": "projectfu.dance"
     },
