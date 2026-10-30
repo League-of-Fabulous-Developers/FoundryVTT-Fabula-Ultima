@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "em45YtTJEIKYrrHj",
+  "name": "Elemental Shroud",
+  "color": "#0a2c70",
+  "sorting": "a",
+  "_id": "tP1kl5fTguOHGOv3",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217930533,
+    "modifiedTime": 1793217930533,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!tP1kl5fTguOHGOv3"
+}

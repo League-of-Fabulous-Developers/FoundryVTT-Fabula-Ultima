@@ -1,0 +1,61 @@
+{
+  "img": "icons/commodities/currency/coin-engraved-sun-smile-copper.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Prosperity",
+  "_id": "g480Ar3jtcprd86o",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [],
+    "fuid": "pfu-symbol-of-prosperity"
+  },
+  "description": "<p>When you spend 1 <strong>Fabula Point</strong> to <strong>invoke a Trait or Bond</strong> while bearing the <strong>Symbol of Prosperity</strong>, you also receive 100 zenit.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130527,
+    "modifiedTime": 1793311130527,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "BdbRnFmQsvWhyg5Q",
+  "sort": 300000,
+  "_key": "!effects!g480Ar3jtcprd86o"
+}

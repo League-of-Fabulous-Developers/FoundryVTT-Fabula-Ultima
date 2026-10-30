@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "2NfuHz3oOHaF32IL",
+  "name": "Chimeric Soul",
+  "color": "#348c31",
+  "sorting": "a",
+  "_id": "sPk4U0fKFAJwQHA3",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220615548,
+    "modifiedTime": 1793220615548,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!sPk4U0fKFAJwQHA3"
+}

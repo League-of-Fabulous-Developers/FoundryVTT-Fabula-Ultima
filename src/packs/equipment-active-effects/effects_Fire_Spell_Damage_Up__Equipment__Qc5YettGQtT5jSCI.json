@@ -1,0 +1,101 @@
+{
+  "name": "Fire Spell Damage Up (Equipment)",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "UBVZ6VpUKodHdxT5": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "damageTypes": [
+              "fire"
+            ],
+            "local": false,
+            "identifier": "",
+            "itemGroups": [
+              "spell"
+            ]
+          },
+          "actions": {
+            "iYJcGoV3iqX0tp1a": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "5",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "traits": {
+                "entries": []
+              },
+              "variant": ""
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-fire-spell-damage-up-equipment"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "Qc5YettGQtT5jSCI",
+  "type": "base",
+  "description": "<p>While you have this equipped, <strong>spells</strong> you cast that deal <strong>fire</strong> damage deal <strong>5 extra damage</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130038,
+    "modifiedTime": 1793311130038,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "iUWEn7Lso1K0AIOK",
+  "_key": "!effects!Qc5YettGQtT5jSCI"
+}

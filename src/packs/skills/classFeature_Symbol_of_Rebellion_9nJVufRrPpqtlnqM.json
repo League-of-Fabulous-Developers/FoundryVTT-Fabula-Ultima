@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>If a Villain is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.CDC3VvFP8ZTCuxXk]</p>",
+      "description": "<p>If a Villain is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gains:</strong> @EFFECT[pfu-symbol-of-rebellion]</p>",
       "type": "projectfu.symbol"
     },
     "source": "FUHF151",
@@ -26,8 +26,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921122,
-    "modifiedTime": 1792923922125,
+    "createdTime": 1793311127921,
+    "modifiedTime": 1793311128303,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

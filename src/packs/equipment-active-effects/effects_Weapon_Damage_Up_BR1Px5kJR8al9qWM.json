@@ -1,0 +1,74 @@
+{
+  "origin": null,
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Weapon Damage Up",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "_id": "BR1Px5kJR8al9qWM",
+  "type": "base",
+  "system": {
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.damage.value",
+        "value": 4,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "fuid": "pfu-weapon-damage-up"
+  },
+  "description": "<p>This weapon deals <strong>4 extra damage</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130033,
+    "modifiedTime": 1793311130033,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "yhBjvKUA0TH2OieA",
+  "_key": "!effects!BR1Px5kJR8al9qWM"
+}

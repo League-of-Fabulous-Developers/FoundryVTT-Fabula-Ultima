@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "M. Status (Slow)",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>When you hit one or more creatures with an offensive spell, each of them suffers @EFFECT[slow].</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "BPlL8gtslbbtHCvm",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-m-status-slow"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130254,
+    "modifiedTime": 1793311130254,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "GvNesyOurlR0JNH8",
+  "_key": "!effects!BPlL8gtslbbtHCvm"
+}

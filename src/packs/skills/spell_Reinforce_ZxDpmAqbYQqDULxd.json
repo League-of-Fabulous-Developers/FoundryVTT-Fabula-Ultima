@@ -96,12 +96,12 @@
     "fuid": "reinforce",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.0SGPkOpasLpl8PuC",
-        "Compendium.projectfu.skills.Item.fCKSz2LVMBOntokb",
-        "Compendium.projectfu.skills.Item.MTiWeXBaOjy41p9G",
-        "Compendium.projectfu.skills.Item.fRj1ONYfLF8Ert18",
-        "Compendium.projectfu.skills.Item.YPwd8ncv62T8md10",
-        "Compendium.projectfu.skills.Item.YapKaTVoWMghwB3V"
+        "pfu-reinforce-dazed",
+        "pfu-reinforce-enraged",
+        "pfu-reinforce-poisoned",
+        "pfu-reinforce-shaken",
+        "pfu-reinforce-slow",
+        "pfu-reinforce-weak"
       ],
       "duration": {
         "interval": null,
@@ -145,8 +145,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921264,
-    "modifiedTime": 1792923922145,
+    "createdTime": 1793311127973,
+    "modifiedTime": 1793311128311,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 700000,

@@ -1,0 +1,99 @@
+{
+  "name": "Prancing Dandelion (Bolt)",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/prancing-dandelion.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "SJ4ZNDsfGYeVgfwR": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "itemGroups": [],
+            "damageTypes": [],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "vFkrs8lPQIE7sY35": {
+              "type": "projectfu.changeTraitsRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "mode": "add"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.all.priority",
+        "value": "bolt",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-prancing-dandelion-bolt"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "8dUmoACDzUyPb0by",
+  "type": "base",
+  "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>bolt</strong>, its type cannot change, and it ignores Resistances.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130512,
+    "modifiedTime": 1793311130512,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "vA25RktPS40akavR",
+  "sort": 0,
+  "_key": "!effects!8dUmoACDzUyPb0by"
+}

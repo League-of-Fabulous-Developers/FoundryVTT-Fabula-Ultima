@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Status (Shaken)",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>Each target hit by the weapon suffers @EFFECT[shaken].</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "85IZ3SOH5PzeDJEF",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-status-shaken"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130253,
+    "modifiedTime": 1793311130253,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "GvNesyOurlR0JNH8",
+  "_key": "!effects!85IZ3SOH5PzeDJEF"
+}

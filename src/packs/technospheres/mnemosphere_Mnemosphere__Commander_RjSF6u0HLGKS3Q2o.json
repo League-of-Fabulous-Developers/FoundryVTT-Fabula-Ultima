@@ -70,8 +70,8 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.i9wagJN9DD7bjJ3k",
-              "Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp"
+              "pfu-bishops-edict-mp-costs-doubled",
+              "pfu-bishops-edict-extra-damage"
             ],
             "duration": {
               "interval": null,
@@ -167,7 +167,7 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.X4L3sibcGEi8LPvd"
+              "pfu-charging-cavalry-accuracy-up"
             ],
             "duration": {
               "interval": null,
@@ -461,8 +461,8 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.lwzEcMwQICongcb5",
-              "Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5"
+              "pfu-kings-castle-no-hpmp-recovery",
+              "pfu-kings-castle-extra-mp"
             ],
             "duration": {
               "interval": null,
@@ -595,8 +595,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925546,
-    "modifiedTime": 1792923925626,
+    "createdTime": 1793311130900,
+    "modifiedTime": 1793311130969,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

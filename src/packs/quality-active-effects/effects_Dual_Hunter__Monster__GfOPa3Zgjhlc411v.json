@@ -1,0 +1,60 @@
+{
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Dual Hunter (Monster)",
+  "_id": "GfOPa3Zgjhlc411v",
+  "type": "base",
+  "system": {
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.monster",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-dual-hunter-monster"
+  },
+  "description": "<p>The weapon deals 5 extra damage to creatures belonging to one of two particular Species.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130256,
+    "modifiedTime": 1793311130256,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "SH8cHX3lJkZlLgj8",
+  "_key": "!effects!GfOPa3Zgjhlc411v"
+}

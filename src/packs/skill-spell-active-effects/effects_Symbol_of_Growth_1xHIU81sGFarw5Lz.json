@@ -1,0 +1,61 @@
+{
+  "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Growth",
+  "_id": "1xHIU81sGFarw5Lz",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [],
+    "fuid": "pfu-symbol-of-growth"
+  },
+  "description": "<p>While bearing the <strong>Symbol of Growth</strong>, spells you cast with a <strong>target</strong> of “Up to three creatures” have a <strong>target</strong> of “Up to four creatures” instead. You still need to spend additional Mind Points for a fourth target.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130503,
+    "modifiedTime": 1793311130503,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "BdbRnFmQsvWhyg5Q",
+  "sort": 100000,
+  "_key": "!effects!1xHIU81sGFarw5Lz"
+}

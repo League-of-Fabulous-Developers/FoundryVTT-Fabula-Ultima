@@ -1,0 +1,60 @@
+{
+  "disabled": false,
+  "name": "Absorbing (Ice)",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>You Absorb <strong>ice</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "lADS1g0J63frv16Q",
+  "system": {
+    "changes": [
+      {
+        "key": "system.affinities.ice.current",
+        "value": 3,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-absorbing-ice"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130266,
+    "modifiedTime": 1793311130266,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "l6MrG5Cf50uoOXU3",
+  "_key": "!effects!lADS1g0J63frv16Q"
+}

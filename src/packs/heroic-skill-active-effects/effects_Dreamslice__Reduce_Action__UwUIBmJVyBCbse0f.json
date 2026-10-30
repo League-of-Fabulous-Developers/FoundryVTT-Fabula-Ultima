@@ -1,0 +1,61 @@
+{
+  "name": "Dreamslice (Reduce Action)",
+  "img": "icons/skills/melee/strike-blade-knife-green-purple.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-dreamslice-reduce-action"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "UwUIBmJVyBCbse0f",
+  "type": "base",
+  "description": "<p>You will perform one fewer action during your next turn (to a minimum of zero actions).</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130682,
+    "modifiedTime": 1793311130682,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "g18Aph32n2BJA5KC",
+  "sort": 300000,
+  "_key": "!effects!UwUIBmJVyBCbse0f"
+}

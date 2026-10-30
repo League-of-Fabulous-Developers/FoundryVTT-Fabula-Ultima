@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Until the <strong>start of your next turn</strong>, when a target <strong>succeeds</strong> on a <strong>Check</strong> that includes <strong>@DATA[key.attributeLocal] @ICON[@DATA[key.attribute]]</strong> and that <strong>Check</strong> allows them to advance or turn back a Clock, they may fill or erase <strong>1 additional section</strong> of that Clock.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.qXzGUkZdWpUyGpOI], @EFFECT[Compendium.projectfu.skills.Item.wh8fZahZ7aUwP2RT], @EFFECT[Compendium.projectfu.skills.Item.TQr3tB2cxAVUCYUh], or @EFFECT[Compendium.projectfu.skills.Item.c5XHYaYaBv0NJ7Z0]</p>",
+      "description": "<p>Until the <strong>start of your next turn</strong>, when a target <strong>succeeds</strong> on a <strong>Check</strong> that includes <strong>@DATA[key.attributeLocal] @ICON[@DATA[key.attribute]]</strong> and that <strong>Check</strong> allows them to advance or turn back a Clock, they may fill or erase <strong>1 additional section</strong> of that Clock.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[pfu-energetic-tone-dex], @EFFECT[pfu-energetic-tone-ins], @EFFECT[pfu-energetic-tone-mig], or @EFFECT[pfu-energetic-tone-wlp]</p>",
       "type": "projectfu.tone"
     },
     "source": "FUHF139",
@@ -25,8 +25,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921255,
-    "modifiedTime": 1792923922143,
+    "createdTime": 1793311127968,
+    "modifiedTime": 1793311128310,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

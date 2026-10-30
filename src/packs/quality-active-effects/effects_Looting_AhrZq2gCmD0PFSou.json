@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Looting",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>When you reduce a creature to 0 Hit Points with this weapon, you may immediately recover @GAIN[2 ip].</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "AhrZq2gCmD0PFSou",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-looting"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130254,
+    "modifiedTime": 1793311130254,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "MoLOhUjPdiKVsj66",
+  "_key": "!effects!AhrZq2gCmD0PFSou"
+}

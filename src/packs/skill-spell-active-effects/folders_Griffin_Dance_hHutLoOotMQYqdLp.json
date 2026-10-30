@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "YBLOSEfw9ukjWYUF",
+  "name": "Griffin Dance",
+  "color": "#d84bd9",
+  "sorting": "a",
+  "_id": "hHutLoOotMQYqdLp",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217753142,
+    "modifiedTime": 1793217753142,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!hHutLoOotMQYqdLp"
+}

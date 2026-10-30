@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "GrTjWNMavCUd7UnY",
+  "name": "Heroic Companion",
+  "color": "#4f6f66",
+  "sorting": "a",
+  "_id": "Pe9YzfFngAKWksIm",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220394470,
+    "modifiedTime": 1793220394470,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!Pe9YzfFngAKWksIm"
+}

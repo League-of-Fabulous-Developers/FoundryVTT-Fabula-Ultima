@@ -4,8 +4,6 @@ import { targetHandler } from '../helpers/target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { systemId } from '../helpers/system-utils.mjs';
-import { Flags } from '../helpers/flags.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
@@ -52,14 +50,8 @@ function createCompendiumEffectAnchor(effect, config, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
 	anchor.dataset.effect = StringUtils.toBase64(effect);
-	if (effect.flags[systemId][Flags.ActiveEffect.Source]) {
-		const sourceInfo = effect.flags[systemId][Flags.ActiveEffect.Source];
-		anchor.dataset.uuid = sourceInfo.effectUuid;
-		anchor.dataset.fuid = sourceInfo.fuid;
-	} else {
-		anchor.dataset.uuid = effect.uuid;
-		anchor.dataset.fuid = effect.parent?.system?.fuid;
-	}
+	anchor.dataset.uuid = effect.uuid;
+	anchor.dataset.fuid = effect.system.fuid;
 	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatExamineSelectedEffect')}`);
@@ -138,22 +130,26 @@ async function inlineEffectEnricher(match, options) {
 	const label = match.groups.label;
 	const config = parseConfigData(match);
 
-	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
-		const status = statusEffects.find((value) => value.id === id);
-		if (status) {
-			return createStatusAnchor(id, status, config);
-		}
-	} else {
-		const effectData = await Effects.getEffectData(id);
-		if (effectData) {
-			return createCompendiumEffectAnchor(effectData, config, label);
-		}
+	try {
+		if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
+			const status = statusEffects.find((value) => value.id === id);
+			if (status) {
+				return createStatusAnchor(id, status, config);
+			}
+		} else {
+			const effectData = await Effects.getEffectData(id);
+			if (effectData) {
+				return createCompendiumEffectAnchor(effectData, config, label);
+			}
 
-		// TODO: Deprecate someday
-		const decodedEffect = StringUtils.fromBase64(id);
-		if (decodedEffect && decodedEffect.name && (decodedEffect.system?.changes || decodedEffect.changes)) {
-			return createEffectAnchor(decodedEffect, label);
+			// TODO: Deprecate someday
+			const decodedEffect = StringUtils.fromBase64(id);
+			if (decodedEffect && decodedEffect.name && (decodedEffect.system?.changes || decodedEffect.changes)) {
+				return createEffectAnchor(decodedEffect, label);
+			}
 		}
+	} catch (e) {
+		console.error('Unable to create effect anchor.', e);
 	}
 
 	return createBrokenAnchor();

@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "BdbRnFmQsvWhyg5Q",
+  "name": "Symbol of Forbiddance",
+  "color": "#1c505b",
+  "sorting": "a",
+  "_id": "BWU1l8E9xKZQGIKP",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793309045957,
+    "modifiedTime": 1793309045957,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!BWU1l8E9xKZQGIKP"
+}

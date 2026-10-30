@@ -1,0 +1,95 @@
+{
+  "disabled": false,
+  "name": "Perfect Health",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>You are immune to all status effects.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "i31smpxggoZycQah",
+  "system": {
+    "changes": [
+      {
+        "key": "system.immunities.slow.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.immunities.dazed.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.immunities.weak.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.immunities.shaken.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.immunities.enraged.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.immunities.poisoned.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-perfect-health"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130264,
+    "modifiedTime": 1793311130264,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "i5zeg0gULpbqerRz",
+  "_key": "!effects!i31smpxggoZycQah"
+}

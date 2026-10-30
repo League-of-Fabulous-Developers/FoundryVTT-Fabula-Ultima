@@ -9,7 +9,7 @@
     },
     "data": {
       "trigger": "After an enemy you can see performs an  Accuracy Check or a Magic Check",
-      "description": "<p>You may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).</p><hr><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.hNeylrus4Ii8hIKa]<br><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>",
+      "description": "<p>You may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).</p><hr><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br><strong>You Gain:</strong> @EFFECT[pfu-psychic-shield]<br><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>",
       "type": "projectfu.psychicGift"
     },
     "source": "FUTF153",
@@ -26,8 +26,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921268,
-    "modifiedTime": 1792923922145,
+    "createdTime": 1793311127975,
+    "modifiedTime": 1793311128311,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -1,0 +1,74 @@
+{
+  "disabled": true,
+  "name": "Specialized",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>You have Immunity to <strong>(choose two damage types other than physical)</strong> damage, but Vulnerability to <strong>(choose one damage type)</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "x2VxVfiIiVG6bIcE",
+  "system": {
+    "changes": [
+      {
+        "key": "system.affinities.physical.current",
+        "value": 2,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.air.current",
+        "value": 2,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      },
+      {
+        "key": "system.affinities.bolt",
+        "value": "downgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-specialized"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130270,
+    "modifiedTime": 1793311130270,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "i5zeg0gULpbqerRz",
+  "_key": "!effects!x2VxVfiIiVG6bIcE"
+}

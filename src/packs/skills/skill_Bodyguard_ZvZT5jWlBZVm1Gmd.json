@@ -65,7 +65,7 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.skills.Item.21y8FN9MymAxo1RY"
+        "pfu-bodyguard"
       ],
       "prompt": false
     },
@@ -96,8 +96,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921264,
-    "modifiedTime": 1792923922145,
+    "createdTime": 1793311127972,
+    "modifiedTime": 1793311128311,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -1,0 +1,81 @@
+{
+  "name": "Angel Dance (Damage)",
+  "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.attack.normal",
+        "value": "light",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      },
+      {
+        "key": "system.overrides.damageType.spell.normal",
+        "value": "light",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-angel-dance-damage"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "RQ4JkyAsLwLGcF8Z",
+  "type": "base",
+  "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>light</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130521,
+    "modifiedTime": 1793311130521,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "vyn36uDO2EWBstZM",
+  "sort": 0,
+  "_key": "!effects!RQ4JkyAsLwLGcF8Z"
+}

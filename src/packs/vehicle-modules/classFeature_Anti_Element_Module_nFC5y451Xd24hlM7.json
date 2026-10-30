@@ -8,7 +8,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> gain Resistance to the chosen damage type until this module remains enabled.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.jv7iQAgxbAPxlgoy], @EFFECT[Compendium.projectfu.vehicle-modules.Item.qhnavaTu9QpEqtJS], @EFFECT[Compendium.projectfu.vehicle-modules.Item.Nxjt8wn0Bpa4aHbH], @EFFECT[Compendium.projectfu.vehicle-modules.Item.MJuCHhlM3wpbhiDP], or @EFFECT[Compendium.projectfu.vehicle-modules.Item.N8rWmTrC0t79NCmn]</p>",
+      "description": "<p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> gain Resistance to the chosen damage type until this module remains enabled.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[pfu-anti-element-module-air], @EFFECT[pfu-anti-element-module-bolt], @EFFECT[pfu-anti-element-module-earth], @EFFECT[pfu-anti-element-module-fire], or @EFFECT[pfu-anti-element-module-ice]</p>",
       "complex": false,
       "type": "projectfu.supportModule",
       "cost": 1000
@@ -24,8 +24,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923923292,
-    "modifiedTime": 1792923923320,
+    "createdTime": 1793311129023,
+    "modifiedTime": 1793311129051,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

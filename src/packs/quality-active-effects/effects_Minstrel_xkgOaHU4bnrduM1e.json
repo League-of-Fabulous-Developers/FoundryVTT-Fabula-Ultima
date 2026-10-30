@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Minstrel",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>When you attack with this weapon using the <strong>Vibrato</strong> Skill (see <strong>Atlas High Fantasy</strong>, page <strong>137</strong>), all damage dealt by the attack becomes of the same type as the <strong>【key type】</strong> of the last verse you sang.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "xkgOaHU4bnrduM1e",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-minstrel"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130271,
+    "modifiedTime": 1793311130271,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "wRqZOkZnfCN50Yil",
+  "_key": "!effects!xkgOaHU4bnrduM1e"
+}

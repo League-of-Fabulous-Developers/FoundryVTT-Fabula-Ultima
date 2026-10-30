@@ -1,0 +1,60 @@
+{
+  "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Forbiddance (Objective)",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": []
+  },
+  "description": "<p>When you perform the <strong>Objective</strong> action while bearing the <strong>Symbol of Forbiddance</strong>, you lose 5 HP and MP (<strong>before</strong> performing that action). Both amounts increase to 10 if the symbolist is <strong>level 20 or higher</strong>, or to 20 if they are <strong>level 40 or higher</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793311130514,
+    "createdTime": 1793311130514,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "BWU1l8E9xKZQGIKP",
+  "_id": "EbSb4sf1o2sCJa9M",
+  "sort": 300000,
+  "_key": "!effects!EbSb4sf1o2sCJa9M"
+}

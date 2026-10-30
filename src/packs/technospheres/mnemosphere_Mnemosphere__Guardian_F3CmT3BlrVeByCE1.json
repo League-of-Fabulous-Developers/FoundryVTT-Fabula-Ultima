@@ -74,7 +74,7 @@
               "tracking": ""
             },
             "entries": [
-              "Compendium.projectfu.skills.Item.21y8FN9MymAxo1RY"
+              "pfu-bodyguard"
             ],
             "prompt": false
           },
@@ -501,7 +501,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong> or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before or after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately). You cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p><hr /><p><em>You can use this effect to track if you have this Skill available to use during a conflict.<br /></em><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.biHrtuJc1M3Xo7S4]</p>",
+          "description": "<p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong> or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before or after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately). You cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p><hr /><p><em>You can use this effect to track if you have this Skill available to use during a conflict.<br /></em><strong>You Gain:</strong> @EFFECT[pfu-protect-available]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -599,8 +599,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925544,
-    "modifiedTime": 1792923925625,
+    "createdTime": 1793311130899,
+    "modifiedTime": 1793311130968,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

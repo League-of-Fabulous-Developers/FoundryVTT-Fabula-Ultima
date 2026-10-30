@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "04TQgusXjpRwlpJh",
+  "name": "Lunar Magnolia",
+  "color": "#723c44",
+  "sorting": "a",
+  "_id": "DHqdJuwmDLyR8hHU",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218150173,
+    "modifiedTime": 1793218150173,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!DHqdJuwmDLyR8hHU"
+}

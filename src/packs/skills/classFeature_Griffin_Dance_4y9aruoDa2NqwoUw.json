@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>air</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>air</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.TOhVnCQA8xorHcz4]{Griffin Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.IBPW4POIOr7FcYo7]{Griffin Dance (Damage)}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>air</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>air</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-griffin-dance-resistance]{Griffin Dance (Resistance)} or @EFFECT[pfu-griffin-dance-damage]{Griffin Dance (Damage)}</p>",
       "duration": "nextTurn",
       "type": "projectfu.dance"
     },
@@ -27,8 +27,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921100,
-    "modifiedTime": 1792923922121,
+    "createdTime": 1793311127910,
+    "modifiedTime": 1793311128301,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

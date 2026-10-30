@@ -1,0 +1,60 @@
+{
+  "disabled": true,
+  "name": "Mastered",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "type": "base",
+  "description": "<p>Deals 2 extra damage for each <strong>Class</strong> you have mastered.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "orSqm7uVkNwLUQSK",
+  "system": {
+    "changes": [
+      {
+        "key": "system.damage.value",
+        "value": 2,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-mastered"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130268,
+    "modifiedTime": 1793311130268,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "SH8cHX3lJkZlLgj8",
+  "_key": "!effects!orSqm7uVkNwLUQSK"
+}

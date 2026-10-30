@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>light</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>light</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.tSDWgpPtvuxhxeSq]{Angel Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ]{Angel Dance (Damage)}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>light</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>light</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-angel-dance-resistance]{Angel Dance (Resistance)} or @EFFECT[pfu-angel-dance-damage]{Angel Dance (Damage)}</p>",
       "duration": "nextTurn",
       "type": "projectfu.dance"
     },
@@ -27,8 +27,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921369,
-    "modifiedTime": 1792923922162,
+    "createdTime": 1793311128008,
+    "modifiedTime": 1793311128318,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -1,0 +1,74 @@
+{
+  "name": "WLP Base Cap",
+  "img": "systems/projectfu/styles/static/statuses/WlpDown.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.attributes.wlp.current",
+        "value": "@system.attributes.wlp.base",
+        "priority": null,
+        "type": "downgrade",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-wlp-base-cap"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "Wd416YPndZZ2AU1M",
+  "type": "base",
+  "description": "<p>Your <strong>Willpower</strong> die size cannot be higher than your <strong>base</strong> Willpower die size.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311129670,
+    "modifiedTime": 1793311129670,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "KtEArjkGWRkOEKtb",
+  "_key": "!effects!Wd416YPndZZ2AU1M"
+}

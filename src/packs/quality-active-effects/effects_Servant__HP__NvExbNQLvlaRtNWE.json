@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Servant (HP)",
+  "img": "systems/projectfu/styles/static/statuses/Regen.webp",
+  "type": "base",
+  "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Hit Points, it restores an extra @GAIN[5 hp].</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "NvExbNQLvlaRtNWE",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-servant-hp"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130258,
+    "modifiedTime": 1793311130258,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "MoLOhUjPdiKVsj66",
+  "_key": "!effects!NvExbNQLvlaRtNWE"
+}

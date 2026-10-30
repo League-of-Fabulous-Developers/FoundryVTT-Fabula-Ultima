@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Unburdened",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "type": "base",
+  "description": "<p>Deals extra damage equal to the difference between your current and maximum <strong>Inventory Points</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "biIVhHHbcbIJCzRv",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-unburdened"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130262,
+    "modifiedTime": 1793311130262,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "SH8cHX3lJkZlLgj8",
+  "_key": "!effects!biIVhHHbcbIJCzRv"
+}

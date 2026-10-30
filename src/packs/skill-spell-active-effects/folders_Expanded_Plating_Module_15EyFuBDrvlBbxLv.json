@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "ePjg5XbR5sx5IAb0",
+  "name": "Expanded Plating Module",
+  "color": "#251410",
+  "sorting": "a",
+  "_id": "15EyFuBDrvlBbxLv",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793221601071,
+    "modifiedTime": 1793221601071,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!15EyFuBDrvlBbxLv"
+}

@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Envious",
+  "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
+  "type": "base",
+  "description": "<p>When you hit one or more creatures with this weapon if you have at least one <strong>Bond</strong> of <strong>inferiority</strong>, you may recover @GAIN[5 mp].</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "oXcTb25v4ZQ5wR1n",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-envious"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130268,
+    "modifiedTime": 1793311130268,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "MoLOhUjPdiKVsj66",
+  "_key": "!effects!oXcTb25v4ZQ5wR1n"
+}

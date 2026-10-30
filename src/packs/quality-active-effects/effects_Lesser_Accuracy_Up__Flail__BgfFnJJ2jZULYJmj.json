@@ -1,0 +1,60 @@
+{
+  "disabled": false,
+  "name": "Lesser Accuracy Up (Flail)",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+  "type": "base",
+  "description": "<p>You gain a +1 bonus to Accuracy Checks with the <strong>flail</strong> weapon category).</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "BgfFnJJ2jZULYJmj",
+  "system": {
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.flail",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-lesser-accuracy-up-flail"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130254,
+    "modifiedTime": 1793311130254,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "G9QbTliORWqM7IoY",
+  "_key": "!effects!BgfFnJJ2jZULYJmj"
+}

@@ -130,6 +130,17 @@
 			}
 		},
 		{
+			"label": "Game Master Effects",
+			"type": "ActiveEffect",
+			"name": "game-master-active-effects",
+			"path": "packs/game-master-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Rollable Tables",
 			"type": "RollTable",
 			"name": "rollable-tables",
@@ -153,9 +164,9 @@
 		},
 		{
 			"label": "Actor Effects",
-			"type": "Item",
-			"name": "actor-effects",
-			"path": "packs/actor-effects",
+			"type": "ActiveEffect",
+			"name": "actor-active-effects",
+			"path": "packs/actor-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -164,9 +175,9 @@
 		},
 		{
 			"label": "Conditions",
-			"type": "Item",
-			"name": "conditions-effects",
-			"path": "packs/conditions-effects",
+			"type": "ActiveEffect",
+			"name": "condition-active-effects",
+			"path": "packs/condition-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -175,9 +186,9 @@
 		},
 		{
 			"label": "Equipment Effects",
-			"type": "Item",
-			"name": "equipment-effects",
-			"path": "packs/equipment-effects",
+			"type": "ActiveEffect",
+			"name": "equipment-active-effects",
+			"path": "packs/equipment-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -186,9 +197,31 @@
 		},
 		{
 			"label": "Qualities",
-			"type": "Item",
-			"name": "qualities",
-			"path": "packs/qualities",
+			"type": "ActiveEffect",
+			"name": "quality-active-effects",
+			"path": "packs/quality-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Skill & Spell Effects",
+			"type": "ActiveEffect",
+			"name": "skill-spell-active-effects",
+			"path": "packs/skill-spell-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Heroic SKill Effects",
+			"type": "ActiveEffect",
+			"name": "heroic-skill-active-effects",
+			"path": "packs/heroic-skill-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -235,7 +268,7 @@
 			"name": "Effects",
 			"sorting": "a",
 			"color": "#8b5c00",
-			"packs": ["actor-effects", "conditions-effects", "equipment-effects", "qualities"]
+			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects", "skill-spell-active-effects", "heroic-skill-active-effects"]
 		},
 		{
 			"name": "Equipment",
@@ -247,7 +280,7 @@
 			"name": "GM Tools",
 			"sorting": "a",
 			"color": "#831101",
-			"packs": ["rollable-tables", "game-master"]
+			"packs": ["rollable-tables", "game-master", "game-master-active-effects"]
 		},
 		{
 			"name": "Journals",

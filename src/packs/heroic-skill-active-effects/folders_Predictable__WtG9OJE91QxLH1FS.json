@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "GrTjWNMavCUd7UnY",
+  "name": "Predictable!",
+  "color": "#4f6f66",
+  "sorting": "a",
+  "_id": "WtG9OJE91QxLH1FS",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220401846,
+    "modifiedTime": 1793220401846,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!WtG9OJE91QxLH1FS"
+}

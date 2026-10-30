@@ -61,11 +61,11 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.1Oq4CktThiUInrbk",
-        "Compendium.projectfu.heroic-skills.Item.NKj3kW2HgQU7MQoT",
-        "Compendium.projectfu.heroic-skills.Item.KJkbGHbryDDZJmLo",
-        "Compendium.projectfu.heroic-skills.Item.iuwlCR6pbHS2nY7m",
-        "Compendium.projectfu.heroic-skills.Item.G3I8yq23O6hJEPzP"
+        "pfu-predictable-attack",
+        "pfu-predictable-guard",
+        "pfu-predictable-objective",
+        "pfu-predictable-skill",
+        "pfu-predictable-spell"
       ],
       "prompt": true
     },
@@ -100,8 +100,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923922868,
-    "modifiedTime": 1792923923015,
+    "createdTime": 1793311128696,
+    "modifiedTime": 1793311128809,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

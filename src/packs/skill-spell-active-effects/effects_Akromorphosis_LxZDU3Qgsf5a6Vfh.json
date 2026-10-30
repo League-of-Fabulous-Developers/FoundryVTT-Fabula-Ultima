@@ -1,0 +1,76 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_akromorphosis.png",
+  "origin": null,
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Akromorphosis",
+  "_id": "LxZDU3Qgsf5a6Vfh",
+  "type": "base",
+  "system": {
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.damage.value",
+        "value": "6+(&sl(\"akromorphosis\")l*2)",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.accuracy.value",
+        "value": "&sl(\"akromorphosis\")",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "fuid": "pfu-akromorphosis"
+  },
+  "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130519,
+    "modifiedTime": 1793311130519,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "6dS8jluviKeQjdJp",
+  "sort": 0,
+  "_key": "!effects!LxZDU3Qgsf5a6Vfh"
+}

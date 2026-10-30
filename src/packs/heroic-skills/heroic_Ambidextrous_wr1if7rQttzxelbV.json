@@ -9,7 +9,7 @@
     "summary": {
       "value": "Fight with two weapons of different categories."
     },
-    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to <strong>weapons</strong> belonging to different Categories, even if one is a <strong>melee weapon</strong> and the other is a <strong>ranged weapon</strong> (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p><hr><p><strong>You Gain For 2nd Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.n8smo5hXfdkEOI4e]</p>",
+    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to <strong>weapons</strong> belonging to different Categories, even if one is a <strong>melee weapon</strong> and the other is a <strong>ranged weapon</strong> (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p><hr><p><strong>You Gain For 2nd Attack:</strong> @EFFECT[pfu-ambidextrous-damage]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -138,8 +138,8 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923922873,
-        "modifiedTime": 1792923922873,
+        "createdTime": 1793311128706,
+        "modifiedTime": 1793311128706,
         "lastModifiedBy": "qSTUglS93W7Had7H"
       },
       "start": null,
@@ -163,8 +163,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923922873,
-    "modifiedTime": 1792923923015,
+    "createdTime": 1793311128706,
+    "modifiedTime": 1793311128809,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

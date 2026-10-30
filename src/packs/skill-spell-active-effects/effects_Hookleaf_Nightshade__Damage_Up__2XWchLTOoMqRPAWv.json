@@ -1,0 +1,108 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hookleaf-nightshade.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Hookleaf Nightshade (Damage Up)",
+  "_id": "2XWchLTOoMqRPAWv",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "rules": {
+      "elements": {
+        "aRQAKPjB6FpiafrE": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [],
+            "itemGroups": [],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "G199abCosV1Q20Dn": {
+              "type": "projectfu.traitsRulePredicate",
+              "traits": {
+                "entries": [
+                  "damage"
+                ],
+                "quantifier": "any"
+              }
+            }
+          },
+          "actions": {
+            "9sIZw11n5ayz7HGk": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>The first time you deal <strong>poison</strong>, you deal extra damage and those that lose HP suffer <strong>poisoned</strong>.</p>"
+            },
+            "zcjUlQnCPiFyk4rL": {
+              "type": "projectfu.applyEffectRuleAction",
+              "effect": "poisoned"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.poison",
+        "value": "~&sl('chloromancy')",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-hookleaf-nightshade-damage-up"
+  },
+  "description": "<p>When you deal <strong>poison</strong> damage for the first time during your turn while this magiseed is <strong>planted</strong>, you deal extra damage equal to <strong>【SL in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130504,
+    "modifiedTime": 1793311130504,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "qHdDoV3LhyKVs38T",
+  "sort": 0,
+  "_key": "!effects!2XWchLTOoMqRPAWv"
+}

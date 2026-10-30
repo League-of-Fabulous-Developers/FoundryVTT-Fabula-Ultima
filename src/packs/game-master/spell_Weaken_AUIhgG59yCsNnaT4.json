@@ -109,15 +109,15 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.game-master.Item.F7vItVCE5aVZjgG7",
-        "Compendium.projectfu.game-master.Item.3u8TxdveQgM4THLr",
-        "Compendium.projectfu.game-master.Item.l9D9CW5snjAFoWxw",
-        "Compendium.projectfu.game-master.Item.3arDuXneGG264kpd",
-        "Compendium.projectfu.game-master.Item.U91NHOxpVmtqN7Pd",
-        "Compendium.projectfu.game-master.Item.MSU4wyOjHh7X29oJ",
-        "Compendium.projectfu.game-master.Item.gJaiSQQKpyl79uEM",
-        "Compendium.projectfu.game-master.Item.TBaMhx4AMwamseGE",
-        "Compendium.projectfu.game-master.Item.I6AH3hPvNHDqFggI"
+        "pfu-weaken-air",
+        "pfu-weaken-bolt",
+        "pfu-weaken-dark",
+        "pfu-weaken-earth",
+        "pfu-weaken-fire",
+        "pfu-weaken-ice",
+        "pfu-weaken-light",
+        "pfu-weaken-physical",
+        "pfu-weaken-poison"
       ],
       "duration": {
         "interval": null,
@@ -141,8 +141,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923923399,
-    "modifiedTime": 1792923923427,
+    "createdTime": 1793311129095,
+    "modifiedTime": 1793311129124,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

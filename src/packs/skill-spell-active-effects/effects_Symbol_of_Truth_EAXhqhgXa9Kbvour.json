@@ -1,0 +1,117 @@
+{
+  "img": "icons/magic/symbols/star-yellow.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Truth",
+  "_id": "EAXhqhgXa9Kbvour",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {
+        "Urtan0pIsveSKzFl": {
+          "trigger": {
+            "type": "projectfu.performCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "open"
+            ],
+            "local": false
+          },
+          "predicates": {
+            "aoItoDSDGy6zXVUJ": {
+              "type": "projectfu.checkRulePredicate",
+              "result": null,
+              "attributes": {
+                "primary": {
+                  "value": "ins"
+                },
+                "secondary": {
+                  "value": "ins"
+                }
+              },
+              "parity": "",
+              "outcome": "",
+              "quantifier": "any"
+            }
+          },
+          "actions": {
+            "r67LaqWnmIKXqxuR": {
+              "type": "projectfu.modifyCheckRuleAction",
+              "bonus": "2"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        },
+        "eJugk6hNFhWxLufO": {
+          "trigger": {
+            "type": "projectfu.performCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "accuracy",
+              "magic"
+            ],
+            "local": false
+          },
+          "actions": {
+            "adseOySIMNJB5oLa": {
+              "type": "projectfu.modifyCheckRuleAction",
+              "bonus": "2"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-symbol-of-truth"
+  },
+  "description": "<p>While you bear the <strong>Symbol of Truth</strong>, checks performed to examine or locate you, as well as Accuracy Checks and Magic Checks for attacks and offensive spells that include you among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130514,
+    "modifiedTime": 1793311130514,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "BdbRnFmQsvWhyg5Q",
+  "sort": 0,
+  "_key": "!effects!EAXhqhgXa9Kbvour"
+}

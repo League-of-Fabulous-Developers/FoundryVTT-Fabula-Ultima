@@ -1,0 +1,61 @@
+{
+  "img": "icons/magic/symbols/runes-carved-stone-green.webp",
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Symbol of Revenge",
+  "_id": "0gdrA51PpAw9rogi",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [],
+    "fuid": "pfu-symbol-of-revenge"
+  },
+  "description": "<p>When a creature in <strong>Crisis</strong> hits you with an attack or offensive spell while you are bearing the <strong>Symbol of Revenge</strong>, the creature in <strong>Crisis</strong> recovers 5 HP and MP.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130501,
+    "modifiedTime": 1793311130501,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "BdbRnFmQsvWhyg5Q",
+  "sort": 0,
+  "_key": "!effects!0gdrA51PpAw9rogi"
+}

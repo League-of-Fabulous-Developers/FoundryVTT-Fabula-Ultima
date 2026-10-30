@@ -1,0 +1,81 @@
+{
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Geo Hex (Wellspring Expansion)",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "id": "",
+        "name": "",
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false,
+        "style": "basic"
+      },
+      "elements": {},
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.air",
+        "value": "5+(~&sl('wellspring-expansion'))",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.incomingDamage.ice",
+        "value": "5+(~&sl('wellspring-expansion'))",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-geo-hex-wellspring-expansion"
+  },
+  "description": "<p>Until the start of the <strong>invoker's</strong> next turn, you suffer <strong>【5 + Wellspring Expansion SL】</strong> extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793311130520,
+    "createdTime": 1793311130520,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "bQz5ar85yfTx32Q4",
+  "_id": "OWYqIOxgKkkJJI0s",
+  "sort": 100000,
+  "_key": "!effects!OWYqIOxgKkkJJI0s"
+}

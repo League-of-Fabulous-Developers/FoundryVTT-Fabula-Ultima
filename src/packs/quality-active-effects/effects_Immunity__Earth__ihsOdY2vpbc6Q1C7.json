@@ -1,0 +1,60 @@
+{
+  "disabled": false,
+  "name": "Immunity (Earth)",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>You have Immunity to <strong>earth</strong> damage.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "ihsOdY2vpbc6Q1C7",
+  "system": {
+    "changes": [
+      {
+        "key": "system.affinities.earth.current",
+        "value": 2,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-immunity-earth"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130264,
+    "modifiedTime": 1793311130264,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "Ql0JhlMKP6YRtuxt",
+  "_key": "!effects!ihsOdY2vpbc6Q1C7"
+}

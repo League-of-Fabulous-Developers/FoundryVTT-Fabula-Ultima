@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "ePjg5XbR5sx5IAb0",
+  "name": "Anti-Element Module",
+  "color": "#251410",
+  "sorting": "a",
+  "_id": "sHNe4sokr8LmoXu4",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793221462254,
+    "modifiedTime": 1793221462254,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!sHNe4sokr8LmoXu4"
+}

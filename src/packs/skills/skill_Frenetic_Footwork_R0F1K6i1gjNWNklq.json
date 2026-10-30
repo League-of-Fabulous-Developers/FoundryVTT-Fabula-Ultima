@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
+    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-frenetic-footwork]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -111,7 +111,7 @@
               "actions": {
                 "2VN9owlCXPc4EBfm": {
                   "type": "projectfu.messageRuleAction",
-                  "message": "<p>If this dance has a <strong>duration</strong> of \"Until the start of your next turn\", gain @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]{Frenetic Footwork}.</p>"
+                  "message": "<p>If this dance has a <strong>duration</strong> of \"Until the start of your next turn\", gain @EFFECT[pfu-frenetic-footwork]{Frenetic Footwork}.</p>"
                 }
               },
               "predicates": {},
@@ -168,8 +168,8 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923921215,
-        "modifiedTime": 1792923921215,
+        "createdTime": 1793311127955,
+        "modifiedTime": 1793311127955,
         "lastModifiedBy": "qSTUglS93W7Had7H"
       },
       "start": null,
@@ -192,8 +192,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921215,
-    "modifiedTime": 1792923922137,
+    "createdTime": 1793311127955,
+    "modifiedTime": 1793311128308,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

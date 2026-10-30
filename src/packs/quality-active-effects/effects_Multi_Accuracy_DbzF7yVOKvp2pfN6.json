@@ -1,0 +1,60 @@
+{
+  "disabled": true,
+  "name": "Multi Accuracy",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+  "type": "base",
+  "description": "<p>When you perform an attack with <strong>multi</strong>, you gain a +2 bonus to your accuracy check.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "DbzF7yVOKvp2pfN6",
+  "system": {
+    "changes": [
+      {
+        "key": "system.bonuses.accuracy.accuracyCheck",
+        "value": 2,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-multi-accuracy"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130255,
+    "modifiedTime": 1793311130255,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "G9QbTliORWqM7IoY",
+  "_key": "!effects!DbzF7yVOKvp2pfN6"
+}

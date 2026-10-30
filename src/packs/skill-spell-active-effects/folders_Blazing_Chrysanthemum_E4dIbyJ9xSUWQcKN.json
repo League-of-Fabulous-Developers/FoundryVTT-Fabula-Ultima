@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "04TQgusXjpRwlpJh",
+  "name": "Blazing Chrysanthemum",
+  "color": "#723c44",
+  "sorting": "a",
+  "_id": "E4dIbyJ9xSUWQcKN",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218120557,
+    "modifiedTime": 1793218120557,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!E4dIbyJ9xSUWQcKN"
+}

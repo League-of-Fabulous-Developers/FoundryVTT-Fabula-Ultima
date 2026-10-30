@@ -1,0 +1,69 @@
+{
+  "name": "Strength of Five Wellsprings (INS)",
+  "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
+  "system": {
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.attributes.ins",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-strength-of-five-wellsprings-ins"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>Your <strong>Insight</strong> is increased by one die size. This lasts until the end of the scene, or until you use the <strong>Strength of Five Wellsprings</strong> Heroic Skill again.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793311130686,
+    "createdTime": 1793311130686,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "WjWJDiKU30XnnVaL",
+  "_id": "okeHIKS1CIVVkm94",
+  "sort": 0,
+  "_key": "!effects!okeHIKS1CIVVkm94"
+}

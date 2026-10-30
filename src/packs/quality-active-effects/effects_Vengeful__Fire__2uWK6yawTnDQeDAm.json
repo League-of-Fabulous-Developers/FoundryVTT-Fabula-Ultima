@@ -1,0 +1,52 @@
+{
+  "disabled": false,
+  "name": "Vengeful (Fire)",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
+  "type": "base",
+  "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal @DMG[5 fire] damage to that creature (after the attack has been resolved).</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "2uWK6yawTnDQeDAm",
+  "system": {
+    "changes": [],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-vengeful-fire"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130251,
+    "modifiedTime": 1793311130251,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "SH8cHX3lJkZlLgj8",
+  "_key": "!effects!2uWK6yawTnDQeDAm"
+}

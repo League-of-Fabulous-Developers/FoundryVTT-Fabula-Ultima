@@ -1,0 +1,67 @@
+{
+  "disabled": true,
+  "name": "Bond Boost",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "type": "base",
+  "description": "<p>As long as you have at least two <strong>Bonds</strong> of <strong>(choose bond type)</strong>, you gain a +1 bonus to both your Defense and Magic Defense.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_id": "WxoqethmaNXNaQVu",
+  "system": {
+    "changes": [
+      {
+        "key": "system.derived.mdef.bonus",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.derived.def.bonus",
+        "value": 1,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "quality",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {}
+    },
+    "fuid": "pfu-bond-boost"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "origin": null,
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130261,
+    "modifiedTime": 1793311130261,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "i5zeg0gULpbqerRz",
+  "_key": "!effects!WxoqethmaNXNaQVu"
+}

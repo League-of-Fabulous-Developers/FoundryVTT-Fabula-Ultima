@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "04TQgusXjpRwlpJh",
+  "name": "Regal Protea",
+  "color": "#723c44",
+  "sorting": "a",
+  "_id": "yy3ewDTVFdVKmHYS",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218178459,
+    "modifiedTime": 1793218178459,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!yy3ewDTVFdVKmHYS"
+}

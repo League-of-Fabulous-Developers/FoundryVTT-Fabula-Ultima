@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.Q4Pkg9rrX82uhCLc]{Bat Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.9VFzdZVtMbxlpj77]{Bat Dance (Damage)}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-bat-dance-resistance]{Bat Dance (Resistance)} or @EFFECT[pfu-bat-dance-damage]{Bat Dance (Damage)}</p>",
       "duration": "nextTurn",
       "type": "projectfu.dance"
     },
@@ -27,8 +27,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921108,
-    "modifiedTime": 1792923922123,
+    "createdTime": 1793311127913,
+    "modifiedTime": 1793311128302,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

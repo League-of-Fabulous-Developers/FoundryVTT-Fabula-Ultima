@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>@DATA[key.typeLocal] @ICON[@DATA[key.type]]</strong>. This effect can trigger once for each target of the <strong>verse</strong>, separately.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.6Tx12tMHEznjUxaj], @EFFECT[Compendium.projectfu.skills.Item.FZmT8QY31NromlLY], @EFFECT[Compendium.projectfu.skills.Item.vUk23JgHiCXviwJ4], @EFFECT[Compendium.projectfu.skills.Item.Rr2hGZ0KHmv1IZIe], @EFFECT[Compendium.projectfu.skills.Item.MHvBgVg7egC3MO4W], @EFFECT[Compendium.projectfu.skills.Item.JOVxvrw4AQUBo88G], @EFFECT[Compendium.projectfu.skills.Item.8bKctJRT4X5Ai2ge], or @EFFECT[Compendium.projectfu.skills.Item.d2WBcxPOjEh1nJOX]</p>",
+      "description": "<p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>@DATA[key.typeLocal] @ICON[@DATA[key.type]]</strong>. This effect can trigger once for each target of the <strong>verse</strong>, separately.</p><hr><p><strong>Targets Gain:</strong> @EFFECT[pfu-menacing-tone-air], @EFFECT[pfu-menacing-tone-bolt], @EFFECT[pfu-menacing-tone-dark], @EFFECT[pfu-menacing-tone-earth], @EFFECT[pfu-menacing-tone-fire], @EFFECT[pfu-menacing-tone-ice], @EFFECT[pfu-menacing-tone-light], or @EFFECT[pfu-menacing-tone-physical]</p>",
       "type": "projectfu.tone"
     },
     "source": "FUHF139",
@@ -25,8 +25,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921116,
-    "modifiedTime": 1792923922124,
+    "createdTime": 1793311127916,
+    "modifiedTime": 1793311128302,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

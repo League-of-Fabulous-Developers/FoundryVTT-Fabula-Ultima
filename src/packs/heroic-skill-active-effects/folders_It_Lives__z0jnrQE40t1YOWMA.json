@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "nVAqbMLJVRKgLgOO",
+  "name": "It Lives!",
+  "color": "#535978",
+  "sorting": "a",
+  "_id": "z0jnrQE40t1YOWMA",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220151845,
+    "modifiedTime": 1793220151845,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!z0jnrQE40t1YOWMA"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "OQkzTzRa1Ir9hvCe",
+  "name": "Modules",
+  "color": "#381e18",
+  "sorting": "a",
+  "_id": "ePjg5XbR5sx5IAb0",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793221399029,
+    "modifiedTime": 1793221399029,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!ePjg5XbR5sx5IAb0"
+}

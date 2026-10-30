@@ -1,0 +1,74 @@
+{
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "origin": null,
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Ice Damage Weakness",
+  "_id": "vZsvuOrG5RsJ0nOZ",
+  "type": "base",
+  "system": {
+    "rules": {
+      "progress": {
+        "id": "",
+        "name": "",
+        "style": "bar",
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.ice",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "fuid": "pfu-ice-damage-weakness"
+  },
+  "description": "<p>Every source that deals <strong>ice</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311129682,
+    "modifiedTime": 1793311129682,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "ZRup8UZGBBD2SFVi",
+  "_key": "!effects!vZsvuOrG5RsJ0nOZ"
+}

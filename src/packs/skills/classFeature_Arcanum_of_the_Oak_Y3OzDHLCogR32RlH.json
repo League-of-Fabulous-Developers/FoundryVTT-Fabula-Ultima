@@ -23,9 +23,9 @@
     {
       "origin": "Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH",
       "duration": {
-        "value": 1,
-        "units": "rounds",
-        "expiry": "turnStart",
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
         "expired": false
       },
       "disabled": false,
@@ -103,13 +103,13 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923921255,
-        "modifiedTime": 1792923921255,
+        "createdTime": 1793311127968,
+        "modifiedTime": 1793311127968,
         "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "start": null,
-      "showIcon": 1,
+      "showIcon": 2,
       "folder": null,
       "_key": "!items.effects!Y3OzDHLCogR32RlH.TyNFvNkkXHQxaJeq"
     }
@@ -121,8 +121,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921255,
-    "modifiedTime": 1792923922143,
+    "createdTime": 1793311127968,
+    "modifiedTime": 1793311128310,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

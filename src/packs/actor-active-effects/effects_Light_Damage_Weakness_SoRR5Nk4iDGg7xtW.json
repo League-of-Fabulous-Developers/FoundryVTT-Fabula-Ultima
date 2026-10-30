@@ -1,0 +1,74 @@
+{
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
+  "origin": null,
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Light Damage Weakness",
+  "_id": "SoRR5Nk4iDGg7xtW",
+  "type": "base",
+  "system": {
+    "rules": {
+      "progress": {
+        "id": "",
+        "name": "",
+        "style": "bar",
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingDamage.light",
+        "value": 5,
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "fuid": "pfu-light-damage-weakness"
+  },
+  "description": "<p>Every source that deals <strong>light</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311129667,
+    "modifiedTime": 1793311129667,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "ZRup8UZGBBD2SFVi",
+  "_key": "!effects!SoRR5Nk4iDGg7xtW"
+}

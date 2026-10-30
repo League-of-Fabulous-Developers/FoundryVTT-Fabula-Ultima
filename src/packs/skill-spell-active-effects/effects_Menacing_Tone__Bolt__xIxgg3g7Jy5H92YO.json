@@ -1,0 +1,91 @@
+{
+  "name": "Menacing Tone (Bolt)",
+  "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "tdECt2JHKAftaROn": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [],
+            "itemGroups": [],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "gJ8WK29YCLqL5uCg": {
+              "type": "projectfu.traitsRulePredicate",
+              "traits": {
+                "entries": [
+                  "damage"
+                ],
+                "quantifier": "any"
+              }
+            }
+          },
+          "actions": {
+            "olL0kj9T4r8Jdth4": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>The damage dealt to the character with this effect becomes <strong>bolt</strong>. Then, remove this effect.</p>"
+            }
+          },
+          "selector": "self",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-menacing-tone-bolt"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>The first time you suffer damage before the start of the <strong>chanter's</strong> next turn, that damage becomes <strong>bolt</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130535,
+    "modifiedTime": 1793311130535,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "nNvgHdlVhAfboR4D",
+  "_id": "xIxgg3g7Jy5H92YO",
+  "sort": 100000,
+  "_key": "!effects!xIxgg3g7Jy5H92YO"
+}

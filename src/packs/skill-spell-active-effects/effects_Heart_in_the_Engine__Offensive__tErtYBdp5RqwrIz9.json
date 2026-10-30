@@ -1,0 +1,93 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Heart in the Engine (Offensive)",
+  "_id": "tErtYBdp5RqwrIz9",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "elements": {
+        "ubKOJavJnkUOqH4h": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "source",
+            "damageType": "",
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "itemGroups": [],
+            "affinity": "",
+            "local": false
+          },
+          "selector": "self",
+          "actions": {
+            "ratT3gyEaNpWeRvD": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effects-heart-in-the-engine-extra-damage"
+            }
+          },
+          "predicates": {},
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.all",
+        "value": "&sl('heart-in-the-engine')*2",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-heart-in-the-engine-offensive"
+  },
+  "description": "<p>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130532,
+    "modifiedTime": 1793311130532,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "OQkzTzRa1Ir9hvCe",
+  "sort": 0,
+  "_key": "!effects!tErtYBdp5RqwrIz9"
+}

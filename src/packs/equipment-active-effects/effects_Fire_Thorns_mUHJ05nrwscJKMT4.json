@@ -1,0 +1,114 @@
+{
+  "name": "Fire Thorns",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "Od3RcOqDtG7MVPry": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "target",
+            "checkTypes": [
+              "accuracy"
+            ],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "IuQw1aUF8X18ocTW": {
+              "type": "projectfu.checkRulePredicate",
+              "outcome": "success",
+              "result": null,
+              "parity": "",
+              "attributes": {
+                "primary": {
+                  "value": ""
+                },
+                "secondary": {
+                  "value": ""
+                }
+              },
+              "quantifier": "any"
+            },
+            "uSZp81zUWayhaoiO": {
+              "type": "projectfu.weaponRulePredicate",
+              "weaponType": "melee",
+              "selector": "source",
+              "martial": "",
+              "handedness": "",
+              "categories": []
+            }
+          },
+          "actions": {
+            "JhUcQr8ahlHwZE0w": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 fire] to them.</p>"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-fire-thorns"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "mUHJ05nrwscJKMT4",
+  "type": "base",
+  "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>fire</strong> damage to that creature (after the attack has been resolved).</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130051,
+    "modifiedTime": 1793311130051,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "BlKCuhMT72VW7Anp",
+  "_key": "!effects!mUHJ05nrwscJKMT4"
+}

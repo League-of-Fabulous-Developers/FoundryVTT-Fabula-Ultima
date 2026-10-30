@@ -1,0 +1,74 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "King's Castle (Extra MP)",
+  "_id": "2mQqAVnnbLdrFiG8",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.incomingRecovery.mp",
+        "value": "~&sl(\"kings-castle\")*5",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-kings-castle-extra-mp"
+  },
+  "description": "<p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional Mind Points until the start of the <strong>commander's</strong> next turn.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130505,
+    "modifiedTime": 1793311130505,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "IjyO4DMqWFLCrVBj",
+  "sort": 0,
+  "_key": "!effects!2mQqAVnnbLdrFiG8"
+}

@@ -1,0 +1,99 @@
+{
+  "name": "Prancing Dandelion (Air)",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/prancing-dandelion.png",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 2,
+      "tracking": "source",
+      "remaining": 2
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "J3TsiqKFbG0sKzcP": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "itemGroups": [],
+            "damageTypes": [],
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "UCIUaRyKX6bXnQ01": {
+              "type": "projectfu.changeTraitsRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "mode": "add"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.overrides.damageType.all.priority",
+        "value": "air",
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-prancing-dandelion-air"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "ItWxXK5fw7F2ceQq",
+  "type": "base",
+  "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>air</strong>, its type cannot change, and it ignores Resistances.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130517,
+    "modifiedTime": 1793311130517,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "vA25RktPS40akavR",
+  "sort": 0,
+  "_key": "!effects!ItWxXK5fw7F2ceQq"
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Bewitched (Weak)",
+  "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-bewitched-weak"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>You are <strong>bewitched</strong>. You must include the originator among the targets of your attacks and offensive spells, if able. This lasts until the start of their next turn or until you recover from <strong>weak</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793311130680,
+    "createdTime": 1793311130680,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "hf5RTC5K70gTPzOk",
+  "_id": "H9xeqFto7e5IKefb",
+  "sort": 0,
+  "_key": "!effects!H9xeqFto7e5IKefb"
+}
