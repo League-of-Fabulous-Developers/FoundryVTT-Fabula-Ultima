@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Attack Damage Change (Poison)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.xRmbmzApPIa7TF8G",
-        "effectUuid": null,
-        "fuid": "attack-damage-change-poison"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

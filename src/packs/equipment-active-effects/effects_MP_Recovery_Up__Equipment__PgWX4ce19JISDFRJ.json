@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "MP Recovery Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.qOzITQosmmi6LQqA",
-        "effectUuid": null,
-        "fuid": "mp-recovery-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

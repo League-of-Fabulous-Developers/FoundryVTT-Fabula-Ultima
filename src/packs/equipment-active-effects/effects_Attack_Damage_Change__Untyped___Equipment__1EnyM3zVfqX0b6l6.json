@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Attack Damage Change (Untyped)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.tZDXWkBkSzTdCEu4",
-        "effectUuid": null,
-        "fuid": "attack-damage-change-untyped"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

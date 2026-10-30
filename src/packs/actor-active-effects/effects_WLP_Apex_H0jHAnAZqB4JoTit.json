@@ -62,17 +62,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "WLP Apex",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.3bSDigs6OycCOBop",
-        "effectUuid": null,
-        "fuid": "wlp-apex"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

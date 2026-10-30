@@ -74,17 +74,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ignore All Affinities",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.55Fge2bXBNV84PzO",
-        "effectUuid": null,
-        "fuid": "ignore-all-affinities"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

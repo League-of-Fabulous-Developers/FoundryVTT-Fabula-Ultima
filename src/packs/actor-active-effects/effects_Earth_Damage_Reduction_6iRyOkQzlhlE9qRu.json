@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Earth Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.lj7DCerG0XBFeVKV",
-        "effectUuid": null,
-        "fuid": "earth-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Baihu (Defense)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.DeELsKaLRreJV5Bn",
-        "effectUuid": null,
-        "fuid": "effect-baihu-defense"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

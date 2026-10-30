@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Firearm Accuracy Check Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.yZvzJTLg2MB5QGT4",
-        "effectUuid": null,
-        "fuid": "firearm-accuracy-check-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

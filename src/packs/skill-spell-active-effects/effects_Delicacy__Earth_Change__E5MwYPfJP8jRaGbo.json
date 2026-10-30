@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Earth Change)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.pbuWkC9V2wOQ7gnx",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-earth-change"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

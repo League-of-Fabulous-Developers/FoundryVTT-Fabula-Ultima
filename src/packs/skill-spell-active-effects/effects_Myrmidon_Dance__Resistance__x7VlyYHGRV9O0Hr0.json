@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Myrmidon Dance (Resistance)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.QD5BcfrAiU3xTZsr",
-        "effectUuid": null,
-        "fuid": "effect-myrmidon-dance-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "All Damage Weakness",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.DpMfaF4dlKERilFl",
-        "effectUuid": null,
-        "fuid": "all-damage-weakness"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

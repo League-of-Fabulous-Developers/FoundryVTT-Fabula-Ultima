@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Light Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.f7C9wVQNB7qOWRgW",
-        "effectUuid": null,
-        "fuid": "light-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

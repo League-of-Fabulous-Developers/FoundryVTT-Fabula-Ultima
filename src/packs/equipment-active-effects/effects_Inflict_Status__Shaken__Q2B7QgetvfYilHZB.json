@@ -69,17 +69,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Inflict Status (Shaken)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.Vks9FOKWuDUXLq0B",
-        "effectUuid": null,
-        "fuid": "inflict-status-shaken"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

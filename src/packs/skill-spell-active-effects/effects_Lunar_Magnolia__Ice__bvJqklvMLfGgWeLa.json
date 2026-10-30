@@ -79,17 +79,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Lunar Magnolia (Ice)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.YfWDHikTC47SE6es",
-        "effectUuid": null,
-        "fuid": "effect-lunar-magnolia-ice"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

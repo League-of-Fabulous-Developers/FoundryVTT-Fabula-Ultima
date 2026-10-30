@@ -77,17 +77,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spell Inflict Status (Dazed)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.vOghJ16fTqg0jBGZ",
-        "effectUuid": null,
-        "fuid": "spell-inflict-status-dazed"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

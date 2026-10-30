@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Dark Resistance",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.awNRj5k128CaRWD3",
-        "effectUuid": null,
-        "fuid": "dark-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

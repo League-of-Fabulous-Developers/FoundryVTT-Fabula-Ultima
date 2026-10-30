@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Anti-Element Module (Earth)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.vehicle-modules.Item.Nxjt8wn0Bpa4aHbH",
-        "effectUuid": null,
-        "fuid": "anti-element-module-earth"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

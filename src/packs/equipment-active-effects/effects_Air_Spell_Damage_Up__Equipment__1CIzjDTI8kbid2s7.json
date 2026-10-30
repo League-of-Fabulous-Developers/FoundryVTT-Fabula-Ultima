@@ -82,17 +82,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Air Spell Damage Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.dLdnEI5jUZQ514u6",
-        "effectUuid": null,
-        "fuid": "air-spell-damage-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -95,17 +95,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Air Thorns",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.jZ6E3DoaYpmv9oUI",
-        "effectUuid": null,
-        "fuid": "air-thorns"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

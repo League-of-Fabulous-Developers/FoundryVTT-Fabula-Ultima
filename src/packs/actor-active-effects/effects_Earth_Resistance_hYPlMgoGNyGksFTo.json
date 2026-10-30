@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Earth Resistance",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG",
-        "effectUuid": null,
-        "fuid": "earth-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

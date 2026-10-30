@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Skill Damage Change (Physical)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.lzJhuOTTeAIiKryj",
-        "effectUuid": null,
-        "fuid": "skill-damage-change-physical"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

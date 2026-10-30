@@ -46,17 +46,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Damocles (Forbid Objective)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.gfG6k4dbz2qwA5p0",
-        "effectUuid": null,
-        "fuid": "effect-damocles-forbid-objective"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

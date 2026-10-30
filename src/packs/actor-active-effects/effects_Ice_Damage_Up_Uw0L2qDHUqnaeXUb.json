@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ice Damage Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.gokXTeJfgIQX3ObN",
-        "effectUuid": null,
-        "fuid": "ice-damage-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

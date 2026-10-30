@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Damage Change (Ice)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.1ItPlgdBfQyk9Qtm",
-        "effectUuid": null,
-        "fuid": "damage-change-ice"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

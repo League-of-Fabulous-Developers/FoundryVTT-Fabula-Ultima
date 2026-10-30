@@ -62,17 +62,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "DEX Apex",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.AIYVPdyldmKAkiLb",
-        "effectUuid": null,
-        "fuid": "dex-apex"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

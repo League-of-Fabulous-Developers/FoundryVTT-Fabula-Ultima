@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Bolt Resistance",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.OIbW40Ya8P1jCenm",
-        "effectUuid": null,
-        "fuid": "bolt-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

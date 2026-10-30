@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spear Accuracy Check Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.eaAfByfnRU7qk4ik",
-        "effectUuid": null,
-        "fuid": "spear-accuracy-check-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

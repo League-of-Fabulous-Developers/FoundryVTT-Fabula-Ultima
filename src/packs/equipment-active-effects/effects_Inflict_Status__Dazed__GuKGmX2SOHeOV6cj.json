@@ -69,17 +69,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Inflict Status (Dazed)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.ffsodHO7zfbT8nTv",
-        "effectUuid": null,
-        "fuid": "inflict-status-dazed"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

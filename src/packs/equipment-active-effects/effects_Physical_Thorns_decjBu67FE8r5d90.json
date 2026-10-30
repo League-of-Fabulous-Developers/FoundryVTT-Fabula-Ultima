@@ -95,17 +95,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Physical Thorns",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.9OCC7zTQ0jJIGuEV",
-        "effectUuid": null,
-        "fuid": "physical-thorns"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Arcane Accuracy Check Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.ngeU36LDeDVFrik8",
-        "effectUuid": null,
-        "fuid": "arcane-accuracy-check-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

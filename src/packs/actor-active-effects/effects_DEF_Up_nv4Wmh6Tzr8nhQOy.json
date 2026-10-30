@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "DEF Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.u23K63sVpVJTN5fh",
-        "effectUuid": null,
-        "fuid": "def-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

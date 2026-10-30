@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Enraged Damage Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.cjYwa8mNKwYaLS3F",
-        "effectUuid": null,
-        "fuid": "enraged-damage-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

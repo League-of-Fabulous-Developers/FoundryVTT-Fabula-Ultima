@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ranged Damage Up",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.biHVxEgwxC1Px9ZW",
-        "effectUuid": null,
-        "fuid": "ranged-damage-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

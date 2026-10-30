@@ -74,17 +74,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ignore Vulnerabilities",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.Xu7PPhYkYg3e0Acz",
-        "effectUuid": null,
-        "fuid": "ignore-vulnerabilities"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

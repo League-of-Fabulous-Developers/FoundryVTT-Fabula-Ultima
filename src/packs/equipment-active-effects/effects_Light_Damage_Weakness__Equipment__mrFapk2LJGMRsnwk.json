@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Light Damage Weakness",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.aPBdnNy1hA8aRctl",
-        "effectUuid": null,
-        "fuid": "light-damage-weakness"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

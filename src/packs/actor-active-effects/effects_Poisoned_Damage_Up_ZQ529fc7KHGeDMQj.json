@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slayer (Poisoned)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.095Z7ek5M3qpfkTX",
-        "effectUuid": null,
-        "fuid": "slayer-poisoned"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

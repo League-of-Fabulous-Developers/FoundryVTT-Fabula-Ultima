@@ -69,17 +69,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Inflict Status (Weak)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.8cxiz8GeBsFwkDFS",
-        "effectUuid": null,
-        "fuid": "inflict-status-weak"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

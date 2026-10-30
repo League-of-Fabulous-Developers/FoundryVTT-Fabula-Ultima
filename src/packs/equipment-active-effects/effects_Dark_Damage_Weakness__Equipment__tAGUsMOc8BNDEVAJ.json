@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Dark Damage Weakness",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.zFQpa3KcSAmBCWdE",
-        "effectUuid": null,
-        "fuid": "dark-damage-weakness"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

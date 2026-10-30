@@ -90,17 +90,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "All Status Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.CSw8N42bz1RjAnRJ",
-        "effectUuid": null,
-        "fuid": "all-status-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

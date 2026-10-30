@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Air Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.Zyqt9yJwXetrEabj",
-        "effectUuid": null,
-        "fuid": "air-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

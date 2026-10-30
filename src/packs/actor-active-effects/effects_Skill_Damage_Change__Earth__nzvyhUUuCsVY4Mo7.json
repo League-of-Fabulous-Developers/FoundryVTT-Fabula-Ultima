@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Skill Damage Change (Earth)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.n5gwf8ILV0gnC153",
-        "effectUuid": null,
-        "fuid": "skill-damage-change-earth"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

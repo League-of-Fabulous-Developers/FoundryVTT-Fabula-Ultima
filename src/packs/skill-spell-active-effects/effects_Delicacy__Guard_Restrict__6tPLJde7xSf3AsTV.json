@@ -46,17 +46,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Guard Restrict)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.LzyZ6RnzdvGgeZVJ",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-guard-restrict"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

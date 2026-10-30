@@ -8,12 +8,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "subtype": "Defensive",
-      "source": "FUCR283"
-    }
-  },
+  "flags": {},
   "_id": "bv9K4ziAhnNeLCSu",
   "system": {
     "changes": [

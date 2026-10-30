@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "MIG Base Cap",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI",
-        "effectUuid": null,
-        "fuid": "mig-base-cap"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -94,17 +94,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Lady Higanbana (Damage)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.fJV07izZgyMXvPw1",
-        "effectUuid": null,
-        "fuid": "effect-lady-higanbana-damage"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

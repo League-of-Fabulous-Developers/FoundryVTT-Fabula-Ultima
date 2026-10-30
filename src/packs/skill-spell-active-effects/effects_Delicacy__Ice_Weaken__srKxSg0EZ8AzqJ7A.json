@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Ice Weaken)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.9KDeMz3Y73muyImH",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-ice-weaken"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

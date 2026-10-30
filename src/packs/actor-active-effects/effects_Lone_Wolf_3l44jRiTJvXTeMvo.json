@@ -62,17 +62,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Lone Wolf",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.8VUidC7jGyZyDb56",
-        "effectUuid": null,
-        "fuid": "lone-wolf"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

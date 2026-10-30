@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Dark Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.VcQdwLW3n00MIskA",
-        "effectUuid": null,
-        "fuid": "dark-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

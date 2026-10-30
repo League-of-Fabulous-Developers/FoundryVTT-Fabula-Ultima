@@ -84,17 +84,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Haunting Tone (Fire)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.gHzrl6kqjqLgoE5b",
-        "effectUuid": null,
-        "fuid": "effect-haunting-tone-fire"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

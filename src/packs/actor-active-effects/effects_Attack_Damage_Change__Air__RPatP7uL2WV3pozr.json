@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Attack Damage Change (Air)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.UMmsj58PP2kIdrt6",
-        "effectUuid": null,
-        "fuid": "attack-damage-change-air"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

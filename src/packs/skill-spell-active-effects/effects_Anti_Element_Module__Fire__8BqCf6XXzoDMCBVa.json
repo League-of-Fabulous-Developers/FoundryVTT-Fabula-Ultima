@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Anti-Element Module (Fire)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.vehicle-modules.Item.MJuCHhlM3wpbhiDP",
-        "effectUuid": null,
-        "fuid": "anti-element-module-fire"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

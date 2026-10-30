@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spell Damage Change (Fire)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.xPCqA1ObrQIqSlEW",
-        "effectUuid": null,
-        "fuid": "spell-damage-change-fire"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

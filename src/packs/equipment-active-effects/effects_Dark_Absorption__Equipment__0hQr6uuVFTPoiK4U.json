@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Dark Absorption",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.EbuET5elFa6Krbh9",
-        "effectUuid": null,
-        "fuid": "dark-absorption"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

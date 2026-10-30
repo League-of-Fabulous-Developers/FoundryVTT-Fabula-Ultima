@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Physical Absorption",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.AJ3s10l6VtnmFvHg",
-        "effectUuid": null,
-        "fuid": "physical-absorption"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -84,17 +84,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Haunting Tone (Ice)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.gcgo90l4f6EVFf2O",
-        "effectUuid": null,
-        "fuid": "effect-haunting-tone-ice"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

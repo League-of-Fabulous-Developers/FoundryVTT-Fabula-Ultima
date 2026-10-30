@@ -79,17 +79,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Lunar Magnolia (Light)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.eTyaM3Nb0U3G5Eek",
-        "effectUuid": null,
-        "fuid": "effect-lunar-magnolia-light"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

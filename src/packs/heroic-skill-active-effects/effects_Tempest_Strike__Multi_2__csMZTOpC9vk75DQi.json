@@ -101,17 +101,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Tempest Strike (Multi 2)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.heroic-skills.Item.9KVveaaOdfnUyqOW",
-        "effectUuid": null,
-        "fuid": "effect-tempest-strike-multi-2"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

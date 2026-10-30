@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Vicious",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.nWKLeTVgiUS1FN6c",
-        "effectUuid": null,
-        "fuid": "vicious"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -79,17 +79,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Blazing Chrysanthemum (Earth)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.q0733esmOGzxhGI8",
-        "effectUuid": null,
-        "fuid": "effect-blazing-chrysanthemum-earth"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

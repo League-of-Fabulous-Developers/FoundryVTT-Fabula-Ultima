@@ -8,13 +8,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "subtype": "Offensive",
-      "cost": "400",
-      "source": "FUCR269"
-    }
-  },
+  "flags": {},
   "_id": "Bcstwj9R41jdjEfh",
   "system": {
     "changes": [],

@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ice Damage Weakness",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.BVOW692emrw4yxR0",
-        "effectUuid": null,
-        "fuid": "ice-damage-weakness"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

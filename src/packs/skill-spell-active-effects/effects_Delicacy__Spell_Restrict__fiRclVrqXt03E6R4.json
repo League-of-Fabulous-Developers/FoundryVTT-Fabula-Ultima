@@ -46,17 +46,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Spell Restrict)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.OMERADe6BDUB09so",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-spell-restrict"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

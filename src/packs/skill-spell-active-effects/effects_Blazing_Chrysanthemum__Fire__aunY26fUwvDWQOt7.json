@@ -79,17 +79,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Blazing Chrysanthemum (Fire)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.aFBbugzUVcnYQE3H",
-        "effectUuid": null,
-        "fuid": "effect-blazing-chrysanthemum-fire"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

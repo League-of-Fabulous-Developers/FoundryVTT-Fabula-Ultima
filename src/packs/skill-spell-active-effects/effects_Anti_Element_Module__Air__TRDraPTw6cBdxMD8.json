@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Anti-Element Module (Air)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.vehicle-modules.Item.jv7iQAgxbAPxlgoy",
-        "effectUuid": null,
-        "fuid": "anti-element-module-air"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

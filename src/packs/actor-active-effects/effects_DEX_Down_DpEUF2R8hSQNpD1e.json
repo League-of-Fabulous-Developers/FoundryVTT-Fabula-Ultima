@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "DEX Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.xHih2wn9ERC30J8p",
-        "effectUuid": null,
-        "fuid": "dex-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

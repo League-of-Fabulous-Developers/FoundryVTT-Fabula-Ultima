@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Light Absorption",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.d1vB6FYiprEkRE9t",
-        "effectUuid": null,
-        "fuid": "light-absorption"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

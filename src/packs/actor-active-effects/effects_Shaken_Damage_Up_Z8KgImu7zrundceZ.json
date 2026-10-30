@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slayer (Shaken)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.7rrP8B8zPyaMqHFN",
-        "effectUuid": null,
-        "fuid": "slayer-shaken"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

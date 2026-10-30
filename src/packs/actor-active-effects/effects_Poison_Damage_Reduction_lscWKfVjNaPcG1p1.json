@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Poison Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.JKHoiVCmDm511H5e",
-        "effectUuid": null,
-        "fuid": "poison-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

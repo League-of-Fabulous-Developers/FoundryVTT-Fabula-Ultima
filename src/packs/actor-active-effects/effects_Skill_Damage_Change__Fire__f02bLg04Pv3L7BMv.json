@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Skill Damage Change (Fire)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.mg2ypzyKA7k3LZ5Y",
-        "effectUuid": null,
-        "fuid": "skill-damage-change-fire"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

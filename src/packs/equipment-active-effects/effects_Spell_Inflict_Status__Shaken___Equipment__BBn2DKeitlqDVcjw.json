@@ -77,17 +77,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spell Inflict Status (Shaken)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.00618kR9tRRKVBoJ",
-        "effectUuid": null,
-        "fuid": "spell-inflict-status-shaken"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

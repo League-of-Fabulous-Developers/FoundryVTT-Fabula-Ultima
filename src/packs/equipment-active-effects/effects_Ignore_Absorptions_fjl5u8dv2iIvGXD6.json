@@ -74,17 +74,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ignore Absorptions",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.uSStoIWiQRtg1Zuh",
-        "effectUuid": null,
-        "fuid": "ignore-absorptions"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -75,17 +75,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "HP Cost Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.gtwdxn3uT2ShP07r",
-        "effectUuid": null,
-        "fuid": "hp-cost-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

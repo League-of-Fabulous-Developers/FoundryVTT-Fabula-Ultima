@@ -46,17 +46,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Passenger",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu",
-        "effectUuid": null,
-        "fuid": "effect-passenger"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

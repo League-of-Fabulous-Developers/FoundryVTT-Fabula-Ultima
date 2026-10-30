@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Air Absorption",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.9rWD6UhHYa6sM5JY",
-        "effectUuid": null,
-        "fuid": "air-absorption"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

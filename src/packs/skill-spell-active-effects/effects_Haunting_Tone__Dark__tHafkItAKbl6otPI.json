@@ -84,17 +84,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Haunting Tone (Dark)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.Ntm4uco2lLUdRXT9",
-        "effectUuid": null,
-        "fuid": "effect-haunting-tone-dark"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

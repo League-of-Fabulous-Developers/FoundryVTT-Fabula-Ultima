@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ice Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.xZiTen8UeCIIC6m6",
-        "effectUuid": null,
-        "fuid": "ice-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

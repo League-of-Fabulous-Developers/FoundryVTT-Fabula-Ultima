@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Skill Damage Change (Ice)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.9cH4nDYfLnk3Mjba",
-        "effectUuid": null,
-        "fuid": "skill-damage-change-ice"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

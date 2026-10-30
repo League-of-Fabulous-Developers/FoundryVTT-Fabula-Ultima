@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Griffin Dance (Resistance)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.TOhVnCQA8xorHcz4",
-        "effectUuid": null,
-        "fuid": "effect-griffin-dance-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

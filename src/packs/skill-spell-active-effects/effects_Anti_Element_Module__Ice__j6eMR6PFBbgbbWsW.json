@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Anti-Element Module (Ice)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.vehicle-modules.Item.N8rWmTrC0t79NCmn",
-        "effectUuid": null,
-        "fuid": "anti-element-module-ice"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

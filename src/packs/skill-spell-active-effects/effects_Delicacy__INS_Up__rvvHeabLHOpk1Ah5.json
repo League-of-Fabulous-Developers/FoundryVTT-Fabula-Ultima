@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (INS Up)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.AzPndWotlt98FDhU",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-ins-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

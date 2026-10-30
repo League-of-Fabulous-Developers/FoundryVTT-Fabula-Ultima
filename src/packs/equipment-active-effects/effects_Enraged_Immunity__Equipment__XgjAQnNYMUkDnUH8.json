@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Enraged Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.FY5nOifuSedH1BwW",
-        "effectUuid": null,
-        "fuid": "enraged-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

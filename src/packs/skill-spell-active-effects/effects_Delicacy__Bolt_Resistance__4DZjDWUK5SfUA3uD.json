@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Bolt Resistance)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.PQ4PQC1GCbo22I5j",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-bolt-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

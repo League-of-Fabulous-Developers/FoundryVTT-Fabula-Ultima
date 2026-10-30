@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Poison Change)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.BY4g8p6Sq8lQlQX6",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-poison-change"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

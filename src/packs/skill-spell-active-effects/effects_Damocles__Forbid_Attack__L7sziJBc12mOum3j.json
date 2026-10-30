@@ -46,17 +46,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Damocles (Forbid Attack)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.18LT7iykZxDQarui",
-        "effectUuid": null,
-        "fuid": "effect-damocles-forbid-attack"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

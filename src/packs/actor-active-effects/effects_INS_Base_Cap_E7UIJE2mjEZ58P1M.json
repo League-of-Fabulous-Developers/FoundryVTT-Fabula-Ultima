@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "INS Base Cap",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.3BnJm5HkDhJfm1U1",
-        "effectUuid": null,
-        "fuid": "ins-base-cap"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

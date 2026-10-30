@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ice Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.8fydgRQgDhqRxrAj",
-        "effectUuid": null,
-        "fuid": "ice-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

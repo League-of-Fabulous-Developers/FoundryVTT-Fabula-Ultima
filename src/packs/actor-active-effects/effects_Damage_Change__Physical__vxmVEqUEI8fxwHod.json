@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Damage Change (Physical)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.k2nnY8EH1DxgJ1ZT",
-        "effectUuid": null,
-        "fuid": "damage-change-physical"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

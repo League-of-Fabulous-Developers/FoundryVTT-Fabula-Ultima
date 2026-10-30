@@ -79,17 +79,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Prancing Dandelion (Bolt)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.7VKGFcNG5KomJiIJ",
-        "effectUuid": null,
-        "fuid": "effect-prancing-dandelion-bolt"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

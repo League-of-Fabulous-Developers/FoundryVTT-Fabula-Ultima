@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Fire Absorption",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.j3ISOQBxWwcWbHdr",
-        "effectUuid": null,
-        "fuid": "fire-absorption"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

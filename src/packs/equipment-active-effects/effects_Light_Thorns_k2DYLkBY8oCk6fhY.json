@@ -95,17 +95,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Light Thorns",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.KMN8Y4jyfMR6Wjm9",
-        "effectUuid": null,
-        "fuid": "light-thorns"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

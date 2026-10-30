@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Golem Dance (Resistance)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.Jhppf0TyPKJgfxUS",
-        "effectUuid": null,
-        "fuid": "effect-golem-dance-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

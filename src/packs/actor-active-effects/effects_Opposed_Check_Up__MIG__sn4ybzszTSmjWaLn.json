@@ -83,17 +83,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Opposed Check Up (MIG)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.PtWDWMcqYcGyW4yC",
-        "effectUuid": null,
-        "fuid": "opposed-check-up-mig"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

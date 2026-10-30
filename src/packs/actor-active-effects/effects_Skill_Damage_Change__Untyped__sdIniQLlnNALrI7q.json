@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Skill Damage Change (Untyped)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.YrkKXWiW9CRXDzSv",
-        "effectUuid": null,
-        "fuid": "skill-damage-change-untyped"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

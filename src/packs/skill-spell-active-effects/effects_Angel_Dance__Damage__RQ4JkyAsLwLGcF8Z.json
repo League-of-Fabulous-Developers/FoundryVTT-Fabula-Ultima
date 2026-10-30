@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Angel Dance (Damage)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ",
-        "effectUuid": null,
-        "fuid": "effect-angel-dance-damage"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

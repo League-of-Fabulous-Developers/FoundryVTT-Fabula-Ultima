@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "All Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.qy1K7DHrYjME5HXe",
-        "effectUuid": null,
-        "fuid": "all-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Attack Damage Change (Light)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.GBrg05U6quRG3ilz",
-        "effectUuid": null,
-        "fuid": "attack-damage-change-light"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

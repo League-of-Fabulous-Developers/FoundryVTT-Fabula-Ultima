@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "MIG Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.Kv3QVfRy4Vc7tWzI",
-        "effectUuid": null,
-        "fuid": "mig-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

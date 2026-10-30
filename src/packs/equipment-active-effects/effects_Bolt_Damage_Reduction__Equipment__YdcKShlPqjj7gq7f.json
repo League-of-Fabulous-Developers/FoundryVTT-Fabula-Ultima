@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Bolt Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.7nf1GBqbQVGedNbc",
-        "effectUuid": null,
-        "fuid": "bolt-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

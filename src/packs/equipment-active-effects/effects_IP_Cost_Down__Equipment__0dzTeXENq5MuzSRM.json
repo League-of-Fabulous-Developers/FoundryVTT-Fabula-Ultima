@@ -75,17 +75,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "IP Cost Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.mI4B5SJrDVwm0SmZ",
-        "effectUuid": null,
-        "fuid": "ip-cost-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

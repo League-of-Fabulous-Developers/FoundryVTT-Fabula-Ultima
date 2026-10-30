@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Fire Resistance",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t",
-        "effectUuid": null,
-        "fuid": "fire-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

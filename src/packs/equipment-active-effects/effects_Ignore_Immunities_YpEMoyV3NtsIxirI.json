@@ -74,17 +74,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ignore Resistances & Immunities",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.TQl9qLHLdyuHbXH9",
-        "effectUuid": null,
-        "fuid": "ignore-resistances-immunities"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -62,17 +62,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "MIG Apex",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.UshRKaPJW2yet0qI",
-        "effectUuid": null,
-        "fuid": "mig-apex"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

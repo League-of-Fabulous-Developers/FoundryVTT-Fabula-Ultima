@@ -41,17 +41,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Arcane Mark",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm",
-        "effectUuid": null,
-        "fuid": "effect-arcane-mark"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Silver Strelitzia",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.SNKcr8pAgOEnZe1b",
-        "effectUuid": null,
-        "fuid": "effect-silver-strelitzia"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

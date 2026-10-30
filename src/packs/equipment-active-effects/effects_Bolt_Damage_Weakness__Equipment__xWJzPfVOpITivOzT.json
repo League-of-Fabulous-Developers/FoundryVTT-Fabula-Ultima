@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Bolt Damage Weakness",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.MRNCMGIcZStGVV9J",
-        "effectUuid": null,
-        "fuid": "bolt-damage-weakness"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

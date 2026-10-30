@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "WLP Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.sz6OJq1YBm1DznKB",
-        "effectUuid": null,
-        "fuid": "wlp-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

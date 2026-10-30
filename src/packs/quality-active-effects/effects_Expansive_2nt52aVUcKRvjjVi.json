@@ -8,12 +8,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "subtype": "Effects",
-      "source": "FUCR282"
-    }
-  },
+  "flags": {},
   "_id": "2nt52aVUcKRvjjVi",
   "system": {
     "changes": [],

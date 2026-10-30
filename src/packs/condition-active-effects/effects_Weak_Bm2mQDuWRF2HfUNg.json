@@ -43,9 +43,7 @@
     "weak"
   ],
   "sort": 0,
-  "flags": {
-    "projectfu": {}
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

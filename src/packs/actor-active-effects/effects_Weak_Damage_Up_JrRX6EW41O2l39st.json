@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slayer (Weak)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.LNwXr86SA7c1Rq64",
-        "effectUuid": null,
-        "fuid": "slayer-weak"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

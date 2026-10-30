@@ -74,17 +74,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ignores Resistances",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.oLtejAUkzMeFVIdx",
-        "effectUuid": null,
-        "fuid": "ignores-resistances"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -83,17 +83,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Opposed Check Up (DEX)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.QZyewwswfIT2QPJd",
-        "effectUuid": null,
-        "fuid": "opposed-check-up-dex"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

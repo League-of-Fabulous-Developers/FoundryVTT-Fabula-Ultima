@@ -8,12 +8,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "subtype": "Resource",
-      "source": "FUCR271"
-    }
-  },
+  "flags": {},
   "_id": "AhrZq2gCmD0PFSou",
   "system": {
     "changes": [],

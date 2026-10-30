@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Golem Dance (Damage)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.AYjd1XWMIMXSHzAr",
-        "effectUuid": null,
-        "fuid": "effect-golem-dance-damage"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (DEX Up)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.gc2VICfC8pACRBHy",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-dex-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

@@ -75,17 +75,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spell MP Cost Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.JVxF4vLowNM10iNi",
-        "effectUuid": null,
-        "fuid": "spell-mp-cost-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

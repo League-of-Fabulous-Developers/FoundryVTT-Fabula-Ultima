@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "WLP Base Cap",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX",
-        "effectUuid": null,
-        "fuid": "wlp-base-cap"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

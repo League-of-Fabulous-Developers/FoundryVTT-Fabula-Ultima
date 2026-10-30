@@ -8,12 +8,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "subtype": "Check",
-      "source": "FUCR287"
-    }
-  },
+  "flags": {},
   "_id": "DbzF7yVOKvp2pfN6",
   "system": {
     "changes": [

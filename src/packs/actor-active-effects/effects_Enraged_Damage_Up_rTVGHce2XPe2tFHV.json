@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slayer (Enraged)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.EfPJlVwX2OLVvFLK",
-        "effectUuid": null,
-        "fuid": "slayer-enraged"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

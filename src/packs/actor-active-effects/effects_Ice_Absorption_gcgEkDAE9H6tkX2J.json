@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ice Absorption",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.VhdH4DOOCAJMd197",
-        "effectUuid": null,
-        "fuid": "ice-absorption"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

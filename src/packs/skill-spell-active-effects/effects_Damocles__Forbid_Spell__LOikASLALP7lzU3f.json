@@ -46,17 +46,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Damocles (Forbid Spell)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.FwIS7GamYtQgNmob",
-        "effectUuid": null,
-        "fuid": "effect-damocles-forbid-spell"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

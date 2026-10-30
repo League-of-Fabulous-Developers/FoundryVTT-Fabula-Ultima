@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Regal Protea (Status)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.iEJrRG4J9lLuCbkb",
-        "effectUuid": null,
-        "fuid": "effect-regal-protea-status"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

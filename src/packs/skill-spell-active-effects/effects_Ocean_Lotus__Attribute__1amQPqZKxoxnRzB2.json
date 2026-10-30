@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Ocean Lotus (Attribute)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.7oncFoh0Hr5Ayo18",
-        "effectUuid": null,
-        "fuid": "effect-ocean-lotus-attribute"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

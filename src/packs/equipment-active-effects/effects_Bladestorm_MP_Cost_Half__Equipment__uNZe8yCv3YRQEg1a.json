@@ -75,17 +75,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Bladestorm MP Cost Half",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.lfUmpQo4UueiGvxg",
-        "effectUuid": null,
-        "fuid": "bladestorm-mp-cost-half"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

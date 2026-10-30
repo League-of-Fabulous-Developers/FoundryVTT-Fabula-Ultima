@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Physical Resistance",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.7Rt6Ak0nW6sXQCZm",
-        "effectUuid": null,
-        "fuid": "physical-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

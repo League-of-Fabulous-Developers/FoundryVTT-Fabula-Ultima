@@ -84,17 +84,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Haunting Tone (Bolt)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.vyykMV9QXsiWrlc6",
-        "effectUuid": null,
-        "fuid": "effect-haunting-tone-bolt"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

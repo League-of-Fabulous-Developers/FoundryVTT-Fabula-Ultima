@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Desert Dahlia",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.AziYMmJivY3ozd0C",
-        "effectUuid": null,
-        "fuid": "effect-desert-dahlia"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

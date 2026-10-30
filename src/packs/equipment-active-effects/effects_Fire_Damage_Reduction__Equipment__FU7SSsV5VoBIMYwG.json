@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Fire Damage Reduction",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.R0tnDuKeZ6kmNORX",
-        "effectUuid": null,
-        "fuid": "fire-damage-reduction"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

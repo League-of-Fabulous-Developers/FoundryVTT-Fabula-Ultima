@@ -84,17 +84,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Haunting Tone (Earth)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.YWn3z0Wq0lunAtWU",
-        "effectUuid": null,
-        "fuid": "effect-haunting-tone-earth"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Fire Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.3UDw6t6oOCavbBrB",
-        "effectUuid": null,
-        "fuid": "fire-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

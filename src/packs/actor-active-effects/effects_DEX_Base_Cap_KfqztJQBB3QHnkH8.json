@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "DEX Base Cap",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.UwPbW3l5dOc5TawO",
-        "effectUuid": null,
-        "fuid": "dex-base-cap"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

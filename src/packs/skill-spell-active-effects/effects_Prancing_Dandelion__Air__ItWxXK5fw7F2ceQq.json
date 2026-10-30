@@ -79,17 +79,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Prancing Dandelion (Air)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.sgyOnXZVNT0UGuKu",
-        "effectUuid": null,
-        "fuid": "effect-prancing-dandelion-air"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

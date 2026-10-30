@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Wardwattle (⏱ 1)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.e1HIHF9cJyINUqsn",
-        "effectUuid": null,
-        "fuid": "effect-wardwattle-1"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

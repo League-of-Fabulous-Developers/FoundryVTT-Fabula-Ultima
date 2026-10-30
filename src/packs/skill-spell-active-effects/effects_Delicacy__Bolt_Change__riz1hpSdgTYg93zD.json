@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Bolt Change)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.NXCuHsCUgSgzKODy",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-bolt-change"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Skill Damage Change (Dark)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.eQCI2Sx70ueePyxV",
-        "effectUuid": null,
-        "fuid": "skill-damage-change-dark"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

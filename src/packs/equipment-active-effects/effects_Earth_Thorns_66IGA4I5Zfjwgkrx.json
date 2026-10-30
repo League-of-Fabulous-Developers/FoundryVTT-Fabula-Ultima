@@ -95,17 +95,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Earth Thorns",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.JZb7WnRYdPlNu0Le",
-        "effectUuid": null,
-        "fuid": "earth-thorns"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

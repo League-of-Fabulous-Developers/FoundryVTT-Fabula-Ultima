@@ -75,17 +75,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Awaken MP Cost Half",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.3VLWztMh1NoaNKSj",
-        "effectUuid": null,
-        "fuid": "awaken-mp-cost-half"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

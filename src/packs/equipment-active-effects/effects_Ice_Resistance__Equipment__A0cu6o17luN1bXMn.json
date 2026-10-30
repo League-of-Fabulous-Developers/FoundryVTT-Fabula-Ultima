@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Ice Resistance",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.bHHcERva6e2rxw03",
-        "effectUuid": null,
-        "fuid": "ice-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

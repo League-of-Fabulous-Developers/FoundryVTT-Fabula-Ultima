@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Poisoned Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q",
-        "effectUuid": null,
-        "fuid": "poisoned-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

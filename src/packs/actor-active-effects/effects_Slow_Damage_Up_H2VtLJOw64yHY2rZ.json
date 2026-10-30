@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slayer (Slow)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.ikU24FlltAhl6tnp",
-        "effectUuid": null,
-        "fuid": "slayer-slow"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

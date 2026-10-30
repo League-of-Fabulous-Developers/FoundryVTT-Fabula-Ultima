@@ -82,17 +82,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Baihu (Damage)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.pNq1QR6QeND249Xs",
-        "effectUuid": null,
-        "fuid": "effect-baihu-damage"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

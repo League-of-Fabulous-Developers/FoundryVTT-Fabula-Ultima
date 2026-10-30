@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Yeti Dance (Resistance)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.YrYM9dcNJvOzDUyK",
-        "effectUuid": null,
-        "fuid": "effect-yeti-dance-resistance"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

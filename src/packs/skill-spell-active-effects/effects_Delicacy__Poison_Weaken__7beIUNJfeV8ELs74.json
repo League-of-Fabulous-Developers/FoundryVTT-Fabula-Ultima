@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Poison Weaken)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.K2sUsMGhj94eTtTN",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-poison-weaken"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

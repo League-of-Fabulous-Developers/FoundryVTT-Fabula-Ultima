@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "INS Down",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.2QI8wHhms3OOl4HS",
-        "effectUuid": null,
-        "fuid": "ins-down"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

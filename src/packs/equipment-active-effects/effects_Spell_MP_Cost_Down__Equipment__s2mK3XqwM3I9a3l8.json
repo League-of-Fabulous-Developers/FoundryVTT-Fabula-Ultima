@@ -75,17 +75,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spell Half MP Cost",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.JVxF4vLowNM10iNi",
-        "effectUuid": null,
-        "fuid": "spell-half-mp-cost"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

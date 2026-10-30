@@ -104,7 +104,6 @@ function resolveBaseEffect(id) {
  */
 async function getEffectData(id) {
 	let effect;
-	let sourceInfo;
 
 	// Resolve by status id
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
@@ -136,9 +135,6 @@ async function getEffectData(id) {
 	if (effect) {
 		// TODO: Perhaps it be really instanced each time?
 		effect = FoundryUtils.safeClone(effect);
-		if (sourceInfo) {
-			effect.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
-		}
 	}
 
 	return effect;

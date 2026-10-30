@@ -94,17 +94,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slayer (Dazed)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.74SymLwuBgkT2h25",
-        "effectUuid": null,
-        "fuid": "slayer-dazed"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

@@ -95,17 +95,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Fire Thorns",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.equipment-effects.Item.wFY7M0pooP8H0jKG",
-        "effectUuid": null,
-        "fuid": "fire-thorns"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

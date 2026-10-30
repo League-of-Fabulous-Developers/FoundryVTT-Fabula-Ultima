@@ -110,17 +110,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Bodyguard",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.21y8FN9MymAxo1RY",
-        "effectUuid": null,
-        "fuid": "effect-bodyguard"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

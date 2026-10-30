@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Spell Damage Change (Poison)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.ASocio3llLg9CHEz",
-        "effectUuid": null,
-        "fuid": "spell-damage-change-poison"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

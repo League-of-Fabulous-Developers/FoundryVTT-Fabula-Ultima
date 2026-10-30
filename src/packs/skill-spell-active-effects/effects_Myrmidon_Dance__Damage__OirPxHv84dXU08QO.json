@@ -61,17 +61,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Myrmidon Dance (Damage)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.pbh1nZKCCYWVdK4q",
-        "effectUuid": null,
-        "fuid": "effect-myrmidon-dance-damage"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

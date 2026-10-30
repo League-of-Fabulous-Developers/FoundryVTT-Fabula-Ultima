@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (Bolt Weaken)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.W4k52fetZQaXPpCt",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-bolt-weaken"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

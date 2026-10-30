@@ -55,17 +55,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Slow Immunity",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
-        "effectUuid": null,
-        "fuid": "slow-immunity"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

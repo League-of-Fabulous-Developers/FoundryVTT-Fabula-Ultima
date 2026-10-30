@@ -41,17 +41,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Dreamslice (Reduce Action)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.heroic-skills.Item.aLED91LvFGUlFNFz",
-        "effectUuid": null,
-        "fuid": "effect-dreamslice-reduce-action"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

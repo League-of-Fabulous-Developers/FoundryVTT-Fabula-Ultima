@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Delicacy (WLP Up)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.1s3x5TtIPEbdbLM1",
-        "effectUuid": null,
-        "fuid": "effect-delicacy-wlp-up"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",

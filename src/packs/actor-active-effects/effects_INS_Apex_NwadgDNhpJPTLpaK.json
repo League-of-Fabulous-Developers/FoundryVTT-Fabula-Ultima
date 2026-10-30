@@ -62,17 +62,7 @@
   "transfer": false,
   "statuses": [],
   "sort": 0,
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "INS Apex",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.actor-effects.Item.PzBzHR0xsT4jXqys",
-        "effectUuid": null,
-        "fuid": "ins-apex"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,

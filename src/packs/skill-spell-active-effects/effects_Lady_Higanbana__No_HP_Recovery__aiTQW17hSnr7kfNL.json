@@ -54,17 +54,7 @@
   "tint": "#ffffff",
   "transfer": false,
   "statuses": [],
-  "flags": {
-    "projectfu": {
-      "Source": {
-        "name": "Effect: Lady Higanbana (No HP Recovery)",
-        "actorUuid": null,
-        "itemUuid": "Compendium.projectfu.skills.Item.evHua0Xq9vExaHNj",
-        "effectUuid": null,
-        "fuid": "effect-lady-higanbana-no-hp-recovery"
-      }
-    }
-  },
+  "flags": {},
   "_stats": {
     "coreVersion": "14.368",
     "systemId": "projectfu",
