@@ -183,7 +183,7 @@ export class BasePseudoDocument extends foundry.abstract.DataModel {
 	 */
 	_getParentCollection(parentCollection) {
 		if (parentCollection) return parentCollection;
-		return this.schema.parent.name;
+		return this.schema.parent?.name ?? null;
 	}
 
 	/**
