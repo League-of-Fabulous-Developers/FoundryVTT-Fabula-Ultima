@@ -160,6 +160,8 @@ export function ItemBehaviourMixin(BaseClass) {
 			// Expand the set of final overrides
 			foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
 
+			this.directlyNestedItems().forEach((item) => item.applyActiveEffects(phase));
+
 			if (phase === 'final') {
 				this.render();
 			}
@@ -176,6 +178,18 @@ export function ItemBehaviourMixin(BaseClass) {
 									yield nestedItem;
 								}
 							}
+						}
+					}
+				}
+			}
+		}
+
+		*directlyNestedItems() {
+			for (const collection of Object.values(this.nestedCollections)) {
+				if (foundry.utils.isSubclass(collection.documentClass, PseudoItem)) {
+					for (let item of collection) {
+						if (this.system.transferNestedItem ? this.system.transferNestedItem(item) : true) {
+							yield item;
 						}
 					}
 				}
