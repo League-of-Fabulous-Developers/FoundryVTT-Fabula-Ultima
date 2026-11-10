@@ -584,6 +584,7 @@ async function performCheck(check, actor, item) {
 		config: config,
 		check: check,
 		source: source,
+		actor: source,
 		item: item,
 		itemGroup: ItemUtils.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
@@ -613,6 +614,7 @@ async function resolveCheck(check, actor, item) {
 	const event = {
 		check: check,
 		source: source,
+		actor: source,
 		item: item,
 		itemGroup: ItemUtils.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
@@ -676,6 +678,8 @@ async function initializeCheck(configuration, actor, item) {
 		targets: CharacterInfo.fromTargetData(configuration.getTargets()),
 		sourceInfo: sourceInfo,
 		itemGroup: ItemUtils.resolveItemGroup(item),
+		actor: source,
+		item: item,
 	};
 	await callHookWithCallbacks(FUHooks.INITIALIZE_CHECK_EVENT, event);
 }
