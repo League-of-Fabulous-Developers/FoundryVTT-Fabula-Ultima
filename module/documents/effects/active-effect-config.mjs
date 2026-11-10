@@ -270,13 +270,15 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			options,
 		);
 		if (type) {
-			return this.document.update({
-				system: {
-					rules: {
-						elements: {
-							[foundry.utils.randomID()]: {
-								trigger: {
-									type: type,
+			return this.submit({
+				updateData: {
+					system: {
+						rules: {
+							elements: {
+								[foundry.utils.randomID()]: {
+									trigger: {
+										type: type,
+									},
 								},
 							},
 						},
@@ -299,11 +301,13 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		if (re) {
 			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(re.trigger.constructor.localization) }));
 			if (confirm) {
-				return this.document.update({
-					system: {
-						rules: {
-							elements: {
-								[id]: foundry.data.operators.ForcedDeletion.create(),
+				return this.submit({
+					updateData: {
+						system: {
+							rules: {
+								elements: {
+									[id]: foundry.data.operators.ForcedDeletion.create(),
+								},
 							},
 						},
 					},
@@ -320,10 +324,12 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	static async #clearRuleElements(event, target) {
 		const confirm = await FoundryUtils.confirmDialog('FU.Clear', `FU.DialogClearMessage`);
 		if (confirm) {
-			return this.document.update({
-				system: {
-					rules: {
-						elements: foundry.data.operators.ForcedReplacement.create({}),
+			return this.submit({
+				updateData: {
+					system: {
+						rules: {
+							elements: foundry.data.operators.ForcedReplacement.create({}),
+						},
 					},
 				},
 			});
@@ -374,13 +380,15 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 				options,
 			);
 			if (type) {
-				return this.document.update({
-					system: {
-						rules: {
-							elements: {
-								[id]: {
-									actions: {
-										[foundry.utils.randomID()]: { type: type },
+				return this.submit({
+					updateData: {
+						system: {
+							rules: {
+								elements: {
+									[id]: {
+										actions: {
+											[foundry.utils.randomID()]: { type: type },
+										},
 									},
 								},
 							},
@@ -405,13 +413,16 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			console.debug(`Removing rule action ${actionId} from ${id}`);
 			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(action.constructor.localization) }));
 			if (confirm) {
-				return this.document.update({
-					system: {
-						rules: {
-							elements: {
-								[id]: {
-									actions: {
-										[actionId]: foundry.data.operators.ForcedDeletion.create(),
+				const submitData = this._processFormData(null, this.form, new foundry.applications.ux.FormDataExtended(this.form));
+				const actions = submitData.system.rules.elements[id].actions ?? {};
+				delete actions[actionId];
+				return this.submit({
+					updateData: {
+						system: {
+							rules: {
+								elements: {
+									[id]: {
+										actions: foundry.data.operators.ForcedReplacement.create(actions),
 									},
 								},
 							},
@@ -441,13 +452,15 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 				options,
 			);
 			if (type) {
-				return this.document.update({
-					system: {
-						rules: {
-							elements: {
-								[id]: {
-									predicates: {
-										[foundry.utils.randomID()]: { type: type },
+				return this.submit({
+					updateData: {
+						system: {
+							rules: {
+								elements: {
+									[id]: {
+										predicates: {
+											[foundry.utils.randomID()]: { type: type },
+										},
 									},
 								},
 							},
@@ -472,13 +485,17 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		if (predicate) {
 			const confirm = await FoundryUtils.confirmDialog('FU.Remove', _loc('FU.DialogRemoveMessage', { label: _loc(predicate.constructor.localization) }));
 			if (confirm) {
-				return this.document.update({
-					system: {
-						rules: {
-							elements: {
-								[id]: {
-									predicates: {
-										[predicateId]: foundry.data.operators.ForcedDeletion.create(),
+				const submitData = this._processFormData(null, this.form, new foundry.applications.ux.FormDataExtended(this.form));
+				const predicates = submitData.system.rules.elements[id].predicates ?? {};
+				delete predicates[predicateId];
+
+				return this.submit({
+					updateData: {
+						system: {
+							rules: {
+								elements: {
+									[id]: {
+										predicates: foundry.data.operators.ForcedReplacement.create(predicates),
 									},
 								},
 							},
