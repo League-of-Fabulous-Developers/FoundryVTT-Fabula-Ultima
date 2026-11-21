@@ -47,7 +47,7 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.3R2eg2AIytTZLT3x"
+        "pfu-auramancers-refraction"
       ],
       "prompt": false
     },
@@ -97,8 +97,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923922826,
-    "modifiedTime": 1792923923010,
+    "createdTime": 1793311128654,
+    "modifiedTime": 1793311128805,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

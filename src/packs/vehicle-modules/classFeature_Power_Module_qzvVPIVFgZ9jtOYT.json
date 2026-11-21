@@ -8,7 +8,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.7X1SyqQVH5CEXaQA]</p>",
+      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p><hr><p><strong>You Gain:</strong> @EFFECT[pfu-power-module]</p>",
       "complex": false,
       "type": "projectfu.supportModule",
       "cost": 1000
@@ -24,8 +24,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923923293,
-    "modifiedTime": 1792923923320,
+    "createdTime": 1793311129023,
+    "modifiedTime": 1793311129051,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

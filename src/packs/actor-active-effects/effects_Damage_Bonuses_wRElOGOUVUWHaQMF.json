@@ -1,0 +1,82 @@
+{
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "progress": {
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false,
+        "id": "",
+        "name": ""
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.bonuses.damage.melee",
+        "value": "&step(0,5,10,15)",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.ranged",
+        "value": "&step(0,5,10,15)",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      },
+      {
+        "key": "system.bonuses.damage.spell",
+        "value": "&step(0,5,10,15)",
+        "priority": null,
+        "type": "add",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-damage-bonuses"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Damage Bonuses",
+  "_id": "wRElOGOUVUWHaQMF",
+  "type": "base",
+  "description": "",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311129682,
+    "modifiedTime": 1793311129682,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "423RpDks0B2eewCA",
+  "_key": "!effects!wRElOGOUVUWHaQMF"
+}

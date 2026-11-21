@@ -1,0 +1,85 @@
+{
+  "name": "Resonance (MP)",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "15RIyH3dI1lesVGP": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "target",
+            "damageType": "",
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "itemGroups": [],
+            "affinity": "",
+            "local": false
+          },
+          "actions": {
+            "M08PHT16iox0yZde": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>The chanter recovers MP from @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance} <strong>every time</strong> you suffer damage.</p>"
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-resonance-mp"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "g7hwVC7QG8txOt3H",
+  "type": "base",
+  "description": "<p>The chanter recovers <strong>【SL】</strong> Mind Points <strong>every time</strong> you suffer damage. This lasts until the start of their next turn.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130527,
+    "modifiedTime": 1793311130527,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "mFgCw8YNpzaJ0til",
+  "sort": 0,
+  "_key": "!effects!g7hwVC7QG8txOt3H"
+}

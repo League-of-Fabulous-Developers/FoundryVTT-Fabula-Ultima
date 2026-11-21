@@ -123,9 +123,9 @@
         "changes": []
       },
       "duration": {
-        "value": 1,
-        "units": "rounds",
-        "expiry": "turnStart",
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
         "expired": false
       },
       "disabled": false,
@@ -154,12 +154,12 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923921185,
-        "modifiedTime": 1792923921185,
+        "createdTime": 1793311127944,
+        "modifiedTime": 1793311127944,
         "lastModifiedBy": "qSTUglS93W7Had7H"
       },
       "start": null,
-      "showIcon": 1,
+      "showIcon": 2,
       "folder": null,
       "_key": "!items.effects!NjToAQTqqe3xyn6Y.KAVU4jfHTaNHYD5n"
     }
@@ -174,8 +174,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921185,
-    "modifiedTime": 1792923922134,
+    "createdTime": 1793311127944,
+    "modifiedTime": 1793311128306,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

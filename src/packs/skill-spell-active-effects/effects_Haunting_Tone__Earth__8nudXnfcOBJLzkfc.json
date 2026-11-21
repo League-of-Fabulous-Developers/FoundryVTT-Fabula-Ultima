@@ -1,0 +1,104 @@
+{
+  "name": "Haunting Tone (Earth)",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "PHUM65u94QWDaiSl": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "target",
+            "damageType": "earth",
+            "affinity": "resistance",
+            "itemGroups": [],
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "local": false,
+            "identifier": ""
+          },
+          "actions": {
+            "SBFFTbPlpUAGG5cE": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "amount": "",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "variant": ""
+            }
+          },
+          "predicates": {},
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-haunting-tone-earth"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "8nudXnfcOBJLzkfc",
+  "type": "base",
+  "description": "<p>All <strong>earth</strong> damage dealt to you ignores your Resistances. This lasts until the start of the <strong>chanter's</strong> next turn.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130513,
+    "modifiedTime": 1793311130513,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "2OhY67tEiDQN1eGD",
+  "sort": 300000,
+  "_key": "!effects!8nudXnfcOBJLzkfc"
+}

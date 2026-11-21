@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Dancer",
+  "color": "#c62fb5",
+  "sorting": "a",
+  "_id": "YBLOSEfw9ukjWYUF",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217710655,
+    "modifiedTime": 1793217718884,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!YBLOSEfw9ukjWYUF"
+}

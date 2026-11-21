@@ -57,7 +57,7 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.Jc1KEmU0iN7Ul8dZ",
+        "pfu-for-whom-the-bell-tolls",
         "shaken"
       ],
       "duration": {
@@ -93,8 +93,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921343,
-    "modifiedTime": 1792923922155,
+    "createdTime": 1793311128002,
+    "modifiedTime": 1793311128316,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

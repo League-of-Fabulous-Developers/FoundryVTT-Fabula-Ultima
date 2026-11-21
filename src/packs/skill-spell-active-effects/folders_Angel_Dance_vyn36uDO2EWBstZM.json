@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "YBLOSEfw9ukjWYUF",
+  "name": "Angel Dance",
+  "color": "#d84bd9",
+  "sorting": "a",
+  "_id": "vyn36uDO2EWBstZM",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217733063,
+    "modifiedTime": 1793217733063,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!vyn36uDO2EWBstZM"
+}

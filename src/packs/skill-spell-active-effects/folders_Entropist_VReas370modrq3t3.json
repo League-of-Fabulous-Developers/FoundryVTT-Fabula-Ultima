@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Entropist",
+  "color": "#240059",
+  "sorting": "a",
+  "_id": "VReas370modrq3t3",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217992669,
+    "modifiedTime": 1793217992669,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!VReas370modrq3t3"
+}

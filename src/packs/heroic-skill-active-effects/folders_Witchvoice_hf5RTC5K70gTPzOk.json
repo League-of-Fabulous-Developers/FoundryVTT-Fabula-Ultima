@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "nVAqbMLJVRKgLgOO",
+  "name": "Witchvoice",
+  "color": "#535978",
+  "sorting": "a",
+  "_id": "hf5RTC5K70gTPzOk",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220163884,
+    "modifiedTime": 1793220163884,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!hf5RTC5K70gTPzOk"
+}

@@ -97,7 +97,7 @@
     "effects": {
       "entries": [
         "enraged",
-        "Compendium.projectfu.skills.Item.AZnLD3nCoMk2GJRe"
+        "pfu-enrage-restrict-guard-spell"
       ],
       "prompt": false,
       "duration": {
@@ -141,8 +141,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921370,
-    "modifiedTime": 1792923922162,
+    "createdTime": 1793311128009,
+    "modifiedTime": 1793311128318,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 1200000,

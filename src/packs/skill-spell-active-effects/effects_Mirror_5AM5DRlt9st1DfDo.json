@@ -1,0 +1,61 @@
+{
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_mirror.png",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Mirror",
+  "_id": "5AM5DRlt9st1DfDo",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "id": "",
+        "name": "",
+        "style": "basic",
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false
+      },
+      "elements": {}
+    },
+    "changes": [],
+    "fuid": "pfu-mirror"
+  },
+  "description": "<p>Until this spell ends, if an offensive spell is cast on you, the creature who cast that offensive spell will be targeted in your stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "createdTime": 1793311130508,
+    "modifiedTime": 1793311130508,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "VReas370modrq3t3",
+  "sort": 500000,
+  "_key": "!effects!5AM5DRlt9st1DfDo"
+}

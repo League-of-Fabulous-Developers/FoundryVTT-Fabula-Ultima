@@ -56,7 +56,7 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm"
+        "pfu-arcane-marked"
       ],
       "prompt": false
     },
@@ -162,7 +162,7 @@
                 },
                 "laWcdDSjNKgSAHJe": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm"
+                  "effect": "pfu-arcane-marked"
                 }
               },
               "selector": "initial",
@@ -193,8 +193,8 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923922855,
-        "modifiedTime": 1792923922855,
+        "createdTime": 1793311128681,
+        "modifiedTime": 1793311128681,
         "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
@@ -219,8 +219,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923922855,
-    "modifiedTime": 1792923923014,
+    "createdTime": 1793311128681,
+    "modifiedTime": 1793311128807,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -342,9 +342,9 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.Fl82KkmDq9R7i86N",
-              "Compendium.projectfu.skills.Item.s9gRkNI1b5eSIuxi",
-              "Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs"
+              "pfu-support-magic-1",
+              "pfu-support-magic-2",
+              "pfu-support-magic-3"
             ],
             "duration": {
               "interval": null,
@@ -417,7 +417,7 @@
                     "actions": {
                       "CJ1BDSAuZrGfQJLt": {
                         "type": "projectfu.messageRuleAction",
-                        "message": "<p>Choose one <strong>Bonded</strong> ally targeted to grant a check bonus equal to your <strong>Bond strength</strong> towards them.</p><hr><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.Fl82KkmDq9R7i86N]{Check Up +1}, @EFFECT[Compendium.projectfu.skills.Item.s9gRkNI1b5eSIuxi]{Check Up +2}, or @EFFECT[Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs]{Check Up +3}</p>"
+                        "message": "<p>Choose one <strong>Bonded</strong> ally targeted to grant a check bonus equal to your <strong>Bond strength</strong> towards them.</p><hr><p><strong>Target Gains:</strong> @EFFECT[pfu-support-magic-1]{Check Up +1}, @EFFECT[pfu-support-magic-2]{Check Up +2}, or @EFFECT[pfu-support-magic-3]{Check Up +3}</p>"
                       }
                     },
                     "selector": "initial",
@@ -572,8 +572,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925549,
-    "modifiedTime": 1792923925627,
+    "createdTime": 1793311130901,
+    "modifiedTime": 1793311130970,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

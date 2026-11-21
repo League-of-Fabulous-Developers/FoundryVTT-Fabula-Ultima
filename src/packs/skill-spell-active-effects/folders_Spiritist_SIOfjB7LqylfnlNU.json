@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Spiritist",
+  "color": "#1c7773",
+  "sorting": "a",
+  "_id": "SIOfjB7LqylfnlNU",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218984371,
+    "modifiedTime": 1793218984371,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!SIOfjB7LqylfnlNU"
+}

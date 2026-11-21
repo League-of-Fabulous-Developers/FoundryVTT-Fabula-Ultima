@@ -153,8 +153,8 @@
           "fuid": "resonance",
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.KgYNKoG8RE2NvCiV",
-              "Compendium.projectfu.skills.Item.MNsuRCvzqSNEqSc6"
+              "pfu-resonance-damage",
+              "pfu-resonance-mp"
             ],
             "duration": {
               "interval": null,
@@ -199,7 +199,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.e85QX4FWBQxwTt8V]</p>",
+          "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><p><strong>You Gain:</strong> @EFFECT[pfu-sound-barrier]</p>",
           "showTitleCard": {
             "value": false
           },
@@ -385,8 +385,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925544,
-    "modifiedTime": 1792923925625,
+    "createdTime": 1793311130898,
+    "modifiedTime": 1793311130968,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

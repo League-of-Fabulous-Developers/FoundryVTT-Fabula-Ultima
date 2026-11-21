@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "SIOfjB7LqylfnlNU",
+  "name": "Reinforce",
+  "color": "#145450",
+  "sorting": "a",
+  "_id": "VzNoC2ajeMWj6GIU",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793219014457,
+    "modifiedTime": 1793219014457,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!VzNoC2ajeMWj6GIU"
+}

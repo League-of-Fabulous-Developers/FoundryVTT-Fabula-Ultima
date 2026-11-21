@@ -70,10 +70,10 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.zdJc2zsLCgyA5wOp",
-        "Compendium.projectfu.skills.Item.F9ep5ecBHb7R4RRr",
-        "Compendium.projectfu.skills.Item.eTDq4RldNEYv5XTd",
-        "Compendium.projectfu.skills.Item.nBSrAu72JcvvNcWq"
+        "pfu-encourage-dex",
+        "pfu-encourage-ins",
+        "pfu-encourage-mig",
+        "pfu-encourage-wlp"
       ],
       "duration": {
         "interval": null,
@@ -99,8 +99,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921070,
-    "modifiedTime": 1792923922117,
+    "createdTime": 1793311127901,
+    "modifiedTime": 1793311128300,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

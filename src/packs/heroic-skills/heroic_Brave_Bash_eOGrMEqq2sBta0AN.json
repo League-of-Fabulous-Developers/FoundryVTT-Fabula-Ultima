@@ -47,7 +47,7 @@
         "tracking": ""
       },
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.JARz8rLQIoE9qUSe"
+        "pfu-brave-bash-challenge"
       ],
       "prompt": false
     },
@@ -146,7 +146,7 @@
                 },
                 "B0SsR6jxEMr1vXCg": {
                   "type": "projectfu.applyEffectRuleAction",
-                  "effect": "Compendium.projectfu.heroic-skills.Item.JARz8rLQIoE9qUSe"
+                  "effect": "pfu-brave-bash-challenge"
                 }
               },
               "selector": "initial",
@@ -193,8 +193,8 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923922852,
-        "modifiedTime": 1792923922852,
+        "createdTime": 1793311128679,
+        "modifiedTime": 1793311128679,
         "lastModifiedBy": "qSTUglS93W7Had7H"
       },
       "start": null,
@@ -216,8 +216,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923922852,
-    "modifiedTime": 1792923923013,
+    "createdTime": 1793311128679,
+    "modifiedTime": 1793311128807,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

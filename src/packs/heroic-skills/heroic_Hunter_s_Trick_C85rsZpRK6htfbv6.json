@@ -6,7 +6,7 @@
     "summary": {
       "value": "Boost the transformations of custom weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>.</p><hr><p>When you transform a <strong>transforming custom weapon</strong> on your turn, choose <strong>one</strong> option:</p><ul><li><p>If you have not performed any attacks during this turn, the next attack you perform with this weapon during this turn deals 5 extra damage.</p></li><li><p>If you hit one or more creatures with an attack using this weapon during this turn, you recover 5 Hit Points and 5 Mind Points.</p></li></ul><hr><p><strong>You Gain:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.0jslWSatV2i8SKix] or @EFFECT[Compendium.projectfu.heroic-skills.Item.3PRgAxgGjeOiBjKg]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>.</p><hr><p>When you transform a <strong>transforming custom weapon</strong> on your turn, choose <strong>one</strong> option:</p><ul><li><p>If you have not performed any attacks during this turn, the next attack you perform with this weapon during this turn deals 5 extra damage.</p></li><li><p>If you hit one or more creatures with an attack using this weapon during this turn, you recover 5 Hit Points and 5 Mind Points.</p></li></ul><hr><p><strong>You Gain:</strong> @EFFECT[pfu-hunters-trick-damage] or @EFFECT[pfu-hunters-trick-recover]</p>",
     "class": {
       "value": "sharpshooter, weaponmaster"
     },
@@ -92,8 +92,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923922826,
-    "modifiedTime": 1792923923009,
+    "createdTime": 1793311128653,
+    "modifiedTime": 1793311128804,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

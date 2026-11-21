@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain different benefits based on the Category of your unarmed strikes."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Mutant</strong> Class, and must have acquired the <strong>Akromorphosis</strong> Skill.</p><hr><p>You gain the following benefits based on the current Category of your <strong>unarmed strikes</strong>.</p><ul><li><p><strong>Arcane, brawling, dagger, thrown</strong>: your attacks with unarmed strikes treat the Defense of each target as being equal to their current Insight die size.</p></li><li><p><strong>Bow, sword</strong>: your attacks with <strong>unarmed strikes</strong> that target <strong>two or more creatures</strong> deal 5 extra damage.</p></li><li><p><strong>Firearm</strong>, <strong>heavy</strong>: Your <strong>unarmed strikes</strong> deal 5 extra damage to <strong>constructs</strong>, and 5 extra damage to non-<strong>construct</strong> creatures that are clad in heavy armor or covered in thick scales (the Game Master has final say on whether this effect applies).</p></li><li><p><strong>Flail, spear</strong>: you gain a +2 bonus to Defense, and your attacks with <strong>unarmed strikes</strong> may target <strong>flying</strong> creatures.</p></li></ul><p>If your <strong>unarmed strikes</strong> are treated as belonging to <strong>more than one Category</strong> (for instance due to the @UUID[Compendium.projectfu.heroic-skills.Item.s316rQUTr3lgeTx7]{Blade Adept} Heroic Skill), you gain all the benefits of the corresponding Categories.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.uC3DZwPezU8UYOBM] or @EFFECT[Compendium.projectfu.heroic-skills.Item.s7qW1SP4kVyDNt5N]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Mutant</strong> Class, and must have acquired the <strong>Akromorphosis</strong> Skill.</p><hr><p>You gain the following benefits based on the current Category of your <strong>unarmed strikes</strong>.</p><ul><li><p><strong>Arcane, brawling, dagger, thrown</strong>: your attacks with unarmed strikes treat the Defense of each target as being equal to their current Insight die size.</p></li><li><p><strong>Bow, sword</strong>: your attacks with <strong>unarmed strikes</strong> that target <strong>two or more creatures</strong> deal 5 extra damage.</p></li><li><p><strong>Firearm</strong>, <strong>heavy</strong>: Your <strong>unarmed strikes</strong> deal 5 extra damage to <strong>constructs</strong>, and 5 extra damage to non-<strong>construct</strong> creatures that are clad in heavy armor or covered in thick scales (the Game Master has final say on whether this effect applies).</p></li><li><p><strong>Flail, spear</strong>: you gain a +2 bonus to Defense, and your attacks with <strong>unarmed strikes</strong> may target <strong>flying</strong> creatures.</p></li></ul><p>If your <strong>unarmed strikes</strong> are treated as belonging to <strong>more than one Category</strong> (for instance due to the @UUID[Compendium.projectfu.heroic-skills.Item.s316rQUTr3lgeTx7]{Blade Adept} Heroic Skill), you gain all the benefits of the corresponding Categories.</p><hr><p><strong>You Receive:</strong> @EFFECT[pfu-greater-akromorphosis-damage] or @EFFECT[pfu-greater-akromorphosis-defense]</p>",
     "showTitleCard": {
       "value": false
     },
@@ -91,8 +91,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923922855,
-    "modifiedTime": 1792923923014,
+    "createdTime": 1793311128682,
+    "modifiedTime": 1793311128808,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

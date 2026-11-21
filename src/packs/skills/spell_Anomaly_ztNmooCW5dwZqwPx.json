@@ -96,7 +96,7 @@
     "fuid": "anomaly",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.rOzrw717cgCgjTZ7"
+        "pfu-anomaly"
       ],
       "prompt": false,
       "duration": {
@@ -140,8 +140,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921394,
-    "modifiedTime": 1792923922166,
+    "createdTime": 1793311128021,
+    "modifiedTime": 1793311128320,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 0,

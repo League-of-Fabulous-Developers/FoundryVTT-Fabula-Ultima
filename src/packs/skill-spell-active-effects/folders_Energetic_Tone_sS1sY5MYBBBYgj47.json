@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "Meomn6aeDleM5Lbd",
+  "name": "Energetic Tone",
+  "color": "#94a138",
+  "sorting": "a",
+  "_id": "sS1sY5MYBBBYgj47",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217455703,
+    "modifiedTime": 1793217455703,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!sS1sY5MYBBBYgj47"
+}

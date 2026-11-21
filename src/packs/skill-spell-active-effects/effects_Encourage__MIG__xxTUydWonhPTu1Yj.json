@@ -1,0 +1,69 @@
+{
+  "name": "Encourage (MIG)",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_encourage.png",
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.attributes.mig",
+        "value": "upgrade",
+        "priority": null,
+        "type": "projectfu.apply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-encourage-mig"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "type": "base",
+  "description": "<p>You treat your <strong>Might</strong> as one die size higher until the start of the orator's next turn.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793311130536,
+    "createdTime": 1793311130536,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "vuHmvwhWLF38NFxA",
+  "_id": "xxTUydWonhPTu1Yj",
+  "sort": 300000,
+  "_key": "!effects!xxTUydWonhPTu1Yj"
+}

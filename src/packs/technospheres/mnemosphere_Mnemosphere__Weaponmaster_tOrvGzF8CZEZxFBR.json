@@ -345,7 +345,7 @@
           },
           "effects": {
             "entries": [
-              "Compendium.projectfu.skills.Item.Cc1391vhlS1yIMrI"
+              "pfu-breach"
             ],
             "duration": {
               "interval": null,
@@ -736,8 +736,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923925549,
-    "modifiedTime": 1792923925628,
+    "createdTime": 1793311130901,
+    "modifiedTime": 1793311130970,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

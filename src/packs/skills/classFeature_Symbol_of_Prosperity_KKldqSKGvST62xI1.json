@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke</strong> a Trait or Bond, they also receive 100 zenit.</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.EYyJjUSLrW8HcmA3]</p>",
+      "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke</strong> a Trait or Bond, they also receive 100 zenit.</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gains:</strong> @EFFECT[pfu-symbol-of-prosperity]</p>",
       "type": "projectfu.symbol"
     },
     "source": "FUHF150",
@@ -26,8 +26,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921175,
-    "modifiedTime": 1792923922132,
+    "createdTime": 1793311127939,
+    "modifiedTime": 1793311128306,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

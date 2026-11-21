@@ -601,12 +601,17 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	async _onDropFolder(event, folder) {
-		if (folder?.type !== 'Item') return super._onDropFolder(event, folder);
+		if (folder?.type === 'Item') {
+			return this.#onDropItemFolder(event, folder);
+		} else {
+			return super._onDropFolder(event, folder);
+		}
+	}
 
+	async #onDropItemFolder(event, folder) {
 		const allFolders = [folder, ...folder.getSubfolders(true)];
-
 		const items = [];
-		const effectItems = [];
+		const effects = [];
 		for (let folder of allFolders) {
 			let pack = folder.pack ? game.packs.get(folder.pack) : null;
 			for (let item of folder.contents) {
@@ -614,21 +619,20 @@ export class FUStandardActorSheet extends FUActorSheet {
 					item = await pack.getDocument(item._id);
 				}
 				if (item.type === 'effect') {
-					effectItems.push(item);
+					effects.push(...item.effects);
 				} else {
 					items.push(item);
 				}
 			}
 		}
-
 		await this.actor.createEmbeddedDocuments('Item', items);
-		await Promise.all(effectItems.map((effect) => this._importEffectData(effect)));
+		await this.actor.createEmbeddedDocuments('ActiveEffect', effects);
 		return folder;
 	}
 
 	async _importEffectData(itemData) {
 		const effects = itemData.effects || [];
-		const existingEffects = this.actor.items.filter((i) => i.type === 'ActiveEffect').map((e) => e.data.name);
+		const existingEffects = this.actor.effects.map((e) => e.name);
 		for (const effect of effects) {
 			if (!existingEffects.includes(effect.name)) {
 				await this.actor.createEmbeddedDocuments('ActiveEffect', [effect]);

@@ -27,6 +27,7 @@ export class FUActiveEffectModel extends foundry.data.ActiveEffectTypeDataModel 
 		const { NumberField, SchemaField, StringField, EmbeddedDataField, TypedObjectField } = foundry.data.fields;
 		return {
 			...super.defineSchema(),
+			fuid: new StringField({ label: 'FU.FUID.Short' }),
 			type: new StringField({ initial: 'default', choices: Object.keys(FU.effectType) }),
 			predicate: new EmbeddedDataField(ActiveEffectPredicateModel, {}),
 			duration: new SchemaField({

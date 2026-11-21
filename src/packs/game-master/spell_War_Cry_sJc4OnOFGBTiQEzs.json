@@ -109,7 +109,7 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.game-master.Item.aKy3uZj38HTEBtG1"
+        "pfu-war-cry"
       ],
       "prompt": false,
       "duration": {
@@ -132,8 +132,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923923405,
-    "modifiedTime": 1792923923428,
+    "createdTime": 1793311129103,
+    "modifiedTime": 1793311129124,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

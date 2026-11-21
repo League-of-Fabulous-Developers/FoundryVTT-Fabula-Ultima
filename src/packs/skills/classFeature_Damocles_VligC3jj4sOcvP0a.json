@@ -10,7 +10,7 @@
       "value": "The ghastly sword, looming over tyrants."
     },
     "data": {
-      "merge": "<h3>Impending Judgment</h3><p>You gain Resistance to <strong>dark</strong> and <strong>light</strong> damage.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to choose one enemy you can see and choose one action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, and <strong>Spell</strong>. If you do, until the start of your next turn that enemy loses 10 Hit Points whenever they perform the chosen action (after the action has been resolved). This amount increases to 20 Hit Points if you are <strong>level 30 or higher</strong>.</p><hr><p><strong>Enemy Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.18LT7iykZxDQarui], @EFFECT[Compendium.projectfu.skills.Item.A9d11UtfPxZBwhoJ], @EFFECT[Compendium.projectfu.skills.Item.gfG6k4dbz2qwA5p0], or @EFFECT[Compendium.projectfu.skills.Item.FwIS7GamYtQgNmob]<br><strong>Enemy Loses:</strong> @LOSS[10+10*floor($cl/30) hp]{10/20 HP}</p>",
+      "merge": "<h3>Impending Judgment</h3><p>You gain Resistance to <strong>dark</strong> and <strong>light</strong> damage.</p><p>Once per turn during a conflict, you may perform the <strong>Skill</strong> action to choose one enemy you can see and choose one action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, and <strong>Spell</strong>. If you do, until the start of your next turn that enemy loses 10 Hit Points whenever they perform the chosen action (after the action has been resolved). This amount increases to 20 Hit Points if you are <strong>level 30 or higher</strong>.</p><hr><p><strong>Enemy Gains:</strong> @EFFECT[pfu-damocles-forbid-attack], @EFFECT[pfu-damocles-forbid-guard], @EFFECT[pfu-damocles-forbid-objective], or @EFFECT[pfu-damocles-forbid-spell]<br><strong>Enemy Loses:</strong> @LOSS[10+10*floor($cl/30) hp]{10/20 HP}</p>",
       "pulse": "",
       "dismiss": "<h3>Rain of Swords</h3><p>You deal 30 <strong>light</strong> damage to every enemy you can see. Each creature that loses Hit Points due to this damage suffers <strong>shaken</strong>.</p><hr><p><strong>Enemies Suffer:</strong> @DMG[&step(30,40,50) light]{Light Damage} @EFFECT[shaken]</p>",
       "domains": "dread, hesitation, punishment",
@@ -70,9 +70,9 @@
         ]
       },
       "duration": {
-        "value": 1,
-        "units": "rounds",
-        "expiry": "turnStart",
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
         "expired": false
       },
       "disabled": false,
@@ -101,12 +101,12 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923921239,
-        "modifiedTime": 1792923921239,
+        "createdTime": 1793311127961,
+        "modifiedTime": 1793311127961,
         "lastModifiedBy": "qSTUglS93W7Had7H"
       },
       "start": null,
-      "showIcon": 1,
+      "showIcon": 2,
       "folder": null,
       "_key": "!items.effects!VligC3jj4sOcvP0a.aGkCUmeeN5hbAErz"
     }
@@ -123,8 +123,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921239,
-    "modifiedTime": 1792923922141,
+    "createdTime": 1793311127961,
+    "modifiedTime": 1793311128309,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!VligC3jj4sOcvP0a"

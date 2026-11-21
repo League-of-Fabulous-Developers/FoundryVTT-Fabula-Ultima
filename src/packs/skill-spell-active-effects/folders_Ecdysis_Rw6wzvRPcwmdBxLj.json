@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "6dS8jluviKeQjdJp",
+  "name": "Ecdysis",
+  "color": "#6b435c",
+  "sorting": "a",
+  "_id": "Rw6wzvRPcwmdBxLj",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218758449,
+    "modifiedTime": 1793218758449,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!Rw6wzvRPcwmdBxLj"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Sharpshooter",
+  "color": "#7a4d06",
+  "sorting": "a",
+  "_id": "OUcokwW13N8RMCPm",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218957121,
+    "modifiedTime": 1793218957121,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!OUcokwW13N8RMCPm"
+}

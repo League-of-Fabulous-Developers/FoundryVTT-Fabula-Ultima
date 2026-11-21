@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "2NfuHz3oOHaF32IL",
+  "name": "Cheer Up",
+  "color": "#348c31",
+  "sorting": "a",
+  "_id": "zLQY5bLPAbzOTzXd",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220607805,
+    "modifiedTime": 1793220607805,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!zLQY5bLPAbzOTzXd"
+}

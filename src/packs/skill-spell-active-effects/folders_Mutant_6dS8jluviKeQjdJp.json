@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": null,
+  "name": "Mutant",
+  "color": "#ab5f8b",
+  "sorting": "a",
+  "_id": "6dS8jluviKeQjdJp",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218740502,
+    "modifiedTime": 1793218740502,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!6dS8jluviKeQjdJp"
+}

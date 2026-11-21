@@ -107,10 +107,16 @@ export class CompendiumIndex {
 	#itemsByFuid;
 
 	/**
-	 * @desc All compendium items by their fuid.
-	 @type {CompendiumIndexEntry[]}
+	 * @desc All compendium effects
+	 * @type {CompendiumIndexEntry[]}
 	 */
 	#effects;
+
+	/**
+	 * @desc All compendium effects by their fuid
+	 * @type {Record<string, CompendiumIndexEntry>}
+	 */
+	#effectsByFuid;
 
 	/**
 	 * @desc Where the keys are the actor types.
@@ -277,9 +283,31 @@ export class CompendiumIndex {
 	 */
 	async getEffects() {
 		if (!this.#effects) {
-			this.#effects = await this.getItemsOfType('effect');
+			const effects = await this.getEntries('ActiveEffect', null, ['system.fuid']);
+			this.#effects = Object.values(effects).flat();
 		}
 		return this.#effects;
+	}
+
+	/**
+	 * @param fuid
+	 * @return {Promise<CompendiumIndexEntry|null>}
+	 */
+	async getEffectByFuid(fuid) {
+		if (!this.#effectsByFuid) {
+			const effects = await this.getEffects();
+			this.#effectsByFuid = effects
+				.filter((e) => !!e.system.fuid)
+				.reduce((acc, effect) => {
+					if (acc[effect.system.fuid]) {
+						console.warn(`Duplicate Effect FUID '${effect.system.fuid}'`, acc[effect.system.fuid], effect);
+					} else {
+						acc[effect.system.fuid] = effect;
+					}
+					return acc;
+				}, {});
+		}
+		return this.#effectsByFuid[fuid] ?? null;
 	}
 
 	/**

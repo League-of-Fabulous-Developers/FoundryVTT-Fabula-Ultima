@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "9jBASLeLMBPzNiSC",
+  "name": "Delicacy 11 (Attribute Up)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "MocmVYYB4qhMwekY",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218441884,
+    "modifiedTime": 1793218447117,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!MocmVYYB4qhMwekY"
+}

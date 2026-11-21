@@ -22,8 +22,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... treats their Dexterity (@EFFECT[dex-up e:eot i:2 t:source]) and Might (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
       "name": "",
@@ -48,8 +48,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... treats their Insight (@EFFECT[ins-up e:eot i:2 t:source]) and Willpower (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
       "name": "",
@@ -74,8 +74,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @DMG[20 air] damage. This amount increases to @DMG[30 air] damage if you are level 20 or higher, or to @DMG[40 air] damage if you are level 40 or higher.",
       "name": "",
@@ -100,8 +100,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @DMG[20 bolt] damage. This amount increases to @DMG[30 bolt] damage if you are level 20 or higher, or to @DMG[40 bolt] damage if you are level 40 or higher.",
       "name": "",
@@ -126,8 +126,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @DMG[20 dark] damage. This amount increases to @DMG[30 dark] damage if you are level 20 or higher, or to @DMG[40 dark] damage if you are level 40 or higher.",
       "name": "",
@@ -152,8 +152,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @DMG[20 earth] damage. This amount increases to @DMG[30 earth] damage if you are level 20 or higher, or to @DMG[40 earth] damage if you are level 40 or higher.",
       "name": "",
@@ -178,8 +178,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @DMG[20 fire] damage. This amount increases to @DMG[30 fire] damage if you are level 20 or higher, or to @DMG[40 fire] damage if you are level 40 or higher.",
       "name": "",
@@ -204,8 +204,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @DMG[20 ice] damage. This amount increases to @DMG[30 ice] damage if you are level 20 or higher, or to @DMG[40 ice] damage if you are level 40 or higher.",
       "name": "",
@@ -230,8 +230,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... gains Resistance to air (@TYPE[affinity air resistance e:eos i:1 t:source]) and fire (@TYPE[affinity fire resistance e:eos i:1 t:source]) damage until the end of the scene.",
       "name": "",
@@ -256,8 +256,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... gains Resistance to bolt (@TYPE[affinity bolt resistance e:eos i:1 t:source]) and ice (@TYPE[affinity ice resistance e:eos i:1 t:source]) damage until the end of the scene.",
       "name": "",
@@ -282,8 +282,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... gains Resistance to dark (@TYPE[affinity dark resistance e:eos i:1 t:source]) and earth (@TYPE[affinity earth resistance e:eos i:1 t:source]) damage until the end of the scene.",
       "name": "",
@@ -308,8 +308,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @EFFECT[enraged].",
       "name": "",
@@ -334,8 +334,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @EFFECT[poisoned].",
       "name": "",
@@ -360,8 +360,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... suffers @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], and @EFFECT[weak].",
       "name": "",
@@ -386,8 +386,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... recovers from all status effects.",
       "name": "",
@@ -412,8 +412,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... recovers @GAIN[50 hp] and @GAIN[50 mp].",
       "name": "",
@@ -438,8 +438,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... recovers @GAIN[100 hp].",
       "name": "",
@@ -464,8 +464,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... recovers @GAIN[100 mp].",
       "name": "",
@@ -490,8 +490,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "qSTUglS93W7Had7H",
-        "createdTime": 1792923923484,
-        "modifiedTime": 1792923923484
+        "createdTime": 1793311129204,
+        "modifiedTime": 1793311129204
       },
       "description": "... recovers @GAIN[100 hp] and @GAIN[100 mp].",
       "name": "",
@@ -514,8 +514,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923923484,
-    "modifiedTime": 1792923923512,
+    "createdTime": 1793311129204,
+    "modifiedTime": 1793311129237,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "formula": "1d20",

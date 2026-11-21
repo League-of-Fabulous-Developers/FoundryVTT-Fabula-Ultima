@@ -45,9 +45,9 @@
     },
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.pw3V67Q5TBTnFNXb",
-        "Compendium.projectfu.skills.Item.rCmUbGKNsyJPZ70N",
-        "Compendium.projectfu.skills.Item.yOlZYERCLxYMAZq5"
+        "pfu-soul-shroud-dark",
+        "pfu-soul-shroud-light",
+        "pfu-soul-shroud-poison"
       ],
       "duration": {
         "interval": null,
@@ -142,8 +142,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921241,
-    "modifiedTime": 1792923922141,
+    "createdTime": 1793311127961,
+    "modifiedTime": 1793311128309,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "_key": "!items!W2jMFJBOausmpSOY"

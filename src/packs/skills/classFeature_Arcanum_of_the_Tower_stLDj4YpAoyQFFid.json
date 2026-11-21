@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "merge": "<p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is <strong>dismissed</strong>, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p><hr><p><strong>Allies Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.sh7pcJRup2dGA6vN], @EFFECT[Compendium.projectfu.skills.Item.Btu1RHeizzXGmuWj], @EFFECT[Compendium.projectfu.skills.Item.lMyJnByJO4A2SU9h], @EFFECT[Compendium.projectfu.skills.Item.V9DDBpBK02qIxkEV], @EFFECT[Compendium.projectfu.skills.Item.uW0OZk83vqZOw5uW], or @EFFECT[Compendium.projectfu.skills.Item.SBWScyP5dLPEmv5r]</p>",
+      "merge": "<p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is <strong>dismissed</strong>, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p><hr><p><strong>Allies Gain:</strong> @EFFECT[pfu-tower-arcanum-air], @EFFECT[pfu-tower-arcanum-bolt], @EFFECT[pfu-tower-arcanum-dark], @EFFECT[pfu-tower-arcanum-earth], @EFFECT[pfu-tower-arcanum-fire], or @EFFECT[pfu-tower-arcanum-ice]</p>",
       "dismiss": "<p><strong>Judgment</strong>. Choose any number of creatures you can see: you deal 30 <strong>light</strong> damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[30 light|ignore-resistances|]{Judgment Damage}</p>",
       "domains": "judgment, protection, sacrifice",
       "type": "projectfu.arcanum",
@@ -23,9 +23,9 @@
     {
       "origin": "Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid",
       "duration": {
-        "value": 1,
-        "units": "rounds",
-        "expiry": "turnStart",
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
         "expired": false
       },
       "disabled": false,
@@ -74,13 +74,13 @@
         "coreVersion": "14.368",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1792923921368,
-        "modifiedTime": 1792923921368,
+        "createdTime": 1793311128008,
+        "modifiedTime": 1793311128008,
         "lastModifiedBy": "qSTUglS93W7Had7H",
         "exportSource": null
       },
       "start": null,
-      "showIcon": 1,
+      "showIcon": 2,
       "folder": null,
       "_key": "!items.effects!stLDj4YpAoyQFFid.xy0M0poZ1no2aSAs"
     }
@@ -92,8 +92,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921368,
-    "modifiedTime": 1792923922162,
+    "createdTime": 1793311128008,
+    "modifiedTime": 1793311128318,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

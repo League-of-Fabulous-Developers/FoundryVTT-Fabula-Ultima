@@ -96,10 +96,10 @@
     "fuid": "awaken",
     "effects": {
       "entries": [
-        "Compendium.projectfu.skills.Item.lS4NFmMsRQKik2wz",
-        "Compendium.projectfu.skills.Item.vUP4Ve1DYa6LmHwZ",
-        "Compendium.projectfu.skills.Item.SocdSpwFMRBjPiR4",
-        "Compendium.projectfu.skills.Item.z63l91zniIYaS30H"
+        "pfu-awaken-dex",
+        "pfu-awaken-ins",
+        "pfu-awaken-mig",
+        "pfu-awaken-wlp"
       ],
       "duration": {
         "interval": null,
@@ -143,8 +143,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923921185,
-    "modifiedTime": 1792923922134,
+    "createdTime": 1793311127944,
+    "modifiedTime": 1793311128306,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "sort": 400000,

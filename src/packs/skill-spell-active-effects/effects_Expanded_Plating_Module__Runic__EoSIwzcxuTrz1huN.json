@@ -1,0 +1,81 @@
+{
+  "name": "Expanded Plating Module (Runic)",
+  "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.derived.def.value",
+        "value": 10,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      },
+      {
+        "key": "system.derived.mdef.value",
+        "value": 11,
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-expanded-plating-module-runic"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "EoSIwzcxuTrz1huN",
+  "type": "base",
+  "description": "<p>While you are a passenger of a <strong>personal vehicle</strong> with the <strong>expanded plating module</strong> enabled, you may treat your Defense and Magic Defense scores as being equal to those provided by the <strong>Runic Plating module</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130515,
+    "modifiedTime": 1793311130515,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 2,
+  "folder": "15EyFuBDrvlBbxLv",
+  "sort": 0,
+  "_key": "!effects!EoSIwzcxuTrz1huN"
+}

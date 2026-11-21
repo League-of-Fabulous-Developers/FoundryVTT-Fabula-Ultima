@@ -2,6 +2,7 @@
     data-tab="{{tab.id}}" style="color: rgba(17, 41, 41, 0.9)">
 
 	<div class="desc">
+		{{formGroup systemFields.fuid value=source.system.fuid rootId=rootId localize=true}}
 		{{formGroup fields.tint value=source.tint rootId=rootId placeholder="#ffffff"}}
 		{{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}
 		{{formGroup fields.showIcon value=source.showIcon options=showIconOptions rootId=rootId}}

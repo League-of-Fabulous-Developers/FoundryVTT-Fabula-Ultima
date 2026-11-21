@@ -33,12 +33,12 @@
     "fuid": "witchvoice",
     "effects": {
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.t4rE9i35cvOZiJp4",
-        "Compendium.projectfu.heroic-skills.Item.sZec7vI1z54PVdgL",
-        "Compendium.projectfu.heroic-skills.Item.Ye37QSABFzxlPXSk",
-        "Compendium.projectfu.heroic-skills.Item.bWLCemThlhNHfS5U",
-        "Compendium.projectfu.heroic-skills.Item.h37S8sQiTglvs4dP",
-        "Compendium.projectfu.heroic-skills.Item.hDXc6pWQ5VEyKg4O"
+        "pfu-bewitched-dazed",
+        "pfu-bewitched-enraged",
+        "pfu-bewitched-poisoned",
+        "pfu-bewitched-shaken",
+        "pfu-bewitched-slow",
+        "pfu-bewitched-weak"
       ],
       "duration": {
         "interval": null,
@@ -99,8 +99,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923922827,
-    "modifiedTime": 1792923923010,
+    "createdTime": 1793311128655,
+    "modifiedTime": 1793311128805,
     "lastModifiedBy": "qSTUglS93W7Had7H"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

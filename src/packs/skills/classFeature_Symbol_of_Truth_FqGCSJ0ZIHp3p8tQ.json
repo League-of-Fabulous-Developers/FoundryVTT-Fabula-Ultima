@@ -9,7 +9,7 @@
       "value": ""
     },
     "data": {
-      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells (@ICON[offensive]) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect is <strong>cumulative</strong>.</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gain:</strong> @EFFECT[Compendium.projectfu.skills.Item.qMUUYxxeMN8nFWG9]</p>",
+      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells (@ICON[offensive]) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect is <strong>cumulative</strong>.</p><hr><p><strong>You Spend:</strong> @LOSS[2 ip]<br><strong>Target Gain:</strong> @EFFECT[pfu-symbol-of-truth]</p>",
       "type": "projectfu.symbol"
     },
     "source": "FUHF151",
@@ -26,8 +26,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "14.368",
-    "createdTime": 1792923921157,
-    "modifiedTime": 1792923922129,
+    "createdTime": 1793311127933,
+    "modifiedTime": 1793311128304,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "compendiumSource": null,
     "duplicateSource": null,

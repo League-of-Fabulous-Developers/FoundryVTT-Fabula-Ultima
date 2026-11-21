@@ -1,0 +1,74 @@
+{
+  "name": "Reinforce (Dazed)",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_dazed.png",
+  "system": {
+    "duration": {
+      "event": "endOfScene",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.immunities.dazed.base",
+        "value": true,
+        "priority": null,
+        "type": "override",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-reinforce-dazed"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "sJloIrKsBjrUWGxt",
+  "type": "base",
+  "description": "<p>Until this spell ends, you are immune to <strong>dazed</strong>.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "modifiedTime": 1793311130532,
+    "createdTime": 1793311130532,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "VzNoC2ajeMWj6GIU",
+  "sort": 0,
+  "_key": "!effects!sJloIrKsBjrUWGxt"
+}

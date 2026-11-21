@@ -34,10 +34,10 @@
     "fuid": "strength-of-five-wellsprings",
     "effects": {
       "entries": [
-        "Compendium.projectfu.heroic-skills.Item.ZXQFkQDYAgYKjRlM",
-        "Compendium.projectfu.heroic-skills.Item.riX7ckO58NUX7E1I",
-        "Compendium.projectfu.heroic-skills.Item.4cvTHMz0zN043Mew",
-        "Compendium.projectfu.heroic-skills.Item.TBTNmD7kvs0INTUI"
+        "pfu-strength-of-five-wellsprings-dex",
+        "pfu-strength-of-five-wellsprings-ins",
+        "pfu-strength-of-five-wellsprings-mig",
+        "pfu-strength-of-five-wellsprings-wlp"
       ],
       "duration": {
         "interval": null,
@@ -97,8 +97,8 @@
     "coreVersion": "14.368",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1792923922836,
-    "modifiedTime": 1792923923011,
+    "createdTime": 1793311128664,
+    "modifiedTime": 1793311128806,
     "lastModifiedBy": "qSTUglS93W7Had7H",
     "exportSource": null
   },

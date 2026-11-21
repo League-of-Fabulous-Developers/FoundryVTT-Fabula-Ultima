@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "04TQgusXjpRwlpJh",
+  "name": "Hookleaf Nightshade",
+  "color": "#723c44",
+  "sorting": "a",
+  "_id": "qHdDoV3LhyKVs38T",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218142922,
+    "modifiedTime": 1793218142922,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!qHdDoV3LhyKVs38T"
+}
