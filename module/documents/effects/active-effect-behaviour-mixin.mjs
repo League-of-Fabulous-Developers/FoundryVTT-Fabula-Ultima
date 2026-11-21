@@ -248,10 +248,10 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			// 2. The effect is being applied onto an item
 			if (target instanceof FUActor) {
 				actor = target;
-				if (effect.parent instanceof FUItem) {
+				if (effect.parent instanceof FUItem || effect.parent instanceof PseudoItem) {
 					item = effect.parent;
 				}
-			} else if (target instanceof FUItem) {
+			} else if (target instanceof FUItem || target instanceof PseudoItem) {
 				item = target;
 				actor = item.actor;
 			}
