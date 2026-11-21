@@ -174,32 +174,10 @@
 			}
 		},
 		{
-			"label": "Conditions",
-			"type": "ActiveEffect",
-			"name": "condition-active-effects",
-			"path": "packs/condition-active-effects",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"label": "Equipment Effects",
 			"type": "ActiveEffect",
 			"name": "equipment-active-effects",
 			"path": "packs/equipment-active-effects",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
-			"label": "Qualities",
-			"type": "ActiveEffect",
-			"name": "quality-active-effects",
-			"path": "packs/quality-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -268,7 +246,7 @@
 			"name": "Effects",
 			"sorting": "a",
 			"color": "#8b5c00",
-			"packs": ["actor-active-effects", "condition-active-effects", "equipment-active-effects", "quality-active-effects", "skill-spell-active-effects", "heroic-skill-active-effects"]
+			"packs": ["actor-active-effects", "equipment-active-effects", "skill-spell-active-effects", "heroic-skill-active-effects"]
 		},
 		{
 			"name": "Equipment",
