@@ -221,10 +221,15 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 				const button = document.createElement('button');
 				button.classList.add('inline-control', 'icon', 'fa-regular', 'fa-arrow-rotate-left');
 				button.dataset.tooltip = 'FU.FUID.Regenerate';
-				button.addEventListener('click', (e) => {
-					const fuid = slugify(this.#workingDocument.name);
-					this.#updateWorkingDocument({ system: { fuid } });
-				});
+				button.addEventListener('click', (e) =>
+					this.submit({
+						updateData: {
+							system: {
+								fuid: slugify(this.document.name),
+							},
+						},
+					}),
+				);
 				return button;
 			})(),
 		);
