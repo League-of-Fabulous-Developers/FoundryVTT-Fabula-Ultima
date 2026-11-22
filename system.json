@@ -64,7 +64,7 @@
 			}
 		},
 		{
-			"label": "Skills",
+			"label": "Class Skills",
 			"type": "Item",
 			"name": "skills",
 			"path": "packs/skills",
@@ -196,7 +196,7 @@
 			}
 		},
 		{
-			"label": "Heroic SKill Effects",
+			"label": "Heroic Skill Effects",
 			"type": "ActiveEffect",
 			"name": "heroic-skill-active-effects",
 			"path": "packs/heroic-skill-active-effects",
