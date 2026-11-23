@@ -40,7 +40,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ attribute }) => ({
 			key: `system.attributes.${attribute}`,
-			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			type: FU.changeTypes.apply,
 			value: 'upgrade',
 		}),
 	},
@@ -52,7 +52,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ attribute }) => ({
 			key: `system.attributes.${attribute}.current`,
-			mode: CONST.ACTIVE_EFFECT_MODES.DOWNGRADE,
+			type: 'downgrade',
 			value: `@system.attributes.${attribute}.base`,
 		}),
 	},
@@ -68,9 +68,9 @@ const SUPPORTED_CHANGE_TYPES = {
 			},
 		},
 		toChange: ({ damageType, value }) => {
-			const createChange = (type, value) => ({
-				key: `system.bonuses.damage.${type}`,
-				mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+			const createChange = (damType, value) => ({
+				key: `system.bonuses.damage.${damType}`,
+				type: 'add',
 				value,
 			});
 			if (damageType === 'all') {
@@ -93,7 +93,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		toChange: ({ check, value }) => {
 			const createChange = (check, value) => ({
 				key: `system.bonuses.accuracy.${check}`,
-				mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+				type: 'add',
 				value,
 			});
 
@@ -111,7 +111,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ defense, value }) => ({
 			key: `system.derived.${defense}.value`,
-			mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+			type: 'add',
 			value,
 		}),
 	},
@@ -123,7 +123,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}`,
-			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			type: FU.changeTypes.apply,
 			value: 'downgrade',
 		}),
 	},
@@ -135,7 +135,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}`,
-			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			type: FU.changeTypes.apply,
 			value: 'upgrade',
 		}),
 	},
@@ -147,7 +147,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}.current`,
-			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+			type: 'upgrade',
 			value: String(FU.affValue.immunity),
 		}),
 	},
@@ -159,7 +159,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}.current`,
-			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+			type: 'upgrade',
 			value: String(FU.affValue.absorption),
 		}),
 	},
@@ -171,7 +171,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ temporaryEffect }) => ({
 			key: `system.immunities.${temporaryEffect}.base`,
-			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			type: 'override',
 			value: true,
 		}),
 	},
@@ -320,7 +320,10 @@ export class InlineEffectConfiguration extends FUApplication {
 			}
 			if (this.#object.type === 'guided') {
 				const effectData = { ...this.#object.guided };
-				effectData.changes = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
+				const preparedChanges = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
+				delete effectData.changes;
+				effectData.system ??= {};
+				effectData.system.changes = preparedChanges;
 				const encodedEffect = StringUtils.toBase64(effectData);
 				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${encodedEffect}] `));
 			}

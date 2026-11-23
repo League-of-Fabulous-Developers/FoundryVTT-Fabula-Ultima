@@ -1,0 +1,61 @@
+{
+  "name": "Magic Tent",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/magic-tent.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "Allows the entire group to rest while in the wilderness."
+    },
+    "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. Cannot be used in settlements.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 4
+    },
+    "source": "FUCR104",
+    "fuid": "magic-tent",
+    "damage": {
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": {
+      "entries": []
+    }
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.368",
+    "createdTime": 1793311128947,
+    "modifiedTime": 1793311128959,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "0000000MagicTent",
+  "sort": 100000,
+  "_key": "!items!0000000MagicTent"
+}

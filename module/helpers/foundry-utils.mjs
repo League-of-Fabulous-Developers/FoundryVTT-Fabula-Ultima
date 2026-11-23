@@ -645,13 +645,20 @@ export default class FoundryUtils {
 
 	/**
 	 * @typedef ContextMenuEntry
-	 * @property {string} name                              The context menu label. Can be localized.
+	 * @property {string} label                              The context menu label. Can be localized.
 	 * @property {string} [icon]                            A string containing an HTML icon element for the menu item.
 	 * @property {string} [classes]                         Additional CSS classes to apply to this menu item.
 	 * @property {string} [group]                           An identifier for a group this entry belongs to.
-	 * @property {ContextMenuJQueryCallback} callback       The function to call when the menu item is clicked.
-	 * @property {ContextMenuCondition|boolean} [condition] A function to call or boolean value to determine if this entry
+	 * @property {ContextMenuClickCallback} onClick         The function to call when the menu item is clicked.
+	 * @property {ContextMenuCondition|boolean} [visible]   A function to call or boolean value to determine if this entry
 	 *                                                      appears in the menu.
+	 */
+
+	/**
+	 * @callback ContextMenuClickCallback
+	 * @param {PointerEvent} event                          The click event.
+	 * @param {HTMLElement} target                          The element that the context menu has been triggered for.
+	 * @returns {unknown}
 	 */
 
 	/**
@@ -696,9 +703,9 @@ export default class FoundryUtils {
 			.toSorted((a, b) => a.name.localeCompare(b.name))
 			.map((item) => {
 				return {
-					name: item.name,
+					label: item.name,
 					icon: `<img class="fu-icon--xs" src="${item.img}" alt="${item.name}"/>`,
-					callback: async (html) => {
+					onClick: async (event, html) => {
 						if (action) {
 							return action(item);
 						}
@@ -828,7 +835,6 @@ export default class FoundryUtils {
 		const targetEffectsByLabel = new Map(targetItem.effects.map((e) => [e.label, e]));
 		for (const sourceEffect of sourceItem.effects) {
 			const data = foundry.utils.deepClone(sourceEffect.toObject());
-
 			// Never reuse IDs or origins
 			delete data._id;
 			delete data.origin;
@@ -837,7 +843,6 @@ export default class FoundryUtils {
 			if (targetEffect) {
 				updates.push({
 					_id: targetEffect.id,
-					changes: data.changes,
 					duration: data.duration,
 					flags: data.flags,
 					disabled: data.disabled,

@@ -7,7 +7,7 @@ import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs'
 import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
 
-Hooks.on('preUpdateActor', async (document, changed) => {
+Hooks.on('preUpdateActor', (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
 		const newVillainType = foundry.utils.getProperty(changed, 'system.villain.value');
 		if (newVillainType !== undefined && newVillainType !== document.system.villain.value) {
@@ -137,6 +137,10 @@ export class NpcDataModel extends BaseCharacterDataModel {
 	 */
 	prepareBaseData() {
 		this.#prepareReplacedSoldiers();
+		if (this.rank.value === 'companion') {
+			this.level.value = 5;
+		}
+
 		this.#prepareBasicResource();
 		this.derived.prepareData();
 

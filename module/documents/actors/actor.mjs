@@ -48,7 +48,7 @@ import { RuleDataModel } from '../items/rule/rule-data-model.mjs';
  * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
  * @inheritDoc
  */
-export class FUActor extends Actor {
+export class FUActor extends foundry.documents.Actor {
 	/**
 	 * @override
 	 * @remarks Prepare data for the actor. Calling the super version of this executes
@@ -74,6 +74,7 @@ export class FUActor extends Actor {
 
 	/** @override */
 	prepareBaseData() {
+		super.prepareBaseData();
 		// Data modifications in this step occur before processing embedded
 		// documents or derived data.
 	}
@@ -88,7 +89,13 @@ export class FUActor extends Actor {
 	 * is queried and has a roll executed directly from it).
 	 */
 	prepareDerivedData() {
-		this.items.forEach((item) => item.applyActiveEffects());
+		super.prepareDerivedData();
+		this.applyActiveEffects('default');
+	}
+
+	applyActiveEffects(phase) {
+		super.applyActiveEffects(phase);
+		this.items.forEach((item) => item.applyActiveEffects(phase));
 	}
 
 	get tlTracker() {
@@ -120,13 +127,26 @@ export class FUActor extends Actor {
 	async _preCreate(createData, options, user) {
 		await super._preCreate(createData, options, user);
 		if (this.type === 'character') {
-			this.updateSource({
-				prototypeToken: {
-					actorLink: true,
-					disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-				},
+			this.prototypeToken.updateSource({
+				actorLink: true,
+				disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
 			});
+			await this.#addStandardIssueItems();
 		}
+	}
+
+	async #addStandardIssueItems() {
+		const standardIssueItems = [
+			await fromUuid('Compendium.projectfu.basic-equipment.Item.000UnarmedStrike'),
+			await fromUuid('Compendium.projectfu.consumables.Item.0000000000Remedy'),
+			await fromUuid('Compendium.projectfu.consumables.Item.0000000000Elixir'),
+			await fromUuid('Compendium.projectfu.consumables.Item.00000000000Tonic'),
+			await fromUuid('Compendium.projectfu.consumables.Item.00ElementalShard'),
+			await fromUuid('Compendium.projectfu.consumables.Item.0000000MagicTent'),
+		].filter(Boolean);
+		this.updateSource({
+			items: [...this.items, ...standardIssueItems],
+		});
 	}
 
 	/**
@@ -149,26 +169,8 @@ export class FUActor extends Actor {
 	/**
 	 * @override
 	 */
-	async _onCreate(createData, options, userId) {
-		await super._onCreate(createData, options, userId);
-		if (this.isCharacterType && this.type === 'character') {
-			// Load the compendium
-			const pack = game.packs.get('projectfu.basic-equipment');
-			const content = await pack.getDocuments();
-			// Find the item with system.fuid === 'unarmed-strike'
-			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
-			if (unarmedStrikeItem) {
-				// Check if the item already exists in the character's inventory
-				const existingCopies = this.getItemsByFuid('unarmed-strike');
-				switch (existingCopies.length) {
-					case 0:
-						{
-							await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
-						}
-						break;
-				}
-			}
-		}
+	_onCreate(createData, options, userId) {
+		super._onCreate(createData, options, userId);
 	}
 
 	/**
@@ -412,7 +414,7 @@ export class FUActor extends Actor {
 	 * @description Deletes all temporary effects on the actor
 	 * @property {ClearEffectOptions} options
 	 */
-	clearTemporaryEffects(options = FUActor.defaultClearEffectOptions) {
+	async clearTemporaryEffects(options = FUActor.defaultClearEffectOptions) {
 		// Collect effects to delete
 		const effectsToDelete = this.temporaryEffects.filter((effect) => {
 			// If it has a status effect
@@ -480,7 +482,7 @@ export class FUActor extends Actor {
 
 		// Delete all collected effects
 		if (effectsToDelete.length > 0) {
-			Promise.all(effectsToDelete.map((effect) => effect.delete()));
+			await Promise.all(effectsToDelete.map((effect) => effect.delete()));
 		}
 	}
 
@@ -529,7 +531,7 @@ export class FUActor extends Actor {
 		await this.update(updateData);
 
 		// Dispatch the event
-		CommonEvents.rest(this);
+		await CommonEvents.rest(this);
 	}
 
 	// TODO: Move out

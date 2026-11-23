@@ -74,7 +74,7 @@ export const FlagUtility = Object.freeze({
 	getEffectChange: (flag, value) => {
 		return {
 			key: `flags.${systemId}.${flag}`,
-			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			type: 'override',
 			value: value,
 		};
 	},

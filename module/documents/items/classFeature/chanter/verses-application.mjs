@@ -331,12 +331,12 @@ export class VersesApplication extends FUApplication {
 
 		await CommonEvents.feature(actor, item, [FeatureTraits.Verse], targets, renderData);
 
+		renderData.postRenderActions.push(() => CommonEvents.skill(actor, item));
+
 		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
 		builder.withData(renderData);
 		await builder.create();
-
-		CommonEvents.skill(actor, item);
 
 		this.close();
 	}

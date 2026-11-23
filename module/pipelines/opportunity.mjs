@@ -9,7 +9,7 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 /**
  * @param {OpportunityEvent} event
  */
-async function onOpportunity(event) {
+function onOpportunity(event) {
 	// Emit a message for the opposition
 	if (event.fumble) {
 		console.debug(`The opposition of ${event.actor.name} has gained an opportunity!`);

@@ -85,34 +85,26 @@ async function handleSupportCheck(groupCheck, character) {
 }
 
 /**
- * @param {ChatLog} chatLog
- * @param {Document} html
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
  */
-function attachSupportCheckListener(chatLog, html) {
-	// Reapply event listeners for each chat message
-	html.addEventListener('click', async (event) => {
-		const groupCheckId = event.target.dataset.support;
-		if (groupCheckId) {
-			const messageId = event.target.closest('[data-message-id]')?.dataset?.messageId;
-			const message = game.messages.get(messageId);
-			if (message) {
-				const groupCheck = message.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
-				if (groupCheck && groupCheck.status === 'open') {
-					event.target.disabled = true;
-					try {
-						const character =
-							canvas.tokens.controlled
-								.map((token) => token.document.actor)
-								.filter((actor) => !!actor && actor.type === 'character')
-								.at(0) ?? game.user.character;
-						await handleSupportCheck(groupCheck, character);
-					} finally {
-						event.target.disabled = false;
-					}
-				}
-			}
+function attachSupportCheckListener(message, html) {
+	const onClick = (event) => {
+		const groupCheck = message.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
+		if (groupCheck && groupCheck.status === 'open') {
+			event.target.disabled = true;
+			const character =
+				canvas.tokens.controlled
+					.map((token) => token.document.actor)
+					.filter((actor) => !!actor && actor.type === 'character')
+					.at(0) ?? game.user.character;
+
+			handleSupportCheck(groupCheck, character)
+				.finally(() => (event.target.disabled = false))
+				.catch((reason) => console.error(reason));
 		}
-	});
+	};
+	html.querySelectorAll('[data-support]').forEach((el) => el.addEventListener('click', onClick));
 }
 
 const critThresholdFlag = 'critThreshold.supportCheck';
@@ -206,7 +198,7 @@ const onCreateChatMessage = (chatMessage, options, userId) => {
 };
 
 const initialize = () => {
-	Hooks.on('renderChatLog', attachSupportCheckListener);
+	Hooks.on('renderChatMessageHTML', attachSupportCheckListener);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderSupportCheck);
 	Hooks.on('createChatMessage', onCreateChatMessage);

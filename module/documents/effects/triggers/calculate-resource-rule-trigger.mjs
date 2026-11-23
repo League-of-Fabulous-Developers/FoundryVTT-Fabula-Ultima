@@ -16,20 +16,8 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.CALCULATE_RESOURCE_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'calculateResourceRuleTrigger' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({
 				initial: 'hp',
 				choices: Object.keys(FU.resources),
@@ -44,7 +32,13 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: false }),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.CALCULATE_RESOURCE_EVENT;
 	}
 
 	static get localization() {

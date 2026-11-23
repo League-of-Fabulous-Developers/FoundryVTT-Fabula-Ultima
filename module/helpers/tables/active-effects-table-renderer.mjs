@@ -118,7 +118,7 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 	}
 
 	static #getSource(effect) {
-		return effect.sourceName;
+		return effect.sourceName ?? 'FU.Unknown';
 	}
 
 	static #getDuration(effect) {

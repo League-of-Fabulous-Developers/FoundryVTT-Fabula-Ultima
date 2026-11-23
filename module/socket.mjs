@@ -21,6 +21,7 @@ import { FUHooks } from './hooks.mjs';
 import { StudyRollHandler } from './pipelines/study-roll.mjs';
 import { DamagePipeline, DamageRequest } from './pipelines/damage-pipeline.mjs';
 import { InlineSourceInfo } from './helpers/inline-helper.mjs';
+import { FUCombatTracker } from './ui/combat-tracker.mjs';
 
 import { DamageData } from './checks/damage-data.mjs';
 import { ResourcePipeline, ResourceRequest } from './pipelines/resource-pipeline.mjs';
@@ -35,6 +36,7 @@ export const MESSAGES = Object.freeze({
 	RequestEndTurn: 'requestEndTurn',
 	RequestTrade: 'requestTrade',
 	RequestZenitTransfer: 'requestZenitTransfer',
+	RequestInitiativeRollAll: 'requestInitiativeRollAll',
 	StudyEvent: 'studyEvent',
 	Pipeline: 'pipeline',
 });
@@ -167,6 +169,7 @@ export class FUSocketHandler {
 		this.register(MESSAGES.RequestEndTurn, requestEndTurn);
 		this.register(MESSAGES.RequestZenitTransfer, InventoryPipeline.requestZenitTransfer);
 		this.register(MESSAGES.RequestTrade, InventoryPipeline.requestTrade);
+		this.register(MESSAGES.RequestInitiativeRollAll, FUCombatTracker.onInitiativeRollAllRequest);
 		this.register(MESSAGES.StudyEvent, StudyRollHandler.onStudyEvent);
 		this.register(MESSAGES.Pipeline, this.requestPipeline);
 

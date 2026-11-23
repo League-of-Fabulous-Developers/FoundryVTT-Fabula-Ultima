@@ -192,11 +192,10 @@ export class FUFeatureSheet extends FUItemSheet {
 	 * @returns {String}
 	 */
 	get subtypeLocalizationKey() {
+		const type = this.item.system.data.type;
 		if (this.item.type === 'optionalFeature') {
-			const type = this.item.system.optionalType;
 			return OptionalFeatureRegistry.instance.localize(type);
 		} else if (this.item.type === 'classFeature') {
-			const type = this.item.system.featureType;
 			return ClassFeatureRegistry.instance.localize(type);
 		}
 		return null;
@@ -209,39 +208,20 @@ export class FUFeatureSheet extends FUItemSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #changeSubtype(event, target) {
-		if (this.item.type === 'optionalFeature') {
-			const subTypes = this.getSubTypes();
-			const options = FoundryUtils.generateConfigOptions(subTypes);
-			const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options, this.item.system.optionalType);
-			if (selectedType != null) {
-				/** @type OptionalFeatureTypeDataModel **/
-				const system = this.item.system;
-				const currentType = system.optionalType;
-				if (selectedType !== currentType) {
-					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
-					const updates = {
-						'system.-=data': null,
-						'system.optionalType': selectedType,
-					};
-					await this.item.update(updates);
-				}
-			}
-		} else if (this.item.type === 'classFeature') {
-			const subTypes = this.getSubTypes();
-			const options = FoundryUtils.generateConfigOptions(subTypes);
-			const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options, this.item.system.featureType);
-			if (selectedType != null) {
-				/** @type ClassFeatureDataModel **/
-				const system = this.item.system;
-				const currentType = system.featureType;
-				if (selectedType !== currentType) {
-					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
-					const updates = {
-						'system.-=data': null,
-						'system.featureType': selectedType,
-					};
-					await this.item.update(updates);
-				}
+		const subTypes = this.getSubTypes();
+		const options = FoundryUtils.generateConfigOptions(subTypes);
+		const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options, this.item.system.data.type);
+		if (selectedType != null) {
+			const system = this.item.system;
+			const currentType = system.data.type;
+			if (selectedType !== currentType) {
+				console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
+				const updates = {
+					system: {
+						data: foundry.data.operators.ForcedReplacement.create({ type: selectedType }),
+					},
+				};
+				await this.item.update(updates);
 			}
 		}
 

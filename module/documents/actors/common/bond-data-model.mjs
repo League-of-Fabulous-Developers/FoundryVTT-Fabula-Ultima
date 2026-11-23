@@ -1,3 +1,5 @@
+import { FU } from '../../../helpers/config.mjs';
+
 /**
  * @property {string} name
  * @property {"Admiration", "Inferiority"} admInf
@@ -10,11 +12,20 @@ export class BondDataModel extends foundry.abstract.DataModel {
 		const { StringField, NumberField } = foundry.data.fields;
 		return {
 			name: new StringField({ initial: '' }),
-			admInf: new StringField({ initial: '', blank: true, choices: ['Admiration', 'Inferiority'] }),
-			loyMis: new StringField({ initial: '', blank: true, choices: ['Loyalty', 'Mistrust'] }),
-			affHat: new StringField({ initial: '', blank: true, choices: ['Affection', 'Hatred'] }),
+			admInf: new StringField({ initial: '', blank: true, choices: FU.bonds.admInf }),
+			loyMis: new StringField({ initial: '', blank: true, choices: FU.bonds.loyMis }),
+			affHat: new StringField({ initial: '', blank: true, choices: FU.bonds.affHat }),
 			bonus: new NumberField({ nullable: true }),
 		};
+	}
+
+	static migrateData(source, options) {
+		for (const key of ['admInf', 'loyMis', 'affHat']) {
+			if (source[key]) {
+				source[key] = source[key].toLowerCase();
+			}
+		}
+		return source;
 	}
 
 	/**
@@ -35,41 +46,21 @@ export class BondDataModel extends foundry.abstract.DataModel {
 	 * @param {FUBondEmotion} bond
 	 */
 	matches(bond) {
-		if (bond === 'any') {
+		if (bond === 'any' || bond === '') {
 			return true;
 		}
 		switch (bond) {
 			case 'admiration':
-				if (this.admInf === 'Admiration') {
-					return true;
-				}
-				break;
 			case 'inferiority':
-				if (this.admInf === 'Inferiority') {
-					return true;
-				}
-				break;
+				return this.admInf === bond;
 			case 'loyalty':
-				if (this.admInf === 'Loyalty') {
-					return true;
-				}
-				break;
 			case 'mistrust':
-				if (this.admInf === 'Mistrust') {
-					return true;
-				}
-				break;
+				return this.loyMis === bond;
 			case 'affection':
-				if (this.admInf === 'Affection') {
-					return true;
-				}
-				break;
 			case 'hatred':
-				if (this.admInf === 'Hatred') {
-					return true;
-				}
-				break;
+				return this.affHat === bond;
+			default:
+				return false;
 		}
-		return false;
 	}
 }

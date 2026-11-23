@@ -1,4 +1,4 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.Application'}}</span>
-	{{formGroup action.schema.fields.application value=action.application name=(pfuConcat path ".application")}}
+  <span>{{localize 'FU.Application'}}</span>
+  <input type="text" value="{{action.application}}" name={{pfuConcat path ".application"}}>
 </label>

@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "9jBASLeLMBPzNiSC",
+  "name": "Delicacy 10 (Resistance)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "Pesqw7rt3jAzu3qr",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793218423764,
+    "modifiedTime": 1793218423764,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!Pesqw7rt3jAzu3qr"
+}

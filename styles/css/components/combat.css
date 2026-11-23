@@ -21,33 +21,33 @@
 	opacity: 0.55;
 }
 
-.projectfu #combat-tracker {
+.projectfu .combat-tracker {
 	--color-disposition-friendly: #33bc4e;
 	--color-disposition-hostile: #e72124;
 	--color-disposition-neutral: #f1d836;
 }
 
-.projectfu #combat-tracker .current-turn {
+.projectfu .combat-tracker .current-turn {
 	padding: 0.25em;
 	font-size: 1.5em;
 }
 
-.projectfu #combat-tracker .faction {
+.projectfu .combat-tracker .faction {
 	padding: 0.25em;
 	font-size: 1.2em;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
 }
 
-.projectfu #combat-tracker .friendly {
+.projectfu .combat-tracker .friendly {
 	background-color: color-mix(in srgb, var(--color-disposition-friendly) 10%, transparent);
 }
 
-.projectfu #combat-tracker .hostile {
+.projectfu .combat-tracker .hostile {
 	background-color: color-mix(in srgb, var(--color-disposition-hostile) 10%, transparent);
 }
 
-.projectfu #combat-tracker .neutral {
+.projectfu .combat-tracker .neutral {
 	background-color: color-mix(in srgb, var(--color-disposition-neutral) 10%, transparent);
 }
 
@@ -85,7 +85,7 @@
 	}
 }
 
-.projectfu #combat-tracker .started-turn {
+.projectfu .combat-tracker .started-turn {
 	-webkit-animation: glow 2s infinite alternate ease-in-out;
 	animation: glow 2s infinite alternate ease-in-out;
 }

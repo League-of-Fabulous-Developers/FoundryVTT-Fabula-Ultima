@@ -5,8 +5,10 @@ import { Expressions } from '../../../expressions/expressions.mjs';
  * @typedef ResourceExpense
  * @property {FUResourceType} resource
  * @property {String|Number} amount If it's an expression, it will be a string.
+ * @property {number} multiplier
  * @property {String[]} traits
  * @property {FUExpenseSource} source
+ * @property {number} total
  */
 
 // TODO: Change to string across the board

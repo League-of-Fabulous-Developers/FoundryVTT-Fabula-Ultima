@@ -1,0 +1,63 @@
+{
+  "name": "Tonic",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/tonic.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers from all status effects."
+    },
+    "description": "<p>One creature recovers from <strong>all</strong> status effects.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": "FUCR104",
+    "fuid": "tonic",
+    "damage": {
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "traits": {
+      "entries": [
+        "potion"
+      ]
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.368",
+    "createdTime": 1793311128946,
+    "modifiedTime": 1793311128959,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "00000000000Tonic",
+  "sort": 75000,
+  "_key": "!items!00000000000Tonic"
+}

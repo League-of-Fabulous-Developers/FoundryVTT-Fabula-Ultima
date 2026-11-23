@@ -33,13 +33,14 @@ export class FUItem extends EnablePseudoDocumentsMixin(ItemBehaviourMixin(Item))
 	}
 
 	async update(delta) {
+		delta = foundry.utils.expandObject(delta);
 		const previous = this.system.toObject();
 		const postUpdate = await super.update(delta);
 
 		if (delta.system?.progress && postUpdate) {
 			if (previous.progress.current !== postUpdate.system.progress.current) {
 				// Progress is changed
-				CommonEvents.progress(this, this.system.progress, 'update', delta.system.progress.current ? delta.system.progress.current - previous.progress.current : 0, this);
+				await CommonEvents.progress(this, this.system.progress, 'update', delta.system.progress.current ? delta.system.progress.current - previous.progress.current : 0, this);
 			}
 		}
 		return postUpdate;

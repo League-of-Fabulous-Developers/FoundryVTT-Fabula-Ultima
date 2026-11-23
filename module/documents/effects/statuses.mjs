@@ -1,3 +1,5 @@
+import { FU } from '../../helpers/config.mjs';
+
 /**
  * @type {ActiveEffectData[]}
  */
@@ -19,8 +21,8 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.derived.mdef.value',
-				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-				value: '12',
+				type: 'upgrade',
+				value: '12 + min(floor(@system.level.value/20), 2)',
 			},
 		],
 		system: {
@@ -36,8 +38,8 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.derived.def.value',
-				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-				value: '12',
+				type: 'upgrade',
+				value: '12 + min(floor(@system.level.value/20), 2)',
 			},
 		],
 		system: {
@@ -50,6 +52,7 @@ export const statusEffects = [
 		id: 'cover',
 		name: 'FU.Cover',
 		img: 'systems/projectfu/styles/static/statuses/Cover.webp',
+		description: 'FU.CoverRule',
 		system: {
 			duration: {
 				event: 'startOfTurn',
@@ -62,10 +65,11 @@ export const statusEffects = [
 		id: 'dazed',
 		name: 'FU.Dazed',
 		img: 'systems/projectfu/styles/static/statuses/Dazed.webp',
+		description: 'FU.DazedRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -79,10 +83,11 @@ export const statusEffects = [
 		id: 'dex-down',
 		name: 'FU.DEXDown',
 		img: 'systems/projectfu/styles/static/statuses/DexDown.webp',
+		description: 'FU.DEXDownRule',
 		changes: [
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -96,10 +101,11 @@ export const statusEffects = [
 		id: 'dex-up',
 		name: 'FU.DEXUp',
 		img: 'systems/projectfu/styles/static/statuses/DexUp.webp',
+		description: 'FU.DEXUpRule',
 		changes: [
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -113,15 +119,16 @@ export const statusEffects = [
 		id: 'enraged',
 		name: 'FU.Enraged',
 		img: 'systems/projectfu/styles/static/statuses/Enraged.webp',
+		description: 'FU.EnragedRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -135,6 +142,7 @@ export const statusEffects = [
 		id: 'flying',
 		name: 'FU.Flying',
 		img: 'systems/projectfu/styles/static/statuses/Flying.webp',
+		description: 'FU.FlyingRule',
 		system: {
 			duration: {
 				event: 'endOfScene',
@@ -144,6 +152,7 @@ export const statusEffects = [
 	{
 		id: 'guard',
 		name: 'FU.Guard',
+		description: 'FU.GuardRule',
 		system: {
 			duration: {
 				event: 'startOfTurn',
@@ -154,53 +163,53 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.affinities.physical',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 
 			{
 				key: 'system.affinities.air',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.bolt',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.dark',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.earth',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.fire',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.ice',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.light',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.affinities.poison',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 			{
 				key: 'system.bonuses.accuracy.opposedCheck',
-				mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+				type: 'add',
 				value: '2',
 			},
 		],
@@ -209,10 +218,11 @@ export const statusEffects = [
 		id: 'ins-down',
 		name: 'FU.INSDown',
 		img: 'systems/projectfu/styles/static/statuses/InsDown.webp',
+		description: 'FU.INSDownRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -226,10 +236,11 @@ export const statusEffects = [
 		id: 'ins-up',
 		name: 'FU.INSUp',
 		img: 'systems/projectfu/styles/static/statuses/InsUp.webp',
+		description: 'FU.INSUpRule',
 		changes: [
 			{
 				key: 'system.attributes.ins',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -248,10 +259,11 @@ export const statusEffects = [
 		id: 'mig-down',
 		name: 'FU.MIGDown',
 		img: 'systems/projectfu/styles/static/statuses/MigDown.webp',
+		description: 'FU.MIGDownRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -265,10 +277,11 @@ export const statusEffects = [
 		id: 'mig-up',
 		name: 'FU.MIGUp',
 		img: 'systems/projectfu/styles/static/statuses/MigUp.webp',
+		description: 'FU.MIGUpRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -312,10 +325,11 @@ export const statusEffects = [
 		id: 'shaken',
 		name: 'FU.Shaken',
 		img: 'systems/projectfu/styles/static/statuses/Shaken.webp',
+		description: 'FU.ShakenRule',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -339,10 +353,11 @@ export const statusEffects = [
 		id: 'slow',
 		name: 'FU.Slow',
 		img: 'systems/projectfu/styles/static/statuses/Slow.webp',
+		description: 'FU.SlowRule',
 		changes: [
 			{
 				key: 'system.attributes.dex',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -356,15 +371,16 @@ export const statusEffects = [
 		id: 'poisoned',
 		name: 'FU.Poisoned',
 		img: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
+		description: 'FU.PoisonedRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -378,10 +394,11 @@ export const statusEffects = [
 		id: 'weak',
 		name: 'FU.Weak',
 		img: 'systems/projectfu/styles/static/statuses/Weak.webp',
+		description: 'FU.WeakRule',
 		changes: [
 			{
 				key: 'system.attributes.mig',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -395,10 +412,11 @@ export const statusEffects = [
 		id: 'wlp-down',
 		name: 'FU.WLPDown',
 		img: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
+		description: 'FU.WLPDownRule',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'downgrade',
 			},
 		],
@@ -412,10 +430,11 @@ export const statusEffects = [
 		id: 'wlp-up',
 		name: 'FU.WLPUp',
 		img: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
+		description: 'FU.WLPUpRule',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
-				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				type: FU.changeTypes.apply,
 				value: 'upgrade',
 			},
 		],
@@ -429,6 +448,7 @@ export const statusEffects = [
 		id: 'crisis',
 		name: 'FU.Crisis',
 		img: 'systems/projectfu/styles/static/statuses/Crisis.webp',
+		description: 'FU.CrisisRule',
 	},
 	{
 		id: 'focus',
@@ -467,7 +487,7 @@ export const statusEffects = [
 		changes: [
 			{
 				key: 'system.bonuses.turns',
-				mode: 2,
+				type: 'add',
 				value: '0',
 			},
 		],

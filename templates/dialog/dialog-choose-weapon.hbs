@@ -24,7 +24,7 @@
                         <span>{{localize 'FU.DamagePretty' damage=system.damage.value}}{{localize (lookup @root.FU.damageTypes system.damageType.value)}}</span>
                     </span>
 					{{/if}}
-					{{#if (and (eq type 'classFeature') (eq system.featureType 'projectfu.weaponModule'))}}
+					{{#if (and (eq type 'classFeature') (eq system.data.type 'projectfu.weaponModule'))}}
 						<span>
                         <span>
                             {{localize 'FU.AttributesPretty' attr1=(localize (lookup @root.FU.attributeAbbreviations system.data.accuracy.attr1)) attr2=(localize (lookup @root.FU.attributeAbbreviations system.data.accuracy.attr2))}}

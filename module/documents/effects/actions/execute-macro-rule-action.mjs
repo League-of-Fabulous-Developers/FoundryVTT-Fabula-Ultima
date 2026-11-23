@@ -2,20 +2,16 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 
 const fields = foundry.data.fields;
-const documents = foundry.documents;
+const Macro = foundry.documents.Macro;
 
 /**
  * @property {documents.Macro} macro
  */
 export class ExecuteMacroRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'executeMacroRuleAction' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
-			macro: new fields.ForeignDocumentField(documents.Macro),
-		});
+		return {
+			macro: new fields.ForeignDocumentField(Macro),
+		};
 	}
 
 	static get localization() {

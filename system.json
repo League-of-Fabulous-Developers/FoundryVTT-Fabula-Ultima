@@ -4,9 +4,9 @@
 	"description": "An Unofficial Fabula Ultima system for FoundryVTT!",
 	"version": "#{VERSION}#",
 	"compatibility": {
-		"minimum": "13",
-		"verified": "13",
-		"maximum": "13"
+		"minimum": "14",
+		"verified": "14",
+		"maximum": "14"
 	},
 	"authors": [
 		{
@@ -64,7 +64,7 @@
 			}
 		},
 		{
-			"label": "Skills",
+			"label": "Class Skills",
 			"type": "Item",
 			"name": "skills",
 			"path": "packs/skills",
@@ -130,6 +130,17 @@
 			}
 		},
 		{
+			"label": "Game Master Effects",
+			"type": "ActiveEffect",
+			"name": "game-master-active-effects",
+			"path": "packs/game-master-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Rollable Tables",
 			"type": "RollTable",
 			"name": "rollable-tables",
@@ -153,20 +164,9 @@
 		},
 		{
 			"label": "Actor Effects",
-			"type": "Item",
-			"name": "actor-effects",
-			"path": "packs/actor-effects",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
-			"label": "Conditions",
-			"type": "Item",
-			"name": "conditions-effects",
-			"path": "packs/conditions-effects",
+			"type": "ActiveEffect",
+			"name": "actor-active-effects",
+			"path": "packs/actor-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -175,9 +175,9 @@
 		},
 		{
 			"label": "Equipment Effects",
-			"type": "Item",
-			"name": "equipment-effects",
-			"path": "packs/equipment-effects",
+			"type": "ActiveEffect",
+			"name": "equipment-active-effects",
+			"path": "packs/equipment-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -185,10 +185,21 @@
 			}
 		},
 		{
-			"label": "Qualities",
-			"type": "Item",
-			"name": "qualities",
-			"path": "packs/qualities",
+			"label": "Skill & Spell Effects",
+			"type": "ActiveEffect",
+			"name": "skill-spell-active-effects",
+			"path": "packs/skill-spell-active-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Heroic Skill Effects",
+			"type": "ActiveEffect",
+			"name": "heroic-skill-active-effects",
+			"path": "packs/heroic-skill-active-effects",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -235,7 +246,7 @@
 			"name": "Effects",
 			"sorting": "a",
 			"color": "#8b5c00",
-			"packs": ["actor-effects", "conditions-effects", "equipment-effects", "qualities"]
+			"packs": ["actor-active-effects", "equipment-active-effects", "skill-spell-active-effects", "heroic-skill-active-effects"]
 		},
 		{
 			"name": "Equipment",
@@ -247,7 +258,7 @@
 			"name": "GM Tools",
 			"sorting": "a",
 			"color": "#831101",
-			"packs": ["rollable-tables", "game-master"]
+			"packs": ["rollable-tables", "game-master", "game-master-active-effects"]
 		},
 		{
 			"name": "Journals",

@@ -1,4 +1,5 @@
 import { GameWellspringManager } from '../documents/items/classFeature/invoker/game-wellspring-manager.mjs';
+import { FU } from '../helpers/config.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
@@ -16,6 +17,7 @@ const { api, sidebar } = foundry.applications;
  * @typedef SidebarTool
  * @property {string} label
  * @property {string} [icon]
+ * @property {string} [tooltip] - An optional tooltip to be displayed.
  * @property {Function} click
  * @property {string[]} [classes]
  * @property {SidebarToolCondition} [condition]
@@ -110,6 +112,9 @@ export class FUSidebarApplication extends api.HandlebarsApplicationMixin(sidebar
 		const context = await super._prepareContext(options);
 
 		context.tools = this._prepareTools();
+		context.systemVersion = game.system.version;
+		context.systemTitle = game.system.title;
+		context.links = FU.links;
 
 		return context;
 	}

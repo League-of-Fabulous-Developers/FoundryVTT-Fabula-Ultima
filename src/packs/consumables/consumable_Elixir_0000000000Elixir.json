@@ -1,0 +1,65 @@
+{
+  "name": "Elixir",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elixir.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers 50 Mind Points."
+    },
+    "description": "<p>One creature recovers 50 Mind Points.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 3
+    },
+    "source": "FUCR104",
+    "fuid": "elixir",
+    "damage": {
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "resource": {
+      "enabled": true,
+      "type": "mp",
+      "amount": "50"
+    },
+    "traits": {
+      "entries": [
+        "potion",
+        "restore",
+        "mind-point"
+      ]
+    }
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.368",
+    "createdTime": 1793311128947,
+    "modifiedTime": 1793311128959,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "0000000000Elixir",
+  "sort": 50000,
+  "_key": "!items!0000000000Elixir"
+}

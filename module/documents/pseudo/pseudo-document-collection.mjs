@@ -102,15 +102,6 @@ export default class PseudoDocumentCollection extends foundry.utils.Collection {
 		this._initialized = true;
 	}
 
-	/**
-	 * @param {(foundry.abstract.DataModel | object)[]} data
-	 * @param options
-	 */
-	updateSource(data, options = {}) {
-		this._source.splice(0, this._source.length, ...data);
-		this.initialize(options);
-	}
-
 	/* -------------------------------------------- */
 
 	/**

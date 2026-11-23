@@ -34,15 +34,15 @@
 	position: absolute;
 	--icon-size: 18px;
 	top: -5px;
-	right: -10px;
-	width: var(--icon-size);
+	right: calc(var(--icon-size) / -4);
 	height: var(--icon-size);
 	background: var(--color-background);
 	color: var(--pfu-color-app-control-content);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 50%;
+	border-radius: calc(var(--icon-size) / 4);
+	padding-inline: calc(var(--icon-size) / 8);
 }
 
 .fu-icon__overlay {

@@ -105,7 +105,7 @@ export class IngredientDataModel extends ClassFeatureDataModel {
 			return true;
 		}
 
-		const similarIngredient = actor.itemTypes.classFeature.find((item) => item.system.featureType === this.parent.featureType && item.name === this.item.name && item.system.data.taste === this.taste);
+		const similarIngredient = actor.itemTypes.classFeature.find((item) => item.system.data.type === this.type && item.name === this.item.name && item.system.data.taste === this.taste);
 		if (similarIngredient) {
 			similarIngredient.update({ 'system.data.quantity': similarIngredient.system.data.quantity + this.quantity });
 			return false;

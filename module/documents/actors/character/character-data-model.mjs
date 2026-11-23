@@ -109,6 +109,7 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 	 * @override
 	 */
 	prepareBaseData() {
+		super.prepareBaseData();
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
 		this.#prepareBasicResources();
@@ -123,6 +124,7 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 	 * @override
 	 */
 	prepareDerivedData() {
+		super.prepareDerivedData();
 		this.tlTracker = new CharacterSkillTracker(this);
 		this.actor.equipmentHandler ??= new EquipmentHandler(this.actor);
 	}

@@ -3,7 +3,7 @@
     <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
     <div class="description-effect">{{{additionalData.enrichedMerge}}}</div>
 
-	{{#if (pfuGetSetting 'optionArcanumPulse')}}
+	{{#if sytem.data.enablePulse}}
 		<label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumPulse'}}</label>
 		<div class="description-effect">{{{additionalData.enrichedPulse}}}</div>
 	{{/if}}

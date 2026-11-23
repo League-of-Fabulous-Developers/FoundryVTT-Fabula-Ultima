@@ -364,7 +364,7 @@ function progressCollection(document, path, index, options) {
  * @param {ProgressHandlebarOptions} options
  * @returns {String}
  */
-function renderProgress(progress, document, path, options, index = undefined) {
+export function renderProgress(progress, document, path, options, index = undefined) {
 	const type = options.type;
 	const style = options.style ?? progress.style ?? 'clock';
 	const action = options.action ?? 'updateTrack';
@@ -426,10 +426,17 @@ function traits(model, path, options) {
 	const html =
 		typeof template === 'function'
 			? template({
-					model: model,
-					path: path,
-					traitOptions: model.schema.options?.options ?? {},
-					quantifierOptions: FU.predicateQuantifier,
+					traitField: model.schema.getField('entries'),
+					traitFieldPath: path + '.entries',
+					traitFieldValue: model.entries,
+					traitOptions: model.schema.options?.options ?? [],
+					quantifier: model.schema.getField('quantifier')
+						? {
+								path: path + '.quantifier',
+								value: model.quantifier,
+								options: FU.predicateQuantifier,
+							}
+						: undefined,
 					showLabel: options.showLabel ?? false,
 				})
 			: '';

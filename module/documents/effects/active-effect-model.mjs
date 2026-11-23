@@ -1,7 +1,6 @@
 import { FU } from '../../helpers/config.mjs';
 import { ProgressDataModel } from '../items/common/progress-data-model.mjs';
 import { RuleElementDataModel } from './rule-element-data-model.mjs';
-import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 import { EffectStackingDataModel } from '../items/common/effect-stacking-data-model.mjs';
 
 /**
@@ -19,25 +18,16 @@ import { EffectStackingDataModel } from '../items/common/effect-stacking-data-mo
  * @property {Number} duration.remaining The number of intervals left.
  * @property {Object} rules Contains optional rules for this effect.
  * @property {EffectStackingDataModel} rules.stacking Stacking rules for the effect.
- * @property {ModelCollection<RuleElementDataModel>} rules.elements Automation rules for this effect
+ * @property {Record<string,RuleElementDataModel>} rules.elements Automation rules for this effect
  * @property {ProgressDataModel} rules.progress It can be used for tracking a clock, a resource, a counter, etc.
  * @remarks The remaining property is initialized, and must be updated.
  */
-export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
-	/**
-	 * @type {SubDocumentMetadata}
-	 */
-	static get metadata() {
-		return {
-			embedded: {
-				ruleElement: 'system.rules.elements',
-			},
-		};
-	}
-
+export class FUActiveEffectModel extends foundry.data.ActiveEffectTypeDataModel {
 	static defineSchema() {
-		const { NumberField, SchemaField, StringField, EmbeddedDataField } = foundry.data.fields;
+		const { NumberField, SchemaField, StringField, EmbeddedDataField, TypedObjectField } = foundry.data.fields;
 		return {
+			...super.defineSchema(),
+			fuid: new StringField({ label: 'FU.FUID.Short' }),
 			type: new StringField({ initial: 'default', choices: Object.keys(FU.effectType) }),
 			predicate: new EmbeddedDataField(ActiveEffectPredicateModel, {}),
 			duration: new SchemaField({
@@ -49,7 +39,7 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 			rules: new SchemaField({
 				progress: new EmbeddedDataField(ProgressDataModel, { required: false }),
 				stacking: new EmbeddedDataField(EffectStackingDataModel, { required: false }),
-				elements: new SubDocumentCollectionField(RuleElementDataModel),
+				elements: new TypedObjectField(new EmbeddedDataField(RuleElementDataModel), {}),
 			}),
 		};
 	}
@@ -79,7 +69,7 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 	 * @returns {RuleElementDataModel}
 	 */
 	getRuleElement(id) {
-		return this.rules.elements.get(id);
+		return this.rules.elements[id];
 	}
 }
 

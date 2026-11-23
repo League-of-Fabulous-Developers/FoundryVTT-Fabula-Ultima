@@ -295,7 +295,11 @@ class GroupCheckApp extends FUApplication {
 					}),
 				)
 				.then((chatMessage) => (this.#chatMessage = chatMessage))
-				.then(() => this.render(true));
+				.then(() => this.render(true))
+				.catch((reason) => {
+					ui.notifications.error(reason);
+					return this.close({ force: true });
+				});
 		} else if ((this.groupCheckData?.status ?? 'open') === 'open') {
 			this.#synchronize();
 			this.render(true);
@@ -356,16 +360,21 @@ class GroupCheckApp extends FUApplication {
 	 * @param {GroupCheckV2Flag} groupCheckData
 	 */
 	set groupCheckData(groupCheckData) {
-		this.#renderChatMessage(groupCheckData).then((value) =>
-			this.#chatMessage.update({
-				flags: {
-					[SYSTEM]: {
-						[Flags.ChatMessage.GroupCheckV2]: groupCheckData,
+		this.#renderChatMessage(groupCheckData)
+			.then((value) =>
+				this.#chatMessage.update({
+					flags: {
+						[SYSTEM]: {
+							[Flags.ChatMessage.GroupCheckV2]: groupCheckData,
+						},
 					},
-				},
-				content: value,
-			}),
-		);
+					content: value,
+				}),
+			)
+			.catch((reason) => {
+				ui.notifications.error(reason);
+				return this.close({ force: true });
+			});
 	}
 
 	static #roll() {
@@ -377,6 +386,9 @@ class GroupCheckApp extends FUApplication {
 	}
 
 	async close(options = {}) {
+		if (options.force) {
+			return super.close(options);
+		}
 		if (!options.roll) {
 			const cancel = await foundry.applications.api.DialogV2.confirm({
 				window: { title: game.i18n.localize('FU.GroupCheckCancelDialogTitle') },

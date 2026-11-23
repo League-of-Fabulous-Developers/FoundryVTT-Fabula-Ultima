@@ -112,7 +112,7 @@ async function onRender(element) {
 	const type = renderContext.dataset.type;
 	const uncapped = renderContext.dataset.uncapped === 'true';
 
-	element.addEventListener('click', async function () {
+	element.addEventListener('click', async function (event) {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
 			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
@@ -120,6 +120,17 @@ async function onRender(element) {
 			let check = renderContext.document.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			if (check) {
 				context = context.withCheck(check);
+			}
+
+			// adjust item context if necessary, for example when a rule element effect is rendered as a check section
+			if (event.target.closest('[data-item-id]')) {
+				const contextItem = fromUuidSync(event.target.closest('[data-item-id]').dataset.itemId);
+				if (contextItem) {
+					context.item = contextItem;
+					const updatedSourceInfo = InlineSourceInfo.fromInstance(context.actor, contextItem);
+					context.sourceInfo = updatedSourceInfo;
+					renderContext.sourceInfo = updatedSourceInfo;
+				}
 			}
 
 			let amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);

@@ -16,12 +16,8 @@ const fields = foundry.data.fields;
  * @property {Handedness} handedness
  */
 export class WeaponRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'weaponRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			selector: new fields.StringField({
 				initial: 'initial',
 				blank: true,
@@ -31,7 +27,7 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 			handedness: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.handedness) }),
 			weaponType: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.weaponTypes) }),
 			categories: new fields.SetField(new fields.StringField()),
-		});
+		};
 	}
 
 	static get localization() {
@@ -46,46 +42,33 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		const selected = context.selectTargets(this.selector);
-		if (selected.length === 0) {
-			return false;
-		}
-		const character = selected[0];
+		const character = context.event.actor;
 		let attackItem;
 
 		// TODO: Clean up logic
 		// Resolve the item
 		switch (context.eventType) {
-			case FUHooks.ATTACK_EVENT:
-				{
-					/** @type AttackEvent **/
-					const event = context.event;
-					if (character.actor === event.source.actor) {
-						/** @type FUItem **/
-						attackItem = event._item;
-					}
-				}
+			case FUHooks.ATTACK_EVENT: {
+				/** @type FUItem **/
+				attackItem = fromUuidSync(context.event.item.uuid);
 				break;
-
+			}
 			case FUHooks.RESOLVE_CHECK_EVENT:
-			case FUHooks.RENDER_CHECK_EVENT:
-				{
-					// Try to resolve the weapon used
-					if (character.actor === context.event.source.actor) {
-						const weaponReference = context.config.getWeaponReference();
-						if (weaponReference) {
-							attackItem = fromUuidSync(weaponReference);
-						} else {
-							/** @type FUItemGroup **/
-							const itemGroup = context.event.itemGroup;
-							switch (itemGroup) {
-								case 'attack':
-									attackItem = context.event.item;
-							}
-						}
+			case FUHooks.RENDER_CHECK_EVENT: {
+				const weaponReference = context.data.config.getWeaponReference();
+				if (weaponReference) {
+					attackItem = fromUuidSync(weaponReference);
+				} else {
+					/** @type FUItemGroup **/
+					const itemGroup = context.event.itemGroup;
+					switch (itemGroup) {
+						case 'attack':
+							attackItem = context.event.item;
 					}
 				}
+
 				break;
+			}
 		}
 
 		// If not using the event attack item...
@@ -106,8 +89,8 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 		}
 
 		// If it's a PC weapon
-		if (attackItem.system instanceof WeaponDataModel || attackItem instanceof CustomWeaponDataModel) {
-			/** @type {WeaponDataModel|CustomWeaponDataModel} **/
+		if (attackItem.system instanceof WeaponDataModel) {
+			/** @type {WeaponDataModel} **/
 			const weaponData = attackItem.system;
 			if (this.categories.size > 0) {
 				if (!this.categories.has(weaponData.category.value)) {
@@ -121,6 +104,21 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 				return false;
 			}
 			if (this.martial && this.martial !== weaponData.isMartial.value) {
+				return false;
+			}
+		}
+		if (attackItem.system instanceof CustomWeaponDataModel) {
+			/** @type {CustomWeaponDataModel} **/
+			const weaponData = attackItem.system;
+			if (this.categories.size > 0) {
+				if (!this.categories.has(weaponData.category)) {
+					return false;
+				}
+			}
+			if (this.weaponType && this.weaponType !== weaponData.type) {
+				return false;
+			}
+			if (this.martial && this.martial !== weaponData.isMartial) {
 				return false;
 			}
 		}

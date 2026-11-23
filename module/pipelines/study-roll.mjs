@@ -54,7 +54,7 @@ export class StudyRollHandler {
 
 		// Now execute directly on GM or request as user
 		if (game.user?.isGM) {
-			CommonEvents.study(this.actor, targets, this.studyValue);
+			await CommonEvents.study(this.actor, targets, this.studyValue);
 		} else {
 			await game.projectfu.socket.studyRoll({
 				actorUuid: this.actor.uuid,
@@ -77,7 +77,7 @@ export class StudyRollHandler {
 				return fromUuid(target);
 			}),
 		);
-		CommonEvents.study(actor, targets, data.result);
+		await CommonEvents.study(actor, targets, data.result);
 	}
 
 	/**

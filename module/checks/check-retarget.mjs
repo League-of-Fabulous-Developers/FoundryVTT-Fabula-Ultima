@@ -9,21 +9,21 @@ import { SETTINGS } from '../settings.js';
 
 function addRetargetEntry(application, menuItems) {
 	menuItems.unshift({
-		name: 'FU.ChatContextRetarget',
+		label: 'FU.ChatContextRetarget',
 		icon: '<i class="fas fa-bullseye"></i>',
 		group: SYSTEM,
-		condition: (li) => {
+		visible: (li) => {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const isCheck = Checks.isCheck(message);
 			if (isCheck) {
 				const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-				return ['character', 'npc'].includes(speakerActor?.type) && !CheckConfiguration.inspect(message).getCheck().fumble;
+				return message?.isOwner && speakerActor?.isOwner && ['character', 'npc'].includes(speakerActor?.type) && !CheckConfiguration.inspect(message).getCheck().fumble;
 			}
 			return false;
 		},
-		callback: async (li) => {
+		onClick: async (event, li) => {
 			const messageId = li.dataset.messageId;
 			await retarget(messageId);
 		},

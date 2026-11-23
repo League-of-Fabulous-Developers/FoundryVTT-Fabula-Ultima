@@ -5,7 +5,7 @@ import { ChatSectionOrder } from '../checks/default-section-order.mjs';
 /**
  * @typedef FURenderData
  * @property {CheckSectionRenderData} sections
- * @property {Promise[]} postRenderActions
+ * @property {(Promise<void>|(() => void|Promise<void>))[]} postRenderActions
  * @property {Tag[]} tags
  * @property {Object} flags
  */
@@ -218,20 +218,25 @@ export class FUChatBuilder {
 			speaker: speaker,
 			flags: flags,
 		};
-		const options = {};
+		const options = {
+			chatBubble: false,
+		};
 
 		// OPTION: Roll data
 		if (this.#rolls) {
 			chatMessage.rolls = this.#rolls;
-			options.rollMode = 'roll';
+			options.messageMode = game.settings.get('core', 'messageMode');
 		}
 
 		// Render to chat
-		await ChatMessage.create(chatMessage, options);
+		await ChatMessage.create(foundry.utils.duplicate(chatMessage), options);
 
 		// Execute post-render actions
-		for (const promise of this.#renderData.postRenderActions) {
-			await promise();
+		for (let postRenderAction of this.#renderData.postRenderActions) {
+			if (postRenderAction instanceof Function) {
+				postRenderAction = postRenderAction();
+			}
+			await postRenderAction;
 		}
 	}
 }

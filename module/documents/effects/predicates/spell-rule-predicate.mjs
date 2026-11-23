@@ -8,20 +8,15 @@ const fields = foundry.data.fields;
 /**
  * @extends RulePredicateDataModel
  * @inheritDoc
- * @property {Boolean} offensive
+ * @property {"true", "false", ""} offensive
  * @property {FUDurationType} duration
  */
 export class SpellRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'spellRulePredicate' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return {
 			offensive: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.booleanOption) }),
 			duration: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.duration) }),
-		});
-		return schema;
+		};
 	}
 
 	// TODO: Remove once design is finished
@@ -43,9 +38,9 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 	 */
 	validateContext(context) {
 		// Resolve the item among events...
-		let item;
+		let item = context.item;
 		if (context.event.item) {
-			item = context.event.item;
+			item = fromUuidSync(context.event.item.uuid);
 		}
 
 		if (!item) {
@@ -57,16 +52,16 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 
 		/** @type SpellDataModel **/
 		const spell = item.system;
-		if (this.offensive) {
-			if (!spell.isOffensive.value) {
-				// Check if the config has damage data...
-				if (!context.config || !context.config.hasDamage) {
-					return false;
-				}
+		if (this.offensive !== '') {
+			const offensive = this.offensive !== 'false';
+			if (offensive !== spell.hasRoll.value) {
+				return false;
 			}
 		}
-		if (this.duration && this.duration !== spell.duration.value) {
-			return false;
+		if (this.duration !== '') {
+			if (this.duration !== spell.duration.value) {
+				return false;
+			}
 		}
 		return true;
 	}

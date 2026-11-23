@@ -1,9 +1,8 @@
 <label class="fu-form__property">
-	<span>{{localize 'FU.Asset'}}</span>
-	{{formGroup action.schema.fields.asset value=action.asset name=(pfuConcat path ".asset")}}
+  <span>{{localize 'FU.Asset'}}</span>
+  <file-picker name="{{pfuConcat path ".asset"}}" value="{{action.asset}}" type="audio"></file-picker>
 </label>
-
 <label class="fu-form__property">
-	<span>{{localize 'FU.Volume'}}</span>
-	{{formGroup action.schema.fields.volume value=action.volume name=(pfuConcat path ".volume")}}
+  <span>{{localize 'FU.Volume'}}</span>
+  <range-picker name="{{pfuConcat path ".volume"}}" value="{{action.volume}}" min="0" max="1" step=".01"></range-picker>
 </label>

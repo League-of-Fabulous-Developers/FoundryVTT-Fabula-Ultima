@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "xBgtElDO2eJWv4PE",
+  "name": "Bishop's Edict",
+  "color": "#8198ad",
+  "sorting": "a",
+  "_id": "6hDJMmwUVEdnas7N",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793217651585,
+    "modifiedTime": 1793217651585,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!6hDJMmwUVEdnas7N"
+}

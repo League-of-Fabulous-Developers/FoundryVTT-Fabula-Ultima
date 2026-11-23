@@ -84,6 +84,29 @@
 		padding: 4px;
 		background: var(--gradient-button-bg);
 		border: 1px solid var(--border-primary);
+
+		prose-mirror {
+			min-height: unset;
+		}
+	}
+}
+
+.projectfu.active-effect-sheet {
+	.fu-form__editor {
+		overflow: hidden;
+
+		prose-mirror {
+			--min-height: 0;
+			height: 100%;
+			min-height: 0;
+			max-height: 100%;
+
+			&.editing-source code-mirror.source-editor {
+				flex: 1;
+				height: auto;
+				min-height: 0;
+			}
+		}
 	}
 }
 

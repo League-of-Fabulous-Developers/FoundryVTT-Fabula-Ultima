@@ -15,6 +15,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
+import { PseudoActiveEffect } from '../documents/effects/pseudo-active-effect.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -103,7 +104,6 @@ function resolveBaseEffect(id) {
  */
 async function getEffectData(id) {
 	let effect;
-	let sourceInfo;
 
 	// Resolve by status id
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
@@ -115,27 +115,26 @@ async function getEffectData(id) {
 		}
 		// Resolve by fuid
 		else {
-			const entry = await CompendiumIndex.instance.getItemByFuid(id);
+			const entry = await CompendiumIndex.instance.getEffectByFuid(id);
 			if (entry) {
 				effect = await fromUuid(entry.uuid);
+			} else {
+				effect = game.items
+					.search({ filter: [{ field: 'type', value: 'effect' }] })
+					.flatMap((item) => [...item.effects])
+					.filter((effect) => !!effect.system.fuid && effect.system.fuid === id)
+					.sort((a, b) => a.id - b.id)
+					.at(0);
 			}
 		}
-		// Get the first AE attached to the item
-		if (effect && effect instanceof FUItem) {
-			sourceInfo = new InlineSourceInfo(effect.name, null, effect.uuid, null, effect.system.fuid);
-			effect = effect.effects.entries().next().value[1];
-		}
 	}
-	if (!effect) {
+	if (!effect || !(effect instanceof foundry.documents.ActiveEffect || effect instanceof PseudoActiveEffect)) {
 		console.warn(`No effect with id '${id}' could be resolved.`);
 	}
 
 	if (effect) {
 		// TODO: Perhaps it be really instanced each time?
 		effect = FoundryUtils.safeClone(effect);
-		if (sourceInfo) {
-			effect.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
-		}
 	}
 
 	return effect;
@@ -350,8 +349,8 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
-			existing.map((e) => {
-				CommonEvents.status(actor, statusEffectId, false);
+			existing.map(async (e) => {
+				await CommonEvents.status(actor, statusEffectId, false);
 				sendToChatEffectRemoved(e, actor);
 				return e.delete();
 			}),
@@ -387,7 +386,7 @@ export async function createStatusEffect(actor, statusEffectId, sourceInfo, conf
 			{ parent: actor },
 		);
 		await applyConfiguration(instance, config);
-		CommonEvents.status(actor, statusEffectId, true);
+		await CommonEvents.status(actor, statusEffectId, true);
 	}
 	return true;
 }
@@ -406,8 +405,8 @@ export async function disableStatusEffect(actor, statusEffectId) {
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
-			existing.map((e) => {
-				CommonEvents.status(actor, statusEffectId, false);
+			existing.map(async (e) => {
+				await CommonEvents.status(actor, statusEffectId, false);
 				sendToChatEffectRemoved(e, actor);
 				return e.delete();
 			}),
@@ -431,6 +430,11 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			return;
 		}
 		const flags = createEffectFlags(effect, sourceInfo, sourceInfo?.fuid);
+		if (effect.changes) {
+			effect.system ??= {};
+			effect.system.changes = effect.changes;
+			delete effect.changes;
+		}
 		const instance = await ActiveEffect.create(
 			{
 				...effect,
@@ -459,8 +463,8 @@ function removeEffect(document, source, effect) {
 		(e) =>
 			e.getFlag(SYSTEM, Flags.ActiveEffect.Temporary) &&
 			e.sourceItem === source &&
-			e.changes.length === effect.changes.length &&
-			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
+			e.system.changes.length === effect.system.changes.length &&
+			e.system.changes.every((change, index) => change.key === effect.system.changes[index].key && change.type === effect.system.changes[index].type && change.value === effect.system.changes[index].value),
 	);
 
 	if (existingEffect) {
@@ -842,44 +846,46 @@ function onRenderChatMessage(message, element) {
 	Pipeline.handleClick(message, element, 'clearEffect', async (dataset) => {
 		const effectId = dataset.effectId;
 		const targets = await Pipeline.getTargetsFromAction(dataset);
-		targets.forEach((actor) => {
+		for (const actor of targets) {
 			if (!actor.isOwner) {
 				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-				return;
+				continue;
 			}
 			if (effectId) {
 				const effect = actor.resolveEffect(effectId);
 				if (effect) {
-					effect.delete();
+					await effect.delete();
 				}
 			} else {
-				actor.clearTemporaryEffects({
+				await actor.clearTemporaryEffects({
 					status: true,
 				});
 			}
-		});
+		}
 	});
 
-	Pipeline.handleClick(message, element, 'clearEffects', (dataset) => {
+	Pipeline.handleClick(message, element, 'clearEffects', async (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
-		actors.forEach((actor) => {
+		for (const actor of actors) {
 			if (!actor.isOwner) {
 				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-				return;
+				continue;
 			}
-			actor.clearTemporaryEffects();
-		});
+			await actor.clearTemporaryEffects();
+		}
 	});
 }
 
 /**
  * @param {RestEvent} event
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onRestEvent(event) {
-	// Remove statuses and other effects that last until rest
-	event.actor.clearTemporaryEffects({
-		duration: true,
+function onRestEvent(event, registerCallback) {
+	registerCallback(async () => {
+		// Remove statuses and other effects that last until rest
+		await event.actor.clearTemporaryEffects({
+			duration: true,
+		});
 	});
 }
 

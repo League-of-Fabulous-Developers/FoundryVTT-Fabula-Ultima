@@ -37,12 +37,23 @@ export class PipelineRequest {
 	 * @param {string | string[]} traits
 	 */
 	addTraits(...traits) {
-		// If the caller passed a single array, unwrap it
-		if (traits.length === 1 && Array.isArray(traits[0])) {
-			traits = traits[0];
+		for (const t of traits.flat()) {
+			if (t != null) {
+				const trait = String(t).toLowerCase();
+				this.traits.add(trait);
+			}
 		}
-		for (const t of traits) {
-			this.traits.add(t);
+	}
+
+	/**
+	 * @param {string | string[]} traits
+	 */
+	removeTraits(...traits) {
+		for (const t of traits.flat()) {
+			if (t != null) {
+				const trait = String(t).toLowerCase();
+				this.traits.delete(trait);
+			}
 		}
 	}
 
@@ -77,17 +88,26 @@ export class PipelineContext {
 	}
 
 	/**
-	 *
+	 * @param {string|string[]} traits
 	 */
-	addTraits(traits) {
-		for (const t of traits) {
-			this.traits.add(t);
+	addTraits(...traits) {
+		for (const t of traits.flat()) {
+			if (t != null) {
+				const trait = String(t).toLowerCase();
+				this.traits.add(trait);
+			}
 		}
 	}
 
-	removeTraits(traits) {
-		for (const t of traits) {
-			this.traits.remove(t);
+	/**
+	 * @param {string|string[]} traits
+	 */
+	removeTraits(...traits) {
+		for (const t of traits.flat()) {
+			if (t != null) {
+				const trait = String(t).toLowerCase();
+				this.traits.delete(trait);
+			}
 		}
 	}
 }
@@ -210,7 +230,7 @@ function toggleFlag(flags, key) {
  * @remarks Documented in {@link Flags}
  */
 function setFlag(flags, key, value) {
-	(flags[SYSTEM] ??= {})[key] ??= value;
+	(flags[SYSTEM] ??= {})[key] ??= foundry.utils.deepClone(value);
 	return flags;
 }
 

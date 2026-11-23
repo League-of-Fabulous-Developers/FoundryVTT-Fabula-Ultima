@@ -1,0 +1,144 @@
+{
+  "name": "Monkey Grip (Damage)",
+  "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
+  "system": {
+    "duration": {
+      "event": "endOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "lfoOwTmQ3m7e8gbf": {
+          "trigger": {
+            "type": "projectfu.calculateDamageRuleTrigger",
+            "eventRelation": "source",
+            "damageTypes": [],
+            "identifier": "",
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false
+          },
+          "actions": {
+            "3jJmNb791vQkGK99": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "traits": {
+                "entries": [
+                  "ignore-resistances"
+                ]
+              },
+              "amount": "5",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "variant": ""
+            }
+          },
+          "predicates": {
+            "xoFKBGQjJM8AiFN5": {
+              "type": "projectfu.weaponRulePredicate",
+              "handedness": "two-handed",
+              "selector": "source",
+              "martial": "",
+              "weaponType": "",
+              "categories": []
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        },
+        "zCpFab5AN4OhGC2S": {
+          "trigger": {
+            "type": "projectfu.renderCheckRuleTrigger",
+            "eventRelation": "source",
+            "checkTypes": [],
+            "itemGroups": [
+              "attack"
+            ],
+            "local": false,
+            "identifier": ""
+          },
+          "predicates": {
+            "Atps70THBJEZWgPA": {
+              "type": "projectfu.weaponRulePredicate",
+              "selector": "source",
+              "handedness": "two-handed",
+              "martial": "",
+              "weaponType": "",
+              "categories": []
+            }
+          },
+          "actions": {
+            "kZ0CTPhVzlQhDYNg": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>Remove this effect after the first attack each turn.</p>"
+            },
+            "SyOK0sfudclvsjsK": {
+              "type": "projectfu.clearEffectRuleAction",
+              "identifier": "effect-monkey-grip"
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-monkey-grip-damage"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "pOvxMMrIBKF7W5Oj",
+  "type": "base",
+  "description": "<p>The <strong>first</strong> attack you perform with a <strong>two-handed</strong> weapon during each turn deals 5 extra damage, and its damage ignores Resistances.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130686,
+    "modifiedTime": 1793311130686,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "GrTjWNMavCUd7UnY",
+  "sort": 300000,
+  "_key": "!effects!pOvxMMrIBKF7W5Oj"
+}

@@ -94,48 +94,48 @@ function activateDefaultListeners(html, sheet) {
 	// Initialize the context menu options
 	const contextMenuOptions = [
 		{
-			name: game.i18n.localize('FU.Edit'),
+			label: game.i18n.localize('FU.Edit'),
 			icon: '<i class="fas fa-edit"></i>',
-			callback: (html) => _onItemEdit(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemEdit(html, sheet),
+			visible: (html) => !!html.closest('[data-item-id]'),
 		},
 		{
-			name: game.i18n.localize('FU.Duplicate'),
+			label: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
-			callback: (html) => _onItemDuplicate(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemDuplicate(html, sheet),
+			visible: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 		{
-			name: game.i18n.localize('FU.ChatMessageSendHint'),
+			label: game.i18n.localize('FU.ChatMessageSendHint'),
 			icon: '<i class="fas fa-comment"></i>',
-			callback: (html) => _onItemSendToChat(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemSendToChat(html, sheet),
+			visible: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 		{
-			name: game.i18n.localize('FU.Delete'),
+			label: game.i18n.localize('FU.Delete'),
 			icon: '<i class="fas fa-trash"></i>',
-			callback: (html) => _onItemDelete(html, sheet),
-			condition: (html) => !!html.closest('[data-item-id]'),
+			onClick: (event, html) => _onItemDelete(html, sheet),
+			visible: (html) => sheet.actor.isOwner && !!html.closest('[data-item-id]'),
 		},
 	];
 
 	if (sheet.actor.isCharacterType) {
 		contextMenuOptions.push({
-			name: game.i18n.localize('FU.StashItem'),
+			label: game.i18n.localize('FU.StashItem'),
 			icon: '<i class="fa fa-paper-plane"></i>',
-			callback: (html) => onSendItemToPartyStash(html, sheet),
-			condition: (html) => {
+			onClick: (event, html) => onSendItemToPartyStash(html, sheet),
+			visible: (html) => {
 				const item = getItemFromHtml(html, sheet.actor);
-				return item?.canStash;
+				return sheet.actor.isOwner && item?.canStash;
 			},
 		});
 
 		contextMenuOptions.push({
-			name: `${game.i18n.localize('Deactivate')} ${game.i18n.localize('FU.Behavior')}`,
+			label: `${game.i18n.localize('Deactivate')} ${game.i18n.localize('FU.Behavior')}`,
 			icon: `<i class="fas fa-address-book"></i>`,
-			callback: (html) => _onItemBehavior(html, sheet),
-			condition: (html) => {
-				if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
+			onClick: (event, html) => _onItemBehavior(html, sheet),
+			visible: (html) => {
+				if (sheet.actor.isOwner && sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
 					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && item.system.isBehavior.value;
 				} else {
@@ -145,11 +145,11 @@ function activateDefaultListeners(html, sheet) {
 		});
 
 		contextMenuOptions.push({
-			name: `${game.i18n.localize('Activate')} ${game.i18n.localize('FU.Behavior')}`,
+			label: `${game.i18n.localize('Activate')} ${game.i18n.localize('FU.Behavior')}`,
 			icon: `<i class="far fa-address-book"></i>`,
-			callback: (html) => _onItemBehavior(html, sheet),
-			condition: (html) => {
-				if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
+			onClick: (event, html) => _onItemBehavior(html, sheet),
+			visible: (html) => {
+				if (sheet.actor.isOwner && sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
 					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && !item.system.isBehavior.value;
 				} else {
@@ -167,7 +167,6 @@ function activateDefaultListeners(html, sheet) {
 		onOpen: (menu) => {
 			setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
 		},
-		onClose: () => console.log('Context menu closed'),
 		fixed: true,
 	});
 
@@ -204,7 +203,7 @@ function activateDefaultListeners(html, sheet) {
 
 async function onSendItemToPartyStash(element, sheet) {
 	const item = getItemFromHtml(element, sheet.actor);
-	const party = await FUPartySheet.getActiveModel();
+	const party = FUPartySheet.getActiveModel();
 	if (item && party) {
 		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);
 	}
@@ -384,20 +383,6 @@ function prepareNpcCompanionData(context) {
 	}
 }
 
-function onRenderFUActorSheet(sheet, element) {
-	// Automatically expand elements that are in the _expanded state
-	if (sheet._expanded) {
-		sheet._expanded.forEach((itemId) => {
-			const expandedDescriptions = element.querySelectorAll(`li[data-item-id="${itemId}"] .individual-description`);
-			expandedDescriptions.forEach((el) => {
-				el.classList.remove('hidden');
-				el.style.display = 'block';
-				el.style.height = 'auto';
-			});
-		});
-	}
-}
-
 function resolveItem(actor, target) {
 	const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
 	let item = actor.items.get(dataItemId);
@@ -488,8 +473,6 @@ function preparePressureContext(context) {
 		context.weaponCategories = FU.weaponCategories;
 	}
 }
-
-Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 
 /**
  * @description Provides utility functions for rendering the actor sheet

@@ -20,7 +20,7 @@ const statuses = {
 
 /**
  * @extends RollableClassFeatureDataModel
- * @property {DamageType} type
+ * @property {DamageType} damageType
  * @property {"slow","dazed","weak","shaken","enraged","poisoned"} status
  * @property {Attribute} attribute
  * @property {"hp","mp"} resource
@@ -37,7 +37,7 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField } = foundry.data.fields;
 		return {
-			type: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }),
+			damageType: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }),
 			status: new StringField({ initial: 'slow', choices: Object.keys(statuses) }),
 			attribute: new StringField({ initial: 'dex', choices: Object.keys(FU.attributeAbbreviations) }),
 			resource: new StringField({ initial: 'hp', choices: Object.keys(resourceOptions) }),
@@ -78,8 +78,8 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 	 */
 	static getRollData(keyData) {
 		return {
-			type: keyData.type,
-			typeLocal: game.i18n.localize(FU.damageTypes[keyData.type]),
+			type: keyData.damageType,
+			typeLocal: game.i18n.localize(FU.damageTypes[keyData.damageType]),
 			status: keyData.status,
 			statusLocal: game.i18n.localize(FU.statusEffects[keyData.status]),
 			attribute: keyData.attribute,
@@ -96,7 +96,7 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 		}
 
 		const data = {
-			types: FU.damageTypes[model.type],
+			types: FU.damageTypes[model.damageType],
 			statuses: KeyDataModel.statuses[model.status],
 			attributes: FU.attributes[model.attribute],
 			attributeAbbreviations: FU.attributeAbbreviations[model.attribute],

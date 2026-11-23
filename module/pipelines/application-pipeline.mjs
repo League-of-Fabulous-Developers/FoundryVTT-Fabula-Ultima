@@ -6,7 +6,6 @@ import { Flags } from '../helpers/flags.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
-import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
@@ -14,8 +13,8 @@ import { FeatureTraits } from './traits.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
-import { getSystemSetting, SETTINGS } from '../settings.js';
-import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
+import { ResourcePipeline } from './resource-pipeline.mjs';
+import { FU } from '../helpers/config.mjs';
 
 /**
  * @desc An application used for specific class features.
@@ -32,9 +31,9 @@ import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
 async function handleArcanum(actor, item) {
 	// TODO: Implement...
 	const items = actor.itemTypes;
-	const subtype = ClassFeatureRegistry.instance.qualify('arcanum');
+	const subtype = FU.classFeatures.arcanum;
 	/** @type {FUItem[]} **/
-	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
+	const classFeatures = items.classFeature.filter((it) => it.system.data.type === subtype);
 	/** @type {FUActiveEffect[]} **/
 	const title = StringUtils.localize('FU.ClassFeatureArcanum');
 
@@ -66,7 +65,8 @@ async function handleArcanum(actor, item) {
 		});
 
 		// OPTIONAL: Pulse
-		if (getSystemSetting(SETTINGS.optionArcanumPulse) && currentArcanumData.pulse) {
+
+		if (currentArcanumData.enablePulse && currentArcanumData.pulse) {
 			sections.push({
 				title: `FU.ClassFeatureArcanumPulse`,
 				text: await FoundryUtils.enrichText(currentArcanumData.pulse, {
@@ -88,6 +88,7 @@ async function handleArcanum(actor, item) {
 			icon: 'fas fa-bolt',
 			primary: true,
 		});
+
 		sections.push({
 			title: `FU.ClassFeatureArcanumDismiss`,
 			text: await FoundryUtils.enrichText(currentArcanumData.dismiss, {
@@ -213,9 +214,9 @@ async function handleArcanum(actor, item) {
  */
 async function handleTheriomorphosis(actor, item) {
 	const items = actor.itemTypes;
-	const subtype = ClassFeatureRegistry.instance.qualify('therioform');
+	const subtype = FU.classFeatures.therioform;
 	/** @type {FUItem[]} **/
-	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
+	const classFeatures = items.classFeature.filter((it) => it.system.data.type === subtype);
 	/** @type ItemSelectionData **/
 	const data = {
 		title: `${StringUtils.localize('FU.ClassFeatureTherioformLabel')}`,
@@ -243,12 +244,10 @@ async function handleTheriomorphosis(actor, item) {
 			amount: item.system.cost.amount ?? 0,
 		};
 		const expense = await ResourcePipeline.calculateExpense(therioCost, actor, item, []);
-		const therioExpenseWithTraits = {
-			...expense,
-			traits: [FeatureTraits.TherioformManifest],
-		};
-		await CommonEvents.calculateExpense(actor, item, [], therioExpenseWithTraits);
-		console.debug(`Theriomorphosis cost: ${therioExpenseWithTraits.amount}`);
+		expense.traits.push(FeatureTraits.TherioformManifest);
+
+		await CommonEvents.calculateExpense(actor, item, [], expense);
+		console.debug(`Theriomorphosis cost: ${expense.total}`);
 		// Render sections
 		/** @type {FURenderData} **/
 		const renderData = {
@@ -266,10 +265,10 @@ async function handleTheriomorphosis(actor, item) {
 			forms: selectedForms,
 		});
 		CommonSections.content(renderData.sections, content, CHECK_DETAILS);
-		if (therioExpenseWithTraits.amount > 0) {
-			CommonSections.expense(renderData, actor, item, [], flags, therioExpenseWithTraits);
+		if (expense.total > 0) {
+			CommonSections.expense(renderData, actor, item, [], flags, expense);
 		}
-		await CommonEvents.feature(actor, item, therioExpenseWithTraits.traits, [], renderData);
+		await CommonEvents.feature(actor, item, expense.traits, [], renderData);
 		const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
 		await builder.create();
 	} else {

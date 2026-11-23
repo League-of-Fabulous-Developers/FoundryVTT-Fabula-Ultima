@@ -105,9 +105,7 @@ async function onRender(element) {
 			// Check source actor for outgoing damage bonuses
 			if (context.actor) {
 				damageData.addModifiers(BonusesDataModel.collectDamageBonuses(context.actor.system.bonuses, damageData.type));
-				CommonEvents.calculateDamage(context.actor, context.item, config);
-				// TODO: Better solution
-				await new Promise((resolve) => setTimeout(resolve, 10));
+				await CommonEvents.calculateDamage(context.actor, context.item, config);
 			}
 
 			let traits = [];

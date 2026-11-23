@@ -7,21 +7,12 @@ import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs
 const fields = foundry.data.fields;
 
 /**
- *
+ * @property {number} value
+ * @property {string} identifier
+ * @property {boolean} local
+ * @property {FUComparisonOperator, 'max'} comparisonOperator
  */
 export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.PROGRESS_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'progressTrackRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			value: new fields.NumberField(),
@@ -36,6 +27,13 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 				},
 			}),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.PROGRESS_EVENT;
 	}
 
 	static get localization() {
@@ -53,17 +51,18 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 	validateContext(context) {
 		if (context.origin === context.event.origin) return false;
 		// Only trigger if the progress track is within the same item as this rule element
-		if (this.local && context.source !== context.item) return;
-
-		if (!this.comparisonOperator) return false;
+		if (this.local && context.source !== context.item) return false;
 
 		const event = context.event;
 		const progress = event.progress;
 
-		// Use resolveProgress here to allow for its logic, rather than
-		// reimplementing it here
-		const actorProgress = context.character?.actor?.resolveProgress(this.identifier);
-		if (actorProgress !== progress) return false;
+		// Use resolveProgress here to allow for its logic, rather than reimplementing it here
+		if (this.identifier) {
+			const actorProgress = context.character?.actor?.resolveProgress(this.identifier);
+			if (actorProgress !== progress) return false;
+		}
+
+		if (!this.comparisonOperator) return true;
 
 		if (this.comparisonOperator === 'max') {
 			return progress.current >= progress.max;

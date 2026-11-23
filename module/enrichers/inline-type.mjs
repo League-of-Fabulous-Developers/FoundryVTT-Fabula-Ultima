@@ -188,7 +188,7 @@ function composeEffectData(type, args) {
 				changes = [
 					{
 						key: attributeKey,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						type: 'override',
 						value: attributeValue,
 					},
 				];
@@ -217,7 +217,7 @@ function composeEffectData(type, args) {
 					}
 					changes.push({
 						key: attributeKey,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						type: 'override',
 						value: attributeValue,
 					});
 				}

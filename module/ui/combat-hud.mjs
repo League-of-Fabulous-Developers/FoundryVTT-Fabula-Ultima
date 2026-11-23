@@ -74,6 +74,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 			toggleHud: {
 				label: 'FU.CombatHudControlButtonTitle',
 				icon: 'fa-solid fa-thumbtack',
+				tooltip: 'FU.CombatHudControlButtonTooltip',
 				click: () => {
 					if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 						CombatHUD.restore();
@@ -85,6 +86,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 			savePos: {
 				label: 'FU.CombatHudSaveButtonTitle',
 				icon: 'fa-solid fa-lock',
+				tooltip: 'FU.CombatHudSaveButtonTooltip',
 				click: () => {
 					const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
 					game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
@@ -93,6 +95,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 			resetHud: {
 				label: 'FU.CombatHudResetButtonTitle',
 				icon: 'fa-solid fa-undo',
+				tooltip: 'FU.CombatHudResetButtonTooltip',
 				click: () => {
 					CombatHUD.reset();
 				},
@@ -423,7 +426,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					break;
 			}
 
-			const zeroPower = combatant.actor.items.find((i) => i.type === 'optionalFeature' && i.system.optionalType === 'projectfu.zeroPower');
+			const zeroPower = combatant.actor.items.find((i) => i.type === 'optionalFeature' && i.system.data.type === 'projectfu.zeroPower');
 			if (zeroPower) {
 				actorData.zeropower = zeroPower.system.data;
 			}
@@ -536,34 +539,34 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			'.combat-effects [data-effect-id][data-actor-id]',
 			[
 				{
-					name: 'FU.EffectEdit',
+					label: 'FU.EffectEdit',
 					icon: `<i class="fas fa-edit"></i>`,
-					callback: (elem) => {
+					onClick: (event, elem) => {
 						const effect = this._getEffectFromElement(elem);
 						if (!effect) return;
 						new foundry.applications.sheets.ActiveEffectConfig({ document: effect }).render({ force: true });
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem),
+					visible: (elem) => this._canModifyEffectContextMenu(elem),
 				},
 				{
-					name: 'FU.EffectToggle',
+					label: 'FU.EffectToggle',
 					icon: `<i class="fas fa-circle-check"></i>`,
-					callback: async (elem) => {
+					onClick: async (event, elem) => {
 						const effect = this._getEffectFromElement(elem);
 						if (!effect || !effect.canUserModify(game.user, 'update')) return;
 						await effect.update({ disabled: !effect.disabled });
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
+					visible: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
 				},
 				{
-					name: 'FU.EffectDelete',
+					label: 'FU.EffectDelete',
 					icon: `<i class="fas fa-trash"></i>`,
-					callback: async (elem) => {
+					onClick: async (event, elem) => {
 						const effect = this._getEffectFromElement(elem);
 						if (!effect || !effect.canUserModify(game.user, 'delete')) return;
 						await effect.delete();
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
+					visible: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
 				},
 			],
 			{
@@ -1160,9 +1163,9 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 		// Are any of the changes relevant to the combat HUD?
 		if (
-			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.optionalType === 'projectfu.zeroPower') ||
+			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.data.type === 'projectfu.zeroPower') ||
 			// The optionalType can theoretically change, so make sure to check for it.
-			(foundry.utils.hasProperty(changes, 'system.optionalType') &&
+			(foundry.utils.hasProperty(changes, 'system.data.type') &&
 				// Progress changes aren't relevant during create/delete hooks.
 				(!changes || foundry.utils.hasProperty(changes, 'system.data.progress.current') || foundry.utils.hasProperty(changes, 'system.data.progress.max')))
 		) {

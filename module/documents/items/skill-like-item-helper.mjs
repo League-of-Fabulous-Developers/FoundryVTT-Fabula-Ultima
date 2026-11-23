@@ -289,10 +289,10 @@ const getWeapon = async (actor) => {
 /**
  * @type RenderCheckHook
  */
-const onRenderAccuracyCheck = async (data, check, actor, item) => {
+const onRenderAccuracyCheck = (data, check, actor, item) => {
 	if (check.type === 'accuracy' && isRegisteredType(item)) {
 		const inspector = CheckConfiguration.inspect(check);
-		const weapon = await fromUuid(inspector.getWeaponReference());
+		const weapon = fromUuidSync(inspector.getWeaponReference());
 
 		if (check.critical) {
 			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
@@ -317,9 +317,9 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
+let onRenderAttributeCheck = (data, check, actor, item, flags) => {
 	if (check.type === 'attribute' && isRegisteredType(item) && check.additionalData[skillForAttributeCheck]) {
-		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
+		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		CommonSections.itemFlavor(data.sections, skill);
 		data.tags.push(...(skill.system.getTags?.() ?? []));
 		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
@@ -355,7 +355,7 @@ const onRenderDisplay = (data, check, actor, item, flags) => {
 		if (item.system.hasResource?.value) {
 			CommonSections.resource(data.sections, item.system.rp, ChatSectionOrder.tracker);
 		}
-		CommonEvents.skill(actor, item);
+		data.postRenderActions.push(() => CommonEvents.skill(actor, item));
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderDisplay);

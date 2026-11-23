@@ -124,6 +124,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			rollEffect: FUStandardActorSheet.RollEffect,
 			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
 		},
+		nonOwnerAllowedActions: ['editItem', 'editEffect'],
 	};
 
 	// These will be filtered in _configureRenderOptions
@@ -578,11 +579,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const config = ActorSheetUtils.findItemConfig(item.parent, item.type, subtype);
 		if (config) {
 			// Check if there is an active ProseMirror editor
-			const activeEditor = document.querySelector('.editor-content.ProseMirror');
+			const activeEditor = this.element.querySelector('.editor-content.ProseMirror');
 			if (item.type === 'effect') {
 				if (activeEditor) {
 					// Handle effect drop into ProseMirror editor
-					return await this._handleEditorEffectDrop(item, event);
+					return await this._handleEditorEffectDrop(item, event, activeEditor);
 				} else {
 					// Handle effect drop into actor sheet
 					return await this._importEffectData(item);
@@ -600,34 +601,38 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	async _onDropFolder(event, folder) {
-		if (folder?.type !== 'Item') return super._onDropFolder(event, folder);
-
-		const allFolders = [folder, ...folder.getSubfolders(true)];
-		const folderIds = new Set(allFolders.map((f) => f.id));
-
-		const worldItems = allFolders.flatMap((f) => f.contents ?? []);
-		const packItems = [];
-		for (const pack of game.packs.filter((p) => p.metadata.type === 'Item')) {
-			const docs = await pack.getDocuments();
-			packItems.push(...docs.filter((i) => folderIds.has(i.folder?.id ?? i.folder)));
+		if (folder?.type === 'Item') {
+			return this.#onDropItemFolder(event, folder);
+		} else {
+			return super._onDropFolder(event, folder);
 		}
+	}
 
-		const allItems = [...worldItems, ...packItems];
-		const itemDataArray = allItems
-			.filter((i) => i && typeof i.toObject === 'function')
-			.map((i) => {
-				const data = i.toObject();
-				delete data._id;
-				return data;
-			});
-
-		await this.actor.createEmbeddedDocuments('Item', itemDataArray);
+	async #onDropItemFolder(event, folder) {
+		const allFolders = [folder, ...folder.getSubfolders(true)];
+		const items = [];
+		const effects = [];
+		for (let folder of allFolders) {
+			let pack = folder.pack ? game.packs.get(folder.pack) : null;
+			for (let item of folder.contents) {
+				if (pack) {
+					item = await pack.getDocument(item._id);
+				}
+				if (item.type === 'effect') {
+					effects.push(...item.effects);
+				} else {
+					items.push(item);
+				}
+			}
+		}
+		await this.actor.createEmbeddedDocuments('Item', items);
+		await this.actor.createEmbeddedDocuments('ActiveEffect', effects);
 		return folder;
 	}
 
 	async _importEffectData(itemData) {
 		const effects = itemData.effects || [];
-		const existingEffects = this.actor.items.filter((i) => i.type === 'ActiveEffect').map((e) => e.data.name);
+		const existingEffects = this.actor.effects.map((e) => e.name);
 		for (const effect of effects) {
 			if (!existingEffects.includes(effect.name)) {
 				await this.actor.createEmbeddedDocuments('ActiveEffect', [effect]);
@@ -636,24 +641,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	// Handle dropping effects into a text editor
-	async _handleEditorEffectDrop(itemData, ev) {
-		const activeEditor = document.querySelector('.editor-content.ProseMirror');
-		if (activeEditor) {
-			const effects = itemData.effects || [];
-			const formattedEffects = effects.map((effect) => Effects.formatEffect(effect)).join(' ');
+	async _handleEditorEffectDrop(itemData, ev, activeEditor) {
+		const effects = itemData.effects || [];
+		const formattedEffects = effects.map((effect) => Effects.formatEffect(effect)).join(' ');
 
-			ev.preventDefault();
-			ev.stopPropagation();
+		ev.preventDefault();
+		ev.stopPropagation();
 
-			const currentContent = activeEditor.innerHTML;
+		const currentContent = activeEditor.innerHTML;
 
-			// Append the formatted effects to the current content of the editor
-			activeEditor.innerHTML = currentContent + formattedEffects;
+		// Append the formatted effects to the current content of the editor
+		activeEditor.innerHTML = currentContent + formattedEffects;
 
-			console.log(`Appended formatted effects to the ProseMirror editor.`);
-		} else {
-			console.log('No active ProseMirror editor found.');
-		}
+		console.log(`Appended formatted effects to the ProseMirror editor.`);
 	}
 
 	/* -------------------------------------------- */
@@ -710,33 +710,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return;
 		}
 
-		this.loadSortingMethod();
-
 		// Dropzone event listeners
 		const dropZone = html.querySelector('.desc.drop-zone');
 		if (dropZone) {
 			dropZone.addEventListener('dragenter', this._onDragEnter.bind(this));
 			dropZone.addEventListener('dragleave', this._onDragLeave.bind(this));
 			dropZone.addEventListener('drop', this._onDropReset.bind(this));
-		}
-	}
-
-	loadSortingMethod() {
-		if (this.actor) {
-			const flags = this.actor.getFlag('projectfu', 'sortMethod');
-
-			if (flags) {
-				flags
-					.then((sortMethod) => {
-						if (sortMethod) {
-							this.sortMethod = sortMethod;
-							this.render();
-						}
-					})
-					.catch((error) => {
-						console.error(`Error loading sortMethod: ${error}`);
-					});
-			}
 		}
 	}
 
@@ -1190,13 +1169,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static ClearTempEffects(event, target) {
+	static async ClearTempEffects(event, target) {
 		event.preventDefault();
 		const actor = this.actor;
 		if (!actor || !actor.system || !actor.system.immunities) {
 			return;
 		}
-		actor.clearTemporaryEffects();
+		return actor.clearTemporaryEffects();
 	}
 
 	/**
@@ -1338,12 +1317,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				type: choice.type,
 				flags: { [SYSTEM]: { [Flags.Favorite]: true } },
 			};
-			if (choice.type === 'classFeature') {
+			if (choice.type === 'classFeature' || choice.type === 'optionalFeature') {
 				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				(itemData.system ??= {}).featureType = choice.subtype;
-			} else if (choice.type === 'optionalFeature') {
-				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				(itemData.system ??= {}).optionalType = choice.subtype;
+				itemData.system = { data: { type: choice.subtype } };
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}
@@ -1401,12 +1377,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				flags: { [SYSTEM]: { [Flags.Favorite]: true } },
 				system: { hasClock: { value: true } },
 			};
-			if (choice.type === 'classFeature') {
+			if (choice.type === 'classFeature' || choice.type === 'optionalFeature') {
 				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system.featureType = choice.subtype;
-			} else if (choice.type === 'optionalFeature') {
-				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system.optionalType = choice.subtype;
+				itemData.system.data = { type: choice.subtype };
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}
@@ -1458,12 +1431,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 			const itemData = {
 				type: choice.type,
 			};
-			if (choice.type === 'classFeature') {
+			if (choice.type === 'classFeature' || choice.type === 'optionalFeature') {
 				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system = { featureType: choice.subtype };
-			} else if (choice.type === 'optionalFeature') {
-				itemData.name = this._determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system = { optionalType: choice.subtype };
+				itemData.system = { data: { type: choice.subtype } };
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}

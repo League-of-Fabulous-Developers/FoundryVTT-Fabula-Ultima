@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "g18Aph32n2BJA5KC",
+  "name": "Greater Akromorphosis",
+  "color": "#63819c",
+  "sorting": "a",
+  "_id": "dn0VHEHXRgUXgT0v",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220879095,
+    "modifiedTime": 1793220879095,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!dn0VHEHXRgUXgT0v"
+}

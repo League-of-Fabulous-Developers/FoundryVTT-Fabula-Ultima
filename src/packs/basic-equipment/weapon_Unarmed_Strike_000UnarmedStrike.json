@@ -1,0 +1,101 @@
+{
+  "name": "Unarmed Strike",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/weapons/unarmed-strike.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Automatically equipped in each empty hand slot.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 0
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": ""
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "value": 0
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "source": "FUCR130",
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "defense": "def",
+    "fuid": "unarmed-strike",
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "hasDamage": true,
+    "traits": []
+  },
+  "effects": [],
+  "folder": "SnyIBMif9646gEkD",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.368",
+    "createdTime": 1793311128888,
+    "modifiedTime": 1793311128905,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "000UnarmedStrike",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!000UnarmedStrike"
+}

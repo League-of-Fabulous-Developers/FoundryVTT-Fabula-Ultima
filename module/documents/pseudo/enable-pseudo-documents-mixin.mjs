@@ -20,6 +20,7 @@ export function EnablePseudoDocumentsMixin(ClientDocument) {
 			super.prepareEmbeddedDocuments();
 			for (const collectionName of Object.keys(this.nestedCollections || {})) {
 				for (const e of this.getEmbeddedCollection(collectionName)) {
+					e._initialize();
 					e._safePrepareData();
 				}
 			}

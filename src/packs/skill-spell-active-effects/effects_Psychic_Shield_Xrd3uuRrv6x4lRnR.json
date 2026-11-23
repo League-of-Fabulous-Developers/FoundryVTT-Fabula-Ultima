@@ -1,0 +1,76 @@
+{
+  "img": "icons/equipment/shield/heater-steel-gray.webp",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Psychic Shield",
+  "_id": "Xrd3uuRrv6x4lRnR",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "id": "",
+        "name": "",
+        "style": "basic",
+        "current": 0,
+        "step": 1,
+        "max": 6,
+        "enabled": false
+      },
+      "elements": {}
+    },
+    "changes": [
+      {
+        "key": "system.derived.mdef.value",
+        "value": "~&ats('wlp')+(~&cs('brainwave-clock)*2)",
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      },
+      {
+        "key": "system.derived.def.value",
+        "value": "~&ats('wlp')+(~&cs('brainwave-clock)*2)",
+        "priority": null,
+        "type": "upgrade",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-psychic-shield"
+  },
+  "description": "<p>You treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130523,
+    "modifiedTime": 1793311130523,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "8DbjHOaMgf9ceC9z",
+  "sort": 0,
+  "_key": "!effects!Xrd3uuRrv6x4lRnR"
+}

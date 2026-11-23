@@ -2,7 +2,6 @@ import { RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
 import { ClassFeatureRegistry } from './class-feature-registry.mjs';
 import { EmbeddedFeatureDataModel } from '../embedded-feature-data-model.mjs';
 
@@ -12,16 +11,19 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	}
 });
 
+const registry = ClassFeatureRegistry.instance;
+
 export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
+		const { TypedSchemaField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
-			featureType: new StringField({
-				nullable: false,
-				initial: () => CONFIG.FU.classFeatureRegistry.qualifiedChoices[0],
-				choices: () => CONFIG.FU.classFeatureRegistry.qualifiedChoices,
+			data: new TypedSchemaField(registry.qualifiedTypes, {
+				initial: () => {
+					const typeId = registry.qualifiedChoices.at(0);
+					const typeModel = registry.qualifiedTypes[typeId];
+					return new typeModel({});
+				},
 			}),
-			data: new RegistryDataField(ClassFeatureRegistry.instance, 'featureType'), //  new FeatureDataField('featureType'),
 		});
 	}
 
@@ -51,5 +53,26 @@ export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 
 	get cost() {
 		return this.data.cost;
+	}
+
+	static migrateData(source) {
+		source = super.migrateData(source);
+		if (source.data) {
+			const featureTypes = registry.qualifiedTypes;
+			let type = source.data.type;
+			if (!(type in featureTypes)) {
+				type = source.featureType;
+			}
+			if (type) {
+				const dataModel = featureTypes[type];
+				if (dataModel) {
+					source.data = dataModel.migrateData(source.data);
+				}
+			}
+		}
+		if (source.featureType && source.data && !('type' in source.data)) {
+			source.data.type = source.featureType;
+		}
+		return source;
 	}
 }

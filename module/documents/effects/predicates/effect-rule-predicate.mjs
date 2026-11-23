@@ -10,12 +10,8 @@ const fields = foundry.data.fields;
  * @property {FUPredicateQuantifier} quantifier
  */
 export class EffectRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'targetEffectRulePredicate' });
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			selector: new fields.StringField({
 				initial: 'initial',
 				blank: true,
@@ -29,7 +25,7 @@ export class EffectRulePredicate extends RulePredicateDataModel {
 			effect: new fields.StringField({
 				initial: 'slow',
 			}),
-		});
+		};
 	}
 
 	static get localization() {

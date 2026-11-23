@@ -56,6 +56,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			removeArrayElement: this.#removeArrayElement,
 			createItem: this.#onCreateItem,
 		},
+		nonOwnerAllowedActions: ['close', 'tab', 'toggleControls', 'copyUuid'],
 	};
 
 	_onRender(context, options) {
@@ -362,11 +363,8 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			}
 		}
 
-		if (type === 'classFeature') {
-			itemData.system = { featureType: subType };
-			itemData.name = this._determineNewFeatureName(type, subType, this.actor);
-		} else if (type === 'optionalFeature') {
-			itemData.system = { optionalType: subType };
+		if (type === 'classFeature' || type === 'optionalFeature') {
+			itemData.system = { data: { type: subType } };
 			itemData.name = this._determineNewFeatureName(type, subType, this.actor);
 		} else {
 			itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
@@ -397,5 +395,15 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		let index = 1;
 		while (takenNames.has(name)) name = `${baseName} (${++index})`;
 		return name;
+	}
+
+	_toggleDisabled(disabled) {
+		super._toggleDisabled(disabled);
+		for (const element of this.element.querySelectorAll('.rollable, [data-action]')) {
+			let action = element.dataset.action;
+			if (!action || !this.options.nonOwnerAllowedActions.includes(action)) {
+				element.classList.toggle('disabled', disabled);
+			}
+		}
 	}
 }

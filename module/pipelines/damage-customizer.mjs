@@ -67,7 +67,7 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 			function updateTotalDamage() {
 				const extraDamage = parseInt(extraDamageInput.value, 10) || 0;
 				const selectedDamageType = damageTypeSelect.value;
-				const baseDamage = damage.modifiers[0].amount;
+				const baseDamage = damage.modifiers[0]?.amount ?? 0;
 				const hrDamage = hrZeroCheckbox.checked ? 0 : damage.hr;
 				const totalDamage = baseDamage + hrDamage + extraDamage;
 

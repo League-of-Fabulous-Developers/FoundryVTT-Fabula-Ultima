@@ -1,0 +1,65 @@
+{
+  "name": "Remedy",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/remedy.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers 50 Hit Points."
+    },
+    "description": "<p>One creature recovers 50 Hit Points.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 3
+    },
+    "source": "FUCR104",
+    "fuid": "remedy",
+    "damage": {
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "50",
+      "type": "hp"
+    },
+    "traits": {
+      "entries": [
+        "potion",
+        "restore",
+        "hit-point"
+      ]
+    }
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "14.368",
+    "createdTime": 1793311128947,
+    "modifiedTime": 1793311128959,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "0000000000Remedy",
+  "sort": 0,
+  "_key": "!items!0000000000Remedy"
+}

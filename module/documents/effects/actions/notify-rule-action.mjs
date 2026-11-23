@@ -7,14 +7,6 @@ import { CommonEvents } from '../../../checks/common-events.mjs';
  * @property {String} message
  */
 export class NotifyRuleAction extends RuleActionDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'notifyRuleAction' });
-	}
-
-	static defineSchema() {
-		return Object.assign(super.defineSchema(), {});
-	}
-
 	static get localization() {
 		return 'FU.RuleActionNotify';
 	}
@@ -30,6 +22,6 @@ export class NotifyRuleAction extends RuleActionDataModel {
 		} else {
 			id = context.label;
 		}
-		CommonEvents.notify(context.source, id, context.origin);
+		await CommonEvents.notify(context.source, id, context.origin);
 	}
 }

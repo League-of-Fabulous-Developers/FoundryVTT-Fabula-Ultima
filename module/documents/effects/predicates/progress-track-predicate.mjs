@@ -6,19 +6,8 @@ import { ComparisonOperations } from '../../../helpers/comparison-operations.mjs
 const fields = foundry.data.fields;
 
 export class ProgressTrackRulePredicate extends RulePredicateDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'progressTrackRulePredicate' });
-	}
-	static get localization() {
-		return 'FU.RulePredicateProgressTrack';
-	}
-
-	static get template() {
-		return systemTemplatePath('effects/predicates/progress-track-rule-predicate');
-	}
-
 	static defineSchema() {
-		return Object.assign(super.defineSchema(), {
+		return {
 			value: new fields.NumberField(),
 			identifier: new fields.StringField({ initial: '' }),
 			comparisonOperator: new fields.StringField({
@@ -29,7 +18,15 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 					...FU.comparisonOperator,
 				},
 			}),
-		});
+		};
+	}
+
+	static get localization() {
+		return 'FU.RulePredicateProgressTrack';
+	}
+
+	static get template() {
+		return systemTemplatePath('effects/predicates/progress-track-rule-predicate');
 	}
 
 	/**
@@ -43,15 +40,21 @@ export class ProgressTrackRulePredicate extends RulePredicateDataModel {
 			return false;
 		}
 
+		if (!this.identifier) return true;
+
 		const progress = context.character.actor.resolveProgress(this.identifier);
 		if (!progress) return false;
 
 		if (!this.comparisonOperator) {
-			return false;
+			return true;
 		}
 
 		if (this.comparisonOperator === 'max') {
 			return progress.current >= progress.max;
+		}
+
+		if (!this.value) {
+			return true;
 		}
 
 		if (!Number.isFinite(this.value)) {

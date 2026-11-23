@@ -1,4 +1,6 @@
-<div class="fu-form__property">
-	<span>{{localize 'FU.Enabled'}}</span>
-	{{formGroup trigger.schema.fields.enabled value=trigger.enabled name=(pfuConcat path ".enabled") }}
-</div>
+<label class="fu-form__property">
+  <span>{{localize 'FU.Enabled'}}</span>
+  <input type="checkbox"
+         name="{{pfuConcat path ".enabled"}}"
+         {{checked trigger.enabled}}>
+</label>

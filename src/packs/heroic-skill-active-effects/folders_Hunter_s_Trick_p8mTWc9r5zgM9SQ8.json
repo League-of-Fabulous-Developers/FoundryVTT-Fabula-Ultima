@@ -1,0 +1,23 @@
+{
+  "type": "ActiveEffect",
+  "folder": "nVAqbMLJVRKgLgOO",
+  "name": "Hunter's Trick",
+  "color": "#535978",
+  "sorting": "a",
+  "_id": "p8mTWc9r5zgM9SQ8",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793220140028,
+    "modifiedTime": 1793220144951,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!p8mTWc9r5zgM9SQ8"
+}

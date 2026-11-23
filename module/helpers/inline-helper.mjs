@@ -149,6 +149,17 @@ export class InlineSourceInfo {
 		return !!this.itemUuid;
 	}
 
+	toJSON() {
+		return {
+			name: this.name,
+			actorUuid: this.actorUuid,
+			itemUuid: this.itemUuid,
+			effectUuid: this.effectUuid,
+			fuid: this.fuid,
+			checkId: this.checkId,
+		};
+	}
+
 	static none = Object.freeze(new InlineSourceInfo('FU.Unknown'));
 
 	/**

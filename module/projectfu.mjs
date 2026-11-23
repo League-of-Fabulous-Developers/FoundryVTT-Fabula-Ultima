@@ -6,7 +6,7 @@ import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { FU, SYSTEM } from './helpers/config.mjs';
+import { FU, SYSTEM, systemPath } from './helpers/config.mjs';
 import { registerSystemSettings, SETTINGS } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
@@ -100,10 +100,9 @@ import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs
 import { PdfPagerIntegration } from './integration/pdf-pager-integration.mjs';
 import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
 import { OptionalFeatureRegistry } from './documents/items/optionalFeature/optional-feature-registry.mjs';
-import { RuleElementRegistry } from './documents/effects/rule-element-data-model.mjs';
-import { RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
-import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
-import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
+import { RuleActionDataModel, RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
+import { RuleTriggerDataModel, RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
+import { RulePredicateDataModel, RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
 import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
 import { InlineAction } from './enrichers/inline-action.mjs';
@@ -111,13 +110,16 @@ import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
 import { FUToken } from './ui/token.mjs';
-import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
+import { FUModernPressureGauge, FUPixelPressureGauge, FUPressureGauge } from './ui/pressureGauges/index.mjs';
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
 import { FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
+import { ActorDirectoryEnhancements } from './ui/actor-directory-enhancements.mjs';
+import { PixelArtDetection } from './helpers/pixel-art-detection.mjs';
+import { refreshCompendiumData } from './helpers/compendium-refresh.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -132,10 +134,12 @@ globalThis.projectfu = {
 	ActionHandler,
 	StudyRollHandler,
 	ItemCustomizer,
-	get ChecksV2() {
-		console.warn(new Error("You are accessing the deprecated 'globalThis.projectfu.ChecksV2'. Please use 'globalThis.projectfu.Checks' instead."));
-		return Checks;
+	ruleElements: {
+		RuleTriggerDataModel,
+		RulePredicateDataModel,
+		RuleActionDataModel,
 	},
+	refreshCompendiumData,
 };
 
 // These are pulled out of the init hook to ensure they are overridden before any modules that may apply mixins later
@@ -146,12 +150,7 @@ CONFIG.Token.objectClass = FUToken;
 /*  Init Hook                                   */
 /* -------------------------------------------- */
 
-// System Data Model
-// Hooks.on("init", () => {
-//   CONFIG.Actor.systemDataModels.character = CharacterData;
-// });
-
-Hooks.once('init', async () => {
+Hooks.once('init', () => {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
 	game.projectfu = {
@@ -184,7 +183,6 @@ Hooks.once('init', async () => {
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
 	FU.classFeatureRegistry = ClassFeatureRegistry.instance;
 	FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
-	FU.ruleElementRegistry = RuleElementRegistry.instance;
 	FU.ruleActionRegistry = RuleActionRegistry.instance;
 	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
 	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
@@ -214,7 +212,6 @@ Hooks.once('init', async () => {
 	FU.dataModelRegistries = {
 		optionalFeature: FU.optionalFeatureRegistry,
 		classFeature: FU.classFeatureRegistry,
-		ruleElement: FU.ruleElementRegistry,
 		ruleAction: FU.ruleActionRegistry,
 		ruleTrigger: FU.ruleTriggerRegistry,
 		rulePredicate: FU.rulePredicateRegistry,
@@ -275,8 +272,8 @@ Hooks.once('init', async () => {
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
 
 	// Register system settings
-	await registerSystemSettings();
-	await registerKeyBindings();
+	registerSystemSettings();
+	registerKeyBindings();
 
 	CONFIG.Actor.trackableAttributes = {
 		character: {
@@ -323,9 +320,25 @@ Hooks.once('init', async () => {
 	CONFIG.ui.sidebar.TABS.settings = settingsTab;
 
 	// Register status effects
-	CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
+	CONFIG.ActiveEffect.phases.default = {
+		label: 'FU.ActiveEffectPhaseDefault',
+		hint: 'FU.ActiveEffectPhaseDefaultHint',
+	};
+	CONFIG.ActiveEffect.changeTypes[FU.changeTypes.apply] = {
+		label: 'FU.ActiveEffectChangeTypeApply',
+		defaultPriority: 0,
+		handler: (model, change, options) => {
+			const value = foundry.utils.getProperty(model, change.key);
+			if (change.key.startsWith('system.') && value instanceof foundry.abstract.DataModel && Object.hasOwn(value, change.value) && value[change.value] instanceof Function) {
+				console.debug(`Applying change ${change.value} to ${change.key}`);
+				value[change.value]();
+				foundry.utils.setProperty(model.overrides, change.key, value.current);
+				return false;
+			}
+		},
+	};
 
 	// Register sheet application classes. The 'types' fields associates the data model for each document.
 	foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
@@ -444,12 +457,39 @@ Hooks.once('init', async () => {
 	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
 	Themes.initialize();
+	ActorDirectoryEnhancements.initialize();
+	PixelArtDetection.initialize();
 
 	// Fetch any extensions from modules
 	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);
 
+	// Register common fonts
+	Object.assign(CONFIG.fontDefinitions, {
+		'Credit Valley': {
+			editor: true,
+			fonts: [
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValley.ttf')] },
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValleybold.ttf')], weight: 700 },
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValleyItalic.ttf')], style: 'italic' },
+				{ urls: [systemPath('styles/fonts/credit-valley/CreditValleyBoldItalic.ttf')], weight: 700, style: 'italic' },
+			],
+		},
+		Antonio: {
+			editor: true,
+			fonts: [{ urls: [systemPath('styles/fonts/antonio/Antonio-VariableFont_wght.ttf')] }],
+		},
+		'PFU Sans Narrow': {
+			editor: true,
+			fonts: [{ urls: [systemPath('styles/fonts/PFUSans-Narrow.ttf')] }],
+		},
+		'Fabula Ultima Icons': {
+			editor: true,
+			fonts: [{ urls: [systemPath('styles/fonts/fabula-ultima/FabulaUltimaIcons-Regular.otf')] }],
+		},
+	});
+
 	// Preload Handlebars templates.
-	return preloadHandlebarsTemplates();
+	preloadHandlebarsTemplates();
 });
 
 const pseudoDocuments = [PseudoItem, PseudoActiveEffect];
@@ -463,6 +503,8 @@ Hooks.once('i18nInit', () => {
 Hooks.once('setup', () => {
 	// Set the value here rather than system.json so it can be localized
 	game.system.grid.units = game.i18n.localize('FU.DefaultGridUnit');
+
+	FU.links.release = `${FU.links.repo}/releases/tag/v${game.system.version}`;
 });
 
 /* -------------------------------------------- */
@@ -475,7 +517,7 @@ FUHandlebars.registerHelpers();
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
-Hooks.once('ready', async function () {
+Hooks.once('ready', function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 
@@ -546,6 +588,19 @@ Hooks.once('ready', async function () {
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
+
+Hooks.on('getProseMirrorMenuDropDowns', (menu, options) => {
+	// Trim the styling from the FU Icons font drop-down, so it's actually legible.
+	const entry = options.fonts?.entries?.find((entry) => entry.action === 'font-family-fabula-ultima-icons');
+	if (entry) {
+		// Take advantage of the browser's CSS parsing to remove *only* the font-family declaration
+		// I don't think any others are added for this menu, but better safe than sorry.
+		const elem = document.createElement('section');
+		elem.style.cssText = entry.style;
+		elem.style.fontFamily = '';
+		entry.style = elem.style.cssText;
+	}
+});
 
 // Add grid toggle to scene config
 Hooks.on('renderSceneConfig', (app, element, context, options) => {
@@ -645,22 +700,24 @@ function createItemMacro(data, slot) {
 		return false;
 	}
 	// If it is, retrieve it based on the uuid.
-	Item.fromDropData(data).then((item) => {
-		// Create the macro command using the uuid.
-		const command = `game.projectfu.rollItemMacro("${data.uuid}");`;
-		let macro = game.macros.find((m) => m.name === item.name && m.command === command);
-		if (!macro) {
-			Macro.create({
-				name: item.name,
-				type: 'script',
-				img: item.img,
-				command: command,
-				flags: { 'projectfu.itemMacro': true },
-			}).then((macro) => game.user.assignHotbarMacro(macro, slot));
-		} else {
-			game.user.assignHotbarMacro(macro, slot);
-		}
-	});
+	Item.fromDropData(data)
+		.then((item) => {
+			// Create the macro command using the uuid.
+			const command = `game.projectfu.rollItemMacro("${data.uuid}");`;
+			const macro = game.macros.find((m) => m.name === item.name && m.command === command);
+			return (
+				macro ??
+				Macro.create({
+					name: item.name,
+					type: 'script',
+					img: item.img,
+					command: command,
+					flags: { 'projectfu.itemMacro': true },
+				})
+			);
+		})
+		.then((macro) => game.user.assignHotbarMacro(macro, slot))
+		.catch((err) => ui.notifications.error(err));
 	return false;
 }
 
@@ -670,22 +727,12 @@ function createItemMacro(data, slot) {
  * @param {string} itemUuid
  */
 function rollItemMacro(itemUuid) {
-	// Reconstruct the drop data so that we can load the item.
-	const dropData = {
-		type: 'Item',
-		uuid: itemUuid,
-	};
-	// Load the item from the uuid.
-	Item.fromDropData(dropData).then((item) => {
-		// Determine if the item loaded and if it's an owned item.
-		if (!item || !item.parent) {
-			const itemName = item?.name ?? itemUuid;
-			return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
-		}
-
-		// Trigger the item roll
-		item.roll();
-	});
+	const item = fromUuidSync(itemUuid);
+	if (!item || !item.parent || !(item instanceof FUItem || item instanceof PseudoItem)) {
+		const itemName = item?.name ?? itemUuid;
+		return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
+	}
+	return item.roll();
 }
 
 /**

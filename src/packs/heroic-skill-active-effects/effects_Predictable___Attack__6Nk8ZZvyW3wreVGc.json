@@ -1,0 +1,61 @@
+{
+  "img": "icons/tools/scribal/magnifying-glass.webp",
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "name": "Predictable! (Attack)",
+  "_id": "6Nk8ZZvyW3wreVGc",
+  "type": "base",
+  "system": {
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "rules": {
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "basic",
+        "step": 1
+      },
+      "elements": {}
+    },
+    "changes": [],
+    "fuid": "pfu-predictable-attack"
+  },
+  "description": "<p>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Attack</strong> action. If you can't, you must perform a different action.</p>",
+  "origin": null,
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130678,
+    "modifiedTime": 1793311130678,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "WtG9OJE91QxLH1FS",
+  "sort": 0,
+  "_key": "!effects!6Nk8ZZvyW3wreVGc"
+}

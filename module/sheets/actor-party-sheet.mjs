@@ -168,6 +168,29 @@ export class FUPartySheet extends FUActorSheet {
 				this.render();
 			}
 		});
+
+		let hookId = null;
+
+		this.addEventListener('prerender', () => {
+			if (!hookId) {
+				hookId = Hooks.on('updateSetting', (setting) => {
+					if (setting.key === `${SYSTEM}.${SETTINGS.partySheetTheme}`) {
+						const shouldRerender = this.rendered;
+						const shouldBeMinimized = this.minimized;
+						void this.close()
+							.then(() => this.render(shouldRerender))
+							.then(() => (shouldBeMinimized ? this.minimize() : null));
+					}
+				});
+			}
+		});
+
+		this.addEventListener('close', () => {
+			if (hookId) {
+				Hooks.off('updateSetting', hookId);
+				hookId = null;
+			}
+		});
 	}
 
 	/**
@@ -455,33 +478,33 @@ export class FUPartySheet extends FUActorSheet {
 						'[data-context-menu="shareCodexEntry"]',
 						[
 							{
-								name: StringUtils.localize('SIDEBAR.CharArt'),
+								label: StringUtils.localize('SIDEBAR.CharArt'),
 								icon: `<i class="fu-icon--xs fas fa-image"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'display');
 								},
 							},
 							{
-								name: StringUtils.localize('FU.ChatMessageSendHint'),
+								label: StringUtils.localize('FU.ChatMessageSendHint'),
 								icon: `<i class="fu-icon--xs fas fa-comment"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'send');
 								},
 							},
 							{
-								name: StringUtils.localize('FU.InstantiateToken'),
+								label: StringUtils.localize('FU.InstantiateToken'),
 								icon: `<i class="fu-icon--xs fas fa-user"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'token');
 								},
 							},
 							{
-								name: StringUtils.localize('CONTROLS.TilePlace'),
+								label: StringUtils.localize('CONTROLS.TilePlace'),
 								icon: `<i class="fu-icon--xs fa-solid fa-cube"></i>`,
-								callback: async (el) => {
+								onClick: async (event, el) => {
 									const { index } = el.dataset;
 									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'tile');
 								},
@@ -815,6 +838,11 @@ export class FUPartySheet extends FUActorSheet {
 			return this.party.addOrUpdateAdversary(actor, 0);
 		}
 		return super._onDropActor(event, actor);
+	}
+
+	_toggleDisabled(disabled) {
+		super._toggleDisabled(disabled);
+		this.element.querySelectorAll('[data-no-disable]').forEach((element) => (element.disabled = false));
 	}
 
 	/**
@@ -1408,9 +1436,9 @@ export class FUPartySheet extends FUActorSheet {
 		// Initialize the context menu options
 		let contextMenuOptions = [
 			{
-				name: StringUtils.localize('FU.Delete'),
+				label: StringUtils.localize('FU.Delete'),
 				icon: '<i class="fas fa-trash"></i>',
-				callback: (el) => {
+				onClick: (event, el) => {
 					const id = el.dataset.uuid;
 					const type = el.dataset.type;
 					switch (type) {
@@ -1427,22 +1455,22 @@ export class FUPartySheet extends FUActorSheet {
 				},
 			},
 			{
-				name: StringUtils.localize('FU.Refresh'),
+				label: StringUtils.localize('FU.Refresh'),
 				icon: '<i class="fa fa-refresh"></i>',
-				callback: (el) => {
+				onClick: (event, el) => {
 					const id = el.dataset.uuid;
 					return NpcProfileWindow.updateNpcProfile(this.party, id, false);
 				},
-				condition: (el) => el.dataset.type === 'npc',
+				visible: (el) => el.dataset.type === 'npc',
 			},
 			{
-				name: StringUtils.localize('FU.Edit'),
+				label: StringUtils.localize('FU.Edit'),
 				icon: '<i class="fa fa-pencil"></i>',
-				callback: (el) => {
+				onClick: (event, el) => {
 					const id = el.dataset.uuid;
 					return NpcProfileWindow.updateNpcProfile(this.party, id, true);
 				},
-				condition: (el) => el.dataset.type === 'npc',
+				visible: (el) => el.dataset.type === 'npc',
 			},
 		];
 
@@ -1469,8 +1497,8 @@ export class FUPartySheet extends FUActorSheet {
 		return hooks;
 	}
 
-	static async toggleActive() {
-		const party = await FUPartySheet.getActiveModel();
+	static toggleActive() {
+		const party = FUPartySheet.getActiveModel();
 		if (party) {
 			const sheet = party.parent.sheet;
 			if (sheet.rendered) {
@@ -1484,12 +1512,12 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @returns {Promise<PartyDataModel>}
+	 * @returns {PartyDataModel}
 	 */
-	static async getActiveModel() {
-		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
-		if (activePartyUuid) {
-			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+	static getActiveModel() {
+		const activePartyId = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyId) {
+			const party = game.actors.get(activePartyId);
 			if (party && party.type === 'party') {
 				return party.system;
 			}
@@ -1498,12 +1526,12 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @returns {Promise<FUActor>}
+	 * @returns {FUActor|null}
 	 */
-	static async getActive() {
-		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
-		if (activePartyUuid) {
-			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+	static getActive() {
+		const activePartyId = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyId) {
+			const party = game.actors.get(activePartyId);
 			if (party && party.type === 'party') {
 				return party;
 			}
@@ -1516,7 +1544,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async inspectAdversary(uuid) {
-		const party = await FUPartySheet.getActive();
+		const party = FUPartySheet.getActive();
 		if (party) {
 			await party.sheet.revealNpc(uuid);
 		}
@@ -1527,7 +1555,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async viewCodexEntry(name) {
-		const party = await FUPartySheet.getActiveModel();
+		const party = FUPartySheet.getActiveModel();
 		if (party) {
 			await party.parent.sheet.codexBrowser.revealCodexEntry(name);
 		}
@@ -1537,7 +1565,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<string[]>}
 	 */
 	static async getBondOptions() {
-		const party = await FUPartySheet.getActive();
+		const party = FUPartySheet.getActive();
 		if (party) {
 			/** @type PartyDataModel **/
 			const data = party.system;
@@ -1640,7 +1668,8 @@ function onGetSidebarTools(tools) {
 	if (group) {
 		group.tools.party = {
 			icon: 'fa-solid fa fa-users',
-			label: 'FU.Party',
+			label: 'FU.ActivePartySheetOpen',
+			tooltip: 'FU.ActivePartySheetOpenTooltip',
 			click: () => {
 				FUPartySheet.toggleActive();
 			},
@@ -1650,30 +1679,32 @@ function onGetSidebarTools(tools) {
 
 /**
  * @param {StudyEvent} ev
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onStudyEvent(ev) {
-	const activeParty = await FUPartySheet.getActiveModel();
+function onStudyEvent(ev, registerCallback) {
+	const activeParty = FUPartySheet.getActiveModel();
 	if (activeParty && ev.targets.length === 1) {
-		const target = ev.targets[0].actor;
-		console.debug(`Registering ${target.name} as an adversary`);
-		const entry = await activeParty.addOrUpdateAdversary(target, ev.result);
-		Hooks.call(FUHooks.PARTY_ADVERSARY_EVENT, entry);
+		registerCallback(async (ev) => {
+			const target = ev.targets[0].actor;
+			console.debug(`Registering ${target.name} as an adversary`);
+			const entry = await activeParty.addOrUpdateAdversary(target, ev.result);
+			Hooks.call(FUHooks.PARTY_ADVERSARY_EVENT, entry);
 
-		// Render a chat message
-		const flags = Pipeline.initializedFlags(Flags.ChatMessage.Party, true);
-		const studyResult = StudyRollHandler.resolveStudyResult(entry.study);
-		// If the GM studied the NPC themselves, this will be equal
-		const actorName = ev.actor.name === entry.name ? StringUtils.localize('USER.RoleGamemaster') : ev.actor.name;
-		ChatMessage.create({
-			speaker: ChatMessage.getSpeakerActor(ev.actor),
-			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
-				actor: actorName,
-				target: entry.name,
-				result: game.i18n.localize(FU.studyResult[studyResult]),
-				uuid: entry.uuid,
-			}),
-			flags: flags,
+			// Render a chat message
+			const flags = Pipeline.initializedFlags(Flags.ChatMessage.Party, true);
+			const studyResult = StudyRollHandler.resolveStudyResult(entry.study);
+			// If the GM studied the NPC themselves, this will be equal
+			const actorName = ev.actor.name === entry.name ? StringUtils.localize('USER.RoleGamemaster') : ev.actor.name;
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeakerActor(ev.actor),
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
+					actor: actorName,
+					target: entry.name,
+					result: game.i18n.localize(FU.studyResult[studyResult]),
+					uuid: entry.uuid,
+				}),
+				flags: flags,
+			});
 		});
 	}
 }
@@ -1703,32 +1734,34 @@ Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 
 /**
  * @param {RevealEvent} event
- * @returns {Promise<void>}
+ * @param {RegisterCallback} registerCallback
  */
-async function onRevealEvent(event) {
-	const party = await FUPartySheet.getActiveModel();
+function onRevealEvent(event, registerCallback) {
+	const party = FUPartySheet.getActiveModel();
 	if (party) {
-		console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
-		const adversary = party.getAdversary(event.actor.resolveUuid());
-		// Not added if it was outside of combat, for example
-		if (!adversary) {
-			return;
-		}
-		if (!adversary.revealed) {
-			adversary.revealed = {};
-		}
-		const [merged, changed] = ObjectUtils.mergeRecursive(adversary.revealed, event.revealed);
-		if (changed) {
-			adversary.revealed = merged;
-			await party.updateAdversary(adversary);
-		}
+		registerCallback(async (event) => {
+			console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
+			const adversary = party.getAdversary(event.actor.resolveUuid());
+			// Not added if it was outside of combat, for example
+			if (!adversary) {
+				return;
+			}
+			if (!adversary.revealed) {
+				adversary.revealed = {};
+			}
+			const [merged, changed] = ObjectUtils.mergeRecursive(adversary.revealed, event.revealed);
+			if (changed) {
+				adversary.revealed = merged;
+				await party.updateAdversary(adversary);
+			}
+		});
 	}
 }
 Hooks.on(FUHooks.REVEAL_EVENT, onRevealEvent);
 
-async function onResourceChangeEvent(event) {
+function onResourceChangeEvent(event) {
 	if (event.actor) {
-		const party = await FUPartySheet.getActive();
+		const party = FUPartySheet.getActive();
 		if (party && party.system.characters.has(event.actor.uuid)) {
 			party.sheet.render({
 				parts: ['overview'],

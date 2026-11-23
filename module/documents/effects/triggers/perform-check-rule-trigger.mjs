@@ -10,25 +10,19 @@ const fields = foundry.data.fields;
  * @property {Set<CheckType>} checkTypes
  */
 export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.PERFORM_CHECK_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'performCheckRuleTrigger' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: false }),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.PERFORM_CHECK_EVENT;
 	}
 
 	// TODO: Remove once design is finished
@@ -49,7 +43,7 @@ export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (!this.checkTypes.has(context.event.check.type)) {
+		if (this.checkTypes.size > 0 && !this.checkTypes.has(context.event.check.type)) {
 			return false;
 		}
 

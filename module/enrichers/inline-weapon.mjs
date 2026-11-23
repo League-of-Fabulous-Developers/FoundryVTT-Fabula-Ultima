@@ -117,7 +117,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	if (key) {
 		changes.push({
 			key: key,
-			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			type: 'override',
 			value: type,
 		});
 	}
@@ -131,6 +131,10 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	};
 }
 
+function isEquipmentUsingNpc(actor) {
+	return actor.type === 'npc' && actor.system.useEquipment;
+}
+
 /**
  * @param {FUActor} actor
  * @param {InlineSourceInfo} sourceInfo
@@ -138,7 +142,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
  * @param {FUActiveEffectConfiguration} config
  */
 async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
-	if (actor.system instanceof CharacterDataModel) {
+	if (actor.system instanceof CharacterDataModel || isEquipmentUsingNpc(actor)) {
 		const source = sourceInfo.resolve();
 		const promptWeapon = await WeaponResolver.prompt(actor, true);
 		if (!promptWeapon) {
@@ -156,9 +160,8 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				config.name = effectData.name;
 				config.event = 'endOfScene';
 
-				Effects.applyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
-					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
-				});
+				const effect = await Effects.applyEffect(weapon, effectData, sourceInfo, config);
+				console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 			}
 			console.info(`Applied ${choice} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}' from source ${source?.uuid}`);
 		};

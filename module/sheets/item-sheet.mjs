@@ -57,7 +57,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		controls.push({
 			label: game.i18n.localize('FU.ChatMessageSendHint'),
 			icon: 'fas fa-comment',
-			visible: true,
+			visible: this.item.isOwner,
 			action: 'sendToChat',
 		});
 		return controls;
@@ -115,6 +115,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				},
 			},
 		],
+		nonOwnerAllowedActions: ['close', 'tab', 'toggleControls', 'copyUuid', 'editItem', 'editEffect'],
 	};
 
 	static _migrateConstructorParams(first, rest) {
@@ -297,6 +298,20 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		Array.from(this.element.querySelectorAll('input[name], textarea[name], button[name], select[name]'))
 			.filter((element) => element.name in flattenedOverrides)
 			.forEach((element) => this.disableElement(element));
+	}
+
+	/**
+	 * Called during super._onRender, used to enable/disable interactive elements depending on if the sheet is editable.
+	 * @override
+	 */
+	_toggleDisabled(disabled) {
+		super._toggleDisabled(disabled);
+		for (const element of this.element.querySelectorAll('.rollable, [data-action]')) {
+			let action = element.dataset.action;
+			if (!action || !this.options.nonOwnerAllowedActions.includes(action)) {
+				element.classList.toggle('disabled', disabled);
+			}
+		}
 	}
 
 	disableElement(element) {

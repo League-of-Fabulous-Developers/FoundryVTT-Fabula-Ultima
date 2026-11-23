@@ -92,7 +92,7 @@ export class FUTableRenderer {
 		}
 
 		const config = {};
-		configurations.forEach((configuration) => foundry.utils.mergeObject(config, foundry.utils.deepClone(configuration), { performDeletions: true }));
+		configurations.forEach((configuration) => foundry.utils.mergeObject(config, foundry.utils.deepClone(configuration), { applyOperators: true }));
 
 		config.getItems = config.getItems.bind(this);
 		if (config.sort instanceof Function) {

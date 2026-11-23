@@ -1,0 +1,115 @@
+{
+  "name": "Hunter (Plant)",
+  "img": "systems/projectfu/styles/static/icons/plant.svg",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "none",
+      "interval": 1,
+      "tracking": "self",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {
+        "m16uDlIKYrXA51ls": {
+          "trigger": {
+            "type": "projectfu.damageRuleTrigger",
+            "eventRelation": "source",
+            "damageType": "",
+            "affinity": "",
+            "itemGroups": [],
+            "damageThreshold": {
+              "operator": "",
+              "amount": 0
+            },
+            "local": true,
+            "identifier": ""
+          },
+          "predicates": {
+            "evRisZ4XfVU2Ja5k": {
+              "type": "projectfu.speciesRulePredicate",
+              "species": [
+                "plant"
+              ],
+              "selector": "initial",
+              "quantifier": "any"
+            }
+          },
+          "actions": {
+            "srIrk4nCH95YBds1": {
+              "type": "projectfu.messageRuleAction",
+              "message": "<p>This dealt 5 extra damage to a <strong>plant</strong>.</p>"
+            },
+            "ync4DLPFZOOUzFkw": {
+              "type": "projectfu.modifyDamageRuleAction",
+              "amount": "5",
+              "cost": {
+                "amount": null,
+                "resource": "mp",
+                "perTarget": false
+              },
+              "operation": "add",
+              "damageTypes": [],
+              "traits": {
+                "entries": []
+              },
+              "variant": ""
+            }
+          },
+          "selector": "initial",
+          "enabled": true
+        }
+      },
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [],
+    "fuid": "pfu-hunter-plant"
+  },
+  "duration": {
+    "value": null,
+    "units": "seconds",
+    "expiry": null,
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "lySGZUk2qUiZV65t",
+  "type": "base",
+  "description": "<p>The weapon deals <strong>5 extra damage</strong> to <strong>plants</strong>.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130051,
+    "modifiedTime": 1793311130051,
+    "lastModifiedBy": "qSTUglS93W7Had7H"
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "ao7cVB1tz3p47PiE",
+  "_key": "!effects!lySGZUk2qUiZV65t"
+}

@@ -30,6 +30,7 @@ class BasePseudoItem extends PseudoDocument {
 			super.metadata,
 			{
 				hasTypeData: true,
+				baseTypeAllowed: false,
 				label: 'DOCUMENT.Item',
 			},
 			{ inplace: false },

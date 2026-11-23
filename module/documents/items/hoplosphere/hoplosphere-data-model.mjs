@@ -526,7 +526,6 @@ export class HoplosphereDataModel extends foundry.abstract.TypeDataModel {
 					}
 				})
 				.sort((a, b) => a.coagulationLevel - b.coagulationLevel);
-			console.log(this.coagLevel, this.activeEffects);
 		}
 	}
 

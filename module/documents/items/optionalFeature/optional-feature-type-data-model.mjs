@@ -1,7 +1,6 @@
 import { Checks } from '../../../checks/checks.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
 import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { OptionalFeatureRegistry } from './optional-feature-registry.mjs';
 import { EmbeddedFeatureDataModel } from '../embedded-feature-data-model.mjs';
@@ -17,16 +16,18 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
  */
 export class OptionalFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 	static defineSchema() {
-		const { StringField, SchemaField, NumberField } = foundry.data.fields;
+		const { SchemaField, NumberField, TypedSchemaField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ intial: 0, min: 0, integer: true, nullable: true }) }),
 			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
-			optionalType: new StringField({
-				nullable: false,
-				initial: () => OptionalFeatureRegistry.instance?.qualifiedChoices[0],
-				choices: () => OptionalFeatureRegistry.instance?.qualifiedChoices,
+			data: new TypedSchemaField(OptionalFeatureRegistry.instance.qualifiedTypes, {
+				initial: () => {
+					const registry = OptionalFeatureRegistry.instance;
+					const typeId = registry.qualifiedChoices.at(0);
+					const typeModel = registry.qualifiedTypes[typeId];
+					return new typeModel({});
+				},
 			}),
-			data: new RegistryDataField(OptionalFeatureRegistry.instance, 'optionalType'),
 		});
 	}
 
@@ -40,5 +41,12 @@ export class OptionalFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 		} else {
 			return Checks.display(this.parent.actor, this.parent);
 		}
+	}
+
+	static migrateData(source) {
+		if (source.optionalType && source.data && !('type' in source.data)) {
+			source.data.type = source.optionalType;
+		}
+		return source;
 	}
 }

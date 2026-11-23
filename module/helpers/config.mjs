@@ -332,6 +332,7 @@ FU.statusEffects = {
 	aura: 'FU.Aura',
 	barrier: 'FU.Barrier',
 	crisis: 'FU.Crisis',
+	ko: 'FU.KO',
 	cover: 'FU.Cover',
 	flying: 'FU.Flying',
 	guard: 'FU.Guard',
@@ -607,16 +608,16 @@ FU.attributeDice = {
 
 FU.bonds = {
 	admInf: {
-		Admiration: 'FU.Admiration',
-		Inferiority: 'FU.Inferiority',
+		admiration: 'FU.Admiration',
+		inferiority: 'FU.Inferiority',
 	},
 	loyMis: {
-		Loyalty: 'FU.Loyalty',
-		Mistrust: 'FU.Mistrust',
+		loyalty: 'FU.Loyalty',
+		mistrust: 'FU.Mistrust',
 	},
 	affHat: {
-		Affection: 'FU.Affection',
-		Hatred: 'FU.Hatred',
+		affection: 'FU.Affection',
+		hatred: 'FU.Hatred',
 	},
 };
 
@@ -1207,3 +1208,20 @@ FU.equipmentSlots = {
 	offHand: 'FU.OffHand',
 	phantom: 'FU.PhantomHand',
 };
+
+FU.changeTypes = {
+	apply: `${SYSTEM}.apply`,
+};
+
+FU.links = {
+	repo: 'https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima',
+	discord: 'https://discord.gg/tbyQv6DzY8',
+	// These two have their values set below, but are preserved here to ensure proper completion suggestions
+	wiki: '',
+	issues: '',
+	release: '', // This one is set later, once game.system exists
+};
+
+// Set these here since they rely on the value of FU.links.repo
+FU.links.wiki = `${FU.links.repo}/wiki`;
+FU.links.issues = `${FU.links.repo}/issues`;

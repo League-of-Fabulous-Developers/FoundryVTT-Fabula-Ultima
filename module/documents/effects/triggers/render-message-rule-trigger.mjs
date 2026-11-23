@@ -10,23 +10,17 @@ const fields = foundry.data.fields;
  * @inheritDoc
  */
 export class RenderMessageRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.RENDER_MESSAGE_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'renderMessageRuleTrigger' });
-	}
-
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
+		return Object.assign(super.defineSchema(), {
 			local: new fields.BooleanField({ initial: false }),
 		});
-		return schema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.RENDER_MESSAGE_EVENT;
 	}
 
 	static get localization() {

@@ -11,23 +11,18 @@ const { StringField } = foundry.data.fields;
  * @property {FUParity} parity
  */
 export class CombatRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.COMBAT_EVENT,
-		};
-	}
-
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'combatRuleTrigger' });
-	}
-
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			eventType: new StringField({ initial: 'endOfTurn', choices: Object.keys(FU.combatEvent) }),
 			parity: new StringField({ initial: '', blank: true, choices: Object.keys(FU.parity) }),
 		});
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get eventType() {
+		return FUHooks.COMBAT_EVENT;
 	}
 
 	static get localization() {

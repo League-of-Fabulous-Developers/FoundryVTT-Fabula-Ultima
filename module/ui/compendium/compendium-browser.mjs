@@ -372,9 +372,9 @@ export class CompendiumBrowser extends FUApplication {
 		return this.tabGroups.primary;
 	}
 
-	async _onFirstRender(context, options) {
+	async _onRender(context, options) {
 		await super._onRender(context, options);
-		await this.renderTables(this.activeTabId, true);
+		await this.renderTables(this.activeTabId, options.force);
 	}
 
 	/**
@@ -846,7 +846,7 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'effects':
 				{
-					const effects = await this.index.getItemsOfType('effect');
+					const effects = await this.index.getEffects();
 					await this.onRenderTables(
 						[
 							{
@@ -893,6 +893,7 @@ export class CompendiumBrowser extends FUApplication {
 				group.tools.compendium = {
 					icon: 'fa-solid fa-book',
 					label: 'FU.CompendiumBrowser',
+					tooltip: 'FU.CompendiumBrowserOpen',
 					click: () => {
 						CompendiumBrowser.instance.render({ force: true });
 					},

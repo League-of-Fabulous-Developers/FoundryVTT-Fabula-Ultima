@@ -1,0 +1,74 @@
+{
+  "name": "Lady Higanbana (No HP Recovery)",
+  "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
+  "origin": null,
+  "system": {
+    "duration": {
+      "event": "startOfTurn",
+      "interval": 1,
+      "tracking": "source",
+      "remaining": 1
+    },
+    "type": "default",
+    "predicate": {
+      "crisisInteraction": "none"
+    },
+    "rules": {
+      "elements": {},
+      "progress": {
+        "enabled": false,
+        "id": "",
+        "name": "",
+        "current": 0,
+        "max": 6,
+        "style": "bar",
+        "step": 1
+      },
+      "stacking": {
+        "progress": false,
+        "duration": false,
+        "increment": 1
+      }
+    },
+    "changes": [
+      {
+        "key": "system.multipliers.incomingRecovery.hp",
+        "value": 0,
+        "priority": null,
+        "type": "multiply",
+        "phase": "initial"
+      }
+    ],
+    "fuid": "pfu-lady-higanbana-no-hp-recovery"
+  },
+  "duration": {
+    "value": 1,
+    "units": "rounds",
+    "expiry": "turnStart",
+    "expired": false
+  },
+  "disabled": false,
+  "_id": "aiTQW17hSnr7kfNL",
+  "type": "base",
+  "description": "<p>You cannot recover Hit Points until the start of the <strong>Arcanist's</strong> next turn.</p>",
+  "tint": "#ffffff",
+  "transfer": false,
+  "statuses": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1793311130525,
+    "modifiedTime": 1793311130525,
+    "lastModifiedBy": "qSTUglS93W7Had7H",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "start": null,
+  "showIcon": 1,
+  "folder": "DyMr90faVNOaRGmS",
+  "sort": 0,
+  "_key": "!effects!aiTQW17hSnr7kfNL"
+}

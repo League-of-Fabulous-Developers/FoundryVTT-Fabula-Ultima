@@ -1,15 +1,9 @@
 /**
- * @typedef ScalarModifier
- * @property {Boolean} enabled
- * @property {Number|String} amount
- * @property {String[]} traits
- */
-
-/**
  * @typedef DamageModifier
  * @property {string} label
  * @property {Boolean} enabled
  * @property {number} amount
+ * @property {number} multiplier
  * @property {DamageType[]} types
  * @property {String[]} traits
  * @property {String} effect
@@ -76,7 +70,7 @@ export class DamageData {
 	 */
 	get modifiers() {
 		return this._modifiers.filter((m) => {
-			return m.enabled && (m.amount !== 0 || (m.traits && m.traits.length > 0) || m.effect);
+			return m.enabled && (m.amount !== 0 || (m.traits && m.traits.length > 0) || m.effect || (m.multiplier != null && m.multiplier !== 1));
 		});
 	}
 
@@ -88,6 +82,10 @@ export class DamageData {
 			return 0;
 		}
 		return this.modifiers.reduce((agg, curr) => agg + curr.amount, 0);
+	}
+
+	get multiplierTotal() {
+		return this.modifiers.reduce((agg, curr) => agg * (curr.multiplier ?? 1), 1);
 	}
 
 	/**
@@ -138,10 +136,12 @@ export class DamageData {
 	 * @returns {Number}
 	 */
 	get total() {
-		if (this.hrZero) {
-			return this.modifierTotal;
+		let total = this.modifierTotal;
+		if (!this.hrZero) {
+			total += this.hr;
 		}
-		return this.modifierTotal + this.hr;
+		total *= this.multiplierTotal;
+		return total;
 	}
 
 	/**
@@ -170,6 +170,27 @@ export class DamageData {
 			label: label,
 			amount: amount,
 			value: amount, // legacy
+			multiplier: 1,
+			types: types,
+			enabled: true,
+			...data,
+		};
+		this._modifiers.push(modifier);
+	}
+
+	/**
+	 * @param {String} label
+	 * @param {Number} multiplier
+	 * @param {DamageType[]} types
+	 * @param {DamageModifier} data
+	 */
+	addMultiplier(label, multiplier, types = [], data = {}) {
+		/** @type DamageModifier **/
+		const modifier = {
+			label: label,
+			amount: 0,
+			value: 0, // legacy
+			multiplier: multiplier,
 			types: types,
 			enabled: true,
 			...data,

@@ -145,7 +145,6 @@ function renderControlsHeader(headerOptions) {
 			const options = { ...headerOptions };
 			if (options.label instanceof Function) {
 				options.label = options.label.call(this);
-				console.log(options.label);
 			}
 
 			if (options.type instanceof Function) {

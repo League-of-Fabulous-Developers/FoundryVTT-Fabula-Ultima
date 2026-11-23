@@ -1,4 +1,3 @@
-import { AsyncHooks } from '../helpers/async-hooks.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
@@ -9,14 +8,16 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { Flags } from '../helpers/flags.mjs';
 
 /**
- * @param {CalculateExpenseEvent} event
- * @returns {Promise<void>}
+ * @param {CalculateExpenseEvent} e
+ * @param {RegisterCallback} registerCallback
  */
-async function onExpenseEvent(event) {
+function onExpenseEvent(e, registerCallback) {
 	if (game.settings.get(SYSTEM, SETTINGS.automationSpendResource)) {
-		const sourceInfo = InlineSourceInfo.fromInstance(event.source.actor, event.item);
-		const request = new ResourceRequest(sourceInfo, [event.source.actor], event.expense.resource, -event.expense.amount);
-		return ResourcePipeline.process(request);
+		registerCallback(async (event) => {
+			const sourceInfo = InlineSourceInfo.fromInstance(event.source.actor, event.item);
+			const request = new ResourceRequest(sourceInfo, [event.source.actor], event.expense.resource, -event.expense.amount);
+			return ResourcePipeline.process(request);
+		});
 	}
 }
 
@@ -170,49 +171,51 @@ async function manageEffectDuration(event) {
 
 /**
  * @param {CombatEvent} event
- * @returns {Promise<void>}
+ @param {RegisterCallback} registerCallback
  */
-async function onCombatEvent(event) {
+function onCombatEvent(event, registerCallback) {
 	if (!game.settings.get(SYSTEM, SETTINGS.optionAutomationManageEffects)) {
 		return;
-	}
+	} else {
+		registerCallback(async (event) => {
+			switch (event.type) {
+				case FU.combatEvent.startOfCombat:
+				case FU.combatEvent.endOfCombat:
+					{
+						if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
+							for (const actor of event.actors) {
+								await actor.clearTemporaryEffects({
+									status: false,
+									rest: false,
+									duration: true,
+									predicate: (effect) => {
+										// It's handled by the pressure system
+										if (effect.statuses.has('pressure')) {
+											return false;
+										}
+										return true;
+									},
+								});
+							}
+							return;
+						}
 
-	switch (event.type) {
-		case FU.combatEvent.startOfCombat:
-		case FU.combatEvent.endOfCombat:
-			{
-				if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
-					event.actors.forEach((actor) => {
-						actor.clearTemporaryEffects({
-							status: false,
-							rest: false,
-							duration: true,
-							predicate: (effect) => {
-								// It's handled by the pressure system
-								if (effect.statuses.has('pressure')) {
-									return false;
-								}
-								return true;
-							},
-						});
-					});
-					return;
-				}
+						await promptExpiredEffectRemoval(event);
+					}
+					break;
 
-				await promptExpiredEffectRemoval(event);
+				case FU.combatEvent.startOfTurn:
+				case FU.combatEvent.endOfTurn:
+				case FU.combatEvent.endOfRound:
+					await manageEffectDuration(event);
+					break;
 			}
-			break;
-
-		case FU.combatEvent.startOfTurn:
-		case FU.combatEvent.endOfTurn:
-		case FU.combatEvent.endOfRound:
-			await manageEffectDuration(event);
-			break;
+		});
 	}
 }
 
 function initialize() {
-	AsyncHooks.on(FUHooks.EXPENSE_EVENT, onExpenseEvent);
+	Hooks.on(FUHooks.EXPENSE_EVENT, onExpenseEvent);
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 }
 

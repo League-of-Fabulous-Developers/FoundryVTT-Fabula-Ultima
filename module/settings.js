@@ -53,6 +53,7 @@ export const SETTINGS = Object.freeze({
 	theme: 'theme',
 	themeFoundry: 'themeFoundry',
 	themeOptions: 'themeOptions',
+	pixelArtDetection: 'pixelArtDetection',
 	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
@@ -71,7 +72,6 @@ export const SETTINGS = Object.freeze({
 	optionCampingRules: 'optionCampingRules',
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
-	optionArcanumPulse: 'optionArcanumPulse',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	npcEquipment: 'npcEquipment',
 	technospheres: 'useTechnospheres',
@@ -163,9 +163,8 @@ export function setSystemSetting(key, value) {
 
 /**
  * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
- * @returns {Promise<void>}
  */
-export const registerSystemSettings = async function () {
+export const registerSystemSettings = function () {
 	const fields = foundry.data.fields;
 
 	// DOCUMENT SHEETS
@@ -292,6 +291,16 @@ export const registerSystemSettings = async function () {
 		onChange: (setting) => document.body.classList.toggle('apply-theme-foundry', setting),
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.pixelArtDetection, {
+		name: game.i18n.localize('FU.SettingPixelArtDetection'),
+		hint: game.i18n.localize('FU.SettingPixelArtDetectionHint'),
+		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
 	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
@@ -363,7 +372,6 @@ export const registerSystemSettings = async function () {
 			[
 				SETTINGS.optionQuirks,
 				SETTINGS.optionZeroPower,
-				SETTINGS.optionArcanumPulse,
 				SETTINGS.optionCampingRules,
 				SETTINGS.useRevisedStudyRule,
 				SETTINGS.npcEquipment,
@@ -439,16 +447,6 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.pressureSystem, {
 		name: game.i18n.localize('FU.OptionPressureSystem'),
 		hint: game.i18n.localize('FU.OptionPressureSystemHint'),
-		scope: 'world',
-		config: false,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionArcanumPulse, {
-		name: game.i18n.localize('FU.OptionArcanumPulse'),
-		hint: game.i18n.localize('FU.OptionArcanumPulseHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -1212,6 +1210,7 @@ export function createMenuTool(key) {
 		id: menuSetting.key,
 		label: menuSetting.label,
 		icon: menuSetting.icon,
+		tooltip: menuSetting.hint,
 		click: () => {
 			new menuSetting.type().render({ force: true });
 		},

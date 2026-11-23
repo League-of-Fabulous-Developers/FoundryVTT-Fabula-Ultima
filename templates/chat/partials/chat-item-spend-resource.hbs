@@ -1,7 +1,7 @@
 <div class="pfu-tags flexrow gap-5">
-    <a data-action="applyResourceLoss" data-name="{{name}}" data-actor="{{actor}}" data-item="{{item}}" data-resource="{{expense.resource}}" data-tooltip="{{localize "FU.ChatApplyResourceLossTooltip"}}" data-amount="{{expense.amount}}">
+    <a data-action="applyResourceLoss" data-name="{{name}}" data-actor="{{actor}}" data-item="{{item}}" data-resource="{{expense.resource}}" data-tooltip="{{localize "FU.ChatApplyResourceLossTooltip"}}" data-amount="{{expense.total}}">
         <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container' style="width: 100%;white-space: nowrap;">
-			{{localize "FU.ChatApplyResourceLoss"}} {{expense.amount}} {{localize resourceLabel}}
+			{{localize "FU.ChatApplyResourceLoss"}} {{expense.total}} {{localize resourceLabel}}
 			<i class="fu-icon {{icon}} fu-target-action__icon"></i>
 		</span>
     </a>

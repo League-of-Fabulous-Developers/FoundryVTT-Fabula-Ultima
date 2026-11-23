@@ -1,5 +1,5 @@
 import { Flags } from '../../helpers/flags.mjs';
-import { SYSTEM } from '../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { PseudoItem } from '../items/pseudo-item.mjs';
@@ -37,18 +37,49 @@ const HIGH_PRIORITY_CHANGES = new Set([
 const LOW_PRIORITY_CHANGES = new Set(['system.resources.hp.max', 'system.resources.mp.max', 'system.resources.ip.max']);
 
 const defaultImage = 'icons/svg/aura.svg';
-const DEFAULT_PRIORITY = 50;
 
 export function ActiveEffectBehaviourMixin(BaseDocument) {
 	return class FUActiveEffectBehaviourMixin extends BaseDocument {
 		// TODO: Remove once everyone's migrated
 		static migrateData(source) {
+			source = super.migrateData(source);
+
+			// migrate temporary core duration plus 'none' system duration to always show icon
+			if (source.duration?.value != null && source.system?.duration?.event === 'none') {
+				source.showIcon = CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS;
+				source.duration = {};
+			}
+
 			const crisisInteraction = 'CrisisInteraction';
 			const type = 'type';
 
 			this._addDataFieldMigration(source, `flags.${SYSTEM}.${type}`, 'system.type');
 			this._addDataFieldMigration(source, `flags.${SYSTEM}.${crisisInteraction}`, 'system.predicate.crisisInteraction');
-			return super.migrateData(source);
+
+			if (Array.isArray(source.system?.changes)) {
+				const customChangeKeys = new Set([
+					'system.attributes.dex',
+					'system.attributes.ins',
+					'system.attributes.mig',
+					'system.attributes.wlp',
+					'system.affinities.air',
+					'system.affinities.bolt',
+					'system.affinities.dark',
+					'system.affinities.earth',
+					'system.affinities.fire',
+					'system.affinities.ice',
+					'system.affinities.light',
+					'system.affinities.physical',
+					'system.affinities.poison',
+				]);
+				for (const change of source.system.changes) {
+					if (change.type.startsWith('custom') && customChangeKeys.has(change.key)) {
+						change.type = FU.changeTypes.apply;
+					}
+				}
+			}
+
+			return source;
 		}
 
 		/**
@@ -56,40 +87,15 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 */
 		prepareBaseData() {
 			super.prepareBaseData();
-			for (let change of this.changes) {
+			for (let change of this.system.changes) {
 				if (HIGH_PRIORITY_CHANGES.has(change.key)) {
-					change.priority = change.mode;
+					change.phase = 'initial';
 				} else if (LOW_PRIORITY_CHANGES.has(change.key)) {
-					change.priority = (change.mode + 1) * 10 + 100;
+					change.phase = 'final';
 				} else {
-					if (!change.priority) {
-						change.priority = DEFAULT_PRIORITY;
-					}
+					change.phase = 'default';
 				}
 			}
-		}
-
-		/**
-		 * @description Compute derived data related to active effect duration.
-		 * @returns {{
-		 *   type: string,
-		 *   duration: number|null,
-		 *   remaining: number|null,
-		 *   label: string,
-		 *   [_worldTime]: number,
-		 *   [_combatTime]: number}
-		 * }
-		 * @private
-		 * @override
-		 */
-		_prepareDuration() {
-			// We handle this through the event system
-			return {
-				type: 'none',
-				duration: null,
-				remaining: null,
-				label: game.i18n.localize('None'),
-			};
 		}
 
 		/**
@@ -139,10 +145,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Used by the templates
 		 */
 		get sourceName() {
-			if (this.sourceInfo) {
-				return this.sourceInfo.name;
-			}
-			return this.parent.name;
+			return this.sourceInfo?.name ?? this.parent?.name ?? super.sourceName;
 		}
 
 		/**
@@ -199,19 +202,20 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		/**
 		 * @param {FUActor|FUItem} target
 		 * @param {EffectChangeData} change
+		 * @param {{replacementData?: Object, modifyTarget?: boolean}} options
 		 * @returns {{}|*}
 		 */
-		apply(target, change) {
+		static applyChange(target, change, options) {
 			// Support expressions
-			if (change.value && typeof change.value === 'string') {
+			if (change.value && typeof change.value === 'string' && change.type in CONST.ACTIVE_EFFECT_CHANGE_TYPES) {
 				try {
 					// First, evaluate using built-in support
-					const expression = Roll.replaceFormulaData(change.value, this.parent);
+					const expression = Roll.replaceFormulaData(change.value, change.effect.parent);
 					// Second, evaluate with our custom expressions
-					const context = this.resolveExpressionContext(target);
+					const context = this.resolveExpressionContext(target, change);
 					const value = Expressions.evaluate(expression, context);
 					change.value = String(value ?? 0);
-					console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
+					console.debug(`Assigning ${change.key} (TYPE ${change.type}): ${change.value}`);
 				} catch (e) {
 					console.error(e);
 					ui.notifications?.error(
@@ -225,19 +229,18 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				}
 			}
 
-			const changes = super.apply(target, change);
-			if (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM && changes[change.key] == null) {
-				delete changes[change.key];
-			}
-			return changes;
+			return super.applyChange(target, change, options);
 		}
 
 		/**
 		 * @description Resolves the context based on the target type
 		 * @param {FUActor|FUItem} target
+		 * @param {EffectChangeData} change
 		 * @returns {ExpressionContext}
 		 */
-		resolveExpressionContext(target) {
+		static resolveExpressionContext(target, change) {
+			const effect = change.effect;
+
 			let actor;
 			let item;
 
@@ -245,18 +248,18 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			// 2. The effect is being applied onto an item
 			if (target instanceof FUActor) {
 				actor = target;
-				if (this.parent instanceof FUItem) {
-					item = this.parent;
+				if (effect.parent instanceof FUItem || effect.parent instanceof PseudoItem) {
+					item = effect.parent;
 				}
-			} else if (target instanceof FUItem) {
+			} else if (target instanceof FUItem || target instanceof PseudoItem) {
 				item = target;
 				actor = item.actor;
 			}
 
 			const context = new ExpressionContext(actor, item, [target]);
-			context.effect = this;
-			if (this.sourceInfo) {
-				context.setSourceItem(this.sourceInfo.itemUuid);
+			context.effect = effect;
+			if (effect.sourceInfo) {
+				context.setSourceItem(context.effect.sourceInfo.itemUuid);
 			}
 			return context;
 		}
@@ -286,8 +289,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 							label: this.system.rules.progress.name ?? this.name,
 						});
 					} else {
-						const updatedValue = this.system.rules.progress.calculateUpdatedValue(increment);
-						changes['system.rules.progress.current'] = updatedValue;
+						changes['system.rules.progress.current'] = this.system.rules.progress.calculateUpdatedValue(increment);
 						progressUpdated = true;
 					}
 				}
@@ -320,7 +322,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @param {function(RuleElementDataModel): boolean} predicate
 		 */
 		findRuleElement(predicate) {
-			for (const rule of this.system.rules.elements) {
+			for (const rule of Object.values(this.system.rules.elements)) {
 				if (predicate(rule)) {
 					return rule;
 				}
@@ -366,9 +368,10 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Unlike `_onCreate`, is managed by the GM.
 		 */
 		async _preCreate(data, options, user) {
-			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}, identifier: ${this.identifier}`);
+			console.debug(`Created active effect ${this.name} on ${this.parent?.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo?.name ?? ''}, identifier: ${this.identifier}`);
 			const changes = {
 				name: game.i18n.localize(data.name),
+				description: game.i18n.localize(data.description ?? ''),
 				[`system.duration.remaining`]: this.system.duration.interval,
 			};
 			// TODO: Verify this is okay
@@ -378,11 +381,17 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			}
 			// If no source info is provided, it could have been created directly
 			if (!data.flags?.projectfu?.source && data.origin) {
-				/** @type FUItem **/
-				const compendiumItem = await fromUuid(data.origin);
-				const sourceInfo = new InlineSourceInfo(compendiumItem.name, null, compendiumItem.uuid, null, compendiumItem.system.fuid);
-				const flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
-				changes.flags = flags;
+				const origin = await fromUuid(data.origin);
+				let sourceInfo;
+				if (origin instanceof FUItem) {
+					sourceInfo = new InlineSourceInfo(origin.name, null, origin.uuid, null, origin.system.fuid);
+				} else if (origin instanceof FUActor) {
+					sourceInfo = new InlineSourceInfo(origin.name, origin.uuid, null, null, null);
+				}
+
+				if (sourceInfo) {
+					changes.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
+				}
 			}
 
 			this.updateSource(changes);
@@ -396,7 +405,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			if (delta.system?.rules?.progress && previous.rules?.progress) {
 				if (previous.rules.progress.current !== this.system.rules.progress.current) {
 					// Progress is changed
-					CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);
+					await CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);
 				}
 			}
 

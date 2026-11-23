@@ -202,10 +202,20 @@ export class AdvancementBrowser extends FUApplication {
 	/**
 	 * Returns false if skillClass is set and the entry doesn't match it.
 	 * @param {string[]} classReqs
-	 * @param {string|null} skillClass
+	 * @param {string[] | null | undefined} skillClass
 	 */
 	static #passesClassFilter(classReqs, skillClass) {
-		return !skillClass || classReqs.includes(skillClass);
+		if (!skillClass) return true;
+		if (typeof skillClass === 'string') return classReqs.includes(skillClass);
+		if (Array.isArray(skillClass)) {
+			// Account for the possibility passing undefined within the array, when picking
+			// skills for a level that isn't also picking up a new class
+			const filtered = skillClass.filter(Boolean);
+			if (filtered.length === 0) return true;
+			return filtered.some((skill) => classReqs.includes(skill));
+		}
+
+		return false;
 	}
 
 	/**
@@ -282,7 +292,7 @@ export class AdvancementBrowser extends FUApplication {
 				const heroicFilter = (entry) => {
 					const classReqs = CompendiumIndex.getClassRequirements(entry);
 					if (classReqs.length === 0) return true;
-					return this.constructor.#passesClassFilter(classReqs, this.#skillClass) && this.constructor.#matchesClassLevel(classReqs, this.#classList, this.#summary.classes, levelCheck);
+					return this.constructor.#passesClassFilter(classReqs, [this.#skillClass, ...this.#classList]) && this.constructor.#matchesClassLevel(classReqs, this.#classList, this.#summary.classes, levelCheck);
 				};
 
 				compendiumEntries = compendiumEntries.filter(heroicFilter);

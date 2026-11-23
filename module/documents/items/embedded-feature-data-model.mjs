@@ -12,7 +12,7 @@ export class EmbeddedFeatureDataModel extends FUItemDataModel {
 	}
 
 	prepareDerivedData() {
-		this.data?.prepareData();
+		this.data?.prepareData?.();
 	}
 
 	/**
