@@ -9,7 +9,7 @@ export class FUTokenConfig extends FUTokenConfigMixin(foundry.applications.sheet
 
 	/** @inheritdoc */
 	_getDisplayModeFlag(field) {
-		return this.document.flags?.[SYSTEM]?.[field];
+		return this.document.flags?.[SYSTEM]?.[field] ?? this._getOriginalDisplayMode(field);
 	}
 
 	/** @inheritdoc */
