@@ -97,6 +97,11 @@ function resolveBaseEffect(id) {
 	return statusEffects.find((value) => value.id === id);
 }
 
+/**
+ * Effect item UUIDs that previously triggered a warning.
+ * @type {Set<string>}
+ */
+const WARNINGS_SHOWN = new Set();
 /** *
  * @param {String} id An uuid or fuid
  * @returns {Promise<ActiveEffectData>}
@@ -128,8 +133,28 @@ async function getEffectData(id) {
 			}
 		}
 	}
+
+	if (effect instanceof FUItem && effect.type === 'effect') {
+		let nestedEffects = effect.effects.contents;
+		if (nestedEffects.length === 1) {
+			let activeEffect = nestedEffects[0];
+			if (!WARNINGS_SHOWN.has(id)) {
+				WARNINGS_SHOWN.add(id);
+				ui.notifications.warn(
+					`Effect Item '${effect.name}' (${id}) is used to reference Active Effect '${activeEffect.name}' (${activeEffect.uuid}).\nThis is deprecated, please use either UUID or FUID to directly reference the Active Effect.`,
+					{ permanent: true },
+				);
+			}
+			effect = activeEffect;
+		} else if (nestedEffects.length > 1) {
+			ui.notifications.error(`Ambiguous Active Effect reference using Effect item '${effect.name}' (${id}). Please use either UUID or FUID to directly reference the desired Active Effect.`, { permanent: true });
+			effect = null;
+		}
+	}
+
 	if (!effect || !(effect instanceof foundry.documents.ActiveEffect || effect instanceof PseudoActiveEffect)) {
 		console.warn(`No effect with id '${id}' could be resolved.`);
+		return null;
 	}
 
 	if (effect) {

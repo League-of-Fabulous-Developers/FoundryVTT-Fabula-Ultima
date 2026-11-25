@@ -141,9 +141,13 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	 */
 	#dragDrop;
 
-	#temporaryEffectsTable = new ActiveEffectsTableRenderer('temporary');
-	#passiveEffectsTable = new ActiveEffectsTableRenderer('passive');
-	#inactiveEffectsTable = new ActiveEffectsTableRenderer('inactive');
+	#temporaryEffectsTable = this._createEffectTableRenderer('temporary');
+	#passiveEffectsTable = this._createEffectTableRenderer('passive');
+	#inactiveEffectsTable = this._createEffectTableRenderer('inactive');
+
+	_createEffectTableRenderer(effectState) {
+		return new ActiveEffectsTableRenderer(effectState);
+	}
 
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
