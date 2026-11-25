@@ -120,6 +120,8 @@ import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 import { ActorDirectoryEnhancements } from './ui/actor-directory-enhancements.mjs';
 import { PixelArtDetection } from './helpers/pixel-art-detection.mjs';
 import { refreshCompendiumData } from './helpers/compendium-refresh.mjs';
+import { FUTokenConfig } from './sheets/token-config.mjs';
+import { FUPrototypeTokenConfig } from './sheets/prototypetoken-config.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -417,6 +419,13 @@ Hooks.once('init', () => {
 	DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
 		makeDefault: true,
 	});
+
+	DocumentSheetConfig.unregisterSheet(foundry.documents.TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
+	DocumentSheetConfig.registerSheet(foundry.documents.TokenDocument, SYSTEM, FUTokenConfig, {
+		makeDefault: true,
+	});
+
+	CONFIG.Token.prototypeSheetClass = FUPrototypeTokenConfig;
 
 	DamagePipeline.initialize();
 	ResourcePipeline.initialize();
