@@ -84,7 +84,11 @@ export function FUTokenConfigMixin(base) {
 		/** @inheritdoc */
 		async _onRender(context, options) {
 			await super._onRender(context, options);
-			for (const field of DISPLAY_MODE_FIELDS) this._injectDisplayModes(field);
+			if (this.actor.type === 'npc') {
+				for (const field of DISPLAY_MODE_FIELDS) {
+					this._injectDisplayModes(field);
+				}
+			}
 		}
 	};
 }
