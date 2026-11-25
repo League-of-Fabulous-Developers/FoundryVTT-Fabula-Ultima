@@ -128,8 +128,25 @@ async function getEffectData(id) {
 			}
 		}
 	}
+
+	if (effect instanceof FUItem && effect.type === 'effect') {
+		let nestedEffects = effect.effects.contents;
+		if (nestedEffects.length === 1) {
+			let activeEffect = nestedEffects[0];
+			ui.notifications.warn(
+				`Effect item '${effect.name}' (${id}) is used to reference active effect '${activeEffect.name}' (${activeEffect.uuid}).\nThis is deprecated, please use either UUID or FUID to directly reference the active effect.`,
+				{ permanent: true },
+			);
+			effect = activeEffect;
+		} else if (nestedEffects.length > 1) {
+			ui.notifications.warn(`Ambiguous active effect reference using Effect item '${effect.name}' (${id}). Please use either UUID or FUID to directly reference the desired active effect.`, { permanent: true });
+			effect = null;
+		}
+	}
+
 	if (!effect || !(effect instanceof foundry.documents.ActiveEffect || effect instanceof PseudoActiveEffect)) {
 		console.warn(`No effect with id '${id}' could be resolved.`);
+		return null;
 	}
 
 	if (effect) {
