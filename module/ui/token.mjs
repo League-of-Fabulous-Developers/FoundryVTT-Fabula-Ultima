@@ -16,7 +16,7 @@ export class FUToken extends foundry.canvas.placeables.Token {
 	 * @param {string} field - The name of the field, probably displayName or displayBars
 	 */
 	_getActualDisplayMode(field) {
-		return this.document.flags?.[SYSTEM]?.[field] ?? this.document[field];
+		return this.document.flags?.[SYSTEM]?.resourceBars?.[field] ?? this.document[field];
 	}
 
 	_createPressureGauge() {
