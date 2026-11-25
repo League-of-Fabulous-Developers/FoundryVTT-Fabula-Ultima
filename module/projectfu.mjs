@@ -598,24 +598,6 @@ Hooks.once('ready', function () {
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
 
-// function injectTokenConfig(app, element, context) {
-// 	const displayNameElement = element.querySelector(`[name="displayName"]`);
-// 	if (displayNameElement instanceof HTMLSelectElement) {
-// 		Object.entries(FU.tokenDisplayModes).forEach(([key, value]) => {
-// 			console.log('Entry:', key, value);
-// 			const option = document.createElement('option');
-// 			option.value = value;
-// 			option.text = _loc(`FU.TokenDisplayModes.${key}`);
-
-// 			displayNameElement.options.add(option);
-// 		});
-// 	}
-// }
-
-// Hooks.on('renderTokenConfig', injectTokenConfig);
-
-// Hooks.on('renderPrototypeTokenConfig', injectTokenConfig);
-
 Hooks.on('getProseMirrorMenuDropDowns', (menu, options) => {
 	// Trim the styling from the FU Icons font drop-down, so it's actually legible.
 	const entry = options.fonts?.entries?.find((entry) => entry.action === 'font-family-fabula-ultima-icons');
