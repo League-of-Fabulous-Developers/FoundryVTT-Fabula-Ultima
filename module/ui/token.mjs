@@ -75,12 +75,14 @@ export class FUToken extends foundry.canvas.placeables.Token {
 			// Ensure at least basic study results, since that is what gets max HP and MP
 			// But always show for token owner
 			const difficulties = StudyRollHandler.getStudyDifficulties();
+			const isStudied = adversary.study >= difficulties[0];
+
 			switch (mode) {
 				case FU.tokenDisplayModes.STUDIEDALWAYS: {
-					return this.isOwner || adversary.study >= difficulties[0];
+					return this.isOwner || isStudied;
 				}
 				case FU.tokenDisplayModes.STUDIEDHOVER: {
-					return this.hover && (this.isOwner || adversary.study >= difficulties[0]);
+					return this.hover && (this.isOwner || isStudied);
 				}
 			}
 		} else {
