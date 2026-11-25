@@ -1225,3 +1225,8 @@ FU.links = {
 // Set these here since they rely on the value of FU.links.repo
 FU.links.wiki = `${FU.links.repo}/wiki`;
 FU.links.issues = `${FU.links.repo}/issues`;
+
+FU.tokenDisplayModes = {
+	STUDIEDALWAYS: 1000,
+	STUDIEDHOVER: 1010,
+};
