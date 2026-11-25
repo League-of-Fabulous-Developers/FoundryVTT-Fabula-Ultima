@@ -211,7 +211,7 @@ export class FUTableRenderer {
 			}
 		}
 
-		Object.assign(config, overrides);
+		foundry.utils.mergeObject(config, overrides);
 		this.#tableId = config.id ?? foundry.utils.randomID();
 		this.initializeOptions(config);
 		this.#tableConfig = foundry.utils.deepFreeze(config);
